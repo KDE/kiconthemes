@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
     KCmdLineOptions options;
 
-    options.add("+iconname", ki18n("the iconname to look for"));
+    options.add("+iconname", ki18n("The icon name to look for"));
 
     KCmdLineArgs::addCmdLineOptions( options );
 
