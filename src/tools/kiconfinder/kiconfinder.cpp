@@ -21,9 +21,8 @@
 #include <kcmdlineargs.h>
 #include <kiconloader.h>
 #include <kdeversion.h>
-#include <kcomponentdata.h>
-
 #include <stdio.h>
+#include <kapplication.h>
 
 int main(int argc, char *argv[])
 {
@@ -36,7 +35,7 @@ int main(int argc, char *argv[])
 
     KCmdLineArgs::addCmdLineOptions( options );
 
-    KComponentData instance("kicontypefinder");
+    KComponentData instance("kiconfinder");
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if( args->count() < 1 ) {
