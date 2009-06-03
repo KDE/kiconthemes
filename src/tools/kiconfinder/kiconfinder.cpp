@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     const QString iconName = args->arg( 0 );
-    QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
+    const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
     if ( !icon.isEmpty() ) {
         printf("%s\n", icon.toLatin1().constData());
     } else {
