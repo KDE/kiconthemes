@@ -21,6 +21,7 @@
 #include <kcmdlineargs.h>
 #include <kiconloader.h>
 #include <kdeversion.h>
+#include <klocale.h>
 #include <stdio.h>
 #include <kapplication.h>
 
