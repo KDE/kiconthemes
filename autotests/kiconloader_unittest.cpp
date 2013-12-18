@@ -66,17 +66,17 @@ private Q_SLOTS:
         // First find an existing icon. The only ones installed for sure by
         // kdelibs are the kimproxy ones.
         QString loadedIconPath = iconLoader.iconPath(
-                QLatin1String("presence_online"),
-                KIconLoader::DefaultState,
-                false /* Ensure "unknown" icon can't be returned */
-            );
+                                     QLatin1String("presence_online"),
+                                     KIconLoader::DefaultState,
+                                     false /* Ensure "unknown" icon can't be returned */
+                                 );
         QVERIFY(!loadedIconPath.isEmpty());
 
         QString nonExistingIconName = QLatin1String("fhqwhgads_homsar");
 
         // Find a non-existent icon, allowing unknown icon to be returned
         QPixmap nonExistingIcon = iconLoader.loadIcon(
-                nonExistingIconName, KIconLoader::Toolbar);
+                                      nonExistingIconName, KIconLoader::Toolbar);
         QCOMPARE(nonExistingIcon.isNull(), false);
 
         // Install the existing icon by copying.
@@ -87,10 +87,10 @@ private Q_SLOTS:
 
         // Verify the icon can now be found.
         QPixmap nowExistingIcon = iconLoader.loadIcon(
-                nonExistingIconName, KIconLoader::Toolbar);
+                                      nonExistingIconName, KIconLoader::Toolbar);
         QVERIFY(nowExistingIcon.cacheKey() != nonExistingIcon.cacheKey());
         QCOMPARE(iconLoader.iconPath(nonExistingIconName, KIconLoader::Toolbar),
-                newIconPath);
+                 newIconPath);
     }
 
     void testLoadIconCanReturnNull()
@@ -160,7 +160,7 @@ private Q_SLOTS:
 
         appIconLoader.addAppDir("kdewidgets");
         QString iconPathFail = appIconLoader.iconPath("kurllabel", KIconLoader::User);
-        QVERIFY( iconPathFail.endsWith( "kdewidgets/pics/kurllabel.png"));
+        QVERIFY(iconPathFail.endsWith("kdewidgets/pics/kurllabel.png"));
     }
 
     void testAppPicsDir_KDE_icon()
@@ -214,8 +214,8 @@ private Q_SLOTS:
         KIconLoader iconLoader;
         QString path;
         QPixmap pix = iconLoader.loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24,
-                                                  KIconLoader::DefaultState, QStringList(),
-                                                  &path );
+                      KIconLoader::DefaultState, QStringList(),
+                      &path);
         QVERIFY(!pix.isNull());
         QCOMPARE(path.section('/', -1), expectedFileName);
 
@@ -224,8 +224,8 @@ private Q_SLOTS:
         // if d->extraDesktopIconsLoaded becomes true first....
         QString path2;
         pix = KIconLoader::global()->loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24,
-                                                      KIconLoader::DefaultState, QStringList(),
-                                                      &path2 );
+                KIconLoader::DefaultState, QStringList(),
+                &path2);
         QVERIFY(!pix.isNull());
         QCOMPARE(path2, path);
     }
@@ -243,7 +243,7 @@ private Q_SLOTS:
                                         &path, true /* canReturnNull */);
         QVERIFY(path.isEmpty());
 
-        path= "some filler to check loadIcon() clears the variable";
+        path = "some filler to check loadIcon() clears the variable";
         KIconLoader::global()->loadIcon("does_not_exist", KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path, true /* canReturnNull */);
@@ -258,8 +258,8 @@ private Q_SLOTS:
 
     void testLoadPixmapSequence()
     {
-       KPixmapSequence seq =  KIconLoader::global()->loadPixmapSequence("process-working", 22);
-       QVERIFY(seq.isValid());
+        KPixmapSequence seq =  KIconLoader::global()->loadPixmapSequence("process-working", 22);
+        QVERIFY(seq.isValid());
     }
 };
 

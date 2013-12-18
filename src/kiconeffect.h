@@ -47,13 +47,13 @@ class KIconEffectPrivate;
 class KICONTHEMES_EXPORT KIconEffect
 {
 public:
-  /**
-   * Create a new KIconEffect.
-   * You will most likely never have to use this to create a new KIconEffect
-   * yourself, as you can use the KIconEffect provided by the global KIconLoader
-   * (which itself is accessible by KIconLoader::global()) through its
-   * iconEffect() function.
-   */
+    /**
+     * Create a new KIconEffect.
+     * You will most likely never have to use this to create a new KIconEffect
+     * yourself, as you can use the KIconEffect provided by the global KIconLoader
+     * (which itself is accessible by KIconLoader::global()) through its
+     * iconEffect() function.
+     */
     KIconEffect();
     ~KIconEffect();
 
@@ -71,7 +71,8 @@ public:
      */
     enum Effects { NoEffect, ToGray, Colorize, ToGamma, DeSaturate,
                    ToMonochrome,
-                   LastEffect };
+                   LastEffect
+                 };
 
     /**
      * Rereads configuration.
@@ -97,7 +98,7 @@ public:
      * @param state the state, see KIconLoader::States
      * @return the fingerprint of the given @p group+@p state
      */
-     QString fingerprint(int group, int state) const;
+    QString fingerprint(int group, int state) const;
 
     /**
      * Applies an effect to an image. The effect to apply depends on the
@@ -215,7 +216,7 @@ public:
     static void overlay(QImage &src, QImage &overlay);
 
 private:
-    KIconEffectPrivate* const d;
+    KIconEffectPrivate *const d;
 };
 
 #endif

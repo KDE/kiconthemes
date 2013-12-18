@@ -38,7 +38,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconDialog(QWidget *parent=0L);
+    explicit KIconDialog(QWidget *parent = 0L);
 
     /**
      * Constructs an icon selection dialog using a specific iconloader.
@@ -46,7 +46,7 @@ public:
      * @param loader The icon loader to use.
      * @param parent The parent widget.
      */
-    explicit KIconDialog(KIconLoader *loader, QWidget *parent=0);
+    explicit KIconDialog(KIconLoader *loader, QWidget *parent = 0);
 
     /**
      * Destructs the dialog.
@@ -67,7 +67,7 @@ public:
     /**
      * sets a custom icon directory
      */
-    void setCustomLocation( const QString& location );
+    void setCustomLocation(const QString &location);
 
     /**
      * Sets the size of the icons to be shown / selected.
@@ -89,11 +89,11 @@ public:
      * dir itself.
      */
 
-    void setup( KIconLoader::Group group,
-                KIconLoader::Context context = KIconLoader::Application,
-                bool strictIconSize = false, int iconSize = 0,
-                bool user = false, bool lockUser = false,
-                bool lockCustomDir = false );
+    void setup(KIconLoader::Group group,
+               KIconLoader::Context context = KIconLoader::Application,
+               bool strictIconSize = false, int iconSize = 0,
+               bool user = false, bool lockUser = false,
+               bool lockCustomDir = false);
 
     /**
      * exec()utes this modal dialog and returns the name of the selected icon,
@@ -127,21 +127,21 @@ public:
      * @param caption The caption to use for the dialog.
      * @return The name of the icon, suitable for loading with KIconLoader.
      */
-    static QString getIcon(KIconLoader::Group group=KIconLoader::Desktop,
-                           KIconLoader::Context context=KIconLoader::Application,
-                           bool strictIconSize=false, int iconSize = 0,
-                           bool user=false, QWidget *parent=0,
-                           const QString &caption=QString());
+    static QString getIcon(KIconLoader::Group group = KIconLoader::Desktop,
+                           KIconLoader::Context context = KIconLoader::Application,
+                           bool strictIconSize = false, int iconSize = 0,
+                           bool user = false, QWidget *parent = 0,
+                           const QString &caption = QString());
 
 Q_SIGNALS:
-    void newIconName(const QString&);
+    void newIconName(const QString &);
 
 protected Q_SLOTS:
     void slotOk();
 
 private:
     class KIconDialogPrivate;
-    KIconDialogPrivate* const d;
+    KIconDialogPrivate *const d;
 
     Q_DISABLE_COPY(KIconDialog)
 

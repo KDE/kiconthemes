@@ -78,8 +78,7 @@ static bool pathIsRelative(const QString &path)
 /**
  * Holds a QPixmap for this process, along with its associated path on disk.
  */
-struct PixmapWithPath
-{
+struct PixmapWithPath {
     QPixmap pixmap;
     QString path;
 };
@@ -95,8 +94,8 @@ public:
 
     void queryIcons(QStringList *lst, int size, KIconLoader::Context context) const;
     void queryIconsByContext(QStringList *lst, int size, KIconLoader::Context context) const;
-    QString findIcon(const QString& name, int size, KIconLoader::MatchType match) const;
-    void printTree(QString& dbgString) const;
+    QString findIcon(const QString &name, int size, KIconLoader::MatchType match) const;
+    void printTree(QString &dbgString) const;
 
     KIconTheme *theme;
 };
@@ -111,7 +110,7 @@ KIconThemeNode::~KIconThemeNode()
     delete theme;
 }
 
-void KIconThemeNode::printTree(QString& dbgString) const
+void KIconThemeNode::printTree(QString &dbgString) const
 {
     /* This method doesn't have much sense anymore, so maybe it should
        be removed in the (near?) future */
@@ -128,27 +127,24 @@ void KIconThemeNode::queryIcons(QStringList *result,
 }
 
 void KIconThemeNode::queryIconsByContext(QStringList *result,
-                                int size, KIconLoader::Context context) const
+        int size, KIconLoader::Context context) const
 {
     // add the icons of this theme to it
     *result += theme->queryIconsByContext(size, context);
 }
 
-QString KIconThemeNode::findIcon(const QString& name, int size,
+QString KIconThemeNode::findIcon(const QString &name, int size,
                                  KIconLoader::MatchType match) const
 {
     return theme->iconPath(name, size, match);
 }
 
-
 /*** KIconGroup: Icon type description. ***/
 
-struct KIconGroup
-{
+struct KIconGroup {
     int size;
     bool alphaBlending;
 };
-
 
 /*** d pointer for KIconLoader. ***/
 class KIconLoaderPrivate
@@ -184,7 +180,7 @@ public:
     /**
      * @internal
      */
-    void init(const QString& _appname, const QStringList& extraSearchPaths = QStringList());
+    void init(const QString &_appname, const QStringList &extraSearchPaths = QStringList());
 
     /**
      * @internal
@@ -196,7 +192,7 @@ public:
      * tries to find an icon with the name. It tries some extension and
      * match strategies
      */
-    QString findMatchingIcon(const QString& name, int size) const;
+    QString findMatchingIcon(const QString &name, int size) const;
 
     /**
      * @internal
@@ -204,13 +200,13 @@ public:
      * This is one layer above findMatchingIcon -- it also implements generic fallbacks
      * such as generic icons for mimetypes.
      */
-    QString findMatchingIconWithGenericFallbacks(const QString& name, int size) const;
+    QString findMatchingIconWithGenericFallbacks(const QString &name, int size) const;
 
     /**
      * @internal
      * Adds themes installed in the application's directory.
      **/
-    void addAppThemes(const QString& appname);
+    void addAppThemes(const QString &appname);
 
     /**
      * @internal
@@ -244,7 +240,7 @@ public:
      * @internal
      * return the path for the unknown icon in that size
      */
-    QString unknownIconPath( int size ) const;
+    QString unknownIconPath(int size) const;
 
     /**
      * Checks if name ends in one of the supported icon formats (i.e. .png)
@@ -292,7 +288,7 @@ public:
     /**
      * Find the given file in the search paths.
      */
-    QString locate(const QString& fileName);
+    QString locate(const QString &fileName);
 
     /**
      * @internal
@@ -310,18 +306,18 @@ public:
     QList<KIconThemeNode *> links;
 
     // This shares the icons across all processes
-    KSharedDataCache* mIconCache;
+    KSharedDataCache *mIconCache;
 
     // This caches rendered QPixmaps in just this process.
     QCache<QString, PixmapWithPath> mPixmapCache;
 
-    bool extraDesktopIconsLoaded :1;
+    bool extraDesktopIconsLoaded : 1;
     // lazy loading: initIconThemes() is only needed when the "links" list is needed
     // mIconThemeInited is used inside initIconThemes() to init only once
-    bool mIconThemeInited :1;
+    bool mIconThemeInited : 1;
     QString appname;
 
-    void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap& pix, const QStringList& overlays);
+    void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -329,24 +325,27 @@ class KIconLoaderGlobalData : public QObject
     Q_OBJECT
 
 public:
-    KIconLoaderGlobalData() {
+    KIconLoaderGlobalData()
+    {
         const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "mime/generic-icons");
         //qDebug() << genericIconsFiles;
-        Q_FOREACH(const QString& file, genericIconsFiles) {
+        Q_FOREACH (const QString &file, genericIconsFiles) {
             parseGenericIconsFiles(file);
         }
 
-        QDBusConnection::sessionBus().connect( QString(), "/KIconLoader", "org.kde.KIconLoader",
-                                                   "iconChanged", this, SIGNAL(iconChanged(int)) );
+        QDBusConnection::sessionBus().connect(QString(), "/KIconLoader", "org.kde.KIconLoader",
+                                              "iconChanged", this, SIGNAL(iconChanged(int)));
     }
 
-    void emitChange(KIconLoader::Group group) {
-        QDBusMessage message = QDBusMessage::createSignal("/KIconLoader", "org.kde.KIconLoader", "iconChanged" );
+    void emitChange(KIconLoader::Group group)
+    {
+        QDBusMessage message = QDBusMessage::createSignal("/KIconLoader", "org.kde.KIconLoader", "iconChanged");
         message.setArguments(QList<QVariant>() << int(group));
         QDBusConnection::sessionBus().send(message);
     }
 
-    QString genericIconFor(const QString& icon) const {
+    QString genericIconFor(const QString &icon) const
+    {
         return m_genericIcons.value(icon);
     }
 
@@ -354,11 +353,11 @@ Q_SIGNALS:
     void iconChanged(int group);
 
 private:
-    void parseGenericIconsFiles(const QString& fileName);
+    void parseGenericIconsFiles(const QString &fileName);
     QHash<QString, QString> m_genericIcons;
 };
 
-void KIconLoaderGlobalData::parseGenericIconsFiles(const QString& fileName)
+void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
 {
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly)) {
@@ -366,18 +365,20 @@ void KIconLoaderGlobalData::parseGenericIconsFiles(const QString& fileName)
         stream.setCodec("ISO 8859-1");
         while (!stream.atEnd()) {
             const QString line = stream.readLine();
-            if (line.isEmpty() || line[0] == '#')
+            if (line.isEmpty() || line[0] == '#') {
                 continue;
+            }
             const int pos = line.indexOf(':');
-            if (pos == -1) // syntax error
+            if (pos == -1) { // syntax error
                 continue;
+            }
             QString mimeIcon = line.left(pos);
             const int slashindex = mimeIcon.indexOf(QLatin1Char('/'));
             if (slashindex != -1) {
                 mimeIcon[slashindex] = QLatin1Char('-');
             }
 
-            const QString genericIcon = line.mid(pos+1);
+            const QString genericIcon = line.mid(pos + 1);
             m_genericIcons.insert(mimeIcon, genericIcon);
             //qDebug() << mimeIcon << "->" << genericIcon;
         }
@@ -386,7 +387,7 @@ void KIconLoaderGlobalData::parseGenericIconsFiles(const QString& fileName)
 
 Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
 
-void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader::Group group, int state, QPixmap& pix, const QStringList& overlays)
+void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays)
 {
     if (overlays.isEmpty()) {
         return;
@@ -412,7 +413,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
     QPainter painter(&pix);
 
     int count = 0;
-    foreach (const QString& overlay, overlays) {
+    foreach (const QString &overlay, overlays) {
         // Ensure empty strings fill up a emblem spot
         // Needed when you have several emblems to ensure they're always painted
         // at the same place, even if one is not here
@@ -467,7 +468,7 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
     emit q->iconChanged(group);
 }
 
-KIconLoader::KIconLoader(const QString& _appname, const QStringList& extraSearchPaths, QObject* parent)
+KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearchPaths, QObject *parent)
     : QObject(parent)
 {
     setObjectName(_appname);
@@ -477,24 +478,25 @@ KIconLoader::KIconLoader(const QString& _appname, const QStringList& extraSearch
     d->init(_appname, extraSearchPaths);
 }
 
-void KIconLoader::reconfigure(const QString& _appname, const QStringList& extraSearchPaths)
+void KIconLoader::reconfigure(const QString &_appname, const QStringList &extraSearchPaths)
 {
     d->mIconCache->clear();
     d->clear();
     d->init(_appname, extraSearchPaths);
 }
 
-void KIconLoaderPrivate::init(const QString& _appname, const QStringList& extraSearchPaths)
+void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraSearchPaths)
 {
-    extraDesktopIconsLoaded=false;
+    extraDesktopIconsLoaded = false;
     mIconThemeInited = false;
     mpThemeRoot = 0;
 
     searchPaths = extraSearchPaths;
 
     appname = _appname;
-    if (appname.isEmpty())
+    if (appname.isEmpty()) {
         appname = QCoreApplication::applicationName();
+    }
 
     // Initialize icon cache
     mIconCache = new KSharedDataCache("icon-cache", 10 * 1024 * 1024);
@@ -503,7 +505,7 @@ void KIconLoaderPrivate::init(const QString& _appname, const QStringList& extraS
     mPixmapCache.setMaxCost(10 * 1024 * 1024);
 
     // These have to match the order in kicontheme.h
-    static const char * const groups[] = { "Desktop", "Toolbar", "MainToolbar", "Small", "Panel", "Dialog", 0L };
+    static const char *const groups[] = { "Desktop", "Toolbar", "MainToolbar", "Small", "Panel", "Dialog", 0L };
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
 
     // loading config and default sizes
@@ -540,14 +542,12 @@ bool KIconLoaderPrivate::initIconThemes()
 
     // Add the default theme and its base themes to the theme tree
     KIconTheme *def = new KIconTheme(KIconTheme::current(), appname);
-    if (!def->isValid())
-    {
+    if (!def->isValid()) {
         delete def;
         // warn, as this is actually a small penalty hit
         qDebug() << "Couldn't find current icon theme, falling back to default.";
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
-        if (!def->isValid())
-        {
+        if (!def->isValid()) {
             qWarning() << "Error: standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
             delete def;
             return false;
@@ -585,7 +585,7 @@ QStringList KIconLoader::searchPaths() const
     return d->searchPaths;
 }
 
-void KIconLoader::addAppDir(const QString& appname)
+void KIconLoader::addAppDir(const QString &appname)
 {
     d->initIconThemes();
 
@@ -593,7 +593,7 @@ void KIconLoader::addAppDir(const QString& appname)
     d->addAppThemes(appname);
 }
 
-void KIconLoaderPrivate::addAppThemes(const QString& appname)
+void KIconLoaderPrivate::addAppThemes(const QString &appname)
 {
     initIconThemes();
 
@@ -602,7 +602,7 @@ void KIconLoaderPrivate::addAppThemes(const QString& appname)
         delete def;
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
     }
-    KIconThemeNode* node = new KIconThemeNode(def);
+    KIconThemeNode *node = new KIconThemeNode(def);
     bool addedToLinks = false;
 
     if (!mThemesInTree.contains(node->theme->internalName())) {
@@ -641,10 +641,10 @@ void KIconLoaderPrivate::addInheritedThemes(KIconThemeNode *node, const QString 
 
     for (QStringList::ConstIterator it = lst.begin(); it != lst.end(); ++it) {
         if ((*it) == "hicolor") {
-          // The icon theme spec says that "hicolor" must be the very last
-          // of all inherited themes, so don't add it here but at the very end
-          // of addBaseThemes().
-          continue;
+            // The icon theme spec says that "hicolor" must be the very last
+            // of all inherited themes, so don't add it here but at the very end
+            // of addBaseThemes().
+            continue;
         }
         addThemeByName(*it, appname);
     }
@@ -668,7 +668,9 @@ void KIconLoaderPrivate::addThemeByName(const QString &themename, const QString 
 
 void KIconLoaderPrivate::addExtraDesktopThemes()
 {
-    if ( extraDesktopIconsLoaded ) return;
+    if (extraDesktopIconsLoaded) {
+        return;
+    }
 
     initIconThemes();
 
@@ -676,42 +678,41 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
     const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
     QStringList::ConstIterator it;
     char buf[1000];
-    for (it=icnlibs.begin(); it!=icnlibs.end(); ++it)
-    {
+    for (it = icnlibs.begin(); it != icnlibs.end(); ++it) {
         QDir dir(*it);
-        if (!dir.exists())
+        if (!dir.exists()) {
             continue;
-        const QStringList lst = dir.entryList(QStringList( "default.*" ), QDir::Dirs);
+        }
+        const QStringList lst = dir.entryList(QStringList("default.*"), QDir::Dirs);
         QStringList::ConstIterator it2;
-        for (it2=lst.begin(); it2!=lst.end(); ++it2)
-        {
+        for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
             if (!QFile::exists(*it + *it2 + "/index.desktop")
-                && !QFile::exists(*it + *it2 + "/index.theme"))
+                    && !QFile::exists(*it + *it2 + "/index.theme")) {
                 continue;
-            const int r = readlink(QFile::encodeName(*it + *it2) , buf, sizeof(buf)-1);
-            if ( r>0 )
-            {
-                buf[r]=0;
-                const QDir dir2( buf );
-                QString themeName=dir2.dirName();
+            }
+            const int r = readlink(QFile::encodeName(*it + *it2), buf, sizeof(buf) - 1);
+            if (r > 0) {
+                buf[r] = 0;
+                const QDir dir2(buf);
+                QString themeName = dir2.dirName();
 
-                if (!list.contains(themeName))
+                if (!list.contains(themeName)) {
                     list.append(themeName);
+                }
             }
         }
     }
 
-    for (it = list.constBegin(); it != list.constEnd(); ++it)
-    {
+    for (it = list.constBegin(); it != list.constEnd(); ++it) {
         // Don't add the KDE defaults once more, we have them anyways.
         if (*it == QLatin1String("default.kde")
-            || *it == QLatin1String("default.kde4")) {
+                || *it == QLatin1String("default.kde4")) {
             continue;
         }
         addThemeByName(*it, "");
     }
 
-    extraDesktopIconsLoaded=true;
+    extraDesktopIconsLoaded = true;
 
 }
 
@@ -723,8 +724,8 @@ void KIconLoader::drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIc
 QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
 {
     if (name.endsWith(QLatin1String(".png"))
-        || name.endsWith(QLatin1String(".xpm"))
-        || name.endsWith(QLatin1String(".svg"))) {
+            || name.endsWith(QLatin1String(".xpm"))
+            || name.endsWith(QLatin1String(".svg"))) {
         return name.left(name.length() - 4);
     } else if (name.endsWith(QLatin1String(".svgz"))) {
         return name.left(name.length() - 5);
@@ -735,8 +736,7 @@ QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
 
 void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &size, int &state) const
 {
-    if ((state < 0) || (state >= KIconLoader::LastState))
-    {
+    if ((state < 0) || (state >= KIconLoader::LastState)) {
         qWarning() << "Illegal icon state:" << state;
         state = KIconLoader::DefaultState;
     }
@@ -751,17 +751,14 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &s
         return;
     }
 
-    if ((group < -1) || (group >= KIconLoader::LastGroup))
-    {
+    if ((group < -1) || (group >= KIconLoader::LastGroup)) {
         qWarning() << "Illegal icon group:" << group;
         group = KIconLoader::Desktop;
     }
 
     // If size == 0, use default size for the specified group.
-    if (size == 0)
-    {
-        if (group < 0)
-        {
+    if (size == 0) {
+        if (group < 0) {
             qWarning() << "Neither size nor group specified!";
             group = KIconLoader::Desktop;
         }
@@ -770,21 +767,21 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &s
 }
 
 QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group group,
-                                         const QStringList &overlays, int size, int state) const
+        const QStringList &overlays, int size, int state) const
 {
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
 
     return (group == KIconLoader::User
-                  ? QLatin1Literal("$kicou_")
-                  : QLatin1Literal("$kico_"))
+            ? QLatin1Literal("$kicou_")
+            : QLatin1Literal("$kico_"))
            % name
            % QLatin1Char('_')
            % QString::number(size)
            % QLatin1Char('_')
            % overlays.join("_")
-           % ( group >= 0 ? mpEffect.fingerprint(group, state)
-                          : *NULL_EFFECT_FINGERPRINT());
+           % (group >= 0 ? mpEffect.fingerprint(group, state)
+              : *NULL_EFFECT_FINGERPRINT());
 }
 
 QImage KIconLoaderPrivate::createIconImage(const QString &path, int size)
@@ -888,11 +885,12 @@ bool KIconLoaderPrivate::findCachedPixmapWithPath(const QString &key, QPixmap &d
     return false;
 }
 
-QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString& name, int size) const
+QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &name, int size) const
 {
     QString path = findMatchingIcon(name, size);
-    if (!path.isEmpty())
+    if (!path.isEmpty()) {
         return path;
+    }
 
     const QString genericIcon = s_globalData()->genericIconFor(name);
     if (!genericIcon.isEmpty()) {
@@ -901,13 +899,13 @@ QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString& 
     return path;
 }
 
-QString KIconLoaderPrivate::findMatchingIcon(const QString& name, int size) const
+QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) const
 {
-    const_cast<KIconLoaderPrivate*>(this)->initIconThemes();
+    const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
 
     QString path;
 
-    const char * const ext[4] = { ".png", ".svgz", ".svg", ".xpm" };
+    const char *const ext[4] = { ".png", ".svgz", ".svg", ".xpm" };
     bool genericFallback = name.endsWith(QLatin1String("-x-generic"));
 
     // Do two passes through themeNodes.
@@ -922,7 +920,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString& name, int size) cons
     // icons may fallback. Since we do not know what the context is here when we start
     // looking for it, we can only go by the path found.
     foreach (KIconThemeNode *themeNode, links) {
-        for (int i = 0 ; i < 4 ; i++) {
+        for (int i = 0; i < 4; i++) {
             path = themeNode->theme->iconPath(name + ext[i], size, KIconLoader::MatchExact);
             if (!path.isEmpty()) {
                 return path;
@@ -945,15 +943,16 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString& name, int size) cons
         while (!currentName.isEmpty()) {
             //qDebug() << "Looking up" << currentName;
 
-            for (int i = 0 ; i < 4 ; i++)
-            {
+            for (int i = 0; i < 4; i++) {
                 path = themeNode->theme->iconPath(currentName + ext[i], size, KIconLoader::MatchExact);
-                if (!path.isEmpty())
+                if (!path.isEmpty()) {
                     return path;
+                }
 
                 path = themeNode->theme->iconPath(currentName + ext[i], size, KIconLoader::MatchBest);
-                if (!path.isEmpty())
+                if (!path.isEmpty()) {
                     return path;
+                }
             }
             //qDebug() << "Looking up" << currentName;
 
@@ -966,14 +965,15 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString& name, int size) cons
             if (rindex > 1) { // > 1 so that we don't split x-content or x-epoc
                 currentName.truncate(rindex);
 
-                if (currentName.endsWith(QLatin1String("-x")))
+                if (currentName.endsWith(QLatin1String("-x"))) {
                     currentName.chop(2);
+                }
             } else {
                 // From update-mime-database.c
                 static const QSet<QString> mediaTypes = QSet<QString>()
-                    << "text" << "application" << "image" << "audio"
-                    << "inode" << "video" << "message" << "model" << "multipart"
-                    << "x-content" << "x-epoc";
+                                                        << "text" << "application" << "image" << "audio"
+                                                        << "inode" << "video" << "message" << "model" << "multipart"
+                                                        << "x-content" << "x-epoc";
                 // Shared-mime-info spec says:
                 // "If [generic-icon] is not specified then the mimetype is used to generate the
                 // generic icon by using the top-level media type (e.g. "video" in "video/ogg")
@@ -990,28 +990,29 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString& name, int size) cons
     return path;
 }
 
-inline QString KIconLoaderPrivate::unknownIconPath( int size ) const
+inline QString KIconLoaderPrivate::unknownIconPath(int size) const
 {
     QString path = findMatchingIcon(QLatin1String("unknown"), size);
-    if (path.isEmpty())
-    {
+    if (path.isEmpty()) {
         qDebug() << "Warning: could not find \"unknown\" icon for size" << size;
         return QString();
     }
     return path;
 }
 
-QString KIconLoaderPrivate::locate(const QString& fileName)
+QString KIconLoaderPrivate::locate(const QString &fileName)
 {
-    Q_FOREACH(const QString& dir, searchPaths) {
+    Q_FOREACH (const QString &dir, searchPaths) {
         const QString path = dir + '/' + fileName;
         if (QDir(dir).isAbsolute()) {
-            if (QFile::exists(path))
+            if (QFile::exists(path)) {
                 return path;
+            }
         } else {
             const QString fullPath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, path);
-            if (!fullPath.isEmpty())
+            if (!fullPath.isEmpty()) {
                 return fullPath;
+            }
         }
     }
     return QString();
@@ -1019,69 +1020,71 @@ QString KIconLoaderPrivate::locate(const QString& fileName)
 
 // Finds the absolute path to an icon.
 
-QString KIconLoader::iconPath(const QString& _name, int group_or_size,
+QString KIconLoader::iconPath(const QString &_name, int group_or_size,
                               bool canReturnNull) const
 {
     if (!d->initIconThemes()) {
         return QString();
     }
 
-    if (_name.isEmpty() || !pathIsRelative(_name))
-    {
+    if (_name.isEmpty() || !pathIsRelative(_name)) {
         // we have either an absolute path or nothing to work with
         return _name;
     }
 
-    QString name = d->removeIconExtension( _name );
+    QString name = d->removeIconExtension(_name);
 
     QString path;
-    if (group_or_size == KIconLoader::User)
-    {
+    if (group_or_size == KIconLoader::User) {
         path = d->locate(name + QLatin1String(".png"));
-        if (path.isEmpty())
+        if (path.isEmpty()) {
             path = d->locate(name + QLatin1String(".svgz"));
-        if (path.isEmpty())
+        }
+        if (path.isEmpty()) {
             path = d->locate(name + QLatin1String(".svg"));
-        if (path.isEmpty())
+        }
+        if (path.isEmpty()) {
             path = d->locate(name + QLatin1String(".xpm"));
+        }
         return path;
     }
 
-    if (group_or_size >= KIconLoader::LastGroup)
-    {
+    if (group_or_size >= KIconLoader::LastGroup) {
         qDebug() << "Illegal icon group:" << group_or_size;
         return path;
     }
 
     int size;
-    if (group_or_size >= 0)
+    if (group_or_size >= 0) {
         size = d->mpGroups[group_or_size].size;
-    else
+    } else {
         size = -group_or_size;
+    }
 
     if (_name.isEmpty()) {
-        if (canReturnNull)
+        if (canReturnNull) {
             return QString();
-        else
+        } else {
             return d->unknownIconPath(size);
+        }
     }
 
     path = d->findMatchingIconWithGenericFallbacks(name, size);
 
-    if (path.isEmpty())
-    {
+    if (path.isEmpty()) {
         // Try "User" group too.
         path = iconPath(name, KIconLoader::User, true);
-        if (!path.isEmpty() || canReturnNull)
+        if (!path.isEmpty() || canReturnNull) {
             return path;
+        }
 
         return d->unknownIconPath(size);
     }
     return path;
 }
 
-QPixmap KIconLoader::loadMimeTypeIcon( const QString& _iconName, KIconLoader::Group group, int size,
-                                       int state, const QStringList& overlays, QString *path_store ) const
+QPixmap KIconLoader::loadMimeTypeIcon(const QString &_iconName, KIconLoader::Group group, int size,
+                                      int state, const QStringList &overlays, QString *path_store) const
 {
     QString iconName = _iconName;
     const int slashindex = iconName.indexOf(QLatin1Char('/'));
@@ -1089,10 +1092,9 @@ QPixmap KIconLoader::loadMimeTypeIcon( const QString& _iconName, KIconLoader::Gr
         iconName[slashindex] = QLatin1Char('-');
     }
 
-    if ( !d->extraDesktopIconsLoaded )
-    {
-        const QPixmap pixmap = loadIcon( iconName, group, size, state, overlays, path_store, true );
-        if (!pixmap.isNull() ) {
+    if (!d->extraDesktopIconsLoaded) {
+        const QPixmap pixmap = loadIcon(iconName, group, size, state, overlays, path_store, true);
+        if (!pixmap.isNull()) {
             return pixmap;
         }
         d->addExtraDesktopThemes();
@@ -1105,15 +1107,16 @@ QPixmap KIconLoader::loadMimeTypeIcon( const QString& _iconName, KIconLoader::Gr
     return pixmap;
 }
 
-QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, int size,
-                              int state, const QStringList& overlays,
+QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, int size,
+                              int state, const QStringList &overlays,
                               QString *path_store, bool canReturnNull) const
 {
     QString name = _name;
     bool favIconOverlay = false;
 
-    if (size < 0 || _name.isEmpty())
+    if (size < 0 || _name.isEmpty()) {
         return QPixmap();
+    }
 
     /*
      * This method works in a kind of pipeline, with the following steps:
@@ -1126,10 +1129,9 @@ QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, in
      */
 
     // Special case for absolute path icons.
-    if (name.startsWith(QLatin1String("favicons/")))
-    {
-       favIconOverlay = true;
-       name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + '/' + name + ".png";
+    if (name.startsWith(QLatin1String("favicons/"))) {
+        favIconOverlay = true;
+        name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + '/' + name + ".png";
     }
 
     bool absolutePath = !pathIsRelative(name);
@@ -1172,12 +1174,9 @@ QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, in
     // First we look for non-User icons. If we don't find one we'd search in
     // the User space anyways...
     if (group != KIconLoader::User) {
-        if (absolutePath && !favIconOverlay)
-        {
+        if (absolutePath && !favIconOverlay) {
             path = name;
-        }
-        else
-        {
+        } else {
             path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QString("text-html") : name, size);
         }
     }
@@ -1185,7 +1184,7 @@ QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, in
     if (path.isEmpty()) {
         // We do have a "User" icon, or we couldn't find the non-User one.
         path = (absolutePath) ? name :
-                                iconPath(name, KIconLoader::User, canReturnNull);
+               iconPath(name, KIconLoader::User, canReturnNull);
     }
 
     // Still can't find it? Use "unknown" if we can't return null.
@@ -1200,16 +1199,13 @@ QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, in
         img = d->createIconImage(path, size);
     }
 
-    if (group >= 0)
-    {
+    if (group >= 0) {
         img = d->mpEffect.apply(img, group, state);
     }
 
-    if (favIconOverlay)
-    {
+    if (favIconOverlay) {
         QImage favIcon(name, "PNG");
-        if (!favIcon.isNull()) // if favIcon not there yet, don't try to blend it
-        {
+        if (!favIcon.isNull()) { // if favIcon not there yet, don't try to blend it
             QPainter p(&img);
 
             // Align the favicon overlay
@@ -1244,72 +1240,70 @@ QPixmap KIconLoader::loadIcon(const QString& _name, KIconLoader::Group group, in
     return pix;
 }
 
-KPixmapSequence KIconLoader::loadPixmapSequence(const QString& xdgIconName, int size) const
+KPixmapSequence KIconLoader::loadPixmapSequence(const QString &xdgIconName, int size) const
 {
     return KPixmapSequence(iconPath(xdgIconName, -size), size);
 }
 
-QMovie *KIconLoader::loadMovie(const QString& name, KIconLoader::Group group, int size, QObject *parent) const
+QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, int size, QObject *parent) const
 {
-    QString file = moviePath( name, group, size );
-    if (file.isEmpty())
+    QString file = moviePath(name, group, size);
+    if (file.isEmpty()) {
         return 0;
+    }
     int dirLen = file.lastIndexOf('/');
     QString icon = iconPath(name, size ? -size : group, true);
-    if (!icon.isEmpty() && file.left(dirLen) != icon.left(dirLen))
+    if (!icon.isEmpty() && file.left(dirLen) != icon.left(dirLen)) {
         return 0;
+    }
     QMovie *movie = new QMovie(file, QByteArray(), parent);
-    if (!movie->isValid())
-    {
+    if (!movie->isValid()) {
         delete movie;
         return 0;
     }
     return movie;
 }
 
-QString KIconLoader::moviePath(const QString& name, KIconLoader::Group group, int size) const
+QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, int size) const
 {
-    if (!d->mpGroups) return QString();
+    if (!d->mpGroups) {
+        return QString();
+    }
 
     d->initIconThemes();
 
-    if ( (group < -1 || group >= KIconLoader::LastGroup) && group != KIconLoader::User )
-    {
+    if ((group < -1 || group >= KIconLoader::LastGroup) && group != KIconLoader::User) {
         qDebug() << "Illegal icon group:" << group;
         group = KIconLoader::Desktop;
     }
-    if (size == 0 && group < 0)
-    {
+    if (size == 0 && group < 0) {
         qDebug() << "Neither size nor group specified!";
         group = KIconLoader::Desktop;
     }
 
     QString file = name + ".mng";
-    if (group == KIconLoader::User)
-    {
+    if (group == KIconLoader::User) {
         file = d->locate(file);
-    }
-    else
-    {
-        if (size == 0)
+    } else {
+        if (size == 0) {
             size = d->mpGroups[group].size;
+        }
 
         QString path;
 
-        foreach(KIconThemeNode *themeNode, d->links)
-        {
+        foreach (KIconThemeNode *themeNode, d->links) {
             path = themeNode->theme->iconPath(file, size, KIconLoader::MatchExact);
-            if (!path.isEmpty())
+            if (!path.isEmpty()) {
                 break;
+            }
         }
 
-        if (path.isEmpty())
-        {
-            foreach(KIconThemeNode *themeNode, d->links)
-            {
+        if (path.isEmpty()) {
+            foreach (KIconThemeNode *themeNode, d->links) {
                 path = themeNode->theme->iconPath(file, size, KIconLoader::MatchBest);
-                if (!path.isEmpty())
+                if (!path.isEmpty()) {
                     break;
+                }
             }
         }
 
@@ -1318,47 +1312,48 @@ QString KIconLoader::moviePath(const QString& name, KIconLoader::Group group, in
     return file;
 }
 
-
-QStringList KIconLoader::loadAnimated(const QString& name, KIconLoader::Group group, int size) const
+QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group group, int size) const
 {
     QStringList lst;
 
-    if (!d->mpGroups) return lst;
+    if (!d->mpGroups) {
+        return lst;
+    }
 
     d->initIconThemes();
 
-    if ((group < -1) || (group >= KIconLoader::LastGroup))
-    {
+    if ((group < -1) || (group >= KIconLoader::LastGroup)) {
         qDebug() << "Illegal icon group: " << group;
         group = KIconLoader::Desktop;
     }
-    if ((size == 0) && (group < 0))
-    {
+    if ((size == 0) && (group < 0)) {
         qDebug() << "Neither size nor group specified!";
         group = KIconLoader::Desktop;
     }
 
     QString file = name + "/0001";
-    if (group == KIconLoader::User)
-    {
+    if (group == KIconLoader::User) {
         file = d->locate(file + ".png");
-    } else
-    {
-        if (size == 0)
+    } else {
+        if (size == 0) {
             size = d->mpGroups[group].size;
+        }
         file = d->findMatchingIcon(file, size);
     }
-    if (file.isEmpty())
+    if (file.isEmpty()) {
         return lst;
+    }
 
-    QString path = file.left(file.length()-8);
+    QString path = file.left(file.length() - 8);
     QDir dir(QFile::encodeName(path));
-    if(!dir.exists())
+    if (!dir.exists()) {
         return lst;
+    }
 
     foreach (const QString &entry, dir.entryList()) {
-        if(!(entry.left(4)).toUInt())
+        if (!(entry.left(4)).toUInt()) {
             continue;
+        }
 
         lst += path + entry;
     }
@@ -1369,68 +1364,72 @@ QStringList KIconLoader::loadAnimated(const QString& name, KIconLoader::Group gr
 KIconTheme *KIconLoader::theme() const
 {
     d->initIconThemes();
-    if (d->mpThemeRoot) return d->mpThemeRoot->theme;
+    if (d->mpThemeRoot) {
+        return d->mpThemeRoot->theme;
+    }
     return 0L;
 }
 
 int KIconLoader::currentSize(KIconLoader::Group group) const
 {
-    if (!d->mpGroups) return -1;
+    if (!d->mpGroups) {
+        return -1;
+    }
 
-    if (group < 0 || group >= KIconLoader::LastGroup)
-    {
+    if (group < 0 || group >= KIconLoader::LastGroup) {
         qDebug() << "Illegal icon group:" << group;
         return -1;
     }
     return d->mpGroups[group].size;
 }
 
-QStringList KIconLoader::queryIconsByDir( const QString& iconsDir ) const
+QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
 {
     const QDir dir(iconsDir);
     const QStringList formats = QStringList() << "*.png" << "*.xpm" << "*.svg" << "*.svgz";
     const QStringList lst = dir.entryList(formats, QDir::Files);
     QStringList result;
     QStringList::ConstIterator it;
-    for (it=lst.begin(); it!=lst.end(); ++it)
+    for (it = lst.begin(); it != lst.end(); ++it) {
         result += iconsDir + '/' + *it;
+    }
     return result;
 }
 
 QStringList KIconLoader::queryIconsByContext(int group_or_size,
-                                             KIconLoader::Context context) const
+        KIconLoader::Context context) const
 {
     d->initIconThemes();
 
     QStringList result;
-    if (group_or_size >= KIconLoader::LastGroup)
-    {
+    if (group_or_size >= KIconLoader::LastGroup) {
         qDebug() << "Illegal icon group:" << group_or_size;
         return result;
     }
     int size;
-    if (group_or_size >= 0)
+    if (group_or_size >= 0) {
         size = d->mpGroups[group_or_size].size;
-    else
+    } else {
         size = -group_or_size;
+    }
 
-    foreach(KIconThemeNode *themeNode, d->links)
-       themeNode->queryIconsByContext(&result, size, context);
+    foreach (KIconThemeNode *themeNode, d->links) {
+        themeNode->queryIconsByContext(&result, size, context);
+    }
 
     // Eliminate duplicate entries (same icon in different directories)
     QString name;
     QStringList res2, entries;
     QStringList::ConstIterator it;
-    for (it=result.constBegin(); it!=result.constEnd(); ++it)
-    {
+    for (it = result.constBegin(); it != result.constEnd(); ++it) {
         int n = (*it).lastIndexOf('/');
-        if (n == -1)
+        if (n == -1) {
             name = *it;
-        else
-            name = (*it).mid(n+1);
+        } else {
+            name = (*it).mid(n + 1);
+        }
         name = d->removeIconExtension(name);
-        if (!entries.contains(name))
-        {
+        if (!entries.contains(name)) {
             entries += name;
             res2 += *it;
         }
@@ -1444,34 +1443,34 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
     d->initIconThemes();
 
     QStringList result;
-    if (group_or_size >= KIconLoader::LastGroup)
-    {
+    if (group_or_size >= KIconLoader::LastGroup) {
         qDebug() << "Illegal icon group:" << group_or_size;
         return result;
     }
     int size;
-    if (group_or_size >= 0)
+    if (group_or_size >= 0) {
         size = d->mpGroups[group_or_size].size;
-    else
+    } else {
         size = -group_or_size;
+    }
 
-    foreach(KIconThemeNode *themeNode, d->links)
-       themeNode->queryIcons(&result, size, context);
+    foreach (KIconThemeNode *themeNode, d->links) {
+        themeNode->queryIcons(&result, size, context);
+    }
 
     // Eliminate duplicate entries (same icon in different directories)
     QString name;
     QStringList res2, entries;
     QStringList::ConstIterator it;
-    for (it=result.constBegin(); it!=result.constEnd(); ++it)
-    {
+    for (it = result.constBegin(); it != result.constEnd(); ++it) {
         int n = (*it).lastIndexOf('/');
-        if (n == -1)
+        if (n == -1) {
             name = *it;
-        else
-            name = (*it).mid(n+1);
+        } else {
+            name = (*it).mid(n + 1);
+        }
         name = d->removeIconExtension(name);
-        if (!entries.contains(name))
-        {
+        if (!entries.contains(name)) {
             entries += name;
             res2 += *it;
         }
@@ -1484,23 +1483,25 @@ bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
     d->initIconThemes();
 
-    foreach(KIconThemeNode *themeNode, d->links)
-       if( themeNode->theme->hasContext( context ))
-           return true;
+    foreach (KIconThemeNode *themeNode, d->links)
+        if (themeNode->theme->hasContext(context)) {
+            return true;
+        }
     return false;
 }
 
-KIconEffect * KIconLoader::iconEffect() const
+KIconEffect *KIconLoader::iconEffect() const
 {
     return &d->mpEffect;
 }
 
 bool KIconLoader::alphaBlending(KIconLoader::Group group) const
 {
-    if (!d->mpGroups) return false;
+    if (!d->mpGroups) {
+        return false;
+    }
 
-    if (group < 0 || group >= KIconLoader::LastGroup)
-    {
+    if (group < 0 || group >= KIconLoader::LastGroup) {
         qDebug() << "Illegal icon group:" << group;
         return false;
     }
@@ -1509,24 +1510,24 @@ bool KIconLoader::alphaBlending(KIconLoader::Group group) const
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon KIconLoader::loadIconSet( const QString& name, KIconLoader::Group g, int s,
-                                bool canReturnNull )
+QIcon KIconLoader::loadIconSet(const QString &name, KIconLoader::Group g, int s,
+                               bool canReturnNull)
 {
     QIcon iconset;
     QPixmap tmp = loadIcon(name, g, s, KIconLoader::ActiveState, QStringList(), NULL, canReturnNull);
-    iconset.addPixmap( tmp, QIcon::Active, QIcon::On );
+    iconset.addPixmap(tmp, QIcon::Active, QIcon::On);
     // we don't use QIconSet's resizing anyway
     tmp = loadIcon(name, g, s, KIconLoader::DisabledState, QStringList(), NULL, canReturnNull);
-    iconset.addPixmap( tmp, QIcon::Disabled, QIcon::On );
+    iconset.addPixmap(tmp, QIcon::Disabled, QIcon::On);
     tmp = loadIcon(name, g, s, KIconLoader::DefaultState, QStringList(), NULL, canReturnNull);
-    iconset.addPixmap( tmp, QIcon::Normal, QIcon::On );
+    iconset.addPixmap(tmp, QIcon::Normal, QIcon::On);
     return iconset;
 }
 #endif
 
 // Easy access functions
 
-QPixmap DesktopIcon(const QString& name, int force_size, int state, const QStringList &overlays)
+QPixmap DesktopIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::Desktop, force_size, state, overlays);
@@ -1534,14 +1535,14 @@ QPixmap DesktopIcon(const QString& name, int force_size, int state, const QStrin
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon DesktopIconSet(const QString& name, int force_size)
+QIcon DesktopIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIconSet(name, KIconLoader::Desktop, force_size);
 }
 #endif
 
-QPixmap BarIcon(const QString& name, int force_size, int state, const QStringList &overlays)
+QPixmap BarIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::Toolbar, force_size, state, overlays);
@@ -1549,14 +1550,14 @@ QPixmap BarIcon(const QString& name, int force_size, int state, const QStringLis
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon BarIconSet(const QString& name, int force_size)
+QIcon BarIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
-    return loader->loadIconSet( name, KIconLoader::Toolbar, force_size );
+    return loader->loadIconSet(name, KIconLoader::Toolbar, force_size);
 }
 #endif
 
-QPixmap SmallIcon(const QString& name, int force_size, int state, const QStringList &overlays)
+QPixmap SmallIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::Small, force_size, state, overlays);
@@ -1564,14 +1565,14 @@ QPixmap SmallIcon(const QString& name, int force_size, int state, const QStringL
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon SmallIconSet(const QString& name, int force_size)
+QIcon SmallIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
-    return loader->loadIconSet( name, KIconLoader::Small, force_size );
+    return loader->loadIconSet(name, KIconLoader::Small, force_size);
 }
 #endif
 
-QPixmap MainBarIcon(const QString& name, int force_size, int state, const QStringList &overlays)
+QPixmap MainBarIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::MainToolbar, force_size, state, overlays);
@@ -1579,14 +1580,14 @@ QPixmap MainBarIcon(const QString& name, int force_size, int state, const QStrin
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon MainBarIconSet(const QString& name, int force_size)
+QIcon MainBarIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
-    return loader->loadIconSet( name, KIconLoader::MainToolbar, force_size );
+    return loader->loadIconSet(name, KIconLoader::MainToolbar, force_size);
 }
 #endif
 
-QPixmap UserIcon(const QString& name, int state, const QStringList &overlays)
+QPixmap UserIcon(const QString &name, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::User, 0, state, overlays);
@@ -1594,10 +1595,10 @@ QPixmap UserIcon(const QString& name, int state, const QStringList &overlays)
 
 // deprecated
 #ifndef KDE_NO_DEPRECATED
-QIcon UserIconSet(const QString& name)
+QIcon UserIconSet(const QString &name)
 {
     KIconLoader *loader = KIconLoader::global();
-    return loader->loadIconSet( name, KIconLoader::User );
+    return loader->loadIconSet(name, KIconLoader::User);
 }
 #endif
 
@@ -1610,16 +1611,15 @@ int IconSize(KIconLoader::Group group)
 QPixmap KIconLoader::unknown()
 {
     QPixmap pix;
-    if ( QPixmapCache::find("unknown", pix) ) //krazy:exclude=iconnames
-            return pix;
+    if (QPixmapCache::find("unknown", pix)) { //krazy:exclude=iconnames
+        return pix;
+    }
 
     QString path = global()->iconPath("unknown", KIconLoader::Small, true); //krazy:exclude=iconnames
-    if (path.isEmpty())
-    {
+    if (path.isEmpty()) {
         qDebug() << "Warning: Cannot find \"unknown\" icon.";
-        pix = QPixmap(32,32);
-    } else
-    {
+        pix = QPixmap(32, 32);
+    } else {
         pix.load(path);
         QPixmapCache::insert("unknown", pix); //krazy:exclude=iconnames
     }
@@ -1638,7 +1638,7 @@ KIconLoader *KIconLoader::global()
 #ifndef KDE_NO_DEPRECATED
 void KIconLoader::newIconLoader()
 {
-    if ( global() == this) {
+    if (global() == this) {
         KIconTheme::reconfigure();
     }
 
@@ -1653,12 +1653,12 @@ void KIconLoader::emitChange(KIconLoader::Group g)
 }
 
 #include <kiconengine.h>
-QIcon KDE::icon(const QString& iconName, KIconLoader* iconLoader)
+QIcon KDE::icon(const QString &iconName, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global()));
 }
 
-QIcon KDE::icon(const QString& iconName, const QStringList& overlays, KIconLoader* iconLoader)
+QIcon KDE::icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global(), overlays));
 }

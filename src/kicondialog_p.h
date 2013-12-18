@@ -20,7 +20,6 @@
 #include <QPointer>
 #include <QListWidget>
 
-
 class QComboBox;
 class QProgressBar;
 class QRadioButton;
@@ -41,7 +40,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconCanvas(QWidget *parent=0L);
+    explicit KIconCanvas(QWidget *parent = 0L);
 
     /**
      * Destroys the icon canvas.
@@ -51,7 +50,7 @@ public:
     /**
      * Load icons into the canvas.
      */
-    void loadFiles(const QStringList& files);
+    void loadFiles(const QStringList &files);
 
     /**
      * Returns the current icon.
@@ -68,7 +67,7 @@ Q_SIGNALS:
     /**
      * Emitted when the current icon has changed.
      */
-    void nameChanged(const QString&);
+    void nameChanged(const QString &);
 
     /**
      * This signal is emitted when the loading of the icons
@@ -104,20 +103,21 @@ private:
 
 class KIconDialog::KIconDialogPrivate
 {
-  public:
-    KIconDialogPrivate(KIconDialog *qq) {
+public:
+    KIconDialogPrivate(KIconDialog *qq)
+    {
         q = qq;
         m_bStrictIconSize = true;
-	m_bLockUser = false;
-	m_bLockCustomDir = false;
-	searchLine = 0;
+        m_bLockUser = false;
+        m_bLockCustomDir = false;
+        searchLine = 0;
         mNumOfSteps = 1;
     }
     ~KIconDialogPrivate() {}
 
     void init();
     void showIcons();
-    void setContext( KIconLoader::Context context );
+    void setContext(KIconLoader::Context context);
 
     // slots
     void _k_slotContext(int);
@@ -151,6 +151,5 @@ class KIconDialog::KIconDialogPrivate
     KListWidgetSearchLine *searchLine;
     QPointer<QFileDialog> browseDialog;
 };
-
 
 #endif // KICONDIALOG_P_H

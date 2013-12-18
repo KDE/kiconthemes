@@ -22,21 +22,20 @@
 
 #include <QPainter>
 
-
-KIconEngine::KIconEngine(const QString& iconName, KIconLoader* iconLoader, const QStringList& overlays)
+KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
     : mIconName(iconName),
       mOverlays(overlays),
       mIconLoader(iconLoader)
 {
 }
 
-KIconEngine::KIconEngine(const QString& iconName, KIconLoader* iconLoader)
+KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader)
     : mIconName(iconName),
       mIconLoader(iconLoader)
 {
 }
 
-static inline int qIconModeToKIconState( QIcon::Mode mode )
+static inline int qIconModeToKIconState(QIcon::Mode mode)
 {
     int kstate;
     switch (mode) {
@@ -54,7 +53,7 @@ static inline int qIconModeToKIconState( QIcon::Mode mode )
     return kstate;
 }
 
-QSize KIconEngine::actualSize( const QSize & size, QIcon::Mode mode, QIcon::State state )
+QSize KIconEngine::actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state)
 {
     Q_UNUSED(state)
     Q_UNUSED(mode)
@@ -62,7 +61,7 @@ QSize KIconEngine::actualSize( const QSize & size, QIcon::Mode mode, QIcon::Stat
     return QSize(iconSize, iconSize);
 }
 
-void KIconEngine::paint(QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state)
+void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
 {
     if (!mIconLoader) {
         return;
@@ -76,7 +75,7 @@ void KIconEngine::paint(QPainter * painter, const QRect & rect, QIcon::Mode mode
     painter->drawPixmap(rect, pix);
 }
 
-QPixmap KIconEngine::pixmap(const QSize & size, QIcon::Mode mode, QIcon::State state)
+QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
 {
     Q_UNUSED(state)
 
@@ -95,7 +94,7 @@ QPixmap KIconEngine::pixmap(const QSize & size, QIcon::Mode mode, QIcon::State s
     }
 
     QPixmap pix2(size);
-    pix2.fill(QColor(0,0,0,0));
+    pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
     painter.drawPixmap(QPoint(), pix);
@@ -113,12 +112,12 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
     Q_UNUSED(mode);
     Q_UNUSED(state);
     return QList<QSize>() << QSize(16, 16)
-                          << QSize(22, 22)
-                          << QSize(32, 32)
-                          << QSize(48, 48)
-                          << QSize(64, 64)
-                          << QSize(128, 128)
-                          << QSize(256, 256);
+           << QSize(22, 22)
+           << QSize(32, 32)
+           << QSize(48, 48)
+           << QSize(64, 64)
+           << QSize(128, 128)
+           << QSize(256, 256);
 }
 
 QString KIconEngine::key() const

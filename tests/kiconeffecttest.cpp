@@ -9,7 +9,6 @@
 
 #include "kiconeffecttest.h"
 
-
 KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     : QScrollArea(parent)
 {
@@ -99,28 +98,28 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
 void KIconEffectTestWidget::slotGray(int value)
 {
     QImage tmp(img);
-    KIconEffect::toGray(tmp, value*0.01);
+    KIconEffect::toGray(tmp, value * 0.01);
     lbl[0]->setPixmap(QPixmap::fromImage(tmp));
 }
 
 void KIconEffectTestWidget::slotMonochrome(int value)
 {
     QImage tmp(img);
-    KIconEffect::toMonochrome(tmp, Qt::black, Qt::white, value*0.01);
+    KIconEffect::toMonochrome(tmp, Qt::black, Qt::white, value * 0.01);
     lbl[1]->setPixmap(QPixmap::fromImage(tmp));
 }
 
 void KIconEffectTestWidget::slotDesaturate(int value)
 {
     QImage tmp(img);
-    KIconEffect::deSaturate(tmp, value*0.01);
+    KIconEffect::deSaturate(tmp, value * 0.01);
     lbl[2]->setPixmap(QPixmap::fromImage(tmp));
 }
 
 void KIconEffectTestWidget::slotGamma(int value)
 {
     QImage tmp(img);
-    KIconEffect::toGamma(tmp, value*0.01);
+    KIconEffect::toGamma(tmp, value * 0.01);
     lbl[3]->setPixmap(QPixmap::fromImage(tmp));
 }
 
@@ -134,18 +133,17 @@ void KIconEffectTestWidget::slotColorizeColor(const QColor &c)
 
 void KIconEffectTestWidget::slotColorizeValue(int value)
 {
-    colorizedValue = value*0.01f;
+    colorizedValue = value * 0.01f;
     QImage tmp(img);
     KIconEffect::colorize(tmp, colorizedColor, colorizedValue);
     lbl[4]->setPixmap(QPixmap::fromImage(tmp));
 }
 
-int main( int argc, char **argv )
+int main(int argc, char **argv)
 {
     QApplication app(argc, argv);
     KIconEffectTestWidget *w = new KIconEffectTestWidget;
     w->show();
     return app.exec();
 }
-
 

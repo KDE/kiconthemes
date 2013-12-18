@@ -19,13 +19,13 @@
 
 class KIconButton::KIconButtonPrivate
 {
-  public:
+public:
     KIconButtonPrivate(KIconButton *qq, KIconLoader *loader);
     ~KIconButtonPrivate();
 
     // slots
     void _k_slotChangeIcon();
-    void _k_newIconName(const QString&);
+    void _k_newIconName(const QString &);
 
     KIconButton *q;
 
@@ -41,7 +41,6 @@ class KIconButton::KIconButtonPrivate
     KIconDialog *mpDialog;
     KIconLoader *mpLoader;
 };
-
 
 /*
  * KIconButton: A "choose icon" pushbutton.
@@ -87,7 +86,7 @@ KIconButton::~KIconButton()
 
 void KIconButton::setStrictIconSize(bool b)
 {
-    d->m_bStrictIconSize=b;
+    d->m_bStrictIconSize = b;
 }
 
 bool KIconButton::strictIconSize() const
@@ -95,7 +94,7 @@ bool KIconButton::strictIconSize() const
     return d->m_bStrictIconSize;
 }
 
-void KIconButton::setIconSize( int size )
+void KIconButton::setIconSize(int size)
 {
     if (d->buttonIconSize == -1) {
         QPushButton::setIconSize(QSize(size, size));
@@ -109,7 +108,7 @@ int KIconButton::iconSize() const
     return d->iconSize;
 }
 
-void KIconButton::setButtonIconSize( int size )
+void KIconButton::setButtonIconSize(int size)
 {
     QPushButton::setIconSize(QSize(size, size));
     d->buttonIconSize = size;
@@ -127,22 +126,22 @@ void KIconButton::setIconType(KIconLoader::Group group, KIconLoader::Context con
     d->mbUser = user;
 }
 
-void KIconButton::setIcon(const QString& icon)
+void KIconButton::setIcon(const QString &icon)
 {
     d->mIcon = icon;
     setIcon(QIcon::fromTheme(d->mIcon));
 
     if (!d->mpDialog) {
         d->mpDialog = new KIconDialog(d->mpLoader, this);
-        connect(d->mpDialog, SIGNAL(newIconName(const QString&)), this, SLOT(_k_newIconName(const QString&)));
+        connect(d->mpDialog, SIGNAL(newIconName(QString)), this, SLOT(_k_newIconName(QString)));
     }
 
     if (d->mbUser) {
-        d->mpDialog->setCustomLocation(QFileInfo(d->mpLoader->iconPath(d->mIcon, d->mGroup, true) ).absolutePath());
+        d->mpDialog->setCustomLocation(QFileInfo(d->mpLoader->iconPath(d->mIcon, d->mGroup, true)).absolutePath());
     }
 }
 
-void KIconButton::setIcon(const QIcon& icon)
+void KIconButton::setIcon(const QIcon &icon)
 {
     QPushButton::setIcon(icon);
 }
@@ -160,20 +159,20 @@ const QString &KIconButton::icon() const
 
 void KIconButton::KIconButtonPrivate::_k_slotChangeIcon()
 {
-    if (!mpDialog)
-    {
+    if (!mpDialog) {
         mpDialog = new KIconDialog(mpLoader, q);
-        connect(mpDialog, SIGNAL(newIconName(const QString&)), q, SLOT(_k_newIconName(const QString&)));
+        connect(mpDialog, SIGNAL(newIconName(QString)), q, SLOT(_k_newIconName(QString)));
     }
 
     mpDialog->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);
     mpDialog->showDialog();
 }
 
-void KIconButton::KIconButtonPrivate::_k_newIconName(const QString& name)
+void KIconButton::KIconButtonPrivate::_k_newIconName(const QString &name)
 {
-    if (name.isEmpty())
+    if (name.isEmpty()) {
         return;
+    }
 
     q->setIcon(QIcon::fromTheme(name));
     mIcon = name;

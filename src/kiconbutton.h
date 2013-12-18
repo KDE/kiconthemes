@@ -31,9 +31,9 @@
 class KICONTHEMES_EXPORT KIconButton: public QPushButton
 {
     Q_OBJECT
-    Q_PROPERTY( QString icon READ icon WRITE setIcon RESET resetIcon )
-    Q_PROPERTY( int iconSize READ iconSize WRITE setIconSize)
-    Q_PROPERTY( bool strictIconSize READ strictIconSize WRITE setStrictIconSize )
+    Q_PROPERTY(QString icon READ icon WRITE setIcon RESET resetIcon)
+    Q_PROPERTY(int iconSize READ iconSize WRITE setIconSize)
+    Q_PROPERTY(bool strictIconSize READ strictIconSize WRITE setStrictIconSize)
 
 public:
     /**
@@ -41,7 +41,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconButton(QWidget *parent=0L);
+    explicit KIconButton(QWidget *parent = 0L);
 
     /**
      * Constructs a KIconButton using a specific KIconLoader.
@@ -70,14 +70,14 @@ public:
      * Sets the icon group and context. Use KIconLoader::NoGroup if you want to
      * allow icons for any group in the given context.
      */
-    void setIconType(KIconLoader::Group group, KIconLoader::Context context, bool user=false);
+    void setIconType(KIconLoader::Group group, KIconLoader::Context context, bool user = false);
 
     /**
      * Sets the button's initial icon.
      */
-    void setIcon(const QString& icon);
+    void setIcon(const QString &icon);
 
-    void setIcon(const QIcon& icon);
+    void setIcon(const QIcon &icon);
 
     /**
      * Resets the icon (reverts to an empty button).
@@ -94,7 +94,7 @@ public:
      * @see KIconLoader::StdSizes
      * @see iconSize
      */
-    void setIconSize( int size );
+    void setIconSize(int size);
 
     /**
      * Returns the iconsize set via setIconSize() or 0, if the default
@@ -108,7 +108,7 @@ public:
      * @see buttonIconSize
      * @since 4.1
      */
-    void setButtonIconSize( int size );
+    void setButtonIconSize(int size);
 
     /**
      * Returns the Button's Icon-Size
@@ -124,12 +124,12 @@ Q_SIGNALS:
 
 private:
     class KIconButtonPrivate;
-    KIconButtonPrivate* const d;
+    KIconButtonPrivate *const d;
 
     Q_DISABLE_COPY(KIconButton)
 
     Q_PRIVATE_SLOT(d, void _k_slotChangeIcon())
-    Q_PRIVATE_SLOT(d, void _k_newIconName(const QString&))
+    Q_PRIVATE_SLOT(d, void _k_newIconName(const QString &))
 };
 
 #endif // KICONBUTTON_H

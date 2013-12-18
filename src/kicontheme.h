@@ -51,7 +51,7 @@ public:
      * @param appName the name of the application. Can be null. This argument
      *        allows applications to have themed application icons.
      */
-    explicit KIconTheme(const QString& name, const QString& appName=QString());
+    explicit KIconTheme(const QString &name, const QString &appName = QString());
     ~KIconTheme();
 
     /**
@@ -158,12 +158,12 @@ public:
      * @return An absolute path to the file of the icon if it's found, QString() otherwise.
      * @see KIconLoader::isValid will return true, and false otherwise.
      */
-    QString iconPath(const QString& name, int size, KIconLoader::MatchType match) const;
+    QString iconPath(const QString &name, int size, KIconLoader::MatchType match) const;
 
     /**
      * Returns true if the theme has any icons for the given context.
      */
-    bool hasContext( KIconLoader::Context context ) const;
+    bool hasContext(KIconLoader::Context context) const;
 
     /**
      * List all icon themes installed on the system, global and local.
@@ -198,16 +198,17 @@ public:
      * undo, redo, cut, copy, paste and clear.
      */
     enum ContextMenus { TextEditor,
-                        ReadOnlyText };
+                        ReadOnlyText
+                      };
 
     /**
      * Assigns standard icons to the various standard text edit context menus.
      */
-    static void assignIconsToContextMenu(ContextMenus type, QList<QAction*> actions);
+    static void assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions);
 
 private:
     class KIconThemePrivate;
-    KIconThemePrivate * const d;
+    KIconThemePrivate *const d;
 };
 
 #endif

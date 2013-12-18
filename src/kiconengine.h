@@ -36,7 +36,7 @@ class KIconLoader;
  */
 class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for kde4support's KIcon
 {
-  public:
+public:
     /**
      * Constructs an icon engine for a KDE named icon.
      *
@@ -46,12 +46,12 @@ class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for k
      *
      * @sa KIconLoader
      */
-    KIconEngine(const QString& iconName, KIconLoader* iconLoader, const QStringList& overlays);
+    KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays);
 
     /**
      * \overload
      */
-    KIconEngine(const QString& iconName, KIconLoader* iconLoader);
+    KIconEngine(const QString &iconName, KIconLoader *iconLoader);
 
     /**
      * Destructor.
@@ -59,11 +59,11 @@ class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for k
     virtual ~KIconEngine();
 
     /// Reimplementation
-    QSize actualSize ( const QSize & size, QIcon::Mode mode, QIcon::State state ) Q_DECL_OVERRIDE;
+    QSize actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
     /// Reimplementation
-    void paint ( QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state ) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
     /// Reimplementation
-    QPixmap pixmap ( const QSize & size, QIcon::Mode mode, QIcon::State state ) Q_DECL_OVERRIDE;
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
     /// Reimplementation
     QString iconName() const Q_DECL_OVERRIDE;
     /// Reimplementation
@@ -74,7 +74,7 @@ class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for k
     bool read(QDataStream &in) Q_DECL_OVERRIDE;
     bool write(QDataStream &out) const Q_DECL_OVERRIDE;
 
-  private:
+private:
     QString mIconName;
     QStringList mOverlays;
     QPointer<KIconLoader> mIconLoader;
