@@ -18,22 +18,74 @@
 */
 
 #include <kiconloader.h>
-#include <qstandardpaths.h>
-#include <QtTest/QTest>
-#include <qtemporarydir.h>
+
+#include <QStandardPaths>
+#include <QTest>
+#include <QTemporaryDir>
+
 #include <kpixmapsequence.h>
 
 class KIconLoader_UnitTest : public QObject
 {
     Q_OBJECT
 
+private:
+    QDir testDataDir;
+    QDir testIconsDir;
+    QString appName;
+    QDir appDataDir;
+
 private Q_SLOTS:
     void initTestCase()
     {
-        QStandardPaths::enableTestMode(true);
+        QStandardPaths::setTestModeEnabled(true);
+
+        testDataDir = QDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation));
+        testIconsDir = QDir(testDataDir.absoluteFilePath(QStringLiteral("icons")));
+
+        appName = QStringLiteral("kiconloader_unittest");
+        appDataDir = QDir(testDataDir.absoluteFilePath(appName));
+
+        // we will be recursively deleting these, so a sanity check is in order
+        QVERIFY(testIconsDir.absolutePath().contains(QStringLiteral("qttest")));
+        QVERIFY(appDataDir.absolutePath().contains(QStringLiteral("qttest")));
+
+        testIconsDir.removeRecursively();
+        appDataDir.removeRecursively();
+
+        QVERIFY(appDataDir.mkpath(QStringLiteral("pics")));
+        QVERIFY(QFile::copy(QStringLiteral(":/app-image.png"), appDataDir.filePath(QStringLiteral("pics/image1.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/app-image.png"), appDataDir.filePath(QStringLiteral("pics/image2.png"))));
+
+        // set up a minimal Oxygen icon theme, in case it is not installed
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/actions")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/animations")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/apps")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/mimetypes")));
+        QVERIFY(QFile::copy(QStringLiteral(":/oxygen.theme"), testIconsDir.filePath(QStringLiteral("oxygen/index.theme"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/anim-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/animations/process-working.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/text-plain.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/application-octet-stream.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/image-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/video-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/x-office-document.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/audio-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/unknown.png"))));
+    }
+
+    void cleanupTestCase()
+    {
+        testIconsDir.removeRecursively();
+        appDataDir.removeRecursively();
+    }
+
+    void init()
+    {
         // Remove icon cache
         const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
         QFile::remove(cacheFile);
+
 
         // Clear SHM cache
         KIconLoader iconLoader;
@@ -48,31 +100,16 @@ private Q_SLOTS:
         // properly, the next request for that icon should return the new icon
         // instead of the unknown icon.
 
-        // Since we'll need to create an icon we'll need a temporary directory,
-        // and we want that established before creating the icon loader.
-        QTemporaryDir tempRoot;
-        QVERIFY(tempRoot.isValid());
-        QString temporaryDir = tempRoot.path() + QLatin1String("/icons/hicolor/22x22/actions");
-        QVERIFY(QDir::root().mkpath(temporaryDir));
+        QString actionIconsSubdir = QStringLiteral("oxygen/22x22/actions");
+        QVERIFY(testIconsDir.mkpath(actionIconsSubdir));
+        QString actionIconsDir = testIconsDir.filePath(actionIconsSubdir);
 
-        // KDE4:
-        //QVERIFY(KGlobal::dirs()->addResourceDir("icon", tempRoot.path(), false));
-        // KF5-with-qt4-on-unix: (no solution on other platforms)
-        qputenv("XDG_DATA_DIRS", (qgetenv("XDG_DATA_DIRS") + ":" + QFile::encodeName(tempRoot.path())));
-        // KF5-with-qt5: port to QStandardPaths::enableTestMode
+        QString nonExistingIconName = QStringLiteral("fhqwhgads_homsar");
+        QString newIconPath = actionIconsDir + QLatin1String("/")
+                              + nonExistingIconName + QLatin1String(".png");
+        QFile::remove(newIconPath);
 
         KIconLoader iconLoader;
-
-        // First find an existing icon. The only ones installed for sure by
-        // kdelibs are the kimproxy ones.
-        QString loadedIconPath = iconLoader.iconPath(
-                                     QLatin1String("presence_online"),
-                                     KIconLoader::DefaultState,
-                                     false /* Ensure "unknown" icon can't be returned */
-                                 );
-        QVERIFY(!loadedIconPath.isEmpty());
-
-        QString nonExistingIconName = QLatin1String("fhqwhgads_homsar");
 
         // Find a non-existent icon, allowing unknown icon to be returned
         QPixmap nonExistingIcon = iconLoader.loadIcon(
@@ -80,10 +117,7 @@ private Q_SLOTS:
         QCOMPARE(nonExistingIcon.isNull(), false);
 
         // Install the existing icon by copying.
-        QFileInfo existingIconInfo(loadedIconPath);
-        QString newIconPath = temporaryDir + QLatin1String("/")
-                              + nonExistingIconName + QLatin1String(".png");
-        QVERIFY(QFile::copy(loadedIconPath, newIconPath));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), newIconPath));
 
         // Verify the icon can now be found.
         QPixmap nowExistingIcon = iconLoader.loadIcon(
@@ -134,44 +168,30 @@ private Q_SLOTS:
 
     void testAppPicsDir()
     {
-        // So that we don't rely on installed files, add the toplevel of kdelibs
-        // as the "data" resource. But if the file is installed, then it will be
-        // preferred (because KStandardDirs::resourceDirs() looks at relative paths first)
-        // So we have to expect that one -or- the other will be found.
-        const QString dataDir = QDir(QFINDTESTDATA("../../..")).canonicalPath();
-
-        const QString appName = "kdewidgets";
-        KIconLoader appIconLoader(appName, QStringList() << dataDir);
-        QString iconPath = appIconLoader.iconPath("kdialog", KIconLoader::User);
-        //QCOMPARE(iconPath, dataDir + appName + "/pics/kdialog.png");
-        QVERIFY2(iconPath.endsWith(appName + "/pics/kdialog.png"), qPrintable(iconPath));
+        KIconLoader appIconLoader(appName);
+        QString iconPath = appIconLoader.iconPath("image1", KIconLoader::User);
+        QCOMPARE(iconPath, appDataDir.filePath("pics/image1.png"));
         QVERIFY(QFile::exists(iconPath));
 
         // Load it again, to use the "last loaded" cache
-        QString iconPath2 = appIconLoader.iconPath("kdialog", KIconLoader::User);
+        QString iconPath2 = appIconLoader.iconPath("image1", KIconLoader::User);
         QCOMPARE(iconPath, iconPath2);
         // Load something else, to clear the "last loaded" cache
-        QString iconPathTextEdit = appIconLoader.iconPath("ktextedit", KIconLoader::User);
-        QVERIFY(iconPathTextEdit.endsWith(appName + "/pics/ktextedit.png"));
+        QString iconPathTextEdit = appIconLoader.iconPath("image2", KIconLoader::User);
+        QCOMPARE(iconPathTextEdit, appDataDir.filePath("pics/image2.png"));
         QVERIFY(QFile::exists(iconPathTextEdit));
         // Now load kdialog again, to use the real kiconcache
-        iconPath2 = appIconLoader.iconPath("kdialog", KIconLoader::User);
+        iconPath2 = appIconLoader.iconPath("image1", KIconLoader::User);
         QCOMPARE(iconPath, iconPath2);
-
-        appIconLoader.addAppDir("kdewidgets");
-        QString iconPathFail = appIconLoader.iconPath("kurllabel", KIconLoader::User);
-        QVERIFY(iconPathFail.endsWith("kdewidgets/pics/kurllabel.png"));
     }
 
     void testAppPicsDir_KDE_icon()
     {
-        const QString dataDir = QDir(QFINDTESTDATA("../../")).canonicalPath();
         // #### This test is broken; it passes even if appName is set to foobar, because
         // QIcon::pixmap returns an unknown icon if it can't find the real icon...
-        const QString appName = "kdewidgets";
-        KIconLoader appIconLoader(appName, QStringList() << dataDir);
+        KIconLoader appIconLoader(appName);
         // Now using KDE::icon. Separate test so that KIconLoader isn't fully inited.
-        QIcon icon = KDE::icon("kdialog", &appIconLoader);
+        QIcon icon = KDE::icon("image1", &appIconLoader);
         {
             QPixmap pix = icon.pixmap(QSize(22, 22));
             QVERIFY(!pix.isNull());
