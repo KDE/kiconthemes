@@ -12,6 +12,8 @@ add_library(KF5IconThemes ${kiconthemes_SRCS})
 generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 
+target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kiconthemes>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KIconThemes>")
+
 target_link_libraries(KF5IconThemes
   PUBLIC
     Qt5::Widgets
@@ -29,15 +31,23 @@ set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION_S
                                                EXPORT_NAME IconThemes
 )
 
+ecm_generate_headers(
+  KIconButton
+  KIconDialog
+  KIconEffect
+  KIconLoader
+  KIconTheme
+  KIconEngine
+
+  MODULE_NAME KIconThemes
+  REQUIRED_HEADERS KIconThemes_HEADERS
+)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KIconThemes DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
+
 install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
-  kiconbutton.h
-  kicondialog.h
-  kiconeffect.h
-  kiconloader.h
-  kicontheme.h
-  kiconengine.h
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
-  DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel
+  ${KIconThemes_HEADERS}
+  DESTINATION ${INCLUDE_INSTALL_DIR}/kiconthemes COMPONENT Devel
 )
