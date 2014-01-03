@@ -12,7 +12,7 @@ add_library(KF5IconThemes ${kiconthemes_SRCS})
 generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 
-target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/kiconthemes>" "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KIconThemes>")
+target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KIconThemes>")
 
 target_link_libraries(KF5IconThemes
   PUBLIC
@@ -49,5 +49,5 @@ install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${INSTALL_TARGETS_DEFA
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
   ${KIconThemes_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/kiconthemes COMPONENT Devel
+  DESTINATION ${INCLUDE_INSTALL_DIR}/KIconThemes COMPONENT Devel
 )
