@@ -1,8 +1,10 @@
 # KIconThemes
 
+Icon GUI utitities
+
 ## Introduction
 
-This repository contains classes to improve the handling of icons
+This library contains classes to improve the handling of icons
 in applications using the KDE Frameworks. Provided are:
 
 - KIconDialog: Dialog class to let the user select an icon
@@ -17,6 +19,7 @@ theme configuration dialogs, and should not be used by applications.
 
 ## Links
 
+- Home page: <https://projects.kde.org/projects/frameworks/kiconthemes>
 - Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
 - IRC channel: #kde-devel on Freenode
 - Git repository: <https://projects.kde.org/projects/frameworks/kiconthemes/repository>
