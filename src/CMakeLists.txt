@@ -51,3 +51,7 @@ install(FILES
   ${KIconThemes_HEADERS}
   DESTINATION ${INCLUDE_INSTALL_DIR}/KIconThemes COMPONENT Devel
 )
+
+include(ECMGeneratePriFile)
+ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME)
+install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
