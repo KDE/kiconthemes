@@ -1,6 +1,6 @@
 # KIconThemes
 
-Icon GUI utitities
+Icon GUI utilities
 
 ## Introduction
 
