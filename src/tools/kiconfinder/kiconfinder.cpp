@@ -18,37 +18,32 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include <kcmdlineargs.h>
-#include <kiconloader.h>
-#include <kdeversion.h>
-#include <klocale.h>
-#include <stdio.h>
-#include <kapplication.h>
+#include <QGuiApplication>
+#include <QCommandLineParser>
+#include <KIconLoader>
+#include <kiconthemes_version.h>
 
 int main(int argc, char *argv[])
 {
-    KCmdLineArgs::init( argc, argv, "kiconfinder", 0, ki18n("Icon Finder"), KDE_VERSION_STRING , ki18n("Finds an icon based on its name"));
+    QGuiApplication app(argc, argv);
+    app.setApplicationName("kiconfinder");
+    app.setApplicationVersion(KICONTHEMES_VERSION_STRING);
+    QCommandLineParser parser;
+    parser.setApplicationDescription(app.translate("main", "Finds an icon based on its name"));
+    parser.addPositionalArgument("iconname", app.translate("main", "The icon name to look for"));
+    parser.addHelpOption();
 
+    parser.process(app);
+    if(parser.positionalArguments().isEmpty())
+        parser.showHelp();
 
-    KCmdLineOptions options;
-
-    options.add("+iconname", ki18n("The icon name to look for"));
-
-    KCmdLineArgs::addCmdLineOptions( options );
-
-    KComponentData instance("kiconfinder");
-
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    if( args->count() < 1 ) {
-        printf( "No icon name specified\n" );
-        return 1;
-    }
-    const QString iconName = args->arg( 0 );
-    const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
-    if ( !icon.isEmpty() ) {
-        printf("%s\n", icon.toLatin1().constData());
-    } else {
-        return 1; // error
+    Q_FOREACH(const QString& iconName, parser.positionalArguments()) {
+        const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
+        if ( !icon.isEmpty() ) {
+            printf("%s\n", icon.toLatin1().constData());
+        } else {
+            return 1; // error
+        }
     }
 
     return 0;
