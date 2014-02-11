@@ -1,3 +1,4 @@
+add_subdirectory(tools/kiconfinder)
 
 set(kiconthemes_SRCS
   kiconbutton.cpp

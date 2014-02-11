@@ -20,8 +20,8 @@
 
 #include <QGuiApplication>
 #include <QCommandLineParser>
-#include <KIconLoader>
-#include <kiconthemes_version.h>
+#include <kiconloader.h>
+#include <../kiconthemes_version.h>
 
 int main(int argc, char *argv[])
 {
