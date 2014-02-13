@@ -24,10 +24,7 @@
 
 #include "kiconloader.h"
 
-#include <sys/types.h>
-#include <stdlib.h>     //for abs
-#include <unistd.h>     //for readlink
-#include <dirent.h>
+#include <qplatformdefs.h> //for readlink
 #include <assert.h>
 
 #include <QtCore/QCache>

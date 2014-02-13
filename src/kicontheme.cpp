@@ -23,9 +23,7 @@
 
 #include "kicontheme.h"
 
-#include <sys/stat.h>
-#include <unistd.h>
-#include <stdlib.h>
+#include <qplatformdefs.h>
 
 #include <QAction>
 #include <QtCore/QCharRef>

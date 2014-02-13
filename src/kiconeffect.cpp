@@ -23,7 +23,7 @@
 
 #include "kiconeffect.h"
 
-#include <unistd.h>
+#include <qplatformdefs.h>
 #include <math.h>
 
 #include <QSysInfo>
