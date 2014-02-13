@@ -687,6 +687,8 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
                     && !QFile::exists(*it + *it2 + "/index.theme")) {
                 continue;
             }
+            //TODO: Is any special handling required for NTFS symlinks?
+#ifndef Q_OS_WIN
             const int r = readlink(QFile::encodeName(*it + *it2), buf, sizeof(buf) - 1);
             if (r > 0) {
                 buf[r] = 0;
@@ -697,6 +699,7 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
                     list.append(themeName);
                 }
             }
+#endif
         }
     }
 
