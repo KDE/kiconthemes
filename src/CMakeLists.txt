@@ -32,7 +32,8 @@ set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION_S
                                                EXPORT_NAME IconThemes
 )
 
-ecm_generate_headers(
+ecm_generate_headers(KIconThemes_HEADERS
+  HEADER_NAMES
   KIconButton
   KIconDialog
   KIconEffect
@@ -40,10 +41,8 @@ ecm_generate_headers(
   KIconTheme
   KIconEngine
 
-  MODULE_NAME KIconThemes
   REQUIRED_HEADERS KIconThemes_HEADERS
 )
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/KIconThemes DESTINATION ${INCLUDE_INSTALL_DIR} COMPONENT Devel)
 
 install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
 
