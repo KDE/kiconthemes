@@ -62,9 +62,9 @@ public:
      * Note that 'LastEffect' is no valid icon effect but only
      * used internally to check for invalid icon effects.
      *
-     * @li NoEffect: Don't apply any icon effect
+     * @li NoEffect: Do not apply any icon effect
      * @li ToGray: Tints the icon gray
-     * @li Colorize: Tints the icon with an other color
+     * @li Colorize: Tints the icon with a specific color
      * @li ToGamma: Change the gamma value of the icon
      * @li DeSaturate: Reduce the saturation of the icon
      * @li ToMonochrome: Produces a monochrome icon

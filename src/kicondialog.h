@@ -24,7 +24,7 @@
 
 /**
  * Dialog for interactive selection of icons. Use the function
- * getIcon() let the user select an icon.
+ * getIcon() to let the user select an icon.
  *
  * @short An icon selection dialog.
  */
@@ -34,14 +34,14 @@ class KICONTHEMES_EXPORT KIconDialog: public QDialog
 
 public:
     /**
-     * Constructs an icon selection dialog using the global iconloader.
+     * Constructs an icon selection dialog using the global icon loader.
      *
      * @param parent The parent widget.
      */
     explicit KIconDialog(QWidget *parent = 0L);
 
     /**
-     * Constructs an icon selection dialog using a specific iconloader.
+     * Constructs an icon selection dialog using a specific icon loader.
      *
      * @param loader The icon loader to use.
      * @param parent The parent widget.
@@ -54,18 +54,22 @@ public:
     ~KIconDialog();
 
     /**
-     * Sets a strict icon size policy for allowed icons. When true,
-     * only icons of the specified group's size in getIcon() are shown.
+     * Sets a strict icon size policy for allowed icons.
+     *
+     * @param policy When true, only icons of the specified group's
+     * size in getIcon() are shown.
      * When false, icons not available at the desired group's size will
      * also be selectable.
      */
-    void setStrictIconSize(bool b);
+    void setStrictIconSize(bool policy);
     /**
      * Returns true if a strict icon size policy is set.
      */
     bool strictIconSize() const;
+
     /**
-     * sets a custom icon directory
+     * Sets the location of the custom icon directory. Only local directory
+     * paths are allowed.
      */
     void setCustomLocation(const QString &location);
 
@@ -75,20 +79,18 @@ public:
      * @see iconSize
      */
     void setIconSize(int size);
-
     /**
-     * Returns the iconsize set via setIconSize() or 0, if the default
-     * iconsize will be used.
+     * Returns the icon size set via setIconSize() or 0, if the default
+     * icon size will be used.
      */
     int iconSize() const;
 
     /**
      * Allows you to set the same parameters as in the class method
      * getIcon(), as well as two additional parameters to lock
-     * the choice between system and user dirs and to lock the custom user
-     * dir itself.
+     * the choice between system and user directories and to lock the
+     * custom icon directory itself.
      */
-
     void setup(KIconLoader::Group group,
                KIconLoader::Context context = KIconLoader::Application,
                bool strictIconSize = false, int iconSize = 0,
@@ -104,7 +106,7 @@ public:
     QString openDialog();
 
     /**
-     * show()es this dialog and emits a newIcon(const QString&) signal when
+     * show()s this dialog and emits a newIconName(const QString&) signal when
      * successful. QString() will be emitted if the dialog was aborted.
      */
     void showDialog();
@@ -120,7 +122,7 @@ public:
      * @param strictIconSize When true, only icons of the specified group's size
      * are shown, otherwise icon not available in the desired group's size
      * will also be selectable.
-     * @param iconSize the size of the icons -- the default of the icongroup
+     * @param iconSize the size of the icons -- the default of the icon group
      *        if set to 0
      * @param user Begin with the "user icons" instead of "system icons".
      * @param parent The parent widget of the dialog.
@@ -134,7 +136,7 @@ public:
                            const QString &caption = QString());
 
 Q_SIGNALS:
-    void newIconName(const QString &);
+    void newIconName(const QString &iconName);
 
 protected Q_SLOTS:
     void slotOk();

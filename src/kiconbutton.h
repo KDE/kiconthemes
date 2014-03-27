@@ -31,25 +31,26 @@
 class KICONTHEMES_EXPORT KIconButton: public QPushButton
 {
     Q_OBJECT
-    Q_PROPERTY(QString icon READ icon WRITE setIcon RESET resetIcon)
+    Q_PROPERTY(QString icon READ icon WRITE setIcon RESET resetIcon NOTIFY iconChanged USER true)
     Q_PROPERTY(int iconSize READ iconSize WRITE setIconSize)
     Q_PROPERTY(bool strictIconSize READ strictIconSize WRITE setStrictIconSize)
 
 public:
     /**
-     * Constructs a KIconButton using the global iconloader.
+     * Constructs a KIconButton using the global icon loader.
      *
      * @param parent The parent widget.
      */
     explicit KIconButton(QWidget *parent = 0L);
 
     /**
-     * Constructs a KIconButton using a specific KIconLoader.
+     * Constructs a KIconButton using a specific icon loader.
      *
      * @param loader The icon loader to use.
      * @param parent The parent widget.
      */
     KIconButton(KIconLoader *loader, QWidget *parent);
+
     /**
      * Destructs the button.
      */
@@ -57,7 +58,7 @@ public:
 
     /**
      * Sets a strict icon size policy for allowed icons. When true,
-     * only icons of the specified group's size in setIconType are allowed,
+     * only icons of the specified group's size in setIconType() are allowed,
      * and only icons of that size will be shown in the icon dialog.
      */
     void setStrictIconSize(bool b);
@@ -95,23 +96,21 @@ public:
      * @see iconSize
      */
     void setIconSize(int size);
-
     /**
-     * Returns the iconsize set via setIconSize() or 0, if the default
-     * iconsize will be used.
+     * Returns the icon size set via setIconSize() or 0, if the default
+     * icon size will be used.
      */
     int iconSize() const;
 
     /**
-     * Sets the size of the icon to be shown on the button
+     * Sets the size of the icon to be shown on the button.
      * @see KIconLoader::StdSizes
      * @see buttonIconSize
      * @since 4.1
      */
     void setButtonIconSize(int size);
-
     /**
-     * Returns the Button's Icon-Size
+     * Returns the button's icon size.
      * @since 4.1
      */
     int buttonIconSize() const;
