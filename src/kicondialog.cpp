@@ -326,7 +326,7 @@ void KIconDialog::KIconDialogPrivate::init()
     connect(mpCanvas, SIGNAL(finished()), q, SLOT(_k_slotFinished()));
 
     // When pressing Ok or Cancel, stop loading icons
-    connect(q, SIGNAL(hidden()), mpCanvas, SLOT(stopLoading()));
+    connect(q, SIGNAL(finished(int)), mpCanvas, SLOT(stopLoading()));
 
     static const char *const context_text[] = {
         I18N_NOOP("Actions"),
