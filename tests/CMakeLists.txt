@@ -12,6 +12,7 @@ macro(kiconthemes_executable_tests)
 endmacro()
 
 kiconthemes_executable_tests(
+  kiconbuttontest
   kicondialogtest
   kiconloadertest
   kiconeffecttest
