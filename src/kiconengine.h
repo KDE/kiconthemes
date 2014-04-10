@@ -34,7 +34,7 @@ class KIconLoader;
  *
  * @author Hamish Rodda <rodda@kde.org>
  */
-class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for kde4support's KIcon
+class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for kdelibs4support's KIcon
 {
 public:
     /**
