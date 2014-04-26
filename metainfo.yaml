@@ -1,1 +1,9 @@
+maintainer: cfeck
+description: Support for icon themes
 tier: 3
+type: integration
+platforms:
+    - name: All
+portingAid: false
+deprecated: false
+release: true
