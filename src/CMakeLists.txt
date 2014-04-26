@@ -16,7 +16,7 @@ add_library(KF5IconThemes ${kiconthemes_SRCS})
 generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 
-target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${INCLUDE_INSTALL_DIR}/KIconThemes>")
+target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KIconThemes>")
 
 target_link_libraries(KF5IconThemes
   PUBLIC
@@ -47,12 +47,12 @@ ecm_generate_headers(KIconThemes_HEADERS
   REQUIRED_HEADERS KIconThemes_HEADERS
 )
 
-install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
   ${KIconThemes_HEADERS}
-  DESTINATION ${INCLUDE_INSTALL_DIR}/KIconThemes COMPONENT Devel
+  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KIconThemes COMPONENT Devel
 )
 
 include(ECMGeneratePriFile)
