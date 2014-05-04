@@ -26,13 +26,8 @@
 #include <qplatformdefs.h>
 
 #include <QAction>
-#include <QtCore/QCharRef>
-#include <QtCore/QMutableStringListIterator>
 #include <QtCore/QMap>
 #include <QtCore/QSet>
-#include <QPixmap>
-#include <QPixmapCache>
-#include <QImage>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
 #include <QDebug>
