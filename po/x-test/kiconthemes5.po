@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes5\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2014-04-27 21:05+0000\n"
+"Last-Translator: transxx.py program <null@kde.org>\n"
+"Language-Team: KDE Test Language <kde-i18n-doc@kde.org>\n"
+"Language: x-test\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "xxSelect Iconxx"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "xxIcon Sourcexx"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "xxS&ystem icons:xx"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "xxO&ther icons:xx"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "xx&Browse...xx"
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "xx&Search:xx"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "xxSearch interactively for icon names (e.g. folder).xx"
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "xxActionsxx"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "xxAnimationsxx"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "xxApplicationsxx"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "xxCategoriesxx"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "xxDevicesxx"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "xxEmblemsxx"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "xxEmotesxx"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "xxFilesystemsxx"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "xxInternationalxx"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "xxMimetypesxx"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "xxPlacesxx"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "xxStatusxx"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "xx*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)xx"
