@@ -140,7 +140,6 @@ QString KIconThemeNode::findIcon(const QString &name, int size,
 
 struct KIconGroup {
     int size;
-    bool alphaBlending;
 };
 
 /*** d pointer for KIconLoader. ***/
@@ -516,11 +515,6 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
         KConfigGroup cg(config, QLatin1String(groups[i]) + "Icons");
         mpGroups[i].size = cg.readEntry("Size", 0);
-        if (QPixmap::defaultDepth() > 8) {
-            mpGroups[i].alphaBlending = cg.readEntry("AlphaBlending", true);
-        } else {
-            mpGroups[i].alphaBlending = false;
-        }
 
         if (!mpGroups[i].size && defaultSizesTheme) {
             mpGroups[i].size = defaultSizesTheme->defaultSize(i);
@@ -1505,7 +1499,7 @@ bool KIconLoader::alphaBlending(KIconLoader::Group group) const
         qDebug() << "Illegal icon group:" << group;
         return false;
     }
-    return d->mpGroups[group].alphaBlending;
+    return true;
 }
 
 // deprecated
