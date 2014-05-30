@@ -417,6 +417,7 @@ bool KIconTheme::hasContext(KIconLoader::Context context) const
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match) const
 {
     QString path;
+    QString tempPath;      // used to cache icon path if it exists
     int delta = -INT_MAX;  // current icon size delta of 'icon'
     int dw = INT_MAX;      // icon size delta of current directory
     KIconThemeDir *dir;
@@ -477,10 +478,13 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
             }
         }
 
-        path = dir->iconPath(name);
-        if (path.isEmpty()) {
+        // cache the result of iconPath() call which checks if file exists
+        tempPath = dir->iconPath(name);
+
+        if (tempPath.isEmpty()) {
             continue;
         }
+        path = tempPath;
 
         // if we got in MatchExact that far, we find no better
         if (match == KIconLoader::MatchExact) {
