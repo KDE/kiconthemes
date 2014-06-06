@@ -199,10 +199,14 @@ public:
     static KIconLoader *global();
 
     /**
-     * Adds @p appname to the list of application specific directories.
+     * Adds @p appname to the list of application specific directories with @p themeBaseDir as its base directory.
+     * Assume the icons are in /home/user/app/icons/hicolor/48x48/my_app.png, the base directory would be
+     * /home/user/app/icons; KIconLoader automatically searches @p themeBaseDir + "/hicolor"
+     * This directory must contain a dir structure as defined by the XDG icons specification
      * @param appname The application name.
+     * @param themeBaseDir The base directory of the application's theme (eg. "/home/user/app/icons")
      */
-    void addAppDir(const QString &appname);
+    void addAppDir(const QString &appname, const QString &themeBaseDir = QString());
 
     /**
      * Loads an icon. It will try very hard to find an icon which is
