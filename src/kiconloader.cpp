@@ -202,7 +202,7 @@ public:
      * @internal
      * Adds themes installed in the application's directory.
      **/
-    void addAppThemes(const QString &appname, const QString &themeBaseDir = QString());
+    void addAppThemes(const QString &appname);
 
     /**
      * @internal
@@ -576,28 +576,28 @@ QStringList KIconLoader::searchPaths() const
     return d->searchPaths;
 }
 
-void KIconLoader::addAppDir(const QString &appname, const QString &themeBaseDir)
+void KIconLoader::addAppDir(const QString &appname)
 {
     d->initIconThemes();
 
     d->searchPaths.append(appname + "/pics");
-    d->addAppThemes(appname, themeBaseDir);
+    d->addAppThemes(appname);
 }
 
-void KIconLoaderPrivate::addAppThemes(const QString &appname, const QString &themeBaseDir)
+void KIconLoaderPrivate::addAppThemes(const QString &appname)
 {
     initIconThemes();
 
-    KIconTheme *def = new KIconTheme("hicolor", appname, themeBaseDir);
+    KIconTheme *def = new KIconTheme(KIconTheme::current(), appname);
     if (!def->isValid()) {
         delete def;
-        def = new KIconTheme(KIconTheme::defaultThemeName(), appname, themeBaseDir);
+        def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
     }
     KIconThemeNode *node = new KIconThemeNode(def);
     bool addedToLinks = false;
 
-    if (!mThemesInTree.contains(appname)) {
-        mThemesInTree.append(appname);
+    if (!mThemesInTree.contains(node->theme->internalName())) {
+        mThemesInTree.append(node->theme->internalName());
         links.append(node);
         addedToLinks = true;
     }

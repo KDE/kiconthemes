@@ -115,9 +115,7 @@ private:
     QString mBaseDirThemeDir;
 };
 
-
-
-KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
+KIconTheme::KIconTheme(const QString &name, const QString &appName)
     : d(new KIconThemePrivate)
 {
 
@@ -138,11 +136,6 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             if (QFile::exists(cDir)) {
                 themeDirs += cDir + '/';
             }
-        }
-
-        if (!basePathHint.isEmpty()) {
-            // Checks for dir existing are done below
-            themeDirs += basePathHint + '/' + name + '/';
         }
     }
     // Find the theme description file. These are always global.
