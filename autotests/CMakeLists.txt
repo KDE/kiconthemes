@@ -7,7 +7,7 @@ macro(KICONTHEMES_TESTS)
     foreach(_testname ${ARGN})
         set(_srcs ${_testname}.cpp)
         qt5_add_resources(_srcs resources.qrc)
-	ecm_add_test(${_srcs} TEST_NAME kiconthemes-${_testname} LINK_LIBRARIES Qt5::Test KF5::IconThemes KF5::WidgetsAddons)
+	ecm_add_test(${_srcs} TEST_NAME kiconthemes-${_testname} LINK_LIBRARIES Qt5::Test KF5::IconThemes KF5::WidgetsAddons KF5::ConfigCore)
     endforeach(_testname)
 endmacro()
 

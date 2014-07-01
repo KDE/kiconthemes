@@ -25,6 +25,11 @@
 
 #include <kpixmapsequence.h>
 
+#include <KSharedConfig>
+#include <KConfigGroup>
+
+
+
 class KIconLoader_UnitTest : public QObject
 {
     Q_OBJECT
@@ -39,6 +44,10 @@ private Q_SLOTS:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
+
+        KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
+        cg.writeEntry("Theme", "breeze");
+        cg.sync();
 
         testDataDir = QDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation));
         testIconsDir = QDir(testDataDir.absoluteFilePath(QStringLiteral("icons")));
@@ -72,6 +81,23 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/x-office-document.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/audio-x-generic.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/unknown.png"))));
+
+        // set up a minimal Breeze icon theme, fallback to breeze
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/actions")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/animations")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/apps")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/mimetypes")));
+        QVERIFY(QFile::copy(QStringLiteral(":/breeze.theme"), testIconsDir.filePath(QStringLiteral("breeze/index.theme"))));
+        //kde.png is missing, it should fallback to oxygen
+        //QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/anim-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/animations/process-working.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/text-plain.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/application-octet-stream.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/image-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/video-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/x-office-document.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/audio-x-generic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/unknown.png"))));
     }
 
     void cleanupTestCase()
@@ -258,6 +284,7 @@ private Q_SLOTS:
                                         &path);
         QVERIFY(!path.isEmpty());
 
+        path = QString();
         KIconLoader::global()->loadIcon("does_not_exist", KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path, true /* canReturnNull */);
@@ -268,6 +295,52 @@ private Q_SLOTS:
                                         KIconLoader::DefaultState, QStringList(),
                                         &path, true /* canReturnNull */);
         QVERIFY(path.isEmpty());
+
+        //Test that addAppDir doesn't break loading of icons from the old known paths
+        KIconLoader loader;
+        //only addAppDir
+        loader.addAppDir("kiconloader_unittest");
+        path = QString();
+        loader.loadIcon("kde", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
+
+        path = QString();
+        loader.loadIcon("image1", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
+
+        //only reconfigure
+        KIconLoader loader2;
+        path = QString();
+        loader2.reconfigure("kiconloader_unittest");
+        loader2.loadIcon("kde", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
+        loader2.loadIcon("image1", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
+
+        //both addAppDir and reconfigure
+        KIconLoader loader3;
+        path = QString();
+        loader3.addAppDir("kiconloader_unittest");
+        loader3.reconfigure("kiconloader_unittest");
+        loader3.loadIcon("kde", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QEXPECT_FAIL("", "The combination addAppDir and reconfigure is not working right now.", Continue);
+        QVERIFY(!path.isEmpty());
+
+        path = QString();
+        loader3.loadIcon("image1", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
     }
 
     void testLoadIconNoGroupOrSize() // #246016
