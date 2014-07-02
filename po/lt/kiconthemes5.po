@@ -1,0 +1,4957 @@
+# translation of kio4.po to Lithuanian
+# Ričardas Čepas <rch@richard.eu.org>, 2002-2003.
+# Donatas Glodenis <dgvirtual@akl.lt>, 2004-2009.
+# Remigijus Jarmalavičius <remigijus@jarmalavicius.lt>, 2011.
+# Liudas Ališauskas <liudas.alisauskas@gmail.com>, 2011.
+# Liudas Alisauskas <liudas@akmc.lt>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2013-06-17 13:36+0300\n"
+"Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Parinkti ženkliuką"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Ženkliuko šaltinis"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "Sis&temos ženkliukai:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "&Kiti ženkliukai:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Naršyti..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Ieškoti:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktyviai ieškoti ženkliukų pavadinimų (pvz., aplankas)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Veiksmai"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animacijos"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Programos"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Įrenginiai"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Emblemos"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emocijų ženkleliai"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Failų sistemos"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Tarptautinė"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "Mime tipai"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Vietos"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Būsena"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ženkliukų failai (*.png *.xpm *.svg *.svgz)"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Ričardas Čepas, Donatas Glodenis"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "rch@richard.eu.org, dgvirtual@akl.lt"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "Failas ar aplankas vardu %1 jau yra."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "Jūs neturite leidimo sukurti šį aplanką."
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "Nepasirinkote trinamo failo."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "Nėra ką ištrinti"
+
+#~ msgid ""
+#~ "<qt>Do you really want to delete\n"
+#~ " <b>'%1'</b>?</qt>"
+#~ msgstr ""
+#~ "<qt>Ar tikrai norite ištrinti\n"
+#~ "<b>„%1“</b>?</qt>"
+
+#~ msgid "Delete File"
+#~ msgstr "Pašalinti failą"
+
+#~ msgid "Do you really want to delete this item?"
+#~ msgid_plural "Do you really want to delete these %1 items?"
+#~ msgstr[0] "Ar tikrai norite ištrinti šį objektą?"
+#~ msgstr[1] "Ar tikrai norite ištrinti %1 objektus?"
+#~ msgstr[2] "Ar tikrai norite ištrinti %1 objektų?"
+#~ msgstr[3] "Ar tikrai norite ištrinti %1 objektą?"
+
+#~ msgid "Delete Files"
+#~ msgstr "Pašalinti failus"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "Nepasirinkote į šiukšliadėžę perkeltino failo."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "Nėra ką perkelti į šiukšliadėžę"
+
+#~ msgid ""
+#~ "<qt>Do you really want to trash\n"
+#~ " <b>'%1'</b>?</qt>"
+#~ msgstr ""
+#~ "<qt>Ar tikrai norite išmesti į šiukšliadėžę\n"
+#~ "<b>„%1“</b>?</qt>"
+
+#~ msgid "Trash File"
+#~ msgstr "Išmesti failą į šiukšliadėžę"
+
+#~ msgctxt "to trash"
+#~ msgid "&Trash"
+#~ msgstr "Šiu&kšlės"
+
+#~ msgid "translators: not called for n == 1"
+#~ msgid_plural "Do you really want to trash these %1 items?"
+#~ msgstr[0] "Ar tikrai norite perkelti į šiukšliadėžę šį objektą?"
+#~ msgstr[1] "Ar tikrai norite perkelti į šiukšliadėžę šiuos %1 objektus?"
+#~ msgstr[2] "Ar tikrai norite perkelti į šiukšliadėžę šiuos %1 objektų?"
+#~ msgstr[3] "Ar tikrai norite perkelti į šiukšliadėžę %1 objektą?"
+
+#~ msgid "Trash Files"
+#~ msgstr "Išmesti failus į šiukšliadėže"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "Nurodyto aplanko nėra arba jo neįmanoma perskaityti."
+
+#~ msgid "Menu"
+#~ msgstr "Meniu"
+
+#~ msgid "Parent Folder"
+#~ msgstr "Žemesnio lygio aplankas"
+
+#~ msgid "Home Folder"
+#~ msgstr "Namų aplankas"
+
+#~ msgid "Reload"
+#~ msgstr "Įkelti iš naujo"
+
+#~ msgid "New Folder..."
+#~ msgstr "Naujas aplankas..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "Išmesti į šiukšliadėžę"
+
+#~ msgid "Delete"
+#~ msgstr "Trinti"
+
+#~ msgid "Sorting"
+#~ msgstr "Rūšiuoju"
+
+#~ msgid "By Name"
+#~ msgstr "Pagal vardą"
+
+#~ msgid "By Size"
+#~ msgstr "Pagal dydį"
+
+#~ msgid "By Date"
+#~ msgstr "Pagal datą"
+
+#~ msgid "By Type"
+#~ msgstr "Pagal tipą"
+
+#~ msgid "Descending"
+#~ msgstr "Mažėjanti"
+
+#~ msgid "Folders First"
+#~ msgstr "Pirma aplankai"
+
+#~ msgid "Icon Position"
+#~ msgstr "Ženkliuko vieta"
+
+#~ msgid "Next to File Name"
+#~ msgstr "Greta failo pavadinimo"
+
+#~ msgid "Above File Name"
+#~ msgstr "Virš failo pavadinimo"
+
+#~ msgid "Short View"
+#~ msgstr "Rodyti trumpai"
+
+#~ msgid "Detailed View"
+#~ msgstr "Rodyti detaliai"
+
+#~ msgid "Tree View"
+#~ msgstr "Medžio vaizdas"
+
+#~ msgid "Detailed Tree View"
+#~ msgstr "Detalaus medžio vaizdas"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "Rodyti paslėptus failus"
+
+#~ msgid "Show Aside Preview"
+#~ msgstr "Rodyti peržiūrą pakraštyje"
+
+#~ msgid "Show Preview"
+#~ msgstr "Rodyti peržiūrą"
+
+#~ msgid "Open File Manager"
+#~ msgstr "Atverti failų tvarkyklę"
+
+#~ msgid "Properties"
+#~ msgstr "Savybės"
+
+#~ msgid "&View"
+#~ msgstr "Ž&iūrėti"
+
+#~ msgctxt "folder name"
+#~ msgid "New Folder"
+#~ msgstr "Naujas aplankas"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "Naujas aplankas"
+
+#~ msgctxt "@label:textbox"
+#~ msgid ""
+#~ "Create new folder in:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Sukurti naują aplanką:\n"
+#~ "%1"
+
+#~ msgctxt "@title:window"
+#~ msgid "Select Folder"
+#~ msgstr "Pasirinkite aplanką"
+
+#~ msgctxt "@action:button"
+#~ msgid "New Folder..."
+#~ msgstr "Naujas aplankas..."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "New Folder..."
+#~ msgstr "Naujas aplankas..."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Move to Trash"
+#~ msgstr "Perkelti į šiukšliadėžę"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Delete"
+#~ msgstr "Trinti"
+
+#~ msgctxt "@option:check"
+#~ msgid "Show Hidden Folders"
+#~ msgstr "Rodyti paslėptus aplankus"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Properties"
+#~ msgstr "Savybės"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|Visi failai"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Visi palaikomi failai"
+
+#~ msgid "All Files"
+#~ msgstr "Visi failai"
+
+#~ msgid "Add Places Entry"
+#~ msgstr "Pridėti vietų įrašą"
+
+#~ msgid "Edit Places Entry"
+#~ msgstr "Keisti vietų įrašą"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>This is the text that will appear in the Places panel.<br /><br />The "
+#~ "label should consist of one or two words that will help you remember what "
+#~ "this entry refers to. If you do not enter a label, it will be derived "
+#~ "from the location's URL.</qt>"
+#~ msgstr ""
+#~ "<qt>Šis tekstas rodomas Vietų skydelyje.<br /><br />Aprašymą turėtų "
+#~ "sudaryti vienas ar du žodžiai, kurie padėtų prisiminti į ką kreipia šis "
+#~ "įrašas.</qt>"
+
+#~ msgid "L&abel:"
+#~ msgstr "Ž&ymė:"
+
+#~ msgid "Enter descriptive label here"
+#~ msgstr "Įveskite apibūdinančią etiketę"
+
+#~ msgid ""
+#~ "<qt>This is the location associated with the entry. Any valid URL may be "
+#~ "used. For example:<br /><br />%1<br />http://www.kde.org<br />ftp://ftp."
+#~ "kde.org/pub/kde/stable<br /><br />By clicking on the button next to the "
+#~ "text edit box you can browse to an appropriate URL.</qt>"
+#~ msgstr ""
+#~ "<qt>Čia yra vieta susieta su įrašu. Tinka bet koks teisingas "
+#~ "universalusis adresas (URL). Pavyzdžiui:<br /><br />%1<br />http://www."
+#~ "kde.org<br />ftp://ftp.kde.org/pub/ kde/stable<br /><br /> Paspaudę ant "
+#~ "mygtuko prie teksto redagavimo langelio, pateksite į nurodytą URL.</qt>"
+
+#~ msgid "&Location:"
+#~ msgstr "&Vieta:"
+
+#~ msgid ""
+#~ "<qt>This is the icon that will appear in the Places panel.<br /><br /"
+#~ ">Click on the button to select a different icon.</qt>"
+#~ msgstr ""
+#~ "<qt>Šis ženkliukas bus rodomas Vietų skydelyje.<br /><br />Paspauskite "
+#~ "ant mygtuko, kad pasirinktumėte kitą ženkliuką.</qt> "
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "Pasirinkite &ženkliuką:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "Rodyti &tik naudojant šią programą (%1)"
+
+#~ msgid ""
+#~ "<qt>Select this setting if you want this entry to show only when using "
+#~ "the current application (%1).<br /><br />If this setting is not selected, "
+#~ "the entry will be available in all applications.</qt>"
+#~ msgstr ""
+#~ "<qt>Pasirinkite šį nustatymą, jei norite, kad įrašas būtų matomas tik "
+#~ "naudojant šią programą. (%1).<br /><br /> Jei šis nustatymas nėra "
+#~ "pasirinktas, įrašas bus prieinamas visoms programoms.</qt>"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "Namai"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "Tinklas"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Root"
+#~ msgstr "Šakninis"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "Šiukšliadėžė"
+
+#~ msgid "&Release '%1'"
+#~ msgstr "iš&laisvinti „%1“"
+
+#~ msgid "&Safely Remove '%1'"
+#~ msgstr "&Saugiai pašalinti „%1“"
+
+#~ msgid "&Unmount '%1'"
+#~ msgstr "&Išmontuoti „%1“"
+
+#~ msgid "&Eject '%1'"
+#~ msgstr "&Išleisti „%1“"
+
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "Įrenginys „%1“ nėra diskas ir negali būti atidarytas."
+
+#~ msgid "An error occurred while accessing '%1', the system responded: %2"
+#~ msgstr "Įvyko klaida bandant pasiekti „%1“. Sistemos atsakymas: %2"
+
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "Bandant pasiekti „%1“ įvyko netikėta klaida"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "Išvalyti šiukšliadėžę"
+
+#~ msgid "Add Entry..."
+#~ msgstr "Pridėti įrašą..."
+
+#~ msgid "&Edit Entry '%1'..."
+#~ msgstr "&Keisti įrašą „%1“"
+
+#~ msgid "&Hide Entry '%1'"
+#~ msgstr "&Slėpti įrašą „%1“"
+
+#~ msgid "&Show All Entries"
+#~ msgstr "&Rodyti visus įrašus"
+
+#~ msgid "&Remove Entry '%1'"
+#~ msgstr "&Pašalinti įrašą „%1“"
+
+#~ msgctxt "@info"
+#~ msgid "Do you really want to empty the Trash? All items will be deleted."
+#~ msgstr ""
+#~ "Ar tikrai norite ištuštinti Šiukšliadėžę? Visa, kas joje yra, bus "
+#~ "ištrinta."
+
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "Ištuštinti šiukšliadėžę"
+
+#~ msgid "Show Hidden Folders"
+#~ msgstr "Rodyti paslėptus aplankus"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>While typing in the text area, you may be presented with possible "
+#~ "matches. This feature can be controlled by clicking with the right mouse "
+#~ "button and selecting a preferred mode from the <b>Text Completion</b> "
+#~ "menu.</qt>"
+#~ msgstr ""
+#~ "<p>Rašant tekstiniame lauke, jums gali būti pateikti galimi atitikimai. "
+#~ "Ši savybė gali būti valdoma spragtelėjus dešiniuoju pelės klavišu ir "
+#~ "pasirinkus norimą veikseną iš <b>Teksto užbaigimas</b> meniu."
+
+#~ msgid "Drive: %1"
+#~ msgstr "Įrenginys: %1"
+
+#~ msgid ""
+#~ "<qt>Click this button to enter the parent folder.<br /><br />For "
+#~ "instance, if the current location is file:/home/%1 clicking this button "
+#~ "will take you to file:/home.</qt>"
+#~ msgstr ""
+#~ "<qt>Paspauskite šį mygtuką, kad patektumėte į aukštesnio lygmens aplanką."
+#~ "<br /><br />Pavyzdžiui, jei dabartinė vieta yra file:/home/%1, paspaudęs "
+#~ "šį mygtuką pateksite į file:/home.</qt>"
+
+#~ msgid ""
+#~ "Click this button to move backwards one step in the browsing history."
+#~ msgstr ""
+#~ "Spragtelėję šį mygtuką nueisite vienu žingsniu atgal naršymo istorijoje."
+
+#~ msgid "Click this button to move forward one step in the browsing history."
+#~ msgstr ""
+#~ "Spragtelėję šį mygtuką nueisite vienu žingsniu pirmyn naršymo istorijoje."
+
+#~ msgid "Click this button to reload the contents of the current location."
+#~ msgstr ""
+#~ "Norėdami iš naujo įkelti esamo puslapio turinį, spragtelėkite šį mygtuką."
+
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "Paspauskite šį mygtuką norėdami sukurti naują aplanką."
+
+#~ msgid "Show Places Navigation Panel"
+#~ msgstr "Rodyti Vietų navigacijos pultą"
+
+#~ msgid "Show Bookmarks"
+#~ msgstr "Rodyti žymeles"
+
+#~ msgid "Options"
+#~ msgstr "Parinktys"
+
+#~ msgid ""
+#~ "<qt>This is the preferences menu for the file dialog. Various options can "
+#~ "be accessed from this menu including: <ul><li>how files are sorted in the "
+#~ "list</li><li>types of view, including icon and list</li><li>showing of "
+#~ "hidden files</li><li>the Places navigation panel</li><li>file previews</"
+#~ "li><li>separating folders from files</li></ul></qt>"
+#~ msgstr ""
+#~ "<qt>Čia yra failų dialogo nuostatų meniu. Iš jos galima pasiekti įvairias "
+#~ "parinktis, įskaitant:<ul><li>kaip failai rūšiuojami sąraše</li><li>rodymo "
+#~ "tipus, įskaitant ženkliukus ir sąrašą</li><li>slepiamų failų rodymą</"
+#~ "li><li>Vietų navigacijos skydelį</li><li>failų peržiūrą</li><li>aplankų "
+#~ "atskyrimą nuo failų</li></ul></qt>"
+
+#~ msgid "Zoom out"
+#~ msgstr "Sumažinti"
+
+#~ msgid "Zoom in"
+#~ msgstr "Padidinti"
+
+#~ msgid "&Name:"
+#~ msgstr "&Vardas:"
+
+#~ msgid ""
+#~ "<qt>This is the filter to apply to the file list. File names that do not "
+#~ "match the filter will not be shown.<p>You may select from one of the "
+#~ "preset filters in the drop down menu, or you may enter a custom filter "
+#~ "directly into the text area.</p><p>Wildcards such as * and ? are allowed."
+#~ "</p></qt>"
+#~ msgstr ""
+#~ "<qt>Šis filtras taikomas failų sąraše. Failų vardai, kurie neatitinka "
+#~ "filtro, nebus rodomi.<p>Galite pasirinkti vieną iš nustatytų filtrų iš "
+#~ "meniu arba įvesti savadarbį filtrą tiesiai į teksto langelį.</p><p>Galima "
+#~ "naudoti pakaitos simbolius * ir ?.</p></qt>"
+
+#~ msgid "&Filter:"
+#~ msgstr "&Filtras:"
+
+#~ msgid "You can only select one file"
+#~ msgstr "Galite pasirinkti tik vieną failą"
+
+#~ msgid "More than one file provided"
+#~ msgstr "Pateiktas daugiau nei vienas failas"
+
+#~ msgid "You can only select local files"
+#~ msgstr "Galite pasirinkti tik vietinius failus"
+
+#~ msgid "Remote files not accepted"
+#~ msgstr "Nutolę failai nepriimami"
+
+#~ msgid "More than one folder provided"
+#~ msgstr "Pateiktas daugiau nei vienas aplankas"
+
+#~ msgid ""
+#~ "At least one folder and one file has been selected. Selected files will "
+#~ "be ignored and the selected folder will be listed"
+#~ msgstr ""
+#~ "Buvo pažymėtas bent vienas aplankas ir bent vienas failas. Pažymėti "
+#~ "failai bus ignoruojami, bus pateikiamas tik aplankų sąrašas"
+
+#~ msgid "Files and folders selected"
+#~ msgstr "Failai ir aplankai pažymėti"
+
+#~ msgid "The file \"%1\" could not be found"
+#~ msgstr "Failo „%1“ rasti nepavyko"
+
+#~ msgid "Cannot open file"
+#~ msgstr "Nepavyksta atverti failo"
+
+#~ msgid "This is the name to save the file as."
+#~ msgstr "Tai yra pavadinimas, kuriuo išsaugomas failas."
+
+#~ msgid ""
+#~ "This is the list of files to open. More than one file can be specified by "
+#~ "listing several files, separated by spaces."
+#~ msgstr ""
+#~ "Tai yra atidaromų failų sąrašas.  Gali būti nurodytas daugiau nei viena "
+#~ "failas, išvardinant kelis, atskiriant jas tarpais."
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "Tai yra atidaromo failo pavadinimas."
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Vietos"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Failas „%1“ Jau yra. Ar norite jį perrašyti?"
+
+#~ msgid "Overwrite File?"
+#~ msgstr "Perrašyti failą?"
+
+#~ msgid ""
+#~ "The chosen filenames do not\n"
+#~ "appear to be valid."
+#~ msgstr ""
+#~ "Pasirinktas failo pavadinimas\n"
+#~ "atrodo neteisingas."
+
+#~ msgid "Invalid Filenames"
+#~ msgstr "Neteisingi failų pavadinimai"
+
+#~ msgid "You can only select local files."
+#~ msgstr "Galite pasirinkti tik vietinius failus."
+
+#~ msgid "Remote Files Not Accepted"
+#~ msgstr "Nutolę failai nepriimami."
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|Visi aplankai"
+
+#~ msgid "&Open"
+#~ msgstr "&Atverti"
+
+#~ msgid "Icon size: %1 pixels (standard size)"
+#~ msgstr "Ženkliukų dydis: %1 pikseliai (standartinis dydis)"
+
+#~ msgid "Icon size: %1 pixels"
+#~ msgstr "Ženkliukų dydis: %1 pikselis"
+
+#~ msgid "Automatically select filename e&xtension (%1)"
+#~ msgstr "Automatiškai parinkti failų vardų &plėtinius (%1)"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "plėtinys <b>%1</b>"
+
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "Automatiškai parinkti failo pavadinimo &plėtinį"
+
+#~ msgid "a suitable extension"
+#~ msgstr "Tinkamas plėtinys"
+
+#~ msgid ""
+#~ "This option enables some convenient features for saving files with "
+#~ "extensions:<br /><ol><li>Any extension specified in the <b>%1</b> text "
+#~ "area will be updated if you change the file type to save in.<br /><br /></"
+#~ "li><li>If no extension is specified in the <b>%2</b> text area when you "
+#~ "click <b>Save</b>, %3 will be added to the end of the filename (if the "
+#~ "filename does not already exist). This extension is based on the file "
+#~ "type that you have chosen to save in.<br /><br />If you do not want KDE "
+#~ "to supply an extension for the filename, you can either turn this option "
+#~ "off or you can suppress it by adding a period (.) to the end of the "
+#~ "filename (the period will be automatically removed).</li></ol>If unsure, "
+#~ "keep this option enabled as it makes your files more manageable."
+#~ msgstr ""
+#~ "Ši parinktis įgalina keletą patogių funkcijų saugant failus su "
+#~ "prievardžiais:<br /><ol><li>Prievardis, nurodytas <b>%1</b> teksto "
+#~ "langelyje, bus pakeistas, jei pakeisite failo tipą, į kurį reikia "
+#~ "išsaugoti.<br /><br /></li><li>Jei joks prievardis nenurodytas <b>%2</b> "
+#~ "teksto langelyje, kai paspaudžiate <b>Išsaugoti</b>, %3 bus pridėtas prie "
+#~ "failo pavadinimo pabaigos (jei failas tokiu pavadinimu dar neegzistuoja). "
+#~ "Prievardis parenkamas pagal failo tipą, kuriuo norite išsaugoti failą."
+#~ "<br /><br />Jei nenorite, kad KDE automatiškai pridėtų prievardį, galite "
+#~ "išjungti šią parinktį arba galite nuslopinti ją, pridėdami tašką (.) prie "
+#~ "failo pavadinimo pabaigos(taškas bus panaikintas automatiškai).</li></"
+#~ "ol>Jei nežinote ką pasirinkti, palikite šią parinktį įgalinta, nes ji "
+#~ "padaro Jūsų failus lengviau valdomus."
+
+#~ msgid "Bookmarks"
+#~ msgstr "Žymelės"
+
+#~ msgid ""
+#~ "<qt>This button allows you to bookmark specific locations. Click on this "
+#~ "button to open the bookmark menu where you may add, edit or select a "
+#~ "bookmark.<br /><br />These bookmarks are specific to the file dialog, but "
+#~ "otherwise operate like bookmarks elsewhere in KDE.</qt>"
+#~ msgstr ""
+#~ "<qt>Šis mygtukas leidžia pasižymėti norimas vietas. Paspauskite mygtuką, "
+#~ "kad atvertumėte žymelių meniu, kuriame galima pridėti, redaguoti arba "
+#~ "pasirinkti žymelę.<br /><br />Šios žymelės yra skirtos tik failų "
+#~ "dialogui, bet veikia lygiai taip pat, kaip ir kitos KDE žymelės.</qt>"
+
+#~ msgid "Sorry"
+#~ msgstr "Apgailestaujame"
+
+#, fuzzy
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Nepavyksta įvykdyti nurodytos komandos. Failo arba aplanko <b>%1</b> "
+#~ "nėra.</qt>"
+
+#~ msgctxt "@action:button"
+#~ msgid "Create directory"
+#~ msgstr "Sukurti aplanką"
+
+#~ msgctxt "@action:button"
+#~ msgid "Enter a different name"
+#~ msgstr "Įveskite kitokį pavadinimą"
+
+#~ msgid "Create hidden directory?"
+#~ msgstr "Sukurti paslėptą aplanką?"
+
+#~ msgid ""
+#~ "The name \"%1\" starts with a dot, so the directory will be hidden by "
+#~ "default."
+#~ msgstr ""
+#~ "Pavadinimas „%1“ prasideda tašku, taigi aplankas pagal nutylėjimą bus "
+#~ "paslėptas."
+
+#~ msgid "Do not ask again"
+#~ msgstr "Daugiau nebeklausti"
+
+#~ msgid "File name:"
+#~ msgstr "Failo pavadinimas:"
+
+#~ msgid "Create Symlink"
+#~ msgstr "Sukurti simbolinę nuorodą"
+
+#~ msgid "Create link to URL"
+#~ msgstr "Sukurti nuorodą į URL"
+
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "Create New"
+#~ msgstr "Sukurti naują"
+
+#~ msgid "Link to Device"
+#~ msgstr "Nuoroda į įrenginį"
+
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "Naujas aplankas"
+
+#~ msgid ""
+#~ "Create new folder in:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Sukurti naują aplanką:\n"
+#~ "%1"
+
+#~ msgid "Copy"
+#~ msgstr "Kopijuoti"
+
+#~ msgid "Paste"
+#~ msgstr "Padėti"
+
+#~ msgid "Edit"
+#~ msgstr "Keisti"
+
+#~ msgid "Navigate"
+#~ msgstr "Žvalgyti"
+
+#~ msgid "Show Full Path"
+#~ msgstr "Rodyti visą kelią"
+
+#~ msgid "Custom Path"
+#~ msgstr "Pasirinktas kelias"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "Daugiau"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "Įrenginiai"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "Subversion"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "Kiti"
+
+#~ msgid "Click for Location Navigation"
+#~ msgstr "Spragtelėkite norėdami naviguoti"
+
+#~ msgid "Click to Edit Location"
+#~ msgstr "Spragtelėkite norėdami rašyti"
+
+#, fuzzy
+#~ msgid "Setting ACL for %1"
+#~ msgstr "Siunčiami duomenys į %1"
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr "Nepavyksta pakeisti %1 leidimų"
+
+#~ msgid "No Media inserted or Media not recognized."
+#~ msgstr "Neįdėtas media, arba media neatpažystamas."
+
+#~ msgid "\"vold\" is not running."
+#~ msgstr "„vold“ nėra paleistas."
+
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "Nepavyksta rasti programos „mount“"
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "mounting is not supported by wince."
+#~ msgstr "Rašymas į %1 nėra palaikomas."
+
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "Nepavyksta rasti programos „umount“"
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "unmounting is not supported by wince."
+#~ msgstr "Rašymas į %1 nėra palaikomas."
+
+#~ msgid "Cannot copy file from %1 to %2. (Errno: %3)"
+#~ msgstr "Nepavyksta nukopijuoti failo iš %1 į %2. (Klaidos Nr.: %3)"
+
+#~ msgid "No media in device for %1"
+#~ msgstr "%1 nėra įdėtas joks media į įrenginį"
+
+#, fuzzy
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "Nepavyksta patekti į aplanką %1."
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "Jungiamasi prie mazgo %1"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "Prisijungta prie mazgo %1"
+
+#~ msgid ""
+#~ "%1.\n"
+#~ "\n"
+#~ "Reason: %2"
+#~ msgstr ""
+#~ "%1.\n"
+#~ "\n"
+#~ "Priežastis: %2"
+
+#~ msgid "Sending login information"
+#~ msgstr "Siunčiama registravimosi informacija"
+
+#~ msgid ""
+#~ "Message sent:\n"
+#~ "Login using username=%1 and password=[hidden]\n"
+#~ "\n"
+#~ "Server replied:\n"
+#~ "%2\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Nusiųstas pranešimas:\n"
+#~ "Prisiregistruoju vardu=%1 su slaptažodžiu=[paslėptas]\n"
+#~ "\n"
+#~ "Serveris atsakė:\n"
+#~ "%2\n"
+#~ "\n"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr ""
+#~ "Norėdami prisijungti prie šios srities, turite pateikti naudotojo vardą "
+#~ "ir slaptažodį."
+
+#~ msgid "Site:"
+#~ msgstr "Sritis:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "Registracija OK"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "Nepavyksta prisiregistruoti į %1."
+
+#~ msgid ""
+#~ "You need to supply a username and a password for the proxy server listed "
+#~ "below before you are allowed to access any sites."
+#~ msgstr ""
+#~ "Turite pateikti naudotojo vardą ir slaptažodį  žemiau nurodytam "
+#~ "įgaliotajam serveriui serveriui norint prisijungti prie bet kokios "
+#~ "srities."
+
+#~ msgid "Proxy:"
+#~ msgstr "Įgaliotasis serveris:"
+
+#~ msgid "<b>%1</b> at <b>%2</b>"
+#~ msgstr "<b>%1</b> mazge <b>%2</b>"
+
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "Įgaliotojo serverio autentikacija nepavyko."
+
+#~ msgid "No host specified."
+#~ msgstr "Nenurodytas mazgo vardas."
+
+#~ msgid "Otherwise, the request would have succeeded."
+#~ msgstr "Priešingu atveju paklausimas būtų pavykęs."
+
+#, fuzzy
+#~ msgctxt "request type"
+#~ msgid "retrieve property values"
+#~ msgstr "gauti savybių reikšmes"
+
+#~ msgctxt "request type"
+#~ msgid "set property values"
+#~ msgstr "nustatyti savybių reikšmes"
+
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "sukurti prašomą aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "kopijuoti nurodytą failą ar aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "perkelti nurodytą failą ar aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "ieškoti nurodytame aplanke"
+
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "užrakinti nurodytą failą ar aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "atrakinti nurodytą failą ar aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "ištrinti nurodytą failą ar aplanką"
+
+#~ msgctxt "request type"
+#~ msgid "query the server's capabilities"
+#~ msgstr "užklausti serverio galimybių"
+
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "gauti nurodyto failo ar aplanko turinį"
+
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "vykdyti ataskaitą nurodytame aplanke"
+
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Bandant %2 įvyko netikėta klaida (%1)."
+
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "Serveris nepalaiko WebDAV protokolo."
+
+#~ msgctxt "%1: request type, %2: url"
+#~ msgid ""
+#~ "An error occurred while attempting to %1, %2. A summary of the reasons is "
+#~ "below."
+#~ msgstr "Bandant %1 įvyko klaida %2.  Priežasčių santrauka yra žemiau."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "Priėjimas uždraustas bandant %1."
+
+#~ msgid ""
+#~ "A resource cannot be created at the destination until one or more "
+#~ "intermediate collections (folders) have been created."
+#~ msgstr ""
+#~ "Resursas negali būti sukurtas paskirties vietoje tol, kol vienas ar "
+#~ "daugiau tarpinių rinkinių (aplankų) nebus sukurta."
+
+#~ msgid ""
+#~ "The server was unable to maintain the liveness of the properties listed "
+#~ "in the propertybehavior XML element or you attempted to overwrite a file "
+#~ "while requesting that files are not overwritten. %1"
+#~ msgstr ""
+#~ "Serveris nesugebėjo palaikyti savybių, išvardintų savybės elgesio "
+#~ "(propertybehavior) XML elemente, gyvybės arba Jūs pabandėte rašyti ant "
+#~ "failo, kai buvote paprašę, kad nebūtų rašoma ant failų. %1"
+
+#~ msgid "The requested lock could not be granted. %1"
+#~ msgstr "Prašomas užrakinimas negali būti suteiktas.  %1"
+
+#~ msgid "The server does not support the request type of the body."
+#~ msgstr "Serveris nepalaiko kūno paklausimo tipo."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Unable to %1 because the resource is locked."
+#~ msgstr "Nepavyksta %1, nes resursas yra užrakintas."
+
+#~ msgid "This action was prevented by another error."
+#~ msgstr "Veiksmas sukliudytas kitos klaidos."
+
+#~ msgctxt "%1: request type"
+#~ msgid ""
+#~ "Unable to %1 because the destination server refuses to accept the file or "
+#~ "folder."
+#~ msgstr ""
+#~ "Nepavyksta %1, nes paskirties serveris atsisako priimti failą ar aplanką."
+
+#~ msgid ""
+#~ "The destination resource does not have sufficient space to record the "
+#~ "state of the resource after the execution of this method."
+#~ msgstr ""
+#~ "Paskirties resursas neturi užtektinai vietos įrašyti resurso būklei po "
+#~ "šio metodo įvykdymo."
+
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "Resursas negali būti ištrintas."
+
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "siųsti %1"
+
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Bandant %2 įvyko netikėta klaida (%1)."
+
+#~ msgid "%1 contacted. Waiting for reply..."
+#~ msgstr "Su %1 susirišta. Laukiama atsakymo..."
+
+#~ msgid "Server processing request, please wait..."
+#~ msgstr "Serveris apdoroja paklausimą, prašome palaukti..."
+
+#~ msgid "Sending data to %1"
+#~ msgstr "Siunčiami duomenys į %1"
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "Gaunama %1 iš %2..."
+
+#~ msgid "Authentication Failed."
+#~ msgstr "Autentikacija nepavyko."
+
+#~ msgid "Authorization failed."
+#~ msgstr "Autorizacija nepavyko."
+
+#~ msgid "Unknown Authorization method."
+#~ msgstr "Nežinomas autorizacijos metodas"
+
+#~ msgid "KDE HTTP cache maintenance tool"
+#~ msgstr "KDE HTTP krepšio priežiūros įrankis"
+
+#~ msgid "Empty the cache"
+#~ msgstr "Ištuštinti krepšį"
+
+#~ msgid "Display information about cache file"
+#~ msgstr "Rodyti informaciją apie talpyklos failą"
+
+#~ msgid "Cookie Alert"
+#~ msgstr "Įspėjimo dėl slapuko"
+
+#, fuzzy
+#~| msgid "Do you want to accept or reject?"
+#~ msgctxt "%2 hostname, %3 optional cross domain suffix (translated below)"
+#~ msgid ""
+#~ "<p>You received a cookie from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject this cookie?</p>"
+#~ msgid_plural ""
+#~ "<p>You received %1 cookies from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject these cookies?</p>"
+#~ msgstr[0] "Ar Jūs norite priimti ar atmesti?"
+#~ msgstr[1] "Ar Jūs norite priimti ar atmesti?"
+#~ msgstr[2] "Ar Jūs norite priimti ar atmesti?"
+#~ msgstr[3] "Ar Jūs norite priimti ar atmesti?"
+
+#~ msgctxt "@item:intext cross domain cookie"
+#~ msgid " [Cross Domain]"
+#~ msgstr " [Keliems domenams]"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "Pritaikyti pasirinkimą"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "&Tik šį slapuką"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "&Tik šiuos slapukus"
+
+#, fuzzy
+#~ msgid ""
+#~ "Select this option to only accept or reject this cookie. You will be "
+#~ "prompted again if you receive another cookie."
+#~ msgstr ""
+#~ "Pasirinkite šią parinktį priimti/atmesti tik šį slapuką.  Jūsų vėl "
+#~ "paklaus, jei gausite kitą slapuką. <em>(žiūrėkite Žiniatinklio naršymas/"
+#~ "Slapukai Valdymo Centre)</em>."
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "&Visus šios srities slapukus"
+
+#, fuzzy
+#~ msgid ""
+#~ "Select this option to accept or reject all cookies from this site. "
+#~ "Choosing this option will add a new policy for the site this cookie "
+#~ "originated from. This policy will be permanent until you manually change "
+#~ "it from the System Settings."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį norėdami priimti/atmesti visus slapukus iš šios "
+#~ "srities. Pasirinkimas sukurs naują taisyklę sričiai, atsiuntusiai šį "
+#~ "slapuką. Ši taisyklė bus nuolatinė, kol Jūs nepakeisite jos Valdymo "
+#~ "centre <em>(žr. Žiniatinklio naršymas/slapukai Valdymo centre)</em>"
+
+#~ msgid "All &cookies"
+#~ msgstr "V&isus slapukus"
+
+#, fuzzy
+#~ msgid ""
+#~ "Select this option to accept/reject all cookies from anywhere. Choosing "
+#~ "this option will change the global cookie policy for all cookies until "
+#~ "you manually change it from the System Settings."
+#~ msgstr ""
+#~ "Pasirinkite norėdami priimti/atmesti slapukus iš visur.  Pasirinkdami Jūs "
+#~ "pakeisite globalią taisyklę slapukų atžvilgiu, nustatomą Valdymo centre "
+#~ "visiems slapukams <em>(žr. Žiniatinklio naršymas/Slapukai Valdymo centre)"
+#~ "</em>"
+
+#~ msgid "&Accept"
+#~ msgstr "&Priimu"
+
+#~ msgid "&Reject"
+#~ msgstr "&Atmetu"
+
+#~ msgid "See or modify the cookie information"
+#~ msgstr "Rodyti/slėpti informaciją apie slapuką"
+
+#~ msgid "Cookie Details"
+#~ msgstr "Smulki informacija apie slapuką"
+
+#~ msgid "Name:"
+#~ msgstr "Vardas:"
+
+#~ msgid "Value:"
+#~ msgstr "Reikšmė:"
+
+#~ msgid "Expires:"
+#~ msgstr "Baigiasi:"
+
+#~ msgid "Path:"
+#~ msgstr "Kelias:"
+
+#~ msgid "Domain:"
+#~ msgstr "Sritis:"
+
+#~ msgid "Exposure:"
+#~ msgstr "Ekspozicija:"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&Kitas >>"
+
+#~ msgid "Show details of the next cookie"
+#~ msgstr "Rodyti kito slapuko smulkmenas."
+
+#~ msgid "Not specified"
+#~ msgstr "Nenurodyta"
+
+#~ msgid "End of Session"
+#~ msgstr "Sesijos pabaiga"
+
+#~ msgid "Secure servers only"
+#~ msgstr "Tik saugūs serveriai"
+
+#~ msgid "Secure servers, page scripts"
+#~ msgstr "Saugūs serveriai, puslapių scenarijai"
+
+#~ msgid "Servers"
+#~ msgstr "Serveriai"
+
+#~ msgid "Servers, page scripts"
+#~ msgstr "Serveriai, puslapio scenarijai"
+
+#~ msgid "HTTP Cookie Daemon"
+#~ msgstr "HTTP slapukų tarnyba"
+
+#~ msgid "HTTP cookie daemon"
+#~ msgstr "HTTP slapukų tarnyba"
+
+#~ msgid "Shut down cookie jar"
+#~ msgstr "Išjungti slapukų talpyklą"
+
+#~ msgid "Remove cookies for domain"
+#~ msgstr "Pašalinti srities slapukus"
+
+#~ msgid "Remove all cookies"
+#~ msgstr "Pašalinti visus slapukus"
+
+#~ msgid "Reload configuration file"
+#~ msgstr "Iš naujo įkelti derinimo failą"
+
+#~ msgid "kio_metainfo"
+#~ msgstr "kio_metainfo"
+
+#~ msgid "No metainfo for %1"
+#~ msgstr "Nėra %1 metainformacijos"
+
+#~ msgid "--- separator ---"
+#~ msgstr "--- skirtukas ---"
+
+#~ msgctxt "@action:button"
+#~ msgid "Update"
+#~ msgstr "Atnaujinti"
+
+#~ msgctxt "@title:window"
+#~ msgid "Bookmark Properties"
+#~ msgstr "Žymelės savybės"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add"
+#~ msgstr "Pridėti"
+
+#~ msgctxt "@title:window"
+#~ msgid "Add Bookmark"
+#~ msgstr "Pridėti žymelę"
+
+#~ msgctxt "@action:button"
+#~ msgid "&New Folder..."
+#~ msgstr "&Naujas aplankas..."
+
+#~ msgctxt "@title:window"
+#~ msgid "Add Bookmarks"
+#~ msgstr "Pridėti žymelę"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Name:"
+#~ msgstr "Pavadinimas:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Location:"
+#~ msgstr "Vieta:"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Comment:"
+#~ msgstr "Komentaras:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Create New Bookmark Folder"
+#~ msgstr "Sukurti naują žymelių aplanką"
+
+#~ msgctxt "@title:window"
+#~ msgid "Create New Bookmark Folder in %1"
+#~ msgstr "Sukurti naują žymelių aplanką, esantį %1"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "New folder:"
+#~ msgstr "Naujas aplankas:"
+
+#~ msgctxt "name of the container of all browser bookmarks"
+#~ msgid "Bookmarks"
+#~ msgstr "Žymelės"
+
+#~ msgid "*.html|HTML Files (*.html)"
+#~ msgstr "*.html|HTML failai (*.html)"
+
+#~ msgid "<!-- This file was generated by Konqueror -->"
+#~ msgstr "<!-- Šis failas buvo sukurta Konqueror -->"
+
+#~ msgid "*.adr|Opera Bookmark Files (*.adr)"
+#~ msgstr "*.adr|Opera žymelių failai (*.adr)"
+
+#~ msgid ""
+#~ "Unable to save bookmarks in %1. Reported error was: %2. This error "
+#~ "message will only be shown once. The cause of the error needs to be fixed "
+#~ "as quickly as possible, which is most likely a full hard drive."
+#~ msgstr ""
+#~ "Nepavyksta išsaugoti žymelių %1. Pranešta klaida: %2. Ši klaida bus "
+#~ "rodoma tik vieną kartą. Greičiausiai klaidos priežastis yra perpildytas "
+#~ "kietasis diskas, prašome skubiai ištaisyti situaciją."
+
+#~ msgid "Add Bookmark Here"
+#~ msgstr "Pridėti žymelę čia"
+
+#~ msgid "Open Folder in Bookmark Editor"
+#~ msgstr "Atverti aplanką žymelių redagavimo programoje"
+
+#~ msgid "Delete Folder"
+#~ msgstr "Trinti aplanką"
+
+#~ msgid "Copy Link Address"
+#~ msgstr "Kopijuoti nuorodos adresą"
+
+#~ msgid "Delete Bookmark"
+#~ msgstr "Trinti žymelę"
+
+#~ msgid "Open Folder in Tabs"
+#~ msgstr "Atverti aplanką kortelėse"
+
+#~ msgid "Cannot add bookmark with empty URL."
+#~ msgstr "Nepavyksta pridėti žymelės su tuščiu URL."
+
+#~ msgid ""
+#~ "Are you sure you wish to remove the bookmark folder\n"
+#~ "\"%1\"?"
+#~ msgstr ""
+#~ "Ar tikrai norite pašalinti žymelių aplanką\n"
+#~ "„%1“?"
+
+#~ msgid ""
+#~ "Are you sure you wish to remove the bookmark\n"
+#~ "\"%1\"?"
+#~ msgstr ""
+#~ "Ar tikrai norite pašalinti žymelę\n"
+#~ "„%1“?"
+
+#~ msgid "Bookmark Folder Deletion"
+#~ msgstr "Žymelių aplanko trynimas"
+
+#~ msgid "Bookmark Deletion"
+#~ msgstr "Žymelės trynimas"
+
+#~ msgid "Open all bookmarks in this folder as a new tab."
+#~ msgstr "Atverti visas šio aplanko žymeles naujose kortelėse."
+
+#~ msgid "Bookmark Tabs as Folder..."
+#~ msgstr "Sukurti žymelių aplanką iš kortelių..."
+
+#~ msgid "Add a folder of bookmarks for all open tabs."
+#~ msgstr "Iš visų atvertų kortelių sukurti žymelių aplanką."
+
+#~ msgid "Edit your bookmark collection in a separate window"
+#~ msgstr "Redaguoti Jūsų žymelių rinkinį atskirame lange"
+
+#~ msgid "New Bookmark Folder..."
+#~ msgstr "Naujas žymelių aplankas..."
+
+#~ msgid "Create a new bookmark folder in this menu"
+#~ msgstr "Sukurti naują žymelių aplanką šiame meniu"
+
+#~ msgid "Hide in toolbar"
+#~ msgstr "Slėpti įrankinėje"
+
+#~ msgid "Show in toolbar"
+#~ msgstr "Rodyti įrankinėje"
+
+#~ msgid "Open in New Window"
+#~ msgstr "Atverti naujame lange"
+
+#~ msgid "Open in New Tab"
+#~ msgstr "Atverti naujoje kortelėje"
+
+#~ msgid "Receiving corrupt data."
+#~ msgstr "Gaunami sugadinti duomenys."
+
+#~ msgid "Owner"
+#~ msgstr "Savininkas"
+
+#~ msgid "Owning Group"
+#~ msgstr "Savininkų grupė"
+
+#~ msgid "Others"
+#~ msgstr "Kiti"
+
+#~ msgid "Mask"
+#~ msgstr "Kaukė"
+
+#~ msgid "Named User"
+#~ msgstr "Įvardintas naudotojas"
+
+#~ msgid "Named Group"
+#~ msgstr "Įvardinta grupė"
+
+#~ msgid "Edit Entry..."
+#~ msgstr "Keisti įrašą..."
+
+#~ msgid "Delete Entry"
+#~ msgstr "Pašalinti įrašą"
+
+#~ msgid " (Default)"
+#~ msgstr " (numatytas)"
+
+#~ msgid "Edit ACL Entry"
+#~ msgstr "Keisti ACL įrašą"
+
+#~ msgid "Entry Type"
+#~ msgstr "Įrašo tipas"
+
+#~ msgid "Default for new files in this folder"
+#~ msgstr "Numatyta naujoms failams šiame aplanke"
+
+#~ msgid "Named user"
+#~ msgstr "Įvardintas naudotojas"
+
+#~ msgid "Named group"
+#~ msgstr "Įvardinta grupė"
+
+#~ msgid "User: "
+#~ msgstr "Naudotojas: "
+
+#~ msgid "Group: "
+#~ msgstr " Grupė: "
+
+#~ msgid "Type"
+#~ msgstr "Tipas"
+
+#~ msgid "Name"
+#~ msgstr "Vardas"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "r"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "w"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Effective"
+#~ msgstr "Efektyvus"
+
+#~ msgctxt "@label"
+#~ msgid "Add Comment..."
+#~ msgstr "Pridėti komentarą..."
+
+#~ msgctxt "@label"
+#~ msgid "Change..."
+#~ msgstr "Keisti..."
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Comment"
+#~ msgstr "Keisti komentarą"
+
+#~ msgctxt "@title:window"
+#~ msgid "Add Comment"
+#~ msgstr "Pridėti komentarą"
+
+#~ msgid "Device name"
+#~ msgstr "Įrenginio pavadinimas"
+
+#~ msgid "Encoding:"
+#~ msgstr "Koduotė:"
+
+#~ msgid "Open"
+#~ msgstr "Atverti"
+
+#~ msgid "Save As"
+#~ msgstr "Įrašyti kaip"
+
+#~ msgid "*|All files"
+#~ msgstr "*|Visi failai"
+
+#~ msgctxt "@item:intable"
+#~ msgid "%1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "%1 objektas"
+#~ msgstr[1] "%1 objektai"
+#~ msgstr[2] "%1 objektų"
+#~ msgstr[3] "%1 objektas"
+
+#~ msgctxt "@label"
+#~ msgid "Comment"
+#~ msgstr "Komentaras"
+
+#~ msgctxt "@label"
+#~ msgid "Modified"
+#~ msgstr "Pakeista"
+
+#~ msgctxt "@label"
+#~ msgid "Owner"
+#~ msgstr "Savininkas"
+
+#~ msgctxt "@label"
+#~ msgid "Permissions"
+#~ msgstr "Leidimai"
+
+#~ msgctxt "@label"
+#~ msgid "Rating"
+#~ msgstr "Reitingas"
+
+#~ msgctxt "@label"
+#~ msgid "Size"
+#~ msgstr "Dydis"
+
+#~ msgctxt "@label"
+#~ msgid "Tags"
+#~ msgstr "Žymės"
+
+#~ msgctxt "@label"
+#~ msgid "Total Size"
+#~ msgstr "bendras dydis"
+
+#~ msgctxt "@label"
+#~ msgid "Type"
+#~ msgstr "Tipas"
+
+#~ msgid "(C) 2011, Peter Penz"
+#~ msgstr "(C) 2011, Peter Penz"
+
+#~ msgid "Peter Penz"
+#~ msgstr "Peter Penz"
+
+#~ msgid "Current maintainer"
+#~ msgstr "Dabartinis prižiūrėtojas"
+
+#~ msgid "<Error>"
+#~ msgstr "<Klaida>"
+
+#~ msgid "&Share"
+#~ msgstr "&Bendro naudojimo"
+
+#~ msgid "Only folders in your home folder can be shared."
+#~ msgstr ""
+#~ "Tik Jūsų namų aplanko poaplankiai gali būti skirti bendram naudojimui."
+
+#~ msgid "Not shared"
+#~ msgstr "Neskirtas bendram naudojimui"
+
+#~ msgid "Shared"
+#~ msgstr "Bendram naudojimui"
+
+#~ msgid ""
+#~ "Sharing this folder makes it available under Linux/UNIX (NFS) and Windows "
+#~ "(Samba)."
+#~ msgstr ""
+#~ "Šio aplanko paskyrimas bendram naudojimui daro jį prieinamu Linux/UNIX "
+#~ "(NFS) ir Windows (Samba) protokolais."
+
+#~ msgid "You can also reconfigure file sharing authorization."
+#~ msgstr "Jūs taip pat galite pakeisti bendro naudojimosi failais tvarką."
+
+#~ msgid "Configure File Sharing..."
+#~ msgstr "Konfigūruoti bendrą naudojimąsi failais..."
+
+#~ msgid ""
+#~ "Error running 'filesharelist'. Check if installed and in $PATH or /usr/"
+#~ "sbin."
+#~ msgstr ""
+#~ "Klaida paleidžiant 'filesharelist'.  Patikrinkite ar ši komandą įdiegta "
+#~ "ir yra Jūsų kelyje $PATH ar /usr/sbin."
+
+#~ msgid "You need to be authorized to share folders."
+#~ msgstr "Jums reikia įgaliojimo norint skirti aplankus bendram naudojimui."
+
+#~ msgid "File sharing is disabled."
+#~ msgstr "Bendras naudojimasis failais išjungtas."
+
+#~ msgid "Sharing folder '%1' failed."
+#~ msgstr "Skirti aplanko „%1“ bendram naudojimui nepavyko."
+
+#~ msgid ""
+#~ "An error occurred while trying to share folder '%1'. Make sure that the "
+#~ "Perl script 'fileshareset' is set suid root."
+#~ msgstr ""
+#~ "Bandant nustatyti aplanką „%1“ bendram naudojimui įvyko klaida. "
+#~ "Patikrinkite, ar Perl scenarijus „fileshareset“ turi nustatytą suid root."
+
+#~ msgid "Unsharing folder '%1' failed."
+#~ msgstr "Nepavyko panaikinti aplanko „%1“ nustatymo bendram naudojimui."
+
+#~ msgid ""
+#~ "An error occurred while trying to unshare folder '%1'. Make sure that the "
+#~ "Perl script 'fileshareset' is set suid root."
+#~ msgstr ""
+#~ "Bandant panaikinti aplanko „%1“ bendro naudojimo parinktį įvyko klaida. "
+#~ "Patikrinkite, ar Perl scenarijus „fileshareset“ turi nustatytą suid root."
+
+#~ msgctxt "@title:window"
+#~ msgid "Configure Shown Data"
+#~ msgstr "Konfigūruoti rodomus duomenis"
+
+#~ msgctxt "@label::textbox"
+#~ msgid "Select which data should be shown:"
+#~ msgstr "Pasirinkite, kurie duomenys bus rodomi:"
+
+#~ msgctxt "@action:button"
+#~ msgid "Configure..."
+#~ msgstr "Konfigūruoti..."
+
+#~ msgctxt "@title:tab"
+#~ msgid "Information"
+#~ msgstr "Informacija"
+
+#~ msgctxt "@label creation date"
+#~ msgid "Created"
+#~ msgstr "Sukurta"
+
+#~ msgctxt "@label file content size"
+#~ msgid "Size"
+#~ msgstr "Dydis"
+
+#~ msgctxt "@label file depends from"
+#~ msgid "Depends"
+#~ msgstr "Priklauso"
+
+#~ msgctxt "@label"
+#~ msgid "Description"
+#~ msgstr "Aprašymas"
+
+#~ msgctxt "@label Software used to generate content"
+#~ msgid "Generator"
+#~ msgstr "Generatorius"
+
+#~ msgctxt "@label parent directory"
+#~ msgid "Part of"
+#~ msgstr "Dalis"
+
+#~ msgctxt "@label"
+#~ msgid "Keyword"
+#~ msgstr "Raktažodis"
+
+#~ msgctxt "@label modified date of file"
+#~ msgid "Modified"
+#~ msgstr "Pakeista"
+
+#~ msgctxt "@label"
+#~ msgid "MIME Type"
+#~ msgstr "MIME tipas"
+
+#~ msgctxt "@label"
+#~ msgid "Content"
+#~ msgstr "Turinys"
+
+#~ msgctxt "@label"
+#~ msgid "Related To"
+#~ msgstr "Susijęs su"
+
+#~ msgctxt "@label"
+#~ msgid "Subject"
+#~ msgstr "Tema"
+
+#~ msgctxt "@label music title"
+#~ msgid "Title"
+#~ msgstr "Antraštė"
+
+#~ msgctxt "@label file URL"
+#~ msgid "Location"
+#~ msgstr "Vieta"
+
+#~ msgctxt "@label"
+#~ msgid "Creator"
+#~ msgstr "Kūrėjas"
+
+#~ msgctxt "@label"
+#~ msgid "Average Bitrate"
+#~ msgstr "Vidutinis bitų dažnis"
+
+#~ msgctxt "@label"
+#~ msgid "Channels"
+#~ msgstr "Kanalų"
+
+#~ msgctxt "@label number of characters"
+#~ msgid "Characters"
+#~ msgstr "Simboliai"
+
+#~ msgctxt "@label"
+#~ msgid "Codec"
+#~ msgstr "Kodekas"
+
+#~ msgctxt "@label"
+#~ msgid "Color Depth"
+#~ msgstr "Spalvų gylis"
+
+#~ msgctxt "@label"
+#~ msgid "Duration"
+#~ msgstr "Trukmė"
+
+#~ msgctxt "@label"
+#~ msgid "Filename"
+#~ msgstr "Failo pavadinimas"
+
+#~ msgctxt "@label"
+#~ msgid "Hash"
+#~ msgstr "Maiša (hash)"
+
+#~ msgctxt "@label"
+#~ msgid "Height"
+#~ msgstr "Aukštis"
+
+#~ msgctxt "@label number of lines"
+#~ msgid "Lines"
+#~ msgstr "Eilučių"
+
+#~ msgctxt "@label"
+#~ msgid "Programming Language"
+#~ msgstr "Programavimo kalba"
+
+#~ msgctxt "@label"
+#~ msgid "Sample Rate"
+#~ msgstr "Taktinis dažnis"
+
+#~ msgctxt "@label"
+#~ msgid "Width"
+#~ msgstr "Plotis"
+
+#~ msgctxt "@label number of words"
+#~ msgid "Words"
+#~ msgstr "Žodžių"
+
+#~ msgctxt "@label EXIF aperture value"
+#~ msgid "Aperture"
+#~ msgstr "Apertūra"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Exposure Time"
+#~ msgstr "Išlaikymo trukmė"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Flash"
+#~ msgstr "Blykstė"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Focal Length"
+#~ msgstr "Židinio nuotolis"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Focal Length 35 mm"
+#~ msgstr "Židinio nuotolis 35 mm"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Make"
+#~ msgstr "Gaminys"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Metering Mode"
+#~ msgstr "Matavimo veiksena"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Model"
+#~ msgstr "Modelis"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "Orientation"
+#~ msgstr "Orientacija"
+
+#~ msgctxt "@label EXIF"
+#~ msgid "White Balance"
+#~ msgstr "Baltos balansas"
+
+#~ msgctxt "@label video director"
+#~ msgid "Director"
+#~ msgstr "Režisierius"
+
+#~ msgctxt "@label music genre"
+#~ msgid "Genre"
+#~ msgstr "Žanras"
+
+#~ msgctxt "@label music album"
+#~ msgid "Album"
+#~ msgstr "Albumas"
+
+#~ msgctxt "@label"
+#~ msgid "Performer"
+#~ msgstr "Atlikėjas"
+
+#~ msgctxt "@label"
+#~ msgid "Release Date"
+#~ msgstr "Išleidimo data"
+
+#~ msgctxt "@label music track number"
+#~ msgid "Track"
+#~ msgstr "Takelis"
+
+#~ msgctxt "@label resource created time"
+#~ msgid "Resource Created"
+#~ msgstr "Resursas sukurtas"
+
+#~ msgctxt "@label"
+#~ msgid "Sub Resource"
+#~ msgstr "Sub resursas"
+
+#~ msgctxt "@label resource last modified"
+#~ msgid "Resource Modified"
+#~ msgstr "Resursas pakeistas"
+
+#~ msgctxt "@label"
+#~ msgid "Numeric Rating"
+#~ msgstr "Skaitmeninis įvertinimas"
+
+#~ msgctxt "@label"
+#~ msgid "Copied From"
+#~ msgstr "Nukopijuota iš"
+
+#~ msgctxt "@label"
+#~ msgid "Usage Count"
+#~ msgstr "Naudojimo skaičiaus"
+
+#~ msgctxt "@label"
+#~ msgid "Unix File Owner"
+#~ msgstr "UNIX failo savininkas"
+
+#~ msgctxt "@label file type"
+#~ msgid "Type"
+#~ msgstr "Tipas"
+
+#~ msgctxt "@label Number of fuzzy translations"
+#~ msgid "Fuzzy Translations"
+#~ msgstr "Neaiškūs vertimai"
+
+#~ msgctxt "@label Name of last translator"
+#~ msgid "Last Translator"
+#~ msgstr "Paskutinis vertėjas"
+
+#~ msgctxt "@label Number of obsolete translations"
+#~ msgid "Obsolete Translations"
+#~ msgstr "Pasenę vertimai"
+
+#~ msgctxt "@label Number of total translations"
+#~ msgid "Total Translations"
+#~ msgstr "Viso vertimų"
+
+#~ msgctxt "@label Number of translated strings"
+#~ msgid "Translated"
+#~ msgstr "Išversta"
+
+#~ msgctxt "@label"
+#~ msgid "Translation Date"
+#~ msgstr "Vertimo data"
+
+#~ msgctxt "@label Number of untranslated strings"
+#~ msgid "Untranslated"
+#~ msgstr "Neišversta"
+
+#~ msgid "Known Applications"
+#~ msgstr "Žinomos programos"
+
+#~ msgid "Open With"
+#~ msgstr "Atidaryti su"
+
+#~ msgid ""
+#~ "<qt>Select the program that should be used to open <b>%1</b>. If the "
+#~ "program is not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Nurodykite programą, kurią naudosite atverti <b>%1</b>. Jei tokios "
+#~ "programos nėra, įrašykite vardą, arba spauskite mygtuką „Naršyti“.</qt>"
+
+#~ msgid ""
+#~ "Choose the name of the program with which to open the selected files."
+#~ msgstr "Pasirinkite vardą programos, su kuria atversite nurodytus failus."
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "Pasirinkite programą, skirtą %1"
+
+#~ msgid ""
+#~ "<qt>Select the program for the file type: <b>%1</b>. If the program is "
+#~ "not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Pasirinkite programą, skirtą failų tipui <b>%1</b>. Jei tokios "
+#~ "programos nėra sąraše, įrašykite vardą, arba spauskite mygtuką „Ieškoti“."
+#~ "</qt>"
+
+#~ msgid "Choose Application"
+#~ msgstr "Pasirinkite programą"
+
+#~ msgid ""
+#~ "<qt>Select a program. If the program is not listed, enter the name or "
+#~ "click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Pasirinkite programą. Jei tokios programos nėra sąraše, įrašykite "
+#~ "vykdomojo failo vardą, arba spauskite mygtuką „Ieškoti“.</qt>"
+
+#~ msgid ""
+#~ "Following the command, you can have several place holders which will be "
+#~ "replaced with the actual values when the actual program is run:\n"
+#~ "%f - a single file name\n"
+#~ "%F - a list of files; use for applications that can open several local "
+#~ "files at once\n"
+#~ "%u - a single URL\n"
+#~ "%U - a list of URLs\n"
+#~ "%d - the directory of the file to open\n"
+#~ "%D - a list of directories\n"
+#~ "%i - the icon\n"
+#~ "%m - the mini-icon\n"
+#~ "%c - the comment"
+#~ msgstr ""
+#~ "Po komandos galite turėti keletą pakaitos simbolių, kurie bus pakeisti "
+#~ "konkrečiomis vertėmis leidžiant programą:\n"
+#~ "%f - vieno failo vardas\n"
+#~ "%F - failų sąrašas; naudoti su programomis, kurios atveria keletą failų "
+#~ "vienu metu\n"
+#~ "%u - vienas URL\n"
+#~ "%U - URL sąrašas\n"
+#~ "%d - aplankas, kuriame yra atvertinas failas\n"
+#~ "%D - aplankų sąrašas\n"
+#~ "%i - ženkliukas\n"
+#~ "%m - mini-ženkliukas\n"
+#~ "%c - komentaras"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "Paleisti &terminale"
+
+#~ msgid "&Do not close when command exits"
+#~ msgstr "&Neužverti komandai pasibaigus"
+
+#~ msgid "&Remember application association for this type of file"
+#~ msgstr "&Įsiminti priskirtą programą šiam failų tipui"
+
+#~ msgid "P&review"
+#~ msgstr "Pe&ržiūra"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "Terminalas"
+
+#~ msgid ""
+#~ "Check this option if the application you want to run is a text mode "
+#~ "application or if you want the information that is provided by the "
+#~ "terminal emulator window."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį jei programa, kurią norite paleisti, veikia "
+#~ "tekstine veiksena, arba jei norite informacijos, kuri gali būti rodoma "
+#~ "terminalo lange."
+
+#~ msgid "&Run in terminal"
+#~ msgstr "Paleisti &terminale"
+
+#~ msgid "&Terminal options:"
+#~ msgstr "Terminalo &savybės"
+
+#~ msgid ""
+#~ "Check this option if the text mode application offers relevant "
+#~ "information on exit. Keeping the terminal emulator open allows you to "
+#~ "retrieve this information."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį, jei tekstinės veiksenos programa pateikia "
+#~ "naudingą informaciją išjungimo metu. Šią informaciją galėsite peržiūrėti, "
+#~ "jei terminalo emuliatorių paliksite įjungtą."
+
+#~ msgid "Do not &close when command exits"
+#~ msgstr "&Neužverti komandai nutraukus darbą"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "Naudotojas"
+
+#~ msgid ""
+#~ "Check this option if you want to run this application with a different "
+#~ "user id. Every process has a different user id associated with it. This "
+#~ "id code determines file access and other permissions. The password of the "
+#~ "user is required to use this option."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį jei norite, kad programa veiktų kito naudotojo "
+#~ "ID. Kiekvienas procesas turi jam priskirtą naudotojo ID. Norint naudoti "
+#~ "šią parinktį reikės įvesti naudotojo slaptažodį."
+
+#~ msgid "Ru&n as a different user"
+#~ msgstr "Vykdyti kit&o naudotojo teisėmis"
+
+#~ msgid "Enter the user name you want to run the application as."
+#~ msgstr "Įrašykite naudotojo vardą, kurio vardu norite leisti programą."
+
+#~ msgid "&Username:"
+#~ msgstr "&Naudotojas:"
+
+#~ msgid "Enter the user name you want to run the application as here."
+#~ msgstr "Čia įrašykite naudotojo vardą, kurio vardu norite leisti programą."
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regargin "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "Paleidimas"
+
+#~ msgid ""
+#~ "Check this option if you want to make clear that your application has "
+#~ "started. This visual feedback may appear as a busy cursor or in the "
+#~ "taskbar."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį jei norite būti tikri, kad Jūsų paleista programa "
+#~ "tikrai startavo. Jūs pamatysite tai patvirtinantį blyksintį žymeklį ar "
+#~ "pulto elementą."
+
+#~ msgid "Enable &launch feedback"
+#~ msgstr "Įgalinti &paleidimo grįžtamąjį ryšį"
+
+#~ msgid ""
+#~ "Check this option if you want to have a system tray handle for your "
+#~ "application."
+#~ msgstr ""
+#~ "Pažymėkite šią parinktį jei norite sistemos dėkle matyti šios programos "
+#~ "valdymo ženklelį."
+
+#~ msgid "&Place in system tray"
+#~ msgstr "Įdėti į &sistemos dėklą"
+
+#~ msgid "&D-Bus registration:"
+#~ msgstr "&D-Bus registracija:"
+
+#~ msgid "None"
+#~ msgstr "Nieko"
+
+#~ msgid "Multiple Instances"
+#~ msgstr "Keletas atvejų"
+
+#~ msgid "Single Instance"
+#~ msgstr "Vienas atvejis"
+
+#~ msgid "Run Until Finished"
+#~ msgstr "Vykdyti iki pabaigos"
+
+#~ msgid ""
+#~ "Type the name you want to give to this application here. This application "
+#~ "will appear under this name in the applications menu and in the panel."
+#~ msgstr ""
+#~ "Įrašykite vardą, kurį norite suteikti šiai programai. Šį vardą matysite "
+#~ "programų sąraše ir pulte."
+
+#~ msgid ""
+#~ "Type the description of this application, based on its use, here. "
+#~ "Examples: a dial up application (KPPP) would be \"Dial up tool\"."
+#~ msgstr ""
+#~ "Įrašykite čia programos aprašymą, atitinkantį jos panaudojimo sritį. "
+#~ "Pavyzdys: prisijungimo skambinant priemonė (KPPP) galėtų būti apibūdinta "
+#~ "kaip „Prisijungimo skambinant įrankis“."
+
+#~ msgid "&Description:"
+#~ msgstr "&Aprašymas:"
+
+#~ msgid "Type any comment you think is useful here."
+#~ msgstr "Čia įrašykite Jūsų manymu naudingą komentarą."
+
+#~ msgid "Comm&ent:"
+#~ msgstr "Kome&ntaras:"
+
+#~ msgid ""
+#~ "Type the command to start this application here.\n"
+#~ "\n"
+#~ "Following the command, you can have several place holders which will be "
+#~ "replaced with the actual values when the actual program is run:\n"
+#~ "%f - a single file name\n"
+#~ "%F - a list of files; use for applications that can open several local "
+#~ "files at once\n"
+#~ "%u - a single URL\n"
+#~ "%U - a list of URLs\n"
+#~ "%d - the directory of the file to open\n"
+#~ "%D - a list of directories\n"
+#~ "%i - the icon\n"
+#~ "%m - the mini-icon\n"
+#~ "%c - the caption"
+#~ msgstr ""
+#~ "Čia įrašykite komandą, kuria paleisite šią programą.\n"
+#~ "\n"
+#~ "Po komandos galite įrašyti keletą pakaitos simbolių, kurie, leidžiant "
+#~ "komandą, bus pakeisti reikšmėmis:\n"
+#~ "%f - vieno failo pavadinimas\n"
+#~ "%F - failų sąrašas; naudoti tuo atveju, jei programa gali atverti kelis "
+#~ "vietinius failus iš karto\n"
+#~ "%u - vienas URL\n"
+#~ "%U - URL sąrašas\n"
+#~ "%d - aplankas, kuriame yra atvertini failai\n"
+#~ "%D - aplankų sąrašas\n"
+#~ "%i - ženklelis\n"
+#~ "%m - mini-ženklelis\n"
+#~ "%c - pavadinimas"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "Ko&manda:"
+
+#~ msgid ""
+#~ "Click here to browse your file system in order to find the desired "
+#~ "executable."
+#~ msgstr ""
+#~ "Jei norite rasti norimą vykdomąjį failą naršydami failų sistemoje, "
+#~ "spauskite čia."
+
+#~ msgid "Sets the working directory for your application."
+#~ msgstr "Nurodo pasirinktos programos veikimo aplanką."
+
+#~ msgid "&Work path:"
+#~ msgstr "&Darbinis kelias:"
+
+#~ msgid ""
+#~ "<qt><p>This list should show the types of file that your application can "
+#~ "handle. This list is organized by <u>mimetypes</u>.</p>\n"
+#~ "<p>MIME, Multipurpose Internet (e)Mail Extension, is a standard protocol "
+#~ "for identifying the type of data based on filename extensions and "
+#~ "correspondent <u>mimetypes</u>. Example: the \"bmp\" part that comes "
+#~ "after the dot in flower.bmp indicates that it is a specific kind of "
+#~ "image, <u>image/x-bmp</u>. To know which application should open each "
+#~ "type of file, the system should be informed about the abilities of each "
+#~ "application to handle these extensions and mimetypes.</p>\n"
+#~ "<p>If you want to associate this application with one or more mimetypes "
+#~ "that are not in this list, click on the button <b>Add</b> below. If there "
+#~ "are one or more filetypes that this application cannot handle, you may "
+#~ "want to remove them from the list clicking on the button <b>Remove</b> "
+#~ "below.</p></qt>"
+#~ msgstr ""
+#~ "<qt><p>Šiame sąraše turi būti nurodyta, kokius failų tipus programa gali "
+#~ "atverti. Šis sąrašas tvarkomas pagal <u>mime tipus</u>.</p>\n"
+#~ "<p>MIME (Multipurpose Internet (e)Mail Extension) yra standartinis "
+#~ "protokolas, nustatantis duomenų tipą pagal failų praplėtimus ir "
+#~ "susijusius <u>mime tipus</u>. Pavyzdžiui: failo vardo gele.bmp dalis "
+#~ "„bmp“ nurodo, kad ši failas yra specifinis paveikslėlio failas, <u>image/"
+#~ "x-bmp</u>. Jei norite, kad sistema žinotų, kokios programos gali atverti "
+#~ "kiekvieną failo tipą, turite informuoti sistemą, kokios programos gali "
+#~ "juos atverti.</p>\n"
+#~ "<p>Jei norite susieti programą su vienu ar daugiau failų, kurių nėra "
+#~ "sąraše, tipų, spauskite mygtuką <b>Pridėti</b>, esantį žemiau. Jei sąraše "
+#~ "yra failų tipų, kurių programa iš tiesų negali tvarkyti, galite juos "
+#~ "pašalinti iš sąrašo paspaudę žemiau esantį mygtuką <b>Pašalinti</b>.</p></"
+#~ "qt>"
+
+#~ msgid "&Supported file types:"
+#~ msgstr "&Palaikomi failų tipai:"
+
+#~ msgid "Mimetype"
+#~ msgstr "Mime tipai"
+
+#~ msgid "Description"
+#~ msgstr "Aprašymas:"
+
+#~ msgid ""
+#~ "Click on this button if you want to add a type of file (mimetype) that "
+#~ "your application can handle."
+#~ msgstr ""
+#~ "Spauskite šį mygtuką jei norite pridėti failo tipą (mime tipą) kurį "
+#~ "pasirinkta programa sugeba tvarkyti."
+
+#~ msgid "Add..."
+#~ msgstr "Pridėti..."
+
+#~ msgid ""
+#~ "If you want to remove a type of file (mimetype) that your application "
+#~ "cannot handle, select the mimetype in the list above and click on this "
+#~ "button."
+#~ msgstr ""
+#~ "Jei norite pašalinti failo tipą (mime tipą), kurio pasirinkta programa "
+#~ "nesugeba apdoroti, pažymėkite mime tipą viršuje esančiame sąraše ir "
+#~ "spauskite šį mygtuką."
+
+#~ msgid "Remove"
+#~ msgstr "Pašalinti"
+
+#, fuzzy
+#~ msgid ""
+#~ "Click here to modify the way this application will run, launch feedback, "
+#~ "D-Bus options or to run it as a different user."
+#~ msgstr ""
+#~ "Spauskite čia norėdami pakeisti programos veikimo būdą, grįžtamąjį ryšį, "
+#~ "DCOP parinktis ar vykdyti ją kito naudotojo teisėmis."
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "Su&dėtingesnės parinktys"
+
+#~ msgid "Properties for %1"
+#~ msgstr "%1 savybės"
+
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "%1 objekto savybės"
+#~ msgstr[1] "%1 pažymėtų objektų savybės"
+#~ msgstr[2] "%1 pažymėtų objektų savybės"
+#~ msgstr[3] "%1 pažymėto objekto savybės"
+
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&Bendros"
+
+#~ msgid "Type:"
+#~ msgstr "Tipas:"
+
+#~ msgid "Create New File Type"
+#~ msgstr "Sukurti naują failo tipą"
+
+#~ msgid "File Type Options"
+#~ msgstr "Failo tipo parinktys"
+
+#~ msgid "Contents:"
+#~ msgstr "Turinys:"
+
+#~ msgid "Location:"
+#~ msgstr "Vieta:"
+
+#~ msgid "Size:"
+#~ msgstr "Dydis:"
+
+#~ msgid "Calculate"
+#~ msgstr "Skaičiuoti"
+
+#~ msgid "Stop"
+#~ msgstr "Sustabdyti"
+
+#~ msgid "Refresh"
+#~ msgstr "Atnaujinti"
+
+#~ msgid "Points to:"
+#~ msgstr "Veda į:"
+
+#~ msgid "Created:"
+#~ msgstr "Sukurta:"
+
+#~ msgid "Modified:"
+#~ msgstr "Keista:"
+
+#~ msgid "Accessed:"
+#~ msgstr "Naudota:"
+
+#~ msgid "Mounted on:"
+#~ msgstr "Montavimo vieta:"
+
+#~ msgid "Device usage:"
+#~ msgstr "Įrenginio naudojimas:"
+
+#~ msgctxt "Available space out of total partition size (percent used)"
+#~ msgid "%1 free of %2 (%3% used)"
+#~ msgstr "%1 laisva iš %2 (%3% panaudota)"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "Skaičiuojama... %1 (%2)\n"
+#~ "%3, %4"
+
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "%1 failas"
+#~ msgstr[1] "%1 failai"
+#~ msgstr[2] "%1 failų"
+#~ msgstr[3] "%1 failas"
+
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "%1 poaplankis"
+#~ msgstr[1] "%1 poaplankiai"
+#~ msgstr[2] "%1 poaplankių"
+#~ msgstr[3] "%1 poaplankis"
+
+#~ msgid "Calculating..."
+#~ msgstr "Skaičiuojama..."
+
+#~ msgid "At least %1"
+#~ msgstr "Bent %1"
+
+#~ msgid "The new file name is empty."
+#~ msgstr "Naujas failo pavadinimas neįrašytas."
+
+#~ msgid ""
+#~ "<qt>Could not save properties. You do not have sufficient access to write "
+#~ "to <b>%1</b>.</qt>"
+#~ msgstr ""
+#~ "<qt>Nepavyksta išsaugoti savybių. Jums neužtenka leidimų rašyti į <b>%1</"
+#~ "b>.</qt>"
+
+#~ msgid "Forbidden"
+#~ msgstr "Draudžiama"
+
+#~ msgid "Can Read"
+#~ msgstr "Gali skaityti"
+
+#~ msgid "Can Read & Write"
+#~ msgstr "Gali skaityti ir rašyti"
+
+#~ msgid "Can View Content"
+#~ msgstr "Gali žiūrėti turinį"
+
+#~ msgid "Can View & Modify Content"
+#~ msgstr "Gali žiūrėti ir keisti turinį"
+
+#~ msgid "Can View Content & Read"
+#~ msgstr "Gali žiūrėti turinį ir skaityti"
+
+#~ msgid "Can View/Read & Modify/Write"
+#~ msgstr "Gali žiūrėti/rašyti ir keisti/įrašyti"
+
+#~ msgid "&Permissions"
+#~ msgstr "&Leidimai"
+
+#~ msgid "Access Permissions"
+#~ msgstr "Priėjimo leidimai"
+
+#~ msgid "This file is a link and does not have permissions."
+#~ msgid_plural "All files are links and do not have permissions."
+#~ msgstr[0] "Šis failas yra nuoroda ir neturi leidimų."
+#~ msgstr[1] "Visi failai yra nuorodos ir neturi leidimų."
+#~ msgstr[2] "Visi failai yra nuorodos ir neturi leidimų."
+#~ msgstr[3] "Visi failai yra nuorodos ir neturi leidimų."
+
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "Tik savininkas gali keisti leidimus."
+
+#~ msgid "O&wner:"
+#~ msgstr "Sa&vininkas:"
+
+#~ msgid "Specifies the actions that the owner is allowed to do."
+#~ msgstr "Nurodo veiksmus, kuriuos gali atlikti savininkas."
+
+#~ msgid "Gro&up:"
+#~ msgstr "Gr&upė:"
+
+#~ msgid ""
+#~ "Specifies the actions that the members of the group are allowed to do."
+#~ msgstr "Nuorodo veiksmus, kuriuos gali atlikti grupės nariai."
+
+#~ msgid "O&thers:"
+#~ msgstr "K&iti:"
+
+#~ msgid ""
+#~ "Specifies the actions that all users, who are neither owner nor in the "
+#~ "group, are allowed to do."
+#~ msgstr ""
+#~ "Nurodo veiksmus, kuriuos visi naudotojai, kuriems failas/aplankas "
+#~ "nepriklauso ir kurie nepriklauso savininko grupei, gali daryti."
+
+#~ msgid "Only own&er can rename and delete folder content"
+#~ msgstr "Tik savi&ninkas gali pervadinti ar ištrinti aplanko turinį"
+
+#~ msgid "Is &executable"
+#~ msgstr "Yra &vykdoma"
+
+#~ msgid ""
+#~ "Enable this option to allow only the folder's owner to delete or rename "
+#~ "the contained files and folders. Other users can only add new files, "
+#~ "which requires the 'Modify Content' permission."
+#~ msgstr ""
+#~ "Įjunkite šią parinktį norėdami leidimą trinti ar pervadinti aplanke "
+#~ "esančius failus ir aplankus suteikti tik aplanko savininkui. Kiti "
+#~ "naudotojai gali tik pridėti naujus failus, tam reikia turėti „turinio "
+#~ "keitimo“ leidimą."
+
+#~ msgid ""
+#~ "Enable this option to mark the file as executable. This only makes sense "
+#~ "for programs and scripts. It is required when you want to execute them."
+#~ msgstr ""
+#~ "Įjunkite šią parinktį norėdami pažymėti failą kaip vykdomąją. Tai "
+#~ "prasminga tik programoms ir scenarijams. To reikia norint vykdyti failą."
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "S&udėtingesni leidimai"
+
+#~ msgid "Ownership"
+#~ msgstr "Nuosavybė"
+
+#~ msgid "User:"
+#~ msgstr "Naudotojas:"
+
+#~ msgid "Group:"
+#~ msgstr "Grupė:"
+
+#~ msgid "Apply changes to all subfolders and their contents"
+#~ msgstr "Pritaikyti pakeitimus visiems poaplankiams ir jų turiniui"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "Sudėtingesni leidimai"
+
+#~ msgid "Class"
+#~ msgstr "Klasė"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Rodyti\n"
+#~ "įrašus"
+
+#~ msgid "Read"
+#~ msgstr "Skaityti"
+
+#~ msgid "This flag allows viewing the content of the folder."
+#~ msgstr "Ši vėliavėlė leidžia peržiūrėti aplanko turinį."
+
+#~ msgid "The Read flag allows viewing the content of the file."
+#~ msgstr "Raudona vėliavėlė leidžia peržiūrėti failo turinį."
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Įrašyti\n"
+#~ "įrašus"
+
+#~ msgid "Write"
+#~ msgstr "Įrašyti"
+
+#~ msgid ""
+#~ "This flag allows adding, renaming and deleting of files. Note that "
+#~ "deleting and renaming can be limited using the Sticky flag."
+#~ msgstr ""
+#~ "Ši vėliavėlė leidžia pridėti, pervadinti ar trinti failus. Atkreipkite "
+#~ "dėmesį, kad galimybė trinti ir pervadinti failus gali būti apribota "
+#~ "panaudojus vėliavėlę „Lipni“."
+
+#~ msgid "The Write flag allows modifying the content of the file."
+#~ msgstr "Rašymo vėliavėlė leidžia keisti failo turinį."
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "Įeikite"
+
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "Pažymėkite šią vėliavėlę norėdami leisti įeiti į aplanką."
+
+#~ msgid "Exec"
+#~ msgstr "Vykdyti"
+
+#~ msgid "Enable this flag to allow executing the file as a program."
+#~ msgstr ""
+#~ "Pažymėkite šią vėliavėlę norėdami leisti vykdyti failą kaip programą."
+
+#~ msgid "Special"
+#~ msgstr "Specialus"
+
+#~ msgid ""
+#~ "Special flag. Valid for the whole folder, the exact meaning of the flag "
+#~ "can be seen in the right hand column."
+#~ msgstr ""
+#~ "Ypatinga vėliavėlė. Galioja visam aplankui, jos tikslią prasmę galite "
+#~ "matyti dešiniajame stulpelyje."
+
+#~ msgid ""
+#~ "Special flag. The exact meaning of the flag can be seen in the right hand "
+#~ "column."
+#~ msgstr ""
+#~ "Ypatinga vėliavėlė. Jos tikslią prasmę galite matyti dešiniajame "
+#~ "stulpelyje."
+
+#~ msgid "User"
+#~ msgstr "Naudotojas"
+
+#~ msgid "Group"
+#~ msgstr "Grupė"
+
+#~ msgid "Set UID"
+#~ msgstr "Nustatyti UID"
+
+#~ msgid ""
+#~ "If this flag is set, the owner of this folder will be the owner of all "
+#~ "new files."
+#~ msgstr ""
+#~ "Jei ši vėliavėlė pažymėta, šio aplanko savininkas automatiškai taps visų "
+#~ "naujų failų aplanke savininku."
+
+#~ msgid ""
+#~ "If this file is an executable and the flag is set, it will be executed "
+#~ "with the permissions of the owner."
+#~ msgstr ""
+#~ "Jei failas yra vykdomas ir nustatyta ši vėliavėlė, jis bus vykdoma "
+#~ "savininko leidimais."
+
+#~ msgid "Set GID"
+#~ msgstr "Nustatyti GID"
+
+#~ msgid ""
+#~ "If this flag is set, the group of this folder will be set for all new "
+#~ "files."
+#~ msgstr ""
+#~ "Jei vėliavėlė įjungta, šio aplanko grupė bus nustatyta visiems naujiems "
+#~ "failams."
+
+#~ msgid ""
+#~ "If this file is an executable and the flag is set, it will be executed "
+#~ "with the permissions of the group."
+#~ msgstr ""
+#~ "Jei ši failas yra vykdoma ir nustatyta ši vėliavėlė, jis bus vykdomas "
+#~ "grupės leidimais."
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "Lipni"
+
+#~ msgid ""
+#~ "If the Sticky flag is set on a folder, only the owner and root can delete "
+#~ "or rename files. Otherwise everybody with write permissions can do this."
+#~ msgstr ""
+#~ "Jei „Lipni“ vėliavėlė nustatyta aplankui, tik savininkas ir "
+#~ "administratorius (root) galės ištrinti ar pervadinti failus. Kitu atveju "
+#~ "visi, turintys rašymo leidimus, galėtų tai daryti."
+
+#~ msgid ""
+#~ "The Sticky flag on a file is ignored on Linux, but may be used on some "
+#~ "systems"
+#~ msgstr ""
+#~ "„Lipni“ vėliavėlė, nustatyta failui, yra ignoruojama Linux, tačiau gali "
+#~ "būti naudojama kai kuriose sistemose"
+
+#~ msgid "Link"
+#~ msgstr "Nuoroda"
+
+#~ msgid "Varying (No Change)"
+#~ msgstr "Perspėjimas (nėra pakeitimų)"
+
+#~ msgid "This file uses advanced permissions"
+#~ msgid_plural "These files use advanced permissions."
+#~ msgstr[0] "Šis failas turi sudėtingesnius leidimus."
+#~ msgstr[1] "Šie failai turi sudėtingesnius leidimus."
+#~ msgstr[2] "Šie failai turi sudėtingesnius leidimus."
+#~ msgstr[3] "Šie failai turi sudėtingesnius leidimus."
+
+#~ msgid "This folder uses advanced permissions."
+#~ msgid_plural "These folders use advanced permissions."
+#~ msgstr[0] "Šis aplankas turi sudėtingesnius leidimus."
+#~ msgstr[1] "Šie aplankai turi sudėtingesnius leidimus."
+#~ msgstr[2] "Šie aplankai turi sudėtingesnius leidimus."
+#~ msgstr[3] "Šie aplankai turi sudėtingesnius leidimus."
+
+#~ msgid "These files use advanced permissions."
+#~ msgstr "Šie failai naudoja sudėtingesnius leidimus."
+
+#~ msgid "U&RL"
+#~ msgstr "U&RL"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "De&vice"
+#~ msgstr "Į&renginys"
+
+#~ msgid "Device (/dev/fd0):"
+#~ msgstr "Įrenginys (/dev/fd0):"
+
+#~ msgid "Device:"
+#~ msgstr "Įrenginys:"
+
+#~ msgid "Read only"
+#~ msgstr "Tik skaitymui"
+
+#~ msgid "File system:"
+#~ msgstr "Failų sistema:"
+
+#~ msgid "Mount point (/mnt/floppy):"
+#~ msgstr "Montavimo vieta (/mnt/floppy):"
+
+#~ msgid "Mount point:"
+#~ msgstr "Montavimo vieta:"
+
+#~ msgid "&Application"
+#~ msgstr "Progr&ama"
+
+#~ msgid "Add File Type for %1"
+#~ msgstr "Pridėti %1 failo tipą"
+
+#~ msgid "Select one or more file types to add:"
+#~ msgstr "Pažymėkite vieną ar daugiau norimų pridėti failo tipų:"
+
+#~ msgid "Only executables on local file systems are supported."
+#~ msgstr "Palaikomi tik vietinės failų sistemos vykdomieji failai."
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "Sudėtingesnės parinktys %1"
+
+#~ msgid "Open file dialog"
+#~ msgstr "Failo atvėrimo dialogas"
+
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "Nežinomas HTTP veiks."
+
+#~ msgid ""
+#~ "<qt>Could not modify the ownership of file <b>%1</b>. You have "
+#~ "insufficient access to the file to perform the change.</qt>"
+#~ msgstr ""
+#~ "<qt>Nepavyksta pakeisti savininko teisių failui <b>%1</b>. Jums neužtenka "
+#~ "teisių prieiti prie failo ir atlikti pakeitimus.</qt>"
+
+#~ msgid "&Skip File"
+#~ msgstr "&Praleisti failą"
+
+#~ msgid "Unable to create io-slave: %1"
+#~ msgstr "Neįmanoma sukurti io-slave: %1"
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "Aplankas jau yra"
+
+#~ msgid "File Already Exists"
+#~ msgstr "Failas jau yra"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "Jau yra kaip aplankas"
+
+#~ msgid "Creating directory"
+#~ msgstr "Kuriamas aplankas"
+
+#~ msgid "Directory"
+#~ msgstr "Aplankas"
+
+#~ msgid "Moving"
+#~ msgstr "Perkeliama"
+
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "Šaltinis"
+
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "Tikslas"
+
+#~ msgid "Deleting"
+#~ msgstr "Trinama"
+
+#~ msgid "File"
+#~ msgstr "Failas"
+
+#~ msgid "Und&o"
+#~ msgstr "At&statyti"
+
+#~ msgid "Und&o: Move"
+#~ msgstr "Atšaukti: perkėlimą"
+
+#~ msgid "Und&o: Rename"
+#~ msgstr "Atša&ukti: Pervadinti"
+
+#~ msgid "Und&o: Trash"
+#~ msgstr "Atša&ukti: Pašalinti"
+
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "Atšaukti: Sukurti aplanką"
+
+#~ msgid "Und&o: Create File"
+#~ msgstr "Atšaukti: Sukurti failą"
+
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "Atšaukti failo kopijavimo patvirtinimą"
+
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "%1 diena %2"
+#~ msgstr[1] " %1 dienos %2"
+#~ msgstr[2] "%1 dienų %2"
+#~ msgstr[3] "%1 diena %2"
+
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "%1 objektas"
+#~ msgstr[1] "%1 objektai"
+#~ msgstr[2] "%1 objektų"
+#~ msgstr[3] "%1 objektas"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "%1 aplankas"
+#~ msgstr[1] "%1 aplankai"
+#~ msgstr[2] "%1 aplankų"
+#~ msgstr[3] "%1 aplankas"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "%1 failas"
+#~ msgstr[1] "%1 failai"
+#~ msgstr[2] "%1 failų"
+#~ msgstr[3] "%1 failas"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1, %2 (%3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1, %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgid "Could not read %1."
+#~ msgstr "Nepavyksta perskaityti %1."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "Nepavyksta įrašyti į %1."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "Nepavyksta pradėti proceso %1."
+
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at http://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Vidinė klaida\n"
+#~ "Prašome išsiųsti išsamų pranešimą apie programos klaidą į http://bugs.kde."
+#~ "org\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "Blogai suformuotas URL %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "Protokolas %1 nepalaikomas."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "Protokolas %1 yra tik filtravimo protokolas."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "%1 yra aplankas, nors tikėtasi failo."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "%1 yra failas, nors tikėtasi aplanko."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "Failas ar aplankas %1 neegzistuoja."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "Failas, vardu %1, jau yra."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "Aplankas, vardu %1 jau yra."
+
+#~ msgid "No hostname specified."
+#~ msgstr "Nenurodytas mazgo vardas."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "Nežinomas mazgas %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "Priėjimas į %1 neleistas."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "Priėjimas neleistas.\n"
+#~ "Nepavyksta įrašyti į %1."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "Nepavyksta patekti į aplanką %1."
+
+#~ msgid "The protocol %1 does not implement a folder service."
+#~ msgstr "Protokolas %1 neįgyvendina aplankų aptarnavimo."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "Surasta cikliška nuoroda %1 aplanke."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "Kopijuojant surasta cikliška nuoroda %1."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "Nepavyksta sukurti lizdo priėjimui į %1."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "Nepavyksta prisijungti prie mazgo %1."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "Jungimasis prie mazgo %1 nutrūko."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "Protokolas %1 nėra filtravimo protokolas."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nepavyksta sumontuoti įrenginio.\n"
+#~ "Pranešimas apie klaidą:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nepavyksta išmontuoti įrenginio.\n"
+#~ "Pranešimas apie klaidą:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "Nepavyksta perskaityti failo %1."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "Nepavyksta rašyti į failą %1."
+
+#~ msgid "Could not bind %1."
+#~ msgstr "Nepavyksta prijungti %1."
+
+#~ msgid "Could not listen %1."
+#~ msgstr "Nepavyksta klausyti %1."
+
+#~ msgid "Could not accept %1."
+#~ msgstr "Nepavyksta priimti %1."
+
+#~ msgid "Could not access %1."
+#~ msgstr "Nepavyksta pasiekti %1."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "Nepavyksta nutraukti sąrašo %1."
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "Nepavyksta sukurti aplanko %1."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "Nepavyksta pašalinti aplanko %1."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "Nepavyksta pratęsti failo %1."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "Nepavyksta pervadinti failo %1."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "Nepavyksta pakeisti %1 leidimų."
+
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "Nepavyko pakeisti nuosavybės %1."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "Nepavyksta pašalinti failo %1."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "Procesas protokolui %1 netikėtai nutrūko."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Klaida. Trūksta atminties.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nežinomas įgaliotojo serverio mazgas\n"
+#~ "%1"
+
+#~ msgid "Authorization failed, %1 authentication not supported"
+#~ msgstr "Autorizacija nepavyko, %1 autentikacija nepalaikoma"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Naudotojas nutraukė veiksmą\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Vidaus klaida serveryje\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Baigėsi nustatytas laikas bandymui prisijungti\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nežinoma klaida\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nežinoma pertrauktis\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Nepavyksta ištrinti originalaus failo  %1.\n"
+#~ "Prašome patikrinti leidimus."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Nepavyksta ištrinti nepilno failo %1.\n"
+#~ "Prašome patikrinti leidimus."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Nepavyksta pervadinti originalaus failo %1.\n"
+#~ "Prašome patikrinti leidimus."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Nepavyksta pervadinti nepilno failo %1.\n"
+#~ "Prašome patikrinti leidimus."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Nepavyksta sukurti simbolinės nuorodos %1.\n"
+#~ "Prašome patikrinti leidimus."
+
+#~ msgid ""
+#~ "Could not write file %1.\n"
+#~ "Disk full."
+#~ msgstr ""
+#~ "Nepavyksta rašyti į failą %1.\n"
+#~ "Diskas pilnas."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Išeities ir paskirties failas yra tas pats.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "Serveriui reikia %1, bet tai nėra prieinama."
+
+#~ msgid "Access to restricted port in POST denied."
+#~ msgstr "Priėjimas prie apriboto prievado naudojant POST neleistas."
+
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at http://bugs.kde.org."
+#~ msgstr ""
+#~ "Nežinomas klaidos kodas %1\n"
+#~ "%2\n"
+#~ "Prašome išsiųsti išsamų pranešimą apie programos klaidą į http://bugs.kde."
+#~ "org."
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "Prisijungimų sukūrimas nėra palaikomas protokolu %1."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "Prisijungimų uždarymas nėra palaikomas su protokolu %1."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "Priėjimas prie failų nėra palaikomas su protokolu %1."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "Rašymas į %1 nėra palaikomas."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "Protokolui %1 nėra specialių veiksmų."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "Aplankų sąrašo išvedimas protokolui %1 nėra palaikomas."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "Duomenų gavimas iš %1 nėra palaikomas."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "Mime tipų informacijos gavimas iš %1 nėra palaikomas."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr "Failų vardų keitimas ar perkėlimas esant %1 nėra palaikomas."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "Simbolinių nuorodų kūrimas nėra palaikomas su protokolu %1."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "Failų kopijavimas esant %1 nėra palaikomas."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "Failų trynimas iš %1 nėra palaikomas."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "Aplankų kūrimas su protokolu %1 nėra palaikomas."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "Failų atributų keitimas nėra palaikomas su protokolu %1."
+
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "Failų nuosavybės keitimas yra nepalaikomas su protokolu %1."
+
+#~ msgid "Using sub-URLs with %1 is not supported."
+#~ msgstr "SubURL naudojimas su protokolu %1 nėra palaikomas."
+
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "Keli gavimai iš karto nėra palaikomi su protokolu %1."
+
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "Failų atvėrimas yra nepalaikomas su protokolu %1."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "Protokolas %1 nepalaiko veiksmo %2."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(nežinoma)"
+
+#~ msgctxt "@info %1 error name, %2 description"
+#~ msgid "<qt><p><b>%1</b></p><p>%2</p></qt>"
+#~ msgstr "<qt><p><b>%1</b></p><p>%2</p></qt>"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>Techninė priežastis</b>: "
+
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "<b>Užklausos detalės</b>:"
+
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "<li>URL: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>Protokolas: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>Data ir laikas: %1</li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>Papildoma informacija: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>Galimos priežastys</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>Galimi sprendimai</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(nežinoma)"
+
+#~ msgid ""
+#~ "Contact your appropriate computer support system, whether the system "
+#~ "administrator, or technical support group for further assistance."
+#~ msgstr ""
+#~ "Kreipkitės į atitinkamą kompiuterių pagalbos tarnybą, ar sistemos "
+#~ "administratorių, ar techninės pagalbos grupę dėl tolesnės pagalbos."
+
+#~ msgid "Contact the administrator of the server for further assistance."
+#~ msgstr "Kreipkitės į serverio administratorių dėl tolesnės pagalbos."
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "Patikrinkite Jūsų leidimus naudotis šiuo resursu."
+
+#~ msgid ""
+#~ "Your access permissions may be inadequate to perform the requested "
+#~ "operation on this resource."
+#~ msgstr ""
+#~ "Jūsų priėjimo leidimai gali būti neadekvatūs atlikti norimai operacijai "
+#~ "su šiuo resursu."
+
+#~ msgid ""
+#~ "The file may be in use (and thus locked) by another user or application."
+#~ msgstr ""
+#~ "Failas gali būti naudojamas (ir tokiu būdu užrakintas) kito naudotojo ar "
+#~ "kitos programos."
+
+#~ msgid ""
+#~ "Check to make sure that no other application or user is using the file or "
+#~ "has locked the file."
+#~ msgstr ""
+#~ "Patikrinkite, ar jokia kita programa ar naudotojas nenaudoja failo ar "
+#~ "nėra užrakinusi failo."
+
+#~ msgid "Although unlikely, a hardware error may have occurred."
+#~ msgstr "Nors tai mažai tikėtina, galbūt įvyko aparatinė klaida."
+
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "Turbūt Jūs susidūrėte su programos klaida."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the program. Please consider "
+#~ "submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "Greičiausiai tai pačios programos klaida. Pagalvokite apie pilno klaidos "
+#~ "aprašymo nusiuntimą, kaip aprašyta žemiau."
+
+#~ msgid ""
+#~ "Update your software to the latest version. Your distribution should "
+#~ "provide tools to update your software."
+#~ msgstr ""
+#~ "Atnaujinkite savo programinę įrangą iki naujausios versijos.  Jūsų "
+#~ "programinės įrangos distribucija turi turėti priemones atnaujinimui."
+
+#~ msgid ""
+#~ "When all else fails, please consider helping the KDE team or the third "
+#~ "party maintainer of this software by submitting a high quality bug "
+#~ "report. If the software is provided by a third party, please contact them "
+#~ "directly. Otherwise, first look to see if the same bug has been submitted "
+#~ "by someone else by searching at the <a href=\"http://bugs.kde.org/\">KDE "
+#~ "bug reporting website</a>. If not, take note of the details given above, "
+#~ "and include them in your bug report, along with as many other details as "
+#~ "you think might help."
+#~ msgstr ""
+#~ "Jei niekas daugiau nepavyksta, pagalvokite apie pagalbą KDE komandai ar "
+#~ "trečios šalies žmogui, užsiimančiam programų priežiūra, pateikdami "
+#~ "aukštos kokybės pranešimą apie programos klaidą.  Iš pradžių pažiūrėkite "
+#~ "<a href=\"http://bugs.kde.org/\">KDE pranešimų apie programos klaidas "
+#~ "srityje</a>, ar nebuvo jau pranešta apie tą pačią programos klaidą.  Jei "
+#~ "ne, pažiūrėkite visas ydos pasirodymo aplinkybes, ir parašykite apie tai "
+#~ "pranešime apie  programos klaidą, kartu su visomis kitomis detalėms, "
+#~ "kurios Jūsų nuomone gali padėti."
+
+#~ msgid "There may have been a problem with your network connection."
+#~ msgstr "Galimas dalykas, kad yra problemų su Jūsų prisijungimu prie tinklo."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration. If you "
+#~ "have been accessing the Internet with no problems recently, this is "
+#~ "unlikely."
+#~ msgstr ""
+#~ "Gali būti problemų su Jūsų tinklo konfigūracija.  Tačiau jei Jūs nesenai "
+#~ "naudojotės Internetu be problemų, kažin ar taip yra."
+
+#~ msgid ""
+#~ "There may have been a problem at some point along the network path "
+#~ "between the server and this computer."
+#~ msgstr ""
+#~ "Galimas dalykas, kad yra problemų kažkur kelyje tarp nutolusio serverio "
+#~ "ir šio kompiuterio."
+
+#~ msgid "Try again, either now or at a later time."
+#~ msgstr "Pamėginkite vėl, dabar ar vėliau."
+
+#~ msgid "A protocol error or incompatibility may have occurred."
+#~ msgstr "Galbūt įvyko protokolo klaida ar nesuderinamumas."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "Įsitikinkite, kad resursas egzistuoja, ir bandykite vėl."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "Nurodytas resursas gali neegzistuoti."
+
+#~ msgid "You may have incorrectly typed the location."
+#~ msgstr "Galbūt Jūs neteisingai įvedėte adresą."
+
+#~ msgid ""
+#~ "Double-check that you have entered the correct location and try again."
+#~ msgstr ""
+#~ "Pakartotinai patikrinkite, ar įvedėte teisingą adresą ir pamėginkite vėl."
+
+#~ msgid "Check your network connection status."
+#~ msgstr "Patikrinkite savo tinklo prisijungimo būklę."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "Nepavyksta atidaryti skaitymui šio resurso."
+
+#~ msgid ""
+#~ "This means that the contents of the requested file or folder <strong>%1</"
+#~ "strong> could not be retrieved, as read access could not be obtained."
+#~ msgstr ""
+#~ "Tai reiškia, kad norimo failo ar aplanko <strong>%1</strong> turinio "
+#~ "nepavyko pasiekti, nes negali būti gautas priėjimas skaitymui."
+
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr "Galbūt Jūs neturite leidimo skaityti failą ar atverti aplanką."
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "Nepavyksta atverti resurso rašymui"
+
+#~ msgid ""
+#~ "This means that the file, <strong>%1</strong>, could not be written to as "
+#~ "requested, because access with permission to write could not be obtained."
+#~ msgstr ""
+#~ "Tai reiškia, kad norimo failo <strong>%1</strong> nepavyko įrašyti, nes "
+#~ "negali būti gautas priėjimas su leidimu rašyti."
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "Nepavyksta paleisti %1 protokolo"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "Nepavyksta paleisti proceso"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not be started. This is usually due to technical "
+#~ "reasons."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis %1 protokolu "
+#~ "negali būti paleista.  Taip paprastai būna dėl techninių priežasčių."
+
+#~ msgid ""
+#~ "The program which provides compatibility with this protocol may not have "
+#~ "been updated with your last update of KDE. This can cause the program to "
+#~ "be incompatible with the current version and thus not start."
+#~ msgstr ""
+#~ "Programa, suteikianti galimybę naudotis šiuo protokolu, galėjo likti "
+#~ "neatnaujinta, kai Jūs paskutinį kartą atnaujinote KDE.  Dėl to programa "
+#~ "galėjo pasidaryti nesuderinama su dabartine KDE versija ir nepasileisti."
+
+#~ msgid "Internal Error"
+#~ msgstr "Vidinė klaida"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis <strong>%1</"
+#~ "strong>  protokolu, pranešė apie vidinę klaidą."
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "Neteisingai suformuotas URL"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered was not properly formatted. The "
+#~ "format of a URL is generally as follows:<blockquote><strong>protocol://"
+#~ "user:password@www.example.org:port/folder/filename.extension?query=value</"
+#~ "strong></blockquote>"
+#~ msgstr ""
+#~ "Jūsų įvesta <b>U</b>niform <b>R</b>esource <b>L</b>ocator (URL) buvo "
+#~ "blogai suformuotas. URL formatas paprastai būna toks: "
+#~ "<blockquote><strong>protocol://user:password@www.example.org:port/folder/"
+#~ "filename.extension?query=value</strong></blockquote>"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "Nepalaikomas protokolas %1"
+
+#~ msgid ""
+#~ "The protocol <strong>%1</strong> is not supported by the KDE programs "
+#~ "currently installed on this computer."
+#~ msgstr ""
+#~ "Protokolas <strong>%1</strong> nėra palaikomas KDE programų, šiuo metu "
+#~ "įdiegtų šiame kompiuteryje."
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "Norimas protokolas gali būti nepalaikomas."
+
+#~ msgid ""
+#~ "The versions of the %1 protocol supported by this computer and the server "
+#~ "may be incompatible."
+#~ msgstr ""
+#~ "Protokolo %1 versijos palaikomos šio kompiuterio bei serverio yra "
+#~ "nesuderinamos."
+
+#~ msgid ""
+#~ "You may perform a search on the Internet for a KDE program (called a "
+#~ "kioslave or ioslave) which supports this protocol. Places to search "
+#~ "include <a href=\"http://kde-apps.org/\">http://kde-apps.org/</a> and <a "
+#~ "href=\"http://freshmeat.net/\">http://freshmeat.net/</a>."
+#~ msgstr ""
+#~ "Jūs galite paieškoti Internete KDE programos (vadinamos kioslave ar "
+#~ "ioslave), palaikančios šį protokolą. Programų galite ieškoti <a href="
+#~ "\"http://kde-apps.org/\">http://kde-apps.org/</a> ir <a href=\"http://"
+#~ "freshmeat.net/\">http://freshmeat.net/</a>."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "URL nenurodo resurso."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "Protokolas nėra filtravimo protokolas"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a specific resource."
+#~ msgstr ""
+#~ "Jūsų įvestas <b>U</b>niversal <b>R</b>esource <b>L</b>ocator (URL)nerodo, "
+#~ "kur yra konkretus resursas."
+
+#~ msgid ""
+#~ "KDE is able to communicate through a protocol within a protocol; the "
+#~ "protocol specified is only for use in such situations, however this is "
+#~ "not one of these situations. This is a rare event, and is likely to "
+#~ "indicate a programming error."
+#~ msgstr ""
+#~ "KDE sugeba susirišti konkrečiu protokolu tik to protokolo rėmuose, tačiau "
+#~ "protokolas neatitinka konkrečios situacijos.  Tai retas įvykis, ir "
+#~ "greičiausiai rodo programavimo klaidą."
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "Nepalaikomas veiksmas: %1"
+
+#~ msgid ""
+#~ "The requested action is not supported by the KDE program which is "
+#~ "implementing the <strong>%1</strong> protocol."
+#~ msgstr ""
+#~ "Norimas veiksmas nėra palaikomas KDE programos, kuri realizuoja <strong>"
+#~ "%1</strong> protokolą."
+
+#~ msgid ""
+#~ "This error is very much dependent on the KDE program. The additional "
+#~ "information should give you more information than is available to the KDE "
+#~ "input/output architecture."
+#~ msgstr ""
+#~ "Ši klaida labai priklauso nuo konkrečios KDE programos.  Papildoma "
+#~ "informacija turėtų suteikti jums daugiau informacijos, nei KDE įvedimo / "
+#~ "išvedimo architektūra gali turėti."
+
+#~ msgid "Attempt to find another way to accomplish the same outcome."
+#~ msgstr "Bandymas rasti kitą būdą tam pačiam tikslui pasiekti."
+
+#~ msgid "File Expected"
+#~ msgstr "Tikėtasi failo"
+
+#~ msgid ""
+#~ "The request expected a file, however the folder <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Paklausus tikėtasi failo, tačiau buvo rastas aplankas <strong>%1</strong>."
+
+#~ msgid "This may be an error on the server side."
+#~ msgstr "Gali būti, kad tai klaida serverio pusėje."
+
+#~ msgid "Folder Expected"
+#~ msgstr "Tikimasi aplanko"
+
+#~ msgid ""
+#~ "The request expected a folder, however the file <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Paklausus tikėtasi aplanko, bet vietoje to gauta failas <strong>%1</"
+#~ "strong>."
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "Failas ar aplankas neegzistuoja."
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "Nurodytas failas ar aplankas <strong>%1</strong> neegzistuoja."
+
+#~ msgid ""
+#~ "The requested file could not be created because a file with the same name "
+#~ "already exists."
+#~ msgstr ""
+#~ "Failas negali būti sukurtas, nes kitas failas tuo pačiu vardu jau "
+#~ "egzistuoja."
+
+#~ msgid ""
+#~ "Try moving the current file out of the way first, and then try again."
+#~ msgstr ""
+#~ "Pamėginkite iš pradžių pašalinti egzistuojantį failą, ir bandykite vėl."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "Ištrinkite esamą failą ir bandykite vėl."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "Pasirinkite kitą vardą naujam failui."
+
+#~ msgid ""
+#~ "The requested folder could not be created because a folder with the same "
+#~ "name already exists."
+#~ msgstr ""
+#~ "Toks aplankas negali būti sukurtas, nes kitas aplankas tuo pačiu vardu "
+#~ "jau egzistuoja."
+
+#~ msgid ""
+#~ "Try moving the current folder out of the way first, and then try again."
+#~ msgstr ""
+#~ "Galite pašalinti ar pervadinti egzistuojantį aplanką, ir bandyti vėl."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "Ištrinkite esamą aplanką ir bandykite vėl. "
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "Pasirinkite kitą vardą naujam aplankui."
+
+#~ msgid "Unknown Host"
+#~ msgstr "Nežinomas mazgas"
+
+#~ msgid ""
+#~ "An unknown host error indicates that the server with the requested name, "
+#~ "<strong>%1</strong>, could not be located on the Internet."
+#~ msgstr ""
+#~ "Nežinoma mazgo klaida reiškia, kad serverio, pavadinto <b>%1</b>, "
+#~ "nepavyko rasti Internete."
+
+#~ msgid ""
+#~ "The name that you typed, %1, may not exist: it may be incorrectly typed."
+#~ msgstr ""
+#~ "Jūsų įvestas vardas %1 gali neegzistuoti: galbūt jis blogai įvestas."
+
+#~ msgid "Access Denied"
+#~ msgstr "Priėjimas neleistas"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "Priėjimas prie šio resurso neleistas, <strong>%1</strong>"
+
+#~ msgid ""
+#~ "You may have supplied incorrect authentication details or none at all."
+#~ msgstr ""
+#~ "Galbūt Jūs pateikėte blogus autentikacijos parametrus arba visai jų "
+#~ "nepateikėte."
+
+#~ msgid ""
+#~ "Your account may not have permission to access the specified resource."
+#~ msgstr "Jūsų paskyra gali visai neturėti priėjimo prie šio resurso."
+
+#~ msgid ""
+#~ "Retry the request and ensure your authentication details are entered "
+#~ "correctly."
+#~ msgstr ""
+#~ "Pamėginkite dar kartą ir įsitikinkite, kad Jūsų autentikacijos detalės "
+#~ "įvestos teisingai."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "Priėjimas rašymui neleistas"
+
+#~ msgid ""
+#~ "This means that an attempt to write to the file <strong>%1</strong> was "
+#~ "rejected."
+#~ msgstr ""
+#~ "Tai reiškia, kad bandymas rašyti į failą <strong>%1</strong> buvo "
+#~ "atmestas."
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "Neišeina patekti į aplanką."
+
+#~ msgid ""
+#~ "This means that an attempt to enter (in other words, to open) the "
+#~ "requested folder <strong>%1</strong> was rejected."
+#~ msgstr ""
+#~ "Tai reiškia, kad bandymas įeiti į (kitais žodžiais tariant, atidaryti) "
+#~ "nurodytą aplanką <strong>%1</strong> buvo atmestas."
+
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "Aplanko sąrašas neprieinamas"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "Protokolas %1 nėra failų sistema"
+
+#~ msgid ""
+#~ "This means that a request was made which requires determining the "
+#~ "contents of the folder, and the KDE program supporting this protocol is "
+#~ "unable to do so."
+#~ msgstr ""
+#~ "Tai reiškia, kad pateikus užklausą, kuriai reikėjo nustatyti aplanko "
+#~ "turinį, KDE programa, palaikanti šį protokolą, nesugebėjo to padaryti."
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "Rasta cikliška nuoroda"
+
+#~ msgid ""
+#~ "UNIX environments are commonly able to link a file or folder to a "
+#~ "separate name and/or location. KDE detected a link or series of links "
+#~ "that results in an infinite loop - i.e. the file was (perhaps in a "
+#~ "roundabout way) linked to itself."
+#~ msgstr ""
+#~ "Unix terpėje paprastai galima sukurti failo ar aplanko nuorodą į kitą "
+#~ "vardą ir/ar vietą. KDE pastebėjo nuorodą ar nuorodų seriją, sukuriančią "
+#~ "uždarą ciklą – pvz. failas buvo (galbūt per tarpinius failus) nuoroda į "
+#~ "save patį."
+
+#~ msgid ""
+#~ "Delete one part of the loop in order that it does not cause an infinite "
+#~ "loop, and try again."
+#~ msgstr ""
+#~ "Ištrinkite vieną ciklo dalį taip, kad tai nesukurtų begalinio ciklo, ir "
+#~ "mėginkite vėl."
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "Paklausimas nutrauktas naudotojo"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "Paklausimas negali būti baigtas, nes jis buvo nutrauktas."
+
+#~ msgid "Retry the request."
+#~ msgstr "Pakartoti paklausimą."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "Kopijuojant pastebėta cikliška jungtis"
+
+#~ msgid ""
+#~ "UNIX environments are commonly able to link a file or folder to a "
+#~ "separate name and/or location. During the requested copy operation, KDE "
+#~ "detected a link or series of links that results in an infinite loop - i."
+#~ "e. the file was (perhaps in a roundabout way) linked to itself."
+#~ msgstr ""
+#~ "Unix terpėje paprastai galima sukurti failo ar aplanko nuorodą į kitą "
+#~ "vardą ir/ar vietą. Nurodytos kopijavimo operacijos metu KDE pastebėjo "
+#~ "nuorodą ar nuorodų seriją, sukuriančią uždarą ciklą – pvz. failas buvo "
+#~ "(galbūt per tarpinius failus) nuoroda į save patį."
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "Nepavyksta sukurti tinklo prisijungimo"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "Nepavyksta sukurti lizdo"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which a required device for network "
+#~ "communications (a socket) could not be created."
+#~ msgstr ""
+#~ "Tai yra techninė klaida, reiškianti, kad įrengimas tinklo komunikacijoms "
+#~ "(socket) negali būti sukurtas."
+
+#~ msgid ""
+#~ "The network connection may be incorrectly configured, or the network "
+#~ "interface may not be enabled."
+#~ msgstr ""
+#~ "Tinklo prisijungimas gali būti neteisingai sukonfigūruotas, ar tinklo ja "
+#~ "gali būti neįjungta."
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "Prijungimas prie serverio neleistas"
+
+#~ msgid ""
+#~ "The server <strong>%1</strong> refused to allow this computer to make a "
+#~ "connection."
+#~ msgstr ""
+#~ "Serveris <strong>%1</strong> atsisakė leisti šiam kompiuteriui "
+#~ "prisijungti."
+
+#~ msgid ""
+#~ "The server, while currently connected to the Internet, may not be "
+#~ "configured to allow requests."
+#~ msgstr ""
+#~ "Serveris, nors dabar prijungtas prie Interneto, gali būti "
+#~ "nesukonfigūruotas leisti paklausimus."
+
+#~ msgid ""
+#~ "The server, while currently connected to the Internet, may not be running "
+#~ "the requested service (%1)."
+#~ msgstr ""
+#~ "Serveryje, nors dabar prijungtane prie Interneto, gali nebūti paleista "
+#~ "reikalinga tarnyba (%1)."
+
+#~ msgid ""
+#~ "A network firewall (a device which restricts Internet requests), either "
+#~ "protecting your network or the network of the server, may have "
+#~ "intervened, preventing this request."
+#~ msgstr ""
+#~ "Galbūt įsipainiojo tinklo ungiasienė (įrenginys apribojantis Interneto "
+#~ "paklausimus), arba sauganti Jūsų tinklą, arba serverio tinklą, ir "
+#~ "sutrukdė šį paklausimą."
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "Prisijungimas prie serverio netikėtai nutrūko"
+
+#~ msgid ""
+#~ "Although a connection was established to <strong>%1</strong>, the "
+#~ "connection was closed at an unexpected point in the communication."
+#~ msgstr ""
+#~ "Nors prisijungti prie <strong>%1</strong> pavyko, prisijungimas nutrūko "
+#~ "netikėtoje komunikavimo vietoje."
+
+#~ msgid ""
+#~ "A protocol error may have occurred, causing the server to close the "
+#~ "connection as a response to the error."
+#~ msgstr ""
+#~ "Galėjo įvykti protokolo klaida, privertusi serverį nutraukti prisijungimą "
+#~ "kaip atsaką į klaidą."
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "URL resursas neteisingas"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "Protokolas %1 nėra filtravimo protokolas"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a valid mechanism "
+#~ "of accessing the specific resource, <strong>%1%2</strong>."
+#~ msgstr ""
+#~ "Jūsų įvestas <b>U</b>niversal <b>R</b>esource <b>L</b>ocator (URL)"
+#~ "nenurodo teisingo mechanizmo specifiniam resursui pasiekti, <strong>%1%2</"
+#~ "strong>."
+
+#~ msgid ""
+#~ "KDE is able to communicate through a protocol within a protocol. This "
+#~ "request specified a protocol be used as such, however this protocol is "
+#~ "not capable of such an action. This is a rare event, and is likely to "
+#~ "indicate a programming error."
+#~ msgstr ""
+#~ "KDE sugeba susirišti konkrečiu protokolu tik to protokolo rėmuose. "
+#~ "Paklausimas nurodė naudotiną protokolą, tačiau protokolas negali atlikti "
+#~ "tokio veiksmo.  Tai retas įvykis, ir greičiausiai rodo programavimo "
+#~ "klaidą."
+
+#~ msgid "Unable to Initialize Input/Output Device"
+#~ msgstr "Nepavyksta sužadinti įvedimo/išvedimo įrenginio"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "Nepavyksta sumontuoti įrenginio"
+
+#~ msgid ""
+#~ "The requested device could not be initialized (\"mounted\"). The reported "
+#~ "error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "Nurodytas įrenginys negali būti sužadintas („sumontuotas“).  Klaida buvo: "
+#~ "<strong>%1</strong>"
+
+#~ msgid ""
+#~ "The device may not be ready, for example there may be no media in a "
+#~ "removable media device (i.e. no CD-ROM in a CD drive), or in the case of "
+#~ "a peripheral/portable device, the device may not be correctly connected."
+#~ msgstr ""
+#~ "Įrenginys gali būti neparuoštas, pavyzdžiui gali nebūti disko keičiamų "
+#~ "diskų įrenginyje (t.y. kompakto grotuve), arba išorinio / nešiojamo "
+#~ "įrenginio atveju įrenginys gali būti neprijungtas tinkamai."
+
+#~ msgid ""
+#~ "You may not have permissions to initialize (\"mount\") the device. On "
+#~ "UNIX systems, often system administrator privileges are required to "
+#~ "initialize a device."
+#~ msgstr ""
+#~ "Jūs galite neturėti leidimų sužadinti („sumontuoti“) įrenginį.  Unix "
+#~ "sistemose dažnai reikia administratoriaus privilegijų norint sužadinti "
+#~ "įrenginį."
+
+#~ msgid ""
+#~ "Check that the device is ready; removable drives must contain media, and "
+#~ "portable devices must be connected and powered on.; and try again."
+#~ msgstr ""
+#~ "Patikrinkite, ar įrenginys yra paruoštas; keičiamų diskų įrenginiai turi "
+#~ "turėti diskus, išoriniai įrenginiai turi būti prijungti ir įjungti; ir "
+#~ "mėginkite vėl."
+
+#~ msgid "Unable to Uninitialize Input/Output Device"
+#~ msgstr "Nepavyko pašalinti sužadinimo įvedimo/išvedimo įrenginiui"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "Nepavyksta išmontuoti įrenginio"
+
+#~ msgid ""
+#~ "The requested device could not be uninitialized (\"unmounted\"). The "
+#~ "reported error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "Nurodytam įrenginiui negali būti panaikintas sužadinimas (įrenginys "
+#~ "„išmontuotas“).  Nurodyta klaida buvo: <strong>%1</strong>"
+
+#~ msgid ""
+#~ "The device may be busy, that is, still in use by another application or "
+#~ "user. Even such things as having an open browser window on a location on "
+#~ "this device may cause the device to remain in use."
+#~ msgstr ""
+#~ "Įrenginys gali būti užimtas, tai yra, vis dar naudojamas kitos programos "
+#~ "ar naudotojo.  Netgi tokie dalykai kaip atvertas naršyklės langas šio "
+#~ "įrenginio vietoje gali laikyti įrenginį užimtu."
+
+#~ msgid ""
+#~ "You may not have permissions to uninitialize (\"unmount\") the device. On "
+#~ "UNIX systems, system administrator privileges are often required to "
+#~ "uninitialize a device."
+#~ msgstr ""
+#~ "Jūs galite neturėti leidimų panaikinti įrenginio sužadinimą "
+#~ "(„išmontuoti“).  Unix sistemose dažnai reikia administratoriaus "
+#~ "privilegijų norint nuimti įrenginio sužadinimą."
+
+#~ msgid "Check that no applications are accessing the device, and try again."
+#~ msgstr ""
+#~ "Patikrinkite, ar jokia kita programa ar naudotojas nenaudoja įrenginio ir "
+#~ "mėginkite vėl."
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "Negali skaityti iš resurso"
+
+#~ msgid ""
+#~ "This means that although the resource, <strong>%1</strong>, was able to "
+#~ "be opened, an error occurred while reading the contents of the resource."
+#~ msgstr ""
+#~ "Tai reiškia, kad nors resursas <strong>%1</strong> galėjo būti "
+#~ "atidarytas, įvyko klaida skaitant iš jo."
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "Galbūt Jūs neturite leidimo skaityti iš resurso."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "Nepavyksta rašyti į resursą"
+
+#~ msgid ""
+#~ "This means that although the resource, <strong>%1</strong>, was able to "
+#~ "be opened, an error occurred while writing to the resource."
+#~ msgstr ""
+#~ "Tai reiškia, kad nors resursas <strong>%1</strong> galėjo būti "
+#~ "atidarytas, įvyko klaida rašant į jį."
+
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "Galbūt Jūs neturite leidimo rašyti į resursą"
+
+#~ msgid "Could Not Listen for Network Connections"
+#~ msgstr "Nepavyksta klausyti laukiant tinklo prisijungimų"
+
+#~ msgid "Could Not Bind"
+#~ msgstr "Nepavyksta prijungti (bind)"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which a required device for network "
+#~ "communications (a socket) could not be established to listen for incoming "
+#~ "network connections."
+#~ msgstr ""
+#~ "Tai yra techninė klaida, reiškianti, kad įrenginys tinklo komunikacijoms "
+#~ "(socket) negali būti sukurtas norinti klausyti laukiant įeinančių tinklo "
+#~ "prisijungimų."
+
+#~ msgid "Could Not Listen"
+#~ msgstr "Nepavyksta klausyti"
+
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "Nepavyksta priimti tinklo prisijungimo"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which an error occurred while "
+#~ "attempting to accept an incoming network connection."
+#~ msgstr ""
+#~ "Tai yra techninė klaida, reiškianti, kad įvyko klaida bandant priimti "
+#~ "įeinantį tinklo prisijungimą."
+
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "Galbūt Jūs neturite leidimo priimti prisijungimus."
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "Nepavyksta prisiregistruoti: %1"
+
+#~ msgid ""
+#~ "An attempt to login to perform the requested operation was unsuccessful."
+#~ msgstr ""
+#~ "Bandymas prisiregistruoti norint įvykdyti nurodytą operaciją buvo "
+#~ "nesėkmingas."
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "Nepavyksta nustatyti resurso būklės"
+
+#~ msgid "Could Not Stat Resource"
+#~ msgstr "Nepavyksta nustatyti resurso statuso"
+
+#~ msgid ""
+#~ "An attempt to determine information about the status of the resource "
+#~ "<strong>%1</strong>, such as the resource name, type, size, etc., was "
+#~ "unsuccessful."
+#~ msgstr ""
+#~ "Bandymas gauti informaciją apie resurso <strong>%1</strong> būklę, tokią "
+#~ "kaip resurso vardas, tipas, dydis, kt., buvo nesėkmingas."
+
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "Nurodytas resursas galėjo neegzistuoti ar būti neprieinamas."
+
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "Nepavyksta nutraukti sąrašo"
+
+#~ msgid "FIXME: Document this"
+#~ msgstr "FIXME: dokumentuoti tai"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "Nepavyko sukurti aplanko"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "Bandymas sukurti nurodytą aplanką nepavyko."
+
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr "Vieta, kurioje turėjo būti sukurtas aplankas, gali neegzistuoti."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "Nepavyksta pašalinti aplanko"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr "Bandymas pašalinti nurodytą aplanką <strong>%1</strong> nepavyko."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "Nurodytas aplankas gali neegzistuoti."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "Nurodytas aplankas gali būti netuščias."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr ""
+#~ "Įsitikinkite, kad aplankas egzistuoja ir yra tuščias, ir bandykite vėl."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "Nepavyksta pratęsti failo siuntimo"
+
+#~ msgid ""
+#~ "The specified request asked that the transfer of file <strong>%1</strong> "
+#~ "be resumed at a certain point of the transfer. This was not possible."
+#~ msgstr ""
+#~ "Nurodytas paklausimas paprašė pratęsti failo <strong>%1</strong> siuntimą "
+#~ "nuo nurodyto taško. Tai buvo neįmanoma."
+
+#~ msgid "The protocol, or the server, may not support file resuming."
+#~ msgstr "Protokolas ar serveris gali nepalaikyti siuntimo tęsimo."
+
+#~ msgid "Retry the request without attempting to resume transfer."
+#~ msgstr ""
+#~ "Bandykite vėl, tik šį kartą be siuntimo pratęsimo nuo nurodyto taško."
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "Nepavyksta pervadinti resurso"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr "Bandymas pervadinti nurodytą resursą <strong>%1</strong> nepavyko."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "Nepavyksta pakeisti resurso leidimų"
+
+#~ msgid ""
+#~ "An attempt to alter the permissions on the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Bandymas pakeisti nurodyto resurso <strong>%1</strong> leidimus nepavyko."
+
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "Nepavyko pakeisti išteklio nuosavybės"
+
+#, fuzzy
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Bandymas pakeisti nurodyto resurso <strong>%1</strong> leidimus nepavyko."
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "Nepavyksta pašalinti resurso"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr "Bandymas pašalinti nurodytą resursą <strong>%1</strong> nepavyko."
+
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "Programa netikėtai baigė darbą"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has unexpectedly terminated."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis <strong>%1</"
+#~ "strong>  protokolu, netikėtai baigė darbą."
+
+#~ msgid "Out of Memory"
+#~ msgstr "Trūksta atminties"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not obtain the memory required to continue."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis %1 protokolu, "
+#~ "negali gauti atminties, reikalingos tolesniam darbui."
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "Nežinomas įgaliotojo serverio mazgas"
+
+#~ msgid ""
+#~ "While retrieving information about the specified proxy host, <strong>%1</"
+#~ "strong>, an Unknown Host error was encountered. An unknown host error "
+#~ "indicates that the requested name could not be located on the Internet."
+#~ msgstr ""
+#~ "Gaunant informaciją apie nurodytą įgaliotojo serverio mazgą <strong>%1</"
+#~ "strong>, gauta klaida „nežinomas mazgas“.  Nežinomo mazgo klaida reiškia, "
+#~ "kad nurodytas vardas negali būti rastas internete."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration, "
+#~ "specifically your proxy's hostname. If you have been accessing the "
+#~ "Internet with no problems recently, this is unlikely."
+#~ msgstr ""
+#~ "Gali būti problemų su jūsų tinklo konfigūracija, konkrečiai su įgaliotojo "
+#~ "serverio mazgo vardu. Tačiau jei nesenai naudojotės internetu be "
+#~ "problemų, vargu ar taip yra."
+
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr ""
+#~ "Pakartotinai patikrinkite įgaliotojo serverio nustatymus ir mėginkite vėl."
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "Autentikacija nepavyko: metodas %1 nepalaikomas"
+
+#~ msgid ""
+#~ "Although you may have supplied the correct authentication details, the "
+#~ "authentication failed because the method that the server is using is not "
+#~ "supported by the KDE program implementing the protocol %1."
+#~ msgstr ""
+#~ "Nors Jūs galėjote pateikti teisingas autentikacijos detales, "
+#~ "autentikacija nepavyko, nes serverio naudojamas metodas nėra palaikomas "
+#~ "KDE programos, įgyvendinančios %1 protokolą."
+
+#~ msgid ""
+#~ "Please file a bug at <a href=\"http://bugs.kde.org/\">http://bugs.kde.org/"
+#~ "</a> to inform the KDE team of the unsupported authentication method."
+#~ msgstr ""
+#~ "Prašome nusiųsti pranešimą apie programos klaidą į <a href=\"http://bugs."
+#~ "kde.org/\">http://bugs.kde.org/</a>, kad informuoti KDE komandą apie "
+#~ "nepalaikomą autentikacijos metodą."
+
+#~ msgid "Request Aborted"
+#~ msgstr "Paklausimas nutrauktas"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "Vidaus klaida serveryje"
+
+#~ msgid ""
+#~ "The program on the server which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error: %2."
+#~ msgstr ""
+#~ "Programa serveryje, suteikianti galimybę naudotis <strong>%1</strong> "
+#~ "protokolu, pranešė apie vidinę klaidą: %2."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the server program. Please "
+#~ "consider submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "Greičiausiai tai pačios serverio programos klaida. Pagalvokite apie pilno "
+#~ "klaidos aprašymo nusiuntimą, kaip aprašyta žemiau."
+
+#~ msgid ""
+#~ "Contact the administrator of the server to advise them of the problem."
+#~ msgstr "Kreipkitės į serverio administratorių dėl tolesnės pagalbos."
+
+#~ msgid ""
+#~ "If you know who the authors of the server software are, submit the bug "
+#~ "report directly to them."
+#~ msgstr ""
+#~ "Jei žinote serverio programinės įrangos autorius, nusiųskite pranešimą "
+#~ "apie ydą tiesiogiai jiems."
+
+#~ msgid "Timeout Error"
+#~ msgstr "Laiko limito klaida"
+
+#, fuzzy
+#~ msgid ""
+#~ "Although contact was made with the server, a response was not received "
+#~ "within the amount of time allocated for the request as follows:"
+#~ "<ul><li>Timeout for establishing a connection: %1 seconds</li><li>Timeout "
+#~ "for receiving a response: %2 seconds</li><li>Timeout for accessing proxy "
+#~ "servers: %3 seconds</li></ul>Please note that you can alter these timeout "
+#~ "settings in the KDE System Settings, by selecting Network Settings -> "
+#~ "Connection Preferences."
+#~ msgstr ""
+#~ "Nors kontaktas su serveriu ir įvyko, atsakymas nebuvo gautas per laiką, "
+#~ "skirtą paklausimui, kaip nurodyta žemiau: <ul> <li>Laiko limitas sukurti "
+#~ "prisijungimą: %1 sekundžių</li> <li>Laiko limitas gauti atsakymą: %2 "
+#~ "sekundžių</li> <li>Laiko limitas prisijungti prie įgaliotųjų serverių: %3 "
+#~ "sekundžių</li> </ul> Pastaba: Jūs galite pakeisti šiuos laiko limitus KDE "
+#~ "valdymo centre pasirinkę Tinklas -> Pasirinkimai"
+
+#~ msgid "The server was too busy responding to other requests to respond."
+#~ msgstr ""
+#~ "Serveris buvo pernelyg užimtas atsakinėdamas į kitus paklausimus, kad "
+#~ "atsakyti į Jūsų."
+
+#~ msgid "Unknown Error"
+#~ msgstr "Nežinoma klaida"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an unknown error: %2."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis <strong>%1</"
+#~ "strong>  protokolu, pranešė apie nežinomą klaidą: %2."
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "Nežinoma pertrauktis"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an interruption of an unknown type: %2."
+#~ msgstr ""
+#~ "Programa Jūsų kompiuteryje, suteikianti galimybę naudotis <strong>%1</"
+#~ "strong>  protokolu, pranešė apie nežinomo tipo pertrauktį: %2."
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "Nepavyksta pašalinti originalaus failo"
+
+#~ msgid ""
+#~ "The requested operation required the deleting of the original file, most "
+#~ "likely at the end of a file move operation. The original file <strong>%1</"
+#~ "strong> could not be deleted."
+#~ msgstr ""
+#~ "Nurodytai operacijai atlikti reikėjo pašalinti originalią failą, "
+#~ "greičiausiai failo perkėlimo operacijos pabaigoje.  Originali failas "
+#~ "<strong>%1</strong> negali būti pašalinta."
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "Nepavyksta pašalinti laikinos failo"
+
+#~ msgid ""
+#~ "The requested operation required the creation of a temporary file in "
+#~ "which to save the new file while being downloaded. This temporary file "
+#~ "<strong>%1</strong> could not be deleted."
+#~ msgstr ""
+#~ "Nurodytai operacijai atlikti reikėjo sukurti laikiną failą išsaugoti "
+#~ "naują atsisiunčiamą failą.  Ši laikina failas <strong>%1</strong> negali "
+#~ "būti pašalinta."
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "Nepavyksta pervadinti originalaus failo"
+
+#~ msgid ""
+#~ "The requested operation required the renaming of the original file "
+#~ "<strong>%1</strong>, however it could not be renamed."
+#~ msgstr ""
+#~ "Nurodytai operacijai atlikti reikėjo pervadinti originalų failą <strong>"
+#~ "%1</strong>, tačiau jis negalėjo būti pervadintas."
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "Nepavyksta pervadinti laikinojo failo"
+
+#~ msgid ""
+#~ "The requested operation required the creation of a temporary file <strong>"
+#~ "%1</strong>, however it could not be created."
+#~ msgstr ""
+#~ "Nurodytai operacijai atlikti reikėjo sukurti laikiną failą <strong>%1</"
+#~ "strong>, tačiau jis negalėjo būti sukurtas."
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "Nepavyksta sukurti nuorodos"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "Nepavyksta sukurti simbolinės nuorodos"
+
+#~ msgid "The requested symbolic link %1 could not be created."
+#~ msgstr "Prašoma simbolinė nuoroda %1 negali būti sukurta."
+
+#~ msgid "No Content"
+#~ msgstr "Nėra turinio"
+
+#~ msgid "Disk Full"
+#~ msgstr "Diskas pilnas"
+
+#~ msgid ""
+#~ "The requested file <strong>%1</strong> could not be written to as there "
+#~ "is inadequate disk space."
+#~ msgstr ""
+#~ "Į nurodytą failą <strong>%1</strong> negali būti įrašoma, nes nėra "
+#~ "užtektinai vietos diske."
+
+#~ msgid ""
+#~ "Free up enough disk space by 1) deleting unwanted and temporary files; 2) "
+#~ "archiving files to removable media storage such as CD-Recordable discs; "
+#~ "or 3) obtain more storage capacity."
+#~ msgstr ""
+#~ "Atlaisvinkite užtektinai vietos diske 1) ištrindami nereikalingus ir "
+#~ "laikinus failus; 2) perkeldami failus į keičiamas informacijos saugojimo "
+#~ "laikmenas, tokias kaip CD-rašomi diskai; ar 3) įsigydami daugiau diskų."
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "Išeities ir paskirties failai identiški"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "files are the same file."
+#~ msgstr ""
+#~ "Operacija negali būti įvykdyta, nes išeities ir paskirties failas yra tas "
+#~ "pats."
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "Pasirinkite kitą vardą sukuriamam failui."
+
+#~ msgid "Undocumented Error"
+#~ msgstr "Nedokumentuota klaida"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Perkeliama"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Kopijuojama"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "Kuriamas aplankas"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "Pašalinama"
+
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "Tyrinėjama"
+
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "Perkeliama"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "Montuojama"
+
+#~ msgid "Device"
+#~ msgstr "Įrenginys"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Montavimo vieta"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "Išmontuojama"
+
+#~ msgid "Do you really want to move this item to the trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the trash?"
+#~ msgstr[0] "Ar tikrai norite perkelti šį objektą į šiukšliadėžę?"
+#~ msgstr[1] "Ar tikrai norite perkelti %1 objektus į šiukšliadėžę?"
+#~ msgstr[2] "Ar tikrai norite perkelti %1 objektų į šiukšliadėžę?"
+#~ msgstr[3] "Ar tikrai norite perkelti %1 objektą į šiukšliadėžę?"
+
+#~ msgctxt "Verb"
+#~ msgid "&Trash"
+#~ msgstr "Iš&mesti į šiukliadėžę"
+
+#~ msgid "The peer SSL certificate chain appears to be corrupt."
+#~ msgstr "Atrodo, kad kito kompiuterio SSL liudijimo grandinė yra sugadinta."
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "Atnaujinama sistemos konfigūracija"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "Atnaujinama sistemos konfigūracija."
+
+#~ msgid "No service implementing %1"
+#~ msgstr "Nėra tarnybos, įgyvendinančios %1"
+
+#~ msgid "The desktop entry file %1 has no Type=... entry."
+#~ msgstr "Darbastalio įrašo failas %1 neturi Type=... įrašo."
+
+#~ msgid ""
+#~ "The desktop entry of type\n"
+#~ "%1\n"
+#~ "is unknown."
+#~ msgstr ""
+#~ "Darbastalio įrašas tipui\n"
+#~ "%1\n"
+#~ "yra nežinomas."
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type FSDevice but has no Dev=... entry."
+#~ msgstr ""
+#~ "Darbastalio įrašo failas\n"
+#~ "%1\n"
+#~ "yra FSDevice tipo, tačiau neturi jokio Dev=... įrašo."
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type Link but has no URL=... entry."
+#~ msgstr ""
+#~ "Darbastalio įrašo failas\n"
+#~ "%1\n"
+#~ "yra „Link“ tipo, tačiau neturi jokio URL=... įrašo."
+
+#~ msgid "Mount"
+#~ msgstr "Sumontuoti"
+
+#~ msgid "Eject"
+#~ msgstr "Išstumti"
+
+#~ msgid "Unmount"
+#~ msgstr "Išmontuoti"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Blogai suformuotas URL\n"
+#~ "%1"
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "Pavadinimas"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "Dydis"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "Leidimai"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "Savininkas"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "Grupė"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Tipas"
+
+#~ msgid "Default"
+#~ msgstr "Numatytas"
+
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "(Simbolinė nuoroda į %1)"
+
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "(%1, Nuoroda į %2)"
+
+#~ msgid " (Points to %1)"
+#~ msgstr " (Veda į %1)"
+
+#~ msgid "Link to %1 (%2)"
+#~ msgstr "Nuoroda į %1 (%2)"
+
+#~ msgid "Owner:"
+#~ msgstr "Savininkas:"
+
+#~ msgid "Permissions:"
+#~ msgstr "Leidimai:"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "&Veiksmai"
+
+#~ msgid "&Open with %1"
+#~ msgstr "&Atverti su %1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "&Atverti su"
+
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other..."
+#~ msgstr "&Kita..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "&Atverti su..."
+
+#~ msgid "Open &with %1"
+#~ msgstr "Atverti &su %1"
+
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "%1 objektas"
+#~ msgstr[1] "%1 objektai"
+#~ msgstr[2] "%1 objektų"
+#~ msgstr[3] "%1 objektas"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "Nežinoma"
+
+#~ msgid "All Pictures"
+#~ msgstr "Visi paveikslėliai"
+
+#~ msgid "Mime Type"
+#~ msgstr "Mime tipas"
+
+#~ msgid "Comment"
+#~ msgstr "Komentaras"
+
+#~ msgid "Patterns"
+#~ msgstr "Šablonai"
+
+#~ msgid "&Edit..."
+#~ msgstr "&Keisti..."
+
+#~ msgid "Click this button to display the familiar KDE mime type editor."
+#~ msgstr ""
+#~ "Spragtelėkite šį mygtuką norėdami pamatyti pažįstamą KDE mime tipų "
+#~ "redaktorių."
+
+#~ msgid ""
+#~ "<qt>Unable to enter <b>%1</b>.\n"
+#~ "You do not have access rights to this location.</qt>"
+#~ msgstr ""
+#~ "<qt>Nepavyksta įeiti <b>%1</b>.\n"
+#~ "Jūs neturite priėjimo teisės šiai vietai.</qt>"
+
+#~ msgid ""
+#~ "<qt>The file <b>%1</b> is an executable program. For safety it will not "
+#~ "be started.</qt>"
+#~ msgstr ""
+#~ "<qt>Failas <b>%1</b> yra vykdomoji programa. Siekiant saugumo jis nebus "
+#~ "vykdomas.</qt>"
+
+#~ msgid "<qt>You do not have permission to run <b>%1</b>.</qt>"
+#~ msgstr "<qt>Jūs neturite leidimų paleisti <b>%1</b>.</qt>"
+
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr "Jūs neturite teisės parinkti programos atverti šį failą."
+
+#~ msgid "Open with:"
+#~ msgstr "Atidaryti su:"
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "Jūs neturite leidimų paleisti šį failą."
+
+#~ msgid "Launching %1"
+#~ msgstr "Vykdoma %1"
+
+#~ msgid "You are not authorized to execute this service."
+#~ msgstr "Jūs neautorizuotas paleisti šią tarnybą."
+
+#~ msgctxt "Warning about executing unknown .desktop file"
+#~ msgid "Warning"
+#~ msgstr "Dėmesio"
+
+#~ msgid ""
+#~ "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~ "does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Nepavyksta įvykdyti nurodytos komandos. Failo arba aplanko <b>%1</b> "
+#~ "nėra.</qt>"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "Nepavyksta rasti „%1“ programos"
+
+#~ msgid "Acquire Image"
+#~ msgstr "Gauti paveikslėlį"
+
+#~ msgid "OCR Image"
+#~ msgstr "OCR paveikslėlis"
+
+#~ msgid "The desktop is offline"
+#~ msgstr "Darbastalis atsijungė"
+
+#~ msgid "File '%1' is not readable"
+#~ msgstr "Failas „%1“ yra neperskaitomas"
+
+#~ msgid "ERROR: Unknown protocol '%1'"
+#~ msgstr "KLAIDA: nežinomas protokolas „%1“."
+
+#~ msgid "Authorization Dialog"
+#~ msgstr "Autorizacijos dialogas"
+
+#~ msgid "Filename for clipboard content:"
+#~ msgstr "Failo vardas laikinajai talpyklei:"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid ""
+#~ "The clipboard has changed since you used 'paste': the chosen data format "
+#~ "is no longer applicable. Please copy again what you wanted to paste."
+#~ msgstr ""
+#~ "Laikinosios talpyklės turinys pasikeitė nuo to laiko, kai paskutinį kartą "
+#~ "naudojote funkciją „įterpti“: pasirinktas duomenų formatas jau "
+#~ "nebetaikomas. Prašome nusikopijuoti  iš naujo tai, ką ketinote įterpti."
+
+#~ msgid "The clipboard is empty"
+#~ msgstr "Laikinoji talpyklė tuščia"
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "&Padėti failą"
+#~ msgstr[1] "&Padėti %1 failus"
+#~ msgstr[2] "&Padėti %1 failų"
+#~ msgstr[3] "&Padėti %1 failą"
+
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "Į&terpti %1 URL"
+#~ msgstr[1] "Į&terpti %1 URL"
+#~ msgstr[2] "Į&terpti %1 URL"
+#~ msgstr[3] "Į&terpti %1 URL"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "Į&terpti laikinos talpyklos turinį"
+
+#~ msgid "Data format:"
+#~ msgstr "Duomenų formatas:"
+
+#~ msgid "Appl&y to All"
+#~ msgstr "&Pritaikyti visiems"
+
+#~ msgid "&Rename"
+#~ msgstr "Pe&rvadinti"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "Siūlyti naują &vardą"
+
+#~ msgid "&Skip"
+#~ msgstr "Pra&leisti"
+
+#~ msgid "Do not copy or move this folder, skip to the next item instead"
+#~ msgstr "Nekopijuoti šio aplanko ir neperkelti, pereiti prie kito įrašo"
+
+#~ msgid "Do not copy or move this file, skip to the next item instead"
+#~ msgstr "Nekopijuoti šio failo ir neperkelti, pereiti prie kito įrašo"
+
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "&Rašyti į"
+
+#~ msgid "&Overwrite"
+#~ msgstr "P&errašyti"
+
+#~ msgid "&Resume"
+#~ msgstr "&Tęsti"
+
+#~ msgid ""
+#~ "This action would overwrite '%1' with itself.\n"
+#~ "Please enter a new file name:"
+#~ msgstr ""
+#~ "Šis veiksmas perrašys „%1“ juo pačiu.\n"
+#~ "Prašome įrašyti naują failo vardą:"
+
+#~ msgid "C&ontinue"
+#~ msgstr "&Tęsti"
+
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "Šis veiksmas perrašys tikslą."
+
+#~ msgid "Source"
+#~ msgstr "Šaltinis"
+
+#~ msgid "Destination"
+#~ msgstr "Tikslas"
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "Senesnis objektas „%1“ vardu jau egzistuoja."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "Failas „%1“ vardu jau yra."
+
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "Naujesnis objektas „%1“ vardu jau egzistuoja."
+
+#~ msgid "Rename:"
+#~ msgstr "Pervadinti:"
+
+#~ msgid "Information"
+#~ msgstr "Informacija"
+
+#~ msgid "Skip"
+#~ msgstr "Praleisti"
+
+#~ msgid "AutoSkip"
+#~ msgstr "Praleisti automatiškai"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "Nežinomas protokolas „%1“."
+
+#~ msgid "Can not find io-slave for protocol '%1'."
+#~ msgstr "Nepavyksta rasti io-slave protokolui '%1'."
+
+#~ msgid "Cannot talk to klauncher: %1"
+#~ msgstr "Nepavyksta susikalbėti su klauncher: %1"
+
+#~ msgid ""
+#~ "Unable to create io-slave:\n"
+#~ "klauncher said: %1"
+#~ msgstr ""
+#~ "Neįmanoma sukurti io-slave:\n"
+#~ "klauncher sako: %1"
+
+#~ msgid "&Yes"
+#~ msgstr "&Taip"
+
+#~ msgid "&No"
+#~ msgstr "&Ne"
+
+#~ msgid "&Details"
+#~ msgstr "&Detaliai"
+
+#~ msgid "&Forever"
+#~ msgstr "&Visam laikui"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "&Tęsti"
+
+#~ msgid "&Current Session only"
+#~ msgstr "Tik &dabartinė sesija"
+
+#~ msgid ""
+#~ "You are about to leave secure mode. Transmissions will no longer be "
+#~ "encrypted.\n"
+#~ "This means that a third party could observe your data in transit."
+#~ msgstr ""
+#~ "Jūs paliekate saugią veikseną. Perdavimai daugiau nebebus šifruojami.\n"
+#~ "Tai reiškia, kad trečia šalis galės stebėti Jūsų duomenis perdavimo metu."
+
+#~ msgid "Security Information"
+#~ msgstr "Saugumo informacija"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "Tę&sti įkėlimą"
+
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "%1: SSL derybos nepavyko"
+
+#~ msgid ""
+#~ "You are about to enter secure mode. All transmissions will be encrypted "
+#~ "unless otherwise noted.\n"
+#~ "This means that no third party will be able to easily observe your data "
+#~ "in transit."
+#~ msgstr ""
+#~ "Jūs pereinate į saugią veikseną. Visi perdavimai bus šifruojami, o "
+#~ "priešingu atveju, būsite įspėtas.\n"
+#~ "Tai reiškia, kad trečia šalis negalės lengvai stebėti Jūsų perduodamų "
+#~ "duomenų."
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "Rodyti SSL &informaciją"
+
+#~ msgid "C&onnect"
+#~ msgstr "P&risijungti"
+
+#~ msgid "Enter the certificate password:"
+#~ msgstr "Įveskite liudijimo slaptažodį:"
+
+#~ msgid "SSL Certificate Password"
+#~ msgstr "SSL liudijimo slaptažodis"
+
+#~ msgid "Unable to open the certificate. Try a new password?"
+#~ msgstr "Nepavyksta atverti liudijimo.  Bandyti su nauju slaptažodžiu?"
+
+#~ msgid "The procedure to set the client certificate for the session failed."
+#~ msgstr "Atleiskite, kliento liudijimo nustatymo sesijai procedūra nepavyko."
+
+#~ msgid ""
+#~ "The server failed the authenticity check (%1).\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Serveris nepraėjo autentiškumo testo (%1).\n"
+#~ "\n"
+
+#~ msgid "Server Authentication"
+#~ msgstr "Serverio autentikacija"
+
+#~ msgid ""
+#~ "Would you like to accept this certificate forever without being prompted?"
+#~ msgstr ""
+#~ "Ar Jūs norėtumėte priimti šį liudijimą visam laikui neklausiant kiekvieną "
+#~ "kartą?"
+
+#~ msgid ""
+#~ "You have indicated that you wish to accept this certificate, but it is "
+#~ "not issued to the server who is presenting it. Do you wish to continue "
+#~ "loading?"
+#~ msgstr ""
+#~ "Jūs nurodėte, kad Jūs norite priimti šį liudijimą, bet jis išduotas ne "
+#~ "tam mazgui, kuris jį pateikia.  Ar Jūs norite tęsti krovimą?"
+
+#~ msgid ""
+#~ "SSL certificate is being rejected as requested. You can disable this in "
+#~ "the KDE System Settings."
+#~ msgstr ""
+#~ "SSL liudijimas atmestas, kaip buvo paprašyta.  Jūs galite išjungti tai "
+#~ "KDE valdymo centre."
+
+#~ msgid "Common name:"
+#~ msgstr "Bendras vardas:"
+
+#~ msgid "Acme Co."
+#~ msgstr "Acme Co."
+
+#~ msgid "Organization:"
+#~ msgstr "Organizacija:"
+
+#~ msgid "Organizational unit:"
+#~ msgstr "Organizacinis vienetas:"
+
+#~ msgid "Fraud Department"
+#~ msgstr "Apgavyščių departamentas"
+
+#~ msgid "Country:"
+#~ msgstr "Šalis:"
+
+#~ msgid "Canada"
+#~ msgstr "Kanada"
+
+#~ msgid "State:"
+#~ msgstr "Valstija:"
+
+#~ msgid "Quebec"
+#~ msgstr "Kvebekas"
+
+#~ msgid "City:"
+#~ msgstr "Miestas:"
+
+#~ msgid "Lakeridge Meadows"
+#~ msgstr "Lakeridge Meadows"
+
+#~ msgid "Organization / Common Name"
+#~ msgstr "Organizacija / Bendras pavadinimas"
+
+#~ msgid "Organizational Unit"
+#~ msgstr "Organizacinis padalinys"
+
+#~ msgid "Display..."
+#~ msgstr "Rodyti..."
+
+#~ msgid "Disable"
+#~ msgstr "Uždrausti"
+
+#~ msgid "Enable"
+#~ msgstr "Įgalinti"
+
+#~ msgid "System certificates"
+#~ msgstr "Sistemos liudijimai"
+
+#~ msgid "User-added certificates"
+#~ msgstr "Naudotojo pridėti liudijimai"
+
+#~ msgid "Pick Certificates"
+#~ msgstr "Parinkti liudijimus"
+
+#~ msgid "<b>Subject Information</b>"
+#~ msgstr "<b>Objekto informacija</b>"
+
+#~ msgid "<b>Issuer Information</b>"
+#~ msgstr " <b>Informacija apie išdavėją</b>"
+
+#~ msgid "<b>Other</b>"
+#~ msgstr "<b>Kitas</b>"
+
+#~ msgid "Validity period"
+#~ msgstr "Galiojimo laikotarpis"
+
+#~ msgid "Serial number"
+#~ msgstr "Serijinis numeris"
+
+#~ msgid "MD5 digest"
+#~ msgstr "MD5 santrauka"
+
+#~ msgid "SHA1 digest"
+#~ msgstr "SHA1 santrauka"
+
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 į %2"
+
+#~ msgid "SSL Configuration Module"
+#~ msgstr "SSL konfigūravimo modulis"
+
+#~ msgid "Copyright 2010 Andreas Hartmetz"
+#~ msgstr "Copyright 2010 Andreas Hartmetz"
+
+#~ msgid "Andreas Hartmetz"
+#~ msgstr "Andreas Hartmetz"
+
+#~ msgid "SSL Signers"
+#~ msgstr "SSL pasirašantieji"
+
+#~ msgid ""
+#~ "You have indicated that you wish to obtain or purchase a secure "
+#~ "certificate. This wizard is intended to guide you through the procedure. "
+#~ "You may cancel at any time, and this will abort the transaction."
+#~ msgstr ""
+#~ "Jūs nurodėte, kad Jūs norite įsigyti ar nusipirkti saugų liudijimą. Šis "
+#~ "vedlys yra skirtas vesti jus per šią procedūrą.  Jūs galite atšaukti jį "
+#~ "bet kuriuo metu, ir tai nutrauks įvykių eigą."
+
+#~ msgid ""
+#~ "You must now provide a password for the certificate request. Please "
+#~ "choose a very secure password as this will be used to encrypt your "
+#~ "private key."
+#~ msgstr ""
+#~ "Dabar Jūs privalote pateikti slaptažodį liudijimo paklausimui.  Prašome "
+#~ "pasirinkti labai saugų slaptažodį, nes jis bus naudojamas Jūsų privataus "
+#~ "rakto užšifravimui."
+
+#~ msgid "&Repeat password:"
+#~ msgstr "Pa&kartokite slaptažodį:"
+
+#~ msgid "&Choose password:"
+#~ msgstr "&Pasirinkite slaptažodį"
+
+#~ msgid "Certificate"
+#~ msgstr "Liudijimas"
+
+#~ msgid "Save selection for this host."
+#~ msgstr "Įrašyti pasirinkimą šiam mazgui."
+
+#~ msgid "Send certificate"
+#~ msgstr "Siųsti liudijimą"
+
+#~ msgid "Do not send a certificate"
+#~ msgstr "Nesiųsti liudijimo"
+
+#~ msgid "KDE SSL Certificate Dialog"
+#~ msgstr "KDE SSL liudijimo dialogas"
+
+#~ msgid "Signature Algorithm: "
+#~ msgstr "Parašo algoritmas: "
+
+#~ msgid "Unknown"
+#~ msgstr "Nežinoma"
+
+#~ msgid "Signature Contents:"
+#~ msgstr "Parašo turinys:"
+
+#~ msgctxt "Unknown"
+#~ msgid "Unknown key algorithm"
+#~ msgstr "Nežinomas rakto algoritmas"
+
+#~ msgid "Key type: RSA (%1 bit)"
+#~ msgstr "Rakto tipas: RSA (%1 bitų)"
+
+#~ msgid "Modulus: "
+#~ msgstr "Modulus: "
+
+#~ msgid "Exponent: 0x"
+#~ msgstr "Eksponentė: 0x"
+
+#~ msgid "Key type: DSA (%1 bit)"
+#~ msgstr "Rakto tipas: DSA (%1 bitų)"
+
+#~ msgid "Prime: "
+#~ msgstr "Pirminis skaičius: "
+
+#~ msgid "160 bit prime factor: "
+#~ msgstr "160-bitų pirminio skaičiaus faktorius: "
+
+#~ msgid "Public key: "
+#~ msgstr "Viešas raktas: "
+
+#~ msgid "The certificate is valid."
+#~ msgstr "Galiojantis liudijimas."
+
+#, fuzzy
+#~ msgid ""
+#~ "Retrieval of the CRL (Certificate Revocation List) failed. This means the "
+#~ "CA's (Certificate Authority) CRL can not be found."
+#~ msgstr ""
+#~ "Liudijimą pasirašančios šakninės įstaigos failai nerasti, dėl to "
+#~ "liudijimas nėra patikrintas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The certificate's signature is invalid. This means that the certificate "
+#~ "can not be verified."
+#~ msgstr ""
+#~ "Liudijimą pasirašančios šakninės įstaigos failai nerasti, dėl to "
+#~ "liudijimas nėra patikrintas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The CRL's (Certificate Revocation List) signature is invalid. This means "
+#~ "that the CRL can not be verified."
+#~ msgstr ""
+#~ "Liudijimą pasirašančios šakninės įstaigos failai nerasti, dėl to "
+#~ "liudijimas nėra patikrintas."
+
+#~ msgid "The certificate is not valid, yet."
+#~ msgstr "Liudijimas dar negalioja."
+
+#~ msgid "The certificate is not valid, any more."
+#~ msgstr "Liudijimas jau nebegalioja."
+
+#, fuzzy
+#~ msgid "The CRL (Certificate Revocation List) is not valid, yet."
+#~ msgstr "Liudijimas neteisingas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The time format of the CRL's (Certificate Revocation List) 'lastUpdate' "
+#~ "field is invalid."
+#~ msgstr "Liudijimas neteisingas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The time format of the CRL's (Certificate Revocation List) 'nextUpdate' "
+#~ "field is invalid."
+#~ msgstr "Liudijimas neteisingas."
+
+#~ msgid "The OpenSSL process ran out of memory."
+#~ msgstr "OpenSSL procesui pritrūko atminties."
+
+#~ msgid "The certificate has been revoked."
+#~ msgstr "Liudijimas buvo atšauktas."
+
+#, fuzzy
+#~ msgid "The certificate's CA (Certificate Authority) is invalid."
+#~ msgstr "Liudijimas neteisingas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The certificate's CA (Certificate Authority) does not match the CA name "
+#~ "of the certificate."
+#~ msgstr "Mazgo %1 IP adresas neatitinka to, kuriam buvo išduotas liudijimas."
+
+#, fuzzy
+#~ msgid ""
+#~ "The CA (Certificate Authority) certificate's key ID does not match the "
+#~ "key ID in the 'Issuer' section of the certificate you are trying to use."
+#~ msgstr "Mazgo %1 IP adresas neatitinka to, kuriam buvo išduotas liudijimas."
+
+#~ msgid ""
+#~ "Certificate signing authority root files could not be found so the "
+#~ "certificate is not verified."
+#~ msgstr ""
+#~ "Liudijimą pasirašančios šakninės įstaigos failai nerasti, dėl to "
+#~ "liudijimas nėra patikrintas."
+
+#~ msgid "SSL support was not found."
+#~ msgstr "SSL palaikymas nerastas."
+
+#~ msgid "Private key test failed."
+#~ msgstr "Asmeninio rakto testas nepavyko."
+
+#~ msgid "The certificate has not been issued for this host."
+#~ msgstr "Šiam mazgui nėra išduotas liudijimas."
+
+#~ msgid "This certificate is not relevant."
+#~ msgstr "Liudijimas neteisingas."
+
+#~ msgid "The certificate is invalid."
+#~ msgstr "Liudijimas neteisingas."
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "KDE SSL informacija"
+
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "Tema"
+
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "Išdavėjas"
+
+#~ msgid "Current connection is secured with SSL."
+#~ msgstr "Dabartinis prijungimas apsaugotas su SSL."
+
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "Dabartinis prijungimas neapsaugotas su SSL."
+
+#~ msgid "SSL support is not available in this build of KDE."
+#~ msgstr "SSL nėra palaikomas šioje KDE versijoje."
+
+#~ msgid ""
+#~ "The main part of this document is secured with SSL, but some parts are "
+#~ "not."
+#~ msgstr ""
+#~ "Pagrindinė šio dokumento dalis apsaugota su SSL, bet kai kurios dalys ne."
+
+#~ msgid "Some of this document is secured with SSL, but the main part is not."
+#~ msgstr "Dalis šio dokumento apsaugota su SSL, bet pagrindinė dalis ne."
+
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1, %2 %3"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "naudojant %1 bitą"
+#~ msgstr[1] "naudojant %1 bitus"
+#~ msgstr[2] "naudojant %1 bitų"
+#~ msgstr[3] "naudojant %1 bitą"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "of a %1 bit key"
+#~ msgid_plural "of a %1 bit key"
+#~ msgstr[0] "iš %1 bito rakto"
+#~ msgstr[1] "iš %1 bitų rakto"
+#~ msgstr[2] "iš %1 bitų rakto"
+#~ msgstr[3] "iš %1 bito rakto"
+
+#~ msgctxt "The certificate is not trusted"
+#~ msgid "NO, there were errors:"
+#~ msgstr "NE, buvo klaidų:"
+
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "Taip"
+
+#~ msgid "KDE Certificate Request"
+#~ msgstr "KDE liudijimo paklausimas"
+
+#~ msgid "KDE Certificate Request - Password"
+#~ msgstr "KDE liudijimo paklausimas - slaptažodis"
+
+#~ msgid "Unsupported key size."
+#~ msgstr "Nepalaikomas rakto dydis."
+
+#~ msgid "KDE"
+#~ msgstr "KDE"
+
+#~ msgid "Please wait while the encryption keys are generated..."
+#~ msgstr "Prašome palaukti kol bus sugeneruoti šifravimo raktai..."
+
+#~ msgid "Do you wish to store the passphrase in your wallet file?"
+#~ msgstr "Ar norite išsaugoti slaptažodžio frazę slaptažodinės faile?"
+
+#~ msgid "Store"
+#~ msgstr "Saugoti"
+
+#~ msgid "Do Not Store"
+#~ msgstr "Nesaugoti"
+
+#~ msgid "2048 (High Grade)"
+#~ msgstr "2048 (aukšto patikimumo)"
+
+#~ msgid "1024 (Medium Grade)"
+#~ msgstr "1024 (vidutinio patikimumo)"
+
+#~ msgid "768  (Low Grade)"
+#~ msgstr "768  (žemo patikimumo)"
+
+#~ msgid "512  (Low Grade)"
+#~ msgstr "512  (žemo patikimumo)"
+
+#~ msgid "No SSL support."
+#~ msgstr "SSL nepalaikomas."
+
+#~ msgid "Certificate password"
+#~ msgstr "Liudijimo slaptažodis"
+
+#~ msgid "GMT"
+#~ msgstr "GMT"
+
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "Adresas:"
+
+#~ msgid "IP address:"
+#~ msgstr "IP adresas:"
+
+#~ msgid "Encryption:"
+#~ msgstr "Šifravimas:"
+
+#~ msgid "Details:"
+#~ msgstr "Detalės:"
+
+#~ msgid "SSL version:"
+#~ msgstr "SSL versija:"
+
+#~ msgid "Certificate chain:"
+#~ msgstr "Liudijimų grandinė:"
+
+#~ msgid "Trusted:"
+#~ msgstr "Patikimas:"
+
+#~ msgid "Validity period:"
+#~ msgstr "Galiojimo laikotarpis:"
+
+#~ msgid "Serial number:"
+#~ msgstr "Serijinis numeris:"
+
+#~ msgid "MD5 digest:"
+#~ msgstr "MD5 santrauka:"
+
+#~ msgid "SHA1 digest:"
+#~ msgstr "MD5 santrauka:"
+
+#~ msgid "KMailService"
+#~ msgstr "KMail tarnyba"
+
+#~ msgid "Mail service"
+#~ msgstr "Pašto tarnyba"
+
+#~ msgid "Could not find a usable proxy configuration script"
+#~ msgstr ""
+#~ "Nepavyko rasti naudojimui tinkamo įgaliotojo serverio konfigūravimo "
+#~ "scenarijaus"
+
+#~ msgid ""
+#~ "Could not download the proxy configuration script:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Nepavyksta atsisiųsti įgaliotojo serverio konfigūravimo scenarijaus:\n"
+#~ "%1"
+
+#~ msgid "Could not download the proxy configuration script"
+#~ msgstr "Nepavyksta atsisiųsti įgaliotojo serverio konfigūravimo scenarijaus"
+
+#~ msgid ""
+#~ "The proxy configuration script is invalid:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Įgaliotojo serverio konfigūravimo scenarijus neteisingas:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The proxy configuration script returned an error:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Įgaliotojo serverio konfigūravimo scenarijus grąžino klaidą:\n"
+#~ "%1"
+
+#~ msgid "Error connecting to server."
+#~ msgstr "Klaida jungiantis prie serverio"
+
+#~ msgid "Not connected."
+#~ msgstr "Neprijungtas."
+
+#~ msgid "Connection timed out."
+#~ msgstr "Baigėsi prijungimo laikas."
+
+#~ msgid "Time out waiting for server interaction."
+#~ msgstr "Baigėsi laikas laukti atsakymo iš serverio."
+
+#~ msgid "Server said: \"%1\""
+#~ msgstr "Serveris pasakė: „%1“"
+
+#~ msgid "KSendBugMail"
+#~ msgstr "KSendBugMail"
+
+#~ msgid "(c) 2000 Stephan Kulow"
+#~ msgstr "(c) 2000 Stephan Kulow"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "Stephan Kulow"
+
+#~ msgid "Author"
+#~ msgstr "Autorius"
+
+#~ msgid "Subject line"
+#~ msgstr "Temos eilutė"
+
+#~ msgid "Recipient"
+#~ msgstr "Gavėjas"
+
+#~ msgid "telnet service"
+#~ msgstr "telnet tarnyba"
+
+#~ msgid "telnet protocol handler"
+#~ msgstr "telnet protokolo tvarkiklis"
+
+#~ msgid "You do not have permission to access the %1 protocol."
+#~ msgstr "Jūs neturite leidimo pasiekti %1 protokolo."
