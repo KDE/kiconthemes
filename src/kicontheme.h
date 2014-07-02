@@ -50,8 +50,10 @@ public:
      * @param name the name of the theme (e.g. "hicolor" or "keramik")
      * @param appName the name of the application. Can be null. This argument
      *        allows applications to have themed application icons.
+     * @param basePathHint optional hint where to search the app themes.
+     *        This is appended at the end of the search paths
      */
-    explicit KIconTheme(const QString &name, const QString &appName = QString());
+    explicit KIconTheme(const QString &name, const QString &appName = QString(), const QString &basePathHint = QString());
     ~KIconTheme();
 
     /**
