@@ -291,7 +291,7 @@ public:
      *
      * @deprecated use QIcon::fromTheme instead, which uses the iconloader internally
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
     KICONTHEMES_DEPRECATED QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0,
             bool canReturnNull = false);
 #endif
@@ -459,7 +459,7 @@ public Q_SLOTS:
      *
      * @deprecated since 5.0, use emitChange(Group)
      */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
     KICONTHEMES_DEPRECATED void newIconLoader();
 #endif
 
@@ -506,7 +506,7 @@ KICONTHEMES_EXPORT QPixmap DesktopIcon(const QString &name, int size = 0,
  * Load a desktop icon, and apply the necessary effects to get an IconSet.
  * @deprecated use QIcon::fromTheme instead
  */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
 KICONTHEMES_DEPRECATED_EXPORT QIcon DesktopIconSet(const QString &name, int size = 0);
 #endif
 
@@ -522,7 +522,7 @@ KICONTHEMES_EXPORT QPixmap BarIcon(const QString &name, int size = 0, int state 
  * Load a toolbar icon, and apply the necessary effects to get an IconSet.
  * @deprecated use QIcon::fromTheme instead
  */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
 KICONTHEMES_DEPRECATED_EXPORT QIcon BarIconSet(const QString &name, int size = 0);
 #endif
 
@@ -538,7 +538,7 @@ KICONTHEMES_EXPORT QPixmap SmallIcon(const QString &name, int size = 0,
  * Load a small icon, and apply the necessary effects to get an IconSet.
  * @deprecated use QIcon::fromTheme instead
  */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
 KICONTHEMES_DEPRECATED_EXPORT QIcon SmallIconSet(const QString &name, int size = 0);
 #endif
 
@@ -554,7 +554,7 @@ KICONTHEMES_EXPORT QPixmap MainBarIcon(const QString &name, int size = 0,
  * Load a main toolbar icon, and apply the effects to get an IconSet.
  * @deprecated use QIcon::fromTheme instead
  */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
 KICONTHEMES_DEPRECATED_EXPORT QIcon MainBarIconSet(const QString &name, int size = 0);
 #endif
 
@@ -569,7 +569,7 @@ KICONTHEMES_EXPORT QPixmap UserIcon(const QString &name, int state = KIconLoader
  * Load a user icon, and apply the effects to get an IconSet.
  * @deprecated use QIcon::fromTheme instead
  */
-#ifndef KDE_NO_DEPRECATED
+#ifndef KICONTHEMES_NO_DEPRECATED
 KICONTHEMES_DEPRECATED_EXPORT QIcon UserIconSet(const QString &name);
 #endif
 
