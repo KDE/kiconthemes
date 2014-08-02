@@ -1,0 +1,98 @@
+# translation of kio4.po to British English
+# Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2002,2003,2004, 2005, 2007, 2008.
+# Andrew Coles <andrew_coles@yahoo.co.uk>, 2004, 2005, 2009, 2010.
+# Brendan Osborne <danborne.kde@gmail.com>, 2007.
+# Steve Allewell <steve.allewell@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2010-12-05 11:28+0000\n"
+"Last-Translator: Andrew Coles <andrew_coles@yahoo.co.uk>\n"
+"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Select Icon"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Icon Source"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "S&ystem icons:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "O&ther icons:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Browse..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Search:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Search interactively for icon names (e.g. folder)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Actions"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animations"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Applications"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Categories"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Devices"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Emblems"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emotes"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Filesystems"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "International"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "Mimetypes"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Places"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
