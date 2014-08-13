@@ -17,9 +17,3 @@ in applications using the KDE Frameworks. Provided are:
 Other classes in this repository are used internally by the icon
 theme configuration dialogs, and should not be used by applications.
 
-## Links
-
-- Home page: <https://projects.kde.org/projects/frameworks/kiconthemes>
-- Mailing list: <https://mail.kde.org/mailman/listinfo/kde-frameworks-devel>
-- IRC channel: #kde-devel on Freenode
-- Git repository: <https://projects.kde.org/projects/frameworks/kiconthemes/repository>
