@@ -1,0 +1,105 @@
+# translation of kio4.po to Latvian
+# translation of kio4.po to
+# kio4.po tulkojums uz Latviešu valodu
+# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
+#
+# Maris Nartiss <maris.nartiss@gmail.com>, 2005.
+# Maris Nartiss <maris.kde@gmail.com>, 2006, 2007, 2008, 2009, 2011.
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008, 2010.
+# Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+# Einars Sprugis <einars8@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2011-07-06 12:49+0300\n"
+"Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
+"Language-Team: Latvian\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Izvēlēties ikonu"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Ikonu avots"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "&Sistēmas ikonas:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "Ci&tas ikonas:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Pārlūkot..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Meklēt:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktīvi meklēt ikonu nosaukumos (piem., mape)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Darbības"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animācijas"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Programmas"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Kategorijas"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Ierīces"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Emblēmas"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emocijas"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Failu sistēmas"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Internacionāli"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "MIME tipi"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Vietas"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Statuss"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikonu faili (*.png *.xpm *.svg *.svgz)"

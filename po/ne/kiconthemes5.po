@@ -1,0 +1,103 @@
+# translation of kio4.po to Nepali
+#
+# Pawan Chitrakar  <pchitrakar@gmail.com>, 2006.
+# Nabin Gautam <nabingautam2001@yahoo.com>, 2006.
+# Mahesh Subedi <submanesh@hotmail.com>, 2006.
+# Nabin Gautam <nabin@mpp.org.np>, 2006, 2007.
+# Mahesh Subedi <submanesh@gmail.com>, 2006.
+# shyam krishna bal <shyamkrishna_bal@yahoo.com>, 2007.
+# Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2007-08-22 16:04+0545\n"
+"Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "प्रतिमा चयन गर्नुहोस्"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "प्रतिमा स्रोत"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "प्रणाली प्रतिमा:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "अन्य प्रतिमा:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "ब्राउज गर्नुहोस्..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "खोज्नुहोस्:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "प्रतिमा नामहरू अनुरुप पारस्परिक रुपले खोज्नुहोस् (जस्तै: फोल्डर) ।"
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "कार्य"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "एनिमेसन"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "अनुप्रयोग"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "कोटि"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "यन्त्र"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "चिन्ह लगाउँछ"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "व्यक्त गर्दछ"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "फाइल प्रणाली"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "अन्तराष्ट्रिय"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "माइम प्रकार"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "राख्दछ"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "वस्तुस्थिति"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|प्रतिमा फाइल (*.png *.xpm *.svg *.svgz)"
