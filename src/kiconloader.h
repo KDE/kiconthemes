@@ -223,9 +223,8 @@ public:
      * @param state The icon state: @p DefaultState, @p ActiveState or
      * @p DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name. the emblem
-     *                 prefix is applied automatically to each name, e.g.
-     *                 "zip" becomes "emblem-zip"
+     * @param overlays a list of emblem icons to overlay, by name
+     *                 @see drawOverlays
      * @param path_store If not null, the path of the icon is stored here,
      *        if the icon was found. If the icon was not found @p path_store
      *        is unaltered even if the "unknown" pixmap was returned.
@@ -255,9 +254,8 @@ public:
      * @p DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
      * @param path_store If not null, the path of the icon is stored here.
-     * @param overlays a list of emblem icons to overlay, by name. the emblem
-     *                 prefix is applied automatically to each name, e.g.
-     *                 "zip" becomes "emblem-zip"
+     * @param overlays a list of emblem icons to overlay, by name
+     *                 @see drawOverlays
      * @return the QPixmap. Can not be null, the
      * "unknown" pixmap is returned when no appropriate icon has been found.
      */
@@ -447,7 +445,10 @@ public:
     /**
      * Draws overlays on the specified pixmap, it takes the width and height
      * of the pixmap into consideration
-     * @param overlays to draw
+     * @param overlays List of up to 4 overlays to blend over the pixmap. The first overlay
+     *                 will be in the bottom left corner, followed by bottom right, top right
+     *                 and top left. An empty QString can be used to leave the specific position
+     *                 blank.
      * @param pixmap to draw on
      * @since 4.7
      */
