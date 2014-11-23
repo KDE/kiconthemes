@@ -15,4 +15,4 @@
 
 #include "debug.h"
 
-Q_LOGGING_CATEGORY(KICONTHEMES, "kf5.kio.core")
+Q_LOGGING_CATEGORY(KICONTHEMES, "kf5.kiconthemes")
