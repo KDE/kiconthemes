@@ -10,6 +10,7 @@ set(kiconthemes_SRCS
   kiconengine.cpp
   kiconloader.cpp
   kicontheme.cpp
+  debug.cpp
 )
 
 add_library(KF5IconThemes ${kiconthemes_SRCS})
