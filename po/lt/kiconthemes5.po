@@ -1,0 +1,101 @@
+# translation of kio4.po to Lithuanian
+# Ričardas Čepas <rch@richard.eu.org>, 2002-2003.
+# Donatas Glodenis <dgvirtual@akl.lt>, 2004-2009.
+# Remigijus Jarmalavičius <remigijus@jarmalavicius.lt>, 2011.
+# Liudas Ališauskas <liudas.alisauskas@gmail.com>, 2011.
+# Liudas Alisauskas <liudas@akmc.lt>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2013-06-17 13:36+0300\n"
+"Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Parinkti ženkliuką"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Ženkliuko šaltinis"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "Sis&temos ženkliukai:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "&Kiti ženkliukai:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Naršyti..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Ieškoti:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktyviai ieškoti ženkliukų pavadinimų (pvz., aplankas)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Veiksmai"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animacijos"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Programos"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Įrenginiai"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Emblemos"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emocijų ženkleliai"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Failų sistemos"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Tarptautinė"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "Mime tipai"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Vietos"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Būsena"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ženkliukų failai (*.png *.xpm *.svg *.svgz)"
