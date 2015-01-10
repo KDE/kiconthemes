@@ -17,7 +17,7 @@ add_library(KF5IconThemes ${kiconthemes_SRCS})
 generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 
-target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KF5_INCLUDE_INSTALL_DIR}/KIconThemes>")
+target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes>")
 
 target_link_libraries(KF5IconThemes
   PUBLIC
@@ -53,9 +53,9 @@ install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF5_INSTALL_TARGETS_
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
   ${KIconThemes_HEADERS}
-  DESTINATION ${KF5_INCLUDE_INSTALL_DIR}/KIconThemes COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes COMPONENT Devel
 )
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KF5_INCLUDE_INSTALL_DIR}/KIconThemes)
+ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
