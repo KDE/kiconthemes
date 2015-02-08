@@ -1,0 +1,109 @@
+# translation of kio4.po to bosanski
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004, 2005.
+# Marko Rosic <roske@kde.org.yu>, 2003.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2004, 2005, 2006, 2008, 2009, 2010.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010.
+# KDE 4 <megaribi@epn.ba>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2013-12-30 16:55+0000\n"
+"Last-Translator: memsud <dedovic.memsud94@hotmail.com>\n"
+"Language-Team: bosanski <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Launchpad (build 16877)\n"
+"X-Launchpad-Export-Date: 2013-12-31 05:22+0000\n"
+"X-Associated-UI-Catalogs: desktop_kdebase kdelibs4\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Odaberi Ikonu"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Izvor ikone"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "&Sistemske ikone:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "&Druge ikone:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Pregledaj..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Traži:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktivno traži imena ikona (npr. direktorij)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Akcije"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animacije"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Programi"
+
+# >> @item:inlistbox System icons
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "kategorije"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Uređaji"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Amblemi"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emotikoni"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Datotečni sistemi"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Internacionalno"
+
+# >> @item:inlistbox System icons
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "MIME tipovi"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Mjesta"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|datoteke ikona (*.png *.xpm *.svg *.svgz)"
