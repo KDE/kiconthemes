@@ -45,8 +45,8 @@ class KIconCanvasDelegate : public QAbstractItemDelegate
 public:
     KIconCanvasDelegate(KIconCanvas *parent, QAbstractItemDelegate *defaultDelegate);
     ~KIconCanvasDelegate() {};
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
 private:
     KIconCanvas *m_iconCanvas;
     QAbstractItemDelegate *m_defaultDelegate;
