@@ -111,6 +111,15 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
 {
     Q_UNUSED(mode);
     Q_UNUSED(state);
+
+    if (!mIconLoader) {
+        return QList<QSize>();
+    }
+
+    if (mIconLoader->iconPath(mIconName, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
+        return QList<QSize>();
+    }
+
     return QList<QSize>() << QSize(16, 16)
            << QSize(22, 22)
            << QSize(32, 32)
