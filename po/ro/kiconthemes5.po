@@ -1,0 +1,104 @@
+# translation of kio4.po to
+# translation of kio4.po to
+# translation of kio4.po to
+# translation of kio4.po to Romanian
+# Claudiu Costin <claudiuc@kde.org>, 2002, 2003, 2004, 2005, 2006.
+# Claudiu Costin <claudiuc@geocities.com>, 2002.
+# Sergiu Bivol <sergiu@ase.md>, 2008, 2009.
+# Sergiu Bivol <sergiu.bivol@jurnaltv.md>, 2010, 2012, 2013.
+# Cristian Oneț <onet.cristian@gmail.com>, 2010, 2011, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2013-10-13 12:54+0300\n"
+"Last-Translator: Sergiu Bivol <sergiu@ase.md>\n"
+"Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Selectare pictogramă"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Sursă pictogramă"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "Pictograme de &sistem:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "&Alte pictograme:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Răsfoiește..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "C&aută:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Caută interactiv nume de pictograme (de ex.: dosar)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Acțiuni"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animații"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Aplicații"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Categorii"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Dispozitive"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Embleme"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Emoticoni"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Sisteme de fișiere"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Internațional"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "Tipuri MIME"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Locuri"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Stare"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Fișiere pictogramă (*.png *.xpm *.svg *.svgz)"

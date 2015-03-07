@@ -1,0 +1,113 @@
+# translation of kio4.po to Cymraeg
+# Translation of kdelibs.po to Cymraeg
+# Translation of clearfuzzytest.po to Cymraeg
+# translation of clearfuzzytest.po to Cymraeg
+# translation of clearfuzzy.po to Cymraeg
+# KDE yn Gymraeg.
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# www.kyfieithu.co.uk <kyfieithu@dotmon.com>, 2003.
+# Kgyfieithu <kyfieithu@dotmon.com>, 2003.
+# KGyfieithu <kyfieithu@dotmon.com>, 2003.
+# KD at KGyfieithu <kyfieithu@dotmon.com>, 2003, 2004.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2004-01-16 09:20+0000\n"
+"Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
+"Language-Team: Cymraeg <cy@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.2\n"
+"\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Dewis Eicon"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Ffynhonell Eicon"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "E&iconau cysawd:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "Ei&conau eraill:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Pori..."
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Chwilio:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Gweithrediadau"
+
+#: kicondialog.cpp:333
+#, fuzzy
+msgid "Animations"
+msgstr "Stopio Animeiddiadau"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Cymhwysiannau"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Categoriau"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Dyfeisiau"
+
+#: kicondialog.cpp:337
+#, fuzzy
+msgid "Emblems"
+msgstr "symudol"
+
+#: kicondialog.cpp:338
+#, fuzzy
+msgid "Emotes"
+msgstr "Cynnwys Gwag"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Cysodau ffeil"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Rhyngwladol"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "Mathau MIME"
+
+#: kicondialog.cpp:342
+#, fuzzy
+msgid "Places"
+msgstr "Tudalennau"
+
+#: kicondialog.cpp:343
+#, fuzzy
+msgid "Status"
+msgstr "Ymgychwyn"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ffeiliau eicon  (*.png *.xpm *.svg *.svgz)"
