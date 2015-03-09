@@ -69,8 +69,10 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
 
     Q_UNUSED(state)
 
+    qreal dpr = painter->device()->devicePixelRatio();
+
     const int kstate = qIconModeToKIconState(mode);
-    const int iconSize = qMin(rect.width(), rect.height());
+    const int iconSize = qMin(rect.width(), rect.height()) * dpr;
     const QPixmap pix = mIconLoader.data()->loadIcon(mIconName, KIconLoader::Desktop, iconSize, kstate, mOverlays);
     painter->drawPixmap(rect, pix);
 }
