@@ -241,6 +241,8 @@ KIconDialog::KIconDialog(QWidget *parent)
 
     d->mpLoader = KIconLoader::global();
     d->init();
+
+    installEventFilter(this);
 }
 
 KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
@@ -251,6 +253,8 @@ KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
 
     d->mpLoader = loader;
     d->init();
+
+    installEventFilter(this);
 }
 
 void KIconDialog::KIconDialogPrivate::init()
@@ -518,9 +522,6 @@ void KIconDialog::setCustomLocation(const QString &location)
 
 QString KIconDialog::openDialog()
 {
-    d->showIcons();
-    d->searchLine->setFocus();
-
     if (exec() == Accepted) {
         if (!d->custom.isEmpty()) {
             return d->custom;
@@ -541,8 +542,6 @@ QString KIconDialog::openDialog()
 void KIconDialog::showDialog()
 {
     setModal(false);
-    d->showIcons();
-    d->searchLine->setFocus();
     show();
 }
 
@@ -574,6 +573,16 @@ QString KIconDialog::getIcon(KIconLoader::Group group, KIconLoader::Context cont
     }
 
     return dlg.openDialog();
+}
+
+bool KIconDialog::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::Show) {
+        d->showIcons();
+        d->searchLine->setFocus();
+    }
+
+    return QObject::eventFilter(watched, event);
 }
 
 void KIconDialog::KIconDialogPrivate::_k_slotBrowse()
