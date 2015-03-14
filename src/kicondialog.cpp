@@ -228,6 +228,26 @@ void KIconCanvas::currentListItemChanged(QListWidgetItem *item)
     emit nameChanged((item != 0L) ? item->text() : QString());
 }
 
+// TODO KF6 remove and override KIconDialog::showEvent()
+class ShowEventFilter : public QObject
+{
+public:
+    explicit ShowEventFilter(QObject *parent) : QObject(parent) {};
+    virtual ~ShowEventFilter() {};
+
+private:
+    bool eventFilter(QObject *watched, QEvent *event)
+    {
+        if (event->type() == QEvent::Show) {
+            KIconDialog *q = static_cast<KIconDialog *>(parent());
+            q->d->showIcons();
+            q->d->searchLine->setFocus();
+        }
+
+        return QObject::eventFilter(watched, event);
+    }
+};
+
 /*
  * KIconDialog: Dialog for selecting icons. Both system and user
  * specified icons can be chosen.
@@ -242,7 +262,7 @@ KIconDialog::KIconDialog(QWidget *parent)
     d->mpLoader = KIconLoader::global();
     d->init();
 
-    installEventFilter(this);
+    installEventFilter(new ShowEventFilter(this));
 }
 
 KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
@@ -254,7 +274,7 @@ KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
     d->mpLoader = loader;
     d->init();
 
-    installEventFilter(this);
+    installEventFilter(new ShowEventFilter(this));
 }
 
 void KIconDialog::KIconDialogPrivate::init()
@@ -573,16 +593,6 @@ QString KIconDialog::getIcon(KIconLoader::Group group, KIconLoader::Context cont
     }
 
     return dlg.openDialog();
-}
-
-bool KIconDialog::eventFilter(QObject *watched, QEvent *event)
-{
-    if (event->type() == QEvent::Show) {
-        d->showIcons();
-        d->searchLine->setFocus();
-    }
-
-    return QObject::eventFilter(watched, event);
 }
 
 void KIconDialog::KIconDialogPrivate::_k_slotBrowse()

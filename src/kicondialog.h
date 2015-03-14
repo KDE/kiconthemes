@@ -142,11 +142,10 @@ protected Q_SLOTS:
     void slotOk();
 
 private:
-    // TODO KF6 override showEvent()
-    bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE;
-
     class KIconDialogPrivate;
     KIconDialogPrivate *const d;
+
+    friend class ShowEventFilter;
 
     Q_DISABLE_COPY(KIconDialog)
 
