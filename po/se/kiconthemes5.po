@@ -1,0 +1,100 @@
+# Translation of kiconthemes5 to Northern Sami
+#
+# Børre Gaup <boerre@skolelinux.no>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2014-04-27 20:57+0000\n"
+"PO-Revision-Date: 2012-06-03 01:00+0200\n"
+"Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
+"Language-Team: Northern Sami <i18n-sme@lister.ping.uio.no>\n"
+"Language: se\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kicondialog.cpp:240 kicondialog.cpp:250 kicondialog.cpp:589
+msgid "Select Icon"
+msgstr "Vállje govaža"
+
+#: kicondialog.cpp:265
+msgid "Icon Source"
+msgstr "Govašgáldu"
+
+#: kicondialog.cpp:274
+msgid "S&ystem icons:"
+msgstr "&Vuogádatgovažat:"
+
+#: kicondialog.cpp:281
+msgid "O&ther icons:"
+msgstr "Ea&rá govažat:"
+
+#: kicondialog.cpp:284
+msgid "&Browse..."
+msgstr "&Bláđđe …"
+
+#: kicondialog.cpp:295
+msgid "&Search:"
+msgstr "&Oza:"
+
+#: kicondialog.cpp:302
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Oza govašnamaid interaktiivalaččat (omd. máhpa)."
+
+#: kicondialog.cpp:332
+msgid "Actions"
+msgstr "Doaimmat"
+
+#: kicondialog.cpp:333
+msgid "Animations"
+msgstr "Animašuvnnat"
+
+#: kicondialog.cpp:334
+msgid "Applications"
+msgstr "Prográmmat"
+
+#: kicondialog.cpp:335
+msgid "Categories"
+msgstr "Lágit"
+
+#: kicondialog.cpp:336
+msgid "Devices"
+msgstr "Ovttadagat"
+
+#: kicondialog.cpp:337
+msgid "Emblems"
+msgstr "Emblemat"
+
+#: kicondialog.cpp:338
+msgid "Emotes"
+msgstr "Mojánat"
+
+#: kicondialog.cpp:339
+msgid "Filesystems"
+msgstr "Fiilavuogádagat"
+
+#: kicondialog.cpp:340
+msgid "International"
+msgstr "Riikkaidgaskasaš"
+
+#: kicondialog.cpp:341
+msgid "Mimetypes"
+msgstr "MIME-šlájat"
+
+#: kicondialog.cpp:342
+msgid "Places"
+msgstr "Báikkit"
+
+#: kicondialog.cpp:343
+msgid "Status"
+msgstr "Stáhtus"
+
+#: kicondialog.cpp:589
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Govašfiillat (*.png *.xpm *.svg *.svgz)"
