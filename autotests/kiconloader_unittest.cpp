@@ -28,8 +28,6 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 
-
-
 class KIconLoader_UnitTest : public QObject
 {
     Q_OBJECT
@@ -44,6 +42,9 @@ private Q_SLOTS:
     void initTestCase()
     {
         QStandardPaths::setTestModeEnabled(true);
+
+        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "mime/generic-icons");
+        QVERIFY(!genericIconsFiles.isEmpty()); // KIconLoader relies on fallbacks to generic icons (e.g. x-office-document), which comes from a shared-mime-info file. Make sure it's installed!
 
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "breeze");
@@ -111,7 +112,6 @@ private Q_SLOTS:
         // Remove icon cache
         const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
         QFile::remove(cacheFile);
-
 
         // Clear SHM cache
         KIconLoader iconLoader;
