@@ -38,10 +38,6 @@
 
 #include <kconfiggroup.h>
 
-// The following define exists because the Qt SVG renderer needs
-// to be improved. This will be removed soon. (ereslibre)
-#undef KDE_QT_SVG_RENDERER_FIXED
-
 class KIconTheme::KIconThemePrivate
 {
 public:
@@ -331,12 +327,9 @@ QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
 
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
-    KIconThemeDir *dir;
-
     // Try to find exact match
     QStringList result;
-    for (int i = 0; i < d->mDirs.size(); ++i) {
-        dir = d->mDirs.at(i);
+    foreach (KIconThemeDir* dir, d->mDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -384,7 +377,6 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context context) const
 {
     int dw;
-    KIconThemeDir *dir;
 
     // We want all the icons for a given context, but we prefer icons
     // of size size . Note that this may (will) include duplicate icons
@@ -394,8 +386,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
 
-    for (int i = 0; i < d->mDirs.size(); ++i) {
-        dir = d->mDirs.at(i);
+    foreach (KIconThemeDir *dir, d->mDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -427,9 +418,6 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
     QString tempPath;      // used to cache icon path if it exists
     int delta = -INT_MAX;  // current icon size delta of 'icon'
     int dw = INT_MAX;      // icon size delta of current directory
-    KIconThemeDir *dir;
-
-    const int dirCount = d->mDirs.size();
 
     // Search the directory that contains the icon which matches best to the requested
     // size. If there is no directory which matches exactly to the requested size, the
@@ -437,9 +425,7 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
     // - Take a directory having icons with a minimum difference to the requested size.
     // - Prefer directories that allow a downscaling even if the difference to
     //   the requested size is bigger than a directory where an upscaling is required.
-    for (int i = 0; i < dirCount; ++i) {
-        dir = d->mDirs.at(i);
-
+    foreach (KIconThemeDir *dir, d->mDirs) {
         if (match == KIconLoader::MatchExact) {
             if ((dir->type() == KIconLoader::Fixed) && (dir->size() != size)) {
                 continue;
@@ -615,15 +601,13 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type,
 /*** KIconThemeDir ***/
 
 KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
+    : mbValid(false)
+    , mType(KIconLoader::Fixed)
+    , mSize(config.readEntry("Size", 0))
+    , mMinSize(1)    // just set the variables to something
+    , mMaxSize(50)   // meaningful in case someone calls minSize or maxSize
+    , mBaseDirThemeDir(basedir + themedir)
 {
-    mbValid = false;
-    mBaseDirThemeDir = basedir + themedir;
-
-    mSize = config.readEntry("Size", 0);
-    mMinSize = 1;    // just set the variables to something
-    mMaxSize = 50;   // meaningful in case someone calls minSize or maxSize
-    mType = KIconLoader::Fixed;
-
     if (mSize == 0) {
         return;
     }
