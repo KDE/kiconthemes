@@ -75,6 +75,7 @@ public:
     bool write(QDataStream &out) const Q_DECL_OVERRIDE;
 
 private:
+    //TODO KF6: move those into the d-pointer
     QString mIconName;
     QStringList mOverlays;
     QPointer<KIconLoader> mIconLoader;

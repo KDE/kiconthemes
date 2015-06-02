@@ -314,6 +314,8 @@ public:
     QString appname;
 
     void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
+
+    QSet<QString> mAvailableIcons;
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -461,6 +463,7 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
 {
     KSharedConfig::openConfig()->reparseConfiguration();
     q->newIconLoader();
+    mAvailableIcons.clear();
     emit q->iconChanged(group);
 }
 
@@ -1619,6 +1622,16 @@ QPixmap KIconLoader::unknown()
     }
 
     return pix;
+}
+
+bool KIconLoader::hasIcon(const QString &name) const
+{
+    bool found = d->mAvailableIcons.contains(name);
+    if (!found && !iconPath(name, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
+        found = true;
+        d->mAvailableIcons.insert(name);
+    }
+    return found;
 }
 
 /*** the global icon loader ***/

@@ -454,6 +454,7 @@ public:
      */
     void drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIconLoader::Group group, int state = KIconLoader::DefaultState) const;
 
+    bool hasIcon(const QString &iconName) const;
 public Q_SLOTS:
     /**
      * Re-initialize the global icon loader

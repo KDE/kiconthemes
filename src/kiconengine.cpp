@@ -20,7 +20,9 @@
 
 #include <kiconloader.h>
 
+#include <KIconTheme>
 #include <QPainter>
+#include <QSet>
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
     : mIconName(iconName),
@@ -109,6 +111,8 @@ QString KIconEngine::iconName() const
     return mIconName;
 }
 
+Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>, sSizes, (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128) << QSize(256, 256)));
+
 QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) const
 {
     Q_UNUSED(mode);
@@ -118,17 +122,8 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
         return QList<QSize>();
     }
 
-    if (mIconLoader->iconPath(mIconName, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
-        return QList<QSize>();
-    }
-
-    return QList<QSize>() << QSize(16, 16)
-           << QSize(22, 22)
-           << QSize(32, 32)
-           << QSize(48, 48)
-           << QSize(64, 64)
-           << QSize(128, 128)
-           << QSize(256, 256);
+    bool found = mIconLoader->hasIcon(iconName());
+    return found ? *sSizes : QList<QSize>();
 }
 
 QString KIconEngine::key() const
