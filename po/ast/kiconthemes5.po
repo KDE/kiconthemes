@@ -1,0 +1,116 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# enolp <enolp@softastur.org>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4-v1\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2015-04-06 15:19+0100\n"
+"Last-Translator: enolp <enolp@softastur.org>\n"
+"Language-Team: Asturian <kde-i18n-doc@kde.org>\n"
+"Language: ast\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: asturian\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr ""
+
+#: kicondialog.cpp:289
+#, fuzzy
+msgid "Icon Source"
+msgstr "Fonte d'iconu"
+
+#: kicondialog.cpp:298
+#, fuzzy
+msgid "S&ystem icons:"
+msgstr "Iconos del s&istema:"
+
+#: kicondialog.cpp:305
+#, fuzzy
+msgid "O&ther icons:"
+msgstr "O&tros iconos:"
+
+#: kicondialog.cpp:308
+#, fuzzy
+msgid "&Browse..."
+msgstr "&Restolar"
+
+#: kicondialog.cpp:319
+#, fuzzy
+msgid "&Search:"
+msgstr "&Guetar:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:356
+#, fuzzy
+msgid "Actions"
+msgstr "Aiciones"
+
+#: kicondialog.cpp:357
+#, fuzzy
+msgid "Animations"
+msgstr "Animaciones"
+
+#: kicondialog.cpp:358
+#, fuzzy
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: kicondialog.cpp:359
+#, fuzzy
+msgid "Categories"
+msgstr "Estayes"
+
+#: kicondialog.cpp:360
+#, fuzzy
+msgid "Devices"
+msgstr "Preseos"
+
+#: kicondialog.cpp:361
+#, fuzzy
+msgid "Emblems"
+msgstr "Emblemes"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:363
+#, fuzzy
+msgid "Filesystems"
+msgstr "Sistemes de ficheros"
+
+#: kicondialog.cpp:364
+#, fuzzy
+msgid "International"
+msgstr "Internacional"
+
+#: kicondialog.cpp:365
+#, fuzzy
+msgid "Mimetypes"
+msgstr "Tribes MIME"
+
+#: kicondialog.cpp:366
+#, fuzzy
+msgid "Places"
+msgstr "Llugares"
+
+#: kicondialog.cpp:367
+#, fuzzy
+msgid "Status"
+msgstr "Estáu"
+
+#: kicondialog.cpp:608
+#, fuzzy
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ficheros d'iconu (*.png *.xpm *.svg *.svgz)"
