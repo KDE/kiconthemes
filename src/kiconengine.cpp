@@ -83,6 +83,10 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 {
     Q_UNUSED(state)
 
+    if (!size.isValid()) {
+        return QPixmap();
+    }
+
     if (!mIconLoader) {
         QPixmap pm(size);
         pm.fill(Qt::transparent);
