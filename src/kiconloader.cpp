@@ -92,7 +92,6 @@ public:
     void queryIcons(QStringList *lst, int size, KIconLoader::Context context) const;
     void queryIconsByContext(QStringList *lst, int size, KIconLoader::Context context) const;
     QString findIcon(const QString &name, int size, KIconLoader::MatchType match) const;
-    void printTree(QString &dbgString) const;
 
     KIconTheme *theme;
 };
@@ -105,15 +104,6 @@ KIconThemeNode::KIconThemeNode(KIconTheme *_theme)
 KIconThemeNode::~KIconThemeNode()
 {
     delete theme;
-}
-
-void KIconThemeNode::printTree(QString &dbgString) const
-{
-    /* This method doesn't have much sense anymore, so maybe it should
-       be removed in the (near?) future */
-    dbgString += '(';
-    dbgString += theme->name();
-    dbgString += ')';
 }
 
 void KIconThemeNode::queryIcons(QStringList *result,
@@ -559,12 +549,6 @@ bool KIconLoaderPrivate::initIconThemes()
     searchPaths.append("icons"); // was xdgdata-icon in KStandardDirs
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     searchPaths.append("pixmaps"); // was xdgdata-pixmaps in KStandardDirs
-
-#ifndef NDEBUG
-    QString dbgString = "Theme tree: ";
-    mpThemeRoot->printTree(dbgString);
-    qCDebug(KICONTHEMES) << dbgString;
-#endif
 
     return true;
 }
