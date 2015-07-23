@@ -127,7 +127,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // files are used..
 
     if (!appName.isEmpty() &&
-            (name == defaultThemeName() || name == "hicolor" || name == "locolor")) {
+            (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
             const QString cDir = *it + '/' + appName + "/icons/" + name;
@@ -182,7 +182,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mInherits = cfg.readEntry("Inherits", QStringList());
     if (name != defaultThemeName()) {
         for (QStringList::Iterator it = d->mInherits.begin(); it != d->mInherits.end(); ++it) {
-            if (*it == "default" || *it == "hicolor") {
+            if (*it == QLatin1String("default") || *it == QLatin1String("hicolor")) {
                 *it = defaultThemeName();
             }
         }
@@ -531,7 +531,7 @@ QStringList KIconTheme::list()
         const QStringList lst = dir.entryList(QDir::Dirs);
         QStringList::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-            if ((*it2 == ".") || (*it2 == "..") || (*it2).startsWith(QLatin1String("default."))) {
+            if ((*it2 == QLatin1String(".")) || (*it2 == QLatin1String("..")) || (*it2).startsWith(QLatin1String("default."))) {
                 continue;
             }
             if (!QFile::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop")) &&
@@ -612,53 +612,53 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         return;
     }
 
-    QString tmp = config.readEntry("Context");
-    if (tmp == "Devices") {
+    QString tmp = config.readEntry(QStringLiteral("Context"));
+    if (tmp == QLatin1String("Devices")) {
         mContext = KIconLoader::Device;
-    } else if (tmp == "MimeTypes") {
+    } else if (tmp == QLatin1String("MimeTypes")) {
         mContext = KIconLoader::MimeType;
-    } else if (tmp == "FileSystems") {
+    } else if (tmp == QLatin1String("FileSystems")) {
         mContext = KIconLoader::FileSystem;
-    } else if (tmp == "Applications") {
+    } else if (tmp == QLatin1String("Applications")) {
         mContext = KIconLoader::Application;
-    } else if (tmp == "Actions") {
+    } else if (tmp == QLatin1String("Actions")) {
         mContext = KIconLoader::Action;
-    } else if (tmp == "Animations") {
+    } else if (tmp == QLatin1String("Animations")) {
         mContext = KIconLoader::Animation;
-    } else if (tmp == "Categories") {
+    } else if (tmp == QLatin1String("Categories")) {
         mContext = KIconLoader::Category;
-    } else if (tmp == "Emblems") {
+    } else if (tmp == QLatin1String("Emblems")) {
         mContext = KIconLoader::Emblem;
-    } else if (tmp == "Emotes") {
+    } else if (tmp == QLatin1String("Emotes")) {
         mContext = KIconLoader::Emote;
-    } else if (tmp == "International") {
+    } else if (tmp == QLatin1String("International")) {
         mContext = KIconLoader::International;
-    } else if (tmp == "Places") {
+    } else if (tmp == QLatin1String("Places")) {
         mContext = KIconLoader::Place;
-    } else if (tmp == "Status") {
+    } else if (tmp == QLatin1String("Status")) {
         mContext = KIconLoader::StatusIcon;
-    } else if (tmp == "Stock") { // invalid, but often present context, skip warning
+    } else if (tmp == QLatin1String("Stock")) { // invalid, but often present context, skip warning
         return;
     } else {
         qWarning() << "Invalid Context=" << tmp << "line for icon theme: " << dir();
         return;
     }
-    tmp = config.readEntry("Type");
-    if (tmp == "Fixed") {
+    tmp = config.readEntry(QStringLiteral("Type"));
+    if (tmp == QLatin1String("Fixed")) {
         mType = KIconLoader::Fixed;
-    } else if (tmp == "Scalable") {
+    } else if (tmp == QLatin1String("Scalable")) {
         mType = KIconLoader::Scalable;
-    } else if (tmp == "Threshold") {
+    } else if (tmp == QLatin1String("Threshold")) {
         mType = KIconLoader::Threshold;
     } else {
         qWarning() << "Invalid Type=" << tmp << "line for icon theme: " << dir();
         return;
     }
     if (mType == KIconLoader::Scalable) {
-        mMinSize = config.readEntry("MinSize", mSize);
-        mMaxSize = config.readEntry("MaxSize", mSize);
+        mMinSize = config.readEntry(QStringLiteral("MinSize"), mSize);
+        mMaxSize = config.readEntry(QStringLiteral("MaxSize"), mSize);
     } else if (mType == KIconLoader::Threshold) {
-        mThreshold = config.readEntry("Threshold", 2);
+        mThreshold = config.readEntry(QStringLiteral("Threshold"), 2);
     }
     mbValid = true;
 }
