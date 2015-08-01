@@ -29,7 +29,7 @@ ecm_setup_version(${KF5_VERSION}
                   SOVERSION 5)
 
 # Dependencies
-set(REQUIRED_QT_VERSION 5.2.0)
+set(REQUIRED_QT_VERSION 5.3.0)
 find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5Svg ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
