@@ -15,4 +15,9 @@
 
 #include "debug.h"
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 4, 0)
+// logging category for this framework, default: log stuff >= warning
+Q_LOGGING_CATEGORY(KICONTHEMES, "kf5.kiconthemes", QtWarningMsg)
+#else
 Q_LOGGING_CATEGORY(KICONTHEMES, "kf5.kiconthemes")
+#endif
