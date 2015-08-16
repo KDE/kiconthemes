@@ -2,7 +2,7 @@
 Name=Breeze
 Comment=Breeze icon theme
 Hidden=false
-Directories=22x22/actions,22x22/animations,22x22/apps,22x22/mimetypes
+Directories=22x22/actions,22x22/animations,22x22/apps,22x22/mimetypes,22x22/appsNoContext,22x22/appsNoType,22x22/appsNoContextOrType
 Inherits=Oxygen
 
 [22x22/actions]
@@ -24,3 +24,14 @@ Type=Threshold
 Size=22
 Context=MimeTypes
 Type=Threshold
+
+[22x22/appsNoContext]
+Size=22
+Type=Threshold
+
+[22x22/appsNoType]
+Size=22
+Context=MimeTypes
+
+[22x22/appsNoContextOrType]
+Size=22

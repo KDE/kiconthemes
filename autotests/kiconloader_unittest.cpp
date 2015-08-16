@@ -88,9 +88,15 @@ private Q_SLOTS:
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/animations")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/apps")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/mimetypes")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoContext")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoType")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoContextOrType")));
         QVERIFY(QFile::copy(QStringLiteral(":/breeze.theme"), testIconsDir.filePath(QStringLiteral("breeze/index.theme"))));
         //kde.png is missing, it should fallback to oxygen
         //QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContext/iconindirectorywithoutcontext.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoType/iconindirectorywithouttype.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContextOrType/iconindirectorywithoutcontextortype.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/anim-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/animations/process-working.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/text-plain.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/application-octet-stream.png"))));
@@ -341,6 +347,30 @@ private Q_SLOTS:
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
         QVERIFY(!path.isEmpty());
+    }
+
+    void testPathsNoContextType() {
+        {
+            QString path;
+            KIconLoader::global()->loadIcon("iconindirectorywithoutcontext", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+            QVERIFY(path.endsWith("appsNoContext/iconindirectorywithoutcontext.png"));
+        }
+        {
+            QString path;
+            KIconLoader::global()->loadIcon("iconindirectorywithouttype", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+            QVERIFY(path.endsWith("appsNoType/iconindirectorywithouttype.png"));
+        }
+        {
+            QString path;
+            KIconLoader::global()->loadIcon("iconindirectorywithoutcontextortype", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+            QVERIFY(path.endsWith("appsNoContextOrType/iconindirectorywithoutcontextortype.png"));
+        }
     }
 
     void testLoadIconNoGroupOrSize() // #246016

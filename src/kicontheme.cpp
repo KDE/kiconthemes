@@ -639,11 +639,13 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         mContext = KIconLoader::StatusIcon;
     } else if (tmp == QLatin1String("Stock")) { // invalid, but often present context, skip warning
         return;
+    } else if (tmp.isEmpty()) {
+        // do nothing. key not required
     } else {
         qWarning() << "Invalid Context=" << tmp << "line for icon theme: " << dir();
         return;
     }
-    tmp = config.readEntry(QStringLiteral("Type"));
+    tmp = config.readEntry(QStringLiteral("Type"), QStringLiteral("Threshold"));
     if (tmp == QLatin1String("Fixed")) {
         mType = KIconLoader::Fixed;
     } else if (tmp == QLatin1String("Scalable")) {
