@@ -120,8 +120,7 @@ private Q_SLOTS:
         QFile::remove(cacheFile);
 
         // Clear SHM cache
-        KIconLoader iconLoader;
-        iconLoader.newIconLoader();
+        KIconLoader::global()->reconfigure(QString());
     }
 
     void testUnknownIconNotCached()
@@ -339,7 +338,6 @@ private Q_SLOTS:
         loader3.loadIcon("kde", KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
-        QEXPECT_FAIL("", "The combination addAppDir and reconfigure is not working right now.", Continue);
         QVERIFY(!path.isEmpty());
 
         path = QString();

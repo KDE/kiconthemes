@@ -420,11 +420,12 @@ public:
     KIconEffect *iconEffect() const;
 
     /**
-     * Called by newIconLoader to reconfigure the icon loader.
-     * @param _appname the new application name
+     * Reconfigure the icon loader, for instance to change the associated app name or extra search paths.
+     * This also clears the in-memory pixmap cache (even if the appname didn't change, which is useful for unittests)
+     * @param appname the application name (empty for the global iconloader)
      * @param extraSearchPaths additional search paths, either absolute or relative to GenericDataLocation
      */
-    void reconfigure(const QString &_appname, const QStringList &extraSearchPaths = QStringList());
+    void reconfigure(const QString &appname, const QStringList &extraSearchPaths = QStringList());
 
     /**
      * Returns the unknown icon. An icon that is used when no other icon

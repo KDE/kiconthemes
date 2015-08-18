@@ -161,6 +161,8 @@ public:
         appname.clear();
         searchPaths.clear();
         links.clear();
+        mIconThemeInited = false;
+        mThemesInTree.clear();
     }
 
     /**
