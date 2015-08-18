@@ -281,6 +281,25 @@ private Q_SLOTS:
         QCOMPARE(path2, path);
     }
 
+    void testHasIcon()
+    {
+        QVERIFY(KIconLoader::global()->hasIcon("kde"));
+        QVERIFY(KIconLoader::global()->hasIcon("kde"));
+        QVERIFY(KIconLoader::global()->hasIcon("process-working"));
+        QVERIFY(!KIconLoader::global()->hasIcon("no-such-icon-exists"));
+    }
+
+    void testIconPath()
+    {
+        // Test iconPath with non-existing icon
+        const QString path = KIconLoader::global()->iconPath("nope-no-such-icon", KIconLoader::Desktop, true /*canReturnNull*/);
+        QVERIFY2(path.isEmpty(), qPrintable(path));
+
+        const QString unknownPath = KIconLoader::global()->iconPath("nope-no-such-icon", KIconLoader::Desktop, false);
+        QVERIFY(!unknownPath.isEmpty());
+        QVERIFY(QFile::exists(unknownPath));
+    }
+
     void testPathStore()
     {
         QString path;
@@ -288,18 +307,23 @@ private Q_SLOTS:
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
         QVERIFY(!path.isEmpty());
+        QVERIFY(QFile::exists(path));
+
+        // Compare with iconPath()
+        QString path2 = KIconLoader::global()->iconPath("kde", KIconLoader::Desktop);
+        QCOMPARE(path2, path);
 
         path = QString();
         KIconLoader::global()->loadIcon("does_not_exist", KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path, true /* canReturnNull */);
-        QVERIFY(path.isEmpty());
+        QVERIFY2(path.isEmpty(), qPrintable(path));
 
         path = "some filler to check loadIcon() clears the variable";
         KIconLoader::global()->loadIcon("does_not_exist", KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path, true /* canReturnNull */);
-        QVERIFY(path.isEmpty());
+        QVERIFY2(path.isEmpty(), qPrintable(path));
 
         //Test that addAppDir doesn't break loading of icons from the old known paths
         KIconLoader loader;
