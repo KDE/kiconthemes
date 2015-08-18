@@ -72,6 +72,7 @@ private Q_SLOTS:
         QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/animations")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/apps")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/mimetypes")));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/32x32/apps")));
         QVERIFY(QFile::copy(QStringLiteral(":/oxygen.theme"), testIconsDir.filePath(QStringLiteral("oxygen/index.theme"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/kde.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/anim-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/animations/process-working.png"))));
@@ -82,8 +83,9 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/x-office-document.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/audio-x-generic.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/mimetypes/unknown.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-32x32.png"), testIconsDir.filePath(QStringLiteral("oxygen/32x32/apps/kde.png"))));
 
-        // set up a minimal Breeze icon theme, fallback to breeze
+        // set up a minimal Breeze icon theme, fallback to oxygen
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/actions")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/animations")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/apps")));
@@ -283,9 +285,15 @@ private Q_SLOTS:
 
     void testHasIcon()
     {
+        // Do everything twice to check code paths that might use a cache
         QVERIFY(KIconLoader::global()->hasIcon("kde"));
         QVERIFY(KIconLoader::global()->hasIcon("kde"));
+        KIconLoader iconLoader;
+        QVERIFY(iconLoader.hasIcon("kde"));
+
         QVERIFY(KIconLoader::global()->hasIcon("process-working"));
+        QVERIFY(KIconLoader::global()->hasIcon("process-working"));
+        QVERIFY(!KIconLoader::global()->hasIcon("no-such-icon-exists"));
         QVERIFY(!KIconLoader::global()->hasIcon("no-such-icon-exists"));
     }
 
@@ -303,15 +311,28 @@ private Q_SLOTS:
     void testPathStore()
     {
         QString path;
-        KIconLoader::global()->loadIcon("kde", KIconLoader::Desktop, 24,
+        QPixmap pix = KIconLoader::global()->loadIcon("kde", KIconLoader::Desktop, 0,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
+        QVERIFY2(path.contains("32x32"), qPrintable(path));
+        QCOMPARE(pix.size(), QSize(32, 32));
 
         // Compare with iconPath()
         QString path2 = KIconLoader::global()->iconPath("kde", KIconLoader::Desktop);
         QCOMPARE(path2, path);
+
+        // Now specify a size
+        pix = KIconLoader::global()->loadIcon("kde", KIconLoader::Desktop, 24,
+                                        KIconLoader::DefaultState, QStringList(),
+                                        &path);
+        QVERIFY(!path.isEmpty());
+        QVERIFY(QFile::exists(path));
+        QVERIFY2(path.contains("22x22"), qPrintable(path));
+        QCOMPARE(pix.size(), QSize(24, 24));
+
+        QVERIFY(KIconLoader::global()->hasIcon("kde"));
 
         path = QString();
         KIconLoader::global()->loadIcon("does_not_exist", KIconLoader::Desktop, 24,
