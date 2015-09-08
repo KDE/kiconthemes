@@ -209,21 +209,6 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         }
     }
 
-    // Expand available sizes for scalable icons to their full range
-    QMap<int, QList<int> > scIcons;
-    foreach (KIconThemeDir *dir, d->mDirs) {
-        if (!dir) {
-            break;
-        }
-        if ((dir->type() == KIconLoader::Scalable) && !scIcons.contains(dir->size())) {
-            QList<int> lst;
-            for (int i = dir->minSize(); i <= dir->maxSize(); ++i) {
-                lst += i;
-            }
-            scIcons[dir->size()] = lst;
-        }
-    }
-
     QStringList groups;
     groups += "Desktop";
     groups += "Toolbar";
@@ -240,11 +225,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         QList<int> exp;
         QList<int>::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-            if (scIcons.contains(*it2)) {
-                exp += scIcons[*it2];
-            } else {
                 exp += *it2;
-            }
         }
         d->mSizes[i] = exp;
     }
