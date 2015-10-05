@@ -1,0 +1,105 @@
+# Translation of kiconthemes5.po to Catalan
+# Copyright (C) 1998-2014 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Sebastià Pla i Sanz <sps@sastia.com>, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006.
+# Josep Ma. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
+# Albert Astals Cid <aacid@kde.org>, 2007.
+# Robert Millan <rmh@aybabtu.com>, 2009.
+# Antoni Bella Pérez <antonibella5@orange.es>, 2011, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes5\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2014-01-18 09:26+0100\n"
+"Last-Translator: Josep Ma. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Trieu icona"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Origen de la icona"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "Icones del &sistema:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "Al&tres icones:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Navega..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Cerca:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Cerca noms d'icona interactivament (p. ex. carpeta)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Accions"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animacions"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Aplicacions"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Categories"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Dispositius"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblemes"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Emoticones"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Sistemes de fitxers"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internacional"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Tipus MIME"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Llocs"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Estat"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Fitxers d'icona (*.png *.xpm *.svg *.svgz)"
