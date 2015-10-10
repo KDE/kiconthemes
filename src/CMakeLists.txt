@@ -29,6 +29,7 @@ target_link_libraries(KF5IconThemes
     KF5::WidgetsAddons # for KPixmapSequence family
     KF5::ItemViews      # for KListWidgetSearchLine
     KF5::ConfigWidgets # for KColorScheme
+    KF5::CoreAddons    # for kshareddatacache.h
 )
 
 set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION_STRING}
