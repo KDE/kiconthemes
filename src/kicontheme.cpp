@@ -542,7 +542,7 @@ void KIconTheme::reconfigure()
 // static
 QString KIconTheme::defaultThemeName()
 {
-    return QLatin1String("oxygen");
+    return QStringLiteral("breeze");
 }
 
 void KIconTheme::assignIconsToContextMenu(ContextMenus type,
