@@ -141,9 +141,16 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             themeDirs += basePathHint + '/' + name + '/';
         }
     }
-    // Find the theme description file. These are always global.
 
-    QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+    // Find the theme description file. These are either locally in the :/icons resource path or global.
+    QStringList icnlibs;
+
+    // local embedded icons have preference
+    icnlibs << QStringLiteral(":/icons");
+
+    // global icons
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "pixmaps", QStandardPaths::LocateDirectory);
 
@@ -503,7 +510,15 @@ QStringList KIconTheme::list()
         return *_theme_list();
     }
 
-    QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+    // Find the theme description file. These are either locally in the :/icons resource path or global.
+    QStringList icnlibs;
+
+    // local embedded icons have preference
+    icnlibs << QStringLiteral(":/icons");
+
+    // global icons
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "pixmaps", QStandardPaths::LocateDirectory);
 

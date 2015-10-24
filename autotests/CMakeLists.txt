@@ -13,4 +13,5 @@ endmacro()
 
 kiconthemes_tests(
   kiconloader_unittest
+  kiconloader_resourcethemetest
 )
