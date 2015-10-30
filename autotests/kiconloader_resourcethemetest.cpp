@@ -35,7 +35,7 @@ private Q_SLOTS:
     {
         QStandardPaths::setTestModeEnabled(true);
 
-        // set our test theme only the in :/icons
+        // set our test theme only present in :/icons
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "themeinresource");
         cg.sync();
@@ -43,12 +43,12 @@ private Q_SLOTS:
 
     void testThemeFound()
     {
-        // try to load icon that can only be found in resource theme and check we used the resource variant
+        // try to load icon that can only be found in resource theme and check we found it in the resource
         QString path;
         KIconLoader::global()->loadIcon("someiconintheme", KIconLoader::Desktop, 22,
                                     KIconLoader::DefaultState, QStringList(),
                                     &path);
-        QVERIFY(path == QLatin1String(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
+        QCOMPARE(path, QString(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
 
     }
 };
