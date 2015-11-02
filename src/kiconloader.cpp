@@ -317,19 +317,19 @@ class KIconLoaderGlobalData : public QObject
 public:
     KIconLoaderGlobalData()
     {
-        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "mime/generic-icons");
+        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
         //qCDebug(KICONTHEMES) << genericIconsFiles;
         Q_FOREACH (const QString &file, genericIconsFiles) {
             parseGenericIconsFiles(file);
         }
 
-        QDBusConnection::sessionBus().connect(QString(), "/KIconLoader", "org.kde.KIconLoader",
-                                              "iconChanged", this, SIGNAL(iconChanged(int)));
+        QDBusConnection::sessionBus().connect(QString(), QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"),
+                                              QStringLiteral("iconChanged"), this, SIGNAL(iconChanged(int)));
     }
 
     void emitChange(KIconLoader::Group group)
     {
-        QDBusMessage message = QDBusMessage::createSignal("/KIconLoader", "org.kde.KIconLoader", "iconChanged");
+        QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
         message.setArguments(QList<QVariant>() << int(group));
         QDBusConnection::sessionBus().send(message);
     }
@@ -490,7 +490,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
     }
 
     // Initialize icon cache
-    mIconCache = new KSharedDataCache("icon-cache", 10 * 1024 * 1024);
+    mIconCache = new KSharedDataCache(QStringLiteral("icon-cache"), 10 * 1024 * 1024);
     // Cost here is number of pixels, not size. So this is actually a bit
     // smaller.
     mPixmapCache.setMaxCost(10 * 1024 * 1024);
@@ -548,9 +548,9 @@ bool KIconLoaderPrivate::initIconThemes()
     searchPaths.append(appname + "/pics");
 
     // Add legacy icon dirs.
-    searchPaths.append("icons"); // was xdgdata-icon in KStandardDirs
+    searchPaths.append(QStringLiteral("icons")); // was xdgdata-icon in KStandardDirs
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
-    searchPaths.append("pixmaps"); // was xdgdata-pixmaps in KStandardDirs
+    searchPaths.append(QStringLiteral("pixmaps")); // was xdgdata-pixmaps in KStandardDirs
 
     return true;
 }
@@ -577,7 +577,7 @@ void KIconLoaderPrivate::addAppThemes(const QString &appname, const QString &the
 {
     initIconThemes();
 
-    KIconTheme *def = new KIconTheme("hicolor", appname, themeBaseDir);
+    KIconTheme *def = new KIconTheme(QStringLiteral("hicolor"), appname, themeBaseDir);
     if (!def->isValid()) {
         delete def;
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname, themeBaseDir);
@@ -612,7 +612,7 @@ void KIconLoaderPrivate::addBaseThemes(KIconThemeNode *node, const QString &appn
 
     addInheritedThemes(node, appname);
     addThemeByName(KIconTheme::defaultThemeName(), appname);
-    addThemeByName("hicolor", appname);
+    addThemeByName(QStringLiteral("hicolor"), appname);
 }
 
 void KIconLoaderPrivate::addInheritedThemes(KIconThemeNode *node, const QString &appname)
@@ -620,7 +620,7 @@ void KIconLoaderPrivate::addInheritedThemes(KIconThemeNode *node, const QString 
     const QStringList lst = node->theme->inherits();
 
     for (QStringList::ConstIterator it = lst.begin(); it != lst.end(); ++it) {
-        if ((*it) == "hicolor") {
+        if ((*it) == QLatin1String("hicolor")) {
             // The icon theme spec says that "hicolor" must be the very last
             // of all inherited themes, so don't add it here but at the very end
             // of addBaseThemes().
@@ -655,7 +655,7 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
     initIconThemes();
 
     QStringList list;
-    const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+    const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
     QStringList::ConstIterator it;
     char buf[1000];
     for (it = icnlibs.begin(); it != icnlibs.end(); ++it) {
@@ -663,7 +663,7 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         if (!dir.exists()) {
             continue;
         }
-        const QStringList lst = dir.entryList(QStringList("default.*"), QDir::Dirs);
+        const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
         QStringList::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
             if (!QFile::exists(*it + *it2 + "/index.desktop")
@@ -692,7 +692,7 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
                 || *it == QLatin1String("default.kde4")) {
             continue;
         }
-        addThemeByName(*it, "");
+        addThemeByName(*it, QLatin1String(""));
     }
 
     extraDesktopIconsLoaded = true;
@@ -762,7 +762,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % QLatin1Char('_')
            % QString::number(size)
            % QLatin1Char('_')
-           % overlays.join("_")
+           % overlays.join(QStringLiteral("_"))
            % (group >= 0 ? mpEffect.fingerprint(group, state)
               : *NULL_EFFECT_FINGERPRINT());
 }
@@ -915,7 +915,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
             }
         }
 
-        if (!path.isEmpty() && path.contains("/apps/")) {
+        if (!path.isEmpty() && path.contains(QStringLiteral("/apps/"))) {
             return path;
         }
     }
@@ -954,9 +954,9 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
             } else {
                 // From update-mime-database.c
                 static const QSet<QString> mediaTypes = QSet<QString>()
-                                                        << "text" << "application" << "image" << "audio"
-                                                        << "inode" << "video" << "message" << "model" << "multipart"
-                                                        << "x-content" << "x-epoc";
+                                                        << QStringLiteral("text") << QStringLiteral("application") << QStringLiteral("image") << QStringLiteral("audio")
+                                                        << QStringLiteral("inode") << QStringLiteral("video") << QStringLiteral("message") << QStringLiteral("model") << QStringLiteral("multipart")
+                                                        << QStringLiteral("x-content") << QStringLiteral("x-epoc");
                 // Shared-mime-info spec says:
                 // "If [generic-icon] is not specified then the mimetype is used to generate the
                 // generic icon by using the top-level media type (e.g. "video" in "video/ogg")
@@ -975,7 +975,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
 
 inline QString KIconLoaderPrivate::unknownIconPath(int size) const
 {
-    QString path = findMatchingIcon(QLatin1String("unknown"), size);
+    QString path = findMatchingIcon(QStringLiteral("unknown"), size);
     if (path.isEmpty()) {
         qCDebug(KICONTHEMES) << "Warning: could not find \"unknown\" icon for size" << size;
         return QString();
@@ -1085,7 +1085,7 @@ QPixmap KIconLoader::loadMimeTypeIcon(const QString &_iconName, KIconLoader::Gro
     const QPixmap pixmap = loadIcon(iconName, group, size, state, overlays, path_store, true);
     if (pixmap.isNull()) {
         // Icon not found, fallback to application/octet-stream
-        return loadIcon("application-octet-stream", group, size, state, overlays, path_store, false);
+        return loadIcon(QStringLiteral("application-octet-stream"), group, size, state, overlays, path_store, false);
     }
     return pixmap;
 }
@@ -1160,7 +1160,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
         if (absolutePath && !favIconOverlay) {
             path = name;
         } else {
-            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QString("text-html") : name, size);
+            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, size);
         }
     }
 
@@ -1334,7 +1334,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
     }
 
     foreach (const QString &entry, dir.entryList()) {
-        if (!(entry.left(4)).toUInt()) {
+        if (!(entry.leftRef(4)).toUInt()) {
             continue;
         }
 
@@ -1369,7 +1369,7 @@ int KIconLoader::currentSize(KIconLoader::Group group) const
 QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
 {
     const QDir dir(iconsDir);
-    const QStringList formats = QStringList() << "*.png" << "*.xpm" << "*.svg" << "*.svgz";
+    const QStringList formats = QStringList() << QStringLiteral("*.png") << QStringLiteral("*.xpm") << QStringLiteral("*.svg") << QStringLiteral("*.svgz");
     const QStringList lst = dir.entryList(formats, QDir::Files);
     QStringList result;
     QStringList::ConstIterator it;
@@ -1594,17 +1594,17 @@ int IconSize(KIconLoader::Group group)
 QPixmap KIconLoader::unknown()
 {
     QPixmap pix;
-    if (QPixmapCache::find("unknown", pix)) { //krazy:exclude=iconnames
+    if (QPixmapCache::find(QStringLiteral("unknown"), pix)) { //krazy:exclude=iconnames
         return pix;
     }
 
-    QString path = global()->iconPath("unknown", KIconLoader::Small, true); //krazy:exclude=iconnames
+    QString path = global()->iconPath(QStringLiteral("unknown"), KIconLoader::Small, true); //krazy:exclude=iconnames
     if (path.isEmpty()) {
         qCDebug(KICONTHEMES) << "Warning: Cannot find \"unknown\" icon.";
         pix = QPixmap(32, 32);
     } else {
         pix.load(path);
-        QPixmapCache::insert("unknown", pix); //krazy:exclude=iconnames
+        QPixmapCache::insert(QStringLiteral("unknown"), pix); //krazy:exclude=iconnames
     }
 
     return pix;

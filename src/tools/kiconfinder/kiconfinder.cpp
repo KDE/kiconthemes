@@ -26,11 +26,11 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    app.setApplicationName("kiconfinder");
+    app.setApplicationName(QStringLiteral("kiconfinder"));
     app.setApplicationVersion(KICONTHEMES_VERSION_STRING);
     QCommandLineParser parser;
     parser.setApplicationDescription(app.translate("main", "Finds an icon based on its name"));
-    parser.addPositionalArgument("iconname", app.translate("main", "The icon name to look for"));
+    parser.addPositionalArgument(QStringLiteral("iconname"), app.translate("main", "The icon name to look for"));
     parser.addHelpOption();
 
     parser.process(app);

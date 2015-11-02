@@ -132,7 +132,7 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
 
 QString KIconEngine::key() const
 {
-    return QString::fromLatin1("KIconEngine");
+    return QStringLiteral("KIconEngine");
 }
 
 QIconEngine *KIconEngine::clone() const

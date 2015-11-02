@@ -94,8 +94,8 @@ KIconCanvas::KIconCanvas(QWidget *parent)
     setMovement(Static);
     setIconSize(QSize(60, 60));
     connect(m_timer, SIGNAL(timeout()), this, SLOT(loadFiles()));
-    connect(this, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),
-            this, SLOT(currentListItemChanged(QListWidgetItem*)));
+    connect(this, &QListWidget::currentItemChanged,
+            this, &KIconCanvas::currentListItemChanged);
     setGridSize(QSize(100, 80));
 
     setItemDelegate(m_delegate);
@@ -154,7 +154,7 @@ void KIconCanvas::loadFiles()
         QString path = *it;
         QString ext = path.right(3).toUpper();
 
-        if (ext != "SVG" && ext != "VGZ") {
+        if (ext != QLatin1String("SVG") && ext != QLatin1String("VGZ")) {
             img.load(*it);
         } else {
 #ifndef _WIN32_WCE
@@ -350,7 +350,7 @@ void KIconDialog::KIconDialogPrivate::init()
     connect(mpCanvas, SIGNAL(finished()), q, SLOT(_k_slotFinished()));
 
     // When pressing Ok or Cancel, stop loading icons
-    connect(q, SIGNAL(finished(int)), mpCanvas, SLOT(stopLoading()));
+    connect(q, &QDialog::finished, mpCanvas, &KIconCanvas::stopLoading);
 
     static const char *const context_text[] = {
         I18N_NOOP("Actions"),
@@ -397,8 +397,8 @@ void KIconDialog::KIconDialogPrivate::init()
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(q);
     buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    connect(buttonBox, SIGNAL(accepted()), q, SLOT(slotOk()));
-    connect(buttonBox, SIGNAL(rejected()), q, SLOT(reject()));
+    connect(buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
+    connect(buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
     top->addWidget(buttonBox);
 
     // Make the dialog a little taller

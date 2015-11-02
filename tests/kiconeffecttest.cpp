@@ -19,7 +19,7 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     QGridLayout *layout = new QGridLayout(frame);
     layout->setColumnStretch(1, 1);
 
-    img = QImage(KIconLoader::global()->iconPath("application-x-cd-image", -128));
+    img = QImage(KIconLoader::global()->iconPath(QStringLiteral("application-x-cd-image"), -128));
     QImage tmp;
     QSlider *slider;
 
@@ -28,10 +28,10 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[0] = new QLabel(frame);
     lbl[0]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[0], 0, 0, 3, 1);
-    layout->addWidget(new QLabel("Grayscale", frame), 0, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Grayscale"), frame), 0, 1);
     slider = new QSlider(Qt::Horizontal, frame);
     slider->setRange(0, 100);
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotGray(int)));
+    connect(slider, &QAbstractSlider::valueChanged, this, &KIconEffectTestWidget::slotGray);
     layout->addWidget(slider, 1, 1);
 
     tmp = img;
@@ -39,10 +39,10 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[1] = new QLabel(frame);
     lbl[1]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[1], 4, 0, 3, 1);
-    layout->addWidget(new QLabel("Monochrome", frame), 4, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Monochrome"), frame), 4, 1);
     slider = new QSlider(Qt::Horizontal, frame);
     slider->setRange(0, 100);
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotMonochrome(int)));
+    connect(slider, &QAbstractSlider::valueChanged, this, &KIconEffectTestWidget::slotMonochrome);
     layout->addWidget(slider, 5, 1);
 
     tmp = img;
@@ -50,10 +50,10 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[2] = new QLabel(frame);
     lbl[2]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[2], 8, 0, 3, 1);
-    layout->addWidget(new QLabel("Desaturate", frame), 8, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Desaturate"), frame), 8, 1);
     slider = new QSlider(Qt::Horizontal, frame);
     slider->setRange(0, 100);
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotDesaturate(int)));
+    connect(slider, &QAbstractSlider::valueChanged, this, &KIconEffectTestWidget::slotDesaturate);
     layout->addWidget(slider, 9, 1);
 
     tmp = img;
@@ -61,10 +61,10 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[3] = new QLabel(frame);
     lbl[3]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[3], 12, 0, 3, 1);
-    layout->addWidget(new QLabel("Gamma", frame), 12, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Gamma"), frame), 12, 1);
     slider = new QSlider(Qt::Horizontal, frame);
     slider->setRange(0, 100);
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotGamma(int)));
+    connect(slider, &QAbstractSlider::valueChanged, this, &KIconEffectTestWidget::slotGamma);
     layout->addWidget(slider, 13, 1);
 
     tmp = img;
@@ -74,13 +74,13 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[4] = new QLabel(frame);
     lbl[4]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[4], 16, 0, 4, 1);
-    layout->addWidget(new QLabel("Colorize", frame), 16, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Colorize"), frame), 16, 1);
     slider = new QSlider(Qt::Horizontal, frame);
     slider->setRange(0, 100);
-    connect(slider, SIGNAL(valueChanged(int)), this, SLOT(slotColorizeValue(int)));
+    connect(slider, &QAbstractSlider::valueChanged, this, &KIconEffectTestWidget::slotColorizeValue);
     layout->addWidget(slider, 17, 1);
     KColorButton *btn = new KColorButton(colorizedColor, frame);
-    connect(btn, SIGNAL(changed(QColor)), this, SLOT(slotColorizeColor(QColor)));
+    connect(btn, &KColorButton::changed, this, &KIconEffectTestWidget::slotColorizeColor);
     layout->addWidget(btn, 18, 1);
 
     tmp = img;
@@ -88,7 +88,7 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     lbl[5] = new QLabel(frame);
     lbl[5]->setPixmap(QPixmap::fromImage(tmp));
     layout->addWidget(lbl[5], 20, 0, 3, 1);
-    layout->addWidget(new QLabel("Semitransparent", frame), 20, 1);
+    layout->addWidget(new QLabel(QStringLiteral("Semitransparent"), frame), 20, 1);
 
     layout->setRowStretch(21, 1);
     frame->resize(frame->sizeHint());

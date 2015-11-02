@@ -67,25 +67,25 @@ void KIconEffect::init()
     //FIXME: this really should be using KIconLoader::metaObject() to guarantee synchronization
     // performance wise it's also practically guaranteed to be faster
     QStringList groups;
-    groups += "Desktop";
-    groups += "Toolbar";
-    groups += "MainToolbar";
-    groups += "Small";
-    groups += "Panel";
-    groups += "Dialog";
+    groups += QStringLiteral("Desktop");
+    groups += QStringLiteral("Toolbar");
+    groups += QStringLiteral("MainToolbar");
+    groups += QStringLiteral("Small");
+    groups += QStringLiteral("Panel");
+    groups += QStringLiteral("Dialog");
 
     QStringList states;
-    states += "Default";
-    states += "Active";
-    states += "Disabled";
+    states += QStringLiteral("Default");
+    states += QStringLiteral("Active");
+    states += QStringLiteral("Disabled");
 
     QStringList::ConstIterator it, it2;
-    QString _togray("togray");
-    QString _colorize("colorize");
-    QString _desaturate("desaturate");
-    QString _togamma("togamma");
-    QString _none("none");
-    QString _tomonochrome("tomonochrome");
+    QString _togray(QStringLiteral("togray"));
+    QString _colorize(QStringLiteral("colorize"));
+    QString _desaturate(QStringLiteral("desaturate"));
+    QString _togamma(QStringLiteral("togamma"));
+    QString _none(QStringLiteral("none"));
+    QString _tomonochrome(QStringLiteral("tomonochrome"));
 
     for (it = groups.constBegin(), i = 0; it != groups.constEnd(); ++it, ++i) {
         // Default effects

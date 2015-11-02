@@ -149,10 +149,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     icnlibs << QStringLiteral(":/icons");
 
     // global icons
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
 
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "pixmaps", QStandardPaths::LocateDirectory);
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
     QString fileName, mainSection;
     for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
@@ -163,11 +163,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
                 if (QFile::exists(cDir + "index.theme")) {
                     d->mDir = cDir;
                     fileName = d->mDir + "index.theme";
-                    mainSection = "Icon Theme";
+                    mainSection = QStringLiteral("Icon Theme");
                 } else if (QFile::exists(cDir + "index.desktop")) {
                     d->mDir = cDir;
                     fileName = d->mDir + "index.desktop";
-                    mainSection = "KDE Icon Theme";
+                    mainSection = QStringLiteral("KDE Icon Theme");
                 }
             }
         }
@@ -217,12 +217,12 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     }
 
     QStringList groups;
-    groups += "Desktop";
-    groups += "Toolbar";
-    groups += "MainToolbar";
-    groups += "Small";
-    groups += "Panel";
-    groups += "Dialog";
+    groups += QStringLiteral("Desktop");
+    groups += QStringLiteral("Toolbar");
+    groups += QStringLiteral("MainToolbar");
+    groups += QStringLiteral("Small");
+    groups += QStringLiteral("Panel");
+    groups += QStringLiteral("Dialog");
     const int defDefSizes[] = { 32, 22, 22, 16, 32, 32 };
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (int i = 0; i < groups.size(); ++i) {
@@ -517,10 +517,10 @@ QStringList KIconTheme::list()
     icnlibs << QStringLiteral(":/icons");
 
     // global icons
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "icons", QStandardPaths::LocateDirectory);
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
 
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "pixmaps", QStandardPaths::LocateDirectory);
+    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
     Q_FOREACH (const QString &it, icnlibs) {
         QDir dir(it);
@@ -557,7 +557,7 @@ void KIconTheme::reconfigure()
 // static
 QString KIconTheme::defaultThemeName()
 {
-    return QLatin1String("oxygen");
+    return QStringLiteral("oxygen");
 }
 
 void KIconTheme::assignIconsToContextMenu(ContextMenus type,
@@ -574,14 +574,14 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type,
             return;
         }
 
-        actions[UndoAct]->setIcon(QIcon::fromTheme("edit-undo"));
-        actions[RedoAct]->setIcon(QIcon::fromTheme("edit-redo"));
-        actions[CutAct]->setIcon(QIcon::fromTheme("edit-cut"));
-        actions[CopyAct]->setIcon(QIcon::fromTheme("edit-copy"));
-        actions[PasteAct]->setIcon(QIcon::fromTheme("edit-paste"));
-        actions[ClearAct]->setIcon(QIcon::fromTheme("edit-clear"));
-        actions[DeleteAct]->setIcon(QIcon::fromTheme("edit-delete"));
-        actions[SelectAllAct]->setIcon(QIcon::fromTheme("edit-select-all"));
+        actions[UndoAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-undo")));
+        actions[RedoAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-redo")));
+        actions[CutAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-cut")));
+        actions[CopyAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
+        actions[PasteAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-paste")));
+        actions[ClearAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear")));
+        actions[DeleteAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
+        actions[SelectAllAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-select-all")));
         break;
 
     case ReadOnlyText:
@@ -589,7 +589,7 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type,
             return;
         }
 
-        actions[0]->setIcon(QIcon::fromTheme("edit-copy"));
+        actions[0]->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
         break;
     }
 }
@@ -680,7 +680,7 @@ QStringList KIconThemeDir::iconList() const
 {
     const QDir icondir = dir();
 
-    const QStringList formats = QStringList() << "*.png" << "*.svg" << "*.svgz" << "*.xpm";
+    const QStringList formats = QStringList() << QStringLiteral("*.png") << QStringLiteral("*.svg") << QStringLiteral("*.svgz") << QStringLiteral("*.xpm");
     const QStringList lst = icondir.entryList(formats, QDir::Files);
 
     QStringList result;

@@ -45,7 +45,7 @@ private Q_SLOTS:
     {
         // try to load icon that can only be found in resource theme and check we found it in the resource
         QString path;
-        KIconLoader::global()->loadIcon("someiconintheme", KIconLoader::Desktop, 22,
+        KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22,
                                     KIconLoader::DefaultState, QStringList(),
                                     &path);
         QCOMPARE(path, QString(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
