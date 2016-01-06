@@ -152,7 +152,7 @@ public:
 
     /**
      * Lookup an icon in the theme.
-     * @param name The name of the icon, without extension.
+     * @param name The name of the icon, with extension.
      * @param size The desired size of the icon.
      * @param match The matching mode. KIconLoader::MatchExact returns an icon
      * only if matches exactly. KIconLoader::MatchBest returns the best matching
