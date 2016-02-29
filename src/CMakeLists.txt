@@ -12,6 +12,7 @@ set(kiconthemes_SRCS
   kicontheme.cpp
   debug.cpp
 )
+ecm_qt_declare_logging_category(kiconthemes_SRCS HEADER debug.h IDENTIFIER  KICONTHEMES CATEGORY_NAME kf5.kiconthemes)
 
 add_library(KF5IconThemes ${kiconthemes_SRCS})
 generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
