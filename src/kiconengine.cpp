@@ -115,7 +115,7 @@ QString KIconEngine::iconName() const
     return mIconName;
 }
 
-Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>, sSizes, (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128) << QSize(256, 256)));
+Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>, sSizes, (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128) << QSize(256, 256)))
 
 QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) const
 {
