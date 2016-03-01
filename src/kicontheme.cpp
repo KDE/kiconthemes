@@ -602,6 +602,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
     , mSize(config.readEntry("Size", 0))
     , mMinSize(1)    // just set the variables to something
     , mMaxSize(50)   // meaningful in case someone calls minSize or maxSize
+    , mThreshold(2)
     , mBaseDirThemeDir(basedir + themedir)
 {
     if (mSize == 0) {
