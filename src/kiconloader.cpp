@@ -904,11 +904,6 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
     // looking for it, we can only go by the path found.
     foreach (KIconThemeNode *themeNode, links) {
         for (int i = 0; i < 4; i++) {
-            path = themeNode->theme->iconPath(name + ext[i], size, KIconLoader::MatchExact);
-            if (!path.isEmpty()) {
-                return path;
-            }
-
             path = themeNode->theme->iconPath(name + ext[i], size, KIconLoader::MatchBest);
             if (!path.isEmpty()) {
                 return path;
@@ -927,11 +922,6 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
             //qCDebug(KICONTHEMES) << "Looking up" << currentName;
 
             for (int i = 0; i < 4; i++) {
-                path = themeNode->theme->iconPath(currentName + ext[i], size, KIconLoader::MatchExact);
-                if (!path.isEmpty()) {
-                    return path;
-                }
-
                 path = themeNode->theme->iconPath(currentName + ext[i], size, KIconLoader::MatchBest);
                 if (!path.isEmpty()) {
                     return path;

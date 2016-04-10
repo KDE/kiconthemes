@@ -21,6 +21,7 @@
 
 #include <QStandardPaths>
 #include <QTest>
+#include <QRegularExpression>
 #include <QTemporaryDir>
 
 #include <kpixmapsequence.h>
@@ -31,12 +32,17 @@
 class KIconLoader_UnitTest : public QObject
 {
     Q_OBJECT
+public:
+    KIconLoader_UnitTest()
+        : testSizes({ 12, 22, 32, 42, 82, 132, 243 })
+    {}
 
 private:
     QDir testDataDir;
     QDir testIconsDir;
     QString appName;
     QDir appDataDir;
+    const QVector<int> testSizes;
 
 private Q_SLOTS:
     void initTestCase()
@@ -93,7 +99,9 @@ private Q_SLOTS:
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoContext")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoType")));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("breeze/22x22/appsNoContextOrType")));
-        QVERIFY(QFile::copy(QStringLiteral(":/breeze.theme"), testIconsDir.filePath(QStringLiteral("breeze/index.theme"))));
+
+        const QString breezeThemeFile = testIconsDir.filePath(QStringLiteral("breeze/index.theme"));
+        QVERIFY(QFile::copy(QStringLiteral(":/breeze.theme"), breezeThemeFile));
         //kde.png is missing, it should fallback to oxygen
         //QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/kde.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContext/iconindirectorywithoutcontext.png"))));
@@ -107,6 +115,29 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/x-office-document.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/audio-x-generic.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/unknown.png"))));
+
+        QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner|QFileDevice::WriteOwner));
+        KConfig configFile(breezeThemeFile);
+        KConfigGroup iconThemeGroup = configFile.group("Icon Theme");
+        QVERIFY(iconThemeGroup.isValid());
+        QStringList dirs = iconThemeGroup.readEntry("Directories", QStringList());
+        Q_FOREACH(int i, testSizes) {
+            const QString relDir = QStringLiteral("%1x%1/emblems").arg(i);
+            const QString dir = testIconsDir.filePath(QStringLiteral("breeze/") + relDir);
+            QVERIFY(QDir().mkpath(dir));
+
+            QPixmap img(i, i);
+            img.fill(Qt::red);
+            QVERIFY(img.save(dir + "/red.png"));
+
+            dirs += relDir;
+            KConfigGroup dirGroup = configFile.group(relDir);
+            dirGroup.writeEntry("Size", i);
+            dirGroup.writeEntry("Context", "Emblems");
+            dirGroup.writeEntry("Type", "Fixed");
+        }
+        iconThemeGroup.writeEntry("Directories", dirs);
+        QVERIFY(configFile.sync());
     }
 
     void cleanupTestCase()
@@ -426,6 +457,31 @@ private Q_SLOTS:
     {
         KPixmapSequence seq =  KIconLoader::global()->loadPixmapSequence(QStringLiteral("process-working"), 22);
         QVERIFY(seq.isValid());
+    }
+
+    void testAppropriateSizes() {
+        const KIconLoader iconLoader;
+        const QRegularExpression rx(QStringLiteral("/(\\d+)x\\d+/"));
+        for(int i=1; i<testSizes.last()*1.2; i+=3) {
+            QString path;
+            QPixmap pix = iconLoader.loadIcon(QStringLiteral("red"), KIconLoader::Desktop, i, KIconLoader::DefaultState, QStringList(), &path);
+            QVERIFY(!path.isEmpty());
+            QVERIFY(!pix.isNull());
+
+            const QRegularExpressionMatch match = rx.match(path);
+            QVERIFY(match.isValid());
+
+            const int foundSize = match.captured(1).toInt();
+            int ts = testSizes.last();
+            for (int w = 0; w < testSizes.size(); w++) {
+                const int curr = testSizes[w];
+                if (curr >= i) {
+                    ts = curr;
+                    break;
+                }
+            }
+            QVERIFY(ts == foundSize);
+        }
     }
 };
 
