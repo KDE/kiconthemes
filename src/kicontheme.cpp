@@ -524,10 +524,10 @@ QStringList KIconTheme::list()
 
     Q_FOREACH (const QString &it, icnlibs) {
         QDir dir(it);
-        const QStringList lst = dir.entryList(QDir::Dirs);
+        const QStringList lst = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
         QStringList::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-            if ((*it2 == QLatin1String(".")) || (*it2 == QLatin1String("..")) || (*it2).startsWith(QLatin1String("default."))) {
+            if ((*it2).startsWith(QLatin1String("default."))) {
                 continue;
             }
             if (!QFile::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop")) &&
