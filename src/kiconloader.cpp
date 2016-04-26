@@ -886,14 +886,10 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
 {
     const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
 
-    const char *const ext[4] = { ".png", ".svgz", ".svg", ".xpm" };
-
     foreach (KIconThemeNode *themeNode, links) {
-        for (int i = 0; i < 4; i++) {
-            const QString path = themeNode->theme->iconPath(name + ext[i], size, KIconLoader::MatchBest);
-            if (!path.isEmpty()) {
-                return path;
-            }
+        const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest);
+        if (!path.isEmpty()) {
+            return path;
         }
     }
 
@@ -905,13 +901,9 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
         while (!currentName.isEmpty()) {
             //qCDebug(KICONTHEMES) << "Looking up" << currentName;
 
-            for (int i = 0; i < 4; i++) {
-                path = themeNode->theme->iconPath(currentName + ext[i], size, KIconLoader::MatchBest);
-                if (!path.isEmpty()) {
-                    return path;
-                }
-            }
-            //qCDebug(KICONTHEMES) << "Looking up" << currentName;
+            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest);
+            if (!path.isEmpty())
+                return path;
 
             if (genericFallback) {
                 // we already tested the base name

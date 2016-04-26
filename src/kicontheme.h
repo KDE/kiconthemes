@@ -163,6 +163,20 @@ public:
     QString iconPath(const QString &name, int size, KIconLoader::MatchType match) const;
 
     /**
+     * Lookup an icon in the theme.
+     * @param name The name of the icon, without extension.
+     * @param size The desired size of the icon.
+     * @param match The matching mode. KIconLoader::MatchExact returns an icon
+     * only if matches exactly. KIconLoader::MatchBest returns the best matching
+     * icon.
+     * @return An absolute path to the file of the icon if it's found, QString() otherwise.
+     * @see KIconLoader::isValid will return true, and false otherwise.
+     *
+     * @since 5.22
+     */
+    QString iconPathByName(const QString &name, int size, KIconLoader::MatchType match) const;
+
+    /**
      * Returns true if the theme has any icons for the given context.
      */
     bool hasContext(KIconLoader::Context context) const;

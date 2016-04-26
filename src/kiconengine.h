@@ -32,6 +32,10 @@ class KIconLoader;
  * However, it should not be difficult to extend with features such as SVG
  * rendered icons.
  *
+ * Icon themes specifying a KDE-Extensions string list setting, will limit
+ * themselves to checking these extensions exclusively, in the order specified
+ * in the setting.
+ *
  * @author Hamish Rodda <rodda@kde.org>
  */
 class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // only exported for kdelibs4support's KIcon

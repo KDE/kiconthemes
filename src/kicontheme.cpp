@@ -52,6 +52,7 @@ public:
     int mDepth;
     QString mDir, mName, mInternalName, mDesc;
     QStringList mInherits;
+    QStringList mExtensions;
     QList<KIconThemeDir *> mDirs;
 };
 Q_GLOBAL_STATIC(QString, _theme)
@@ -198,6 +199,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->hidden = cfg.readEntry("Hidden", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
+    d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ ".png", ".svgz", ".svg", ".xpm" });
 
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList());
     for (QStringList::ConstIterator it = dirs.begin(); it != dirs.end(); ++it) {
@@ -398,6 +400,16 @@ bool KIconTheme::hasContext(KIconLoader::Context context) const
         }
     }
     return false;
+}
+
+QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match) const
+{
+    foreach(const QString &current, d->mExtensions) {
+        const QString path = iconPath(iconName + current, size, match);
+        if (!path.isEmpty())
+            return path;
+    }
+    return QString();
 }
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match) const
