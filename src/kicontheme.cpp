@@ -230,13 +230,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     for (int i = 0; i < groups.size(); ++i) {
         const QString group = groups.at(i);
         d->mDefSize[i] = cg.readEntry(group + "Default", defDefSizes[i]);
-        const QList<int> lst = cg.readEntry(group + "Sizes", QList<int>());
-        QList<int> exp;
-        QList<int>::ConstIterator it2;
-        for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-                exp += *it2;
-        }
-        d->mSizes[i] = exp;
+        d->mSizes[i] = cg.readEntry(group + "Sizes", QList<int>());
     }
 }
 
@@ -307,10 +301,9 @@ int KIconTheme::defaultSize(KIconLoader::Group group) const
 
 QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
 {
-    QList<int> empty;
     if ((group < 0) || (group >= KIconLoader::LastGroup)) {
         qWarning() << "Illegal icon group: " << group;
-        return empty;
+        return QList<int>();
     }
     return d->mSizes[group];
 }
