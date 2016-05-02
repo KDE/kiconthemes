@@ -53,7 +53,7 @@ public:
     QString mDir, mName, mInternalName, mDesc;
     QStringList mInherits;
     QStringList mExtensions;
-    QList<KIconThemeDir *> mDirs;
+    QVector<KIconThemeDir *> mDirs;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
