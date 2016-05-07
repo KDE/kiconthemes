@@ -1,0 +1,99 @@
+# translation of kio4.po to Uzbek
+# translation of kio4.po to
+# Copyright (C) 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+#
+# Mashrab Kuvatov <kmashrab@uni-bremen.de>, 2003, 2004, 2005, 2006, 2008, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2009-10-14 00:15+0200\n"
+"Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
+"Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Нишончани танлаш"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Нишончалар манбаси"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "&Тизимнинг нишончалари:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "&Бошқа нишончалар:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Танлаш"
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "Қ&идириш:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Амаллар"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Анимация"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Дастурлар"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Туркумлар"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Ускуналар"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Файл тизимлари"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Халқаро"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "MIME турлари"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Жойлар"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Ҳолат"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Нишонча файллари (*.png *.xpm *.svg *.svgz)"

@@ -1,0 +1,100 @@
+# translation of kio4.po to Irish
+# Copyright (C) 1999,2002,2003,2004 Free Software Foundation, Inc.
+# Sean V. Kelley <s_oceallaigh@yahoo.com>, 1999.
+# Séamus Ó Ciardhuáin <seoc at iolfree.ie>, 2003,2004
+# Kevin Scannell <kscanne@gmail.com>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs/kio4.po\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2004-12-03 14:52-0500\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.6\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Roghnaigh Deilbhín"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Foinse Deilbhíní"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "D&eilbhíní an chórais:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "Deilbhíní &eile:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Brabhsáil..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Cuardach:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Cuardach idirghníomhach ar ainmneacha deilbhíní (m.sh. fillteán)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Gníomhartha"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Íomhánna Beo"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Feidhmchláir"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Catagóirí"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Gléasanna"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Feathail"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Straoiseoga"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Comhadchórais"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Idirnáisiúnta"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Cineálacha MIME"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Áiteanna"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Stádas"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Comhaid Deilbhíní (*.png *.xpm *.svg *.svgz)"

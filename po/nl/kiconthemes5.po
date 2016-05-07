@@ -1,0 +1,113 @@
+# translation of kio4.po to Dutch
+# KTranslator Generated File
+# Nederlandse vertaling van kio.
+# Copyright (C) 2000,2001,2002 KDE e.v..
+# let op! het bestand bevat ter hoogte van string 2470
+# een gesplitste zinnen die mbv. %1 of %2 weer worden samengevoegd!!
+# Rinse de Vries <rinsedevries@kde.nl> 2000, 2001, 2002, 2003, 2004.
+# KDE-vertaalgroep Nederlands <i18n@kde.nl>, 2000, 2001, 2002.
+# Wilbert Berendsen <wbsoft@xs4all.nl>, 2003, 2004.
+# Tom Albers <tomalbers@kde.nl>, 2004.
+# Bram Schoenmakers <bramschoenmakers@kde.nl>, 2004, 2005, 2006.
+# Rinse de Vries <rinsedevries@kde.nl>, 2004, 2005, 2007, 2008, 2009.
+# Sander Koning <sanderkoning@kde.nl>, 2005.
+# Kristof Bal <kristof.bal@gmail.com>, 2008.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2008, 2009, 2010.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2010, 2011, 2012.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2011, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2014-01-25 19:41+0100\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Files: kfarch.cpp kfdird.cpp kfind.cpp kfindtop.cpp kfoptions.cpp kfsave.cpp "
+"kftabdlg.cpp kftypes.cpp kfwin.cpp main.cpp mkfdird.cpp mkfind.cpp \n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Pictogram selecteren"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Pictogrambron"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "S&ysteempictogrammen:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "&Overige pictogrammen:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "B&laderen..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Zoeken:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interactief zoeken naar pictogramnamen (zoals map)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Acties"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animaties"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Toepassingen"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Categorieën"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Apparaten"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblemen"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Emoticons"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Bestandssystemen"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internationaal"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Mime-bestandstypen"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Locaties"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Pictogrambestanden (*.png *.xpm *.svg *.svgz)"
