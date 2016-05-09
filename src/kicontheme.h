@@ -182,6 +182,15 @@ public:
     bool hasContext(KIconLoader::Context context) const;
 
     /**
+     * If true this theme is made by SVG icons that will be colorized following the system
+     * color scheme. This is necessary for monochrome themes that should look visible on both
+     * light and dark color schemes.
+     * @return true if the SVG will be colorized with a stylesheet.
+     * @since 5.22
+     */
+    bool followsColorScheme() const;
+
+    /**
      * List all icon themes installed on the system, global and local.
      * @return the list of all icon themes
      */

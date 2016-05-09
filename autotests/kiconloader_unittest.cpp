@@ -483,6 +483,15 @@ private Q_SLOTS:
             QVERIFY(ts == foundSize);
         }
     }
+
+    void testColoredSvgIcon()
+    {
+        QImage img = KIconLoader::global()->loadIcon(QStringLiteral("coloredsvgicon"), KIconLoader::NoGroup).toImage();
+        QVERIFY(!img.isNull());
+        //Has the image been recolored to red,
+        //that is the color we wrote in kdeglobals as text color?
+        QCOMPARE(img.pixelColor(0,0), QColor(255, 0, 0));
+    }
 };
 
 QTEST_MAIN(KIconLoader_UnitTest)

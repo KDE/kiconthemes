@@ -34,7 +34,7 @@
 #include <QtCore/QDataStream>
 #include <QtCore/QByteArray>
 #include <QtCore/QStringBuilder> // % operator for QString
-#include <QCoreApplication>
+#include <QGuiApplication>
 #include <QIcon>
 #include <QImage>
 #include <QMovie>
@@ -48,6 +48,10 @@
 #include <ksharedconfig.h>
 #include <QtDBus/QDBusConnection>
 #include <QDBusMessage>
+#include <QSvgRenderer>
+#include <QXmlStreamReader>
+#include <QXmlStreamWriter>
+#include <QCryptographicHash>
 
 // kdeui
 #include "kicontheme.h"
@@ -57,8 +61,38 @@
 //kwidgetsaddons
 #include <kpixmapsequence.h>
 
+#include <kcolorscheme.h>
+#include <kcompressiondevice.h>
+
+namespace {
 // Used to make cache keys for icons with no group. Result type is QString*
-Q_GLOBAL_STATIC_WITH_ARGS(QString, NULL_EFFECT_FINGERPRINT, (QString::fromLatin1("noeffect")))
+QString NULL_EFFECT_FINGERPRINT()
+{
+    return QStringLiteral("noeffect");
+}
+
+QString STYLESHEET_TEMPLATE()
+{
+    return QStringLiteral(".ColorScheme-Text {\
+color:%1;\
+}\
+.ColorScheme-Background{\
+color:%2;\
+}\
+.ColorScheme-Highlight{\
+color:%3;\
+}\
+.ColorScheme-PositiveText{\
+color:%4;\
+}\
+.ColorScheme-NeutralText{\
+color:%5;\
+}\
+.ColorScheme-NegativeText{\
+color:%6;\
+}");
+}
+}
 
 /**
  * Checks for relative paths quickly on UNIX-alikes, slowly on everything else.
@@ -79,6 +113,13 @@ struct PixmapWithPath {
     QPixmap pixmap;
     QString path;
 };
+
+static QString paletteId(const QPalette &pal)
+{
+    const QString colorsString = pal.text().color().name() + pal.highlight().color().name() + pal.highlightedText().color().name();
+    //use md5 as speed is needed, not cryptographic security
+    return QCryptographicHash::hash(colorsString.toUtf8(), QCryptographicHash::Md5);
+}
 
 /*** KIconThemeNode: A node in the icon theme dependancy tree. ***/
 
@@ -251,6 +292,15 @@ public:
      */
     QString makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays,
                          int size, int state) const;
+
+    /**
+     * @internal
+     * If the icon is an SVG file, process it generating a stylesheet
+     * following the current color scheme. in this case the icon can use named colors
+     * as text color, background color, highlight color, positive/neutral/negative color
+     * @see KColorScheme
+     */
+    QByteArray processSvg(const QString &path) const;
 
     /**
      * @internal
@@ -764,22 +814,82 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % QLatin1Char('_')
            % overlays.join(QStringLiteral("_"))
            % (group >= 0 ? mpEffect.fingerprint(group, state)
-              : *NULL_EFFECT_FINGERPRINT());
+              : NULL_EFFECT_FINGERPRINT())
+           % QLatin1Char('_')
+           % paletteId(qApp->palette());
+}
+
+QByteArray KIconLoaderPrivate::processSvg(const QString &path) const
+{
+    QScopedPointer<QIODevice> device;
+
+    if (path.endsWith(QLatin1String("svgz"))) {
+        device.reset(new KCompressionDevice(path, KCompressionDevice::GZip));
+    } else {
+        device.reset(new QFile(path));
+    }
+
+    if (!device->open(QIODevice::ReadOnly)) {
+        return QByteArray();
+    }
+
+    const QPalette pal = qApp->palette();
+    KColorScheme scheme(QPalette::Active, KColorScheme::Window);
+    QString styleSheet = STYLESHEET_TEMPLATE().arg(
+        pal.text().color().name(),
+        pal.highlightedText().color().name(),
+        scheme.foreground(KColorScheme::PositiveText).color().name(),
+        scheme.foreground(KColorScheme::NeutralText).color().name(),
+        scheme.foreground(KColorScheme::NegativeText).color().name());
+
+    QByteArray processedContents;
+    QXmlStreamReader reader(device.data());
+
+    QBuffer buffer(&processedContents);
+    buffer.open(QIODevice::WriteOnly);
+    QXmlStreamWriter writer(&buffer);
+    while (!reader.atEnd()) {
+        if (reader.readNext() == QXmlStreamReader::StartElement &&
+            reader.qualifiedName() == QLatin1String("style") &&
+            reader.attributes().value(QLatin1String("id")) == QLatin1String("current-color-scheme")) {
+            writer.writeStartElement(QLatin1String("style"));
+            writer.writeAttributes(reader.attributes());
+            writer.writeCharacters(styleSheet);
+            writer.writeEndElement();
+            while (reader.tokenType() != QXmlStreamReader::EndElement) {
+                reader.readNext();
+            }
+        } else if (reader.tokenType() != QXmlStreamReader::Invalid) {
+            writer.writeCurrentToken(reader);
+        }
+    }
+    buffer.close();
+
+    return processedContents;
 }
 
 QImage KIconLoaderPrivate::createIconImage(const QString &path, int size)
 {
-    QImageReader reader(path);
+    //TODO: metadata in the theme to make it do this only if explicitly supported?
+    QScopedPointer<QImageReader> reader;
+    QBuffer buffer;
 
-    if (!reader.canRead()) {
+    if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
+        buffer.setData(processSvg(path));
+        reader.reset(new QImageReader(&buffer));
+    } else {
+        reader.reset(new QImageReader(path));
+    }
+
+    if (!reader->canRead()) {
         return QImage();
     }
 
     if (size != 0) {
-        reader.setScaledSize(QSize(size, size));
+        reader->setScaledSize(QSize(size, size));
     }
 
-    return reader.read();
+    return reader->read();
 }
 
 void KIconLoaderPrivate::insertCachedPixmapWithPath(

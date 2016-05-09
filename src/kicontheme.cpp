@@ -54,6 +54,7 @@ public:
     QStringList mInherits;
     QStringList mExtensions;
     QVector<KIconThemeDir *> mDirs;
+    bool followsColorScheme : 1;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -198,6 +199,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     }
 
     d->hidden = cfg.readEntry("Hidden", false);
+    d->followsColorScheme = cfg.readEntry("FollowsColorScheme", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
     d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ ".png", ".svgz", ".svg", ".xpm" });
@@ -404,6 +406,11 @@ QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoade
             return path;
     }
     return QString();
+}
+
+bool KIconTheme::followsColorScheme() const
+{
+    return d->followsColorScheme;
 }
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match) const
