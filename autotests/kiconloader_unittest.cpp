@@ -23,6 +23,7 @@
 #include <QTest>
 #include <QRegularExpression>
 #include <QTemporaryDir>
+#include <QGuiApplication>
 
 #include <kpixmapsequence.h>
 
@@ -115,6 +116,7 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/x-office-document.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/audio-x-generic.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/unknown.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/coloredsvgicon.svg"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/coloredsvgicon.svg"))));
 
         QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner|QFileDevice::WriteOwner));
         KConfig configFile(breezeThemeFile);
@@ -486,11 +488,14 @@ private Q_SLOTS:
 
     void testColoredSvgIcon()
     {
+        QPalette pal = qApp->palette();
+        pal.setColor(QPalette::WindowText, QColor(255, 0, 0));
+        qApp->setPalette(pal);
         QImage img = KIconLoader::global()->loadIcon(QStringLiteral("coloredsvgicon"), KIconLoader::NoGroup).toImage();
         QVERIFY(!img.isNull());
         //Has the image been recolored to red,
         //that is the color we wrote in kdeglobals as text color?
-        QCOMPARE(img.pixelColor(0,0), QColor(255, 0, 0));
+        QCOMPARE(img.pixel(0,0), (uint)4294901760);
     }
 };
 

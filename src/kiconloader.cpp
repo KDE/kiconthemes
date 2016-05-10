@@ -836,7 +836,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path) const
     const QPalette pal = qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
     QString styleSheet = STYLESHEET_TEMPLATE().arg(
-        pal.text().color().name(),
+        pal.windowText().color().name(),
         pal.highlightedText().color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),

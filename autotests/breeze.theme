@@ -4,6 +4,7 @@ Comment=Breeze icon theme
 Hidden=false
 Directories=22x22/actions,22x22/animations,22x22/apps,22x22/mimetypes,22x22/appsNoContext,22x22/appsNoType,22x22/appsNoContextOrType
 Inherits=oxygen
+FollowsColorScheme=true
 
 [22x22/actions]
 Size=22
