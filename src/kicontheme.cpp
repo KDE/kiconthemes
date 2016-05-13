@@ -119,7 +119,6 @@ private:
 KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
     : d(new KIconThemePrivate)
 {
-
     d->mInternalName = name;
 
     QStringList themeDirs;
@@ -500,18 +499,25 @@ QString KIconTheme::current()
         return *_theme();
     }
 
-    KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
-    *_theme() = cg.readEntry("Theme", defaultThemeName());
-    if (*_theme() == QLatin1String("hicolor")) {
-        *_theme() = defaultThemeName();
+    QString theme;
+    // Check application specific config for a theme setting.
+    KConfigGroup app_cg(KSharedConfig::openConfig(QString(), KConfig::NoGlobals), "Icons");
+    theme = app_cg.readEntry("Theme", QString());
+    if (theme.isEmpty() || theme == QLatin1String("hicolor")) {
+        // No theme, try to use Qt's. A Platform plugin might have set
+        // a good theme there.
+        theme = QIcon::themeName();
     }
-    /*    if (_theme->isEmpty())
-        {
-            if (QPixmap::defaultDepth() > 8)
-                *_theme = defaultThemeName();
-            else
-                *_theme = QLatin1String("locolor");
-        }*/
+    if (theme.isEmpty() || theme == QLatin1String("hicolor")) {
+        // Still no theme, try config with kdeglobals.
+        KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
+        QString theme = cg.readEntry("Theme", QString());
+    }
+    if (theme.isEmpty() || theme == QLatin1String("hicolor")) {
+        // Still no good theme, use default.
+        theme = defaultThemeName();
+    }
+    *_theme() = theme;
     return *_theme();
 }
 
