@@ -300,7 +300,7 @@ public:
      * as text color, background color, highlight color, positive/neutral/negative color
      * @see KColorScheme
      */
-    QByteArray processSvg(const QString &path) const;
+    QByteArray processSvg(const QString &path, KIconLoader::States state) const;
 
     /**
      * @internal
@@ -308,7 +308,7 @@ public:
      * @p size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
-    QImage createIconImage(const QString &path, int size = 0);
+    QImage createIconImage(const QString &path, int size = 0, KIconLoader::States state = KIconLoader::DefaultState);
 
     /**
      * @internal
@@ -816,10 +816,11 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % (group >= 0 ? mpEffect.fingerprint(group, state)
               : NULL_EFFECT_FINGERPRINT())
            % QLatin1Char('_')
-           % paletteId(qApp->palette());
+           % paletteId(qApp->palette())
+           % (q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
 }
 
-QByteArray KIconLoaderPrivate::processSvg(const QString &path) const
+QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state) const
 {
     QScopedPointer<QIODevice> device;
 
@@ -836,8 +837,9 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path) const
     const QPalette pal = qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
     QString styleSheet = STYLESHEET_TEMPLATE().arg(
-        pal.windowText().color().name(),
-        pal.highlightedText().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
+        pal.highlight().color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
@@ -868,14 +870,14 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path) const
     return processedContents;
 }
 
-QImage KIconLoaderPrivate::createIconImage(const QString &path, int size)
+QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, KIconLoader::States state)
 {
     //TODO: metadata in the theme to make it do this only if explicitly supported?
     QScopedPointer<QImageReader> reader;
     QBuffer buffer;
 
     if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
-        buffer.setData(processSvg(path));
+        buffer.setData(processSvg(path, state));
         reader.reset(new QImageReader(&buffer));
     } else {
         reader.reset(new QImageReader(path));
@@ -1255,7 +1257,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
 
     QImage img;
     if (!path.isEmpty()) {
-        img = d->createIconImage(path, size);
+        img = d->createIconImage(path, size, (KIconLoader::States)state);
     }
 
     if (group >= 0) {

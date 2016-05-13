@@ -51,6 +51,9 @@ static inline int qIconModeToKIconState(QIcon::Mode mode)
     case QIcon::Disabled:
         kstate = KIconLoader::DisabledState;
         break;
+    case QIcon::Selected:
+        kstate = KIconLoader::SelectedState;
+        break;
     }
     return kstate;
 }
@@ -92,6 +95,7 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
         pm.fill(Qt::transparent);
         return pm;
     }
+
 
     const int kstate = qIconModeToKIconState(mode);
     const int iconSize = qMin(size.width(), size.height());

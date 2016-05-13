@@ -171,6 +171,7 @@ public:
         DefaultState,  ///< The default state.
         ActiveState,   ///< Icon is active.
         DisabledState, ///< Icon is disabled.
+        SelectedState, ///< Icon is selected. @since 5.22
         LastState      ///< Last state (last constant)
     };
 
