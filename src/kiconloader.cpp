@@ -817,7 +817,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
               : NULL_EFFECT_FINGERPRINT())
            % QLatin1Char('_')
            % paletteId(qApp->palette())
-           % (q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
+           % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
 }
 
 QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state) const
