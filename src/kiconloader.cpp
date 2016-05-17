@@ -661,7 +661,6 @@ void KIconLoaderPrivate::addBaseThemes(KIconThemeNode *node, const QString &appn
     // present in an inherited theme, and hicolor goes last.
 
     addInheritedThemes(node, appname);
-    addThemeByName(KIconTheme::defaultThemeName(), appname);
     addThemeByName(QStringLiteral("hicolor"), appname);
 }
 

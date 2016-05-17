@@ -191,7 +191,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mInherits = cfg.readEntry("Inherits", QStringList());
     if (name != defaultThemeName()) {
         for (QStringList::Iterator it = d->mInherits.begin(); it != d->mInherits.end(); ++it) {
-            if (*it == QLatin1String("default") || *it == QLatin1String("hicolor")) {
+            if (*it == QLatin1String("default")) {
                 *it = defaultThemeName();
             }
         }
@@ -576,7 +576,7 @@ void KIconTheme::reconfigure()
 // static
 QString KIconTheme::defaultThemeName()
 {
-    return QStringLiteral("oxygen");
+    return QStringLiteral("hicolor");
 }
 
 void KIconTheme::assignIconsToContextMenu(ContextMenus type,
