@@ -56,6 +56,7 @@ public:
     QVector<KIconThemeDir *> mDirs;
     bool followsColorScheme : 1;
 };
+Q_GLOBAL_STATIC(QString, _themeOverride)
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
 
@@ -494,7 +495,10 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
 // static
 QString KIconTheme::current()
 {
-    // Static pointer because of unloading problems wrt DSO's.
+    // Static pointers because of unloading problems wrt DSO's.
+    if (_themeOverride && !_themeOverride->isEmpty()) {
+        *_theme() = *_themeOverride();
+    }
     if (!_theme()->isEmpty()) {
         return *_theme();
     }
@@ -519,6 +523,12 @@ QString KIconTheme::current()
     }
     *_theme() = theme;
     return *_theme();
+}
+
+void KIconTheme::forceThemeForTests(const QString &themeName)
+{
+    *_themeOverride() = themeName;
+    _theme()->clear(); // ::current sets this again based on conditions
 }
 
 // static

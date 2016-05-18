@@ -203,6 +203,26 @@ public:
     static QString current();
 
     /**
+     * Force a current theme and disable automatic resolution of the current
+     * theme in favor of the forced theme.
+     *
+     * To reset a forced theme, simply set an empty themeName.
+     *
+     * @param themeName name of the theme to force as current theme, or an
+     *        empty string to unset theme forcing.
+     *
+     * @note This should only be used when a very precise expectation about
+     *       the current theme is present. Most notably in unit tests
+     *       this can be used to force a given theme.
+     *
+     * @warning A forced theme persists across reconfigure() calls!
+     *
+     * @see current
+     * @since 5.23
+     */
+    static void forceThemeForTests(const QString &themeName);
+
+    /**
      * Reconfigure the theme.
      */
     static void reconfigure();

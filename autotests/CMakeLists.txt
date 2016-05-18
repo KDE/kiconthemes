@@ -15,4 +15,5 @@ kiconthemes_tests(
   kiconloader_unittest
   kiconloader_resourcethemetest
   kiconloader_benchmark
+  kicontheme_unittest
 )
