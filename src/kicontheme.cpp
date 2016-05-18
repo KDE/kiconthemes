@@ -511,7 +511,7 @@ QString KIconTheme::current()
     if (theme.isEmpty() || theme == QLatin1String("hicolor")) {
         // Still no theme, try config with kdeglobals.
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
-        QString theme = cg.readEntry("Theme", QString());
+        theme = cg.readEntry("Theme", QString());
     }
     if (theme.isEmpty() || theme == QLatin1String("hicolor")) {
         // Still no good theme, use default.
