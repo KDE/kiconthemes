@@ -29,93 +29,20 @@
       .ColorScheme-Highlight {
         color:#3daee9;
       }
-      .ColorScheme-ViewText {
-        color:#31363b;
-      }
-      .ColorScheme-ViewBackground {
-        color:#fcfcfc;
-      }
-      .ColorScheme-ViewHover {
-        color:#93cee9;
-      }
-      .ColorScheme-ViewFocus{
-        color:#3daee9;
-      }
-      .ColorScheme-ButtonText {
-        color:#31363b;
-      }
-      .ColorScheme-ButtonBackground {
+      .ColorScheme-HighlightedText {
         color:#eff0f1;
       }
-      .ColorScheme-ButtonHover {
-        color:#93cee9;
+      .ColorScheme-PositiveText {
+        color:#27ae60;
       }
-      .ColorScheme-ButtonFocus{
-        color:#3daee9;
+      .ColorScheme-NeutralText {
+        color:#f67400;
+      }
+      .ColorScheme-NegativeText {
+        color:#da4453;
       }
       </style>
   </defs>
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="12.136828"
-     inkscape:cx="12.210236"
-     inkscape:cy="9.2716294"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="true"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:window-width="1680"
-     inkscape:window-height="993"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:showpageshadow="false"
-     borderlayer="true"
-     showguides="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid4065" />
-    <sodipodi:guide
-       position="2.0000044,20.00003"
-       orientation="18,0"
-       id="guide4076" />
-    <sodipodi:guide
-       position="2.0000044,2.0000296"
-       orientation="0,18"
-       id="guide4078" />
-    <sodipodi:guide
-       position="20.000004,2.0000296"
-       orientation="-18,0"
-       id="guide4080" />
-    <sodipodi:guide
-       position="20.000004,20.00003"
-       orientation="0,-18"
-       id="guide4082" />
-    <sodipodi:guide
-       position="3.0000044,19.00003"
-       orientation="16,0"
-       id="guide4086" />
-    <sodipodi:guide
-       position="3.0000044,3.0000296"
-       orientation="0,16"
-       id="guide4088" />
-    <sodipodi:guide
-       position="19.000004,3.0000296"
-       orientation="-16,0"
-       id="guide4090" />
-    <sodipodi:guide
-       position="19.000004,19.00003"
-       orientation="0,-16"
-       id="guide4092" />
-  </sodipodi:namedview>
   <metadata
      id="metadata3054">
     <rdf:RDF>

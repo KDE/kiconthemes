@@ -838,7 +838,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     QString styleSheet = STYLESHEET_TEMPLATE().arg(
         state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
         state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
-        pal.highlight().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
