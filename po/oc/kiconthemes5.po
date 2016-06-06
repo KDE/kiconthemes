@@ -1,0 +1,99 @@
+# translation of kio4.po to Occitan
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2008-08-06 00:08+0200\n"
+"Last-Translator: \n"
+"Language-Team: Occitan <oc@li.org>\n"
+"Language: oc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Seleccionatz una icòna"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr ""
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr ""
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr ""
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Examinar..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Recercar :"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Accions"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animacions"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Aplicacions"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Categorias"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Periferics"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblèmas"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr ""
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internacional"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr ""
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Acorchis"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Estatut"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr ""

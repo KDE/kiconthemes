@@ -1,0 +1,107 @@
+# Translation of kiconthemes5.po to Brazilian Portuguese
+# Copyright (C) 2002-2014 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Lisiane Sztoltz <lisiane@conectiva.com.br>, 2002, 2003, 2004.
+# Henrique Pinto <stampede@coltec.ufmg.br>, 2003.
+# Lisiane Sztoltz Teixeira <lisiane@conectiva.com.br>, 2004.
+# Lisiane Sztoltz Teixeira <lisiane@kdemail.net>, 2004, 2005.
+# Marcus Gama <marcus.gama@gmail.com>, 2006, 2011, 2012.
+# doutor.zero <doutor.zero@gmail.com>, 2007.
+# Diniz Bortolotto <diniz.bortolotto@gmail.com>, 2007, 2008.
+# André Marcelo Alvarenga <alvarenga@kde.org>, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
+# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2010, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes5\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2014-03-04 21:08-0300\n"
+"Last-Translator: André Marcelo Alvarenga <alvarenga@kde.org>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Selecionar ícone"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Origem dos ícones"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "Ícones do s&istema:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "Ou&tros ícones:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Navegar..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "Pesqui&sar:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Pesquisar interativamente por nomes de ícones (p. ex., pasta)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Ações"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animações"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Aplicativos"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Categorias"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblemas"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Emoções"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Sistemas de arquivos"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internacional"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Tipos MIME"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Locais"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Estado"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Arquivos de ícone (*.png *.xpm *.svg *.svgz)"
