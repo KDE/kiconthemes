@@ -134,7 +134,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
             const QString cDir = *it + '/' + appName + "/icons/" + name + '/';
-            if (QFile::exists(cDir)) {
+            if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
             }
         }
@@ -163,11 +163,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         if (QDir(cDir).exists()) {
             themeDirs += cDir;
             if (d->mDir.isEmpty()) {
-                if (QFile::exists(cDir + "index.theme")) {
+                if (QFileInfo::exists(cDir + "index.theme")) {
                     d->mDir = cDir;
                     fileName = d->mDir + "index.theme";
                     mainSection = QStringLiteral("Icon Theme");
-                } else if (QFile::exists(cDir + "index.desktop")) {
+                } else if (QFileInfo::exists(cDir + "index.desktop")) {
                     d->mDir = cDir;
                     fileName = d->mDir + "index.desktop";
                     mainSection = QStringLiteral("KDE Icon Theme");
@@ -559,8 +559,8 @@ QStringList KIconTheme::list()
             if ((*it2).startsWith(QLatin1String("default."))) {
                 continue;
             }
-            if (!QFile::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop")) &&
-                    !QFile::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.theme"))) {
+            if (!QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop")) &&
+                    !QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.theme"))) {
                 continue;
             }
             KIconTheme oink(*it2);
@@ -699,7 +699,7 @@ QString KIconThemeDir::iconPath(const QString &name) const
     }
 
     const QString file = constructFileName(name);
-    if (QFile::exists(file)) {
+    if (QFileInfo::exists(file)) {
         return KLocalizedString::localizedFilePath(file);
     }
 
