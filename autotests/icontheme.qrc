@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="/index.theme">tiny.theme</file>
+    <file alias="/22x22/appsNoContext/someiconintheme.png">test-22x22.png</file>
+</qresource>
+</RCC>

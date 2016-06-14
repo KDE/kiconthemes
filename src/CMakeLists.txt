@@ -12,6 +12,9 @@ set(kiconthemes_SRCS
   kicontheme.cpp
   debug.cpp
 )
+qt5_add_resources(kiconthemes_SRCS
+  hicolor.qrc
+)
 ecm_qt_declare_logging_category(kiconthemes_SRCS HEADER debug.h IDENTIFIER  KICONTHEMES CATEGORY_NAME kf5.kiconthemes)
 
 add_library(KF5IconThemes ${kiconthemes_SRCS})

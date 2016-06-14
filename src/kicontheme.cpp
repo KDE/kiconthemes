@@ -25,18 +25,50 @@
 
 #include <qplatformdefs.h>
 
+#include <QCoreApplication>
 #include <QAction>
 #include <QtCore/QMap>
 #include <QtCore/QSet>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
 #include <QDebug>
+#include <QResource>
 
 #include <klocalizedstring.h> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 
 #include <ksharedconfig.h>
 
 #include <kconfiggroup.h>
+
+Q_GLOBAL_STATIC(QString, _themeOverride)
+
+// Support for icon themes in RCC files.
+// The intended use case is standalone apps on Windows / MacOS / etc.
+// For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
+void initRCCIconTheme()
+{
+    const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
+    if (!iconThemeRcc.isEmpty()) {
+        const QString iconThemeName = QStringLiteral("kf5_rcc_theme");
+        const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
+        if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
+            if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
+                // Tell Qt about the theme
+                // Note that since qtbase commit a8621a3f8, this means the QPA (i.e. KIconLoader) will NOT be used.
+                QIcon::setThemeName(iconThemeName); // Qt looks under :/icons automatically
+                // Tell KIconTheme about the theme, in case KIconLoader is used directly
+                *_themeOverride() = iconThemeName;
+            } else {
+                qWarning() << "No index.theme found in" << iconThemeRcc;
+                QResource::unregisterResource(iconThemeRcc, iconSubdir);
+            }
+        } else {
+            qWarning() << "Invalid rcc file" << iconThemeRcc;
+        }
+    }
+}
+Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
+
 
 class KIconTheme::KIconThemePrivate
 {
@@ -56,7 +88,6 @@ public:
     QVector<KIconThemeDir *> mDirs;
     bool followsColorScheme : 1;
 };
-Q_GLOBAL_STATIC(QString, _themeOverride)
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
 
