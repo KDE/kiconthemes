@@ -52,6 +52,16 @@ class KIconLoader_RCCThemeTest : public QObject
     Q_OBJECT
 
 private Q_SLOTS:
+    void initTestCase()
+    {
+        // Remove icon cache
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        QFile::remove(cacheFile);
+
+        // Clear SHM cache
+        KIconLoader::global()->reconfigure(QString());
+    }
+
     void testThemeName()
     {
         QCOMPARE(QIcon::themeName(), m_internalThemeName);
