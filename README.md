@@ -27,7 +27,7 @@ between processes.
 
 On other platforms such as Windows and Mac OS, icon themes are not part of the system.
 The deployment strategy for applications on those operations systems is the following:
-- breeze-icons and other icon themes install .rcc files (binary resources, loadable by Qt)
+- breeze-icons and other icon themes, when configured with -DBINARY\_ICONS\_RESOURCE=ON, install .rcc files (binary resources, loadable by Qt)
 - the installation process should copy one of these under the name "icontheme.rcc", in
     a directory found by [QStandardPaths::AppDataLocation](http://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum).
     For instance on Windows, icontheme.rcc is usually installed in APPROOT/data/,
