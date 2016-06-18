@@ -130,7 +130,7 @@ public:
     /**
      * Query available sizes for a group.
      * @param group The icon group. See KIconLoader::Group.
-     * @return a list of available sized for the given group
+     * @return a list of available sizes for the given group
      */
     QList<int> querySizes(KIconLoader::Group group) const;
 
@@ -182,7 +182,7 @@ public:
     bool hasContext(KIconLoader::Context context) const;
 
     /**
-     * If true this theme is made by SVG icons that will be colorized following the system
+     * If true, this theme is made of SVG icons that will be colorized following the system
      * color scheme. This is necessary for monochrome themes that should look visible on both
      * light and dark color schemes.
      * @return true if the SVG will be colorized with a stylesheet.
