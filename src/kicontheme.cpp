@@ -74,7 +74,6 @@ class KIconTheme::KIconThemePrivate
 {
 public:
     QString example, screenshot;
-    QString linkOverlay, lockOverlay, zipOverlay, shareOverlay;
     bool hidden;
     KSharedConfig::Ptr sharedConfig;
 
