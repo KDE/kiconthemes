@@ -21,6 +21,7 @@
 #include <kiconloader.h>
 #include <kicontheme.h>
 
+#include <QDir>
 #include <QStandardPaths>
 #include <QPixmap>
 #include <QTest>
