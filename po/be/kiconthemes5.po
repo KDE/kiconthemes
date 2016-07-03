@@ -1,0 +1,116 @@
+# translation of kio4.po to Belarusian
+# Belarusian (classic spelling) translation of kio4.pot
+# Copyright (C) 2003-2004 KDE Team.
+#
+# Eugene Zelenko <greendeath@mail.ru>, 2003-2004.
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
+# Symbol <symbol@akeeri.tk>, 2006.
+# Darafei Praliaskouski <komzpa@licei2.com>, 2007.
+# Siarhei Liantsevich <serzh.by@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2015-03-15 08:31+0000\n"
+"PO-Revision-Date: 2008-05-02 14:14+0200\n"
+"Last-Translator: Siarhei Liantsevich <serzh.by@gmail.com>\n"
+"Language-Team: Belarusian\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:608
+msgid "Select Icon"
+msgstr "Выбраць значку"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Крыніца значак"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "&Сістэмныя значкі:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "І&ншыя значкі:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Прагляд..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Пошук:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Інтэрактыўна шукаць па назвах значак (напр. folder)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Дзеянні"
+
+#: kicondialog.cpp:357
+#, fuzzy
+#| msgid "Applications"
+msgid "Animations"
+msgstr "Праграмы"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Праграмы"
+
+#: kicondialog.cpp:359
+#, fuzzy
+msgid "Categories"
+msgstr "Катэгорыі"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Прылады"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Файлавыя сістэмы"
+
+#: kicondialog.cpp:364
+#, fuzzy
+#| msgid "Introduction"
+msgid "International"
+msgstr "Міжнародны"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Тыпы MIME"
+
+#: kicondialog.cpp:366
+#, fuzzy
+msgid "Places"
+msgstr "Месцы"
+
+#: kicondialog.cpp:367
+#, fuzzy
+#| msgid "Startup"
+msgid "Status"
+msgstr "Статус"
+
+#: kicondialog.cpp:608
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Файлы значак (*.png *.xpm *.svg *.svgz)"
