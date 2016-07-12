@@ -78,6 +78,8 @@ public:
     bool read(QDataStream &in) Q_DECL_OVERRIDE;
     bool write(QDataStream &out) const Q_DECL_OVERRIDE;
 
+    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+
 private:
     //TODO KF6: move those into the d-pointer
     QString mIconName;

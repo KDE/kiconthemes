@@ -16,6 +16,7 @@ kiconthemes_tests(
   kiconloader_resourcethemetest
   kiconloader_benchmark
   kicontheme_unittest
+  kiconengine_unittest
 )
 
 ### Test for RCC loading

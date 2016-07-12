@@ -116,6 +116,9 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 
 QString KIconEngine::iconName() const
 {
+    if (!mIconLoader || !mIconLoader->hasIcon(mIconName)) {
+        return QString();
+    }
     return mIconName;
 }
 
@@ -154,4 +157,16 @@ bool KIconEngine::write(QDataStream &out) const
 {
     out << mIconName << mOverlays;
     return true;
+}
+
+void KIconEngine::virtual_hook(int id, void *data)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
+    if (id == QIconEngine::IsNullHook) {
+#else
+    if (id == 3) {
+#endif
+        *reinterpret_cast<bool*>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
+    }
+    QIconEngine::virtual_hook(id, data);
 }
