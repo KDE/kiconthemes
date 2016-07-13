@@ -450,8 +450,6 @@ void KIconDialog::KIconDialogPrivate::showIcons()
 
     qSort(filelist.begin(), filelist.end(), sortByFileName);
 
-    searchLine->clear();
-
     // The KIconCanvas has uniformItemSizes set which really expects
     // all added icons to be the same size, otherwise weirdness ensues :)
     // Ensure all SVGs are scaled to the desired size and that as few icons
