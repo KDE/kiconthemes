@@ -715,8 +715,8 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
         QStringList::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-            if (!QFile::exists(*it + *it2 + "/index.desktop")
-                    && !QFile::exists(*it + *it2 + "/index.theme")) {
+            if (!QFileInfo::exists(*it + *it2 + "/index.desktop")
+                    && !QFileInfo::exists(*it + *it2 + "/index.theme")) {
                 continue;
             }
             //TODO: Is any special handling required for NTFS symlinks?
@@ -1065,7 +1065,7 @@ QString KIconLoaderPrivate::locate(const QString &fileName)
     Q_FOREACH (const QString &dir, searchPaths) {
         const QString path = dir + '/' + fileName;
         if (QDir(dir).isAbsolute()) {
-            if (QFile::exists(path)) {
+            if (QFileInfo::exists(path)) {
                 return path;
             }
         } else {
