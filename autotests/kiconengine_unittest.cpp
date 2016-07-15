@@ -34,6 +34,13 @@ private Q_SLOTS:
     {
         QStandardPaths::setTestModeEnabled(true);
 
+        // Remove icon cache
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        QFile::remove(cacheFile);
+
+        // Clear SHM cache
+        KIconLoader::global()->reconfigure(QString());
+
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "oxygen");
         cg.sync();
@@ -66,7 +73,7 @@ private Q_SLOTS:
         QEXPECT_FAIL("", "IsNullHook needs Qt 5.7", Continue);
 #endif
         QVERIFY(icon.isNull());
-        QVERIFY(icon.name().isEmpty());
+        QVERIFY2(icon.name().isEmpty(), qPrintable(icon.name()));
     }
 };
 

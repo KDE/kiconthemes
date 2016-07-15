@@ -18,6 +18,7 @@
 */
 
 #include <kiconloader.h>
+#include <kiconengine.h>
 
 #include <QStandardPaths>
 #include <QTest>
@@ -26,7 +27,20 @@ class KIconLoader_Benchmark : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
-    void benchmark() {
+
+    void init() {
+#if 0 // Enable this code to benchmark very first startup.
+      // Starting the application again uses the on-disk cache, so actually benchmarking -with- a cache is more relevant.
+        // Remove icon cache
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        QFile::remove(cacheFile);
+
+        // Clear SHM cache
+        KIconLoader::global()->reconfigure(QString());
+#endif
+    }
+
+    void benchmarkExistingIcons() {
         //icon list I get to load kwrite
         static QStringList icons = {
             QStringLiteral("accessories-text-editor"),
@@ -81,8 +95,21 @@ private Q_SLOTS:
                 if(icon.isNull())
                     QSKIP("missing icons");
                 QVERIFY(!icon.pixmap(24, 24).isNull());
-                QVERIFY(!icon.pixmap(512, 512).isNull());
+                //QVERIFY(!icon.pixmap(512, 512).isNull());
             }
+        }
+    }
+
+    void benchmarkNonExistingIcon()
+    {
+#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
+        QSKIP("IsNullHook needs Qt 5.7");
+#endif
+        QBENCHMARK {
+            QIcon icon(new KIconEngine(QStringLiteral("invalid-icon-name"), KIconLoader::global()));
+            QVERIFY(icon.isNull());
+            QVERIFY2(icon.name().isEmpty(), qPrintable(icon.name()));
+            QVERIFY(!icon.pixmap(QSize(16, 16), QIcon::Normal).isNull());
         }
     }
 };
