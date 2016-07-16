@@ -34,6 +34,7 @@
 #include <QtCore/QDataStream>
 #include <QtCore/QByteArray>
 #include <QtCore/QStringBuilder> // % operator for QString
+#include <QElapsedTimer>
 #include <QGuiApplication>
 #include <QIcon>
 #include <QImage>
@@ -172,6 +173,9 @@ QString KIconThemeNode::findIcon(const QString &name, int size,
 struct KIconGroup {
     int size;
 };
+
+extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
+KICONTHEMES_EXPORT int kiconloader_ms_between_checks = 5000;
 
 /*** d pointer for KIconLoader. ***/
 class KIconLoaderPrivate
@@ -334,6 +338,15 @@ public:
      */
     void _k_refreshIcons(int group);
 
+    bool shouldCheckForUnknownIcons()
+    {
+        if (mLastUnknownIconCheck.isValid() && mLastUnknownIconCheck.elapsed() < kiconloader_ms_between_checks) {
+            return false;
+        }
+        mLastUnknownIconCheck.start();
+        return true;
+    }
+
     KIconLoader *const q;
 
     QStringList mThemesInTree;
@@ -357,7 +370,8 @@ public:
 
     void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
 
-    QSet<QString> mAvailableIcons;
+    QHash<QString, bool> mIconAvailability; // icon name -> true (known to be available) or false (known to be unavailable)
+    QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -505,7 +519,7 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
 {
     KSharedConfig::openConfig()->reparseConfiguration();
     q->newIconLoader();
-    mAvailableIcons.clear();
+    mIconAvailability.clear();
     emit q->iconChanged(group);
 }
 
@@ -1214,14 +1228,20 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
     bool iconWasUnknown = false;
     QString path;
 
-    // icon.path would be empty for "unknown" icons, which should be searched for
-    // anew each time.
-    if (d->findCachedPixmapWithPath(key, pix, path) && !path.isEmpty()) {
+    if (d->findCachedPixmapWithPath(key, pix, path)) {
         if (path_store) {
             *path_store = path;
         }
 
-        return pix;
+        if (!path.isEmpty()) {
+            return pix;
+        } else {
+            // path is empty for "unknown" icons, which should be searched for
+            // anew regularly
+            if (!d->shouldCheckForUnknownIcons()) {
+                return canReturnNull ? QPixmap() : pix;
+            }
+        }
     }
 
     // Image is not cached... go find it and apply effects.
@@ -1689,10 +1709,17 @@ QPixmap KIconLoader::unknown()
 
 bool KIconLoader::hasIcon(const QString &name) const
 {
-    bool found = d->mAvailableIcons.contains(name);
-    if (!found && !iconPath(name, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
-        found = true;
-        d->mAvailableIcons.insert(name);
+    auto it = d->mIconAvailability.constFind(name);
+    const auto end = d->mIconAvailability.constEnd();
+    if (it != end && !it.value() && !d->shouldCheckForUnknownIcons()) {
+        return false; // known to be unavailable
+    }
+    bool found = it != end && it.value();
+    if (!found) {
+        if (!iconPath(name, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
+            found = true;
+        }
+        d->mIconAvailability.insert(name, found); // remember whether the icon is available or not
     }
     return found;
 }
