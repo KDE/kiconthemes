@@ -1011,6 +1011,21 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
 {
     const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
 
+    // Do two passes through themeNodes.
+    //
+    // The first pass looks for an exact match in each themeNode one after the other.
+    // If one is found and it is an app icon then return that icon.
+    //
+    // In the next pass (assuming the first pass failed), it looks for
+    // generic fallbacks in each themeNode one after the other.
+
+    // In theory we should only do this for mimetype icons, not for app icons,
+    // but that would require different APIs. The long term solution is under
+    // development for Qt >= 5.8, QFileIconProvider calling QPlatformTheme::fileIcon,
+    // using QMimeType::genericIconName() to get the proper -x-generic fallback.
+    // Once everone uses that to look up mimetype icons, we can kill the fallback code
+    // from this method.
+
     foreach (KIconThemeNode *themeNode, links) {
         const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest);
         if (!path.isEmpty()) {
@@ -1018,18 +1033,15 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
         }
     }
 
-    bool genericFallback = name.endsWith(QLatin1String("-x-generic"));
+    if (name.endsWith(QLatin1String("-x-generic"))) {
+        return QString(); // no further fallback
+    }
+    bool genericFallback = false;
     QString path;
     foreach (KIconThemeNode *themeNode, links) {
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
-            //qCDebug(KICONTHEMES) << "Looking up" << currentName;
-
-            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest);
-            if (!path.isEmpty())
-                return path;
-
             if (genericFallback) {
                 // we already tested the base name
                 break;
@@ -1058,6 +1070,16 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
                 } else {
                     break;
                 }
+            }
+
+            if (currentName.isEmpty()) {
+                break;
+            }
+
+            //qCDebug(KICONTHEMES) << "Looking up" << currentName;
+            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest);
+            if (!path.isEmpty()) {
+                return path;
             }
         }
     }

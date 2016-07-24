@@ -100,7 +100,26 @@ private Q_SLOTS:
         }
     }
 
-    void benchmarkNonExistingIcon()
+    void benchmarkNonExistingIcon_notCached()
+    {
+#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
+        QSKIP("IsNullHook needs Qt 5.7");
+#endif
+        QBENCHMARK {
+            // Remove icon cache
+            const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+            QFile::remove(cacheFile);
+            // Clear SHM cache
+            KIconLoader::global()->reconfigure(QString());
+
+            QIcon icon(new KIconEngine(QStringLiteral("invalid-icon-name"), KIconLoader::global()));
+            QVERIFY(icon.isNull());
+            QVERIFY2(icon.name().isEmpty(), qPrintable(icon.name()));
+            QVERIFY(!icon.pixmap(QSize(16, 16), QIcon::Normal).isNull());
+        }
+    }
+
+    void benchmarkNonExistingIcon_cached()
     {
 #if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
         QSKIP("IsNullHook needs Qt 5.7");
