@@ -115,11 +115,35 @@ struct PixmapWithPath {
     QString path;
 };
 
+/**
+ * Function to convert an uint32_t to AARRGGBB hex values.
+ *
+ * W A R N I N G !
+ * This function is for internal use!
+ */
+KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer)
+{
+    static const char hexLookup[] = "0123456789abcdef";
+    buffer += 7;
+    uchar *colorFields = reinterpret_cast<uchar*>(&colorData);
+
+    for (int i = 0; i < 4; i++) {
+        *buffer-- = hexLookup[*colorFields & 0xf];
+        *buffer-- = hexLookup[*colorFields >> 4];
+        colorFields++;
+    }
+}
+
 static QString paletteId(const QPalette &pal)
 {
-    const QString colorsString = pal.text().color().name() + pal.highlight().color().name() + pal.highlightedText().color().name();
-    //use md5 as speed is needed, not cryptographic security
-    return QCryptographicHash::hash(colorsString.toUtf8(), QCryptographicHash::Md5);
+    // 8 per color. We want 3 colors thus 8*3=24.
+    QString buffer(24, Qt::Uninitialized);
+
+    uintToHex(pal.text().color().rgba(), buffer.data());
+    uintToHex(pal.highlight().color().rgba(), buffer.data() + 8);
+    uintToHex(pal.highlightedText().color().rgba(), buffer.data() + 16);
+
+    return buffer;
 }
 
 /*** KIconThemeNode: A node in the icon theme dependancy tree. ***/

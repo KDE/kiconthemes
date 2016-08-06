@@ -30,6 +30,8 @@
 #include <KSharedConfig>
 #include <KConfigGroup>
 
+extern KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer);
+
 class KIconLoader_UnitTest : public QObject
 {
     Q_OBJECT
@@ -496,6 +498,26 @@ private Q_SLOTS:
         //Has the image been recolored to red,
         //that is the color we wrote in kdeglobals as text color?
         QCOMPARE(img.pixel(0,0), (uint)4294901760);
+    }
+
+    void testUintToHex()
+    {
+        // HEX (ARGB format without the #): ff6496c8
+        QColor testColorNoAlpha(100, 150, 200);
+
+        // The ARGB string in which the composed hex value is stored.
+        QString argbHex(8, Qt::Uninitialized);
+
+        // Verify the ARGB hex (ff6496c8)
+        uintToHex(testColorNoAlpha.rgba(), argbHex.data());
+        QCOMPARE(argbHex, QString("ff6496c8"));
+
+        // HEX (ARGB format without the #): 7b6496c8
+        QColor testColorWithAlpha(100, 150, 200, 123);
+
+        // Test uintToHex to verify its ARGB output.
+        uintToHex(testColorWithAlpha.rgba(), argbHex.data());
+        QCOMPARE(argbHex, QString("7b6496c8"));
     }
 };
 
