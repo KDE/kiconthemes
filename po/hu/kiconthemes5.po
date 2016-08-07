@@ -1,0 +1,96 @@
+# Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011, 2012.
+# Balázs Úr <urbalazs@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4.4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-14 08:05+0000\n"
+"PO-Revision-Date: 2012-12-12 22:37+0100\n"
+"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:606
+msgid "Select Icon"
+msgstr "Ikonválasztás"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Ikonforrás"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "&Rendszerikonok:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "E&gyéb ikonok:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Tallózás..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Keresés:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktív keresés ikonnevekre (pl.: mappa)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Események"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animációk"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Alkalmazások"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Kategóriák"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Eszközök"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblémák"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Hangulatjelek"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Fájlrendszerek"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Nemzetközi"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "MIME-típusok"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Helyek"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Állapot"
+
+#: kicondialog.cpp:606
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikonfájlok (*.png *.xpm *.svg *.svgz)"

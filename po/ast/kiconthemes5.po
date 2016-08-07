@@ -1,0 +1,99 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# enolp <enolp@softastur.org>, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4-v1\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-14 08:05+0000\n"
+"PO-Revision-Date: 2016-02-04 20:09+0100\n"
+"Last-Translator: enolp <enolp@sofastur.org>\n"
+"Language-Team: Asturian <>\n"
+"Language: ast\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: asturian\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:606
+msgid "Select Icon"
+msgstr "Esbillar iconu"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Fonte d'iconos"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "Iconos del s&istema:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "O&tros iconos:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Restolar..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Guetar:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Guetar interautivamente pa los nomes d'iconos (exem: carpeta)"
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Aiciones"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animaciones"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Estayes"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Preseos"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblemes"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Fustaxes"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Sistemes de ficheros"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internacional"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Tribes MIME"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Llugares"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Estáu"
+
+#: kicondialog.cpp:606
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ficheros d'iconu (*.png *.xpm *.svg *.svgz)"
