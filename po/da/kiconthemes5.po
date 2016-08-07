@@ -1,0 +1,104 @@
+# translation of kio4.po to
+# Danish translation of kio
+# Copyright (C)
+#
+# Steffen Hansen <stefh@nostromo>, 1998.
+# Thorbjoern Ravn Andersen <ravn@mip.sdu.dk>, 1999.
+# Birger Langkjer <birger.langkjer@image.dk>, 1999.
+# Erik Kjær Pedersen <erik@binghamton.edu>, 1999-2001,2002,2003, 2004, 2005, 2006.
+# Lars K. Schunk <lars@schunk.dk>, 2001-2002.
+# Martin Schlander <mschlander@opensuse.org>, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-14 08:05+0000\n"
+"PO-Revision-Date: 2012-12-13 20:31+0100\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:606
+msgid "Select Icon"
+msgstr "Vælg ikon"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Ikonkilde"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "S&ystemikoner:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "A&ndre ikoner:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "&Gennemse..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "&Søg:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Søg interaktivt efter ikonnavne (f.eks. mappe)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Handlinger"
+
+#: kicondialog.cpp:357
+msgid "Animations"
+msgstr "Animationer"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Programmer"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr "Kategorier"
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Enheder"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr "Emblemer"
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr "Smiletegn"
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Filsystemer"
+
+#: kicondialog.cpp:364
+msgid "International"
+msgstr "Internationalt"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Mimetyper"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr "Steder"
+
+#: kicondialog.cpp:367
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:606
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikon-filer (*.png *.xpm *.svg *.svgz)"

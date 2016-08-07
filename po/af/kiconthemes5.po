@@ -1,0 +1,100 @@
+# UTF-8 test:äëïöü
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Frikkie Thirion <frix@expertron.co.za>, 2001,2002,2005.
+# Juanita Franz <juanita.franz@vr-web.de>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4 stable\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-07-14 08:05+0000\n"
+"PO-Revision-Date: 2005-11-25 05:33+0200\n"
+"Last-Translator: Juanita Franz <juanita.franz@vr-web.de>\n"
+"Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:606
+msgid "Select Icon"
+msgstr "Kies Ikoon"
+
+#: kicondialog.cpp:289
+msgid "Icon Source"
+msgstr "Ikoon Bron"
+
+#: kicondialog.cpp:298
+msgid "S&ystem icons:"
+msgstr "Stelsel ikoone:"
+
+#: kicondialog.cpp:305
+msgid "O&ther icons:"
+msgstr "Ander ikoone:"
+
+#: kicondialog.cpp:308
+msgid "&Browse..."
+msgstr "Blaai..."
+
+#: kicondialog.cpp:319
+msgid "&Search:"
+msgstr "Soek:"
+
+#: kicondialog.cpp:326
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Soek interaktief vir ikoon name (bv gids)."
+
+#: kicondialog.cpp:356
+msgid "Actions"
+msgstr "Aksies"
+
+#: kicondialog.cpp:357
+#, fuzzy
+msgid "Animations"
+msgstr "Programme"
+
+#: kicondialog.cpp:358
+msgid "Applications"
+msgstr "Programme"
+
+#: kicondialog.cpp:359
+msgid "Categories"
+msgstr ""
+
+#: kicondialog.cpp:360
+msgid "Devices"
+msgstr "Toestelle"
+
+#: kicondialog.cpp:361
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:362
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:363
+msgid "Filesystems"
+msgstr "Lêerstelsels"
+
+#: kicondialog.cpp:364
+#, fuzzy
+msgid "International"
+msgstr "Inleiding"
+
+#: kicondialog.cpp:365
+msgid "Mimetypes"
+msgstr "Mime-tipes"
+
+#: kicondialog.cpp:366
+msgid "Places"
+msgstr ""
+
+#: kicondialog.cpp:367
+#, fuzzy
+msgid "Status"
+msgstr "Opstart"
+
+#: kicondialog.cpp:606
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikoon Lêers (*.png *.xpm *.svg *.svgz)"
