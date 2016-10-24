@@ -74,7 +74,11 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
 
     Q_UNUSED(state)
 
-    qreal dpr = painter->device()->devicePixelRatio();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
+    const qreal dpr = painter->device()->devicePixelRatioF();
+#else
+    const qreal dpr = painter->device()->devicePixelRatio();
+#endif
 
     const int kstate = qIconModeToKIconState(mode);
     const int iconSize = qMin(rect.width(), rect.height()) * dpr;
