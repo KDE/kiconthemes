@@ -299,7 +299,6 @@ void KIconDialog::KIconDialogPrivate::init()
     connect(mpSystemIcons, SIGNAL(clicked()), q, SLOT(_k_slotSystemIconClicked()));
     grid->addWidget(mpSystemIcons, 1, 0);
     mpCombo = new QComboBox(bgroup);
-    mpCombo->setMaxVisibleItems(12);
     connect(mpCombo, SIGNAL(activated(int)), q, SLOT(_k_slotContext(int)));
     grid->addWidget(mpCombo, 1, 1);
     mpOtherIcons = new QRadioButton(i18n("O&ther icons:"), bgroup);
@@ -354,31 +353,27 @@ void KIconDialog::KIconDialogPrivate::init()
 
     static const char *const context_text[] = {
         I18N_NOOP("Actions"),
-        I18N_NOOP("Animations"),
         I18N_NOOP("Applications"),
         I18N_NOOP("Categories"),
         I18N_NOOP("Devices"),
         I18N_NOOP("Emblems"),
         I18N_NOOP("Emotes"),
-        I18N_NOOP("Filesystems"),
-        I18N_NOOP("International"),
         I18N_NOOP("Mimetypes"),
         I18N_NOOP("Places"),
-        I18N_NOOP("Status")
+        I18N_NOOP("Status"),
+        I18N_NOOP("All")
     };
     static const KIconLoader::Context context_id[] = {
         KIconLoader::Action,
-        KIconLoader::Animation,
         KIconLoader::Application,
         KIconLoader::Category,
         KIconLoader::Device,
         KIconLoader::Emblem,
         KIconLoader::Emote,
-        KIconLoader::FileSystem,
-        KIconLoader::International,
         KIconLoader::MimeType,
         KIconLoader::Place,
-        KIconLoader::StatusIcon
+        KIconLoader::StatusIcon,
+        KIconLoader::Any
     };
     mNumContext = 0;
     int cnt = sizeof(context_text) / sizeof(context_text[ 0 ]);
@@ -391,6 +386,7 @@ void KIconDialog::KIconDialogPrivate::init()
             mContextMap[ mNumContext++ ] = context_id[ i ];
         }
     }
+    mpCombo->setMaxVisibleItems(cnt);
     mpCombo->setFixedSize(mpCombo->sizeHint());
 
     mpBrowseBut->setFixedWidth(mpCombo->width());
