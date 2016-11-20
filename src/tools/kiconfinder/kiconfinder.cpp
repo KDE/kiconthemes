@@ -23,6 +23,8 @@
 #include <kiconloader.h>
 #include <../kiconthemes_version.h>
 
+#include <cstdio>
+
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
@@ -40,7 +42,7 @@ int main(int argc, char *argv[])
     Q_FOREACH(const QString& iconName, parser.positionalArguments()) {
         const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
         if ( !icon.isEmpty() ) {
-            printf("%s\n", icon.toLatin1().constData());
+            printf("%s\n", icon.toLocal8Bit().constData());
         } else {
             return 1; // error
         }
