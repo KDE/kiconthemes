@@ -1,0 +1,194 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# enolp <enolp@softastur.org>, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4-v1\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-11-19 20:11+0100\n"
+"PO-Revision-Date: 2016-02-04 20:09+0100\n"
+"Last-Translator: enolp <enolp@sofastur.org>\n"
+"Language-Team: Asturian <>\n"
+"Language: ast\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: asturian\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "Esbillar iconu"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Fonte d'iconos"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Iconos del s&istema:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "O&tros iconos:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Restolar..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Guetar:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Guetar interautivamente pa los nomes d'iconos (exem: carpeta)"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Aiciones"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Estayes"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Preseos"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Emblemes"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Fustaxes"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Tribes MIME"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Llugares"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Estáu"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:602
+#, kde-format
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ficheros d'iconu (*.png *.xpm *.svg *.svgz)"
+
+#~ msgid "Animations"
+#~ msgstr "Animaciones"
+
+#~ msgid "Filesystems"
+#~ msgstr "Sistemes de ficheros"
+
+#~ msgid "International"
+#~ msgstr "Internacional"
+
+#, fuzzy
+#~| msgid "1 File"
+#~| msgid_plural "%1 Files"
+#~ msgid "All Files"
+#~ msgstr "1 File"
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Llugares"
+
+#, fuzzy
+#~| msgid "1 Folder"
+#~| msgid_plural "%1 Folders"
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "1 Carpeta"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "1 Carpeta"
+#~ msgstr[1] "%1 Carpetes"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "1 File"
+#~ msgstr[1] "%1 Ficheros"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1, %2 (%3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1, %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgid "Could not read %1."
+#~ msgstr "Nun puede lleese %1."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "Nun puede escribise en %1."
+
+#~ msgid "&Yes"
+#~ msgstr "&Sí"
+
+#~ msgid "&No"
+#~ msgstr "&Non"
+
+#, fuzzy
+#~| msgctxt "folders, files"
+#~| msgid "%1, %2"
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1, %2"
+
+#, fuzzy
+#~| msgctxt "folders, files (size)"
+#~| msgid "%1, %2 (%3)"
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1, %2 (%3)"
+
+#, fuzzy
+#~| msgid "1 Folder"
+#~| msgid_plural "%1 Folders"
+#~ msgctxt "@label"
+#~ msgid "Folder"
+#~ msgstr "1 Carpeta"
