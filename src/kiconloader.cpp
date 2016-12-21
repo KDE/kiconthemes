@@ -541,7 +541,18 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
 
 void KIconLoaderPrivate::_k_refreshIcons(int group)
 {
-    KSharedConfig::openConfig()->reparseConfiguration();
+    KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig();
+    sharedConfig->reparseConfiguration();
+
+    const QString newThemeName = sharedConfig->group("Icons")
+                                               .readEntry("Theme", QString());
+    if (!newThemeName.isEmpty()) {
+        // If we're refreshing icons the Qt platform plugin has probably
+        // already cached the old theme, which will accidentally filter back
+        // into KIconTheme unless we reset it
+        QIcon::setThemeName(newThemeName);
+    }
+
     q->newIconLoader();
     mIconAvailability.clear();
     emit q->iconChanged(group);
