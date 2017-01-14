@@ -76,12 +76,6 @@ class KPixmapSequence;
 class KICONTHEMES_EXPORT KIconLoader : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(Context)
-    Q_ENUMS(Type)
-    Q_ENUMS(MatchType)
-    Q_ENUMS(Group)
-    Q_ENUMS(StdSizes)
-    Q_ENUMS(States)
 
 public:
     /**
@@ -102,6 +96,7 @@ public:
         Place,         ///< An icon that represents a location (e.g. 'home', 'trash').
         StatusIcon     ///< An icon that represents an event.
     };
+    Q_ENUM(Context)
 
     /**
      * The type of the icon.
@@ -111,6 +106,7 @@ public:
         Scalable, ///< Scalable-size icon.
         Threshold ///< A threshold icon.
     };
+    Q_ENUM(Type)
 
     /**
      * The type of a match.
@@ -119,6 +115,7 @@ public:
         MatchExact, ///< Only try to find an exact match.
         MatchBest   ///< Take the best match if there is no exact match.
     };
+    Q_ENUM(MatchType)
 
     /**
      * The group of the icon.
@@ -145,6 +142,7 @@ public:
         /// User icons
         User
     };
+    Q_ENUM(Group)
 
     /**
      * These are the standard sizes for icons.
@@ -163,6 +161,7 @@ public:
         /// enormous sized icons for iconviews
         SizeEnormous = 128
     };
+    Q_ENUM(StdSizes)
 
     /**
      * Defines the possible states of an icon.
@@ -174,6 +173,7 @@ public:
         SelectedState, ///< Icon is selected. @since 5.22
         LastState      ///< Last state (last constant)
     };
+    Q_ENUM(States)
 
     /**
      * Constructs an iconloader.
