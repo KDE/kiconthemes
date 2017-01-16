@@ -10,7 +10,7 @@ class KIconEffectTestWidget : public QScrollArea
 {
     Q_OBJECT
 public:
-    KIconEffectTestWidget(QWidget *parent = 0);
+    KIconEffectTestWidget(QWidget *parent = nullptr);
 private Q_SLOTS:
     void slotGray(int);
     void slotMonochrome(int);

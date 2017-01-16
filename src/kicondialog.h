@@ -38,7 +38,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconDialog(QWidget *parent = 0L);
+    explicit KIconDialog(QWidget *parent = nullptr);
 
     /**
      * Constructs an icon selection dialog using a specific icon loader.
@@ -46,7 +46,7 @@ public:
      * @param loader The icon loader to use.
      * @param parent The parent widget.
      */
-    explicit KIconDialog(KIconLoader *loader, QWidget *parent = 0);
+    explicit KIconDialog(KIconLoader *loader, QWidget *parent = nullptr);
 
     /**
      * Destructs the dialog.
@@ -132,7 +132,7 @@ public:
     static QString getIcon(KIconLoader::Group group = KIconLoader::Desktop,
                            KIconLoader::Context context = KIconLoader::Application,
                            bool strictIconSize = false, int iconSize = 0,
-                           bool user = false, QWidget *parent = 0,
+                           bool user = false, QWidget *parent = nullptr,
                            const QString &caption = QString());
 
 Q_SIGNALS:

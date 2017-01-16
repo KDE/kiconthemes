@@ -225,7 +225,7 @@ void KIconCanvas::stopLoading()
 
 void KIconCanvas::currentListItemChanged(QListWidgetItem *item)
 {
-    emit nameChanged((item != 0L) ? item->text() : QString());
+    emit nameChanged((item != nullptr) ? item->text() : QString());
 }
 
 // TODO KF6 remove and override KIconDialog::showEvent()

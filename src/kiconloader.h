@@ -186,7 +186,7 @@ public:
      * KIconLoader::global(), so you hardly ever have to create an
      * iconloader object yourself. That one is the application's iconloader.
      */
-    explicit KIconLoader(const QString &appname = QString(), const QStringList &extraSearchPaths = QStringList(), QObject *parent = 0);
+    explicit KIconLoader(const QString &appname = QString(), const QStringList &extraSearchPaths = QStringList(), QObject *parent = nullptr);
 
     /**
      * Cleanup
@@ -239,7 +239,7 @@ public:
      */
     QPixmap loadIcon(const QString &name, KIconLoader::Group group, int size = 0,
                      int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
-                     QString *path_store = 0L,
+                     QString *path_store = nullptr,
                      bool canReturnNull = false) const;
 
     /**
@@ -262,7 +262,7 @@ public:
      */
     QPixmap loadMimeTypeIcon(const QString &iconName, KIconLoader::Group group, int size = 0,
                              int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
-                             QString *path_store = 0) const;
+                             QString *path_store = nullptr) const;
 
     /**
      * Loads a pixmapSequence given the xdg icon name
@@ -322,7 +322,7 @@ public:
      * @return A QMovie object. Can be null if not found or not valid.
      *         Ownership is passed to the caller.
      */
-    QMovie *loadMovie(const QString &name, KIconLoader::Group group, int size = 0, QObject *parent = 0) const;
+    QMovie *loadMovie(const QString &name, KIconLoader::Group group, int size = 0, QObject *parent = nullptr) const;
 
     /**
      * Returns the path to an animated icon.
@@ -593,14 +593,14 @@ namespace KDE
  * KDE style and effect standards.
  * @since 5.0
  */
-KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = 0);
+KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = nullptr);
 
 /**
  * \relates KIconLoader
  * Returns a QIcon for the given icon, with additional overlays.
  * @since 5.0
  */
-KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader = 0);
+KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader = nullptr);
 
 }
 

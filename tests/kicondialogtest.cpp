@@ -40,7 +40,7 @@ public Q_SLOTS:
         delete dialog;
 
         icon = KIconDialog::getIcon(KIconLoader::Desktop, KIconLoader::MimeType,
-                true, 48, true, 0, QStringLiteral("Test dialog"));
+                true, 48, true, nullptr, QStringLiteral("Test dialog"));
         QTextStream(stdout) << "Icon \"" << icon << "\" was chosen (getIcon)\n";
     }
 

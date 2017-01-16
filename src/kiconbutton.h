@@ -41,7 +41,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconButton(QWidget *parent = 0L);
+    explicit KIconButton(QWidget *parent = nullptr);
 
     /**
      * Constructs a KIconButton using a specific icon loader.

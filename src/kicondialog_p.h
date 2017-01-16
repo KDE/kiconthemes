@@ -40,7 +40,7 @@ public:
      *
      * @param parent The parent widget.
      */
-    explicit KIconCanvas(QWidget *parent = 0L);
+    explicit KIconCanvas(QWidget *parent = nullptr);
 
     /**
      * Destroys the icon canvas.
@@ -110,7 +110,7 @@ public:
         m_bStrictIconSize = true;
         m_bLockUser = false;
         m_bLockCustomDir = false;
-        searchLine = 0;
+        searchLine = nullptr;
         mNumOfSteps = 1;
     }
     ~KIconDialogPrivate() {}

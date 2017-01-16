@@ -212,7 +212,7 @@ private Q_SLOTS:
         QCOMPARE(pix.size(), QSize(16, 16));
         // And now set canReturnNull to true
         pix = iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16, KIconLoader::DefaultState,
-                                  QStringList(), 0, true);
+                                  QStringList(), nullptr, true);
         QVERIFY(pix.isNull());
         // Try getting the "unknown" icon again, to see if the above call didn't put a null icon into the cache...
         pix = iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16);

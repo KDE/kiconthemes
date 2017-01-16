@@ -207,8 +207,8 @@ class KIconLoaderPrivate
 public:
     KIconLoaderPrivate(KIconLoader *q)
         : q(q)
-        , mpGroups(0)
-        , mIconCache(0)
+        , mpGroups(nullptr)
+        , mIconCache(nullptr)
     {
     }
 
@@ -224,8 +224,8 @@ public:
         qDeleteAll(links);
         delete[] mpGroups;
         delete mIconCache;
-        mpGroups = 0;
-        mIconCache = 0;
+        mpGroups = nullptr;
+        mIconCache = nullptr;
         mPixmapCache.clear();
         appname.clear();
         searchPaths.clear();
@@ -503,7 +503,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
         //TODO: should we pass in the kstate? it results in a slower
         //      path, and perhaps emblems should remain in the default state
         //      anyways?
-        const QPixmap pixmap = iconLoader->loadIcon(overlay, group, overlaySize, state, QStringList(), 0, true);
+        const QPixmap pixmap = iconLoader->loadIcon(overlay, group, overlaySize, state, QStringList(), nullptr, true);
 
         if (pixmap.isNull()) {
             continue;
@@ -579,7 +579,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 {
     extraDesktopIconsLoaded = false;
     mIconThemeInited = false;
-    mpThemeRoot = 0;
+    mpThemeRoot = nullptr;
 
     searchPaths = extraSearchPaths;
 
@@ -595,15 +595,15 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
     mPixmapCache.setMaxCost(10 * 1024 * 1024);
 
     // These have to match the order in kiconloader.h
-    static const char *const groups[] = { "Desktop", "Toolbar", "MainToolbar", "Small", "Panel", "Dialog", 0L };
+    static const char *const groups[] = { "Desktop", "Toolbar", "MainToolbar", "Small", "Panel", "Dialog", nullptr };
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
 
     // loading config and default sizes
     initIconThemes();
-    KIconTheme *defaultSizesTheme = links.empty() ? 0 : links.first()->theme;
+    KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links.first()->theme;
     mpGroups = new KIconGroup[(int) KIconLoader::LastGroup];
     for (KIconLoader::Group i = KIconLoader::FirstGroup; i < KIconLoader::LastGroup; ++i) {
-        if (groups[i] == 0L) {
+        if (groups[i] == nullptr) {
             break;
         }
 
@@ -620,7 +620,7 @@ bool KIconLoaderPrivate::initIconThemes()
 {
     if (mIconThemeInited) {
         // If mpThemeRoot isn't 0 then initing has succeeded
-        return (mpThemeRoot != 0);
+        return (mpThemeRoot != nullptr);
     }
     //qCDebug(KICONTHEMES);
     mIconThemeInited = true;
@@ -1386,17 +1386,17 @@ QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, in
 {
     QString file = moviePath(name, group, size);
     if (file.isEmpty()) {
-        return 0;
+        return nullptr;
     }
     int dirLen = file.lastIndexOf('/');
     QString icon = iconPath(name, size ? -size : group, true);
     if (!icon.isEmpty() && file.left(dirLen) != icon.left(dirLen)) {
-        return 0;
+        return nullptr;
     }
     QMovie *movie = new QMovie(file, QByteArray(), parent);
     if (!movie->isValid()) {
         delete movie;
-        return 0;
+        return nullptr;
     }
     return movie;
 }
@@ -1504,7 +1504,7 @@ KIconTheme *KIconLoader::theme() const
     if (d->mpThemeRoot) {
         return d->mpThemeRoot->theme;
     }
-    return 0L;
+    return nullptr;
 }
 
 int KIconLoader::currentSize(KIconLoader::Group group) const
@@ -1651,12 +1651,12 @@ QIcon KIconLoader::loadIconSet(const QString &name, KIconLoader::Group g, int s,
                                bool canReturnNull)
 {
     QIcon iconset;
-    QPixmap tmp = loadIcon(name, g, s, KIconLoader::ActiveState, QStringList(), NULL, canReturnNull);
+    QPixmap tmp = loadIcon(name, g, s, KIconLoader::ActiveState, QStringList(), nullptr, canReturnNull);
     iconset.addPixmap(tmp, QIcon::Active, QIcon::On);
     // we don't use QIconSet's resizing anyway
-    tmp = loadIcon(name, g, s, KIconLoader::DisabledState, QStringList(), NULL, canReturnNull);
+    tmp = loadIcon(name, g, s, KIconLoader::DisabledState, QStringList(), nullptr, canReturnNull);
     iconset.addPixmap(tmp, QIcon::Disabled, QIcon::On);
-    tmp = loadIcon(name, g, s, KIconLoader::DefaultState, QStringList(), NULL, canReturnNull);
+    tmp = loadIcon(name, g, s, KIconLoader::DefaultState, QStringList(), nullptr, canReturnNull);
     iconset.addPixmap(tmp, QIcon::Normal, QIcon::On);
     return iconset;
 }

@@ -70,7 +70,7 @@ KIconButton::KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader
     mbUser = false;
 
     mpLoader = loader;
-    mpDialog = 0L;
+    mpDialog = nullptr;
     connect(q, SIGNAL(clicked()), q, SLOT(_k_slotChangeIcon()));
 }
 
