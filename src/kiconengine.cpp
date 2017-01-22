@@ -72,18 +72,12 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
         return;
     }
 
-    Q_UNUSED(state)
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
     const qreal dpr = painter->device()->devicePixelRatioF();
 #else
     const qreal dpr = painter->device()->devicePixelRatio();
 #endif
-
-    const int kstate = qIconModeToKIconState(mode);
-    const int iconSize = qMin(rect.width(), rect.height()) * dpr;
-    const QPixmap pix = mIconLoader.data()->loadIcon(mIconName, KIconLoader::Desktop, iconSize, kstate, mOverlays);
-    painter->drawPixmap(rect, pix);
+    painter->drawPixmap(rect, pixmap(rect.size() * dpr, mode, state));
 }
 
 QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
@@ -113,7 +107,7 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
-    painter.drawPixmap(QPoint(), pix);
+    painter.drawPixmap(QPoint((pix2.width() - pix.width()) / 2, (pix2.height() - pix.height()) / 2), pix);
 
     return pix2;
 }

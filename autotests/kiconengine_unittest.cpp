@@ -127,6 +127,21 @@ private Q_SLOTS:
         QCOMPARE(icon3.name(), nonExistingIconName);
 
     }
+
+    void testCenterIcon()
+    {
+        QIcon icon(new KIconEngine(QStringLiteral("kde"), KIconLoader::global()));
+        QVERIFY(!icon.isNull());
+
+        // "kde" icon is actually "test-22x22.png", so this is original icon image
+        const QImage image = icon.pixmap(22, 22).toImage();
+
+        // center vertically
+        QVERIFY(icon.pixmap(22, 26).toImage().copy(0, 2, 22, 22) == image);
+
+        // center horizontally
+        QVERIFY(icon.pixmap(26, 22).toImage().copy(2, 0, 22, 22) == image);
+    }
 private:
     QDir testIconsDir;
 };
