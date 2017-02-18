@@ -267,7 +267,7 @@ public:
     /**
      * Loads a pixmapSequence given the xdg icon name
      *
-     * @param name The name of the icon, without extension.
+     * @param iconName The name of the icon, without extension.
      * @param size the size/group to be used
      * @since 5.0
      */
