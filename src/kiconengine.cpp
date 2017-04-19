@@ -84,7 +84,7 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 {
     Q_UNUSED(state)
 
-    if (!size.isValid()) {
+    if (size.isEmpty()) {
         return QPixmap();
     }
 
