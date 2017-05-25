@@ -26,6 +26,8 @@
 class KIconLoader;
 
 /**
+ * @class KIconEngine kiconengine.h KIconEngine
+ *
  * \short A class to provide rendering of KDE icons.
  *
  * Currently, this class is not much more than a wrapper around QIconEngine.

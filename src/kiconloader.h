@@ -39,6 +39,8 @@ class KIconTheme;
 class KPixmapSequence;
 
 /**
+ * @class KIconLoader kiconloader.h KIconLoader
+ *
  * Iconloader for KDE.
  *
  * KIconLoader will load the current icon theme and all its base themes.

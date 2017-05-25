@@ -21,6 +21,8 @@
 #include <kiconloader.h>
 
 /**
+ * @class KIconButton kiconbutton.h KIconButton
+ *
  * A pushbutton for choosing an icon. Pressing on the button will open a
  * KIconDialog for the user to select an icon. The current icon will be
  * displayed on the button.

@@ -23,6 +23,8 @@
 #include <kiconloader.h>
 
 /**
+ * @class KIconDialog kicondialog.h KIconDialog
+ *
  * Dialog for interactive selection of icons. Use the function
  * getIcon() to let the user select an icon.
  *

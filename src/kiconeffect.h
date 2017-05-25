@@ -34,6 +34,8 @@
 class KIconEffectPrivate;
 
 /**
+ * @class KIconEffect kiconeffect.h KIconEffect
+ *
  * Applies effects to icons.
  *
  * This class applies effects to icons depending on their state and
