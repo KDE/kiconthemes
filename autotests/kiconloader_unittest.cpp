@@ -146,8 +146,12 @@ private Q_SLOTS:
 
     void cleanupTestCase()
     {
-        testIconsDir.removeRecursively();
-        appDataDir.removeRecursively();
+        if (testIconsDir != QDir()) {
+            testIconsDir.removeRecursively();
+        }
+        if (appDataDir != QDir()) {
+            appDataDir.removeRecursively();
+        }
     }
 
     void init()
