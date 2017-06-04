@@ -258,7 +258,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     groups += QStringLiteral("Small");
     groups += QStringLiteral("Panel");
     groups += QStringLiteral("Dialog");
-    const int defDefSizes[] = { 32, 22, 22, 16, 32, 32 };
+    const int defDefSizes[] = { 32, 22, 22, 16, 48, 32 };
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (int i = 0; i < groups.size(); ++i) {
         const QString group = groups.at(i);
