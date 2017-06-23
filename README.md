@@ -25,8 +25,17 @@ theme name from KConfig, and redirects QIcon::fromTheme calls to KIconEngine/KIc
 which brings some benefits over Qt's internal icon loading, such as a cache shared
 between processes.
 
-On other platforms such as Windows and Mac OS, icon themes are not part of the system.
-The deployment strategy for applications on those operations systems is the following:
+On other platforms such as MS Windows and Mac OS, icon themes are not a regular part of the system,
+though they are available through package management systems (like MacPorts, Fink and Cygwin).
+
+When icon themes are installed in a suitable (system) location, applications can be built and
+deployed as on Linux/BSD provided that the location is registered by calling QIcon::setThemeSearchPath().
+This can be done early in the main() function, or in a plugin that Qt loads automatically when
+the application starts up (a platform theme plugin, for instance).
+The more usual deployment strategy on those platforms consists of creating standalone applications
+where each has its own copy of all dependencies and required resources.
+
+Icon theme resources for standalone applications can be created and deployed as follows:
 - breeze-icons and other icon themes, when configured with -DBINARY\_ICONS\_RESOURCE=ON, install .rcc files (binary resources, loadable by Qt)
 - the installation process should copy one of these under the name "icontheme.rcc", in
     a directory found by [QStandardPaths::AppDataLocation](http://doc.qt.io/qt-5/qstandardpaths.html#StandardLocation-enum).
@@ -34,4 +43,9 @@ The deployment strategy for applications on those operations systems is the foll
     while on Mac OS it is installed in the Resources directory inside the application bundle.
 - as long as the application links to KIconThemes (even if it doesn't use any of its API),
     the icontheme.rcc file will be found on startup, loaded, and set as the default icon theme.
+
+A related note of caution: These systems use embedded application icons regardless
+of how icon themes are provided, and allow users to change that icon. Software should
+thus ideally refrain from calling QGuiApplication::setWindowIcon() or at least pass
+QGuiApplication::windowIcon() as the fallback argument when using QIcon::fromTheme().
 
