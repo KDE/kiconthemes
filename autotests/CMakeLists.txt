@@ -29,3 +29,5 @@ add_custom_command(OUTPUT icontheme.rcc
 )
 ecm_add_test(kiconloader_rcctest.cpp LINK_LIBRARIES Qt5::Test KF5::IconThemes KF5::WidgetsAddons KF5::ConfigCore)
 add_custom_target(rcctest-rcc ALL DEPENDS icontheme.rcc) # a custom target that is always built
+
+set_tests_properties(kiconloader_unittest PROPERTIES RUN_SERIAL TRUE)
