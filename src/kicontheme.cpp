@@ -70,7 +70,7 @@ void initRCCIconTheme()
 Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
 
 
-class KIconTheme::KIconThemePrivate
+class Q_DECL_HIDDEN KIconTheme::KIconThemePrivate
 {
 public:
     QString example, screenshot;

@@ -17,7 +17,7 @@
 
 #include "kicondialog.h"
 
-class KIconButton::KIconButtonPrivate
+class Q_DECL_HIDDEN KIconButton::KIconButtonPrivate
 {
 public:
     KIconButtonPrivate(KIconButton *qq, KIconLoader *loader);
