@@ -26,6 +26,7 @@ target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_IN
 target_link_libraries(KF5IconThemes
   PUBLIC
     Qt5::Widgets
+    KF5::ConfigWidgets # for KColorScheme
   PRIVATE
     Qt5::DBus
     Qt5::Svg
@@ -33,7 +34,6 @@ target_link_libraries(KF5IconThemes
     KF5::I18n          # for i18n in KIconDialog
     KF5::WidgetsAddons # for KPixmapSequence family
     KF5::ItemViews      # for KListWidgetSearchLine
-    KF5::ConfigWidgets # for KColorScheme
     KF5::CoreAddons    # for kshareddatacache.h
 )
 

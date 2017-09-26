@@ -134,7 +134,7 @@ KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer)
     }
 }
 
-static QString paletteId(const QPalette &pal)
+static QString paletteId(const QPalette &pal, KColorScheme::ColorSet colorSet)
 {
     // 8 per color. We want 3 colors thus 8*3=24.
     QString buffer(24, Qt::Uninitialized);
@@ -142,6 +142,7 @@ static QString paletteId(const QPalette &pal)
     uintToHex(pal.text().color().rgba(), buffer.data());
     uintToHex(pal.highlight().color().rgba(), buffer.data() + 8);
     uintToHex(pal.highlightedText().color().rgba(), buffer.data() + 16);
+    buffer += QString::number(colorSet);
 
     return buffer;
 }
@@ -396,6 +397,8 @@ public:
 
     QHash<QString, bool> mIconAvailability; // icon name -> true (known to be available) or false (known to be unavailable)
     QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
+    //the kcolorscheme's colorset used to recolor svg icons stylesheets
+    KColorScheme::ColorSet mColorSet = KColorScheme::Window;
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -802,6 +805,16 @@ void KIconLoader::drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIc
     d->drawOverlays(this, group, state, pixmap, overlays);
 }
 
+KColorScheme::ColorSet KIconLoader::colorSet() const
+{
+    return d->mColorSet;
+}
+
+void KIconLoader::setColorSet(KColorScheme::ColorSet colorSet)
+{
+    d->mColorSet = colorSet;
+}
+
 QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
 {
     if (name.endsWith(QLatin1String(".png"))
@@ -864,7 +877,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % (group >= 0 ? mpEffect.fingerprint(group, state)
               : NULL_EFFECT_FINGERPRINT())
            % QLatin1Char('_')
-           % paletteId(qApp->palette())
+           % paletteId(qApp->palette(), mColorSet)
            % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
 }
 
@@ -882,12 +895,11 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         return QByteArray();
     }
 
-    const QPalette pal = qApp->palette();
-    KColorScheme scheme(QPalette::Active, KColorScheme::Window);
+    KColorScheme scheme(QPalette::Active, state == KIconLoader::SelectedState ? KColorScheme::Selection : mColorSet);
     QString styleSheet = STYLESHEET_TEMPLATE().arg(
-        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
-        state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
-        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
+        scheme.foreground(KColorScheme::NormalText).color().name(),
+        scheme.background(KColorScheme::NormalBackground).color().name(),
+        scheme.decoration(KColorScheme::FocusColor).color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
