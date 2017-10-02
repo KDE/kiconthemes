@@ -28,8 +28,6 @@
 
 #include <kiconthemes_export.h>
 
-#include <kcolorscheme.h>
-
 class QIcon;
 class QMovie;
 class QPixmap;
@@ -463,20 +461,19 @@ public:
     bool hasIcon(const QString &iconName) const;
 
     /**
-     * The color set that will be used for the svg stylesheet in case the
-     * loaded icons are svg-based, icons can be colored in different ways in
-     * different areas of the application
-     * @return one of KColorScheme ColorSet
+     * Sets the colors for this KIconLoader
      * @since 5.38
      */
-    KColorScheme::ColorSet colorSet() const;
+    void setCustomPalette(const QPalette &palette);
 
     /**
-     * Sets the ColorSet for this KIconLoader
-     * @param colorSet one of KColorScheme ColorSet values
+     * The colors that will be used for the svg stylesheet in case the
+     * loaded icons are svg-based, icons can be colored in different ways in
+     * different areas of the application
+     * @return the palette, if any, an invalid one if the user didn't set it
      * @since 5.38
      */
-    void setColorSet(KColorScheme::ColorSet colorSet);
+    QPalette customPalette() const;
 
 public Q_SLOTS:
     /**
