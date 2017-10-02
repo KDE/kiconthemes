@@ -136,8 +136,8 @@ KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer)
 
 static QString paletteId(const QPalette &pal)
 {
-    // 8 per color. We want 3 colors thus 8*3=24.
-    QString buffer(24, Qt::Uninitialized);
+    // 8 per color. We want 3 colors thus 8*4=32.
+    QString buffer(32, Qt::Uninitialized);
 
     uintToHex(pal.windowText().color().rgba(), buffer.data());
     uintToHex(pal.highlight().color().rgba(), buffer.data() + 8);
