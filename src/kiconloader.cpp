@@ -399,6 +399,8 @@ public:
     QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
     //the palette used to recolor svg icons stylesheets
     QPalette mPalette;
+    //to keep track if we are using a custom palette or just falling back to qApp;
+    bool mCustomPalette = false;
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -867,7 +869,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % (group >= 0 ? mpEffect.fingerprint(group, state)
               : NULL_EFFECT_FINGERPRINT())
            % QLatin1Char('_')
-           % paletteId(mPalette)
+           % paletteId(mCustomPalette ? mPalette : qApp->palette())
            % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
 }
 
@@ -885,11 +887,12 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         return QByteArray();
     }
 
+    const QPalette pal = mCustomPalette ? mPalette : qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
     QString styleSheet = STYLESHEET_TEMPLATE().arg(
-        state == KIconLoader::SelectedState ? mPalette.highlightedText().color().name() : mPalette.windowText().color().name(),
-        state == KIconLoader::SelectedState ? mPalette.highlight().color().name() : mPalette.window().color().name(),
-        state == KIconLoader::SelectedState ? mPalette.highlightedText().color().name() : mPalette.highlight().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
@@ -1785,6 +1788,7 @@ bool KIconLoader::hasIcon(const QString &name) const
 
 void KIconLoader::setCustomPalette(const QPalette &palette)
 {
+    d->mCustomPalette = true;
     d->mPalette = palette;
 }
 
