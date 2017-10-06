@@ -1797,6 +1797,12 @@ QPalette KIconLoader::customPalette() const
     return d->mPalette;
 }
 
+void KIconLoader::resetPalette()
+{
+    d->mCustomPalette = false;
+    d->mPalette = QPalette();
+}
+
 /*** the global icon loader ***/
 Q_GLOBAL_STATIC(KIconLoader, globalIconLoader)
 

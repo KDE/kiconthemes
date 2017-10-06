@@ -461,7 +461,11 @@ public:
     bool hasIcon(const QString &iconName) const;
 
     /**
-     * Sets the colors for this KIconLoader
+     * Sets the colors for this KIconLoader.
+     * NOTE: if you set a custom palette, if you are using some colors from 
+     * application's palette, you need to track the application palette changes by yourself.
+     * If you no longer wish to use a custom palette, use resetPalette()
+     * @see resetPalette
      * @since 5.38
      */
     void setCustomPalette(const QPalette &palette);
@@ -474,6 +478,14 @@ public:
      * @since 5.38
      */
     QPalette customPalette() const;
+
+    /**
+     * Resets the custom palette used by the KIconLoader to use the
+     * QGuiApplication::palette() again (and to follow it in case the
+     * application's palette changes)
+     * @since 5.38
+     */
+    void resetPalette();
 
 public Q_SLOTS:
     /**
