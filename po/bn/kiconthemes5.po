@@ -1,0 +1,108 @@
+# translation of kio.po to Bengali
+# Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Deepayan Sarkar <deepayan@bengalinux.org>, 2003, 2004, 2005, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-11-19 20:11+0100\n"
+"PO-Revision-Date: 2006-01-06 23:37-0600\n"
+"Last-Translator: Deepayan Sarkar <deepayan@bengalinux.org>\n"
+"Language-Team: Bengali <kde-translation@bengalinux.org>\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "আইকন বেছে নাও"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "আইকন উত্‍স"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "সিস্টেম &আইকন:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&অন্যান্য আইকন:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "ব্রাউ&জ..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr ""
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "কাজ"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "অ্যাপলিকেশন"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr ""
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "ডিভাইস"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "মাইম-টাইপ"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr ""
+
+#: kicondialog.cpp:363
+#, fuzzy, kde-format
+msgid "Status"
+msgstr "আরম্ভ"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:602
+#, kde-format
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|আইকন ফাইল (*.png *.xpm *.svg *.svgz)"
