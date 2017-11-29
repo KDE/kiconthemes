@@ -72,18 +72,12 @@ private Q_SLOTS:
     void testInvalidIconName()
     {
         QIcon icon(new KIconEngine(QStringLiteral("invalid-icon-name"), KIconLoader::global()));
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-        QEXPECT_FAIL("", "IsNullHook needs Qt 5.7", Continue);
-#endif
         QVERIFY(icon.isNull());
         QVERIFY2(icon.name().isEmpty(), qPrintable(icon.name()));
     }
 
     void testUnknownIconNotCached() // QIcon version of the test in kiconloader_unittest.cpp
     {
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-        QSKIP("IsNullHook needs Qt 5.7");
-#endif
         // This is a test to ensure that "unknown" icons are cached as unknown
         // for performance reasons, but after a while they'll be looked up again
         // so that newly installed icons can be used without a reboot.

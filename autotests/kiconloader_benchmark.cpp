@@ -102,9 +102,6 @@ private Q_SLOTS:
 
     void benchmarkNonExistingIcon_notCached()
     {
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-        QSKIP("IsNullHook needs Qt 5.7");
-#endif
         QBENCHMARK {
             // Remove icon cache
             const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
@@ -121,9 +118,6 @@ private Q_SLOTS:
 
     void benchmarkNonExistingIcon_cached()
     {
-#if QT_VERSION < QT_VERSION_CHECK(5, 7, 0)
-        QSKIP("IsNullHook needs Qt 5.7");
-#endif
         QBENCHMARK {
             QIcon icon(new KIconEngine(QStringLiteral("invalid-icon-name"), KIconLoader::global()));
             QVERIFY(icon.isNull());

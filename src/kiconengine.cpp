@@ -72,11 +72,7 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
         return;
     }
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
     const qreal dpr = painter->device()->devicePixelRatioF();
-#else
-    const qreal dpr = painter->device()->devicePixelRatio();
-#endif
     painter->drawPixmap(rect, pixmap(rect.size() * dpr, mode, state));
 }
 
@@ -159,11 +155,7 @@ bool KIconEngine::write(QDataStream &out) const
 
 void KIconEngine::virtual_hook(int id, void *data)
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)
     if (id == QIconEngine::IsNullHook) {
-#else
-    if (id == 3) {
-#endif
         *reinterpret_cast<bool*>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
     }
     QIconEngine::virtual_hook(id, data);
