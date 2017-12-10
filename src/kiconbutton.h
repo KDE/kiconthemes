@@ -128,9 +128,6 @@ private:
     KIconButtonPrivate *const d;
 
     Q_DISABLE_COPY(KIconButton)
-
-    Q_PRIVATE_SLOT(d, void _k_slotChangeIcon())
-    Q_PRIVATE_SLOT(d, void _k_newIconName(const QString &))
 };
 
 #endif // KICONBUTTON_H

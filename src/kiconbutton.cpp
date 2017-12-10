@@ -71,7 +71,7 @@ KIconButton::KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader
 
     mpLoader = loader;
     mpDialog = nullptr;
-    connect(q, SIGNAL(clicked()), q, SLOT(_k_slotChangeIcon()));
+    connect(q, &KIconButton::clicked, q, [this]() {_k_slotChangeIcon();});
 }
 
 KIconButton::KIconButtonPrivate::~KIconButtonPrivate()
@@ -133,7 +133,7 @@ void KIconButton::setIcon(const QString &icon)
 
     if (!d->mpDialog) {
         d->mpDialog = new KIconDialog(d->mpLoader, this);
-        connect(d->mpDialog, SIGNAL(newIconName(QString)), this, SLOT(_k_newIconName(QString)));
+        connect(d->mpDialog, &KIconDialog::newIconName, this, [this](const QString &iconName) { d->_k_newIconName(iconName); });
     }
 
     if (d->mbUser) {
@@ -161,7 +161,7 @@ void KIconButton::KIconButtonPrivate::_k_slotChangeIcon()
 {
     if (!mpDialog) {
         mpDialog = new KIconDialog(mpLoader, q);
-        connect(mpDialog, SIGNAL(newIconName(QString)), q, SLOT(_k_newIconName(QString)));
+        connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) { _k_newIconName(iconName); });
     }
 
     mpDialog->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);
