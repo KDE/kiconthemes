@@ -412,7 +412,7 @@ public:
     {
         const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
         //qCDebug(KICONTHEMES) << genericIconsFiles;
-        Q_FOREACH (const QString &file, genericIconsFiles) {
+        for (const QString &file : genericIconsFiles) {
             parseGenericIconsFiles(file);
         }
 
@@ -722,7 +722,7 @@ void KIconLoaderPrivate::addInheritedThemes(KIconThemeNode *node, const QString 
 {
     const QStringList lst = node->theme->inherits();
 
-    for (QStringList::ConstIterator it = lst.begin(); it != lst.end(); ++it) {
+    for (QStringList::ConstIterator it = lst.begin(), total = lst.end(); it != total; ++it) {
         if ((*it) == QLatin1String("hicolor")) {
             // The icon theme spec says that "hicolor" must be the very last
             // of all inherited themes, so don't add it here but at the very end
@@ -759,16 +759,14 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
 
     QStringList list;
     const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
-    QStringList::ConstIterator it;
     char buf[1000];
-    for (it = icnlibs.begin(); it != icnlibs.end(); ++it) {
+    for (QStringList::ConstIterator it = icnlibs.begin(), total = icnlibs.end(); it != total; ++it) {
         QDir dir(*it);
         if (!dir.exists()) {
             continue;
         }
         const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
-        QStringList::ConstIterator it2;
-        for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
+        for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
             if (!QFileInfo::exists(*it + *it2 + QStringLiteral("/index.desktop"))
                     && !QFileInfo::exists(*it + *it2 + QStringLiteral("/index.theme"))) {
                 continue;
@@ -789,7 +787,7 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         }
     }
 
-    for (it = list.constBegin(); it != list.constEnd(); ++it) {
+    for (QStringList::ConstIterator it = list.constBegin(), total = list.constEnd(); it != total; ++it) {
         // Don't add the KDE defaults once more, we have them anyways.
         if (*it == QLatin1String("default.kde")
                 || *it == QLatin1String("default.kde4")) {
@@ -1394,7 +1392,7 @@ QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, in
         return nullptr;
     }
     int dirLen = file.lastIndexOf(QLatin1Char('/'));
-    QString icon = iconPath(name, size ? -size : group, true);
+    const QString icon = iconPath(name, size ? -size : group, true);
     if (!icon.isEmpty() && file.left(dirLen) != icon.left(dirLen)) {
         return nullptr;
     }
@@ -1531,8 +1529,7 @@ QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
     const QStringList formats = QStringList() << QStringLiteral("*.png") << QStringLiteral("*.xpm") << QStringLiteral("*.svg") << QStringLiteral("*.svgz");
     const QStringList lst = dir.entryList(formats, QDir::Files);
     QStringList result;
-    QStringList::ConstIterator it;
-    for (it = lst.begin(); it != lst.end(); ++it) {
+    for (QStringList::ConstIterator it = lst.begin(), total = lst.end(); it != total; ++it) {
         result += iconsDir + QLatin1Char('/') + *it;
     }
     return result;
@@ -1757,7 +1754,7 @@ QPixmap KIconLoader::unknown()
         return pix;
     }
 
-    QString path = global()->iconPath(QStringLiteral("unknown"), KIconLoader::Small, true); //krazy:exclude=iconnames
+    const QString path = global()->iconPath(QStringLiteral("unknown"), KIconLoader::Small, true); //krazy:exclude=iconnames
     if (path.isEmpty()) {
         qCDebug(KICONTHEMES) << "Warning: Cannot find \"unknown\" icon.";
         pix = QPixmap(32, 32);

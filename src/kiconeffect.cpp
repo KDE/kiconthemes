@@ -719,7 +719,5 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
             }
         }
     }
-
-    return;
 }
 

@@ -162,7 +162,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     if (!appName.isEmpty() &&
             (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-        for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
+        for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
             const QString cDir = *it + QLatin1Char('/') + appName + QStringLiteral("/icons/") + name + QLatin1Char('/');
             if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
@@ -188,7 +188,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
     QString fileName, mainSection;
-    for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
+    for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
         const QString cDir = *it + QLatin1Char('/') + name + QLatin1Char('/');
         if (QDir(cDir).exists()) {
             themeDirs += cDir;
@@ -221,7 +221,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mDepth = cfg.readEntry("DisplayDepth", 32);
     d->mInherits = cfg.readEntry("Inherits", QStringList());
     if (name != defaultThemeName()) {
-        for (QStringList::Iterator it = d->mInherits.begin(); it != d->mInherits.end(); ++it) {
+        for (QStringList::Iterator it = d->mInherits.begin(), total = d->mInherits.end(); it != total; ++it) {
             if (*it == QLatin1String("default")) {
                 *it = defaultThemeName();
             }
@@ -242,10 +242,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
                 addedDirs.insert(currentDir);
                 KIconThemeDir *dir = new KIconThemeDir(*itDir, *it, cg);
-                if (!dir->isValid()) {
-                    delete dir;
-                } else {
+                if (dir->isValid()) {
                     d->mDirs.append(dir);
+                } else {
+                    delete dir;
                 }
             }
         }
@@ -584,8 +584,7 @@ QStringList KIconTheme::list()
     Q_FOREACH (const QString &it, icnlibs) {
         QDir dir(it);
         const QStringList lst = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-        QStringList::ConstIterator it2;
-        for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
+        for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
             if ((*it2).startsWith(QLatin1String("default."))) {
                 continue;
             }
@@ -745,8 +744,7 @@ QStringList KIconThemeDir::iconList() const
 
     QStringList result;
     result.reserve(lst.size());
-    QStringList::ConstIterator it;
-    foreach(const QString &file, lst) {
+    for (const QString &file : lst) {
         result += constructFileName(file);
     }
     return result;

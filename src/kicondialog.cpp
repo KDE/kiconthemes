@@ -48,8 +48,8 @@ public:
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
 private:
-    KIconCanvas *m_iconCanvas;
-    QAbstractItemDelegate *m_defaultDelegate;
+    KIconCanvas *m_iconCanvas = nullptr;
+    QAbstractItemDelegate *m_defaultDelegate = nullptr;
     static const int HORIZONTAL_EDGE_PAD = 3;
 };
 
@@ -436,7 +436,7 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         // List PNG files found directly in the kiconload search paths.
         Q_FOREACH (const QString &relDir, KIconLoader::global()->searchPaths()) {
             const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relDir, QStandardPaths::LocateDirectory);
-            Q_FOREACH (const QString &dir, dirs) {
+            for (const QString &dir : dirs) {
                 Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << QStringLiteral("*.png"))) {
                     filelist << dir + QLatin1Char('/') + fileName;
                 }
@@ -541,7 +541,7 @@ QString KIconDialog::openDialog()
             return d->custom;
         }
 
-        QString name = d->mpCanvas->getCurrent();
+        const QString name = d->mpCanvas->getCurrent();
         if (name.isEmpty() || d->mpOtherIcons->isChecked()) {
             return name;
         }
