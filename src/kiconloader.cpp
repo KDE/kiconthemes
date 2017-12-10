@@ -101,7 +101,7 @@ color:%6;\
 static bool pathIsRelative(const QString &path)
 {
 #ifdef Q_OS_UNIX
-    return (!path.isEmpty() && path[0] != QChar('/'));
+    return (!path.isEmpty() && path[0] != QLatin1Char('/'));
 #else
     return QDir::isRelativePath(path);
 #endif
@@ -448,10 +448,10 @@ void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
         stream.setCodec("ISO 8859-1");
         while (!stream.atEnd()) {
             const QString line = stream.readLine();
-            if (line.isEmpty() || line[0] == '#') {
+            if (line.isEmpty() || line[0] == QLatin1Char('#')) {
                 continue;
             }
-            const int pos = line.indexOf(':');
+            const int pos = line.indexOf(QLatin1Char(':'));
             if (pos == -1) { // syntax error
                 continue;
             }
@@ -612,7 +612,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
             break;
         }
 
-        KConfigGroup cg(config, QLatin1String(groups[i]) + "Icons");
+        KConfigGroup cg(config, QLatin1String(groups[i]) + QStringLiteral("Icons"));
         mpGroups[i].size = cg.readEntry("Size", 0);
 
         if (!mpGroups[i].size && defaultSizesTheme) {
@@ -649,7 +649,7 @@ bool KIconLoaderPrivate::initIconThemes()
     addBaseThemes(mpThemeRoot, appname);
 
     // Insert application specific themes at the top.
-    searchPaths.append(appname + "/pics");
+    searchPaths.append(appname + QStringLiteral("/pics"));
 
     // Add legacy icon dirs.
     searchPaths.append(QStringLiteral("icons")); // was xdgdata-icon in KStandardDirs
@@ -673,7 +673,7 @@ void KIconLoader::addAppDir(const QString &appname, const QString &themeBaseDir)
 {
     d->initIconThemes();
 
-    d->searchPaths.append(appname + "/pics");
+    d->searchPaths.append(appname + QStringLiteral("/pics"));
     d->addAppThemes(appname, themeBaseDir);
 }
 
@@ -769,8 +769,8 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
         QStringList::ConstIterator it2;
         for (it2 = lst.begin(); it2 != lst.end(); ++it2) {
-            if (!QFileInfo::exists(*it + *it2 + "/index.desktop")
-                    && !QFileInfo::exists(*it + *it2 + "/index.theme")) {
+            if (!QFileInfo::exists(*it + *it2 + QStringLiteral("/index.desktop"))
+                    && !QFileInfo::exists(*it + *it2 + QStringLiteral("/index.theme"))) {
                 continue;
             }
             //TODO: Is any special handling required for NTFS symlinks?
@@ -1087,7 +1087,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
                 break;
             }
 
-            int rindex = currentName.lastIndexOf('-');
+            int rindex = currentName.lastIndexOf(QLatin1Char('-'));
             if (rindex > 1) { // > 1 so that we don't split x-content or x-epoc
                 currentName.truncate(rindex);
 
@@ -1139,7 +1139,7 @@ inline QString KIconLoaderPrivate::unknownIconPath(int size) const
 QString KIconLoaderPrivate::locate(const QString &fileName)
 {
     Q_FOREACH (const QString &dir, searchPaths) {
-        const QString path = dir + '/' + fileName;
+        const QString path = dir + QLatin1Char('/') + fileName;
         if (QDir(dir).isAbsolute()) {
             if (QFileInfo::exists(path)) {
                 return path;
@@ -1267,7 +1267,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
     // Special case for absolute path icons.
     if (name.startsWith(QLatin1String("favicons/"))) {
         favIconOverlay = true;
-        name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + '/' + name + ".png";
+        name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1Char('/') + name + QStringLiteral(".png");
     }
 
     bool absolutePath = !pathIsRelative(name);
@@ -1393,7 +1393,7 @@ QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, in
     if (file.isEmpty()) {
         return nullptr;
     }
-    int dirLen = file.lastIndexOf('/');
+    int dirLen = file.lastIndexOf(QLatin1Char('/'));
     QString icon = iconPath(name, size ? -size : group, true);
     if (!icon.isEmpty() && file.left(dirLen) != icon.left(dirLen)) {
         return nullptr;
@@ -1423,7 +1423,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
         group = KIconLoader::Desktop;
     }
 
-    QString file = name + ".mng";
+    QString file = name + QStringLiteral(".mng");
     if (group == KIconLoader::User) {
         file = d->locate(file);
     } else {
@@ -1473,9 +1473,9 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
         group = KIconLoader::Desktop;
     }
 
-    QString file = name + "/0001";
+    QString file = name + QStringLiteral("/0001");
     if (group == KIconLoader::User) {
-        file = d->locate(file + ".png");
+        file = d->locate(file + QStringLiteral(".png"));
     } else {
         if (size == 0) {
             size = d->mpGroups[group].size;
@@ -1533,7 +1533,7 @@ QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
     QStringList result;
     QStringList::ConstIterator it;
     for (it = lst.begin(); it != lst.end(); ++it) {
-        result += iconsDir + '/' + *it;
+        result += iconsDir + QLatin1Char('/') + *it;
     }
     return result;
 }
@@ -1564,7 +1564,7 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size,
     QStringList res2, entries;
     QStringList::ConstIterator it;
     for (it = result.constBegin(); it != result.constEnd(); ++it) {
-        int n = (*it).lastIndexOf('/');
+        int n = (*it).lastIndexOf(QLatin1Char('/'));
         if (n == -1) {
             name = *it;
         } else {
@@ -1605,7 +1605,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
     QStringList res2, entries;
     QStringList::ConstIterator it;
     for (it = result.constBegin(); it != result.constEnd(); ++it) {
-        int n = (*it).lastIndexOf('/');
+        int n = (*it).lastIndexOf(QLatin1Char('/'));
         if (n == -1) {
             name = *it;
         } else {

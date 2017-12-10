@@ -106,7 +106,7 @@ public:
     QStringList iconList() const;
     QString constructFileName(const QString &file) const
     {
-        return mBaseDir + mThemeDir + '/' + file;
+        return mBaseDir + mThemeDir + QLatin1Char('/') + file;
     }
 
     KIconLoader::Context context() const
@@ -163,7 +163,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
-            const QString cDir = *it + '/' + appName + "/icons/" + name + '/';
+            const QString cDir = *it + QLatin1Char('/') + appName + QStringLiteral("/icons/") + name + QLatin1Char('/');
             if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
             }
@@ -171,7 +171,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
         if (!basePathHint.isEmpty()) {
             // Checks for dir existing are done below
-            themeDirs += basePathHint + '/' + name + '/';
+            themeDirs += basePathHint + QLatin1Char('/') + name + QLatin1Char('/');
         }
     }
 
@@ -189,17 +189,17 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     QString fileName, mainSection;
     for (QStringList::ConstIterator it = icnlibs.constBegin(); it != icnlibs.constEnd(); ++it) {
-        const QString cDir = *it + '/' + name + '/';
+        const QString cDir = *it + QLatin1Char('/') + name + QLatin1Char('/');
         if (QDir(cDir).exists()) {
             themeDirs += cDir;
             if (d->mDir.isEmpty()) {
-                if (QFileInfo::exists(cDir + "index.theme")) {
+                if (QFileInfo::exists(cDir + QStringLiteral("index.theme"))) {
                     d->mDir = cDir;
-                    fileName = d->mDir + "index.theme";
+                    fileName = d->mDir + QStringLiteral("index.theme");
                     mainSection = QStringLiteral("Icon Theme");
-                } else if (QFileInfo::exists(cDir + "index.desktop")) {
+                } else if (QFileInfo::exists(cDir + QStringLiteral("index.desktop"))) {
                     d->mDir = cDir;
-                    fileName = d->mDir + "index.desktop";
+                    fileName = d->mDir + QStringLiteral("index.desktop");
                     mainSection = QStringLiteral("KDE Icon Theme");
                 }
             }
@@ -232,13 +232,13 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->followsColorScheme = cfg.readEntry("FollowsColorScheme", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
-    d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ ".png", ".svgz", ".svg", ".xpm" });
+    d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm") });
 
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList());
     for (QStringList::ConstIterator it = dirs.begin(); it != dirs.end(); ++it) {
         KConfigGroup cg(d->sharedConfig, *it);
         for (QStringList::ConstIterator itDir = themeDirs.constBegin(); itDir != themeDirs.constEnd(); ++itDir) {
-            const QString currentDir(*itDir + *it + '/');
+            const QString currentDir(*itDir + *it + QLatin1Char('/'));
             if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
                 addedDirs.insert(currentDir);
                 KIconThemeDir *dir = new KIconThemeDir(*itDir, *it, cg);
@@ -262,8 +262,8 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (int i = 0; i < groups.size(); ++i) {
         const QString group = groups.at(i);
-        d->mDefSize[i] = cg.readEntry(group + "Default", defDefSizes[i]);
-        d->mSizes[i] = cg.readEntry(group + "Sizes", QList<int>());
+        d->mDefSize[i] = cg.readEntry(group + QStringLiteral("Default"), defDefSizes[i]);
+        d->mSizes[i] = cg.readEntry(group + QStringLiteral("Sizes"), QList<int>());
     }
 }
 

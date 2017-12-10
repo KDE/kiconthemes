@@ -415,8 +415,8 @@ void KIconDialog::KIconDialogPrivate::_k_slotAcceptIcons()
 
 static bool sortByFileName(const QString &path1, const QString &path2)
 {
-    const QString fileName1 = path1.mid(path1.lastIndexOf('/') + 1);
-    const QString fileName2 = path2.mid(path1.lastIndexOf('/') + 1);
+    const QString fileName1 = path1.mid(path1.lastIndexOf(QLatin1Char('/')) + 1);
+    const QString fileName2 = path2.mid(path1.lastIndexOf(QLatin1Char('/')) + 1);
     return QString::compare(fileName1, fileName2, Qt::CaseInsensitive) < 0;
 }
 
@@ -437,8 +437,8 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         Q_FOREACH (const QString &relDir, KIconLoader::global()->searchPaths()) {
             const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relDir, QStandardPaths::LocateDirectory);
             Q_FOREACH (const QString &dir, dirs) {
-                Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << "*.png")) {
-                    filelist << dir + '/' + fileName;
+                Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << QStringLiteral("*.png"))) {
+                    filelist << dir + QLatin1Char('/') + fileName;
                 }
             }
         }

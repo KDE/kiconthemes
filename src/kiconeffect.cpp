@@ -106,9 +106,9 @@ void KIconEffect::init()
         d->color2[i][1] = QColor(0, 0, 0);
         d->color2[i][2] = QColor(0, 0, 0);
 
-        KConfigGroup cg(config, *it + "Icons");
+        KConfigGroup cg(config, *it + QStringLiteral("Icons"));
         for (it2 = states.constBegin(), j = 0; it2 != states.constEnd(); ++it2, ++j) {
-            QString tmp = cg.readEntry(*it2 + "Effect", QString());
+            QString tmp = cg.readEntry(*it2 + QStringLiteral("Effect"), QString());
             if (tmp == _togray) {
                 effect = ToGray;
             } else if (tmp == _colorize) {
@@ -127,10 +127,10 @@ void KIconEffect::init()
             if (effect != -1) {
                 d->effect[i][j] = effect;
             }
-            d->value[i][j] = cg.readEntry(*it2 + "Value", 0.0);
-            d->color[i][j] = cg.readEntry(*it2 + "Color", QColor());
-            d->color2[i][j] = cg.readEntry(*it2 + "Color2", QColor());
-            d->trans[i][j] = cg.readEntry(*it2 + "SemiTransparent", false);
+            d->value[i][j] = cg.readEntry(*it2 + QStringLiteral("Value"), 0.0);
+            d->color[i][j] = cg.readEntry(*it2 + QStringLiteral("Color"), QColor());
+            d->color2[i][j] = cg.readEntry(*it2 + QStringLiteral("Color2"), QColor());
+            d->trans[i][j] = cg.readEntry(*it2 + QStringLiteral("SemiTransparent"), false);
 
         }
     }
@@ -157,17 +157,17 @@ QString KIconEffect::fingerprint(int group, int state) const
     if (cached.isEmpty()) {
         QString tmp;
         cached = tmp.setNum(d->effect[group][state]);
-        cached += ':';
+        cached += QLatin1Char(':');
         cached += tmp.setNum(d->value[group][state]);
-        cached += ':';
+        cached += QLatin1Char(':');
         cached += d->trans[group][state] ? QLatin1String("trans")
                   : QLatin1String("notrans");
         if (d->effect[group][state] == Colorize || d->effect[group][state] == ToMonochrome) {
-            cached += ':';
+            cached += QLatin1Char(':');
             cached += d->color[group][state].name();
         }
         if (d->effect[group][state] == ToMonochrome) {
-            cached += ':';
+            cached += QLatin1Char(':');
             cached += d->color2[group][state].name();
         }
 
