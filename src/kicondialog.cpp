@@ -232,8 +232,8 @@ void KIconCanvas::currentListItemChanged(QListWidgetItem *item)
 class ShowEventFilter : public QObject
 {
 public:
-    explicit ShowEventFilter(QObject *parent) : QObject(parent) {};
-    virtual ~ShowEventFilter() {};
+    explicit ShowEventFilter(QObject *parent) : QObject(parent) {}
+    virtual ~ShowEventFilter() {}
 
 private:
     bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE
