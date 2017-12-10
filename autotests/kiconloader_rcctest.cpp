@@ -35,9 +35,9 @@ void earlyInit()
 {
     QStandardPaths::enableTestMode(true);
     qputenv("XDG_DATA_DIRS", "/doesnotexist"); // ensure hicolor/oxygen/breeze are not found
-    QFile rcc("icontheme.rcc");
+    QFile rcc(QStringLiteral("icontheme.rcc"));
     Q_ASSERT(rcc.exists());
-    QCoreApplication::setApplicationName("myappname"); // for a fixed location on Unix (appname is empty here otherwise)
+    QCoreApplication::setApplicationName(QStringLiteral("myappname")); // for a fixed location on Unix (appname is empty here otherwise)
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkpath(destDir);
     const QString dest = destDir + "/icontheme.rcc";
@@ -89,7 +89,7 @@ private Q_SLOTS:
 
     }
 private:
-    const QString m_internalThemeName = "kf5_rcc_theme";
+    const QString m_internalThemeName = QStringLiteral("kf5_rcc_theme");
 };
 
 QTEST_MAIN(KIconLoader_RCCThemeTest)

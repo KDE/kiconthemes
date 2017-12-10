@@ -907,7 +907,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         if (reader.readNext() == QXmlStreamReader::StartElement &&
             reader.qualifiedName() == QLatin1String("style") &&
             reader.attributes().value(QLatin1String("id")) == QLatin1String("current-color-scheme")) {
-            writer.writeStartElement(QLatin1String("style"));
+            writer.writeStartElement(QStringLiteral("style"));
             writer.writeAttributes(reader.attributes());
             writer.writeCharacters(styleSheet);
             writer.writeEndElement();
