@@ -10,7 +10,6 @@ set(kiconthemes_SRCS
   kiconengine.cpp
   kiconloader.cpp
   kicontheme.cpp
-  debug.cpp
 )
 qt5_add_resources(kiconthemes_SRCS
   hicolor.qrc
