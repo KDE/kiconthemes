@@ -437,7 +437,7 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         Q_FOREACH (const QString &relDir, KIconLoader::global()->searchPaths()) {
             const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relDir, QStandardPaths::LocateDirectory);
             for (const QString &dir : dirs) {
-                Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << QStringLiteral("*.png"))) {
+                Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << QLatin1String("*.png"))) {
                     filelist << dir + QLatin1Char('/') + fileName;
                 }
             }
