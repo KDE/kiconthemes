@@ -508,32 +508,38 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
         //TODO: should we pass in the kstate? it results in a slower
         //      path, and perhaps emblems should remain in the default state
         //      anyways?
-        const QPixmap pixmap = iconLoader->loadIcon(overlay, group, overlaySize, state, QStringList(), nullptr, true);
+        QPixmap pixmap = iconLoader->loadIcon(overlay, group, overlaySize, state, QStringList(), nullptr, true);
 
         if (pixmap.isNull()) {
             continue;
         }
 
+        // match the emblem's devicePixelRatio to the original pixmap's
+        pixmap.setDevicePixelRatio(pix.devicePixelRatio());
+        const int margin = 2 * pixmap.devicePixelRatio();
+
         QPoint startPoint;
         switch (count) {
         case 0:
             // bottom left corner
-            startPoint = QPoint(2, height - overlaySize - 2);
+            startPoint = QPoint(margin, height - overlaySize - margin);
             break;
         case 1:
             // bottom right corner
-            startPoint = QPoint(width - overlaySize - 2,
-                                height - overlaySize - 2);
+            startPoint = QPoint(width - overlaySize - margin,
+                                height - overlaySize - margin);
             break;
         case 2:
             // top right corner
-            startPoint = QPoint(width - overlaySize - 2, 2);
+            startPoint = QPoint(width - overlaySize - margin, margin);
             break;
         case 3:
             // top left corner
-            startPoint = QPoint(2, 2);
+            startPoint = QPoint(margin, margin);
             break;
         }
+
+        startPoint /= pix.devicePixelRatio();
 
         painter.drawPixmap(startPoint, pixmap);
 
