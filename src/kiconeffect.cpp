@@ -40,12 +40,24 @@
 class KIconEffectPrivate
 {
 public:
-    int effect[6][3];
-    float value[6][3];
-    QColor color[6][3];
-    bool trans[6][3];
-    QString key[6][3];
-    QColor color2[6][3];
+    // http://en.cppreference.com/w/cpp/language/zero_initialization
+    KIconEffectPrivate()
+       : effect{{}}
+       , value{{}}
+       , color{{}}
+       , trans{{}}
+       , key{{}}
+       , color2{{}}
+    {
+    }
+
+public:
+    int effect[KIconLoader::LastGroup][KIconLoader::LastState];
+    float value[KIconLoader::LastGroup][KIconLoader::LastState];
+    QColor color[KIconLoader::LastGroup][KIconLoader::LastState];
+    bool trans[KIconLoader::LastGroup][KIconLoader::LastState];
+    QString key[KIconLoader::LastGroup][KIconLoader::LastState];
+    QColor color2[KIconLoader::LastGroup][KIconLoader::LastState];
 };
 
 KIconEffect::KIconEffect()
