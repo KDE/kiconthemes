@@ -27,10 +27,10 @@
 
 #include <QCoreApplication>
 #include <QAction>
-#include <QtCore/QMap>
-#include <QtCore/QSet>
-#include <QtCore/QFileInfo>
-#include <QtCore/QDir>
+#include <QMap>
+#include <QSet>
+#include <QFileInfo>
+#include <QDir>
 #include <QDebug>
 #include <QResource>
 

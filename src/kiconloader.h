@@ -22,9 +22,9 @@
 #ifndef KICONLOADER_H
 #define KICONLOADER_H
 
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QObject>
+#include <QString>
+#include <QStringList>
+#include <QObject>
 
 #include <kiconthemes_export.h>
 

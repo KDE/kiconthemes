@@ -17,7 +17,7 @@
 #include <klistwidgetsearchline.h>
 #include <klocalizedstring.h>
 #ifndef _WIN32_WCE
-#include <QtSvg/QSvgRenderer>
+#include <QSvgRenderer>
 #endif
 
 #include <QApplication>
@@ -27,9 +27,9 @@
 #include <QGroupBox>
 #include <QLayout>
 #include <QLabel>
-#include <QtCore/QTimer>
+#include <QTimer>
 #include <QRadioButton>
-#include <QtCore/QFileInfo>
+#include <QFileInfo>
 #include <QProgressBar>
 #include <QPainter>
 #include <QScrollBar>

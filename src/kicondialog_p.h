@@ -14,7 +14,7 @@
 #ifndef KICONDIALOG_P_H
 #define KICONDIALOG_P_H
 
-#include <QtCore/QStringList>
+#include <QStringList>
 #include <QFileDialog>
 #include <QPushButton>
 #include <QPointer>

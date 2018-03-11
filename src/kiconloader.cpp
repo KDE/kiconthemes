@@ -27,13 +27,13 @@
 #include <qplatformdefs.h> //for readlink
 #include <assert.h>
 
-#include <QtCore/QCache>
-#include <QtCore/QFileInfo>
-#include <QtCore/QDir>
-#include <QtCore/QBuffer>
-#include <QtCore/QDataStream>
-#include <QtCore/QByteArray>
-#include <QtCore/QStringBuilder> // % operator for QString
+#include <QCache>
+#include <QFileInfo>
+#include <QDir>
+#include <QBuffer>
+#include <QDataStream>
+#include <QByteArray>
+#include <QStringBuilder> // % operator for QString
 #include <QElapsedTimer>
 #include <QGuiApplication>
 #include <QIcon>
@@ -47,7 +47,7 @@
 #include <kconfiggroup.h>
 #include <kshareddatacache.h>
 #include <ksharedconfig.h>
-#include <QtDBus/QDBusConnection>
+#include <QDBusConnection>
 #include <QDBusMessage>
 #include <QSvgRenderer>
 #include <QXmlStreamReader>

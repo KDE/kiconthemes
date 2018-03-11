@@ -2,7 +2,7 @@
 #include <qapplication.h>
 
 #include <QDebug>
-#include <QtCore/QDate>
+#include <QDate>
 #include <QPixmap>
 
 #include <stdio.h>

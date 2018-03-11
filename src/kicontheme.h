@@ -25,9 +25,9 @@
 
 #include <kiconthemes_export.h>
 
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QList>
+#include <QString>
+#include <QStringList>
+#include <QList>
 
 #include "kiconloader.h"
 

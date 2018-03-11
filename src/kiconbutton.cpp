@@ -13,7 +13,7 @@
 
 #include "kiconbutton.h"
 
-#include <QtCore/QFileInfo>
+#include <QFileInfo>
 
 #include "kicondialog.h"
 
