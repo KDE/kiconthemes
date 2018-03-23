@@ -44,9 +44,9 @@ class KIconCanvasDelegate : public QAbstractItemDelegate
 {
 public:
     KIconCanvasDelegate(KIconCanvas *parent, QAbstractItemDelegate *defaultDelegate);
-    ~KIconCanvasDelegate() {}
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
-    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const Q_DECL_OVERRIDE;
+    ~KIconCanvasDelegate() override {}
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 private:
     KIconCanvas *m_iconCanvas = nullptr;
     QAbstractItemDelegate *m_defaultDelegate = nullptr;
@@ -236,7 +236,7 @@ public:
     virtual ~ShowEventFilter() {}
 
 private:
-    bool eventFilter(QObject *watched, QEvent *event) Q_DECL_OVERRIDE
+    bool eventFilter(QObject *watched, QEvent *event) override
     {
         if (event->type() == QEvent::Show) {
             KIconDialog *q = static_cast<KIconDialog *>(parent());

@@ -612,7 +612,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
     // loading config and default sizes
     initIconThemes();
     KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links.first()->theme;
-    mpGroups = new KIconGroup[(int) KIconLoader::LastGroup];
+    mpGroups = new KIconGroup[static_cast<int>(KIconLoader::LastGroup)];
     for (KIconLoader::Group i = KIconLoader::FirstGroup; i < KIconLoader::LastGroup; ++i) {
         if (groups[i] == nullptr) {
             break;
@@ -1342,7 +1342,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
 
     QImage img;
     if (!path.isEmpty()) {
-        img = d->createIconImage(path, size, (KIconLoader::States)state);
+        img = d->createIconImage(path, size, static_cast<KIconLoader::States>(state));
     }
 
     if (group >= 0) {

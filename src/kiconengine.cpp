@@ -41,7 +41,6 @@ static inline int qIconModeToKIconState(QIcon::Mode mode)
 {
     int kstate;
     switch (mode) {
-    default:
     case QIcon::Normal:
         kstate = KIconLoader::DefaultState;
         break;

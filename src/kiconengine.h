@@ -62,25 +62,25 @@ public:
     /**
      * Destructor.
      */
-    virtual ~KIconEngine();
+    ~KIconEngine() override;
 
     /// Reimplementation
-    QSize actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
+    QSize actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
     /// Reimplementation
-    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
     /// Reimplementation
-    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) Q_DECL_OVERRIDE;
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
     /// Reimplementation
-    QString iconName() const Q_DECL_OVERRIDE;
+    QString iconName() const override;
     /// Reimplementation
-    QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const Q_DECL_OVERRIDE;
+    QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const override;
 
-    QString key() const Q_DECL_OVERRIDE;
-    QIconEngine *clone() const Q_DECL_OVERRIDE;
-    bool read(QDataStream &in) Q_DECL_OVERRIDE;
-    bool write(QDataStream &out) const Q_DECL_OVERRIDE;
+    QString key() const override;
+    QIconEngine *clone() const override;
+    bool read(QDataStream &in) override;
+    bool write(QDataStream &out) const override;
 
-    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+    void virtual_hook(int id, void *data) override;
 
 private:
     //TODO KF6: move those into the d-pointer
