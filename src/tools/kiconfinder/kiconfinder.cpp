@@ -23,7 +23,7 @@
 #include <kiconloader.h>
 #include <../kiconthemes_version.h>
 
-#include <cstdio>
+#include <stdio.h>
 
 int main(int argc, char *argv[])
 {
