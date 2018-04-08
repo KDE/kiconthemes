@@ -233,7 +233,7 @@ class ShowEventFilter : public QObject
 {
 public:
     explicit ShowEventFilter(QObject *parent) : QObject(parent) {}
-    virtual ~ShowEventFilter() {}
+    ~ShowEventFilter() override {}
 
 private:
     bool eventFilter(QObject *watched, QEvent *event) override
