@@ -466,7 +466,7 @@ public:
      * application's palette, you need to track the application palette changes by yourself.
      * If you no longer wish to use a custom palette, use resetPalette()
      * @see resetPalette
-     * @since 5.38
+     * @since 5.39
      */
     void setCustomPalette(const QPalette &palette);
 
@@ -475,7 +475,7 @@ public:
      * loaded icons are svg-based, icons can be colored in different ways in
      * different areas of the application
      * @return the palette, if any, an invalid one if the user didn't set it
-     * @since 5.38
+     * @since 5.39
      */
     QPalette customPalette() const;
 
@@ -483,7 +483,7 @@ public:
      * Resets the custom palette used by the KIconLoader to use the
      * QGuiApplication::palette() again (and to follow it in case the
      * application's palette changes)
-     * @since 5.38
+     * @since 5.39
      */
     void resetPalette();
 
