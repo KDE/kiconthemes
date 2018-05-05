@@ -1,0 +1,108 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Wantoyo <wantoyek@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2016-11-19 20:11+0100\n"
+"PO-Revision-Date: 2018-04-16 08:16+0700\n"
+"Last-Translator: Wantoyo <wantoyek@gmail.com>\n"
+"Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "Pilih Ikon"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Sumber Ikon"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Ikon &sistem:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "Ikon &lainnya:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Telusuri..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Pencarian:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Cari secara interaktif untuk nama-nama ikon (misalnya folder)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Tindakan"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Aplikasi"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Kategori"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Perangkat"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Emblem"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Emos"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mimetypes"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Tempat"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr "Semua"
+
+#: kicondialog.cpp:602
+#, kde-format
+msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|File Ikon (*.png *.xpm *.svg *.svgz)"
