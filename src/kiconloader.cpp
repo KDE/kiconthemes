@@ -1345,7 +1345,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
         img = d->createIconImage(path, size, static_cast<KIconLoader::States>(state));
     }
 
-    if (group >= 0) {
+    if (group >= 0 && group < KIconLoader::LastGroup) {
         img = d->mpEffect.apply(img, group, state);
     }
 
