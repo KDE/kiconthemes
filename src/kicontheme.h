@@ -164,6 +164,21 @@ public:
 
     /**
      * Lookup an icon in the theme.
+     * @param name The name of the icon, with extension.
+     * @param size The desired size of the icon.
+     * @param match The matching mode. KIconLoader::MatchExact returns an icon
+     * only if matches exactly. KIconLoader::MatchBest returns the best matching
+     * icon.
+     * @param scale The scale of the icon group.
+     * @return An absolute path to the file of the icon if it's found, QString() otherwise.
+     * @see KIconLoader::isValid will return true, and false otherwise.
+     * @since 5.48
+     */
+    // TODO KF6 merge iconPath() with and without "scale" and move that argument after "size"
+    QString iconPath(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const;
+
+    /**
+     * Lookup an icon in the theme.
      * @param name The name of the icon, without extension.
      * @param size The desired size of the icon.
      * @param match The matching mode. KIconLoader::MatchExact returns an icon
@@ -175,6 +190,22 @@ public:
      * @since 5.22
      */
     QString iconPathByName(const QString &name, int size, KIconLoader::MatchType match) const;
+
+    /**
+     * Lookup an icon in the theme.
+     * @param name The name of the icon, without extension.
+     * @param size The desired size of the icon.
+     * @param match The matching mode. KIconLoader::MatchExact returns an icon
+     * only if matches exactly. KIconLoader::MatchBest returns the best matching
+     * icon.
+     * @param scale The scale of the icon group.
+     * @return An absolute path to the file of the icon if it's found, QString() otherwise.
+     * @see KIconLoader::isValid will return true, and false otherwise.
+     *
+     * @since 5.48
+     */
+    // TODO KF6 merge iconPathByName() with and without "scale" and move that argument after "size"
+    QString iconPathByName(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const;
 
     /**
      * Returns true if the theme has any icons for the given context.

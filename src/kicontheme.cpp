@@ -85,7 +85,11 @@ public:
     QStringList mInherits;
     QStringList mExtensions;
     QVector<KIconThemeDir *> mDirs;
+    QVector<KIconThemeDir *> mScaledDirs;
     bool followsColorScheme : 1;
+
+    /// Searches the given dirs vector for a matching icon
+    QString iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -121,6 +125,10 @@ public:
     {
         return mSize;
     }
+    int scale() const
+    {
+        return mScale;
+    }
     int minSize() const
     {
         return mMinSize;
@@ -138,14 +146,107 @@ private:
     bool mbValid;
     KIconLoader::Type mType;
     KIconLoader::Context mContext;
-    int mSize, mMinSize, mMaxSize;
+    int mSize, mScale, mMinSize, mMaxSize;
     int mThreshold;
 
     const QString mBaseDir;
     const QString mThemeDir;
 };
 
+QString KIconTheme::KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
+{
+    QString path;
+    QString tempPath;      // used to cache icon path if it exists
 
+    int delta = -INT_MAX;  // current icon size delta of 'icon'
+    int dw = INT_MAX;      // icon size delta of current directory
+
+    // Rather downsample than upsample
+    int integerScale = 1;
+    if (scale > 1.1) {
+        integerScale = 2;
+    } else if (scale > 2.1) {
+        integerScale = 3;
+    } else if (scale > 3.1) {
+        integerScale = 4;
+    }
+
+    // Search the directory that contains the icon which matches best to the requested
+    // size. If there is no directory which matches exactly to the requested size, the
+    // following criterias get applied:
+    // - Take a directory having icons with a minimum difference to the requested size.
+    // - Prefer directories that allow a downscaling even if the difference to
+    //   the requested size is bigger than a directory where an upscaling is required.
+    for (KIconThemeDir *dir : dirs) {
+        if (dir->scale() != integerScale) {
+            continue;
+        }
+
+        if (match == KIconLoader::MatchExact) {
+            if ((dir->type() == KIconLoader::Fixed) && (dir->size() != size)) {
+                continue;
+            }
+            if ((dir->type() == KIconLoader::Scalable) &&
+                    ((size < dir->minSize()) || (size > dir->maxSize()))) {
+                continue;
+            }
+            if ((dir->type() == KIconLoader::Threshold) &&
+                    (abs(dir->size() - size) > dir->threshold())) {
+                continue;
+            }
+        } else {
+            // dw < 0 means need to scale up to get an icon of the requested size.
+            // Upscaling should only be done if no larger icon is available.
+            if (dir->type() == KIconLoader::Fixed) {
+                dw = dir->size() - size;
+            } else if (dir->type() == KIconLoader::Scalable) {
+                if (size < dir->minSize()) {
+                    dw = dir->minSize() - size;
+                } else if (size > dir->maxSize()) {
+                    dw = dir->maxSize() - size;
+                } else {
+                    dw = 0;
+                }
+            } else if (dir->type() == KIconLoader::Threshold) {
+                if (size < dir->size() - dir->threshold()) {
+                    dw = dir->size() - dir->threshold() - size;
+                } else if (size > dir->size() + dir->threshold()) {
+                    dw = dir->size() + dir->threshold() - size;
+                } else {
+                    dw = 0;
+                }
+            }
+            // Usually if the delta (= 'dw') of the current directory is
+            // not smaller than the delta (= 'delta') of the currently best
+            // matching icon, this candidate can be skipped. But skipping
+            // the candidate may only be done, if this does not imply
+            // in an upscaling of the icon (it is OK to use a directory with
+            // smaller icons that what we've already found, however).
+            if ((abs(dw) >= abs(delta)) && ((dw < 0) || (delta > 0))) {
+                continue;
+            }
+        }
+
+        // cache the result of iconPath() call which checks if file exists
+        tempPath = dir->iconPath(name);
+
+        if (tempPath.isEmpty()) {
+            continue;
+        }
+
+        path = tempPath;
+
+        // if we got in MatchExact that far, we find no better
+        if (match == KIconLoader::MatchExact) {
+            return path;
+        }
+        delta = dw;
+        if (delta == 0) {
+            return path; // We won't find a better match anyway
+        }
+    }
+    return path;
+}
 
 KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
     : d(new KIconThemePrivate)
@@ -234,7 +335,8 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
     d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm") });
 
-    const QStringList dirs = cfg.readPathEntry("Directories", QStringList());
+    const QStringList dirs = cfg.readPathEntry("Directories", QStringList())
+                           + cfg.readPathEntry("ScaledDirectories", QStringList());
     for (QStringList::ConstIterator it = dirs.begin(); it != dirs.end(); ++it) {
         KConfigGroup cg(d->sharedConfig, *it);
         for (QStringList::ConstIterator itDir = themeDirs.constBegin(); itDir != themeDirs.constEnd(); ++itDir) {
@@ -243,7 +345,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
                 addedDirs.insert(currentDir);
                 KIconThemeDir *dir = new KIconThemeDir(*itDir, *it, cg);
                 if (dir->isValid()) {
-                    d->mDirs.append(dir);
+                    if (dir->scale() > 1) {
+                        d->mScaledDirs.append(dir);
+                    } else {
+                        d->mDirs.append(dir);
+                    }
                 } else {
                     delete dir;
                 }
@@ -270,6 +376,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 KIconTheme::~KIconTheme()
 {
     qDeleteAll(d->mDirs);
+    qDeleteAll(d->mScaledDirs);
     delete d;
 }
 
@@ -310,7 +417,7 @@ QStringList KIconTheme::inherits() const
 
 bool KIconTheme::isValid() const
 {
-    return !d->mDirs.isEmpty();
+    return !d->mDirs.isEmpty() || !d->mScaledDirs.isEmpty();
 }
 
 bool KIconTheme::isHidden() const
@@ -345,7 +452,7 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
     QStringList result;
-    foreach (KIconThemeDir* dir, d->mDirs) {
+    foreach (KIconThemeDir* dir, d->mDirs + d->mScaledDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -402,7 +509,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
 
-    foreach (KIconThemeDir *dir, d->mDirs) {
+    foreach (KIconThemeDir *dir, d->mDirs + d->mScaledDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -420,7 +527,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 
 bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
-    foreach (KIconThemeDir *dir, d->mDirs) {
+    foreach (KIconThemeDir *dir, d->mDirs + d->mScaledDirs) {
         if ((context == KIconLoader::Any) || (context == dir->context())) {
             return true;
         }
@@ -430,8 +537,13 @@ bool KIconTheme::hasContext(KIconLoader::Context context) const
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match) const
 {
+    return iconPathByName(iconName, size, match, 1 /*scale*/);
+}
+
+QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match, qreal scale) const
+{
     foreach(const QString &current, d->mExtensions) {
-        const QString path = iconPath(iconName + current, size, match);
+        const QString path = iconPath(iconName + current, size, match, scale);
         if (!path.isEmpty())
             return path;
     }
@@ -445,79 +557,17 @@ bool KIconTheme::followsColorScheme() const
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match) const
 {
-    QString path;
-    QString tempPath;      // used to cache icon path if it exists
-    int delta = -INT_MAX;  // current icon size delta of 'icon'
-    int dw = INT_MAX;      // icon size delta of current directory
+    return iconPath(name, size, match, 1 /*scale*/);
+}
 
-    // Search the directory that contains the icon which matches best to the requested
-    // size. If there is no directory which matches exactly to the requested size, the
-    // following criterias get applied:
-    // - Take a directory having icons with a minimum difference to the requested size.
-    // - Prefer directories that allow a downscaling even if the difference to
-    //   the requested size is bigger than a directory where an upscaling is required.
-    foreach (KIconThemeDir *dir, d->mDirs) {
-        if (match == KIconLoader::MatchExact) {
-            if ((dir->type() == KIconLoader::Fixed) && (dir->size() != size)) {
-                continue;
-            }
-            if ((dir->type() == KIconLoader::Scalable) &&
-                    ((size < dir->minSize()) || (size > dir->maxSize()))) {
-                continue;
-            }
-            if ((dir->type() == KIconLoader::Threshold) &&
-                    (abs(dir->size() - size) > dir->threshold())) {
-                continue;
-            }
-        } else {
-            // dw < 0 means need to scale up to get an icon of the requested size.
-            // Upscaling should only be done if no larger icon is available.
-            if (dir->type() == KIconLoader::Fixed) {
-                dw = dir->size() - size;
-            } else if (dir->type() == KIconLoader::Scalable) {
-                if (size < dir->minSize()) {
-                    dw = dir->minSize() - size;
-                } else if (size > dir->maxSize()) {
-                    dw = dir->maxSize() - size;
-                } else {
-                    dw = 0;
-                }
-            } else if (dir->type() == KIconLoader::Threshold) {
-                if (size < dir->size() - dir->threshold()) {
-                    dw = dir->size() - dir->threshold() - size;
-                } else if (size > dir->size() + dir->threshold()) {
-                    dw = dir->size() + dir->threshold() - size;
-                } else {
-                    dw = 0;
-                }
-            }
-            // Usually if the delta (= 'dw') of the current directory is
-            // not smaller than the delta (= 'delta') of the currently best
-            // matching icon, this candidate can be skipped. But skipping
-            // the candidate may only be done, if this does not imply
-            // in an upscaling of the icon (it is OK to use a directory with
-            // smaller icons that what we've already found, however).
-            if ((abs(dw) >= abs(delta)) && ((dw < 0) || (delta > 0))) {
-                continue;
-            }
-        }
+QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const
+{
+    // first look for a scaled image at exactly the requested size
+    QString path = d->iconPath(d->mScaledDirs, name, size, scale, KIconLoader::MatchExact);
 
-        // cache the result of iconPath() call which checks if file exists
-        tempPath = dir->iconPath(name);
-
-        if (tempPath.isEmpty()) {
-            continue;
-        }
-        path = tempPath;
-
-        // if we got in MatchExact that far, we find no better
-        if (match == KIconLoader::MatchExact) {
-            return path;
-        }
-        delta = dw;
-        if (delta == 0) {
-            return path; // We won't find a better match anyway
-        }
+    // then look for an unscaled one but request it at larger size so it doesn't become blurry
+    if (path.isEmpty()) {
+        path = d->iconPath(d->mDirs, name, size * scale, 1, match);
     }
     return path;
 }
@@ -658,6 +708,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
     : mbValid(false)
     , mType(KIconLoader::Fixed)
     , mSize(config.readEntry("Size", 0))
+    , mScale(config.readEntry("Scale", 1))
     , mMinSize(1)    // just set the variables to something
     , mMaxSize(50)   // meaningful in case someone calls minSize or maxSize
     , mThreshold(2)

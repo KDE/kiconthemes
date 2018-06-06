@@ -84,6 +84,7 @@ public:
 
 private:
     //TODO KF6: move those into the d-pointer
+    QPixmap createPixmap(const QSize &size, qreal scale, QIcon::Mode mode, QIcon::State state);
     QString mIconName;
     QStringList mOverlays;
     QPointer<KIconLoader> mIconLoader;

@@ -245,6 +245,44 @@ public:
                      bool canReturnNull = false) const;
 
     /**
+     * Loads an icon. It will try very hard to find an icon which is
+     * suitable. If no exact match is found, a close match is searched.
+     * If neither an exact nor a close match is found, a null pixmap or
+     * the "unknown" pixmap is returned, depending on the value of the
+     * @p canReturnNull parameter.
+     *
+     * @param name The name of the icon, without extension.
+     * @param group The icon group. This will specify the size of and effects to
+     * be applied to the icon.
+     * @param scale The scale of the icon group to use. If no icon exists in the
+     * scaled group, a 1x icon with its size multiplied by the scale will be
+     * loaded instead.
+     * @param size If nonzero, this overrides the size specified by @p group.
+     *             See KIconLoader::StdSizes.
+     * @param state The icon state: @p DefaultState, @p ActiveState or
+     * @p DisabledState. Depending on the user's preferences, the iconloader
+     * may apply a visual effect to hint about its state.
+     * @param overlays a list of emblem icons to overlay, by name
+     *                 @see drawOverlays
+     * @param path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found @p path_store
+     *        is unaltered even if the "unknown" pixmap was returned.
+     * @param canReturnNull Can return a null pixmap? If false, the
+     *        "unknown" pixmap is returned when no appropriate icon has been
+     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        event of invalid parameters, such as empty names, negative sizes,
+     *        and etc.
+     * @return the QPixmap. Can be null when not found, depending on
+     *         @p canReturnNull.
+     * @since 5.48
+     */
+    // TODO KF6 merge loadIcon() and loadScaledIcon()
+    QPixmap loadScaledIcon(const QString &name, KIconLoader::Group group, qreal scale, int size = 0,
+                     int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
+                     QString *path_store = nullptr,
+                     bool canReturnNull = false) const;
+
+    /**
      * Loads an icon for a mimetype.
      * This is basically like loadIcon except that extra desktop themes are loaded if necessary.
      *
@@ -313,6 +351,26 @@ public:
      */
     QString iconPath(const QString &name, int group_or_size,
                      bool canReturnNull = false) const;
+
+    /**
+     * Returns the path of an icon.
+     * @param name The name of the icon, without extension. If an absolute
+     * path is supplied for this parameter, iconPath will return it
+     * directly.
+     * @param group_or_size If positive, search icons whose size is
+     * specified by the icon group @p group_or_size. If negative, search
+     * icons whose size is - @p group_or_size.
+     *             See KIconLoader::Group and KIconLoader::StdSizes
+     * @param canReturnNull Can return a null string? If not, a path to the
+     *                      "unknown" icon will be returned.
+     * @param scale The scale of the icon group.
+     * @return the path of an icon, can be null or the "unknown" icon when
+     *         not found, depending on @p canReturnNull.
+     * @since 5.48
+     */
+    // TODO KF6 merge iconPath() with and without "scale" and move that argument after "group_or_size"
+    QString iconPath(const QString &name, int group_or_size,
+                     bool canReturnNull, qreal scale) const;
 
     /**
      * Loads an animated icon.

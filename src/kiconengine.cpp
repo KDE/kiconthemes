@@ -75,9 +75,13 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
     painter->drawPixmap(rect, pixmap(rect.size() * dpr, mode, state));
 }
 
-QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
+QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mode, QIcon::State state)
 {
     Q_UNUSED(state)
+
+    if (scale < 1) {
+        scale = 1;
+    }
 
     if (size.isEmpty()) {
         return QPixmap();
@@ -85,26 +89,34 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 
     if (!mIconLoader) {
         QPixmap pm(size);
+        pm.setDevicePixelRatio(scale);
         pm.fill(Qt::transparent);
         return pm;
     }
 
+    const QSize scaledSize = size / scale;
 
     const int kstate = qIconModeToKIconState(mode);
-    const int iconSize = qMin(size.width(), size.height());
-    QPixmap pix = mIconLoader.data()->loadIcon(mIconName, KIconLoader::Desktop, iconSize, kstate, mOverlays);
+    const int iconSize = qMin(scaledSize.width(), scaledSize.height());
+    QPixmap pix = mIconLoader.data()->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, iconSize, kstate, mOverlays);
 
     if (pix.size() == size) {
         return pix;
     }
 
-    QPixmap pix2(size);
+    QPixmap pix2(size * scale);
+    pix2.setDevicePixelRatio(scale);
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
     painter.drawPixmap(QPoint((pix2.width() - pix.width()) / 2, (pix2.height() - pix.height()) / 2), pix);
 
     return pix2;
+}
+
+QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state)
+{
+    return createPixmap(size, 1 /*scale*/, mode, state);
 }
 
 QString KIconEngine::iconName() const
@@ -157,5 +169,12 @@ void KIconEngine::virtual_hook(int id, void *data)
     if (id == QIconEngine::IsNullHook) {
         *reinterpret_cast<bool*>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
     }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
+    if (id == QIconEngine::ScaledPixmapHook) {
+        auto *info = reinterpret_cast<ScaledPixmapArgument *>(data);
+        info->pixmap = createPixmap(info->size, info->scale, info->mode, info->state);
+        return;
+    }
+#endif
     QIconEngine::virtual_hook(id, data);
 }

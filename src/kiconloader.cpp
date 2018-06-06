@@ -250,7 +250,7 @@ public:
      * tries to find an icon with the name. It tries some extension and
      * match strategies
      */
-    QString findMatchingIcon(const QString &name, int size) const;
+    QString findMatchingIcon(const QString &name, int size, qreal scale) const;
 
     /**
      * @internal
@@ -258,7 +258,7 @@ public:
      * This is one layer above findMatchingIcon -- it also implements generic fallbacks
      * such as generic icons for mimetypes.
      */
-    QString findMatchingIconWithGenericFallbacks(const QString &name, int size) const;
+    QString findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const;
 
     /**
      * @internal
@@ -298,7 +298,7 @@ public:
      * @internal
      * return the path for the unknown icon in that size
      */
-    QString unknownIconPath(int size) const;
+    QString unknownIconPath(int size, qreal scale) const;
 
     /**
      * Checks if name ends in one of the supported icon formats (i.e. .png)
@@ -320,7 +320,7 @@ public:
      * icon metadata. Ensure the metadata is normalized first.
      */
     QString makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays,
-                         int size, int state) const;
+                         int size, qreal scale, int state) const;
 
     /**
      * @internal
@@ -337,7 +337,7 @@ public:
      * @p size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
-    QImage createIconImage(const QString &path, int size = 0, KIconLoader::States state = KIconLoader::DefaultState);
+    QImage createIconImage(const QString &path, int size = 0, qreal scale = 1.0, KIconLoader::States state = KIconLoader::DefaultState);
 
     /**
      * @internal
@@ -857,7 +857,7 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &s
 }
 
 QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group group,
-        const QStringList &overlays, int size, int state) const
+        const QStringList &overlays, int size, qreal scale, int state) const
 {
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
@@ -868,6 +868,8 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % name
            % QLatin1Char('_')
            % QString::number(size)
+           % QLatin1Char('@')
+           % QString::number(scale, 'f', 1)
            % QLatin1Char('_')
            % overlays.join(QStringLiteral("_"))
            % (group >= 0 ? mpEffect.fingerprint(group, state)
@@ -927,7 +929,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     return processedContents;
 }
 
-QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, KIconLoader::States state)
+QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal scale, KIconLoader::States state)
 {
     //TODO: metadata in the theme to make it do this only if explicitly supported?
     QScopedPointer<QImageReader> reader;
@@ -945,7 +947,7 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, KIconL
     }
 
     if (size != 0) {
-        reader->setScaledSize(QSize(size, size));
+        reader->setScaledSize(QSize(size * scale, size * scale));
     }
 
     return reader->read();
@@ -1037,21 +1039,21 @@ bool KIconLoaderPrivate::findCachedPixmapWithPath(const QString &key, QPixmap &d
     return false;
 }
 
-QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &name, int size) const
+QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const
 {
-    QString path = findMatchingIcon(name, size);
+    QString path = findMatchingIcon(name, size, scale);
     if (!path.isEmpty()) {
         return path;
     }
 
     const QString genericIcon = s_globalData()->genericIconFor(name);
     if (!genericIcon.isEmpty()) {
-        path = findMatchingIcon(genericIcon, size);
+        path = findMatchingIcon(genericIcon, size, scale);
     }
     return path;
 }
 
-QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) const
+QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qreal scale) const
 {
     const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
 
@@ -1071,7 +1073,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
     // from this method.
 
     foreach (KIconThemeNode *themeNode, links) {
-        const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest);
+        const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest, scale);
         if (!path.isEmpty()) {
             return path;
         }
@@ -1121,7 +1123,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
             }
 
             //qCDebug(KICONTHEMES) << "Looking up" << currentName;
-            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest);
+            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest, scale);
             if (!path.isEmpty()) {
                 return path;
             }
@@ -1130,11 +1132,11 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size) cons
     return path;
 }
 
-inline QString KIconLoaderPrivate::unknownIconPath(int size) const
+inline QString KIconLoaderPrivate::unknownIconPath(int size, qreal scale) const
 {
-    QString path = findMatchingIcon(QStringLiteral("unknown"), size);
+    QString path = findMatchingIcon(QStringLiteral("unknown"), size, scale);
     if (path.isEmpty()) {
-        qCDebug(KICONTHEMES) << "Warning: could not find \"unknown\" icon for size" << size;
+        qCDebug(KICONTHEMES) << "Warning: could not find \"unknown\" icon for size" << size << "at scale" << scale;
         return QString();
     }
     return path;
@@ -1162,6 +1164,12 @@ QString KIconLoaderPrivate::locate(const QString &fileName)
 
 QString KIconLoader::iconPath(const QString &_name, int group_or_size,
                               bool canReturnNull) const
+{
+    return iconPath(_name, group_or_size, canReturnNull, 1 /*scale*/);
+}
+
+QString KIconLoader::iconPath(const QString &_name, int group_or_size,
+                              bool canReturnNull, qreal scale) const
 {
     if (!d->initIconThemes()) {
         return QString();
@@ -1205,11 +1213,11 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size,
         if (canReturnNull) {
             return QString();
         } else {
-            return d->unknownIconPath(size);
+            return d->unknownIconPath(size, scale);
         }
     }
 
-    path = d->findMatchingIconWithGenericFallbacks(name, size);
+    path = d->findMatchingIconWithGenericFallbacks(name, size, scale);
 
     if (path.isEmpty()) {
         // Try "User" group too.
@@ -1218,7 +1226,7 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size,
             return path;
         }
 
-        return d->unknownIconPath(size);
+        return d->unknownIconPath(size, scale);
     }
     return path;
 }
@@ -1247,9 +1255,18 @@ QPixmap KIconLoader::loadMimeTypeIcon(const QString &_iconName, KIconLoader::Gro
     return pixmap;
 }
 
+
+
 QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, int size,
                               int state, const QStringList &overlays,
                               QString *path_store, bool canReturnNull) const
+{
+return loadScaledIcon(_name, group, 1.0 /*scale*/, size, state, overlays, path_store, canReturnNull);
+}
+
+QPixmap KIconLoader::loadScaledIcon(const QString &_name, KIconLoader::Group group, qreal scale,
+                                    int size, int state, const QStringList &overlays,
+                                    QString *path_store, bool canReturnNull) const
 {
     QString name = _name;
     bool favIconOverlay = false;
@@ -1289,12 +1306,15 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
     d->normalizeIconMetadata(group, size, state);
 
     // See if the image is already cached.
-    QString key = d->makeCacheKey(name, group, overlays, size, state);
+    QString key = d->makeCacheKey(name, group, overlays, size, scale, state);
     QPixmap pix;
+
     bool iconWasUnknown = false;
     QString path;
 
     if (d->findCachedPixmapWithPath(key, pix, path)) {
+        pix.setDevicePixelRatio(scale);
+
         if (path_store) {
             *path_store = path;
         }
@@ -1323,7 +1343,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
         if (absolutePath && !favIconOverlay) {
             path = name;
         } else {
-            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, size);
+            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, size, scale);
         }
     }
 
@@ -1336,16 +1356,16 @@ QPixmap KIconLoader::loadIcon(const QString &_name, KIconLoader::Group group, in
     // Still can't find it? Use "unknown" if we can't return null.
     // We keep going in the function so we can ensure this result gets cached.
     if (path.isEmpty() && !canReturnNull) {
-        path = d->unknownIconPath(size);
+        path = d->unknownIconPath(size, scale);
         iconWasUnknown = true;
     }
 
     QImage img;
     if (!path.isEmpty()) {
-        img = d->createIconImage(path, size, static_cast<KIconLoader::States>(state));
+        img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state));
     }
 
-    if (group >= 0 && group < KIconLoader::LastGroup) {
+    if (group >= 0) {
         img = d->mpEffect.apply(img, group, state);
     }
 
@@ -1484,7 +1504,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
         if (size == 0) {
             size = d->mpGroups[group].size;
         }
-        file = d->findMatchingIcon(file, size);
+        file = d->findMatchingIcon(file, size, 1); // FIXME scale
     }
     if (file.isEmpty()) {
         return lst;
