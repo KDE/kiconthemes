@@ -597,9 +597,9 @@ void KIconDialog::KIconDialogPrivate::_k_slotBrowse()
         return;
     }
 
-    // Create a file dialog to select a PNG, XPM or SVG file,
+    // Create a file dialog to select an ICO, PNG, XPM or SVG file,
     // with the image previewer shown.
-    QFileDialog *dlg = new QFileDialog(q, i18n("Select Icon"), QString(), i18n("*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"));
+    QFileDialog *dlg = new QFileDialog(q, i18n("Select Icon"), QString(), i18n("*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"));
     dlg->setModal(false);
     dlg->setFileMode(QFileDialog::ExistingFile);
     connect(dlg, SIGNAL(fileSelected(QString)), q, SLOT(_k_customFileSelected(QString)));
