@@ -1,0 +1,112 @@
+# translation of kio4.po to Belarusian Latin
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kio4 package.
+#
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-06-28 03:35+0200\n"
+"PO-Revision-Date: 2008-09-05 20:23+0300\n"
+"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
+"Language-Team: Belarusian Latin <i18n@mova.org>\n"
+"Language: be@latin\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "Abiary ikonu"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Krynica ikony"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Systemnyja ikony:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Inšyja ikony:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Prahladaj..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Šukaj:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Dziejny pošuk nazvaŭ ikonaŭ (naprykład, „kataloh”)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Aperacyi"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Aplikacyi"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Katehoryi"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Pryłady"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Znaki"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Smajliki"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Typy MIME"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Miescy"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Stanovišča"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:602
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Fajły ikonaŭ (*.png *.xpm *.svg *.svgz)"
