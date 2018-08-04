@@ -1,0 +1,111 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Zlatko Popov <zlatkopopov@fsa-bg.org>, 2006, 2007, 2008, 2009.
+# Yasen Pramatarov <yasen@lindeas.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-06-28 03:35+0200\n"
+"PO-Revision-Date: 2010-12-05 00:53+0200\n"
+"Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
+"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "Избор на икона"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Източник на икони"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Системни икони:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Други икони:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Избор..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Търсене:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Търсене за имена на икони (напр. директории)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Действия"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Програми"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Категории"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Устройства"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Емблеми"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Емоции"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Типове MIME"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Места"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Състояние"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:602
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Файлове за икони (*.png *.xpm *.svg *.svgz)"
