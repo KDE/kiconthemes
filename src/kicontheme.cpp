@@ -69,6 +69,19 @@ void initRCCIconTheme()
 }
 Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
 
+// Set the icon theme fallback to breeze
+// Most of our apps use "lots" of icons that most of the times
+// are only available with breeze, we still honour the user icon
+// theme but if the icon is not found there, we go to breeze
+// since it's almost sure it'll be there
+static void setBreezeFallback()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+    QIcon::setFallbackThemeName("breeze");
+#endif
+}
+
+Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
 
 class Q_DECL_HIDDEN KIconTheme::KIconThemePrivate
 {
