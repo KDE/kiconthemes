@@ -132,7 +132,7 @@ private Q_SLOTS:
 
             QPixmap img(i, i);
             img.fill(Qt::red);
-            QVERIFY(img.save(dir + "/red.png"));
+            QVERIFY(img.save(dir + QStringLiteral("/red.png")));
 
             dirs += relDir;
             KConfigGroup dirGroup = configFile.group(relDir);
@@ -157,7 +157,7 @@ private Q_SLOTS:
     void init()
     {
         // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
         QFile::remove(cacheFile);
 
         // Clear SHM cache
@@ -242,7 +242,7 @@ private Q_SLOTS:
     {
         KIconLoader appIconLoader(appName);
         QString iconPath = appIconLoader.iconPath(QStringLiteral("image1"), KIconLoader::User);
-        QCOMPARE(iconPath, appDataDir.filePath("pics/image1.png"));
+        QCOMPARE(iconPath, appDataDir.filePath(QStringLiteral("pics/image1.png")));
         QVERIFY(QFile::exists(iconPath));
 
         // Load it again, to use the "last loaded" cache
@@ -250,7 +250,7 @@ private Q_SLOTS:
         QCOMPARE(iconPath, iconPath2);
         // Load something else, to clear the "last loaded" cache
         QString iconPathTextEdit = appIconLoader.iconPath(QStringLiteral("image2"), KIconLoader::User);
-        QCOMPARE(iconPathTextEdit, appDataDir.filePath("pics/image2.png"));
+        QCOMPARE(iconPathTextEdit, appDataDir.filePath(QStringLiteral("pics/image2.png")));
         QVERIFY(QFile::exists(iconPathTextEdit));
         // Now load kdialog again, to use the real kiconcache
         iconPath2 = appIconLoader.iconPath(QStringLiteral("image1"), KIconLoader::User);
@@ -284,19 +284,19 @@ private Q_SLOTS:
         QTest::addColumn<QString>("iconName");
         QTest::addColumn<QString>("expectedFileName");
 
-        QTest::newRow("existing icon") << "text-plain" << "text-plain.png";
-        QTest::newRow("octet-stream icon") << "application-octet-stream" << "application-octet-stream.png";
-        QTest::newRow("non-existing icon") << "foo-bar" << "application-octet-stream.png";
+        QTest::newRow("existing icon") << QStringLiteral("text-plain") << QStringLiteral("text-plain.png");
+        QTest::newRow("octet-stream icon") << QStringLiteral("application-octet-stream") << QStringLiteral("application-octet-stream.png");
+        QTest::newRow("non-existing icon") << QStringLiteral("foo-bar") << QStringLiteral("application-octet-stream.png");
         // Test this again, because now we won't go into the "fast path" of loadMimeTypeIcon anymore.
-        QTest::newRow("existing icon again") << "text-plain" << "text-plain.png";
-        QTest::newRow("generic fallback") << "image-foo-bar" << "image-x-generic.png";
-        QTest::newRow("video generic fallback") << "video-foo-bar" << "video-x-generic.png";
-        QTest::newRow("image-x-generic itself") << "image-x-generic" << "image-x-generic.png";
-        QTest::newRow("x-office-document icon") << "x-office-document" << "x-office-document.png";
-        QTest::newRow("unavailable generic icon") << "application/x-font-vfont" << "application-octet-stream.png";
-        QTest::newRow("#184852") << "audio/x-tuxguitar" << "audio-x-generic.png";
-        QTest::newRow("#178847") << "image/x-compressed-xcf" << "image-x-generic.png";
-        QTest::newRow("mimetype generic icon") << "application-x-fluid" << "x-office-document.png";
+        QTest::newRow("existing icon again") << QStringLiteral("text-plain") << QStringLiteral("text-plain.png");
+        QTest::newRow("generic fallback") << QStringLiteral("image-foo-bar") << QStringLiteral("image-x-generic.png");
+        QTest::newRow("video generic fallback") << QStringLiteral("video-foo-bar") << QStringLiteral("video-x-generic.png");
+        QTest::newRow("image-x-generic itself") << QStringLiteral("image-x-generic") << QStringLiteral("image-x-generic.png");
+        QTest::newRow("x-office-document icon") << QStringLiteral("x-office-document") << QStringLiteral("x-office-document.png");
+        QTest::newRow("unavailable generic icon") << QStringLiteral("application/x-font-vfont") << QStringLiteral("application-octet-stream.png");
+        QTest::newRow("#184852") << QStringLiteral("audio/x-tuxguitar") << QStringLiteral("audio-x-generic.png");
+        QTest::newRow("#178847") << QStringLiteral("image/x-compressed-xcf") << QStringLiteral("image-x-generic.png");
+        QTest::newRow("mimetype generic icon") << QStringLiteral("application-x-fluid") << QStringLiteral("x-office-document.png");
     }
 
     void testLoadMimeTypeIcon()
@@ -309,7 +309,7 @@ private Q_SLOTS:
                       KIconLoader::DefaultState, QStringList(),
                       &path);
         QVERIFY(!pix.isNull());
-        QCOMPARE(path.section('/', -1), expectedFileName);
+        QCOMPARE(path.section(QLatin1Char('/'), -1), expectedFileName);
 
         // do the same test using a global iconloader, so that
         // we get into the final return statement, which can only happen
@@ -325,15 +325,15 @@ private Q_SLOTS:
     void testHasIcon()
     {
         // Do everything twice to check code paths that might use a cache
-        QVERIFY(KIconLoader::global()->hasIcon("kde"));
-        QVERIFY(KIconLoader::global()->hasIcon("kde"));
+        QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("kde")));
+        QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("kde")));
         KIconLoader iconLoader;
-        QVERIFY(iconLoader.hasIcon("kde"));
+        QVERIFY(iconLoader.hasIcon(QStringLiteral("kde")));
 
-        QVERIFY(KIconLoader::global()->hasIcon("process-working"));
-        QVERIFY(KIconLoader::global()->hasIcon("process-working"));
-        QVERIFY(!KIconLoader::global()->hasIcon("no-such-icon-exists"));
-        QVERIFY(!KIconLoader::global()->hasIcon("no-such-icon-exists"));
+        QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("process-working")));
+        QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("process-working")));
+        QVERIFY(!KIconLoader::global()->hasIcon(QStringLiteral("no-such-icon-exists")));
+        QVERIFY(!KIconLoader::global()->hasIcon(QStringLiteral("no-such-icon-exists")));
     }
 
     void testIconPath()
@@ -355,7 +355,7 @@ private Q_SLOTS:
                                         &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
-        QVERIFY2(path.contains("32x32"), qPrintable(path));
+        QVERIFY2(path.contains(QStringLiteral("32x32")), qPrintable(path));
         QCOMPARE(pix.size(), QSize(32, 32));
 
         // Compare with iconPath()
@@ -368,10 +368,10 @@ private Q_SLOTS:
                                         &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
-        QVERIFY2(path.contains("22x22"), qPrintable(path));
+        QVERIFY2(path.contains(QStringLiteral("22x22")), qPrintable(path));
         QCOMPARE(pix.size(), QSize(24, 24));
 
-        QVERIFY(KIconLoader::global()->hasIcon("kde"));
+        QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("kde")));
 
         path = QString();
         KIconLoader::global()->loadIcon(QStringLiteral("does_not_exist"), KIconLoader::Desktop, 24,
@@ -437,21 +437,21 @@ private Q_SLOTS:
             KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithoutcontext"), KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
-            QVERIFY(path.endsWith("appsNoContext/iconindirectorywithoutcontext.png"));
+            QVERIFY(path.endsWith(QLatin1String("appsNoContext/iconindirectorywithoutcontext.png")));
         }
         {
             QString path;
             KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithouttype"), KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
-            QVERIFY(path.endsWith("appsNoType/iconindirectorywithouttype.png"));
+            QVERIFY(path.endsWith(QLatin1String("appsNoType/iconindirectorywithouttype.png")));
         }
         {
             QString path;
             KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithoutcontextortype"), KIconLoader::Desktop, 24,
                                         KIconLoader::DefaultState, QStringList(),
                                         &path);
-            QVERIFY(path.endsWith("appsNoContextOrType/iconindirectorywithoutcontextortype.png"));
+            QVERIFY(path.endsWith(QLatin1String("appsNoContextOrType/iconindirectorywithoutcontextortype.png")));
         }
     }
 
@@ -514,14 +514,14 @@ private Q_SLOTS:
 
         // Verify the ARGB hex (ff6496c8)
         uintToHex(testColorNoAlpha.rgba(), argbHex.data());
-        QCOMPARE(argbHex, QString("ff6496c8"));
+        QCOMPARE(argbHex, QStringLiteral("ff6496c8"));
 
         // HEX (ARGB format without the #): 7b6496c8
         QColor testColorWithAlpha(100, 150, 200, 123);
 
         // Test uintToHex to verify its ARGB output.
         uintToHex(testColorWithAlpha.rgba(), argbHex.data());
-        QCOMPARE(argbHex, QString("7b6496c8"));
+        QCOMPARE(argbHex, QStringLiteral("7b6496c8"));
     }
 };
 

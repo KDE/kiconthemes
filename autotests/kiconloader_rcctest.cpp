@@ -33,14 +33,14 @@
 // This must be done before QCoreApplication is even created, given the Q_COREAPP_STARTUP_FUNCTION in kiconthemes
 void earlyInit()
 {
-    QStandardPaths::enableTestMode(true);
+    QStandardPaths::setTestModeEnabled(true);
     qputenv("XDG_DATA_DIRS", "/doesnotexist"); // ensure hicolor/oxygen/breeze are not found
     QFile rcc(QStringLiteral("icontheme.rcc"));
     Q_ASSERT(rcc.exists());
     QCoreApplication::setApplicationName(QStringLiteral("myappname")); // for a fixed location on Unix (appname is empty here otherwise)
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkpath(destDir);
-    const QString dest = destDir + "/icontheme.rcc";
+    const QString dest = destDir + QStringLiteral("/icontheme.rcc");
     QFile::remove(dest);
     if (!rcc.copy(dest)) {
         qWarning() << "Error copying to" << dest;
@@ -56,7 +56,7 @@ private Q_SLOTS:
     void initTestCase()
     {
         // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
         QFile::remove(cacheFile);
 
         // Clear SHM cache

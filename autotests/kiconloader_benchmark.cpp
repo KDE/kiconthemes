@@ -104,7 +104,7 @@ private Q_SLOTS:
     {
         QBENCHMARK {
             // Remove icon cache
-            const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+            const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
             QFile::remove(cacheFile);
             // Clear SHM cache
             KIconLoader::global()->reconfigure(QString());

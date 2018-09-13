@@ -48,7 +48,7 @@ private Q_SLOTS:
         KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22,
                                     KIconLoader::DefaultState, QStringList(),
                                     &path);
-        QCOMPARE(path, QString(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
+        QCOMPARE(path, QStringLiteral(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
 
     }
 };

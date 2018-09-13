@@ -37,7 +37,7 @@ private Q_SLOTS:
         QStandardPaths::setTestModeEnabled(true);
 
         // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
+        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
         QFile::remove(cacheFile);
 
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");

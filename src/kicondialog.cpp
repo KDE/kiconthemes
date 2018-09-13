@@ -444,7 +444,7 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         }
     }
 
-    qSort(filelist.begin(), filelist.end(), sortByFileName);
+    std::sort(filelist.begin(), filelist.end(), sortByFileName);
 
     // The KIconCanvas has uniformItemSizes set which really expects
     // all added icons to be the same size, otherwise weirdness ensues :)
