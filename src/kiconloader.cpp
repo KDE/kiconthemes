@@ -521,21 +521,21 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
         QPoint startPoint;
         switch (count) {
         case 0:
-            // bottom left corner
-            startPoint = QPoint(margin, height - overlaySize - margin);
-            break;
-        case 1:
             // bottom right corner
             startPoint = QPoint(width - overlaySize - margin,
                                 height - overlaySize - margin);
             break;
-        case 2:
-            // top right corner
-            startPoint = QPoint(width - overlaySize - margin, margin);
+        case 1:
+            // bottom left corner
+            startPoint = QPoint(margin, height - overlaySize - margin);
             break;
-        case 3:
+        case 2:
             // top left corner
             startPoint = QPoint(margin, margin);
+            break;
+        case 3:
+            // top right corner
+            startPoint = QPoint(width - overlaySize - margin, margin);
             break;
         }
 
