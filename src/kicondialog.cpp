@@ -416,7 +416,7 @@ void KIconDialog::KIconDialogPrivate::_k_slotAcceptIcons()
 static bool sortByFileName(const QString &path1, const QString &path2)
 {
     const QString fileName1 = path1.mid(path1.lastIndexOf(QLatin1Char('/')) + 1);
-    const QString fileName2 = path2.mid(path1.lastIndexOf(QLatin1Char('/')) + 1);
+    const QString fileName2 = path2.mid(path2.lastIndexOf(QLatin1Char('/')) + 1);
     return QString::compare(fileName1, fileName2, Qt::CaseInsensitive) < 0;
 }
 
