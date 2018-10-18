@@ -87,3 +87,13 @@ endif()
 include(ECMGeneratePriFile)
 ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
+
+add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
+
+target_link_libraries(KIconEnginePlugin
+    PRIVATE
+        Qt5::Gui
+        KF5::IconThemes
+)
+
+install(TARGETS KIconEnginePlugin DESTINATION ${KDE_INSTALL_QTPLUGINDIR}/iconengines)
