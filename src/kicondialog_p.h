@@ -120,15 +120,15 @@ public:
     void setContext(KIconLoader::Context context);
 
     // slots
-    void _k_slotContext(int);
-    void _k_slotStartLoading(int);
-    void _k_slotProgress(int);
-    void _k_slotFinished();
-    void _k_slotAcceptIcons();
-    void _k_slotBrowse();
-    void _k_customFileSelected(const QString &path);
-    void _k_slotOtherIconClicked();
-    void _k_slotSystemIconClicked();
+    void handleContext(int id);
+    void handleStartLoading(int steps);
+    void handleProgress(int p);
+    void handleFinished();
+    void handleAcceptIcons();
+    void handleBrowseClicked();
+    void handleCustomFileSelected(const QString &path);
+    void handleOtherIconClicked();
+    void handleSystemIconClicked();
 
     KIconDialog *q;
 

@@ -361,7 +361,7 @@ public:
      * @internal
      * React to a global icon theme change
      */
-    void _k_refreshIcons(int group);
+    void refreshIcons(int group);
 
     bool shouldCheckForUnknownIcons()
     {
@@ -550,7 +550,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
     }
 }
 
-void KIconLoaderPrivate::_k_refreshIcons(int group)
+void KIconLoaderPrivate::refreshIcons(int group)
 {
     KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig();
     sharedConfig->reparseConfiguration();
@@ -575,7 +575,8 @@ KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearch
     setObjectName(_appname);
     d = new KIconLoaderPrivate(this);
 
-    connect(s_globalData, SIGNAL(iconChanged(int)), SLOT(_k_refreshIcons(int)));
+    connect(s_globalData, &KIconLoaderGlobalData::iconChanged,
+            this, [this](int group) { d->refreshIcons(group); });
     d->init(_appname, extraSearchPaths);
 }
 
@@ -1863,4 +1864,3 @@ QIcon KDE::icon(const QString &iconName, const QStringList &overlays, KIconLoade
 }
 
 #include "kiconloader.moc"
-#include "moc_kiconloader.moc"
