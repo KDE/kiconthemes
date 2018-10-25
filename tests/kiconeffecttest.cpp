@@ -1,3 +1,5 @@
+#include "kiconeffecttest.h"
+
 #include <QLabel>
 #include <QSlider>
 #include <QGridLayout>
@@ -6,8 +8,6 @@
 #include <kiconloader.h>
 #include <kiconeffect.h>
 #include <kcolorbutton.h>
-
-#include "kiconeffecttest.h"
 
 KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     : QScrollArea(parent)
