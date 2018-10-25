@@ -42,6 +42,7 @@
  */
 class KIconCanvasDelegate : public QAbstractItemDelegate
 {
+    Q_OBJECT
 public:
     KIconCanvasDelegate(KIconCanvas *parent, QAbstractItemDelegate *defaultDelegate);
     ~KIconCanvasDelegate() override {}
@@ -660,5 +661,6 @@ void KIconDialog::KIconDialogPrivate::_k_slotFinished()
     mpProgress->hide();
 }
 
+#include "kicondialog.moc"
 #include "moc_kicondialog.cpp"
 #include "moc_kicondialog_p.cpp"
