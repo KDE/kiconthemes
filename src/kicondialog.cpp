@@ -435,10 +435,12 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         filelist = mpLoader->queryIconsByDir(customLocation);
     } else {
         // List PNG files found directly in the kiconload search paths.
+        const QStringList pngNameFilter(QStringLiteral("*.png"));
         Q_FOREACH (const QString &relDir, KIconLoader::global()->searchPaths()) {
             const QStringList dirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, relDir, QStandardPaths::LocateDirectory);
             for (const QString &dir : dirs) {
-                Q_FOREACH (const QString &fileName, QDir(dir).entryList(QStringList() << QLatin1String("*.png"))) {
+                const auto files = QDir(dir).entryList(pngNameFilter);
+                for (const QString &fileName : files) {
                     filelist << dir + QLatin1Char('/') + fileName;
                 }
             }
