@@ -516,7 +516,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
 
         // match the emblem's devicePixelRatio to the original pixmap's
         pixmap.setDevicePixelRatio(pix.devicePixelRatio());
-        const int margin = 2 * pixmap.devicePixelRatio();
+        const int margin = pixmap.devicePixelRatio() * 0.05 * iconSize;
 
         QPoint startPoint;
         switch (count) {
