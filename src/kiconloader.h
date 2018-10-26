@@ -508,8 +508,8 @@ public:
      * Draws overlays on the specified pixmap, it takes the width and height
      * of the pixmap into consideration
      * @param overlays List of up to 4 overlays to blend over the pixmap. The first overlay
-     *                 will be in the bottom left corner, followed by bottom right, top right
-     *                 and top left. An empty QString can be used to leave the specific position
+     *                 will be in the bottom right corner, followed by bottom left, top left
+     *                 and top right. An empty QString can be used to leave the specific position
      *                 blank.
      * @param pixmap to draw on
      * @since 4.7
