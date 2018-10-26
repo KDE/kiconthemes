@@ -933,25 +933,25 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
 QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal scale, KIconLoader::States state)
 {
     //TODO: metadata in the theme to make it do this only if explicitly supported?
-    QScopedPointer<QImageReader> reader;
+    QImageReader reader;
     QBuffer buffer;
 
     if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
         buffer.setData(processSvg(path, state));
-        reader.reset(new QImageReader(&buffer));
+        reader.setDevice(&buffer);
     } else {
-        reader.reset(new QImageReader(path));
+        reader.setFileName(path);
     }
 
-    if (!reader->canRead()) {
+    if (!reader.canRead()) {
         return QImage();
     }
 
     if (size != 0) {
-        reader->setScaledSize(QSize(size * scale, size * scale));
+        reader.setScaledSize(QSize(size * scale, size * scale));
     }
 
-    return reader->read();
+    return reader.read();
 }
 
 void KIconLoaderPrivate::insertCachedPixmapWithPath(
