@@ -934,9 +934,9 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal 
 {
     //TODO: metadata in the theme to make it do this only if explicitly supported?
     QImageReader reader;
-    QBuffer buffer;
 
     if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
+        QBuffer buffer;
         buffer.setData(processSvg(path, state));
         reader.setDevice(&buffer);
     } else {
