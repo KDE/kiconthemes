@@ -125,7 +125,7 @@ private Q_SLOTS:
         KConfigGroup iconThemeGroup = configFile.group("Icon Theme");
         QVERIFY(iconThemeGroup.isValid());
         QStringList dirs = iconThemeGroup.readEntry("Directories", QStringList());
-        Q_FOREACH(int i, testSizes) {
+        for(int i : testSizes) {
             const QString relDir = QStringLiteral("%1x%1/emblems").arg(i);
             const QString dir = testIconsDir.filePath(QStringLiteral("breeze/") + relDir);
             QVERIFY(QDir().mkpath(dir));

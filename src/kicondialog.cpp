@@ -459,7 +459,7 @@ void KIconDialog::KIconDialogPrivate::showIcons()
         mpCanvas->setIconSize(QSize(-mGroupOrSize, -mGroupOrSize));
     } else {
         // Icon group.
-        int groupSize = mpLoader->currentSize((KIconLoader::Group)mGroupOrSize);
+        int groupSize = mpLoader->currentSize(static_cast<KIconLoader::Group>(mGroupOrSize));
         mpCanvas->setIconSize(QSize(groupSize, groupSize));
     }
 

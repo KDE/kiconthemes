@@ -90,7 +90,7 @@ private Q_SLOTS:
         };
 
         QBENCHMARK {
-            foreach (const QString &iconName, icons) {
+            for (const QString &iconName : qAsConst(icons)) {
                 const QIcon icon = QIcon::fromTheme(iconName);
                 if(icon.isNull())
                     QSKIP("missing icons");

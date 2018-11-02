@@ -208,8 +208,6 @@ class KIconLoaderPrivate
 public:
     KIconLoaderPrivate(KIconLoader *q)
         : q(q)
-        , mpGroups(nullptr)
-        , mIconCache(nullptr)
     {
     }
 
@@ -375,14 +373,14 @@ public:
     KIconLoader *const q;
 
     QStringList mThemesInTree;
-    KIconGroup *mpGroups;
-    KIconThemeNode *mpThemeRoot;
+    KIconGroup *mpGroups = nullptr;
+    KIconThemeNode *mpThemeRoot = nullptr;
     QStringList searchPaths;
     KIconEffect mpEffect;
     QList<KIconThemeNode *> links;
 
     // This shares the icons across all processes
-    KSharedDataCache *mIconCache;
+    KSharedDataCache *mIconCache = nullptr;
 
     // This caches rendered QPixmaps in just this process.
     QCache<QString, PixmapWithPath> mPixmapCache;
@@ -496,7 +494,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
     QPainter painter(&pix);
 
     int count = 0;
-    foreach (const QString &overlay, overlays) {
+    for (const QString &overlay : overlays) {
         // Ensure empty strings fill up a emblem spot
         // Needed when you have several emblems to ensure they're always painted
         // at the same place, even if one is not here

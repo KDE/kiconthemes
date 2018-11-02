@@ -644,7 +644,7 @@ QStringList KIconTheme::list()
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
-    Q_FOREACH (const QString &it, icnlibs) {
+    for (const QString &it : qAsConst(icnlibs)) {
         QDir dir(it);
         const QStringList lst = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
         for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
