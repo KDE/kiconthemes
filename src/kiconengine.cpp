@@ -169,12 +169,10 @@ void KIconEngine::virtual_hook(int id, void *data)
     if (id == QIconEngine::IsNullHook) {
         *reinterpret_cast<bool*>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
     }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
     if (id == QIconEngine::ScaledPixmapHook) {
         auto *info = reinterpret_cast<ScaledPixmapArgument *>(data);
         info->pixmap = createPixmap(info->size, info->scale, info->mode, info->state);
         return;
     }
-#endif
     QIconEngine::virtual_hook(id, data);
 }
