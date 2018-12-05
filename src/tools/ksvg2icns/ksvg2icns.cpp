@@ -77,8 +77,8 @@ int main(int argc, char *argv[])
     // qputenv("QT_QPA_PLATFORM", QByteArrayLiteral("minimal"));
     QCoreApplication app(argc, argv);
 
-    app.setApplicationName("ksvg2icns");
-    app.setApplicationVersion(KICONTHEMES_VERSION_STRING);
+    app.setApplicationName(QStringLiteral("ksvg2icns"));
+    app.setApplicationVersion(QStringLiteral(KICONTHEMES_VERSION_STRING));
     QCommandLineParser parser;
     parser.setApplicationDescription(app.translate("main", "Creates an icns file from an svg image"));
     parser.addPositionalArgument("iconname", app.translate("main", "The svg icon to convert"));
@@ -127,13 +127,13 @@ int main(int argc, char *argv[])
 
     // create the pngs in various resolutions
     const OutFiles outFiles[] = {
-        { 1024, outPath + "/icon_512x512@2x.png", QString() },
-        {  512, outPath + "/icon_512x512.png",    outPath + "/icon_256x256@2x.png" },
-        {  256, outPath + "/icon_256x256.png",    outPath + "/icon_128x128@2x.png" },
-        {  128, outPath + "/icon_128x128.png",    QString() },
-        {   64, outPath + "/icon_32x32@2x.png",   QString() },
-        {   32, outPath + "/icon_32x32.png",       outPath + "/icon_16x16@2x.png" },
-        {   16, outPath + "/icon_16x16.png",       QString() }
+        { 1024, outPath + QStringLiteral("/icon_512x512@2x.png"), QString() },
+        {  512, outPath + QStringLiteral("/icon_512x512.png"),    outPath + QStringLiteral("/icon_256x256@2x.png") },
+        {  256, outPath + QStringLiteral("/icon_256x256.png"),    outPath + QStringLiteral("/icon_128x128@2x.png") },
+        {  128, outPath + QStringLiteral("/icon_128x128.png"),    QString() },
+        {   64, outPath + QStringLiteral("/icon_32x32@2x.png"),   QString() },
+        {   32, outPath + QStringLiteral("/icon_32x32.png"),      outPath + QStringLiteral("/icon_16x16@2x.png") },
+        {   16, outPath + QStringLiteral("/icon_16x16.png"),      QString() }
     };
 
     for (size_t i = 0; i < sizeof(outFiles) / sizeof(OutFiles); ++i) {
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 
     // convert the iconset to icns using the "iconutil" command
 
-    const QString outIcns = QFileInfo(svgFileName).baseName() + ".icns";
+    const QString outIcns = QFileInfo(svgFileName).baseName() + QStringLiteral(".icns");
 
     const QStringList utilArgs = QStringList()
             << "-c" << "icns"
@@ -153,10 +153,8 @@ int main(int argc, char *argv[])
             << outPath;
 
     QProcess iconUtil;
-    iconUtil.setProgram("iconUtil");
-    iconUtil.setArguments(utilArgs);
 
-    iconUtil.start("iconutil", utilArgs, QIODevice::ReadOnly);
+    iconUtil.start(QStringLiteral("iconutil"), utilArgs, QIODevice::ReadOnly);
     isOk = iconUtil.waitForFinished(-1);
     EXIT_ON_ERROR(isOk, "Unable to launch iconutil: %s\n", qPrintable(iconUtil.errorString()));
 
