@@ -30,7 +30,7 @@
 #include <QProcess>
 #include <QTemporaryDir>
 
-#include <QGuiApplication>
+#include <QCoreApplication>
 #include <QPainter>
 #include <QSvgRenderer>
 
@@ -69,7 +69,13 @@ static bool writeImage(QSvgRenderer &svg, int size, const QString &outFile1, con
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    // it turns out we don't actually need to be a QGuiApplication in order
+    // to use QPainter on a QImage. Downgrading to a QCoreApplication should
+    // make us usable on headless (CI) servers and remove some QPA-related
+    // runtime overhead.
+    // Alternatively we create a QGuiApplication after setting QT_QPA_PLATFORM:
+    // qputenv("QT_QPA_PLATFORM", QByteArrayLiteral("minimal"));
+    QCoreApplication app(argc, argv);
 
     app.setApplicationName("ksvg2icns");
     app.setApplicationVersion(KICONTHEMES_VERSION_STRING);
