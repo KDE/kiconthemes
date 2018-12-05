@@ -93,16 +93,15 @@ int main(int argc, char *argv[])
     bool isOk;
 
     // create a temporary dir to create an iconset
-    QTemporaryDir tmpDir("ksvg2icns");
-    tmpDir.setAutoRemove(true);
+    QTemporaryDir tmpDir(QDir::tempPath() + QStringLiteral("/ksvg2icns"));
 
     isOk = tmpDir.isValid();
     EXIT_ON_ERROR(isOk, "Unable to create temporary directory\n");
 
-    isOk = QDir(tmpDir.path()).mkdir("out.iconset");
-    EXIT_ON_ERROR(isOk, "Unable to create out.iconset directory\n");
+    const QString outPath = tmpDir.filePath(QStringLiteral("out.iconset"));
 
-    const QString outPath = tmpDir.path() + "/out.iconset";
+    isOk = QDir(tmpDir.path()).mkpath(outPath);
+    EXIT_ON_ERROR(isOk, "Unable to create out.iconset directory\n");
 
     const QStringList &args = app.arguments();
     EXIT_ON_ERROR(args.size() == 2,
