@@ -138,7 +138,7 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
         return QList<QSize>();
     }
 
-    bool found = mIconLoader->hasIcon(iconName());
+    const bool found = mIconLoader->hasIcon(mIconName);
     return found ? *sSizes : QList<QSize>();
 }
 
