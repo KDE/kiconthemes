@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     if(parser.positionalArguments().isEmpty())
         parser.showHelp();
 
-    Q_FOREACH(const QString& iconName, parser.positionalArguments()) {
+    for(const QString& iconName : parser.positionalArguments()) {
         const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
         if ( !icon.isEmpty() ) {
             printf("%s\n", icon.toLocal8Bit().constData());

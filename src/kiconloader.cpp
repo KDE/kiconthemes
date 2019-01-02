@@ -1142,7 +1142,7 @@ inline QString KIconLoaderPrivate::unknownIconPath(int size, qreal scale) const
 
 QString KIconLoaderPrivate::locate(const QString &fileName)
 {
-    Q_FOREACH (const QString &dir, searchPaths) {
+    for (const QString &dir : qAsConst(searchPaths)) {
         const QString path = dir + QLatin1Char('/') + fileName;
         if (QDir(dir).isAbsolute()) {
             if (QFileInfo::exists(path)) {
