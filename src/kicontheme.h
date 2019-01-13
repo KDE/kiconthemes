@@ -56,6 +56,9 @@ public:
     explicit KIconTheme(const QString &name, const QString &appName = QString(), const QString &basePathHint = QString());
     ~KIconTheme();
 
+    KIconTheme(const KIconTheme &) = delete;
+    KIconTheme &operator=(const KIconTheme &) = delete;
+
     /**
      * The stylized name of the icon theme.
      * @return the (human-readable) name of the theme
