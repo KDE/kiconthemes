@@ -59,6 +59,9 @@ public:
     KIconEffect();
     ~KIconEffect();
 
+    KIconEffect(const KIconEffect &) = delete;
+    KIconEffect &operator=(const KIconEffect &) = delete;
+
     /**
      * This is the enumeration of all possible icon effects.
      * Note that 'LastEffect' is no valid icon effect but only
