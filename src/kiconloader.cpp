@@ -156,6 +156,9 @@ public:
     KIconThemeNode(KIconTheme *_theme);
     ~KIconThemeNode();
 
+    KIconThemeNode(const KIconThemeNode &) = delete;
+    KIconThemeNode &operator=(const KIconThemeNode &) = delete;
+
     void queryIcons(QStringList *lst, int size, KIconLoader::Context context) const;
     void queryIconsByContext(QStringList *lst, int size, KIconLoader::Context context) const;
     QString findIcon(const QString &name, int size, KIconLoader::MatchType match) const;

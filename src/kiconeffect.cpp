@@ -321,6 +321,9 @@ struct KIEImgEdit {
             img.setColorTable(colors);
         }
     }
+
+    KIEImgEdit(const KIEImgEdit &) = delete;
+    KIEImgEdit &operator=(const KIEImgEdit &) = delete;
 };
 
 // Taken from KImageEffect. We don't want to link kdecore to kdeui! As long
