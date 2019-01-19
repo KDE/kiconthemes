@@ -26,7 +26,6 @@ target_link_libraries(KF5IconThemes
   PUBLIC
     Qt5::Widgets
   PRIVATE
-    Qt5::DBus
     Qt5::Svg
     KF5::Archive       # for KCompressionDevice
     KF5::I18n          # for i18n in KIconDialog
@@ -35,6 +34,9 @@ target_link_libraries(KF5IconThemes
     KF5::ConfigWidgets # for KColorScheme
     KF5::CoreAddons    # for kshareddatacache.h
 )
+if (TARGET Qt5::DBus)
+  target_link_libraries(KF5IconThemes PRIVATE Qt5::DBus)
+endif()
 
 set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION_STRING}
                                                SOVERSION ${KICONTHEMES_SOVERSION}

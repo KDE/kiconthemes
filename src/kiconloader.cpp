@@ -47,8 +47,10 @@
 #include <kconfiggroup.h>
 #include <kshareddatacache.h>
 #include <ksharedconfig.h>
+#ifdef QT_DBUS_LIB
 #include <QDBusConnection>
 #include <QDBusMessage>
+#endif
 #include <QSvgRenderer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
@@ -417,15 +419,19 @@ public:
             parseGenericIconsFiles(file);
         }
 
+#ifdef QT_DBUS_LIB
         QDBusConnection::sessionBus().connect(QString(), QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"),
                                               QStringLiteral("iconChanged"), this, SIGNAL(iconChanged(int)));
+#endif
     }
 
     void emitChange(KIconLoader::Group group)
     {
+#ifdef QT_DBUS_LIB
         QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
         message.setArguments(QList<QVariant>() << int(group));
         QDBusConnection::sessionBus().send(message);
+#endif
     }
 
     QString genericIconFor(const QString &icon) const
