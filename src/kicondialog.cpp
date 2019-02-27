@@ -313,7 +313,7 @@ void KIconDialog::KIconDialogPrivate::init()
     // ADD SEARCHLINE
     //
     QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchLayout->setMargin(0);
+    searchLayout->setContentsMargins(0, 0, 0, 0);
     top->addLayout(searchLayout);
 
     QLabel *searchLabel = new QLabel(i18n("&Search:"), q);
