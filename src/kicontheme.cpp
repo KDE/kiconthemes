@@ -465,7 +465,8 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
     QStringList result;
-    foreach (KIconThemeDir* dir, d->mDirs + d->mScaledDirs) {
+    const auto listDirs = d->mDirs + d->mScaledDirs;
+    for (KIconThemeDir* dir : listDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -521,8 +522,8 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // Usually, only the 0, 6 (22-16), 10 (32-22), 16 (48-32 or 32-16),
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
-
-    foreach (KIconThemeDir *dir, d->mDirs + d->mScaledDirs) {
+    const auto listDirs = d->mDirs + d->mScaledDirs;
+    for (KIconThemeDir* dir : listDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -540,7 +541,8 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 
 bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
-    foreach (KIconThemeDir *dir, d->mDirs + d->mScaledDirs) {
+    const auto listDirs = d->mDirs + d->mScaledDirs;
+    for (KIconThemeDir* dir : listDirs) {
         if ((context == KIconLoader::Any) || (context == dir->context())) {
             return true;
         }
@@ -555,7 +557,7 @@ QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoade
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match, qreal scale) const
 {
-    foreach(const QString &current, d->mExtensions) {
+    for (const QString &current : qAsConst(d->mExtensions)) {
         const QString path = iconPath(iconName + current, size, match, scale);
         if (!path.isEmpty())
             return path;

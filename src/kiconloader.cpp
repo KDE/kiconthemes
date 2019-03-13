@@ -1079,7 +1079,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     // Once everone uses that to look up mimetype icons, we can kill the fallback code
     // from this method.
 
-    foreach (KIconThemeNode *themeNode, links) {
+    for (KIconThemeNode *themeNode : qAsConst(links)) {
         const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest, scale);
         if (!path.isEmpty()) {
             return path;
@@ -1091,7 +1091,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     }
     bool genericFallback = false;
     QString path;
-    foreach (KIconThemeNode *themeNode, links) {
+    for (KIconThemeNode *themeNode : qAsConst(links)) {
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
@@ -1464,7 +1464,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
 
         QString path;
 
-        foreach (KIconThemeNode *themeNode, d->links) {
+        for (KIconThemeNode *themeNode : qAsConst(d->links)) {
             path = themeNode->theme->iconPath(file, size, KIconLoader::MatchExact);
             if (!path.isEmpty()) {
                 break;
@@ -1472,7 +1472,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
         }
 
         if (path.isEmpty()) {
-            foreach (KIconThemeNode *themeNode, d->links) {
+            for (KIconThemeNode *themeNode : qAsConst(d->links)) {
                 path = themeNode->theme->iconPath(file, size, KIconLoader::MatchBest);
                 if (!path.isEmpty()) {
                     break;
@@ -1523,7 +1523,8 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
         return lst;
     }
 
-    foreach (const QString &entry, dir.entryList()) {
+    const auto entryList = dir.entryList();
+    for (const QString &entry : entryList) {
         if (!(entry.leftRef(4)).toUInt()) {
             continue;
         }
@@ -1585,7 +1586,7 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size,
         size = -group_or_size;
     }
 
-    foreach (KIconThemeNode *themeNode, d->links) {
+    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
         themeNode->queryIconsByContext(&result, size, context);
     }
 
@@ -1626,7 +1627,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
         size = -group_or_size;
     }
 
-    foreach (KIconThemeNode *themeNode, d->links) {
+    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
         themeNode->queryIcons(&result, size, context);
     }
 
@@ -1655,7 +1656,7 @@ bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
     d->initIconThemes();
 
-    foreach (KIconThemeNode *themeNode, d->links)
+    for (KIconThemeNode *themeNode : qAsConst(d->links))
         if (themeNode->theme->hasContext(context)) {
             return true;
         }
