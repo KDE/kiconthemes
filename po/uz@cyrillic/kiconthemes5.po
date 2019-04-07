@@ -1,0 +1,111 @@
+# translation of kio4.po to Uzbek
+# translation of kio4.po to
+# Copyright (C) 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+#
+# Mashrab Kuvatov <kmashrab@uni-bremen.de>, 2003, 2004, 2005, 2006, 2008, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2018-10-26 03:46+0200\n"
+"PO-Revision-Date: 2009-10-14 00:15+0200\n"
+"Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
+"Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:261 kicondialog.cpp:273 kicondialog.cpp:605
+#, kde-format
+msgid "Select Icon"
+msgstr "Нишончани танлаш"
+
+#: kicondialog.cpp:290
+#, kde-format
+msgid "Icon Source"
+msgstr "Нишончалар манбаси"
+
+#: kicondialog.cpp:299
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Тизимнинг нишончалари:"
+
+#: kicondialog.cpp:305
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Бошқа нишончалар:"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "&Browse..."
+msgstr "&Танлаш"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Search:"
+msgstr "Қ&идириш:"
+
+#: kicondialog.cpp:326
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Actions"
+msgstr "Амаллар"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Applications"
+msgstr "Дастурлар"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Categories"
+msgstr "Туркумлар"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Devices"
+msgstr "Ускуналар"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME турлари"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Places"
+msgstr "Жойлар"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "Status"
+msgstr "Ҳолат"
+
+#: kicondialog.cpp:365
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:605
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Нишонча файллари (*.png *.xpm *.svg *.svgz)"
