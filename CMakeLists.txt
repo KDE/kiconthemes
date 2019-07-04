@@ -33,7 +33,7 @@ ecm_setup_version(PROJECT
                   SOVERSION 5)
 
 # Dependencies
-set(REQUIRED_QT_VERSION 5.10.0)
+set(REQUIRED_QT_VERSION 5.11.0)
 find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5Svg ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 if (NOT ANDROID)
