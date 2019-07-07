@@ -1,0 +1,114 @@
+# translation of kio4.po to Lithuanian
+# Ričardas Čepas <rch@richard.eu.org>, 2002-2003.
+# Donatas Glodenis <dgvirtual@akl.lt>, 2004-2009.
+# Remigijus Jarmalavičius <remigijus@jarmalavicius.lt>, 2011.
+# Liudas Ališauskas <liudas.alisauskas@gmail.com>, 2011.
+# Liudas Alisauskas <liudas@akmc.lt>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-05-20 02:56+0200\n"
+"PO-Revision-Date: 2019-06-30 19:42+0300\n"
+"Last-Translator: Moo\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: kicondialog.cpp:261 kicondialog.cpp:273 kicondialog.cpp:605
+#, kde-format
+msgid "Select Icon"
+msgstr "Pasirinkti ženkliuką"
+
+#: kicondialog.cpp:290
+#, kde-format
+msgid "Icon Source"
+msgstr "Ženkliuko šaltinis"
+
+#: kicondialog.cpp:299
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Sis&temos ženkliukai:"
+
+#: kicondialog.cpp:305
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Kiti ženkliukai:"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "&Browse..."
+msgstr "&Naršyti..."
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Search:"
+msgstr "&Ieškoti:"
+
+#: kicondialog.cpp:326
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktyviai ieškoti ženkliukų pavadinimų (pvz., aplankas)."
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Actions"
+msgstr "Veiksmai"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Applications"
+msgstr "Programos"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Categories"
+msgstr "Kategorijos"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Devices"
+msgstr "Įrenginiai"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emblems"
+msgstr "Emblemos"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Emotes"
+msgstr "Emocijų ženkliukai"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME tipai"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Places"
+msgstr "Vietos"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "Status"
+msgstr "Būsena"
+
+#: kicondialog.cpp:365
+#, kde-format
+msgid "All"
+msgstr "Visi"
+
+#: kicondialog.cpp:605
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Ženkliukų failai (*.ico *.png *.xpm *.svg *."
+"svgz)"

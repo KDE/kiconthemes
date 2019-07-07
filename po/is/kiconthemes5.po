@@ -1,0 +1,124 @@
+# translation of kio4.po to Icelandic
+# translation of kio4.po to
+# íslensk þýðing kio4.po
+# Copyright (C) 1998,2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
+#
+# Logi Ragnarsson <logir@logi.org>, 1998.
+# Richard Allen <ra@ra.is>, 1998.
+# Pjetur G. Hjaltason <pjetur@pjetur.net>, 2003.
+# Svanur Palsson <svanur@tern.is>, 2004.
+# Arnar Leosson <leosson@frisurf.no>, 2004, 2005.
+# Arnar Leósson <leosson@frisurf.no>, 2005.
+# Sveinn í Felli <sveinki@nett.is>, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-05-20 02:56+0200\n"
+"PO-Revision-Date: 2012-09-07 08:43+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <kde-isl@molar.is>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"\n"
+
+#: kicondialog.cpp:261 kicondialog.cpp:273 kicondialog.cpp:605
+#, kde-format
+msgid "Select Icon"
+msgstr "Veldu táknmynd"
+
+#: kicondialog.cpp:290
+#, kde-format
+msgid "Icon Source"
+msgstr "Táknmyndir teknar úr"
+
+#: kicondialog.cpp:299
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Kerfistáknmyndir:"
+
+#: kicondialog.cpp:305
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Aðrar táknmyndir:"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "&Browse..."
+msgstr "&Velja..."
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Search:"
+msgstr "&Leita:"
+
+#: kicondialog.cpp:326
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Leita gagnvirkt að heiti táknmynda (t.d. möppu)."
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Actions"
+msgstr "Aðgerðir"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Applications"
+msgstr "Forrit"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Categories"
+msgstr "Flokkar"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Devices"
+msgstr "Tæki"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emblems"
+msgstr "Táknmyndir"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Emotes"
+msgstr "Broskallar"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME-tög"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Places"
+msgstr "Staðir"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "Status"
+msgstr "Staða"
+
+#: kicondialog.cpp:365
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:605
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|táknmyndaskrár (*.png *.xpm *.svg *.svgz)"
