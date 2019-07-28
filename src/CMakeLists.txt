@@ -63,6 +63,10 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes COMPONENT Devel
 )
 
+if(BUILD_DESIGNERPLUGIN)
+    add_subdirectory(designer)
+endif()
+
 if(BUILD_QCH)
     ecm_add_qch(
         KF5IconThemes_QCH
