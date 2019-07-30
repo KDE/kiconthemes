@@ -1372,7 +1372,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name, KIconLoader::Group gro
         img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state));
     }
 
-    if (group >= 0) {
+    if (group >= 0 && group < KIconLoader::LastGroup) {
         img = d->mpEffect.apply(img, group, state);
     }
 
