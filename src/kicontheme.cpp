@@ -39,6 +39,7 @@
 #include <ksharedconfig.h>
 
 #include <kconfiggroup.h>
+#include <cmath>
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
@@ -175,14 +176,7 @@ QString KIconTheme::KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &
     int dw = INT_MAX;      // icon size delta of current directory
 
     // Rather downsample than upsample
-    int integerScale = 1;
-    if (scale > 1.1) {
-        integerScale = 2;
-    } else if (scale > 2.1) {
-        integerScale = 3;
-    } else if (scale > 3.1) {
-        integerScale = 4;
-    }
+    int integerScale = std::ceil(scale);
 
     // Search the directory that contains the icon which matches best to the requested
     // size. If there is no directory which matches exactly to the requested size, the
