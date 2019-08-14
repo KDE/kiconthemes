@@ -35,13 +35,13 @@
 #include <QByteArray>
 #include <QStringBuilder> // % operator for QString
 #include <QElapsedTimer>
-#include <QGuiApplication>
 #include <QIcon>
 #include <QImage>
 #include <QMovie>
 #include <QPainter>
 #include <QPixmap>
 #include <QPixmapCache>
+#include <QGuiApplication>
 
 // kdecore
 #include <kconfiggroup.h>
@@ -51,7 +51,6 @@
 #include <QDBusConnection>
 #include <QDBusMessage>
 #endif
-#include <QSvgRenderer>
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QCryptographicHash>

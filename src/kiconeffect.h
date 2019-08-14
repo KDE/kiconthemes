@@ -29,7 +29,6 @@
 #include <QImage>
 #include <QPixmap>
 #include <QColor>
-#include <QRect>
 
 class KIconEffectPrivate;
 

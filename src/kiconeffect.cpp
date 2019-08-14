@@ -28,7 +28,6 @@
 
 #include <QSysInfo>
 #include <QDebug>
-#include <QMutableStringListIterator>
 #include <QPixmap>
 #include <QImage>
 #include <QColor>

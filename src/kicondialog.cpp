@@ -22,7 +22,6 @@
 
 #include <QApplication>
 #include <QComboBox>
-#include <QDebug>
 #include <QDialogButtonBox>
 #include <QGroupBox>
 #include <QLayout>

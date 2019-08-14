@@ -20,7 +20,6 @@
 #include <kiconloader.h>
 
 #include <QStandardPaths>
-#include <QPixmap>
 #include <QTest>
 
 #include <KSharedConfig>

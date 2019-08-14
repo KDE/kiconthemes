@@ -17,7 +17,6 @@
 #include "kiconthemes_export.h"
 
 #include <QDialog>
-#include <QStringList>
 #include <QPushButton>
 
 #include <kiconloader.h>

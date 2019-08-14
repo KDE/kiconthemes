@@ -22,8 +22,6 @@
 #include <QStandardPaths>
 #include <QTest>
 #include <QRegularExpression>
-#include <QTemporaryDir>
-#include <QGuiApplication>
 
 #include <kpixmapsequence.h>
 

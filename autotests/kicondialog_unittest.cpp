@@ -20,7 +20,6 @@
 #include <kicondialog.h>
 
 #include <QStandardPaths>
-#include <QPixmap>
 #include <QTest>
 
 #include <KSharedConfig>

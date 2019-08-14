@@ -22,7 +22,6 @@
 
 #include <KIconTheme>
 #include <QPainter>
-#include <QSet>
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
     : mIconName(iconName),

@@ -23,11 +23,9 @@
 
 #include <QDir>
 #include <QStandardPaths>
-#include <QPixmap>
 #include <QTest>
 
 #include <KSharedConfig>
-#include <KConfigGroup>
 
 // Install icontheme.rcc where KIconThemes will find it.
 // This must be done before QCoreApplication is even created, given the Q_COREAPP_STARTUP_FUNCTION in kiconthemes
