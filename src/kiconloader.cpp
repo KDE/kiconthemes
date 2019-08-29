@@ -869,15 +869,15 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
     // uses QStringBuilder (new in Qt 4.6)
 
     return (group == KIconLoader::User
-            ? QLatin1Literal("$kicou_")
-            : QLatin1Literal("$kico_"))
+            ? QLatin1String("$kicou_")
+            : QLatin1String("$kico_"))
            % name
            % QLatin1Char('_')
            % QString::number(size)
            % QLatin1Char('@')
            % QString::number(scale, 'f', 1)
            % QLatin1Char('_')
-           % overlays.join(QStringLiteral("_"))
+           % overlays.join(QLatin1Char('_'))
            % (group >= 0 ? mpEffect.fingerprint(group, state)
               : NULL_EFFECT_FINGERPRINT())
            % QLatin1Char('_')

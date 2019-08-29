@@ -48,7 +48,7 @@ private Q_SLOTS:
         testIconsDir = QDir(testDataDir.absoluteFilePath(QStringLiteral("icons")));
 
         // we will be recursively deleting these, so a sanity check is in order
-        QVERIFY(testIconsDir.absolutePath().contains(QStringLiteral("qttest")));
+        QVERIFY(testIconsDir.absolutePath().contains(QLatin1String("qttest")));
 
         testIconsDir.removeRecursively();
 

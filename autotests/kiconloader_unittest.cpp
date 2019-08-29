@@ -64,8 +64,8 @@ private Q_SLOTS:
         appDataDir = QDir(testDataDir.absoluteFilePath(appName));
 
         // we will be recursively deleting these, so a sanity check is in order
-        QVERIFY(testIconsDir.absolutePath().contains(QStringLiteral("qttest")));
-        QVERIFY(appDataDir.absolutePath().contains(QStringLiteral("qttest")));
+        QVERIFY(testIconsDir.absolutePath().contains(QLatin1String("qttest")));
+        QVERIFY(appDataDir.absolutePath().contains(QLatin1String("qttest")));
 
         testIconsDir.removeRecursively();
         appDataDir.removeRecursively();
@@ -353,7 +353,7 @@ private Q_SLOTS:
                                         &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
-        QVERIFY2(path.contains(QStringLiteral("32x32")), qPrintable(path));
+        QVERIFY2(path.contains(QLatin1String("32x32")), qPrintable(path));
         QCOMPARE(pix.size(), QSize(32, 32));
 
         // Compare with iconPath()
@@ -366,7 +366,7 @@ private Q_SLOTS:
                                         &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
-        QVERIFY2(path.contains(QStringLiteral("22x22")), qPrintable(path));
+        QVERIFY2(path.contains(QLatin1String("22x22")), qPrintable(path));
         QCOMPARE(pix.size(), QSize(24, 24));
 
         QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("kde")));
