@@ -1,0 +1,114 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# GunChleoc <fios@foramnagaidhlig.net>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-08-15 02:37+0200\n"
+"PO-Revision-Date: 2015-11-04 15:14+0000\n"
+"Last-Translator: Michael Bauer <fios@akerbeltz.org>\n"
+"Language-Team: Fòram na Gàidhlig\n"
+"Language: gd\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : "
+"(n > 2 && n < 20) ? 2 : 3;\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Project-Style: kde\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:604
+#, kde-format
+msgid "Select Icon"
+msgstr "Tagh ìomhaigheag"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Tùs na h-ìomhaigheige"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Ìomhaigheagan an t-&siostaim:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "Ìomhaigheagan &eile:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Rùraich..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Lorg:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+"Lorg gu h-eadar-ghnìomhach airson ainmean ìomhaigheagan (pasgan, m.e.)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Gnìomhan"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Aplacaidean"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Roinnean-seòrsa"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Uidheaman"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Suaicheantasan"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Samhlaidhean-gnùis"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Seòrsaichean MIME"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Àiteachan"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Staid"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:604
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.png *.xpm *.svg *.svgz|Faidhlichean ìomhaigheige (*.png *.xpm *.svg *.svgz)"
