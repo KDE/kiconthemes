@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QDate>
+#include <QElapsedTimer>
 #include <QPixmap>
 
 #include <stdio.h>
@@ -14,7 +15,7 @@ int main(int argc, char *argv[])
 
     KIconLoader *mpLoader = KIconLoader::global();
     KIconLoader::Context mContext = KIconLoader::Application;
-    QTime dt;
+    QElapsedTimer dt;
     dt.start();
     int count = 0;
     for (int mGroup = 0; mGroup < KIconLoader::LastGroup; ++mGroup) {

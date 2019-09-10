@@ -1783,7 +1783,7 @@ int IconSize(KIconLoader::Group group)
 QPixmap KIconLoader::unknown()
 {
     QPixmap pix;
-    if (QPixmapCache::find(QStringLiteral("unknown"), pix)) { //krazy:exclude=iconnames
+    if (QPixmapCache::find(QStringLiteral("unknown"), &pix)) { //krazy:exclude=iconnames
         return pix;
     }
 

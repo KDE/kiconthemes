@@ -459,6 +459,13 @@ private Q_SLOTS:
         QVERIFY(!pix.isNull());
     }
 
+    void testUnknownIcon()
+    {
+        QPixmap pix = KIconLoader::unknown();
+        QPixmap pix2 = KIconLoader::unknown();
+        QCOMPARE(pix.cacheKey(), pix2.cacheKey());
+    }
+
     void testLoadPixmapSequence()
     {
         KPixmapSequence seq =  KIconLoader::global()->loadPixmapSequence(QStringLiteral("process-working"), 22);
