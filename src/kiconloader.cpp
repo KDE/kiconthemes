@@ -1699,6 +1699,7 @@ QIcon KIconLoader::loadIconSet(const QString &name, KIconLoader::Group g, int s,
 
 // Easy access functions
 
+#ifndef KICONTHEMES_NO_DEPRECATED
 QPixmap DesktopIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
@@ -1706,13 +1707,11 @@ QPixmap DesktopIcon(const QString &name, int force_size, int state, const QStrin
 }
 
 // deprecated
-#ifndef KICONTHEMES_NO_DEPRECATED
 QIcon DesktopIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIconSet(name, KIconLoader::Desktop, force_size);
 }
-#endif
 
 QPixmap BarIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
@@ -1721,13 +1720,11 @@ QPixmap BarIcon(const QString &name, int force_size, int state, const QStringLis
 }
 
 // deprecated
-#ifndef KICONTHEMES_NO_DEPRECATED
 QIcon BarIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIconSet(name, KIconLoader::Toolbar, force_size);
 }
-#endif
 
 QPixmap SmallIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
@@ -1736,13 +1733,11 @@ QPixmap SmallIcon(const QString &name, int force_size, int state, const QStringL
 }
 
 // deprecated
-#ifndef KICONTHEMES_NO_DEPRECATED
 QIcon SmallIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIconSet(name, KIconLoader::Small, force_size);
 }
-#endif
 
 QPixmap MainBarIcon(const QString &name, int force_size, int state, const QStringList &overlays)
 {
@@ -1751,7 +1746,6 @@ QPixmap MainBarIcon(const QString &name, int force_size, int state, const QStrin
 }
 
 // deprecated
-#ifndef KICONTHEMES_NO_DEPRECATED
 QIcon MainBarIconSet(const QString &name, int force_size)
 {
     KIconLoader *loader = KIconLoader::global();
