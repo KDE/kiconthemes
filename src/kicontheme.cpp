@@ -733,8 +733,10 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         mContext = KIconLoader::Device;
     } else if (tmp == QLatin1String("MimeTypes")) {
         mContext = KIconLoader::MimeType;
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
     } else if (tmp == QLatin1String("FileSystems")) {
         mContext = KIconLoader::FileSystem;
+#endif
     } else if (tmp == QLatin1String("Applications")) {
         mContext = KIconLoader::Application;
     } else if (tmp == QLatin1String("Actions")) {

@@ -88,7 +88,11 @@ public:
         Action,        ///< An action icon (e.g. 'save', 'print').
         Application,   ///< An icon that represents an application.
         Device,        ///< An icon that represents a device.
-        FileSystem,    ///< An icon that represents a file system. @deprecated Use Place instead.
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(4, 8)
+        FileSystem,    ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
+#elif KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
+        FileSystem_DEPRECATED_DO_NOT_USE,
+#endif
         MimeType,      ///< An icon that represents a mime type (or file type).
         Animation,     ///< An icon that is animated.
         Category,      ///< An icon that represents a category.
@@ -313,6 +317,7 @@ public:
      */
     KPixmapSequence loadPixmapSequence(const QString &iconName, int size = SizeSmall) const;
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
     /**
      * Creates an icon set, that will do on-demand loading of the icon.
      * Loading itself is done by calling loadIcon .
@@ -328,10 +333,10 @@ public:
      * @return the icon set. Can be null when not found, depending on
      *          @p canReturnNull.
      *
-     * @deprecated use QIcon::fromTheme instead, which uses the iconloader internally
+     * @deprecated Since 5.0, use QIcon::fromTheme instead, which uses the iconloader internally
      */
-#ifndef KICONTHEMES_NO_DEPRECATED
-    KICONTHEMES_DEPRECATED QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0,
+    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+    QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0,
             bool canReturnNull = false);
 #endif
 
@@ -546,14 +551,17 @@ public:
     void resetPalette();
 
 public Q_SLOTS:
+    // TODO: while marked as deprecated, newIconLoader() is still used:
+    // internally by KIconLoadeer as well as by Plasma's Icons kcm module (state: 5.17)
+    // this needs some further cleanup work before removing it from the API with KICONTHEMES_ENABLE_DEPRECATED_SINCE
     /**
      * Re-initialize the global icon loader
      *
-     * @deprecated since 5.0, use emitChange(Group)
+     * @todo Check deprecation, still used internally.
+     * @deprecated Since 5.0, use emitChange(Group)
      */
-#ifndef KICONTHEMES_NO_DEPRECATED
-    KICONTHEMES_DEPRECATED void newIconLoader();
-#endif
+    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)")
+    void newIconLoader();
 
     /**
      * Emits an iconChanged() signal on all the KIconLoader instances in the system
@@ -586,7 +594,7 @@ private:
     Q_PRIVATE_SLOT(d, void _k_refreshIcons(int group))
 };
 
-#ifndef KICONTHEMES_NO_DEPRECATED
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
 /**
  * \relates KIconLoader
  * Load a desktop icon.
@@ -594,16 +602,22 @@ private:
  * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
  * if you need the overlay, use KIconLoader::loadIcon.
  */
-KICONTHEMES_DEPRECATED_EXPORT QPixmap DesktopIcon(const QString &name, int size = 0,
+KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
+KICONTHEMES_EXPORT QPixmap DesktopIcon(const QString &name, int size = 0,
                                        int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
  * \relates KIconLoader
  * Load a desktop icon, and apply the necessary effects to get an IconSet.
- * @deprecated use QIcon::fromTheme instead
+ * @deprecated Since 5.0, use QIcon::fromTheme instead
  */
-KICONTHEMES_DEPRECATED_EXPORT QIcon DesktopIconSet(const QString &name, int size = 0);
+KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+KICONTHEMES_EXPORT QIcon DesktopIconSet(const QString &name, int size = 0);
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
 /**
  * \relates KIconLoader
  * Load a toolbar icon.
@@ -611,16 +625,22 @@ KICONTHEMES_DEPRECATED_EXPORT QIcon DesktopIconSet(const QString &name, int size
  * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
  * if you need the overlay, use KIconLoader::loadIcon.
  */
-KICONTHEMES_DEPRECATED_EXPORT QPixmap BarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState,
+KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
+KICONTHEMES_EXPORT QPixmap BarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState,
                                    const QStringList &overlays = QStringList());
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
  * \relates KIconLoader
  * Load a toolbar icon, and apply the necessary effects to get an IconSet.
- * @deprecated use QIcon::fromTheme instead
+ * @deprecated Since 5.0, use QIcon::fromTheme instead
  */
-KICONTHEMES_DEPRECATED_EXPORT QIcon BarIconSet(const QString &name, int size = 0);
+KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+KICONTHEMES_EXPORT QIcon BarIconSet(const QString &name, int size = 0);
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
 /**
  * \relates KIconLoader
  * Load a small icon.
@@ -628,16 +648,22 @@ KICONTHEMES_DEPRECATED_EXPORT QIcon BarIconSet(const QString &name, int size = 0
  * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
  * if you need the overlay, use KIconLoader::loadIcon.
  */
-KICONTHEMES_DEPRECATED_EXPORT QPixmap SmallIcon(const QString &name, int size = 0,
+KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
+KICONTHEMES_EXPORT QPixmap SmallIcon(const QString &name, int size = 0,
                                      int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
  * \relates KIconLoader
  * Load a small icon, and apply the necessary effects to get an IconSet.
- * @deprecated use QIcon::fromTheme instead
+ * @deprecated Since 5.0, use QIcon::fromTheme instead
  */
-KICONTHEMES_DEPRECATED_EXPORT QIcon SmallIconSet(const QString &name, int size = 0);
+KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+KICONTHEMES_EXPORT QIcon SmallIconSet(const QString &name, int size = 0);
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
 /**
  * \relates KIconLoader
  * Load a main toolbar icon.
@@ -645,15 +671,19 @@ KICONTHEMES_DEPRECATED_EXPORT QIcon SmallIconSet(const QString &name, int size =
  * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
  * if you need the overlay, use KIconLoader::loadIcon.
  */
-KICONTHEMES_DEPRECATED_EXPORT QPixmap MainBarIcon(const QString &name, int size = 0,
+KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
+KICONTHEMES_EXPORT QPixmap MainBarIcon(const QString &name, int size = 0,
                                        int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
  * \relates KIconLoader
  * Load a main toolbar icon, and apply the effects to get an IconSet.
- * @deprecated use QIcon::fromTheme instead
+ * @deprecated Since 5.0, use QIcon::fromTheme instead
  */
-KICONTHEMES_DEPRECATED_EXPORT QIcon MainBarIconSet(const QString &name, int size = 0);
+KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+KICONTHEMES_EXPORT QIcon MainBarIconSet(const QString &name, int size = 0);
 #endif
 
 /**
@@ -662,13 +692,14 @@ KICONTHEMES_DEPRECATED_EXPORT QIcon MainBarIconSet(const QString &name, int size
  */
 KICONTHEMES_EXPORT QPixmap UserIcon(const QString &name, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
  * \relates KIconLoader
  * Load a user icon, and apply the effects to get an IconSet.
- * @deprecated use QIcon::fromTheme instead
+ * @deprecated Since 5.0, use QIcon::fromTheme instead
  */
-#ifndef KICONTHEMES_NO_DEPRECATED
-KICONTHEMES_DEPRECATED_EXPORT QIcon UserIconSet(const QString &name);
+KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
+KICONTHEMES_EXPORT QIcon UserIconSet(const QString &name);
 #endif
 
 /**

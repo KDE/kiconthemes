@@ -17,8 +17,15 @@ qt5_add_resources(kiconthemes_SRCS
 ecm_qt_declare_logging_category(kiconthemes_SRCS HEADER debug.h IDENTIFIER  KICONTHEMES CATEGORY_NAME kf5.kiconthemes)
 
 add_library(KF5IconThemes ${kiconthemes_SRCS})
-generate_export_header(KF5IconThemes BASE_NAME KIconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
+ecm_generate_export_header(KF5IconThemes
+    BASE_NAME KIconThemes
+    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    VERSION ${KF5_VERSION}
+    DEPRECATED_BASE_VERSION 0
+    DEPRECATION_VERSIONS 4.8 5.0 5.63
+    EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
+)
 
 target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes>")
 
