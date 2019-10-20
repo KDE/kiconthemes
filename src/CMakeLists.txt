@@ -20,7 +20,7 @@ add_library(KF5IconThemes ${kiconthemes_SRCS})
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 ecm_generate_export_header(KF5IconThemes
     BASE_NAME KIconThemes
-    # GROUP_BASE_NAME KF <- enable once all of KF modules use ecm_generate_export_header
+    GROUP_BASE_NAME KF
     VERSION ${KF5_VERSION}
     DEPRECATED_BASE_VERSION 0
     DEPRECATION_VERSIONS 4.8 5.0 5.63
