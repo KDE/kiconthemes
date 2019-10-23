@@ -288,7 +288,8 @@ public:
      *
      * @deprecated since 5.64, no longer necessary, Qt assigns icon itself by now.
      */
-    KICONTHEMES_DEPRECATED_VERSION(5, 64, "No longer necessary") static void assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions); // TODO KF6 remove
+    KICONTHEMES_DEPRECATED_VERSION(5, 64, "No longer necessary")
+    static void assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions); // TODO KF6 remove
 #endif
 
 private:

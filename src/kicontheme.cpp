@@ -677,6 +677,7 @@ QString KIconTheme::defaultThemeName()
     return QStringLiteral("hicolor");
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 64)
 void KIconTheme::assignIconsToContextMenu(ContextMenus type,
         QList<QAction *> actions)
 {
@@ -710,6 +711,7 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type,
         break;
     }
 }
+#endif
 
 /*** KIconThemeDir ***/
 
