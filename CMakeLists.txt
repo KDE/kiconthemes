@@ -55,6 +55,7 @@ find_package(KF5ItemViews ${KF5_DEP_VERSION} REQUIRED)
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
 add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050d00)
+add_definitions(-DQT_DEPRECATED_WARNINGS_SINCE=0x060000)
 add_definitions(-DQT_NO_FOREACH)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"kiconthemes5\")
