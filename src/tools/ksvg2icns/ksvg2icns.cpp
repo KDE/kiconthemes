@@ -130,8 +130,8 @@ int main(int argc, char *argv[])
         {   16, outPath + QStringLiteral("/icon_16x16.png"),      QString() }
     };
 
-    for (size_t i = 0; i < sizeof(outFiles) / sizeof(OutFiles); ++i) {
-        isOk = writeImage(svg, outFiles[i].size, outFiles[i].out1, outFiles[i].out2);
+    for (const OutFiles &outFile : outFiles) {
+        isOk = writeImage(svg, outFile.size, outFile.out1, outFile.out2);
         if (!isOk) {
             return 1;
         }
