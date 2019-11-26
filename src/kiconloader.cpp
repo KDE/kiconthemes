@@ -1762,11 +1762,13 @@ QIcon MainBarIconSet(const QString &name, int force_size)
 }
 #endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 65)
 QPixmap UserIcon(const QString &name, int state, const QStringList &overlays)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->loadIcon(name, KIconLoader::User, 0, state, overlays);
 }
+#endif
 
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 0)
 QIcon UserIconSet(const QString &name)

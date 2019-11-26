@@ -686,11 +686,16 @@ KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
 KICONTHEMES_EXPORT QIcon MainBarIconSet(const QString &name, int size = 0);
 #endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 65)
 /**
  * \relates KIconLoader
  * Load a user icon. User icons are searched in $appdir/pics.
+ * @deprecated since 5.65 Prefer qrc files over user icon themes.
+ * If that's not an option for now, use KIconLoader::loadIcon.
  */
+KICONTHEMES_DEPRECATED_VERSION(5, 65, "See API dox for replacement")
 KICONTHEMES_EXPORT QPixmap UserIcon(const QString &name, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+#endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
 /**
