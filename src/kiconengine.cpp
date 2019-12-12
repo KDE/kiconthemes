@@ -104,11 +104,13 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     }
 
     QPixmap pix2(size);
-    pix2.setDevicePixelRatio(pix.devicePixelRatio());
+    auto dpr = pix.devicePixelRatio();
+    pix2.setDevicePixelRatio(dpr);
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
-    painter.drawPixmap(QPoint((pix2.width() - pix.width()) / 2, (pix2.height() - pix.height()) / 2), pix);
+    const QPoint newTopLeft((pix2.width() - pix.width()) / (2*dpr), (pix2.height() - pix.height()) / (2*dpr));
+    painter.drawPixmap(newTopLeft, pix);
 
     return pix2;
 }
