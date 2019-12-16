@@ -560,9 +560,8 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
 {
     KSharedConfig::Ptr sharedConfig = KSharedConfig::openConfig();
     sharedConfig->reparseConfiguration();
-
     const QString newThemeName = sharedConfig->group("Icons")
-                                               .readEntry("Theme", QString());
+                                               .readEntry("Theme", QStringLiteral("breeze"));
     if (!newThemeName.isEmpty()) {
         // If we're refreshing icons the Qt platform plugin has probably
         // already cached the old theme, which will accidentally filter back
