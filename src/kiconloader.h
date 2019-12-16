@@ -707,11 +707,16 @@ KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
 KICONTHEMES_EXPORT QIcon UserIconSet(const QString &name);
 #endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 66)
 /**
  * \relates KIconLoader
  * Returns the current icon size for a specific group.
+ * @deprecated since 5.66 Prefer QStyle::pixelMetric.
+ * If that's not an option for now, use KIconLoader::currentSize.
  */
+KICONTHEMES_DEPRECATED_VERSION(5, 66, "Use QStyle::pixelMetric or KIconLoader::currentSize")
 KICONTHEMES_EXPORT int IconSize(KIconLoader::Group group);
+#endif
 
 namespace KDE
 {

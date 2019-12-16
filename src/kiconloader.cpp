@@ -1778,11 +1778,13 @@ QIcon UserIconSet(const QString &name)
 }
 #endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 66)
 int IconSize(KIconLoader::Group group)
 {
     KIconLoader *loader = KIconLoader::global();
     return loader->currentSize(group);
 }
+#endif
 
 QPixmap KIconLoader::unknown()
 {
