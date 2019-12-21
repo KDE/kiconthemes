@@ -77,9 +77,7 @@ Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
 // since it's almost sure it'll be there
 static void setBreezeFallback()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     QIcon::setFallbackThemeName(QStringLiteral("breeze"));
-#endif
 }
 
 Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
