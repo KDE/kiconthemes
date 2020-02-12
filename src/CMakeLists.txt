@@ -14,7 +14,13 @@ set(kiconthemes_SRCS
 qt5_add_resources(kiconthemes_SRCS
   hicolor.qrc
 )
-ecm_qt_declare_logging_category(kiconthemes_SRCS HEADER debug.h IDENTIFIER  KICONTHEMES CATEGORY_NAME kf5.kiconthemes)
+ecm_qt_declare_logging_category(kiconthemes_SRCS
+    HEADER debug.h
+    IDENTIFIER KICONTHEMES
+    CATEGORY_NAME kf5.kiconthemes
+    DESCRIPTION "KIconThemes"
+    EXPORT KICONTHEMES
+)
 
 add_library(KF5IconThemes ${kiconthemes_SRCS})
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
@@ -113,3 +119,9 @@ target_link_libraries(KIconEnginePlugin
 )
 
 install(TARGETS KIconEnginePlugin DESTINATION ${KDE_INSTALL_QTPLUGINDIR}/iconengines)
+
+ecm_qt_install_logging_categories(
+    EXPORT KICONTHEMES
+    FILE kiconthemes.categories
+    DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
+)
