@@ -1,0 +1,111 @@
+# translation of kio4.po to
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2004, 2005, 2006.
+# Rinse de Vries <RinseDeVries@home.nl>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-08-15 02:37+0200\n"
+"PO-Revision-Date: 2009-05-19 10:52+0100\n"
+"Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
+"Language-Team:  <nl@li.org>\n"
+"Language: fy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:604
+#, kde-format
+msgid "Select Icon"
+msgstr "Byldkaike selektearje"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Byldkaikeboarne"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "S&ysteem byldkaikes"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Oare byldkaikes:"
+
+#  i18n: file ./kfile/kpropertiesdesktopbase.ui line 213
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "S&neupe..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Sykje:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Ynteraktyf sykje nei nammen fan byldkaikes (b.g. map)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Aksjes"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Applikaasjes"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Kategoriën"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Apparaten"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Emblems"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Emotes"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime triemtypen"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Places"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Tastân"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:604
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Byldkaike-triemen (*.png *.xpm *.svg *.svgz)"
