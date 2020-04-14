@@ -290,6 +290,8 @@ public:
      * Loads an icon for a mimetype.
      * This is basically like loadIcon except that extra desktop themes are loaded if necessary.
      *
+     * Consider using QIcon::fromTheme() with a fallback to "application-octet-stream" instead.
+     *
      * @param iconName The name of the icon, without extension, usually from KMimeType.
      * @param group The icon group. This will specify the size of and effects to
      * be applied to the icon.
