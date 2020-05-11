@@ -1134,6 +1134,23 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
             }
         }
     }
+
+    if (path.isEmpty()) {
+        const QStringList fallbackPaths = QIcon::fallbackSearchPaths();
+
+        for (const QString &path : fallbackPaths) {
+            const QString extensions[] = { QStringLiteral(".png"), QStringLiteral(".svg"), QStringLiteral(".svgz"), QStringLiteral(".xpm") };
+
+            for (const QString &ext : extensions) {
+                const QString file = path + '/' + name + ext;
+
+                if (QFileInfo::exists(file)) {
+                    return file;
+                }
+            }
+        }
+    }
+
     return path;
 }
 
