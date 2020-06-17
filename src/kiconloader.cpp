@@ -72,14 +72,17 @@ color:%2;\
 .ColorScheme-Highlight{\
 color:%3;\
 }\
-.ColorScheme-PositiveText{\
+.ColorScheme-HighlightedText{\
 color:%4;\
 }\
-.ColorScheme-NeutralText{\
+.ColorScheme-PositiveText{\
 color:%5;\
 }\
-.ColorScheme-NegativeText{\
+.ColorScheme-NeutralText{\
 color:%6;\
+}\
+.ColorScheme-NegativeText{\
+color:%7;\
 }");
 }
 }
@@ -890,6 +893,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
         state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
         state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
+        state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.highlightedText().color().name(),
         scheme.foreground(KColorScheme::PositiveText).color().name(),
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
