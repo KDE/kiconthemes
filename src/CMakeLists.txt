@@ -45,6 +45,9 @@ target_link_libraries(KF5IconThemes
   PUBLIC
     Qt5::Widgets
   PRIVATE
+    PkgConfig::cairo
+    PkgConfig::librsvg
+    PkgConfig::gdk-pixbuf
     Qt5::Svg
     KF5::Archive       # for KCompressionDevice
     KF5::I18n          # for i18n in KIconDialog
