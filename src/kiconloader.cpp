@@ -42,6 +42,7 @@
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QGuiApplication>
+#include <QScopeGuard>
 
 // kdecore
 #include <kconfiggroup.h>
@@ -65,6 +66,10 @@
 
 #include <kcolorscheme.h>
 #include <kcompressiondevice.h>
+
+// glib libraries
+#include <librsvg/rsvg.h>
+#include <cairo.h>
 
 namespace {
 // Used to make cache keys for icons with no group. Result type is QString*
@@ -331,7 +336,7 @@ public:
      * as text color, background color, highlight color, positive/neutral/negative color
      * @see KColorScheme
      */
-    QByteArray processSvg(const QString &path, KIconLoader::States state) const;
+    QImage processSvg(const QString &path, int size, qreal scale, KIconLoader::States state) const;
 
     /**
      * @internal
@@ -884,19 +889,10 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
            % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
 }
 
-QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state) const
+QImage KIconLoaderPrivate::processSvg(const QString &path, int size, qreal scale, KIconLoader::States state) const
 {
-    QScopedPointer<QIODevice> device;
-
-    if (path.endsWith(QLatin1String("svgz"))) {
-        device.reset(new KCompressionDevice(path, KCompressionDevice::GZip));
-    } else {
-        device.reset(new QFile(path));
-    }
-
-    if (!device->open(QIODevice::ReadOnly)) {
-        return QByteArray();
-    }
+    const auto targetSize = size * scale;
+    const auto DPI = 96 * scale;
 
     const QPalette pal = mCustomPalette ? mPalette : qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
@@ -908,44 +904,44 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         scheme.foreground(KColorScheme::NeutralText).color().name(),
         scheme.foreground(KColorScheme::NegativeText).color().name());
 
-    QByteArray processedContents;
-    QXmlStreamReader reader(device.data());
-
-    QBuffer buffer(&processedContents);
-    buffer.open(QIODevice::WriteOnly);
-    QXmlStreamWriter writer(&buffer);
-    while (!reader.atEnd()) {
-        if (reader.readNext() == QXmlStreamReader::StartElement &&
-            reader.qualifiedName() == QLatin1String("style") &&
-            reader.attributes().value(QLatin1String("id")) == QLatin1String("current-color-scheme")) {
-            writer.writeStartElement(QStringLiteral("style"));
-            writer.writeAttributes(reader.attributes());
-            writer.writeCharacters(styleSheet);
-            writer.writeEndElement();
-            while (reader.tokenType() != QXmlStreamReader::EndElement) {
-                reader.readNext();
-            }
-        } else if (reader.tokenType() != QXmlStreamReader::Invalid) {
-            writer.writeCurrentToken(reader);
-        }
+    auto handle = rsvg_handle_new_from_file(qUtf8Printable(path), nullptr);
+    auto handleD = qScopeGuard([handle] {g_object_unref(handle);});
+    if (!handle) {
+        return QImage();
     }
-    buffer.close();
 
-    return processedContents;
+    rsvg_handle_set_stylesheet(handle, styleSheet.toUtf8().data(), styleSheet.toUtf8().length(), nullptr);
+    rsvg_handle_set_dpi(handle, DPI);
+    RsvgDimensionData dimensions;
+    rsvg_handle_get_dimensions(handle, &dimensions);
+
+    auto surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, targetSize, targetSize);
+    auto surfaceD = qScopeGuard([surface] {cairo_surface_destroy(surface);});
+
+    auto cairo = cairo_create(surface);
+    auto cairoD = qScopeGuard([cairo] {cairo_destroy(cairo);});
+
+    cairo_scale(cairo, targetSize / (double)dimensions.width, targetSize / (double)dimensions.height);
+
+    if (rsvg_handle_render_cairo(handle, cairo)) {
+        return QImage(cairo_image_surface_get_data(surface),
+                            cairo_image_surface_get_width(surface),
+                            cairo_image_surface_get_height(surface),
+                            cairo_image_surface_get_stride(surface),
+                            QImage::Format_ARGB32).copy();
+    }
+    return QImage();
 }
 
 QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal scale, KIconLoader::States state)
 {
-    //TODO: metadata in the theme to make it do this only if explicitly supported?
+    if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
+        return processSvg(path, size, scale, state);
+    }
+
     QImageReader reader;
     QBuffer buffer;
-
-    if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
-        buffer.setData(processSvg(path, state));
-        reader.setDevice(&buffer);
-    } else {
-        reader.setFileName(path);
-    }
+    reader.setFileName(path);
 
     if (!reader.canRead()) {
         return QImage();
