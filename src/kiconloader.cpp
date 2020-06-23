@@ -1846,7 +1846,7 @@ void KIconLoader::setCustomPalette(const QPalette &palette)
 
 QPalette KIconLoader::customPalette() const
 {
-    return d->mPalette;
+    return d->mCustomPalette ? d->mPalette : QPalette();
 }
 
 void KIconLoader::resetPalette()
