@@ -1852,7 +1852,6 @@ QPalette KIconLoader::customPalette() const
 void KIconLoader::resetPalette()
 {
     d->mCustomPalette = false;
-    d->mPalette = QPalette();
 }
 
 /*** the global icon loader ***/
