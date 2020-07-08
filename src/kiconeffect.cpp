@@ -32,9 +32,9 @@
 #include <QImage>
 #include <QColor>
 
-#include <kcolorscheme.h>
+#include <KColorScheme>
 #include <kicontheme.h>
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 
 class KIconEffectPrivate
 {

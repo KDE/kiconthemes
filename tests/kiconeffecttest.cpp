@@ -4,10 +4,10 @@
 #include <QSlider>
 #include <QGridLayout>
 
-#include <qapplication.h>
+#include <QApplication>
 #include <kiconloader.h>
 #include <kiconeffect.h>
-#include <kcolorbutton.h>
+#include <KColorButton>
 
 KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     : QScrollArea(parent)

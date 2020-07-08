@@ -14,8 +14,8 @@
 #include "kicondialog.h"
 #include "kicondialog_p.h"
 
-#include <klistwidgetsearchline.h>
-#include <klocalizedstring.h>
+#include <KListWidgetSearchLine>
+#include <KLocalizedString>
 #ifndef _WIN32_WCE
 #include <QSvgRenderer>
 #endif

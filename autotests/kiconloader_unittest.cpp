@@ -23,7 +23,7 @@
 #include <QTest>
 #include <QRegularExpression>
 
-#include <kpixmapsequence.h>
+#include <KPixmapSequence>
 
 #include <KSharedConfig>
 #include <KConfigGroup>

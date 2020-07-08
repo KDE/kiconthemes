@@ -44,9 +44,9 @@
 #include <QGuiApplication>
 
 // kdecore
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 #include <kshareddatacache.h>
-#include <ksharedconfig.h>
+#include <KSharedConfig>
 #ifdef QT_DBUS_LIB
 #include <QDBusConnection>
 #include <QDBusMessage>
@@ -61,10 +61,10 @@
 #include "debug.h"
 
 //kwidgetsaddons
-#include <kpixmapsequence.h>
+#include <KPixmapSequence>
 
-#include <kcolorscheme.h>
-#include <kcompressiondevice.h>
+#include <KColorScheme>
+#include <KCompressionDevice>
 
 namespace {
 // Used to make cache keys for icons with no group. Result type is QString*

@@ -1,5 +1,5 @@
 #include <kiconloader.h>
-#include <qapplication.h>
+#include <QApplication>
 
 #include <QDebug>
 #include <QDate>

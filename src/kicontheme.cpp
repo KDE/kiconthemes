@@ -34,11 +34,11 @@
 #include <QDebug>
 #include <QResource>
 
-#include <klocalizedstring.h> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
+#include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 
-#include <ksharedconfig.h>
+#include <KSharedConfig>
 
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 #include <cmath>
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
