@@ -17,7 +17,8 @@ qt5_add_resources(kiconthemes_SRCS
 ecm_qt_declare_logging_category(kiconthemes_SRCS
     HEADER debug.h
     IDENTIFIER KICONTHEMES
-    CATEGORY_NAME kf5.kiconthemes
+    CATEGORY_NAME kf.iconthemes
+    OLD_CATEGORY_NAMES kf5.kiconthemes
     DESCRIPTION "KIconThemes"
     EXPORT KICONTHEMES
 )
