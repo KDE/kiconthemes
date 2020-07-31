@@ -81,7 +81,7 @@ static void setBreezeFallback()
 }
 
 Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
-
+class KIconThemeDir;
 class Q_DECL_HIDDEN KIconTheme::KIconThemePrivate
 {
 public:

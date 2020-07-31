@@ -32,7 +32,6 @@
 #include "kiconloader.h"
 
 class QAction;
-class KIconThemeDir;
 
 /**
  * @internal
