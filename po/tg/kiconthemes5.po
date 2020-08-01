@@ -1,0 +1,115 @@
+# translation of kio4.po to Tajik
+# translation of kio4.po to Тоҷикӣ
+# Copyright (C) 2004, 2005 Free Software Foundation, Inc.
+# 2004, infoDev, a World Bank organization
+# 2004, Khujand Computer Technologies, Inc.
+# 2004, Youth Opportunities, NGO
+# Victor Ibragimov <victor.ibragimov@gmail.com> 2005, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-08-15 02:37+0200\n"
+"PO-Revision-Date: 2019-08-15 12:25+0500\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: Tajik\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:604
+#, kde-format
+msgid "Select Icon"
+msgstr "Нишонаеро интихоб кунед"
+
+#: kicondialog.cpp:289
+#, kde-format
+msgid "Icon Source"
+msgstr "Манбаи нишонаҳо"
+
+#: kicondialog.cpp:298
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Нишонаҳои &низом:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "O&ther icons:"
+msgstr "Нишонаҳои &дигар:"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "&Browse..."
+msgstr "&Намоиш..."
+
+#: kicondialog.cpp:318
+#, kde-format
+msgid "&Search:"
+msgstr "&Ҷустуҷӯ:"
+
+#: kicondialog.cpp:325
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Мусоидат дар ҷустуҷӯи номҳои нишонаҳо (масалан, ҷузвадон)."
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Actions"
+msgstr "Амалиётҳо"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Applications"
+msgstr "Барномаҳо"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Categories"
+msgstr "Намунаҳо"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Devices"
+msgstr "Датгоҳҳо"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Emblems"
+msgstr "Тамғаҳо"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Emotes"
+msgstr "Қиёфаҳо"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Mimetypes"
+msgstr "Навъи қиёфаҳо"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "Places"
+msgstr "Ҷойҳо"
+
+#: kicondialog.cpp:363
+#, kde-format
+msgid "Status"
+msgstr "Вазъият"
+
+#: kicondialog.cpp:364
+#, kde-format
+msgid "All"
+msgstr "Ҳама"
+
+#: kicondialog.cpp:604
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Файлҳои нишонаҳо (*.ico *.png *.xpm *.svg *."
+"svgz)"
