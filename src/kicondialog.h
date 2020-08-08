@@ -1,15 +1,13 @@
 /* vi: ts=8 sts=4 sw=4
- *
- * This file is part of the KDE project, module kfile.
- * Copyright (C) 2000 Geert Jansen <jansen@kde.org>
- *           (C) 2000 Kurt Granroth <granroth@kde.org>
- *           (C) 1997 Christoph Neerfeld <chris@kde.org>
- *           (C) 2002 Carsten Pfeiffer <pfeiffer@kde.org>
- *
- * This is free software; it comes under the GNU Library General
- * Public License, version 2. See the file "COPYING.LIB" for the
- * exact licensing terms.
- */
+
+    This file is part of the KDE project, module kfile.
+    SPDX-FileCopyrightText: 2000 Geert Jansen <jansen@kde.org>
+    SPDX-FileCopyrightText: 2000 Kurt Granroth <granroth@kde.org>
+    SPDX-FileCopyrightText: 1997 Christoph Neerfeld <chris@kde.org>
+    SPDX-FileCopyrightText: 2002 Carsten Pfeiffer <pfeiffer@kde.org>
+
+    SPDX-License-Identifier: LGPL-2.0-only
+*/
 
 #ifndef KICONDIALOG_H
 #define KICONDIALOG_H
