@@ -41,13 +41,18 @@ public:
      */
     explicit KIconDialog(QWidget *parent = nullptr);
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 104)
     /**
      * Constructs an icon selection dialog using a specific icon loader.
      *
      * @param loader The icon loader to use.
      * @param parent The parent widget.
+     *
+     * @deprecated since 5.104, use KIconDialog(QWidget *) instead
      */
+    KICONTHEMES_DEPRECATED_VERSION(5, 104, "Use KIconDialog(QWidget *) instead")
     explicit KIconDialog(KIconLoader *loader, QWidget *parent = nullptr);
+#endif
 
     /**
      * Destructs the dialog.

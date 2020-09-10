@@ -55,12 +55,14 @@ KIconButton::KIconButton(QWidget *parent)
     QPushButton::setIconSize(QSize(48, 48));
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 104)
 KIconButton::KIconButton(KIconLoader *loader, QWidget *parent)
     : QPushButton(parent)
     , d(new KIconButtonPrivate(this, loader))
 {
     QPushButton::setIconSize(QSize(48, 48));
 }
+#endif
 
 KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
     : q(qq)
@@ -90,7 +92,11 @@ KIconButtonPrivate::~KIconButtonPrivate()
 KIconDialog *KIconButtonPrivate::dialog()
 {
     if (!mpDialog) {
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 104)
         mpDialog = new KIconDialog(mpLoader, q);
+#else
+        mpDialog = new KIconDialog(q);
+#endif
         QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) {
             _k_newIconName(iconName);
         });
