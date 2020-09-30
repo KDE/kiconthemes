@@ -12,6 +12,7 @@
 #include "kicontheme.h"
 
 #include <qplatformdefs.h>
+#include "debug.h"
 
 #include <QCoreApplication>
 #include <QAction>
@@ -748,7 +749,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
     } else if (tmp.isEmpty()) {
         // do nothing. key not required
     } else {
-        qWarning() << "Invalid Context=" << tmp << "line for icon theme: " << constructFileName(QString());
+        qCDebug(KICONTHEMES) << "Invalid Context=" << tmp << "line for icon theme: " << constructFileName(QString());
         return;
     }
     tmp = config.readEntry(QStringLiteral("Type"), QStringLiteral("Threshold"));
@@ -759,7 +760,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
     } else if (tmp == QLatin1String("Threshold")) {
         mType = KIconLoader::Threshold;
     } else {
-        qWarning() << "Invalid Type=" << tmp << "line for icon theme: " << constructFileName(QString());
+        qCDebug(KICONTHEMES) << "Invalid Type=" << tmp << "line for icon theme: " << constructFileName(QString());
         return;
     }
     if (mType == KIconLoader::Scalable) {
