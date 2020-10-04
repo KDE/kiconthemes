@@ -1,0 +1,118 @@
+# translation of kio4.po to Slovak
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2002.
+# Stanislav Visnovsky <visnovsky@kde.org>, 2003, 2004, 2005.
+# Pavol Cvengros <orpheus@hq.alert.sk>, 2003.
+# Richard Fric <Richard.Fric@kdemail.net>, 2006, 2010.
+# Jozef Říha <jose1711@gmail.com>, 2006.
+# Peter Mihálik <udavac@pobox.sk>, 2006.
+# Jozef Riha <jose1711@gmail.com>, 2006.
+# Michal Sulek <misurel@gmail.com>, 2009, 2010, 2011.
+# Richard Frič <Richard.Fric@kdemail.net>, 2012.
+# Roman Paholík <wizzardsk@gmail.com>, 2012, 2016.
+# Mthw <jari_45@hotmail.com>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-08-09 02:05+0200\n"
+"PO-Revision-Date: 2019-01-28 12:50+0100\n"
+"Last-Translator: Mthw <jari_45@hotmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 18.12.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: kicondialog.cpp:258 kicondialog.cpp:270 kicondialog.cpp:602
+#, kde-format
+msgid "Select Icon"
+msgstr "Vyberte ikonu"
+
+#: kicondialog.cpp:287
+#, kde-format
+msgid "Icon Source"
+msgstr "Zdroj ikony"
+
+#: kicondialog.cpp:296
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Systémové ikony:"
+
+#: kicondialog.cpp:302
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Iné ikony:"
+
+#: kicondialog.cpp:305
+#, kde-format
+msgid "&Browse..."
+msgstr "&Prechádzať..."
+
+#: kicondialog.cpp:316
+#, kde-format
+msgid "&Search:"
+msgstr "&Hľadať:"
+
+#: kicondialog.cpp:323
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Hľadať interaktívne názvy ikon (napr. priečinok)."
+
+#: kicondialog.cpp:353
+#, kde-format
+msgid "Actions"
+msgstr "Akcie"
+
+#: kicondialog.cpp:354
+#, kde-format
+msgid "Applications"
+msgstr "Aplikácie"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Categories"
+msgstr "Kategórie"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Devices"
+msgstr "Zariadenia"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Emblems"
+msgstr "Emblémy"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Emotes"
+msgstr "Emotikony"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Mimetypes"
+msgstr "Typy MIME"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Places"
+msgstr "Miesta"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "Status"
+msgstr "Stav"
+
+#: kicondialog.cpp:362
+#, kde-format
+msgid "All"
+msgstr "Všetko"
+
+#: kicondialog.cpp:602
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Súbory ikon (*.ico *.png *.xpm *.svg *.svgz)"
