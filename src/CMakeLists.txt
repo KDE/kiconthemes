@@ -1,7 +1,5 @@
 add_subdirectory(tools/kiconfinder)
-if (APPLE)
-    add_subdirectory(tools/ksvg2icns)
-endif()
+add_subdirectory(tools/ksvg2icns)
 
 set(kiconthemes_SRCS
   kiconbutton.cpp
