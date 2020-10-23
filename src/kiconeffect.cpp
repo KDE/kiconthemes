@@ -17,9 +17,6 @@
 
 #include <QSysInfo>
 #include <QDebug>
-#include <QPixmap>
-#include <QImage>
-#include <QColor>
 
 #include <KColorScheme>
 #include <kicontheme.h>
