@@ -35,6 +35,7 @@ static bool writeImage(QSvgRenderer &svg, int size, const QString &outFile1, con
     out.fill(Qt::transparent);
 
     QPainter painter(&out);
+    svg.setAspectRatioMode(Qt::KeepAspectRatio);
     svg.render(&painter);
     painter.end();
 
