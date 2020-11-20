@@ -75,7 +75,6 @@ void KIconEffect::init()
     states += QStringLiteral("Default");
     states += QStringLiteral("Active");
     states += QStringLiteral("Disabled");
-    states += QStringLiteral("Selected");
 
     QStringList::ConstIterator it, it2;
     QString _togray(QStringLiteral("togray"));
@@ -90,27 +89,19 @@ void KIconEffect::init()
         d->effect[i][0] = NoEffect;
         d->effect[i][1] = ((i == 0) || (i == 4)) ? ToGamma : NoEffect;
         d->effect[i][2] = ToGray;
-        d->effect[i][3] = Colorize;
 
         d->trans[i][0] = false;
         d->trans[i][1] = false;
         d->trans[i][2] = true;
-        d->trans[i][3] = true;
-
         d->value[i][0] = 1.0;
         d->value[i][1] = ((i == 0) || (i == 4)) ? 0.7 : 1.0;
         d->value[i][2] = 1.0;
-        d->value[i][3] = 0.5;
-
         d->color[i][0] = QColor(144, 128, 248);
         d->color[i][1] = QColor(169, 156, 255);
         d->color[i][2] = QColor(34, 202, 0);
-        d->color[i][3] = KColorScheme(QPalette::Active, KColorScheme::Selection).background().color();
-
         d->color2[i][0] = QColor(0, 0, 0);
         d->color2[i][1] = QColor(0, 0, 0);
         d->color2[i][2] = QColor(0, 0, 0);
-        d->color2[i][3] = QColor(0, 0, 0);
 
         KConfigGroup cg(config, *it + QStringLiteral("Icons"));
         for (it2 = states.constBegin(), j = 0; it2 != states.constEnd(); ++it2, ++j) {
