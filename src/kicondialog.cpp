@@ -280,14 +280,13 @@ void KIconDialog::KIconDialogPrivate::init()
     mGroupOrSize = KIconLoader::Desktop;
     mContext = KIconLoader::Any;
 
-    QVBoxLayout *top = new QVBoxLayout;
-    q->setLayout(top);
+    QVBoxLayout *top = new QVBoxLayout(q);
 
     QGroupBox *bgroup = new QGroupBox(q);
     bgroup->setTitle(i18n("Icon Source"));
 
-    QVBoxLayout *vbox = new QVBoxLayout;
-    bgroup->setLayout(vbox);
+    QVBoxLayout *vbox = new QVBoxLayout(bgroup);
+
     top->addWidget(bgroup);
 
     QGridLayout *grid = new QGridLayout();
