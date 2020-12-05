@@ -1,0 +1,111 @@
+# translation of kio4.po to British English
+# Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2002,2003,2004, 2005, 2007, 2008.
+# Andrew Coles <andrew_coles@yahoo.co.uk>, 2004, 2005, 2009, 2010.
+# Brendan Osborne <danborne.kde@gmail.com>, 2007.
+# Steve Allewell <steve.allewell@gmail.com>, 2014, 2016, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-12-05 02:16+0100\n"
+"PO-Revision-Date: 2018-06-30 13:27+0000\n"
+"Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
+"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: kicondialog.cpp:258 kicondialog.cpp:270 kicondialog.cpp:601
+#, kde-format
+msgid "Select Icon"
+msgstr "Select Icon"
+
+#: kicondialog.cpp:286
+#, kde-format
+msgid "Icon Source"
+msgstr "Icon Source"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "S&ystem icons:"
+
+#: kicondialog.cpp:301
+#, kde-format
+msgid "O&ther icons:"
+msgstr "O&ther icons:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "&Browse..."
+msgstr "&Browse..."
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "&Search:"
+msgstr "&Search:"
+
+#: kicondialog.cpp:322
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Search interactively for icon names (e.g. folder)."
+
+#: kicondialog.cpp:352
+#, kde-format
+msgid "Actions"
+msgstr "Actions"
+
+#: kicondialog.cpp:353
+#, kde-format
+msgid "Applications"
+msgstr "Applications"
+
+#: kicondialog.cpp:354
+#, kde-format
+msgid "Categories"
+msgstr "Categories"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Devices"
+msgstr "Devices"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Emblems"
+msgstr "Emblems"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Emotes"
+msgstr "Emotes"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mimetypes"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Places"
+msgstr "Places"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "All"
+msgstr "All"
+
+#: kicondialog.cpp:601
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

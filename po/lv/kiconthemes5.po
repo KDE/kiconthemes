@@ -1,0 +1,117 @@
+# translation of kio4.po to Latvian
+# translation of kio4.po to
+# kio4.po tulkojums uz Latviešu valodu
+# Copyright (C) 2005, 2006, 2007, 2008, 2009, 2011 Free Software Foundation, Inc.
+#
+# Maris Nartiss <maris.nartiss@gmail.com>, 2005.
+# Maris Nartiss <maris.kde@gmail.com>, 2006, 2007, 2008, 2009, 2011.
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008, 2010.
+# Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+# Einars Sprugis <einars8@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-12-05 02:16+0100\n"
+"PO-Revision-Date: 2011-07-06 12:49+0300\n"
+"Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
+"Language-Team: Latvian\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: kicondialog.cpp:258 kicondialog.cpp:270 kicondialog.cpp:601
+#, kde-format
+msgid "Select Icon"
+msgstr "Izvēlēties ikonu"
+
+#: kicondialog.cpp:286
+#, kde-format
+msgid "Icon Source"
+msgstr "Ikonu avots"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Sistēmas ikonas:"
+
+#: kicondialog.cpp:301
+#, kde-format
+msgid "O&ther icons:"
+msgstr "Ci&tas ikonas:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "&Browse..."
+msgstr "&Pārlūkot..."
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "&Search:"
+msgstr "&Meklēt:"
+
+#: kicondialog.cpp:322
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Interaktīvi meklēt ikonu nosaukumos (piem., mape)."
+
+#: kicondialog.cpp:352
+#, kde-format
+msgid "Actions"
+msgstr "Darbības"
+
+#: kicondialog.cpp:353
+#, kde-format
+msgid "Applications"
+msgstr "Programmas"
+
+#: kicondialog.cpp:354
+#, kde-format
+msgid "Categories"
+msgstr "Kategorijas"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Devices"
+msgstr "Ierīces"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Emblems"
+msgstr "Emblēmas"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Emotes"
+msgstr "Emocijas"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME tipi"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Places"
+msgstr "Vietas"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Status"
+msgstr "Statuss"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:601
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikonu faili (*.png *.xpm *.svg *.svgz)"
