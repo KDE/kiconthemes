@@ -368,6 +368,19 @@ public:
                      bool canReturnNull, qreal scale) const;
 
     /**
+     * Returns a QIcon for the given @p iconName, with additional @p overlays.
+     *
+     * @param iconName the name of the icon
+     * @param overlays a string list of the overlays (e.g. device emblems) to paint on the icon;
+     * in the case of disk device emblems, it could be a different emblem for each device state
+     * (connected, disconnected... etc)
+     *
+     *
+     * @since 5.78
+     */
+    QIcon iconWithOverlays(const QString &iconName, const QStringList &overlays) const;
+
+    /**
      * Loads an animated icon.
      * @param name The name of the icon.
      * @param group The icon group. See loadIcon().

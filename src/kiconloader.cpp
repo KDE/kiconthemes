@@ -31,7 +31,6 @@
 #include <QPixmapCache>
 #include <QGuiApplication>
 
-// kdecore
 #include <KConfigGroup>
 #include <kshareddatacache.h>
 #include <KSharedConfig>
@@ -43,12 +42,11 @@
 #include <QXmlStreamWriter>
 #include <QCryptographicHash>
 
-// kdeui
 #include "kicontheme.h"
 #include "kiconeffect.h"
 #include "debug.h"
 
-//kwidgetsaddons
+#include <KIconEngine>
 #include <KPixmapSequence>
 
 #include <KColorScheme>
@@ -1241,6 +1239,11 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size,
     return path;
 }
 
+QIcon KIconLoader::iconWithOverlays(const QString &iconName, const QStringList &overlays) const
+{
+    return QIcon(new KIconEngine(iconName, KIconLoader::global(), overlays));
+}
+
 QPixmap KIconLoader::loadMimeTypeIcon(const QString &_iconName, KIconLoader::Group group, int size,
                                       int state, const QStringList &overlays, QString *path_store) const
 {
@@ -1865,7 +1868,6 @@ void KIconLoader::emitChange(KIconLoader::Group g)
     s_globalData->emitChange(g);
 }
 
-#include <kiconengine.h>
 QIcon KDE::icon(const QString &iconName, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global()));
