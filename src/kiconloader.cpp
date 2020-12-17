@@ -1880,15 +1880,20 @@ void KIconLoader::emitChange(KIconLoader::Group g)
 }
 
 #include <kiconengine.h>
+
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 82)
 QIcon KDE::icon(const QString &iconName, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global()));
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 82)
 QIcon KDE::icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global(), overlays));
 }
+#endif
 
 #include "kiconloader.moc"
 #include "moc_kiconloader.moc"

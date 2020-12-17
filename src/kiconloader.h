@@ -594,7 +594,7 @@ public:
 
 public Q_SLOTS:
     // TODO: while marked as deprecated, newIconLoader() is still used:
-    // internally by KIconLoadeer as well as by Plasma's Icons kcm module (state: 5.17)
+    // internally by KIconLoader as well as by Plasma's Icons kcm module (state: 5.17)
     // this needs some further cleanup work before removing it from the API with KICONTHEMES_ENABLE_DEPRECATED_SINCE
     /**
      * Re-initialize the global icon loader
@@ -758,22 +758,34 @@ KICONTHEMES_EXPORT int IconSize(KIconLoader::Group group);
 
 namespace KDE
 {
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 82)
 /**
  * \relates KIconLoader
  * Returns a QIcon with an appropriate
  * KIconEngine to perform loading and rendering.  KIcons thus adhere to
  * KDE style and effect standards.
  * @since 5.0
+ *
+ * @deprecated since 5.82, use QIcon::fromTheme(const QString&).
  */
+KICONTHEMES_DEPRECATED_VERSION(5, 82, "Use QIcon::fromTheme(const QString&)")
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = nullptr);
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 82)
 /**
  * \relates KIconLoader
  * Returns a QIcon for the given icon, with additional overlays.
  * @since 5.0
+ *
+ * @deprecated since 5.82, use @c KIconUtils::addOverlays(const QString &, const QStringList &), or
+ * any of the other methods in the KIconUtils namespace.
  */
+KICONTHEMES_DEPRECATED_VERSION(5,
+                               82,
+                               "use KIconUtils::addOverlays(const QString &, const QStringList &), or any of the other methods in the KIconUtils namespace.")
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader = nullptr);
-
+#endif
 }
 
 inline KIconLoader::Group &operator++(KIconLoader::Group &group)
