@@ -746,6 +746,10 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         mContext = KIconLoader::StatusIcon;
     } else if (tmp == QLatin1String("Stock")) { // invalid, but often present context, skip warning
         return;
+    } else if (tmp == QLatin1String("Legacy")) { // invalid, but often present context for Adwaita, skip warning
+        return;
+    } else if (tmp == QLatin1String("UI")) { // invalid, but often present context for Adwaita, skip warning
+        return;
     } else if (tmp.isEmpty()) {
         // do nothing. key not required
     } else {
