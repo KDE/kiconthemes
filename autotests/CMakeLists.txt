@@ -14,7 +14,6 @@ endmacro()
 kiconthemes_tests(
   kiconloader_unittest
   kiconloader_resourcethemetest
-  kiconloader_benchmark
   kicontheme_unittest
   kiconengine_unittest
   kicondialog_unittest
@@ -31,3 +30,7 @@ ecm_add_test(kiconloader_rcctest.cpp LINK_LIBRARIES Qt5::Test KF5::IconThemes KF
 add_custom_target(rcctest-rcc ALL DEPENDS icontheme.rcc) # a custom target that is always built
 
 set_tests_properties(kiconloader_unittest PROPERTIES RUN_SERIAL TRUE)
+
+# Benchmark, compiled, but not run automatically with ctest
+add_executable(kiconloader_benchmark kiconloader_benchmark.cpp)
+target_link_libraries(kiconloader_benchmark Qt5::Test KF5::IconThemes KF5::WidgetsAddons KF5::ConfigCore)
