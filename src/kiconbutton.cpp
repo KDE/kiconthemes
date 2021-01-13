@@ -15,7 +15,7 @@
 
 #include "kicondialog.h"
 
-class Q_DECL_HIDDEN KIconButton::KIconButtonPrivate
+class KIconButtonPrivate
 {
 public:
     KIconButtonPrivate(KIconButton *qq, KIconLoader *loader);
@@ -56,7 +56,7 @@ KIconButton::KIconButton(KIconLoader *loader, QWidget *parent)
     QPushButton::setIconSize(QSize(48, 48));
 }
 
-KIconButton::KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
+KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
     : q(qq)
 {
     m_bStrictIconSize = false;
@@ -69,18 +69,15 @@ KIconButton::KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader
 
     mpLoader = loader;
     mpDialog = nullptr;
-    connect(q, &KIconButton::clicked, q, [this]() {_k_slotChangeIcon();});
+    QObject::connect(q, &KIconButton::clicked, q, [this]() {_k_slotChangeIcon();});
 }
 
-KIconButton::KIconButtonPrivate::~KIconButtonPrivate()
+KIconButtonPrivate::~KIconButtonPrivate()
 {
     delete mpDialog;
 }
 
-KIconButton::~KIconButton()
-{
-    delete d;
-}
+KIconButton::~KIconButton() = default;
 
 void KIconButton::setStrictIconSize(bool b)
 {
@@ -155,18 +152,18 @@ const QString &KIconButton::icon() const
     return d->mIcon;
 }
 
-void KIconButton::KIconButtonPrivate::_k_slotChangeIcon()
+void KIconButtonPrivate::_k_slotChangeIcon()
 {
     if (!mpDialog) {
         mpDialog = new KIconDialog(mpLoader, q);
-        connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) { _k_newIconName(iconName); });
+        QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) { _k_newIconName(iconName); });
     }
 
     mpDialog->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);
     mpDialog->showDialog();
 }
 
-void KIconButton::KIconButtonPrivate::_k_newIconName(const QString &name)
+void KIconButtonPrivate::_k_newIconName(const QString &name)
 {
     if (name.isEmpty()) {
         return;

@@ -16,6 +16,7 @@
 
 #include <QDialog>
 #include <QPushButton>
+#include <memory>
 
 #include <kiconloader.h>
 
@@ -141,10 +142,10 @@ protected Q_SLOTS:
     void slotOk();
 
 private:
-    class KIconDialogPrivate;
-    KIconDialogPrivate *const d;
+    std::unique_ptr<class KIconDialogPrivate> const d;
 
     friend class ShowEventFilter;
+    friend class KIconDialogPrivate;
 
     Q_DISABLE_COPY(KIconDialog)
 

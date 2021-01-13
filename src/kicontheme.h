@@ -15,6 +15,7 @@
 #include <QString>
 #include <QStringList>
 #include <QList>
+#include <memory>
 
 #include "kiconloader.h"
 
@@ -279,8 +280,7 @@ public:
 #endif
 
 private:
-    class KIconThemePrivate;
-    KIconThemePrivate *const d;
+    std::unique_ptr<class KIconThemePrivate> const d;
 };
 
 #endif

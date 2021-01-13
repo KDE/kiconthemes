@@ -15,6 +15,7 @@
 #include "kiconthemes_export.h"
 
 #include <QPushButton>
+#include <memory>
 
 #include <kiconloader.h>
 
@@ -122,8 +123,7 @@ Q_SIGNALS:
     void iconChanged(const QString &icon);
 
 private:
-    class KIconButtonPrivate;
-    KIconButtonPrivate *const d;
+    std::unique_ptr<class KIconButtonPrivate> const d;
 
     Q_DISABLE_COPY(KIconButton)
 };

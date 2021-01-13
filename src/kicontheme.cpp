@@ -71,7 +71,7 @@ static void setBreezeFallback()
 
 Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
 class KIconThemeDir;
-class Q_DECL_HIDDEN KIconTheme::KIconThemePrivate
+class KIconThemePrivate
 {
 public:
     QString example, screenshot;
@@ -154,7 +154,7 @@ private:
     const QString mThemeDir;
 };
 
-QString KIconTheme::KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
+QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
 {
     QString path;
     QString tempPath;      // used to cache icon path if it exists
@@ -371,7 +371,6 @@ KIconTheme::~KIconTheme()
 {
     qDeleteAll(d->mDirs);
     qDeleteAll(d->mScaledDirs);
-    delete d;
 }
 
 QString KIconTheme::name() const

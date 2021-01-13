@@ -275,7 +275,7 @@ KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
     installEventFilter(new ShowEventFilter(this));
 }
 
-void KIconDialog::KIconDialogPrivate::init()
+void KIconDialogPrivate::init()
 {
     mGroupOrSize = KIconLoader::Desktop;
     mContext = KIconLoader::Any;
@@ -293,16 +293,16 @@ void KIconDialog::KIconDialogPrivate::init()
     vbox->addLayout(grid);
 
     mpSystemIcons = new QRadioButton(i18n("S&ystem icons:"), bgroup);
-    connect(mpSystemIcons, SIGNAL(clicked()), q, SLOT(_k_slotSystemIconClicked()));
+    QObject::connect(mpSystemIcons, SIGNAL(clicked()), q, SLOT(_k_slotSystemIconClicked()));
     grid->addWidget(mpSystemIcons, 1, 0);
     mpCombo = new QComboBox(bgroup);
-    connect(mpCombo, SIGNAL(activated(int)), q, SLOT(_k_slotContext(int)));
+    QObject::connect(mpCombo, SIGNAL(activated(int)), q, SLOT(_k_slotContext(int)));
     grid->addWidget(mpCombo, 1, 1);
     mpOtherIcons = new QRadioButton(i18n("O&ther icons:"), bgroup);
-    connect(mpOtherIcons, SIGNAL(clicked()), q, SLOT(_k_slotOtherIconClicked()));
+    QObject::connect(mpOtherIcons, SIGNAL(clicked()), q, SLOT(_k_slotOtherIconClicked()));
     grid->addWidget(mpOtherIcons, 2, 0);
     mpBrowseBut = new QPushButton(i18n("&Browse..."), bgroup);
-    connect(mpBrowseBut, SIGNAL(clicked()), q, SLOT(_k_slotBrowse()));
+    QObject::connect(mpBrowseBut, SIGNAL(clicked()), q, SLOT(_k_slotBrowse()));
     grid->addWidget(mpBrowseBut, 2, 1);
 
     //
@@ -324,7 +324,7 @@ void KIconDialog::KIconDialogPrivate::init()
     searchLine->setWhatsThis(wtstr);
 
     mpCanvas = new KIconCanvas(q);
-    connect(mpCanvas, SIGNAL(itemActivated(QListWidgetItem*)), q, SLOT(_k_slotAcceptIcons()));
+    QObject::connect(mpCanvas, SIGNAL(itemActivated(QListWidgetItem*)), q, SLOT(_k_slotAcceptIcons()));
     top->addWidget(mpCanvas);
     searchLine->setListWidget(mpCanvas);
 
@@ -341,12 +341,12 @@ void KIconDialog::KIconDialogPrivate::init()
 
     mpProgress = new QProgressBar(q);
     top->addWidget(mpProgress);
-    connect(mpCanvas, SIGNAL(startLoading(int)), q, SLOT(_k_slotStartLoading(int)));
-    connect(mpCanvas, SIGNAL(progress(int)), q, SLOT(_k_slotProgress(int)));
-    connect(mpCanvas, SIGNAL(finished()), q, SLOT(_k_slotFinished()));
+    QObject::connect(mpCanvas, SIGNAL(startLoading(int)), q, SLOT(_k_slotStartLoading(int)));
+    QObject::connect(mpCanvas, SIGNAL(progress(int)), q, SLOT(_k_slotProgress(int)));
+    QObject::connect(mpCanvas, SIGNAL(finished()), q, SLOT(_k_slotFinished()));
 
     // When pressing Ok or Cancel, stop loading icons
-    connect(q, &QDialog::finished, mpCanvas, &KIconCanvas::stopLoading);
+    QObject::connect(q, &QDialog::finished, mpCanvas, &KIconCanvas::stopLoading);
 
     static const char *const context_text[] = {
         I18N_NOOP("Actions"),
@@ -390,8 +390,8 @@ void KIconDialog::KIconDialogPrivate::init()
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(q);
     buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    connect(buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
-    connect(buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
+    QObject::connect(buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
+    QObject::connect(buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
     top->addWidget(buttonBox);
 
     // Make the dialog a little taller
@@ -399,12 +399,9 @@ void KIconDialog::KIconDialogPrivate::init()
     q->adjustSize();
 }
 
-KIconDialog::~KIconDialog()
-{
-    delete d;
-}
+KIconDialog::~KIconDialog() = default;
 
-void KIconDialog::KIconDialogPrivate::_k_slotAcceptIcons()
+void KIconDialogPrivate::_k_slotAcceptIcons()
 {
     custom.clear();
     q->slotOk();
@@ -417,7 +414,7 @@ static bool sortByFileName(const QString &path1, const QString &path2)
     return QString::compare(fileName1, fileName2, Qt::CaseInsensitive) < 0;
 }
 
-void KIconDialog::KIconDialogPrivate::showIcons()
+void KIconDialogPrivate::showIcons()
 {
     mpCanvas->clear();
     QStringList filelist;
@@ -517,7 +514,7 @@ void KIconDialog::setup(KIconLoader::Group group, KIconLoader::Context context,
     d->setContext(context);
 }
 
-void KIconDialog::KIconDialogPrivate::setContext(KIconLoader::Context context)
+void KIconDialogPrivate::setContext(KIconLoader::Context context)
 {
     mContext = context;
     for (int i = 0; i < mNumContext; ++i) {
@@ -588,7 +585,7 @@ QString KIconDialog::getIcon(KIconLoader::Group group, KIconLoader::Context cont
     return dlg.openDialog();
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotBrowse()
+void KIconDialogPrivate::_k_slotBrowse()
 {
     if (browseDialog) {
         browseDialog.data()->show();
@@ -601,12 +598,12 @@ void KIconDialog::KIconDialogPrivate::_k_slotBrowse()
     QFileDialog *dlg = new QFileDialog(q, i18n("Select Icon"), QString(), i18n("*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"));
     dlg->setModal(false);
     dlg->setFileMode(QFileDialog::ExistingFile);
-    connect(dlg, SIGNAL(fileSelected(QString)), q, SLOT(_k_customFileSelected(QString)));
+    QObject::connect(dlg, SIGNAL(fileSelected(QString)), q, SLOT(_k_customFileSelected(QString)));
     browseDialog = dlg;
     dlg->show();
 }
 
-void KIconDialog::KIconDialogPrivate::_k_customFileSelected(const QString &path)
+void KIconDialogPrivate::_k_customFileSelected(const QString &path)
 {
     if (!path.isEmpty()) {
         custom = path;
@@ -617,27 +614,27 @@ void KIconDialog::KIconDialogPrivate::_k_customFileSelected(const QString &path)
     }
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotSystemIconClicked()
+void KIconDialogPrivate::_k_slotSystemIconClicked()
 {
     mpBrowseBut->setEnabled(false);
     mpCombo->setEnabled(true);
     showIcons();
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotOtherIconClicked()
+void KIconDialogPrivate::_k_slotOtherIconClicked()
 {
     mpBrowseBut->setEnabled(!m_bLockCustomDir);
     mpCombo->setEnabled(false);
     showIcons();
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotContext(int id)
+void KIconDialogPrivate::_k_slotContext(int id)
 {
     mContext = static_cast<KIconLoader::Context>(mContextMap[ id ]);
     showIcons();
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotStartLoading(int steps)
+void KIconDialogPrivate::_k_slotStartLoading(int steps)
 {
     if (steps < 10) {
         mpProgress->hide();
@@ -648,12 +645,12 @@ void KIconDialog::KIconDialogPrivate::_k_slotStartLoading(int steps)
     }
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotProgress(int p)
+void KIconDialogPrivate::_k_slotProgress(int p)
 {
     mpProgress->setValue(static_cast<int>(100.0 * (double)p / (double)mNumOfSteps));
 }
 
-void KIconDialog::KIconDialogPrivate::_k_slotFinished()
+void KIconDialogPrivate::_k_slotFinished()
 {
     mNumOfSteps = 1;
     mpProgress->hide();

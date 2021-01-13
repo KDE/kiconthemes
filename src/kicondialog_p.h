@@ -99,7 +99,7 @@ private:
     KIconCanvasDelegate *m_delegate;
 };
 
-class Q_DECL_HIDDEN KIconDialog::KIconDialogPrivate
+class KIconDialogPrivate
 {
 public:
     KIconDialogPrivate(KIconDialog *qq)
