@@ -564,9 +564,9 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
 
 KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearchPaths, QObject *parent)
     : QObject(parent)
+    , d(new KIconLoaderPrivate(this))
 {
     setObjectName(_appname);
-    d = new KIconLoaderPrivate(this);
 
     connect(s_globalData, SIGNAL(iconChanged(int)), SLOT(_k_refreshIcons(int)));
     d->init(_appname, extraSearchPaths);
@@ -658,10 +658,7 @@ bool KIconLoaderPrivate::initIconThemes()
     return true;
 }
 
-KIconLoader::~KIconLoader()
-{
-    delete d;
-}
+KIconLoader::~KIconLoader() = default;
 
 QStringList KIconLoader::searchPaths() const
 {

@@ -51,10 +51,7 @@ KIconEffect::KIconEffect()
     init();
 }
 
-KIconEffect::~KIconEffect()
-{
-    delete d;
-}
+KIconEffect::~KIconEffect() = default;
 
 void KIconEffect::init()
 {

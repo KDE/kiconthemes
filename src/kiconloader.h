@@ -13,6 +13,7 @@
 #include <QString>
 #include <QStringList>
 #include <QObject>
+#include <memory>
 
 #include <kiconthemes_export.h>
 
@@ -579,7 +580,7 @@ Q_SIGNALS:
 
 private:
     // @internal the data object
-    KIconLoaderPrivate *d;
+    std::unique_ptr<KIconLoaderPrivate> const d;
 
     Q_PRIVATE_SLOT(d, void _k_refreshIcons(int group))
 };

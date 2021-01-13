@@ -18,6 +18,7 @@
 #include <QImage>
 #include <QPixmap>
 #include <QColor>
+#include <memory>
 
 class KIconEffectPrivate;
 
@@ -209,7 +210,7 @@ public:
     static void overlay(QImage &src, QImage &overlay);
 
 private:
-    KIconEffectPrivate *const d;
+    std::unique_ptr<KIconEffectPrivate> const d;
 };
 
 #endif
