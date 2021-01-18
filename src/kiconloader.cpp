@@ -559,7 +559,7 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
 
     q->newIconLoader();
     mIconAvailability.clear();
-    emit q->iconChanged(group);
+    Q_EMIT q->iconChanged(group);
 }
 
 KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearchPaths, QObject *parent)
@@ -1854,7 +1854,7 @@ void KIconLoader::newIconLoader()
     }
 
     reconfigure(objectName());
-    emit iconLoaderSettingsChanged();
+    Q_EMIT iconLoaderSettingsChanged();
 }
 
 void KIconLoader::emitChange(KIconLoader::Group g)
