@@ -28,7 +28,7 @@ add_library(KF5::IconThemes ALIAS KF5IconThemes)
 ecm_generate_export_header(KF5IconThemes
     BASE_NAME KIconThemes
     GROUP_BASE_NAME KF
-    VERSION ${KF5_VERSION}
+    VERSION ${KF_VERSION}
     DEPRECATED_BASE_VERSION 0
     DEPRECATION_VERSIONS 4.8 5.0 5.63 5.64 5.65 5.66
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
@@ -86,7 +86,7 @@ if(BUILD_QCH)
         KF5IconThemes_QCH
         NAME KIconThemes
         BASE_NAME KF5IconThemes
-        VERSION ${KF5_VERSION}
+        VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
             ${KIconThemes_HEADERS}
