@@ -1,0 +1,115 @@
+# Translation of kiconthemes5 to Norwegian Nynorsk
+#
+# Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 2003, 2004, 2005, 2006.
+# Håvard Korsvoll <korsvoll@skulelinux.no>, 2003.
+# Karl Ove Hufthammer <karl@huftis.org>, 2004, 2005, 2007, 2008, 2009, 2010, 2011, 2018.
+# Eirik U. Birkeland <eirbir@gmail.com>, 2008, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-23 02:29+0100\n"
+"PO-Revision-Date: 2018-07-04 13:39+0100\n"
+"Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
+"Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
+"Language: nn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kicondialog.cpp:258 kicondialog.cpp:270 kicondialog.cpp:598
+#, kde-format
+msgid "Select Icon"
+msgstr "Vel ikon"
+
+#: kicondialog.cpp:286
+#, kde-format
+msgid "Icon Source"
+msgstr "Ikonkjelde"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Systemikon:"
+
+#: kicondialog.cpp:301
+#, kde-format
+msgid "O&ther icons:"
+msgstr "A&ndre ikon:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "&Browse..."
+msgstr "&Bla gjennom …"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "&Search:"
+msgstr "&Søk:"
+
+#: kicondialog.cpp:322
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Søk interaktivt etter ikonnamn (for eksempel mapper)."
+
+#: kicondialog.cpp:352
+#, kde-format
+msgid "Actions"
+msgstr "Handlingar"
+
+#: kicondialog.cpp:353
+#, kde-format
+msgid "Applications"
+msgstr "Program"
+
+#: kicondialog.cpp:354
+#, kde-format
+msgid "Categories"
+msgstr "Kategoriar"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Devices"
+msgstr "Einingar"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Emblems"
+msgstr "Emblem"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Emotes"
+msgstr "Fjesingar"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME-typar"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Places"
+msgstr "Stadar"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "All"
+msgstr "Alle"
+
+#: kicondialog.cpp:598
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Ikonfiler (*.ico *.png *.xpm *.svg *.svgz)"
