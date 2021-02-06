@@ -1,0 +1,124 @@
+# Translation of kio4.po to Finnish
+# KDE Finnish translation sprint participants:
+# Author: Artnay
+# Author: Lliehu
+# Author: Niklas Laxström
+# Kim Enkovaara <kim.enkovaara@iki.fi>, 2002, 2003, 2004, 2005, 2006.
+# Mikko Ikola <ikola@iki.fi>, 2003, 2005.
+# Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003, 2004, 2008.
+# Tapio Kautto <eleknader@phnet.fi>, 2004.
+# Ilpo Kantonen <ilpo@iki.fi>, 2005.
+# Niklas Laxström <niklas.laxstrom+kdetrans@gmail.com>, 2007.
+# Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
+# Teemu Rytilahti <tpr@d5k.net>, 2008.
+# Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
+# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2018.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-23 02:29+0100\n"
+"PO-Revision-Date: 2018-07-12 17:23+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 2.0\n"
+"X-POT-Import-Date: 2013-01-13 20:43:21+0000\n"
+
+#: kicondialog.cpp:258 kicondialog.cpp:270 kicondialog.cpp:598
+#, kde-format
+msgid "Select Icon"
+msgstr "Valitse kuvake"
+
+#: kicondialog.cpp:286
+#, kde-format
+msgid "Icon Source"
+msgstr "Kuvakkeen sijainti"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Järjestelmän kuvakkeet:"
+
+#: kicondialog.cpp:301
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Muut kuvakkeet:"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "&Browse..."
+msgstr "&Selaa…"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "&Search:"
+msgstr "&Etsi:"
+
+#: kicondialog.cpp:322
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Hae kuvakkeiden nimiä (esim. kansio) vuorovaikutteisesti."
+
+#: kicondialog.cpp:352
+#, kde-format
+msgid "Actions"
+msgstr "Toiminnot"
+
+#: kicondialog.cpp:353
+#, kde-format
+msgid "Applications"
+msgstr "Sovellukset"
+
+#: kicondialog.cpp:354
+#, kde-format
+msgid "Categories"
+msgstr "Luokat"
+
+#: kicondialog.cpp:355
+#, kde-format
+msgid "Devices"
+msgstr "Laitteet"
+
+#: kicondialog.cpp:356
+#, kde-format
+msgid "Emblems"
+msgstr "Tunnuskuva"
+
+#: kicondialog.cpp:357
+#, kde-format
+msgid "Emotes"
+msgstr "Hymiöt"
+
+#: kicondialog.cpp:358
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME-tyypit"
+
+#: kicondialog.cpp:359
+#, kde-format
+msgid "Places"
+msgstr "Sijainnit"
+
+#: kicondialog.cpp:360
+#, kde-format
+msgid "Status"
+msgstr "Tila"
+
+#: kicondialog.cpp:361
+#, kde-format
+msgid "All"
+msgstr "Kaikki"
+
+#: kicondialog.cpp:598
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Kuvaketiedostot (*.ico *.png *.xpm *.svg *."
+"svgz)"
