@@ -1,4 +1,4 @@
 {
-    "Keys": [ "KIconEngine" ]
+    "Keys": [ "KIconEngine", "svg", "svgz", "svg.gz" ]
 }
 
