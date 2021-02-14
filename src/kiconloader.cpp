@@ -90,7 +90,8 @@ color:%6;\
 static bool pathIsRelative(const QString &path)
 {
 #ifdef Q_OS_UNIX
-    return (!path.isEmpty() && path[0] != QLatin1Char('/'));
+    // catch both /xxx/yyy and :/xxx/yyy for resources
+    return (!path.isEmpty() && path[0] != QLatin1Char('/') && path[0] != QLatin1Char(':'));
 #else
     return QDir::isRelativePath(path);
 #endif
