@@ -397,6 +397,8 @@ public:
     bool mCustomPalette = false;
 };
 
+extern void initRCCIconTheme();
+
 class KIconLoaderGlobalData : public QObject
 {
     Q_OBJECT
@@ -404,6 +406,16 @@ class KIconLoaderGlobalData : public QObject
 public:
     KIconLoaderGlobalData()
     {
+        // ensure we load rcc files for application bundles (+ setup their theme)
+        initRCCIconTheme();
+
+        // Set the icon theme fallback to breeze
+        // Most of our apps use "lots" of icons that most of the times
+        // are only available with breeze, we still honour the user icon
+        // theme but if the icon is not found there, we go to breeze
+        // since it's almost sure it'll be there
+        QIcon::setFallbackThemeName(QStringLiteral("breeze"));
+
         const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
         //qCDebug(KICONTHEMES) << genericIconsFiles;
         for (const QString &file : genericIconsFiles) {
