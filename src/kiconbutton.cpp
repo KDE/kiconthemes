@@ -45,13 +45,15 @@ public:
  */
 
 KIconButton::KIconButton(QWidget *parent)
-    : QPushButton(parent), d(new KIconButtonPrivate(this, KIconLoader::global()))
+    : QPushButton(parent)
+    , d(new KIconButtonPrivate(this, KIconLoader::global()))
 {
     QPushButton::setIconSize(QSize(48, 48));
 }
 
 KIconButton::KIconButton(KIconLoader *loader, QWidget *parent)
-    : QPushButton(parent), d(new KIconButtonPrivate(this, loader))
+    : QPushButton(parent)
+    , d(new KIconButtonPrivate(this, loader))
 {
     QPushButton::setIconSize(QSize(48, 48));
 }
@@ -61,7 +63,7 @@ KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
 {
     m_bStrictIconSize = false;
     iconSize = 0; // let KIconLoader choose the default
-    buttonIconSize = -1; //When buttonIconSize is -1, iconSize will be used for the button
+    buttonIconSize = -1; // When buttonIconSize is -1, iconSize will be used for the button
 
     mGroup = KIconLoader::Desktop;
     mContext = KIconLoader::Application;
@@ -69,7 +71,9 @@ KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
 
     mpLoader = loader;
     mpDialog = nullptr;
-    QObject::connect(q, &KIconButton::clicked, q, [this]() {_k_slotChangeIcon();});
+    QObject::connect(q, &KIconButton::clicked, q, [this]() {
+        _k_slotChangeIcon();
+    });
 }
 
 KIconButtonPrivate::~KIconButtonPrivate()
@@ -128,7 +132,9 @@ void KIconButton::setIcon(const QString &icon)
 
     if (!d->mpDialog) {
         d->mpDialog = new KIconDialog(d->mpLoader, this);
-        connect(d->mpDialog, &KIconDialog::newIconName, this, [this](const QString &iconName) { d->_k_newIconName(iconName); });
+        connect(d->mpDialog, &KIconDialog::newIconName, this, [this](const QString &iconName) {
+            d->_k_newIconName(iconName);
+        });
     }
 
     if (d->mbUser) {
@@ -156,7 +162,9 @@ void KIconButtonPrivate::_k_slotChangeIcon()
 {
     if (!mpDialog) {
         mpDialog = new KIconDialog(mpLoader, q);
-        QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) { _k_newIconName(iconName); });
+        QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) {
+            _k_newIconName(iconName);
+        });
     }
 
     mpDialog->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);

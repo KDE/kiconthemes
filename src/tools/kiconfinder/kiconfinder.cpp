@@ -5,10 +5,10 @@
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-#include <QGuiApplication>
-#include <QCommandLineParser>
-#include <kiconloader.h>
 #include <../kiconthemes_version.h>
+#include <QCommandLineParser>
+#include <QGuiApplication>
+#include <kiconloader.h>
 
 #include <stdio.h>
 
@@ -23,12 +23,12 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
 
     parser.process(app);
-    if(parser.positionalArguments().isEmpty())
+    if (parser.positionalArguments().isEmpty())
         parser.showHelp();
 
-    for(const QString& iconName : parser.positionalArguments()) {
+    for (const QString &iconName : parser.positionalArguments()) {
         const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);
-        if ( !icon.isEmpty() ) {
+        if (!icon.isEmpty()) {
             printf("%s\n", icon.toLocal8Bit().constData());
         } else {
             return 1; // error

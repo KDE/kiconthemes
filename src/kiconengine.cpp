@@ -13,15 +13,15 @@
 #include <QPainter>
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
-    : mIconName(iconName),
-      mOverlays(overlays),
-      mIconLoader(iconLoader)
+    : mIconName(iconName)
+    , mOverlays(overlays)
+    , mIconLoader(iconLoader)
 {
 }
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader)
-    : mIconName(iconName),
-      mIconLoader(iconLoader)
+    : mIconName(iconName)
+    , mIconLoader(iconLoader)
 {
 }
 
@@ -98,7 +98,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
-    const QPoint newTopLeft((pix2.width() - pix.width()) / (2*dpr), (pix2.height() - pix.height()) / (2*dpr));
+    const QPoint newTopLeft((pix2.width() - pix.width()) / (2 * dpr), (pix2.height() - pix.height()) / (2 * dpr));
     painter.drawPixmap(newTopLeft, pix);
 
     return pix2;
@@ -117,7 +117,10 @@ QString KIconEngine::iconName() const
     return mIconName;
 }
 
-Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>, sSizes, (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128) << QSize(256, 256)))
+Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>,
+                          sSizes,
+                          (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128)
+                                          << QSize(256, 256)))
 
 QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) const
 {
@@ -157,7 +160,7 @@ bool KIconEngine::write(QDataStream &out) const
 void KIconEngine::virtual_hook(int id, void *data)
 {
     if (id == QIconEngine::IsNullHook) {
-        *reinterpret_cast<bool*>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
+        *reinterpret_cast<bool *>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
     }
     if (id == QIconEngine::ScaledPixmapHook) {
         auto *info = reinterpret_cast<ScaledPixmapArgument *>(data);

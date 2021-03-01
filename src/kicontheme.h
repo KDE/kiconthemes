@@ -12,9 +12,9 @@
 
 #include <kiconthemes_export.h>
 
+#include <QList>
 #include <QString>
 #include <QStringList>
-#include <QList>
 #include <memory>
 
 #include "kiconloader.h"
@@ -266,9 +266,10 @@ public:
      *
      * @deprecated since 5.64 no longer needed
      */
-    enum ContextMenus { TextEditor,
-                        ReadOnlyText,
-                      }; // TODO KF6 remove
+    enum ContextMenus {
+        TextEditor,
+        ReadOnlyText,
+    }; // TODO KF6 remove
 
     /**
      * Assigns standard icons to the various standard text edit context menus.

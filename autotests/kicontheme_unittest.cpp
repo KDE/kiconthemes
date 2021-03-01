@@ -28,8 +28,7 @@ private Q_SLOTS:
     {
         auto forcedName = QStringLiteral("kitten");
         auto resolvedCurrent = KIconTheme::current();
-        QVERIFY2(KIconTheme::current() != forcedName,
-                 "current theme initially expected to not be mangled");
+        QVERIFY2(KIconTheme::current() != forcedName, "current theme initially expected to not be mangled");
         // Force a specific theme.
         KIconTheme::forceThemeForTests(forcedName);
         QCOMPARE(KIconTheme::current(), forcedName);

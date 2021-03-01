@@ -29,7 +29,7 @@
  * @see KIconDialog
  * @short A push button that allows selection of an icon.
  */
-class KICONTHEMES_EXPORT KIconButton: public QPushButton
+class KICONTHEMES_EXPORT KIconButton : public QPushButton
 {
     Q_OBJECT
     Q_PROPERTY(QString icon READ icon WRITE setIcon RESET resetIcon NOTIFY iconChanged USER true)

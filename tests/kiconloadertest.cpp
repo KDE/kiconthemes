@@ -1,8 +1,8 @@
-#include <kiconloader.h>
 #include <QApplication>
+#include <kiconloader.h>
 
-#include <QDebug>
 #include <QDate>
+#include <QDebug>
 #include <QElapsedTimer>
 #include <QPixmap>
 
@@ -23,14 +23,11 @@ int main(int argc, char *argv[])
         const QStringList filelist = mpLoader->queryIcons(mGroup, mContext);
         qDebug() << " -> found " << filelist.count() << " icons.";
         int i = 0;
-        for (QStringList::ConstIterator it = filelist.begin();
-                it != filelist.end() /*&& i<10*/;
-                ++it, ++i) {
-            //qDebug() << ( i==9 ? "..." : (*it) );
+        for (QStringList::ConstIterator it = filelist.begin(); it != filelist.end() /*&& i<10*/; ++it, ++i) {
+            // qDebug() << ( i==9 ? "..." : (*it) );
             mpLoader->loadIcon((*it), (KIconLoader::Group)mGroup);
             ++count;
         }
     }
     qDebug() << "Loading " << count << " icons took " << (float)(dt.elapsed()) / 1000 << " seconds";
 }
-

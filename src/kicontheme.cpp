@@ -12,17 +12,17 @@
 #include "kicontheme.h"
 #include "kicontheme_p.h"
 
-#include <qplatformdefs.h>
 #include "debug.h"
+#include <qplatformdefs.h>
 
-#include <QCoreApplication>
 #include <QAction>
-#include <QMap>
-#include <QSet>
-#include <QFileInfo>
-#include <QDir>
+#include <QCoreApplication>
 #include <QDebug>
+#include <QDir>
+#include <QFileInfo>
+#include <QMap>
 #include <QResource>
+#include <QSet>
 
 #include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 
@@ -143,10 +143,10 @@ private:
 QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
 {
     QString path;
-    QString tempPath;      // used to cache icon path if it exists
+    QString tempPath; // used to cache icon path if it exists
 
-    int delta = -INT_MAX;  // current icon size delta of 'icon'
-    int dw = INT_MAX;      // icon size delta of current directory
+    int delta = -INT_MAX; // current icon size delta of 'icon'
+    int dw = INT_MAX; // icon size delta of current directory
 
     // Rather downsample than upsample
     int integerScale = std::ceil(scale);
@@ -166,12 +166,10 @@ QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const 
             if ((dir->type() == KIconLoader::Fixed) && (dir->size() != size)) {
                 continue;
             }
-            if ((dir->type() == KIconLoader::Scalable) &&
-                    ((size < dir->minSize()) || (size > dir->maxSize()))) {
+            if ((dir->type() == KIconLoader::Scalable) && ((size < dir->minSize()) || (size > dir->maxSize()))) {
                 continue;
             }
-            if ((dir->type() == KIconLoader::Threshold) &&
-                    (abs(dir->size() - size) > dir->threshold())) {
+            if ((dir->type() == KIconLoader::Threshold) && (abs(dir->size() - size) > dir->threshold())) {
                 continue;
             }
         } else {
@@ -240,8 +238,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // "hicolor" icon themes. For these, the _global_ theme description
     // files are used..
 
-    if (!appName.isEmpty() &&
-            (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
+    if (!appName.isEmpty() && (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
             const QString cDir = *it + QLatin1Char('/') + appName + QStringLiteral("/icons/") + name + QLatin1Char('/');
@@ -313,10 +310,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->followsColorScheme = cfg.readEntry("FollowsColorScheme", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
-    d->mExtensions = cfg.readEntry("KDE-Extensions", QStringList{ QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm") });
+    d->mExtensions =
+        cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
 
-    const QStringList dirs = cfg.readPathEntry("Directories", QStringList())
-                           + cfg.readPathEntry("ScaledDirectories", QStringList());
+    const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
     for (QStringList::ConstIterator it = dirs.begin(); it != dirs.end(); ++it) {
         KConfigGroup cg(d->sharedConfig, *it);
         for (QStringList::ConstIterator itDir = themeDirs.constBegin(); itDir != themeDirs.constEnd(); ++itDir) {
@@ -344,7 +341,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     groups += QStringLiteral("Small");
     groups += QStringLiteral("Panel");
     groups += QStringLiteral("Dialog");
-    const int defDefSizes[] = { 32, 22, 22, 16, 48, 32 };
+    const int defDefSizes[] = {32, 22, 22, 16, 48, 32};
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (int i = 0; i < groups.size(); ++i) {
         const QString group = groups.at(i);
@@ -432,7 +429,7 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
     // Try to find exact match
     QStringList result;
     const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir* dir : listDirs) {
+    for (KIconThemeDir *dir : listDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -440,13 +437,11 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
             result += dir->iconList();
             continue;
         }
-        if ((dir->type() == KIconLoader::Scalable) &&
-                (size >= dir->minSize()) && (size <= dir->maxSize())) {
+        if ((dir->type() == KIconLoader::Scalable) && (size >= dir->minSize()) && (size <= dir->maxSize())) {
             result += dir->iconList();
             continue;
         }
-        if ((dir->type() == KIconLoader::Threshold) &&
-                (abs(size - dir->size()) < dir->threshold())) {
+        if ((dir->type() == KIconLoader::Threshold) && (abs(size - dir->size()) < dir->threshold())) {
             result += dir->iconList();
         }
     }
@@ -483,13 +478,13 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 
     // We want all the icons for a given context, but we prefer icons
     // of size size . Note that this may (will) include duplicate icons
-    //QStringList iconlist[34]; // 33 == 48-16+1
+    // QStringList iconlist[34]; // 33 == 48-16+1
     QStringList iconlist[128]; // 33 == 48-16+1
     // Usually, only the 0, 6 (22-16), 10 (32-22), 16 (48-32 or 32-16),
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
     const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir* dir : listDirs) {
+    for (KIconThemeDir *dir : listDirs) {
         if ((context != KIconLoader::Any) && (context != dir->context())) {
             continue;
         }
@@ -508,7 +503,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
     const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir* dir : listDirs) {
+    for (KIconThemeDir *dir : listDirs) {
         if ((context == KIconLoader::Any) || (context == dir->context())) {
             return true;
         }
@@ -619,8 +614,8 @@ QStringList KIconTheme::list()
             if ((*it2).startsWith(QLatin1String("default."))) {
                 continue;
             }
-            if (!QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop")) &&
-                    !QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.theme"))) {
+            if (!QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop"))
+                && !QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.theme"))) {
                 continue;
             }
             KIconTheme oink(*it2);
@@ -650,15 +645,24 @@ QString KIconTheme::defaultThemeName()
 }
 
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 64)
-void KIconTheme::assignIconsToContextMenu(ContextMenus type,
-        QList<QAction *> actions)
+void KIconTheme::assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions)
 {
     switch (type) {
     // FIXME: This code depends on Qt's action ordering.
     case TextEditor:
-        enum { UndoAct, RedoAct, Separator1, CutAct, CopyAct, PasteAct, DeleteAct, ClearAct,
-               Separator2, SelectAllAct, NCountActs,
-             };
+        enum {
+            UndoAct,
+            RedoAct,
+            Separator1,
+            CutAct,
+            CopyAct,
+            PasteAct,
+            DeleteAct,
+            ClearAct,
+            Separator2,
+            SelectAllAct,
+            NCountActs,
+        };
 
         if (actions.count() < NCountActs) {
             return;
@@ -692,8 +696,8 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
     , mType(KIconLoader::Fixed)
     , mSize(config.readEntry("Size", 0))
     , mScale(config.readEntry("Scale", 1))
-    , mMinSize(1)    // just set the variables to something
-    , mMaxSize(50)   // meaningful in case someone calls minSize or maxSize
+    , mMinSize(1) // just set the variables to something
+    , mMaxSize(50) // meaningful in case someone calls minSize or maxSize
     , mThreshold(2)
     , mBaseDir(basedir)
     , mThemeDir(themedir)

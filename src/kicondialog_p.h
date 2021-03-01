@@ -12,11 +12,11 @@
 #ifndef KICONDIALOG_P_H
 #define KICONDIALOG_P_H
 
-#include <QStringList>
 #include <QFileDialog>
-#include <QPushButton>
-#include <QPointer>
 #include <QListWidget>
+#include <QPointer>
+#include <QPushButton>
+#include <QStringList>
 
 class QComboBox;
 class QProgressBar;
@@ -28,7 +28,7 @@ class KListWidgetSearchLine;
 /**
  * Icon canvas for KIconDialog.
  */
-class KIconCanvas: public QListWidget
+class KIconCanvas : public QListWidget
 {
     Q_OBJECT
 
@@ -111,7 +111,9 @@ public:
         searchLine = nullptr;
         mNumOfSteps = 1;
     }
-    ~KIconDialogPrivate() {}
+    ~KIconDialogPrivate()
+    {
+    }
 
     void init();
     void showIcons();
@@ -141,7 +143,7 @@ public:
     KIconLoader *mpLoader;
     KIconCanvas *mpCanvas;
     int mNumContext;
-    KIconLoader::Context mContextMap[ 10 ]; // must match KDE::icon::Context size, code has assert
+    KIconLoader::Context mContextMap[10]; // must match KDE::icon::Context size, code has assert
 
     bool m_bStrictIconSize, m_bLockUser, m_bLockCustomDir;
     QString custom;

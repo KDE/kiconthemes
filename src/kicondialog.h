@@ -28,7 +28,7 @@
  *
  * @short An icon selection dialog.
  */
-class KICONTHEMES_EXPORT KIconDialog: public QDialog
+class KICONTHEMES_EXPORT KIconDialog : public QDialog
 {
     Q_OBJECT
 
@@ -93,8 +93,10 @@ public:
      */
     void setup(KIconLoader::Group group,
                KIconLoader::Context context = KIconLoader::Application,
-               bool strictIconSize = false, int iconSize = 0,
-               bool user = false, bool lockUser = false,
+               bool strictIconSize = false,
+               int iconSize = 0,
+               bool user = false,
+               bool lockUser = false,
                bool lockCustomDir = false);
 
     /**
@@ -131,8 +133,10 @@ public:
      */
     static QString getIcon(KIconLoader::Group group = KIconLoader::Desktop,
                            KIconLoader::Context context = KIconLoader::Application,
-                           bool strictIconSize = false, int iconSize = 0,
-                           bool user = false, QWidget *parent = nullptr,
+                           bool strictIconSize = false,
+                           int iconSize = 0,
+                           bool user = false,
+                           QWidget *parent = nullptr,
                            const QString &caption = QString());
 
 Q_SIGNALS:

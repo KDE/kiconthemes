@@ -12,27 +12,27 @@
 
 #include "kiconeffect.h"
 
-#include <qplatformdefs.h>
 #include <math.h>
+#include <qplatformdefs.h>
 
-#include <QSysInfo>
 #include <QDebug>
+#include <QSysInfo>
 
 #include <KColorScheme>
-#include <kicontheme.h>
 #include <KConfigGroup>
+#include <kicontheme.h>
 
 class KIconEffectPrivate
 {
 public:
     // http://en.cppreference.com/w/cpp/language/zero_initialization
     KIconEffectPrivate()
-       : effect{{}}
-       , value{{}}
-       , color{{}}
-       , trans{{}}
-       , key{{}}
-       , color2{{}}
+        : effect{{}}
+        , value{{}}
+        , color{{}}
+        , trans{{}}
+        , key{{}}
+        , color2{{}}
     {
     }
 
@@ -58,7 +58,7 @@ void KIconEffect::init()
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
 
     int i, j, effect = -1;
-    //FIXME: this really should be using KIconLoader::metaObject() to guarantee synchronization
+    // FIXME: this really should be using KIconLoader::metaObject() to guarantee synchronization
     // performance wise it's also practically guaranteed to be faster
     QStringList groups;
     groups += QStringLiteral("Desktop");
@@ -125,15 +125,13 @@ void KIconEffect::init()
             d->color[i][j] = cg.readEntry(*it2 + QStringLiteral("Color"), QColor());
             d->color2[i][j] = cg.readEntry(*it2 + QStringLiteral("Color2"), QColor());
             d->trans[i][j] = cg.readEntry(*it2 + QStringLiteral("SemiTransparent"), false);
-
         }
     }
 }
 
 bool KIconEffect::hasEffect(int group, int state) const
 {
-    if (group < 0 || group >= KIconLoader::LastGroup ||
-            state < 0 || state >= KIconLoader::LastState) {
+    if (group < 0 || group >= KIconLoader::LastGroup || state < 0 || state >= KIconLoader::LastState) {
         return false;
     }
 
@@ -142,8 +140,7 @@ bool KIconEffect::hasEffect(int group, int state) const
 
 QString KIconEffect::fingerprint(int group, int state) const
 {
-    if (group < 0 || group >= KIconLoader::LastGroup ||
-            state < 0 || state >= KIconLoader::LastState) {
+    if (group < 0 || group >= KIconLoader::LastGroup || state < 0 || state >= KIconLoader::LastState) {
         return QString();
     }
 
@@ -154,8 +151,7 @@ QString KIconEffect::fingerprint(int group, int state) const
         cached += QLatin1Char(':');
         cached += tmp.setNum(d->value[group][state]);
         cached += QLatin1Char(':');
-        cached += d->trans[group][state] ? QLatin1String("trans")
-                  : QLatin1String("notrans");
+        cached += d->trans[group][state] ? QLatin1String("trans") : QLatin1String("notrans");
         if (d->effect[group][state] == Colorize || d->effect[group][state] == ToMonochrome) {
             cached += QLatin1Char(':');
             cached += d->color[group][state].name();
@@ -181,19 +177,15 @@ QImage KIconEffect::apply(const QImage &image, int group, int state) const
         qWarning() << "Illegal icon group: " << group;
         return image;
     }
-    return apply(image, d->effect[group][state], d->value[group][state],
-                 d->color[group][state], d->color2[group][state], d->trans[group][state]);
+    return apply(image, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
 }
 
-QImage KIconEffect::apply(const QImage &image, int effect, float value,
-                          const QColor &col, bool trans) const
+QImage KIconEffect::apply(const QImage &image, int effect, float value, const QColor &col, bool trans) const
 {
-    return apply(image, effect, value, col,
-                 KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
+    return apply(image, effect, value, col, KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
 }
 
-QImage KIconEffect::apply(const QImage &img, int effect, float value,
-                          const QColor &col, const QColor &col2, bool trans) const
+QImage KIconEffect::apply(const QImage &img, int effect, float value, const QColor &col, const QColor &col2, bool trans) const
 {
     QImage image = img;
     if (effect >= LastEffect) {
@@ -238,19 +230,15 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int group, int state) const
         qWarning() << "Illegal icon group: " << group;
         return pixmap;
     }
-    return apply(pixmap, d->effect[group][state], d->value[group][state],
-                 d->color[group][state], d->color2[group][state], d->trans[group][state]);
+    return apply(pixmap, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
 }
 
-QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value,
-                           const QColor &col, bool trans) const
+QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const QColor &col, bool trans) const
 {
-    return apply(pixmap, effect, value, col,
-                 KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
+    return apply(pixmap, effect, value, col, KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
 }
 
-QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value,
-                           const QColor &col, const QColor &col2, bool trans) const
+QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const QColor &col, const QColor &col2, bool trans) const
 {
     QPixmap result;
 
@@ -275,25 +263,25 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value,
 
 struct KIEImgEdit {
     QImage &img;
-    QVector <QRgb> colors;
-    unsigned int  *data;
-    unsigned int   pixels;
+    QVector<QRgb> colors;
+    unsigned int *data;
+    unsigned int pixels;
 
-    KIEImgEdit(QImage &_img): img(_img)
+    KIEImgEdit(QImage &_img)
+        : img(_img)
     {
         if (img.depth() > 8) {
-            //Code using data and pixels assumes that the pixels are stored
-            //in 32bit values and that the image is not premultiplied
-            if ((img.format() != QImage::Format_ARGB32) &&
-                    (img.format() != QImage::Format_RGB32)) {
+            // Code using data and pixels assumes that the pixels are stored
+            // in 32bit values and that the image is not premultiplied
+            if ((img.format() != QImage::Format_ARGB32) && (img.format() != QImage::Format_RGB32)) {
                 img = img.convertToFormat(QImage::Format_ARGB32);
             }
-            data   = (unsigned int *)img.bits();
+            data = (unsigned int *)img.bits();
             pixels = img.width() * img.height();
         } else {
             pixels = img.colorCount();
             colors = img.colorTable();
-            data   = (unsigned int *)colors.data();
+            data = (unsigned int *)colors.data();
         }
     }
 
@@ -378,8 +366,7 @@ void KIconEffect::colorize(QImage &img, const QColor &col, float value)
     }
 }
 
-void KIconEffect::toMonochrome(QImage &img, const QColor &black,
-                               const QColor &white, float value)
+void KIconEffect::toMonochrome(QImage &img, const QColor &black, const QColor &white, float value)
 {
     if (value == 0.0) {
         return;
@@ -455,8 +442,7 @@ void KIconEffect::deSaturate(QImage &img, float value)
         color.setRgb(*data);
         color.getHsv(&h, &s, &v);
         color.setHsv(h, (int)(s * (1.0 - value) + 0.5), v);
-        *data = qRgba(color.red(), color.green(), color.blue(),
-                      qAlpha(*data));
+        *data = qRgba(color.red(), color.green(), color.blue(), qAlpha(*data));
         ++data;
     }
 }
@@ -469,12 +455,9 @@ void KIconEffect::toGamma(QImage &img, float value)
 
     float gamma = 1 / (2 * value + 0.5);
     while (data != end) {
-        *data = qRgba(static_cast<unsigned char>
-                      (pow(static_cast<float>(qRed(*data)) / 255, gamma) * 255),
-                      static_cast<unsigned char>
-                      (pow(static_cast<float>(qGreen(*data)) / 255, gamma) * 255),
-                      static_cast<unsigned char>
-                      (pow(static_cast<float>(qBlue(*data)) / 255, gamma) * 255),
+        *data = qRgba(static_cast<unsigned char>(pow(static_cast<float>(qRed(*data)) / 255, gamma) * 255),
+                      static_cast<unsigned char>(pow(static_cast<float>(qGreen(*data)) / 255, gamma) * 255),
+                      static_cast<unsigned char>(pow(static_cast<float>(qBlue(*data)) / 255, gamma) * 255),
                       qAlpha(*data));
         ++data;
     }
@@ -486,7 +469,7 @@ void KIconEffect::semiTransparent(QImage &img)
         if (img.format() == QImage::Format_ARGB32_Premultiplied) {
             img = img.convertToFormat(QImage::Format_ARGB32);
         }
-        int width  = img.width();
+        int width = img.width();
         int height = img.height();
 
         unsigned char *line;
@@ -617,7 +600,8 @@ QImage KIconEffect::doublePixels(const QImage &src) const
 void KIconEffect::overlay(QImage &src, QImage &overlay)
 {
     if (src.depth() != overlay.depth()) {
-        qWarning() << "Image depth src (" << src.depth() << ") != overlay " << "(" << overlay.depth() << ")!";
+        qWarning() << "Image depth src (" << src.depth() << ") != overlay "
+                   << "(" << overlay.depth() << ")!";
         return;
     }
     if (src.size() != overlay.size()) {
@@ -717,4 +701,3 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
         }
     }
 }
-

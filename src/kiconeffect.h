@@ -15,9 +15,9 @@
 
 #include <kiconthemes_export.h>
 
+#include <QColor>
 #include <QImage>
 #include <QPixmap>
-#include <QColor>
 #include <memory>
 
 class KIconEffectPrivate;
@@ -63,10 +63,15 @@ public:
      * @li DeSaturate: Reduce the saturation of the icon
      * @li ToMonochrome: Produces a monochrome icon
      */
-    enum Effects { NoEffect, ToGray, Colorize, ToGamma, DeSaturate,
-                   ToMonochrome,
-                   LastEffect,
-                 };
+    enum Effects {
+        NoEffect,
+        ToGray,
+        Colorize,
+        ToGamma,
+        DeSaturate,
+        ToMonochrome,
+        LastEffect,
+    };
 
     /**
      * Rereads configuration.

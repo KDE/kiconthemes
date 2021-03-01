@@ -24,8 +24,7 @@ public Q_SLOTS:
         QTextStream(stdout) << "Icon \"" << icon << "\" was chosen (openDialog)\n";
         delete dialog;
 
-        icon = KIconDialog::getIcon(KIconLoader::Desktop, KIconLoader::MimeType,
-                true, 48, true, nullptr, QStringLiteral("Test dialog"));
+        icon = KIconDialog::getIcon(KIconLoader::Desktop, KIconLoader::MimeType, true, 48, true, nullptr, QStringLiteral("Test dialog"));
         QTextStream(stdout) << "Icon \"" << icon << "\" was chosen (getIcon)\n";
     }
 
@@ -42,10 +41,8 @@ int main(int argc, char **argv)
     Listener listener;
 
     KIconDialog dialog;
-    QObject::connect(&dialog, &KIconDialog::newIconName,
-                     &listener, &Listener::iconChosen);
-    QObject::connect(&dialog, &QDialog::finished,
-                     &listener, &Listener::dialog1Done);
+    QObject::connect(&dialog, &KIconDialog::newIconName, &listener, &Listener::iconChosen);
+    QObject::connect(&dialog, &QDialog::finished, &listener, &Listener::dialog1Done);
 
     dialog.showDialog();
 
@@ -53,4 +50,3 @@ int main(int argc, char **argv)
 }
 
 #include "kicondialogtest.moc"
-

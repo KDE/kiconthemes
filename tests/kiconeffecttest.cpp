@@ -1,13 +1,13 @@
 #include "kiconeffecttest.h"
 
+#include <QGridLayout>
 #include <QLabel>
 #include <QSlider>
-#include <QGridLayout>
 
-#include <QApplication>
-#include <kiconloader.h>
-#include <kiconeffect.h>
 #include <KColorButton>
+#include <QApplication>
+#include <kiconeffect.h>
+#include <kiconloader.h>
 
 KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     : QScrollArea(parent)
@@ -92,7 +92,6 @@ KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
 
     layout->setRowStretch(21, 1);
     frame->resize(frame->sizeHint());
-
 }
 
 void KIconEffectTestWidget::slotGray(int value)
@@ -146,4 +145,3 @@ int main(int argc, char **argv)
     w->show();
     return app.exec();
 }
-

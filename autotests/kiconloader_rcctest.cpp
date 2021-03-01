@@ -68,12 +68,10 @@ private Q_SLOTS:
 
         // load icon with KIconLoader API (unlikely to happen in reality)
         QString path;
-        KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22,
-                                    KIconLoader::DefaultState, QStringList(),
-                                    &path);
+        KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22, KIconLoader::DefaultState, QStringList(), &path);
         QCOMPARE(path, QString(QStringLiteral(":/icons/") + m_internalThemeName + QStringLiteral("/22x22/appsNoContext/someiconintheme.png")));
-
     }
+
 private:
     const QString m_internalThemeName = QStringLiteral("kf5_rcc_theme");
 };

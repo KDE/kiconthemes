@@ -10,8 +10,8 @@
 #include <QStandardPaths>
 #include <QTest>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
 class KIconDialogTest : public QObject
 {

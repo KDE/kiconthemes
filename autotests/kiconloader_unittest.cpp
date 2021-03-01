@@ -7,14 +7,14 @@
 
 #include <kiconloader.h>
 
+#include <QRegularExpression>
 #include <QStandardPaths>
 #include <QTest>
-#include <QRegularExpression>
 
 #include <KPixmapSequence>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
 extern KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer);
 
@@ -23,8 +23,9 @@ class KIconLoader_UnitTest : public QObject
     Q_OBJECT
 public:
     KIconLoader_UnitTest()
-        : testSizes({ 12, 22, 32, 42, 82, 132, 243 })
-    {}
+        : testSizes({12, 22, 32, 42, 82, 132, 243})
+    {
+    }
 
 private:
     QDir testDataDir;
@@ -39,7 +40,8 @@ private Q_SLOTS:
         QStandardPaths::setTestModeEnabled(true);
 
         const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
-        QVERIFY(!genericIconsFiles.isEmpty()); // KIconLoader relies on fallbacks to generic icons (e.g. x-office-document), which comes from a shared-mime-info file. Make sure it's installed!
+        QVERIFY(!genericIconsFiles.isEmpty()); // KIconLoader relies on fallbacks to generic icons (e.g. x-office-document), which comes from a shared-mime-info
+                                               // file. Make sure it's installed!
 
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "breeze");
@@ -91,11 +93,14 @@ private Q_SLOTS:
 
         const QString breezeThemeFile = testIconsDir.filePath(QStringLiteral("breeze/index.theme"));
         QVERIFY(QFile::copy(QStringLiteral(":/breeze.theme"), breezeThemeFile));
-        //kde.png is missing, it should fallback to oxygen
-        //QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/kde.png"))));
-        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContext/iconindirectorywithoutcontext.png"))));
-        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoType/iconindirectorywithouttype.png"))));
-        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContextOrType/iconindirectorywithoutcontextortype.png"))));
+        // kde.png is missing, it should fallback to oxygen
+        // QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"),
+                            testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContext/iconindirectorywithoutcontext.png"))));
+        QVERIFY(
+            QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoType/iconindirectorywithouttype.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"),
+                            testIconsDir.filePath(QStringLiteral("breeze/22x22/appsNoContextOrType/iconindirectorywithoutcontextortype.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/anim-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/animations/process-working.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/text-plain.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/application-octet-stream.png"))));
@@ -106,12 +111,12 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/unknown.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/coloredsvgicon.svg"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/coloredsvgicon.svg"))));
 
-        QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner|QFileDevice::WriteOwner));
+        QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner | QFileDevice::WriteOwner));
         KConfig configFile(breezeThemeFile);
         KConfigGroup iconThemeGroup = configFile.group("Icon Theme");
         QVERIFY(iconThemeGroup.isValid());
         QStringList dirs = iconThemeGroup.readEntry("Directories", QStringList());
-        for(int i : testSizes) {
+        for (int i : testSizes) {
             const QString relDir = QStringLiteral("%1x%1/emblems").arg(i);
             const QString dir = testIconsDir.filePath(QStringLiteral("breeze/") + relDir);
             QVERIFY(QDir().mkpath(dir));
@@ -163,26 +168,22 @@ private Q_SLOTS:
         QString actionIconsDir = testIconsDir.filePath(actionIconsSubdir);
 
         QString nonExistingIconName = QStringLiteral("fhqwhgads_homsar");
-        QString newIconPath = actionIconsDir + QLatin1String("/")
-                              + nonExistingIconName + QLatin1String(".png");
+        QString newIconPath = actionIconsDir + QLatin1String("/") + nonExistingIconName + QLatin1String(".png");
         QFile::remove(newIconPath);
 
         KIconLoader iconLoader;
 
         // Find a non-existent icon, allowing unknown icon to be returned
-        QPixmap nonExistingIcon = iconLoader.loadIcon(
-                                      nonExistingIconName, KIconLoader::Toolbar);
+        QPixmap nonExistingIcon = iconLoader.loadIcon(nonExistingIconName, KIconLoader::Toolbar);
         QCOMPARE(nonExistingIcon.isNull(), false);
 
         // Install the existing icon by copying.
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), newIconPath));
 
         // Verify the icon can now be found.
-        QPixmap nowExistingIcon = iconLoader.loadIcon(
-                                      nonExistingIconName, KIconLoader::Toolbar);
+        QPixmap nowExistingIcon = iconLoader.loadIcon(nonExistingIconName, KIconLoader::Toolbar);
         QVERIFY(nowExistingIcon.cacheKey() != nonExistingIcon.cacheKey());
-        QCOMPARE(iconLoader.iconPath(nonExistingIconName, KIconLoader::Toolbar),
-                 newIconPath);
+        QCOMPARE(iconLoader.iconPath(nonExistingIconName, KIconLoader::Toolbar), newIconPath);
     }
 
     void testLoadIconCanReturnNull()
@@ -192,7 +193,7 @@ private Q_SLOTS:
         // then with canReturnNull=true.
         KIconLoader iconLoader;
         // We expect a warning here... This doesn't work though, due to the extended debug
-        //QTest::ignoreMessage(QtWarningMsg, "KIconLoader::loadIcon: No such icon \"this-icon-does-not-exist\"");
+        // QTest::ignoreMessage(QtWarningMsg, "KIconLoader::loadIcon: No such icon \"this-icon-does-not-exist\"");
         QPixmap pix = iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16);
         QVERIFY(!pix.isNull());
         QCOMPARE(pix.size(), QSize(16, 16));
@@ -201,8 +202,8 @@ private Q_SLOTS:
         QVERIFY(!pix.isNull());
         QCOMPARE(pix.size(), QSize(16, 16));
         // And now set canReturnNull to true
-        pix = iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16, KIconLoader::DefaultState,
-                                  QStringList(), nullptr, true);
+        pix =
+            iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16, KIconLoader::DefaultState, QStringList(), nullptr, true);
         QVERIFY(pix.isNull());
         // Try getting the "unknown" icon again, to see if the above call didn't put a null icon into the cache...
         pix = iconLoader.loadIcon(QStringLiteral("this-icon-does-not-exist"), KIconLoader::Desktop, 16);
@@ -291,9 +292,7 @@ private Q_SLOTS:
         QFETCH(QString, expectedFileName);
         KIconLoader iconLoader;
         QString path;
-        QPixmap pix = iconLoader.loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24,
-                      KIconLoader::DefaultState, QStringList(),
-                      &path);
+        QPixmap pix = iconLoader.loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!pix.isNull());
         QCOMPARE(path.section(QLatin1Char('/'), -1), expectedFileName);
 
@@ -301,9 +300,7 @@ private Q_SLOTS:
         // we get into the final return statement, which can only happen
         // if d->extraDesktopIconsLoaded becomes true first....
         QString path2;
-        pix = KIconLoader::global()->loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24,
-                KIconLoader::DefaultState, QStringList(),
-                &path2);
+        pix = KIconLoader::global()->loadMimeTypeIcon(iconName, KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path2);
         QVERIFY(!pix.isNull());
         QCOMPARE(path2, path);
     }
@@ -336,9 +333,7 @@ private Q_SLOTS:
     void testPathStore()
     {
         QString path;
-        QPixmap pix = KIconLoader::global()->loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 0,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        QPixmap pix = KIconLoader::global()->loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 0, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
         QVERIFY2(path.contains(QLatin1String("32x32")), qPrintable(path));
@@ -349,9 +344,7 @@ private Q_SLOTS:
         QCOMPARE(path2, path);
 
         // Now specify a size
-        pix = KIconLoader::global()->loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        pix = KIconLoader::global()->loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
         QVERIFY2(path.contains(QLatin1String("22x22")), qPrintable(path));
@@ -360,83 +353,67 @@ private Q_SLOTS:
         QVERIFY(KIconLoader::global()->hasIcon(QStringLiteral("kde")));
 
         path = QString();
-        KIconLoader::global()->loadIcon(QStringLiteral("does_not_exist"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path, true /* canReturnNull */);
+        KIconLoader::global()
+            ->loadIcon(QStringLiteral("does_not_exist"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path, true /* canReturnNull */);
         QVERIFY2(path.isEmpty(), qPrintable(path));
 
         path = QStringLiteral("some filler to check loadIcon() clears the variable");
-        KIconLoader::global()->loadIcon(QStringLiteral("does_not_exist"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path, true /* canReturnNull */);
+        KIconLoader::global()
+            ->loadIcon(QStringLiteral("does_not_exist"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path, true /* canReturnNull */);
         QVERIFY2(path.isEmpty(), qPrintable(path));
 
-        //Test that addAppDir doesn't break loading of icons from the old known paths
+        // Test that addAppDir doesn't break loading of icons from the old known paths
         KIconLoader loader;
-        //only addAppDir
+        // only addAppDir
         loader.addAppDir(QStringLiteral("kiconloader_unittest"));
         path = QString();
-        loader.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
 
         path = QString();
-        loader.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
 
-        //only reconfigure
+        // only reconfigure
         KIconLoader loader2;
         path = QString();
         loader2.reconfigure(QStringLiteral("kiconloader_unittest"));
-        loader2.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader2.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
-        loader2.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader2.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
 
-        //both addAppDir and reconfigure
+        // both addAppDir and reconfigure
         KIconLoader loader3;
         path = QString();
         loader3.addAppDir(QStringLiteral("kiconloader_unittest"));
         loader3.reconfigure(QStringLiteral("kiconloader_unittest"));
-        loader3.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader3.loadIcon(QStringLiteral("kde"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
 
         path = QString();
-        loader3.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+        loader3.loadIcon(QStringLiteral("image1"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
         QVERIFY(!path.isEmpty());
     }
 
-    void testPathsNoContextType() {
+    void testPathsNoContextType()
+    {
         {
             QString path;
-            KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithoutcontext"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+            KIconLoader::global()
+                ->loadIcon(QStringLiteral("iconindirectorywithoutcontext"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
             QVERIFY(path.endsWith(QLatin1String("appsNoContext/iconindirectorywithoutcontext.png")));
         }
         {
             QString path;
-            KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithouttype"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+            KIconLoader::global()
+                ->loadIcon(QStringLiteral("iconindirectorywithouttype"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
             QVERIFY(path.endsWith(QLatin1String("appsNoType/iconindirectorywithouttype.png")));
         }
         {
             QString path;
-            KIconLoader::global()->loadIcon(QStringLiteral("iconindirectorywithoutcontextortype"), KIconLoader::Desktop, 24,
-                                        KIconLoader::DefaultState, QStringList(),
-                                        &path);
+            KIconLoader::global()
+                ->loadIcon(QStringLiteral("iconindirectorywithoutcontextortype"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
             QVERIFY(path.endsWith(QLatin1String("appsNoContextOrType/iconindirectorywithoutcontextortype.png")));
         }
     }
@@ -456,14 +433,15 @@ private Q_SLOTS:
 
     void testLoadPixmapSequence()
     {
-        KPixmapSequence seq =  KIconLoader::global()->loadPixmapSequence(QStringLiteral("process-working"), 22);
+        KPixmapSequence seq = KIconLoader::global()->loadPixmapSequence(QStringLiteral("process-working"), 22);
         QVERIFY(seq.isValid());
     }
 
-    void testAppropriateSizes() {
+    void testAppropriateSizes()
+    {
         const KIconLoader iconLoader;
         const QRegularExpression rx(QStringLiteral("/(\\d+)x\\d+/"));
-        for(int i=1; i<testSizes.last()*1.2; i+=3) {
+        for (int i = 1; i < testSizes.last() * 1.2; i += 3) {
             QString path;
             QPixmap pix = iconLoader.loadIcon(QStringLiteral("red"), KIconLoader::Desktop, i, KIconLoader::DefaultState, QStringList(), &path);
             QVERIFY(!path.isEmpty());
@@ -492,9 +470,9 @@ private Q_SLOTS:
         qApp->setPalette(pal);
         QImage img = KIconLoader::global()->loadIcon(QStringLiteral("coloredsvgicon"), KIconLoader::NoGroup).toImage();
         QVERIFY(!img.isNull());
-        //Has the image been recolored to red,
-        //that is the color we wrote in kdeglobals as text color?
-        QCOMPARE(img.pixel(0,0), (uint)4294901760);
+        // Has the image been recolored to red,
+        // that is the color we wrote in kdeglobals as text color?
+        QCOMPARE(img.pixel(0, 0), (uint)4294901760);
     }
 
     void testUintToHex()

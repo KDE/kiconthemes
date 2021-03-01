@@ -1,8 +1,8 @@
 #ifndef KICONEFFECTTEST_H
 #define KICONEFFECTTEST_H
 
-#include <QScrollArea>
 #include <QImage>
+#include <QScrollArea>
 
 class QLabel;
 
@@ -18,6 +18,7 @@ private Q_SLOTS:
     void slotGamma(int);
     void slotColorizeColor(const QColor &);
     void slotColorizeValue(int);
+
 private:
     QImage img;
     QLabel *lbl[6];
@@ -26,4 +27,3 @@ private:
 };
 
 #endif
-

@@ -10,9 +10,9 @@
 #ifndef KICONLOADER_H
 #define KICONLOADER_H
 
+#include <QObject>
 #include <QString>
 #include <QStringList>
-#include <QObject>
 #include <memory>
 
 #include <kiconthemes_export.h>
@@ -70,26 +70,26 @@ class KICONTHEMES_EXPORT KIconLoader : public QObject
 
 public:
     /**
-    * Defines the context of the icon.
-    */
+     * Defines the context of the icon.
+     */
     enum Context {
-        Any,           ///< Some icon with unknown purpose.
-        Action,        ///< An action icon (e.g. 'save', 'print').
-        Application,   ///< An icon that represents an application.
-        Device,        ///< An icon that represents a device.
+        Any, ///< Some icon with unknown purpose.
+        Action, ///< An action icon (e.g. 'save', 'print').
+        Application, ///< An icon that represents an application.
+        Device, ///< An icon that represents a device.
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(4, 8)
-        FileSystem,    ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
+        FileSystem, ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
 #elif KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
         FileSystem_DEPRECATED_DO_NOT_USE,
 #endif
-        MimeType,      ///< An icon that represents a mime type (or file type).
-        Animation,     ///< An icon that is animated.
-        Category,      ///< An icon that represents a category.
-        Emblem,        ///< An icon that adds information to an existing icon.
-        Emote,         ///< An icon that expresses an emotion.
+        MimeType, ///< An icon that represents a mime type (or file type).
+        Animation, ///< An icon that is animated.
+        Category, ///< An icon that represents a category.
+        Emblem, ///< An icon that adds information to an existing icon.
+        Emote, ///< An icon that expresses an emotion.
         International, ///< An icon that represents a country's flag.
-        Place,         ///< An icon that represents a location (e.g. 'home', 'trash').
-        StatusIcon,     ///< An icon that represents an event.
+        Place, ///< An icon that represents a location (e.g. 'home', 'trash').
+        StatusIcon, ///< An icon that represents an event.
     };
     Q_ENUM(Context)
 
@@ -97,7 +97,7 @@ public:
      * The type of the icon.
      */
     enum Type {
-        Fixed,    ///< Fixed-size icon.
+        Fixed, ///< Fixed-size icon.
         Scalable, ///< Scalable-size icon.
         Threshold, ///< A threshold icon.
     };
@@ -108,7 +108,7 @@ public:
      */
     enum MatchType {
         MatchExact, ///< Only try to find an exact match.
-        MatchBest,   ///< Take the best match if there is no exact match.
+        MatchBest, ///< Take the best match if there is no exact match.
     };
     Q_ENUM(MatchType)
 
@@ -162,11 +162,11 @@ public:
      * Defines the possible states of an icon.
      */
     enum States {
-        DefaultState,  ///< The default state.
-        ActiveState,   ///< Icon is active.
+        DefaultState, ///< The default state.
+        ActiveState, ///< Icon is active.
         DisabledState, ///< Icon is disabled.
         SelectedState, ///< Icon is selected. @since 5.22
-        LastState,      ///< Last state (last constant)
+        LastState, ///< Last state (last constant)
     };
     Q_ENUM(States)
 
@@ -232,8 +232,11 @@ public:
      * @return the QPixmap. Can be null when not found, depending on
      *         @p canReturnNull.
      */
-    QPixmap loadIcon(const QString &name, KIconLoader::Group group, int size = 0,
-                     int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
+    QPixmap loadIcon(const QString &name,
+                     KIconLoader::Group group,
+                     int size = 0,
+                     int state = KIconLoader::DefaultState,
+                     const QStringList &overlays = QStringList(),
                      QString *path_store = nullptr,
                      bool canReturnNull = false) const;
 
@@ -270,10 +273,14 @@ public:
      * @since 5.48
      */
     // TODO KF6 merge loadIcon() and loadScaledIcon()
-    QPixmap loadScaledIcon(const QString &name, KIconLoader::Group group, qreal scale, int size = 0,
-                     int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
-                     QString *path_store = nullptr,
-                     bool canReturnNull = false) const;
+    QPixmap loadScaledIcon(const QString &name,
+                           KIconLoader::Group group,
+                           qreal scale,
+                           int size = 0,
+                           int state = KIconLoader::DefaultState,
+                           const QStringList &overlays = QStringList(),
+                           QString *path_store = nullptr,
+                           bool canReturnNull = false) const;
 
     /**
      * Loads an icon for a mimetype.
@@ -295,8 +302,11 @@ public:
      * @return the QPixmap. Can not be null, the
      * "unknown" pixmap is returned when no appropriate icon has been found.
      */
-    QPixmap loadMimeTypeIcon(const QString &iconName, KIconLoader::Group group, int size = 0,
-                             int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList(),
+    QPixmap loadMimeTypeIcon(const QString &iconName,
+                             KIconLoader::Group group,
+                             int size = 0,
+                             int state = KIconLoader::DefaultState,
+                             const QStringList &overlays = QStringList(),
                              QString *path_store = nullptr) const;
 
     /**
@@ -327,8 +337,7 @@ public:
      * @deprecated Since 5.0, use QIcon::fromTheme instead, which uses the iconloader internally
      */
     KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-    QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0,
-            bool canReturnNull = false);
+    QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0, bool canReturnNull = false);
 #endif
 
     /**
@@ -345,8 +354,7 @@ public:
      * @return the path of an icon, can be null or the "unknown" icon when
      *         not found, depending on @p canReturnNull.
      */
-    QString iconPath(const QString &name, int group_or_size,
-                     bool canReturnNull = false) const;
+    QString iconPath(const QString &name, int group_or_size, bool canReturnNull = false) const;
 
     /**
      * Returns the path of an icon.
@@ -365,8 +373,7 @@ public:
      * @since 5.48
      */
     // TODO KF6 merge iconPath() with and without "scale" and move that argument after "group_or_size"
-    QString iconPath(const QString &name, int group_or_size,
-                     bool canReturnNull, qreal scale) const;
+    QString iconPath(const QString &name, int group_or_size, bool canReturnNull, qreal scale) const;
 
     /**
      * Loads an animated icon.
@@ -426,8 +433,7 @@ public:
      * @return A QStringList containing the icon names
      * available for that context
      */
-    QStringList queryIconsByContext(int group_or_size,
-                                    KIconLoader::Context context = KIconLoader::Any) const;
+    QStringList queryIconsByContext(int group_or_size, KIconLoader::Context context = KIconLoader::Any) const;
 
     /**
      * @internal
@@ -516,7 +522,7 @@ public:
 
     /**
      * Sets the colors for this KIconLoader.
-     * NOTE: if you set a custom palette, if you are using some colors from 
+     * NOTE: if you set a custom palette, if you are using some colors from
      * application's palette, you need to track the application palette changes by yourself.
      * If you no longer wish to use a custom palette, use resetPalette()
      * @see resetPalette
@@ -594,8 +600,7 @@ private:
  * if you need the overlay, use KIconLoader::loadIcon.
  */
 KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-KICONTHEMES_EXPORT QPixmap DesktopIcon(const QString &name, int size = 0,
-                                       int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+KICONTHEMES_EXPORT QPixmap DesktopIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
@@ -617,8 +622,7 @@ KICONTHEMES_EXPORT QIcon DesktopIconSet(const QString &name, int size = 0);
  * if you need the overlay, use KIconLoader::loadIcon.
  */
 KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-KICONTHEMES_EXPORT QPixmap BarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState,
-                                   const QStringList &overlays = QStringList());
+KICONTHEMES_EXPORT QPixmap BarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
@@ -640,8 +644,7 @@ KICONTHEMES_EXPORT QIcon BarIconSet(const QString &name, int size = 0);
  * if you need the overlay, use KIconLoader::loadIcon.
  */
 KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-KICONTHEMES_EXPORT QPixmap SmallIcon(const QString &name, int size = 0,
-                                     int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+KICONTHEMES_EXPORT QPixmap SmallIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
@@ -663,8 +666,7 @@ KICONTHEMES_EXPORT QIcon SmallIconSet(const QString &name, int size = 0);
  * if you need the overlay, use KIconLoader::loadIcon.
  */
 KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-KICONTHEMES_EXPORT QPixmap MainBarIcon(const QString &name, int size = 0,
-                                       int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
+KICONTHEMES_EXPORT QPixmap MainBarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
@@ -711,7 +713,6 @@ KICONTHEMES_EXPORT int IconSize(KIconLoader::Group group);
 
 namespace KDE
 {
-
 /**
  * \relates KIconLoader
  * Returns a QIcon with an appropriate

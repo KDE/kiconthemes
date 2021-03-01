@@ -21,12 +21,12 @@
 
 #include <stdio.h>
 
-#define EXIT_ON_ERROR(isOk, ...) \
-    do { \
-        if (!(isOk)) { \
-            fprintf(stderr, __VA_ARGS__); \
-            return 1; \
-        } \
+#define EXIT_ON_ERROR(isOk, ...)                                                                                                                               \
+    do {                                                                                                                                                       \
+        if (!(isOk)) {                                                                                                                                         \
+            fprintf(stderr, __VA_ARGS__);                                                                                                                      \
+            return 1;                                                                                                                                          \
+        }                                                                                                                                                      \
     } while (false);
 
 static bool writeImage(QSvgRenderer &svg, int size, const QString &outFile1, const QString &outFile2 = QString())
@@ -86,9 +86,7 @@ int main(int argc, char *argv[])
     EXIT_ON_ERROR(isOk, "Unable to create out.iconset directory\n");
 
     const QStringList &args = app.arguments();
-    EXIT_ON_ERROR(args.size() == 2,
-                  "Usage: %s svg-image\n",
-                  qPrintable(args.value(0)));
+    EXIT_ON_ERROR(args.size() == 2, "Usage: %s svg-image\n", qPrintable(args.value(0)));
 
     const QString &svgFileName = args.at(1);
 
@@ -100,23 +98,20 @@ int main(int argc, char *argv[])
     // The sizes are from:
     // https://developer.apple.com/library/mac/documentation/GraphicsAnimation/Conceptual/HighResolutionOSX/Optimizing/Optimizing.html
 
-    struct OutFiles
-    {
+    struct OutFiles {
         int size;
         QString out1;
         QString out2;
     };
 
     // create the pngs in various resolutions
-    const OutFiles outFiles[] = {
-        { 1024, outPath + QStringLiteral("/icon_512x512@2x.png"), QString() },
-        {  512, outPath + QStringLiteral("/icon_512x512.png"),    outPath + QStringLiteral("/icon_256x256@2x.png") },
-        {  256, outPath + QStringLiteral("/icon_256x256.png"),    outPath + QStringLiteral("/icon_128x128@2x.png") },
-        {  128, outPath + QStringLiteral("/icon_128x128.png"),    QString() },
-        {   64, outPath + QStringLiteral("/icon_32x32@2x.png"),   QString() },
-        {   32, outPath + QStringLiteral("/icon_32x32.png"),      outPath + QStringLiteral("/icon_16x16@2x.png") },
-        {   16, outPath + QStringLiteral("/icon_16x16.png"),      QString() }
-    };
+    const OutFiles outFiles[] = {{1024, outPath + QStringLiteral("/icon_512x512@2x.png"), QString()},
+                                 {512, outPath + QStringLiteral("/icon_512x512.png"), outPath + QStringLiteral("/icon_256x256@2x.png")},
+                                 {256, outPath + QStringLiteral("/icon_256x256.png"), outPath + QStringLiteral("/icon_128x128@2x.png")},
+                                 {128, outPath + QStringLiteral("/icon_128x128.png"), QString()},
+                                 {64, outPath + QStringLiteral("/icon_32x32@2x.png"), QString()},
+                                 {32, outPath + QStringLiteral("/icon_32x32.png"), outPath + QStringLiteral("/icon_16x16@2x.png")},
+                                 {16, outPath + QStringLiteral("/icon_16x16.png"), QString()}};
 
     for (const OutFiles &outFile : outFiles) {
         isOk = writeImage(svg, outFile.size, outFile.out1, outFile.out2);
@@ -129,10 +124,9 @@ int main(int argc, char *argv[])
 
     const QString outIcns = QFileInfo(svgFileName).baseName() + QStringLiteral(".icns");
 
-    const QStringList utilArgs = QStringList()
-            << "-c" << "icns"
-            << "-o" << outIcns
-            << outPath;
+    const QStringList utilArgs = QStringList() << "-c"
+                                               << "icns"
+                                               << "-o" << outIcns << outPath;
 
     QProcess iconUtil;
 

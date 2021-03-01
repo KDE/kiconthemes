@@ -4,13 +4,13 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <QTest>
 #include <QStandardPaths>
+#include <QTest>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
 #include <KIconEngine>
 #include <KIconLoader>
+#include <KSharedConfig>
 
 extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
 
@@ -76,8 +76,7 @@ private Q_SLOTS:
         QString actionIconsDir = testIconsDir.filePath(actionIconsSubdir);
 
         QString nonExistingIconName = QStringLiteral("asvdfg_fhqwhgds");
-        QString newIconPath = actionIconsDir + QLatin1String("/")
-                              + nonExistingIconName + QLatin1String(".png");
+        QString newIconPath = actionIconsDir + QLatin1String("/") + nonExistingIconName + QLatin1String(".png");
         QFile::remove(newIconPath);
 
         // Find a non-existent icon
@@ -106,7 +105,6 @@ private Q_SLOTS:
         QIcon icon3(new KIconEngine(nonExistingIconName, KIconLoader::global()));
         QVERIFY(!icon3.isNull());
         QCOMPARE(icon3.name(), nonExistingIconName);
-
     }
 
     void testCenterIcon()
@@ -123,6 +121,7 @@ private Q_SLOTS:
         // center horizontally
         QVERIFY(icon.pixmap(26, 22).toImage().copy(2, 0, 22, 22) == image);
     }
+
 private:
     QDir testIconsDir;
 };

@@ -10,8 +10,8 @@
 #include <QStandardPaths>
 #include <QTest>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KSharedConfig>
 
 class KIconLoader_ResourceThemeTest : public QObject
 {
@@ -32,11 +32,8 @@ private Q_SLOTS:
     {
         // try to load icon that can only be found in resource theme and check we found it in the resource
         QString path;
-        KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22,
-                                    KIconLoader::DefaultState, QStringList(),
-                                    &path);
+        KIconLoader::global()->loadIcon(QStringLiteral("someiconintheme"), KIconLoader::Desktop, 22, KIconLoader::DefaultState, QStringList(), &path);
         QCOMPARE(path, QStringLiteral(":/icons/themeinresource/22x22/appsNoContext/someiconintheme.png"));
-
     }
 };
 
