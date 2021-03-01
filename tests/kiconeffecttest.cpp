@@ -1,13 +1,14 @@
 #include "kiconeffecttest.h"
 
+#include <kiconeffect.h>
+#include <kiconloader.h>
+
+#include <KColorButton>
+
+#include <QApplication>
 #include <QGridLayout>
 #include <QLabel>
 #include <QSlider>
-
-#include <KColorButton>
-#include <QApplication>
-#include <kiconeffect.h>
-#include <kiconloader.h>
 
 KIconEffectTestWidget::KIconEffectTestWidget(QWidget *parent)
     : QScrollArea(parent)

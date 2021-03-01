@@ -12,15 +12,16 @@
 
 #include "kiconeffect.h"
 
-#include <math.h>
-#include <qplatformdefs.h>
+#include <KColorScheme>
+#include <KConfigGroup>
+#include <kicontheme.h>
 
 #include <QDebug>
 #include <QSysInfo>
 
-#include <KColorScheme>
-#include <KConfigGroup>
-#include <kicontheme.h>
+#include <qplatformdefs.h>
+
+#include <math.h>
 
 class KIconEffectPrivate
 {
@@ -131,7 +132,8 @@ void KIconEffect::init()
 
 bool KIconEffect::hasEffect(int group, int state) const
 {
-    if (group < 0 || group >= KIconLoader::LastGroup || state < 0 || state >= KIconLoader::LastState) {
+    if (group < 0 || group >= KIconLoader::LastGroup //
+        || state < 0 || state >= KIconLoader::LastState) {
         return false;
     }
 
@@ -140,7 +142,8 @@ bool KIconEffect::hasEffect(int group, int state) const
 
 QString KIconEffect::fingerprint(int group, int state) const
 {
-    if (group < 0 || group >= KIconLoader::LastGroup || state < 0 || state >= KIconLoader::LastState) {
+    if (group < 0 || group >= KIconLoader::LastGroup //
+        || state < 0 || state >= KIconLoader::LastState) {
         return QString();
     }
 
@@ -273,7 +276,8 @@ struct KIEImgEdit {
         if (img.depth() > 8) {
             // Code using data and pixels assumes that the pixels are stored
             // in 32bit values and that the image is not premultiplied
-            if ((img.format() != QImage::Format_ARGB32) && (img.format() != QImage::Format_RGB32)) {
+            if ((img.format() != QImage::Format_ARGB32) //
+                && (img.format() != QImage::Format_RGB32)) {
                 img = img.convertToFormat(QImage::Format_ARGB32);
             }
             data = (unsigned int *)img.bits();

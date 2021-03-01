@@ -13,25 +13,6 @@
 #include "kiconloader.h"
 #include "kicontheme_p.h"
 
-#include <assert.h>
-#include <qplatformdefs.h> //for readlink
-
-#include <QBuffer>
-#include <QByteArray>
-#include <QCache>
-#include <QDataStream>
-#include <QDir>
-#include <QElapsedTimer>
-#include <QFileInfo>
-#include <QGuiApplication>
-#include <QIcon>
-#include <QImage>
-#include <QMovie>
-#include <QPainter>
-#include <QPixmap>
-#include <QPixmapCache>
-#include <QStringBuilder> // % operator for QString
-
 // kdecore
 #include <KConfigGroup>
 #include <KSharedConfig>
@@ -55,6 +36,26 @@
 #include <KColorScheme>
 #include <KCompressionDevice>
 
+#include <QBuffer>
+#include <QByteArray>
+#include <QCache>
+#include <QDataStream>
+#include <QDir>
+#include <QElapsedTimer>
+#include <QFileInfo>
+#include <QGuiApplication>
+#include <QIcon>
+#include <QImage>
+#include <QMovie>
+#include <QPainter>
+#include <QPixmap>
+#include <QPixmapCache>
+#include <QStringBuilder> // % operator for QString
+
+#include <qplatformdefs.h> //for readlink
+
+#include <assert.h>
+
 namespace
 {
 // Used to make cache keys for icons with no group. Result type is QString*
@@ -65,8 +66,8 @@ QString NULL_EFFECT_FINGERPRINT()
 
 QString STYLESHEET_TEMPLATE()
 {
-    return QStringLiteral(
-        ".ColorScheme-Text {\
+    /* clang-format off */
+    return QStringLiteral(".ColorScheme-Text {\
 color:%1;\
 }\
 .ColorScheme-Background{\
@@ -87,6 +88,7 @@ color:%6;\
 .ColorScheme-NegativeText{\
 color:%7;\
 }");
+    /* clang-format on */
 }
 }
 
@@ -781,7 +783,8 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         }
         const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
         for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
-            if (!QFileInfo::exists(*it + *it2 + QStringLiteral("/index.desktop")) && !QFileInfo::exists(*it + *it2 + QStringLiteral("/index.theme"))) {
+            if (!QFileInfo::exists(*it + *it2 + QStringLiteral("/index.desktop")) //
+                && !QFileInfo::exists(*it + *it2 + QStringLiteral("/index.theme"))) {
                 continue;
             }
             // TODO: Is any special handling required for NTFS symlinks?
@@ -818,7 +821,9 @@ void KIconLoader::drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIc
 
 QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
 {
-    if (name.endsWith(QLatin1String(".png")) || name.endsWith(QLatin1String(".xpm")) || name.endsWith(QLatin1String(".svg"))) {
+    if (name.endsWith(QLatin1String(".png")) //
+        || name.endsWith(QLatin1String(".xpm")) //
+        || name.endsWith(QLatin1String(".svg"))) {
         return name.left(name.length() - 4);
     } else if (name.endsWith(QLatin1String(".svgz"))) {
         return name.left(name.length() - 5);
@@ -864,11 +869,20 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
 
-    return (group == KIconLoader::User ? QLatin1String("$kicou_") : QLatin1String("$kico_")) % name % QLatin1Char('_') % QString::number(size)
-        % QLatin1Char('@') % QString::number(scale, 'f', 1) % QLatin1Char('_') % overlays.join(QLatin1Char('_'))
-        % (group >= 0 ? mpEffect.fingerprint(group, state) : NULL_EFFECT_FINGERPRINT()) % QLatin1Char('_')
-        % paletteId(mCustomPalette ? mPalette : qApp->palette())
-        % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
+    /* clang-format off */
+    return (group == KIconLoader::User ? QLatin1String("$kicou_") : QLatin1String("$kico_"))
+            % name
+            % QLatin1Char('_')
+            % QString::number(size)
+            % QLatin1Char('@')
+            % QString::number(scale, 'f', 1)
+            % QLatin1Char('_')
+            % overlays.join(QLatin1Char('_'))
+            % (group >= 0 ? mpEffect.fingerprint(group, state) : NULL_EFFECT_FINGERPRINT())
+            % QLatin1Char('_')
+            % paletteId(mCustomPalette ? mPalette : qApp->palette())
+            % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
+    /* clang-format on */
 }
 
 QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state) const
@@ -887,13 +901,17 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
 
     const QPalette pal = mCustomPalette ? mPalette : qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
-    QString styleSheet = STYLESHEET_TEMPLATE().arg(state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
-                                                   state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
-                                                   state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
-                                                   state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.highlightedText().color().name(),
-                                                   scheme.foreground(KColorScheme::PositiveText).color().name(),
-                                                   scheme.foreground(KColorScheme::NeutralText).color().name(),
-                                                   scheme.foreground(KColorScheme::NegativeText).color().name());
+
+    /* clang-format off */
+    QString styleSheet = STYLESHEET_TEMPLATE().arg(
+                                state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
+                                state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
+                                state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
+                                state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.highlightedText().color().name(),
+                                scheme.foreground(KColorScheme::PositiveText).color().name(),
+                                scheme.foreground(KColorScheme::NeutralText).color().name(),
+                                scheme.foreground(KColorScheme::NegativeText).color().name());
+    /* clang-format on */
 
     QByteArray processedContents;
     QXmlStreamReader reader(device.data());
@@ -902,7 +920,8 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     buffer.open(QIODevice::WriteOnly);
     QXmlStreamWriter writer(&buffer);
     while (!reader.atEnd()) {
-        if (reader.readNext() == QXmlStreamReader::StartElement && reader.qualifiedName() == QLatin1String("style")
+        if (reader.readNext() == QXmlStreamReader::StartElement //
+            && reader.qualifiedName() == QLatin1String("style") //
             && reader.attributes().value(QLatin1String("id")) == QLatin1String("current-color-scheme")) {
             writer.writeStartElement(QStringLiteral("style"));
             writer.writeAttributes(reader.attributes());
@@ -1090,10 +1109,17 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
                 }
             } else {
                 // From update-mime-database.c
-                static const QSet<QString> mediaTypes = QSet<QString>()
-                    << QStringLiteral("text") << QStringLiteral("application") << QStringLiteral("image") << QStringLiteral("audio") << QStringLiteral("inode")
-                    << QStringLiteral("video") << QStringLiteral("message") << QStringLiteral("model") << QStringLiteral("multipart")
-                    << QStringLiteral("x-content") << QStringLiteral("x-epoc");
+                static const QSet<QString> mediaTypes = QSet<QString>{QStringLiteral("text"),
+                                                                      QStringLiteral("application"),
+                                                                      QStringLiteral("image"),
+                                                                      QStringLiteral("audio"),
+                                                                      QStringLiteral("inode"),
+                                                                      QStringLiteral("video"),
+                                                                      QStringLiteral("message"),
+                                                                      QStringLiteral("model"),
+                                                                      QStringLiteral("multipart"),
+                                                                      QStringLiteral("x-content"),
+                                                                      QStringLiteral("x-epoc")};
                 // Shared-mime-info spec says:
                 // "If [generic-icon] is not specified then the mimetype is used to generate the
                 // generic icon by using the top-level media type (e.g. "video" in "video/ogg")

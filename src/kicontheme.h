@@ -15,6 +15,7 @@
 #include <QList>
 #include <QString>
 #include <QStringList>
+
 #include <memory>
 
 #include "kiconloader.h"

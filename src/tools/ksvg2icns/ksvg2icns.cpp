@@ -21,13 +21,15 @@
 
 #include <stdio.h>
 
-#define EXIT_ON_ERROR(isOk, ...)                                                                                                                               \
-    do {                                                                                                                                                       \
-        if (!(isOk)) {                                                                                                                                         \
-            fprintf(stderr, __VA_ARGS__);                                                                                                                      \
-            return 1;                                                                                                                                          \
-        }                                                                                                                                                      \
+/* clang-format off */
+#define EXIT_ON_ERROR(isOk, ...) \
+    do { \
+        if (!(isOk)) { \
+            fprintf(stderr, __VA_ARGS__); \
+            return 1; \
+        } \
     } while (false);
+/* clang-format on */
 
 static bool writeImage(QSvgRenderer &svg, int size, const QString &outFile1, const QString &outFile2 = QString())
 {

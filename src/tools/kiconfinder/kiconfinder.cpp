@@ -6,9 +6,10 @@
 */
 
 #include <../kiconthemes_version.h>
+#include <kiconloader.h>
+
 #include <QCommandLineParser>
 #include <QGuiApplication>
-#include <kiconloader.h>
 
 #include <stdio.h>
 

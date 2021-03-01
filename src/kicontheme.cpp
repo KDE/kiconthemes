@@ -13,7 +13,10 @@
 #include "kicontheme_p.h"
 
 #include "debug.h"
-#include <qplatformdefs.h>
+
+#include <KConfigGroup>
+#include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
+#include <KSharedConfig>
 
 #include <QAction>
 #include <QCoreApplication>
@@ -24,11 +27,8 @@
 #include <QResource>
 #include <QSet>
 
-#include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
+#include <qplatformdefs.h>
 
-#include <KSharedConfig>
-
-#include <KConfigGroup>
 #include <cmath>
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
@@ -166,10 +166,12 @@ QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const 
             if ((dir->type() == KIconLoader::Fixed) && (dir->size() != size)) {
                 continue;
             }
-            if ((dir->type() == KIconLoader::Scalable) && ((size < dir->minSize()) || (size > dir->maxSize()))) {
+            if ((dir->type() == KIconLoader::Scalable) //
+                && ((size < dir->minSize()) || (size > dir->maxSize()))) {
                 continue;
             }
-            if ((dir->type() == KIconLoader::Threshold) && (abs(dir->size() - size) > dir->threshold())) {
+            if ((dir->type() == KIconLoader::Threshold) //
+                && (abs(dir->size() - size) > dir->threshold())) {
                 continue;
             }
         } else {
@@ -238,7 +240,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // "hicolor" icon themes. For these, the _global_ theme description
     // files are used..
 
-    if (!appName.isEmpty() && (name == defaultThemeName() || name == QLatin1String("hicolor") || name == QLatin1String("locolor"))) {
+    /* clang-format off */
+    if (!appName.isEmpty()
+        && (name == defaultThemeName()
+            || name == QLatin1String("hicolor")
+            || name == QLatin1String("locolor"))) { /* clang-format on */
         const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
             const QString cDir = *it + QLatin1Char('/') + appName + QStringLiteral("/icons/") + name + QLatin1Char('/');
@@ -437,11 +443,14 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
             result += dir->iconList();
             continue;
         }
-        if ((dir->type() == KIconLoader::Scalable) && (size >= dir->minSize()) && (size <= dir->maxSize())) {
+        if (dir->type() == KIconLoader::Scalable //
+            && size >= dir->minSize() //
+            && size <= dir->maxSize()) {
             result += dir->iconList();
             continue;
         }
-        if ((dir->type() == KIconLoader::Threshold) && (abs(size - dir->size()) < dir->threshold())) {
+        if ((dir->type() == KIconLoader::Threshold) //
+            && (abs(size - dir->size()) < dir->threshold())) {
             result += dir->iconList();
         }
     }
