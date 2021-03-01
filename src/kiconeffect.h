@@ -65,7 +65,7 @@ public:
      */
     enum Effects { NoEffect, ToGray, Colorize, ToGamma, DeSaturate,
                    ToMonochrome,
-                   LastEffect
+                   LastEffect,
                  };
 
     /**

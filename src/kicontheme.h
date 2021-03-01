@@ -267,7 +267,7 @@ public:
      * @deprecated since 5.64 no longer needed
      */
     enum ContextMenus { TextEditor,
-                        ReadOnlyText
+                        ReadOnlyText,
                       }; // TODO KF6 remove
 
     /**

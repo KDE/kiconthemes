@@ -89,7 +89,7 @@ public:
         Emote,         ///< An icon that expresses an emotion.
         International, ///< An icon that represents a country's flag.
         Place,         ///< An icon that represents a location (e.g. 'home', 'trash').
-        StatusIcon     ///< An icon that represents an event.
+        StatusIcon,     ///< An icon that represents an event.
     };
     Q_ENUM(Context)
 
@@ -99,7 +99,7 @@ public:
     enum Type {
         Fixed,    ///< Fixed-size icon.
         Scalable, ///< Scalable-size icon.
-        Threshold ///< A threshold icon.
+        Threshold, ///< A threshold icon.
     };
     Q_ENUM(Type)
 
@@ -108,7 +108,7 @@ public:
      */
     enum MatchType {
         MatchExact, ///< Only try to find an exact match.
-        MatchBest   ///< Take the best match if there is no exact match.
+        MatchBest,   ///< Take the best match if there is no exact match.
     };
     Q_ENUM(MatchType)
 
@@ -135,7 +135,7 @@ public:
         /// Last group
         LastGroup,
         /// User icons
-        User
+        User,
     };
     Q_ENUM(Group)
 
@@ -154,7 +154,7 @@ public:
         /// huge sized icons for iconviews
         SizeHuge = 64,
         /// enormous sized icons for iconviews
-        SizeEnormous = 128
+        SizeEnormous = 128,
     };
     Q_ENUM(StdSizes)
 
@@ -166,7 +166,7 @@ public:
         ActiveState,   ///< Icon is active.
         DisabledState, ///< Icon is disabled.
         SelectedState, ///< Icon is selected. @since 5.22
-        LastState      ///< Last state (last constant)
+        LastState,      ///< Last state (last constant)
     };
     Q_ENUM(States)
 

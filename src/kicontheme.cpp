@@ -657,7 +657,7 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type,
     // FIXME: This code depends on Qt's action ordering.
     case TextEditor:
         enum { UndoAct, RedoAct, Separator1, CutAct, CopyAct, PasteAct, DeleteAct, ClearAct,
-               Separator2, SelectAllAct, NCountActs
+               Separator2, SelectAllAct, NCountActs,
              };
 
         if (actions.count() < NCountActs) {
