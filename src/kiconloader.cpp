@@ -957,7 +957,17 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal 
     }
 
     if (size != 0) {
-        reader.setScaledSize(QSize(size * scale, size * scale));
+        // ensure we keep aspect ratio
+        const QSize wantedSize(size * scale, size * scale);
+        QSize finalSize(reader.size());
+        if (finalSize.isNull()) {
+            // nothing to scale
+            finalSize = wantedSize;
+        } else {
+            // like QSvgIconEngine::pixmap try to keep aspect ratio
+            finalSize.scale(wantedSize, Qt::KeepAspectRatio);
+        }
+        reader.setScaledSize(finalSize);
     }
 
     return reader.read();
