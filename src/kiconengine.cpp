@@ -49,7 +49,8 @@ QSize KIconEngine::actualSize(const QSize &size, QIcon::Mode mode, QIcon::State 
 {
     Q_UNUSED(state)
     Q_UNUSED(mode)
-    return size;
+    const int iconSize = qMin(size.width(), size.height());
+    return QSize(iconSize, iconSize);
 }
 
 void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
@@ -84,7 +85,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     const QSize scaledSize = size / scale;
 
     const int kstate = qIconModeToKIconState(mode);
-    const int iconSize = std::max(scaledSize.width(), scaledSize.height());
+    const int iconSize = qMin(scaledSize.width(), scaledSize.height());
     QPixmap pix = mIconLoader.data()->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, iconSize, kstate, mOverlays);
 
     if (pix.size() == size) {
@@ -97,11 +98,8 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
-    painter.setRenderHint(QPainter::SmoothPixmapTransform);
-    const QSizeF targetSize = pix.size().scaled(size, Qt::KeepAspectRatio);
-    QRectF targetRect({0, 0}, targetSize);
-    targetRect.moveCenter(QRectF(pix2.rect()).center());
-    painter.drawPixmap(targetRect, pix, pix.rect());
+    const QPoint newTopLeft((pix2.width() - pix.width()) / (2 * dpr), (pix2.height() - pix.height()) / (2 * dpr));
+    painter.drawPixmap(newTopLeft, pix);
 
     return pix2;
 }
