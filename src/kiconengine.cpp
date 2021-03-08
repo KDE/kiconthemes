@@ -82,8 +82,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     const QSize scaledSize = size / scale;
 
     const int kstate = qIconModeToKIconState(mode);
-    const int iconSize = qMin(scaledSize.width(), scaledSize.height());
-    QPixmap pix = mIconLoader.data()->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, iconSize, kstate, mOverlays);
+    QPixmap pix = mIconLoader.data()->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, scaledSize, kstate, mOverlays);
 
     if (pix.size() == size) {
         return pix;
@@ -95,8 +94,11 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
-    const QPoint newTopLeft((pix2.width() - pix.width()) / (2 * dpr), (pix2.height() - pix.height()) / (2 * dpr));
-    painter.drawPixmap(newTopLeft, pix);
+    painter.setRenderHint(QPainter::SmoothPixmapTransform);
+    const QSizeF targetSize = pix.size().scaled(scaledSize, Qt::KeepAspectRatio);
+    QRectF targetRect({0, 0}, targetSize);
+    targetRect.moveCenter(QRectF(pix2.rect()).center() / scale);
+    painter.drawPixmap(targetRect, pix, pix.rect());
 
     return pix2;
 }
