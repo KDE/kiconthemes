@@ -307,14 +307,14 @@ public:
      * and icon state information to valid states. All parameters except the
      * name can be modified as well to be valid.
      */
-    void normalizeIconMetadata(KIconLoader::Group &group, int &size, int &state) const;
+    void normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const;
 
     /**
      * @internal
      * Used with KIconLoader::loadIcon to get a base key name from the given
      * icon metadata. Ensure the metadata is normalized first.
      */
-    QString makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, int size, qreal scale, int state) const;
+    QString makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, const QSize &size, qreal scale, int state) const;
 
     /**
      * @internal
@@ -331,7 +331,7 @@ public:
      * @p size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
-    QImage createIconImage(const QString &path, int size = 0, qreal scale = 1.0, KIconLoader::States state = KIconLoader::DefaultState);
+    QImage createIconImage(const QString &path, const QSize &size = {}, qreal scale = 1.0, KIconLoader::States state = KIconLoader::DefaultState);
 
     /**
      * @internal
@@ -832,15 +832,15 @@ QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
     return name;
 }
 
-void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &size, int &state) const
+void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const
 {
     if ((state < 0) || (state >= KIconLoader::LastState)) {
         qWarning() << "Illegal icon state:" << state;
         state = KIconLoader::DefaultState;
     }
 
-    if (size < 0) {
-        size = 0;
+    if (size.width() < 0 || size.height() < 0) {
+        size = {};
     }
 
     // For "User" icons, bail early since the size should be based on the size on disk,
@@ -855,16 +855,16 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, int &s
     }
 
     // If size == 0, use default size for the specified group.
-    if (size == 0) {
+    if (size.isNull()) {
         if (group < 0) {
             qWarning() << "Neither size nor group specified!";
             group = KIconLoader::Desktop;
         }
-        size = mpGroups[group].size;
+        size = QSize(mpGroups[group].size, mpGroups[group].size);
     }
 }
 
-QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, int size, qreal scale, int state) const
+QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, const QSize &size, qreal scale, int state) const
 {
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
@@ -873,7 +873,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
     return (group == KIconLoader::User ? QLatin1String("$kicou_") : QLatin1String("$kico_"))
             % name
             % QLatin1Char('_')
-            % QString::number(size)
+            % (size.width() == size.height() ? QString::number(size.height()) : QString::number(size.height()) % QLatin1Char('x') % QString::number(size.width()))
             % QLatin1Char('@')
             % QString::number(scale, 'f', 1)
             % QLatin1Char('_')
@@ -939,7 +939,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     return processedContents;
 }
 
-QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal scale, KIconLoader::States state)
+QImage KIconLoaderPrivate::createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state)
 {
     // TODO: metadata in the theme to make it do this only if explicitly supported?
     QImageReader reader;
@@ -956,9 +956,9 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, int size, qreal 
         return QImage();
     }
 
-    if (size != 0) {
+    if (!size.isNull()) {
         // ensure we keep aspect ratio
-        const QSize wantedSize(size * scale, size * scale);
+        const QSize wantedSize = size * scale;
         QSize finalSize(reader.size());
         if (finalSize.isNull()) {
             // nothing to scale
@@ -1314,12 +1314,27 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     QString *path_store,
                                     bool canReturnNull) const
 {
+    return loadScaledIcon(_name, group, scale, QSize(size, size), state, overlays, path_store, canReturnNull);
+}
+
+QPixmap KIconLoader::loadScaledIcon(const QString &_name,
+                                    KIconLoader::Group group,
+                                    qreal scale,
+                                    const QSize &_size,
+                                    int state,
+                                    const QStringList &overlays,
+                                    QString *path_store,
+                                    bool canReturnNull) const
+
+{
     QString name = _name;
     bool favIconOverlay = false;
 
-    if (size < 0 || _name.isEmpty()) {
+    if (_size.width() < 0 || _size.height() < 0 || _name.isEmpty()) {
         return QPixmap();
     }
+
+    QSize size = _size;
 
     /*
      * This method works in a kind of pipeline, with the following steps:
@@ -1381,7 +1396,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         return QPixmap();
     }
 
-    favIconOverlay = favIconOverlay && size > 22;
+    favIconOverlay = favIconOverlay && std::min(size.height(), size.width()) > 22;
 
     // First we look for non-User icons. If we don't find one we'd search in
     // the User space anyways...
@@ -1389,7 +1404,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         if (absolutePath && !favIconOverlay) {
             path = name;
         } else {
-            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, size, scale);
+            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, std::min(size.height(), size.width()), scale);
         }
     }
 
@@ -1401,7 +1416,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     // Still can't find it? Use "unknown" if we can't return null.
     // We keep going in the function so we can ensure this result gets cached.
     if (path.isEmpty() && !canReturnNull) {
-        path = d->unknownIconPath(size, scale);
+        path = d->unknownIconPath(std::min(size.height(), size.width()), scale);
         iconWasUnknown = true;
     }
 
