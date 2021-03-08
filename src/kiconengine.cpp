@@ -47,10 +47,7 @@ static inline int qIconModeToKIconState(QIcon::Mode mode)
 
 QSize KIconEngine::actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state)
 {
-    Q_UNUSED(state)
-    Q_UNUSED(mode)
-    const int iconSize = qMin(size.width(), size.height());
-    return QSize(iconSize, iconSize);
+    return QIconEngine::actualSize(size, mode, state);
 }
 
 void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)

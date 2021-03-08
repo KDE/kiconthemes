@@ -255,9 +255,10 @@ private Q_SLOTS:
             QPixmap pix = icon.pixmap(QSize(22, 22));
             QVERIFY(!pix.isNull());
         }
-        QCOMPARE(icon.actualSize(QSize(96, 22)), QSize(22, 22));
-        QCOMPARE(icon.actualSize(QSize(22, 96)), QSize(22, 22));
-        QCOMPARE(icon.actualSize(QSize(22, 16)), QSize(16, 16));
+        // Qt's implementation of actualSize does not crop to squares, ensure we don't do that either
+        QCOMPARE(icon.actualSize(QSize(96, 22)), QSize(96, 22));
+        QCOMPARE(icon.actualSize(QSize(22, 96)), QSize(22, 96));
+        QCOMPARE(icon.actualSize(QSize(22, 16)), QSize(22, 16));
 
         // Can we ask for a really small size?
         {
