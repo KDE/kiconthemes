@@ -7,6 +7,7 @@
     <file>oxygen.theme</file>
     <file>breeze.theme</file>
     <file>coloredsvgicon.svg</file>
+    <file>nonsquare.svg</file>
     <file alias="/icons/themeinresource/index.theme">breeze.theme</file>
     <file alias="/icons/themeinresource/22x22/appsNoContext/someiconintheme.png">test-22x22.png</file>
 </qresource>

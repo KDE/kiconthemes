@@ -122,6 +122,26 @@ private Q_SLOTS:
         QVERIFY(icon.pixmap(26, 22).toImage().copy(2, 0, 22, 22) == image);
     }
 
+    void testNonSquareSvg()
+    {
+        QIcon icon(new KIconEngine(QStringLiteral(":/nonsquare.svg"), KIconLoader::global()));
+        QVERIFY(!icon.isNull());
+
+        // verify we get the content fully fitted in when asking for the right aspect ratio
+        const QImage image = icon.pixmap(40, 20).toImage();
+        QCOMPARE(image.pixelColor(0, 0), QColor(255, 0, 0));
+        QCOMPARE(image.pixelColor(19, 9), QColor(255, 0, 0));
+        QCOMPARE(image.pixelColor(39, 0), QColor(0, 255, 0));
+        QCOMPARE(image.pixelColor(20, 9), QColor(0, 255, 0));
+        QCOMPARE(image.pixelColor(0, 19), QColor(0, 0, 255));
+        QCOMPARE(image.pixelColor(19, 10), QColor(0, 0, 255));
+        QCOMPARE(image.pixelColor(39, 19), QColor(255, 255, 0));
+        QCOMPARE(image.pixelColor(20, 10), QColor(255, 255, 0));
+
+        // and now with a wrong aspect ratio
+        QCOMPARE(icon.pixmap(40, 40).toImage().convertToFormat(image.format()).copy(0, 10, 40, 20), image);
+    }
+
 private:
     QDir testIconsDir;
 };
