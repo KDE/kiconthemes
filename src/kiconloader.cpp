@@ -641,12 +641,10 @@ void KIconLoaderPrivate::initIconThemes()
         delete def;
         // warn, as this is actually a small penalty hit
         qCDebug(KICONTHEMES) << "Couldn't find current icon theme, falling back to default.";
+
+        // this can't fail, as defaultThemeName() == hicolor is in a resource of this library itself as last fallback!
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
-        if (!def->isValid()) {
-            qCDebug(KICONTHEMES) << "Standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
-            delete def;
-            return;
-        }
+        Q_ASSERT(def->isValid());
     }
     mpThemeRoot = new KIconThemeNode(def);
     mThemesInTree.append(def->internalName());
