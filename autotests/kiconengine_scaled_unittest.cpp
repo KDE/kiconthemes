@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <QStandardPaths>
 #include <QTest>
 
 #include <KIconEngine>
@@ -17,6 +18,7 @@ private Q_SLOTS:
     void initTestCase()
     {
         QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+        QStandardPaths::setTestModeEnabled(true);
     }
 
     void testCenterIcon()

@@ -89,8 +89,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     }
 
     QPixmap pix2(size);
-    auto dpr = pix.devicePixelRatio();
-    pix2.setDevicePixelRatio(dpr);
+    pix2.setDevicePixelRatio(scale);
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
