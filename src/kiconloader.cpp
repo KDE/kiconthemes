@@ -1201,8 +1201,8 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         return QString();
     }
 
-    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isRelativePath, see bug 434451
-    if (_name.isEmpty() || !QDir::isRelativePath(_name)) {
+    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isAbsolutePath, see bug 434451
+    if (_name.isEmpty() || QDir::isAbsolutePath(_name)) {
         // we have either an absolute path or nothing to work with
         return _name;
     }
@@ -1340,8 +1340,8 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1Char('/') + name + QStringLiteral(".png");
     }
 
-    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isRelativePath, see bug 434451
-    bool absolutePath = !QDir::isRelativePath(name);
+    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isAbsolutePath, see bug 434451
+    const bool absolutePath = QDir::isAbsolutePath(name);
     if (!absolutePath) {
         name = d->removeIconExtension(name);
     }
