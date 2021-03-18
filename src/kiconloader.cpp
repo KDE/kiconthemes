@@ -225,7 +225,7 @@ public:
     /**
      * @internal
      */
-    bool initIconThemes();
+    void initIconThemes();
 
     /**
      * @internal
@@ -627,11 +627,10 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
     }
 }
 
-bool KIconLoaderPrivate::initIconThemes()
+void KIconLoaderPrivate::initIconThemes()
 {
     if (mIconThemeInited) {
-        // If mpThemeRoot isn't 0 then initing has succeeded
-        return (mpThemeRoot != nullptr);
+        return;
     }
     // qCDebug(KICONTHEMES);
     mIconThemeInited = true;
@@ -644,9 +643,9 @@ bool KIconLoaderPrivate::initIconThemes()
         qCDebug(KICONTHEMES) << "Couldn't find current icon theme, falling back to default.";
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
         if (!def->isValid()) {
-            qWarning() << "Error: standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
+            qCDebug(KICONTHEMES) << "Standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
             delete def;
-            return false;
+            return;
         }
     }
     mpThemeRoot = new KIconThemeNode(def);
@@ -661,8 +660,6 @@ bool KIconLoaderPrivate::initIconThemes()
     searchPaths.append(QStringLiteral("icons")); // was xdgdata-icon in KStandardDirs
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     searchPaths.append(QStringLiteral("pixmaps")); // was xdgdata-pixmaps in KStandardDirs
-
-    return true;
 }
 
 KIconLoader::~KIconLoader() = default;
@@ -932,7 +929,7 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, const QSize &siz
     QImageReader reader;
     QBuffer buffer;
 
-    if (q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
+    if (q->theme() && q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
         buffer.setData(processSvg(path, state));
         reader.setDevice(&buffer);
     } else {
@@ -1197,15 +1194,13 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
 
 QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canReturnNull, qreal scale) const
 {
-    if (!d->initIconThemes()) {
-        return QString();
-    }
-
     // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isAbsolutePath, see bug 434451
     if (_name.isEmpty() || QDir::isAbsolutePath(_name)) {
         // we have either an absolute path or nothing to work with
         return _name;
     }
+
+    d->initIconThemes();
 
     QString name = d->removeIconExtension(_name);
 
@@ -1381,9 +1376,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     }
 
     // Image is not cached... go find it and apply effects.
-    if (!d->initIconThemes()) {
-        return QPixmap();
-    }
+    d->initIconThemes();
 
     favIconOverlay = favIconOverlay && std::min(size.height(), size.width()) > 22;
 
