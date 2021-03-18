@@ -93,19 +93,6 @@ color:%7;\
 }
 
 /**
- * Checks for relative paths quickly on UNIX-alikes, slowly on everything else.
- */
-static bool pathIsRelative(const QString &path)
-{
-#ifdef Q_OS_UNIX
-    // catch both /xxx/yyy and :/xxx/yyy for resources
-    return (!path.isEmpty() && path[0] != QLatin1Char('/') && path[0] != QLatin1Char(':'));
-#else
-    return QDir::isRelativePath(path);
-#endif
-}
-
-/**
  * Holds a QPixmap for this process, along with its associated path on disk.
  */
 struct PixmapWithPath {
@@ -1214,7 +1201,8 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         return QString();
     }
 
-    if (_name.isEmpty() || !pathIsRelative(_name)) {
+    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isRelativePath, see bug 434451
+    if (_name.isEmpty() || !QDir::isRelativePath(_name)) {
         // we have either an absolute path or nothing to work with
         return _name;
     }
@@ -1352,7 +1340,8 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         name = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1Char('/') + name + QStringLiteral(".png");
     }
 
-    bool absolutePath = !pathIsRelative(name);
+    // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isRelativePath, see bug 434451
+    bool absolutePath = !QDir::isRelativePath(name);
     if (!absolutePath) {
         name = d->removeIconExtension(name);
     }
