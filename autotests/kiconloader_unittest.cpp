@@ -7,6 +7,7 @@
 
 #include <kiconloader.h>
 
+#include <QDir>
 #include <QRegularExpression>
 #include <QStandardPaths>
 #include <QTest>
@@ -494,6 +495,20 @@ private Q_SLOTS:
         // Test uintToHex to verify its ARGB output.
         uintToHex(testColorWithAlpha.rgba(), argbHex.data());
         QCOMPARE(argbHex, QStringLiteral("7b6496c8"));
+    }
+
+    void testQDirSetSearchPaths()
+    {
+        // setup search path for testprefix: => we shall find the iconinspecialsearchpath.svg afterwards, see e.g. bug 434451
+        QDir::setSearchPaths("testprefix", QStringList(":/searchpathdefineddir"));
+        QPixmap pix = KIconLoader::global()->loadIcon(QStringLiteral("testprefix:iconinspecialsearchpath.svg"),
+                                                      KIconLoader::NoGroup,
+                                                      24,
+                                                      KIconLoader::DefaultState,
+                                                      QStringList(),
+                                                      nullptr,
+                                                      true);
+        QVERIFY(!pix.isNull());
     }
 };
 
