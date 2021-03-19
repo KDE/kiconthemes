@@ -10,6 +10,12 @@
 #include <KIconEngine>
 #include <KIconLoader>
 
+static int setupEnvBeforeQApplication = []() {
+    qunsetenv("QT_SCREEN_SCALE_FACTORS");
+    qputenv("QT_SCALE_FACTOR", "2.0");
+    return 1;
+}();
+
 class KIconEngine_Scaled_UnitTest : public QObject
 {
     Q_OBJECT

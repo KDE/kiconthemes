@@ -19,7 +19,6 @@ kiconthemes_tests(
   kiconengine_scaled_unittest
   kicondialog_unittest
 )
-set_tests_properties(kiconengine_scaled_unittest PROPERTIES ENVIRONMENT QT_SCALE_FACTOR=2.0)
 
 ### Test for RCC loading
 
