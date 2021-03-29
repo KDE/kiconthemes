@@ -10,7 +10,6 @@
 */
 
 #include "kicontheme.h"
-#include "kicontheme_p.h"
 
 #include "debug.h"
 
@@ -33,6 +32,9 @@
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
+// Support for icon themes in RCC files.
+// The intended use case is standalone apps on Windows / MacOS / etc.
+// For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
 void initRCCIconTheme()
 {
     const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));

@@ -11,7 +11,6 @@
 */
 
 #include "kiconloader.h"
-#include "kicontheme_p.h"
 
 // kdecore
 #include <KConfigGroup>
@@ -384,6 +383,8 @@ public:
     bool mCustomPalette = false;
 };
 
+extern void initRCCIconTheme();
+
 class KIconLoaderGlobalData : public QObject
 {
     Q_OBJECT
@@ -391,10 +392,6 @@ class KIconLoaderGlobalData : public QObject
 public:
     KIconLoaderGlobalData()
     {
-        // we trigger the rcc loading & fallback theme setting here instead of the old way via Q_COREAPP_STARTUP_FUNCTION
-        // so that loading the icon engine plugin doesn't trigger changing the icon theme while loading the first icon
-        // if nothing else initialized this before.
-
         // ensure we load rcc files for application bundles (+ setup their theme)
         initRCCIconTheme();
 
