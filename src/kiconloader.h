@@ -130,6 +130,7 @@ public:
         /// Small icons, e.g. for buttons
         Small,
         /// Panel (Plasma Taskbar) icons
+        // TODO KF6: remove this (See https://phabricator.kde.org/T14340)
         Panel,
         /// Icons for use in dialog titles, page lists, etc
         Dialog,
