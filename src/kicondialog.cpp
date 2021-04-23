@@ -302,16 +302,24 @@ void KIconDialogPrivate::init()
     vbox->addLayout(grid);
 
     mpSystemIcons = new QRadioButton(i18n("S&ystem icons:"), bgroup);
-    QObject::connect(mpSystemIcons, SIGNAL(clicked()), q, SLOT(_k_slotSystemIconClicked()));
+    QObject::connect(mpSystemIcons, &QAbstractButton::clicked, q, [this]() {
+        _k_slotSystemIconClicked();
+    });
     grid->addWidget(mpSystemIcons, 1, 0);
     mpCombo = new QComboBox(bgroup);
-    QObject::connect(mpCombo, SIGNAL(activated(int)), q, SLOT(_k_slotContext(int)));
+    QObject::connect(mpCombo, QOverload<int>::of(&QComboBox::activated), q, [this](int index) {
+        _k_slotContext(index);
+    });
     grid->addWidget(mpCombo, 1, 1);
     mpOtherIcons = new QRadioButton(i18n("O&ther icons:"), bgroup);
-    QObject::connect(mpOtherIcons, SIGNAL(clicked()), q, SLOT(_k_slotOtherIconClicked()));
+    QObject::connect(mpOtherIcons, &QAbstractButton::clicked, q, [this]() {
+        _k_slotOtherIconClicked();
+    });
     grid->addWidget(mpOtherIcons, 2, 0);
     mpBrowseBut = new QPushButton(i18n("&Browse..."), bgroup);
-    QObject::connect(mpBrowseBut, SIGNAL(clicked()), q, SLOT(_k_slotBrowse()));
+    QObject::connect(mpBrowseBut, &QPushButton::clicked, q, [this]() {
+        _k_slotBrowse();
+    });
     grid->addWidget(mpBrowseBut, 2, 1);
 
     //
@@ -333,7 +341,9 @@ void KIconDialogPrivate::init()
     searchLine->setWhatsThis(wtstr);
 
     mpCanvas = new KIconCanvas(q);
-    QObject::connect(mpCanvas, SIGNAL(itemActivated(QListWidgetItem *)), q, SLOT(_k_slotAcceptIcons()));
+    QObject::connect(mpCanvas, &QListWidget::itemActivated, q, [this]() {
+        _k_slotAcceptIcons();
+    });
     top->addWidget(mpCanvas);
     searchLine->setListWidget(mpCanvas);
 
@@ -350,9 +360,15 @@ void KIconDialogPrivate::init()
 
     mpProgress = new QProgressBar(q);
     top->addWidget(mpProgress);
-    QObject::connect(mpCanvas, SIGNAL(startLoading(int)), q, SLOT(_k_slotStartLoading(int)));
-    QObject::connect(mpCanvas, SIGNAL(progress(int)), q, SLOT(_k_slotProgress(int)));
-    QObject::connect(mpCanvas, SIGNAL(finished()), q, SLOT(_k_slotFinished()));
+    QObject::connect(mpCanvas, &KIconCanvas::startLoading, q, [this](int count) {
+        _k_slotStartLoading(count);
+    });
+    QObject::connect(mpCanvas, &KIconCanvas::progress, q, [this](int step) {
+        _k_slotProgress(step);
+    });
+    QObject::connect(mpCanvas, &KIconCanvas::finished, q, [this]() {
+        _k_slotFinished();
+    });
 
     // When pressing Ok or Cancel, stop loading icons
     QObject::connect(q, &QDialog::finished, mpCanvas, &KIconCanvas::stopLoading);
@@ -604,7 +620,9 @@ void KIconDialogPrivate::_k_slotBrowse()
     QFileDialog *dlg = new QFileDialog(q, i18n("Select Icon"), QString(), i18n("*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"));
     dlg->setModal(false);
     dlg->setFileMode(QFileDialog::ExistingFile);
-    QObject::connect(dlg, SIGNAL(fileSelected(QString)), q, SLOT(_k_customFileSelected(QString)));
+    QObject::connect(dlg, &QFileDialog::fileSelected, q, [this](const QString &file) {
+        _k_customFileSelected(file);
+    });
     browseDialog = dlg;
     dlg->show();
 }

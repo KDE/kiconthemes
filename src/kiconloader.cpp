@@ -560,7 +560,9 @@ KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearch
 {
     setObjectName(_appname);
 
-    connect(s_globalData, SIGNAL(iconChanged(int)), SLOT(_k_refreshIcons(int)));
+    connect(s_globalData, &KIconLoaderGlobalData::iconChanged, this, [this](int group) {
+        d->_k_refreshIcons(group);
+    });
     d->init(_appname, extraSearchPaths);
 }
 
