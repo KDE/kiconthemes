@@ -1688,6 +1688,7 @@ KIconEffect *KIconLoader::iconEffect() const
     return &d->mpEffect;
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 82)
 bool KIconLoader::alphaBlending(KIconLoader::Group group) const
 {
     if (!d->mpGroups) {
@@ -1700,6 +1701,7 @@ bool KIconLoader::alphaBlending(KIconLoader::Group group) const
     }
     return true;
 }
+#endif
 
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 0)
 QIcon KIconLoader::loadIconSet(const QString &name, KIconLoader::Group g, int s, bool canReturnNull)
