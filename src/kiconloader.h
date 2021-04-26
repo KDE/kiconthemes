@@ -79,7 +79,8 @@ public:
         Application, ///< An icon that represents an application.
         Device, ///< An icon that represents a device.
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(4, 8)
-        FileSystem, ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
+        FileSystem ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
+            KICONTHEMES_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 4, 8, "Use Place instead"),
 #elif KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
         FileSystem_DEPRECATED_DO_NOT_USE,
 #endif
