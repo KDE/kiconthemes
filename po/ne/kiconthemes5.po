@@ -1,0 +1,115 @@
+# translation of kio4.po to Nepali
+#
+# Pawan Chitrakar  <pchitrakar@gmail.com>, 2006.
+# Nabin Gautam <nabingautam2001@yahoo.com>, 2006.
+# Mahesh Subedi <submanesh@hotmail.com>, 2006.
+# Nabin Gautam <nabin@mpp.org.np>, 2006, 2007.
+# Mahesh Subedi <submanesh@gmail.com>, 2006.
+# shyam krishna bal <shyamkrishna_bal@yahoo.com>, 2007.
+# Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-04-26 00:15+0000\n"
+"PO-Revision-Date: 2007-08-22 16:04+0545\n"
+"Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
+
+#: kicondialog.cpp:266 kicondialog.cpp:279 kicondialog.cpp:620
+#, kde-format
+msgid "Select Icon"
+msgstr "प्रतिमा चयन गर्नुहोस्"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "Icon Source"
+msgstr "प्रतिमा स्रोत"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "प्रणाली प्रतिमा:"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "O&ther icons:"
+msgstr "अन्य प्रतिमा:"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Browse..."
+msgstr "ब्राउज गर्नुहोस्..."
+
+#: kicondialog.cpp:332
+#, kde-format
+msgid "&Search:"
+msgstr "खोज्नुहोस्:"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "प्रतिमा नामहरू अनुरुप पारस्परिक रुपले खोज्नुहोस् (जस्तै: फोल्डर) ।"
+
+#: kicondialog.cpp:376
+#, kde-format
+msgid "Actions"
+msgstr "कार्य"
+
+#: kicondialog.cpp:377
+#, kde-format
+msgid "Applications"
+msgstr "अनुप्रयोग"
+
+#: kicondialog.cpp:378
+#, kde-format
+msgid "Categories"
+msgstr "कोटि"
+
+#: kicondialog.cpp:379
+#, kde-format
+msgid "Devices"
+msgstr "यन्त्र"
+
+#: kicondialog.cpp:380
+#, kde-format
+msgid "Emblems"
+msgstr "चिन्ह लगाउँछ"
+
+#: kicondialog.cpp:381
+#, kde-format
+msgid "Emotes"
+msgstr "व्यक्त गर्दछ"
+
+#: kicondialog.cpp:382
+#, kde-format
+msgid "Mimetypes"
+msgstr "माइम प्रकार"
+
+#: kicondialog.cpp:383
+#, kde-format
+msgid "Places"
+msgstr "राख्दछ"
+
+#: kicondialog.cpp:384
+#, kde-format
+msgid "Status"
+msgstr "वस्तुस्थिति"
+
+#: kicondialog.cpp:385
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:620
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|प्रतिमा फाइल (*.png *.xpm *.svg *.svgz)"

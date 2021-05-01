@@ -1,0 +1,110 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kiconthemes package.
+#
+# Xəyyam <xxmn77@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-04-26 00:15+0000\n"
+"PO-Revision-Date: 2020-04-15 23:34+0400\n"
+"Last-Translator: Xəyyam <xxmn77@gmail.com>\n"
+"Language-Team: Azerbaijani\n"
+"Language: az\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#: kicondialog.cpp:266 kicondialog.cpp:279 kicondialog.cpp:620
+#, kde-format
+msgid "Select Icon"
+msgstr "İkonu Seç"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "Icon Source"
+msgstr "ikon Mənbəyi"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "S&istem İkonlar:"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "O&ther icons:"
+msgstr "D&igər İkonlar:"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Browse..."
+msgstr "&Gözdən keçir..."
+
+#: kicondialog.cpp:332
+#, kde-format
+msgid "&Search:"
+msgstr "&Axtar:"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "İkon adına görə axtar (e.g. folder)."
+
+#: kicondialog.cpp:376
+#, kde-format
+msgid "Actions"
+msgstr "Əməllər"
+
+#: kicondialog.cpp:377
+#, kde-format
+msgid "Applications"
+msgstr "Tətbiqlər"
+
+#: kicondialog.cpp:378
+#, kde-format
+msgid "Categories"
+msgstr "Kateqoriyalar"
+
+#: kicondialog.cpp:379
+#, kde-format
+msgid "Devices"
+msgstr "Qurğular"
+
+#: kicondialog.cpp:380
+#, kde-format
+msgid "Emblems"
+msgstr "Yarlıqlar"
+
+#: kicondialog.cpp:381
+#, kde-format
+msgid "Emotes"
+msgstr "Smayllar"
+
+#: kicondialog.cpp:382
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime növləri"
+
+#: kicondialog.cpp:383
+#, kde-format
+msgid "Places"
+msgstr "Yerlər"
+
+#: kicondialog.cpp:384
+#, kde-format
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:385
+#, kde-format
+msgid "All"
+msgstr "Bütün"
+
+#: kicondialog.cpp:620
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Ikon Fayllar (*.ico *.png *.xpm *.svg *.svgz)"
