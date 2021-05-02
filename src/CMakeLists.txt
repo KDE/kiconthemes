@@ -52,7 +52,7 @@ if (TARGET Qt5::DBus)
   target_link_libraries(KF5IconThemes PRIVATE Qt5::DBus)
 endif()
 
-set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION_STRING}
+set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
                                                SOVERSION ${KICONTHEMES_SOVERSION}
                                                EXPORT_NAME IconThemes
 )
