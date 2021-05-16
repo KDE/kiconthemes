@@ -11,7 +11,7 @@ set(kiconthemes_SRCS
   kiconloader.cpp
   kicontheme.cpp
 )
-qt5_add_resources(kiconthemes_SRCS
+qt_add_resources(kiconthemes_SRCS
   hicolor.qrc
 )
 ecm_qt_declare_logging_category(kiconthemes_SRCS
