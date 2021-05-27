@@ -3,18 +3,20 @@ if (APPLE)
     add_subdirectory(tools/ksvg2icns)
 endif()
 
-set(kiconthemes_SRCS
+add_library(KF5IconThemes)
+add_library(KF5::IconThemes ALIAS KF5IconThemes)
+
+target_sources(KF5IconThemes PRIVATE
   kiconbutton.cpp
   kicondialog.cpp
   kiconeffect.cpp
   kiconengine.cpp
   kiconloader.cpp
   kicontheme.cpp
-)
-qt_add_resources(kiconthemes_SRCS
+
   hicolor.qrc
 )
-ecm_qt_declare_logging_category(kiconthemes_SRCS
+ecm_qt_declare_logging_category(KF5IconThemes
     HEADER debug.h
     IDENTIFIER KICONTHEMES
     CATEGORY_NAME kf.iconthemes
@@ -23,8 +25,6 @@ ecm_qt_declare_logging_category(kiconthemes_SRCS
     EXPORT KICONTHEMES
 )
 
-add_library(KF5IconThemes ${kiconthemes_SRCS})
-add_library(KF5::IconThemes ALIAS KF5IconThemes)
 ecm_generate_export_header(KF5IconThemes
     BASE_NAME KIconThemes
     GROUP_BASE_NAME KF
