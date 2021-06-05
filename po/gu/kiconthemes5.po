@@ -1,0 +1,110 @@
+# translation of kio4.po to Gujarati
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Kartik Mistry <kartik.mistry@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-04-26 00:15+0000\n"
+"PO-Revision-Date: 2009-05-13 18:57+0530\n"
+"Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
+"Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: kicondialog.cpp:266 kicondialog.cpp:279 kicondialog.cpp:620
+#, kde-format
+msgid "Select Icon"
+msgstr "ચિહ્ન પસંદ કરો"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "Icon Source"
+msgstr "ચિહ્ન સ્ત્રોત"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "સિસ્ટમ ચિહ્નો (&y):"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "O&ther icons:"
+msgstr "બીજાં ચિહ્નો (&t):"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Browse..."
+msgstr "શોધખોળ (&B)..."
+
+#: kicondialog.cpp:332
+#, kde-format
+msgid "&Search:"
+msgstr "શોધો (&S):"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "ચિહ્ન નામો માટે શોધ કરો (દા.ત. ફોલ્ડર)."
+
+#: kicondialog.cpp:376
+#, kde-format
+msgid "Actions"
+msgstr "ક્રિયાઓ"
+
+#: kicondialog.cpp:377
+#, kde-format
+msgid "Applications"
+msgstr "કાર્યક્રમો"
+
+#: kicondialog.cpp:378
+#, kde-format
+msgid "Categories"
+msgstr "વર્ગો"
+
+#: kicondialog.cpp:379
+#, kde-format
+msgid "Devices"
+msgstr "ઉપકરણો"
+
+#: kicondialog.cpp:380
+#, kde-format
+msgid "Emblems"
+msgstr "નિશાનીઓ"
+
+#: kicondialog.cpp:381
+#, kde-format
+msgid "Emotes"
+msgstr "લાગણીચિહ્નો"
+
+#: kicondialog.cpp:382
+#, kde-format
+msgid "Mimetypes"
+msgstr "માઇમપ્રકારો"
+
+#: kicondialog.cpp:383
+#, kde-format
+msgid "Places"
+msgstr "જગ્યાઓ"
+
+#: kicondialog.cpp:384
+#, kde-format
+msgid "Status"
+msgstr "સ્થિતિ"
+
+#: kicondialog.cpp:385
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:620
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|ચિહ્ન ફાઇલો (*.png *.xpm *.svg *.svgz)"

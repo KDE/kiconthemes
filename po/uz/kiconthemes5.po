@@ -1,0 +1,111 @@
+# translation of kio4.po to Uzbek
+# translation of kio4.po to
+# Copyright (C) 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+#
+# Mashrab Kuvatov <kmashrab@uni-bremen.de>, 2003, 2004, 2005, 2006, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-04-26 00:15+0000\n"
+"PO-Revision-Date: 2008-06-04 01:21+0200\n"
+"Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
+"Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
+"Language: uz\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:266 kicondialog.cpp:279 kicondialog.cpp:620
+#, kde-format
+msgid "Select Icon"
+msgstr "Nishonchani tanlash"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "Icon Source"
+msgstr "Nishonchalar manbasi"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "&Tizimning nishonchalari:"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "O&ther icons:"
+msgstr "&Boshqa nishonchalar:"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Browse..."
+msgstr "&Tanlash"
+
+#: kicondialog.cpp:332
+#, kde-format
+msgid "&Search:"
+msgstr "Q&idirish:"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr ""
+
+#: kicondialog.cpp:376
+#, kde-format
+msgid "Actions"
+msgstr "Amallar"
+
+#: kicondialog.cpp:377
+#, kde-format
+msgid "Applications"
+msgstr "Dasturlar"
+
+#: kicondialog.cpp:378
+#, kde-format
+msgid "Categories"
+msgstr "Turkumlar"
+
+#: kicondialog.cpp:379
+#, kde-format
+msgid "Devices"
+msgstr "Uskunalar"
+
+#: kicondialog.cpp:380
+#, kde-format
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:381
+#, kde-format
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:382
+#, kde-format
+msgid "Mimetypes"
+msgstr "MIME turlari"
+
+#: kicondialog.cpp:383
+#, kde-format
+msgid "Places"
+msgstr "Joylar"
+
+#: kicondialog.cpp:384
+#, kde-format
+msgid "Status"
+msgstr "Holat"
+
+#: kicondialog.cpp:385
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:620
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Nishoncha fayllari (*.png *.xpm *.svg *.svgz)"
