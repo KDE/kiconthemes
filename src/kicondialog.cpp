@@ -131,6 +131,7 @@ void KIconCanvas::loadFiles()
     const int canvasIconWidth = iconSize().width();
     const int canvasIconHeight = iconSize().width();
     const bool uniformIconSize = uniformItemSizes();
+    const qreal dpr = devicePixelRatioF();
 
     m_loading = true;
     int i;
@@ -156,41 +157,41 @@ void KIconCanvas::loadFiles()
 
         if (ext != QLatin1String("SVG") && ext != QLatin1String("VGZ")) {
             img.load(*it);
+
+            if (!img.isNull()) {
+                if (img.width() > canvasIconWidth || img.height() > canvasIconHeight) {
+                    if (img.width() / (float)canvasIconWidth > img.height() / (float)canvasIconHeight) {
+                        int height = (int)(((float)canvasIconWidth / img.width()) * img.height());
+                        img = img.scaled(canvasIconWidth, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                    } else {
+                        int width = (int)(((float)canvasIconHeight / img.height()) * img.width());
+                        img = img.scaled(width, canvasIconHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                    }
+                }
+
+                if (uniformIconSize && (img.width() != canvasIconWidth || img.height() != canvasIconHeight)) {
+                    // Image is smaller than desired.  Draw onto a transparent QImage of the required dimensions.
+                    // (Unpleasant glitches occur if we break the uniformIconSizes() contract).
+                    QImage paddedImage =
+                        QImage(canvasIconWidth * img.devicePixelRatioF(), canvasIconHeight * img.devicePixelRatioF(), QImage::Format_ARGB32_Premultiplied);
+                    paddedImage.setDevicePixelRatio(img.devicePixelRatioF());
+                    paddedImage.fill(0);
+                    QPainter painter(&paddedImage);
+                    painter.drawImage((canvasIconWidth - img.width()) / 2, (canvasIconHeight - img.height()) / 2, img);
+                    img = paddedImage;
+                }
+            }
         } else {
-#ifndef _WIN32_WCE
             // Special stuff for SVG icons
-            img = QImage(canvasIconWidth, canvasIconHeight, QImage::Format_ARGB32_Premultiplied);
+            img = QImage(canvasIconWidth * dpr, canvasIconHeight * dpr, QImage::Format_ARGB32_Premultiplied);
+            img.setDevicePixelRatio(dpr);
             img.fill(0);
             QSvgRenderer renderer(*it);
             if (renderer.isValid()) {
                 QPainter p(&img);
-                renderer.render(&p);
+                // FIXME why do I need to specify bounds for it to not crop the SVG on dpr > 1?
+                renderer.render(&p, QRect(0, 0, canvasIconWidth, canvasIconHeight));
             }
-#endif
-        }
-
-        if (img.isNull()) {
-            continue;
-        }
-
-        if (img.width() > canvasIconWidth || img.height() > canvasIconHeight) {
-            if (img.width() / (float)canvasIconWidth > img.height() / (float)canvasIconHeight) {
-                int height = (int)(((float)canvasIconWidth / img.width()) * img.height());
-                img = img.scaled(canvasIconWidth, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            } else {
-                int width = (int)(((float)canvasIconHeight / img.height()) * img.width());
-                img = img.scaled(width, canvasIconHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            }
-        }
-
-        if (uniformIconSize && (img.width() != canvasIconWidth || img.height() != canvasIconHeight)) {
-            // Image is smaller than desired.  Draw onto a transparent QImage of the required dimensions.
-            // (Unpleasant glitches occur if we break the uniformIconSizes() contract).
-            QImage paddedImage = QImage(canvasIconWidth, canvasIconHeight, QImage::Format_ARGB32_Premultiplied);
-            paddedImage.fill(0);
-            QPainter painter(&paddedImage);
-            painter.drawImage((canvasIconWidth - img.width()) / 2, (canvasIconHeight - img.height()) / 2, img);
-            img = paddedImage;
         }
 
         QPixmap pm = QPixmap::fromImage(img);
