@@ -5,6 +5,7 @@
     SPDX-FileCopyrightText: 2000 Kurt Granroth <granroth@kde.org>
     SPDX-FileCopyrightText: 1997 Christoph Neerfeld <chris@kde.org>
     SPDX-FileCopyrightText: 2002 Carsten Pfeiffer <pfeiffer@kde.org>
+    SPDX-FileCopyrightText: 2021 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: LGPL-2.0-only
 */
@@ -153,15 +154,6 @@ private:
 
     Q_DISABLE_COPY(KIconDialog)
 
-    Q_PRIVATE_SLOT(d, void _k_slotContext(int))
-    Q_PRIVATE_SLOT(d, void _k_slotStartLoading(int))
-    Q_PRIVATE_SLOT(d, void _k_slotProgress(int))
-    Q_PRIVATE_SLOT(d, void _k_slotFinished())
-    Q_PRIVATE_SLOT(d, void _k_slotAcceptIcons())
-    Q_PRIVATE_SLOT(d, void _k_slotBrowse())
-    Q_PRIVATE_SLOT(d, void _k_customFileSelected(const QString &path))
-    Q_PRIVATE_SLOT(d, void _k_slotOtherIconClicked())
-    Q_PRIVATE_SLOT(d, void _k_slotSystemIconClicked())
 };
 
 #endif // KICONDIALOG_H

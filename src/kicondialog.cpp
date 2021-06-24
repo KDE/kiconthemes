@@ -5,32 +5,174 @@
     SPDX-FileCopyrightText: 2000 Kurt Granroth <granroth@kde.org>
     SPDX-FileCopyrightText: 1997 Christoph Neerfeld <chris@kde.org>
     SPDX-FileCopyrightText: 2002 Carsten Pfeiffer <pfeiffer@kde.org>
+    SPDX-FileCopyrightText: 2021 Kai Uwe Broulik <kde@broulik.de>
 
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
 #include "kicondialog.h"
 #include "kicondialog_p.h"
+#include "kicondialogmodel_p.h"
 
-#include <KListWidgetSearchLine>
 #include <KLocalizedString>
-#ifndef _WIN32_WCE
-#include <QSvgRenderer>
-#endif
 
+#include <QAbstractListModel>
 #include <QApplication>
 #include <QComboBox>
 #include <QDialogButtonBox>
 #include <QFileInfo>
-#include <QGroupBox>
+#include <QGraphicsOpacityEffect>
 #include <QLabel>
-#include <QLayout>
 #include <QPainter>
-#include <QProgressBar>
-#include <QRadioButton>
+#include <QPushButton>
 #include <QScrollBar>
+#include <QStandardItemModel> // for manipulatig QComboBox
 #include <QStandardPaths>
-#include <QTimer>
+#include <QSvgRenderer>
+#include <QVector>
+
+#include <algorithm>
+#include <math.h>
+
+static const int s_horizontalEdgePad = 3;
+
+KIconDialogModel::KIconDialogModel(QObject *parent)
+    : QAbstractListModel(parent)
+{
+}
+
+KIconDialogModel::~KIconDialogModel() = default;
+
+qreal KIconDialogModel::devicePixelRatio() const
+{
+    return m_dpr;
+}
+
+void KIconDialogModel::setDevicePixelRatio(qreal dpr)
+{
+    m_dpr = dpr;
+}
+
+QSize KIconDialogModel::iconSize() const
+{
+    return m_iconSize;
+}
+
+void KIconDialogModel::setIconSize(const QSize &iconSize)
+{
+    m_iconSize = iconSize;
+}
+
+void KIconDialogModel::load(const QStringList &paths)
+{
+    beginResetModel();
+
+    m_data.clear();
+    m_data.reserve(paths.count());
+
+    for (const QString &path : paths) {
+        const QFileInfo fi(path);
+
+        KIconDialogModelData item;
+        item.name = fi.completeBaseName();
+        item.path = path;
+        // pixmap is created on demand
+
+        m_data.append(item);
+    }
+
+    endResetModel();
+}
+
+int KIconDialogModel::rowCount(const QModelIndex &parent) const
+{
+    if (parent.isValid()) {
+        return 0;
+    }
+    return m_data.count();
+}
+
+QVariant KIconDialogModel::data(const QModelIndex &index, int role) const
+{
+    if (!checkIndex(index, QAbstractItemModel::CheckIndexOption::IndexIsValid)) {
+        return QVariant();
+    }
+
+    const auto &item = m_data.at(index.row());
+
+    switch (role) {
+    case Qt::DisplayRole:
+        return item.name;
+    case Qt::DecorationRole:
+        if (item.pixmap.isNull()) {
+            const_cast<KIconDialogModel *>(this)->loadPixmap(index);
+        }
+        return item.pixmap;
+    case Qt::ToolTipRole:
+        return item.name;
+    case PathRole:
+        return item.path;
+    }
+
+    return QVariant();
+}
+
+void KIconDialogModel::loadPixmap(const QModelIndex &index)
+{
+    Q_ASSERT(index.isValid());
+
+    auto &item = m_data[index.row()];
+    Q_ASSERT(item.pixmap.isNull());
+
+    const auto dpr = devicePixelRatio();
+    const auto canvasIconWidth = iconSize().width();
+    const auto canvasIconHeight = iconSize().height();
+
+    QImage img;
+
+    if (item.path.endsWith(QLatin1String(".svg"), Qt::CaseInsensitive) || item.path.endsWith(QLatin1String(".svgz"), Qt::CaseInsensitive)) {
+        QSvgRenderer renderer(item.path);
+        if (renderer.isValid()) {
+            img = QImage(canvasIconWidth * dpr, canvasIconHeight * dpr, QImage::Format_ARGB32_Premultiplied);
+            img.setDevicePixelRatio(dpr);
+            img.fill(Qt::transparent);
+
+            QPainter p(&img);
+            // FIXME why do I need to specify bounds for it to not crop the SVG on dpr > 1?
+            renderer.render(&p, QRect(0, 0, canvasIconWidth, canvasIconHeight));
+        }
+    } else {
+        img.load(item.path);
+
+        if (!img.isNull()) {
+            if (img.width() > canvasIconWidth || img.height() > canvasIconHeight) {
+                if (img.width() / (float)canvasIconWidth > img.height() / (float)canvasIconHeight) {
+                    int height = (int)(((float)canvasIconWidth / img.width()) * img.height());
+                    img = img.scaled(canvasIconWidth, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                } else {
+                    int width = (int)(((float)canvasIconHeight / img.height()) * img.width());
+                    img = img.scaled(width, canvasIconHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+                }
+            }
+
+            if (/*uniformIconSize &&*/ (img.width() != canvasIconWidth || img.height() != canvasIconHeight)) {
+                // Image is smaller than desired.  Draw onto a transparent QImage of the required dimensions.
+                // (Unpleasant glitches occur if we break the uniformIconSizes() contract).
+                QImage paddedImage =
+                    QImage(canvasIconWidth * img.devicePixelRatioF(), canvasIconHeight * img.devicePixelRatioF(), QImage::Format_ARGB32_Premultiplied);
+                paddedImage.setDevicePixelRatio(img.devicePixelRatioF());
+                paddedImage.fill(0);
+                QPainter painter(&paddedImage);
+                painter.drawImage((canvasIconWidth - img.width()) / 2, (canvasIconHeight - img.height()) / 2, img);
+                img = paddedImage;
+            }
+        }
+    }
+
+    if (!img.isNull()) {
+        item.pixmap = QPixmap::fromImage(img);
+    }
+}
 
 /**
  * Qt allocates very little horizontal space for the icon name,
@@ -41,7 +183,7 @@ class KIconCanvasDelegate : public QAbstractItemDelegate
 {
     Q_OBJECT
 public:
-    KIconCanvasDelegate(KIconCanvas *parent, QAbstractItemDelegate *defaultDelegate);
+    KIconCanvasDelegate(QListView *parent, QAbstractItemDelegate *defaultDelegate);
     ~KIconCanvasDelegate() override
     {
     }
@@ -49,183 +191,44 @@ public:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 private:
-    KIconCanvas *m_iconCanvas = nullptr;
     QAbstractItemDelegate *m_defaultDelegate = nullptr;
-    static const int HORIZONTAL_EDGE_PAD = 3;
 };
 
-KIconCanvasDelegate::KIconCanvasDelegate(KIconCanvas *parent, QAbstractItemDelegate *defaultDelegate)
+KIconCanvasDelegate::KIconCanvasDelegate(QListView *parent, QAbstractItemDelegate *defaultDelegate)
     : QAbstractItemDelegate(parent)
 {
-    m_iconCanvas = parent;
     m_defaultDelegate = defaultDelegate;
 }
 
 void KIconCanvasDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    const int GRID_WIDTH = m_iconCanvas->gridSize().width();
+    auto *canvas = static_cast<QListView *>(parent());
+    const int gridWidth = canvas->gridSize().width();
     QStyleOptionViewItem newOption = option;
+    newOption.displayAlignment = Qt::AlignHCenter | Qt::AlignTop;
+    newOption.features.setFlag(QStyleOptionViewItem::WrapText);
     // Manipulate the width available.
-    newOption.rect.setX((option.rect.x() / GRID_WIDTH) * GRID_WIDTH + HORIZONTAL_EDGE_PAD);
-    newOption.rect.setWidth(GRID_WIDTH - 2 * HORIZONTAL_EDGE_PAD);
-
+    newOption.rect.setX((option.rect.x() / gridWidth) * gridWidth + s_horizontalEdgePad);
+    newOption.rect.setWidth(gridWidth - 2 * s_horizontalEdgePad);
     m_defaultDelegate->paint(painter, newOption, index);
 }
 
 QSize KIconCanvasDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    QSize size = m_defaultDelegate->sizeHint(option, index);
-    const int GRID_WIDTH = m_iconCanvas->gridSize().width();
-    size.setWidth(GRID_WIDTH - 2 * HORIZONTAL_EDGE_PAD);
+    auto *canvas = static_cast<QListView *>(parent());
+
+    // TODO can we set wrap text and display alignment somewhere globally?
+    QStyleOptionViewItem newOption = option;
+    newOption.displayAlignment = Qt::AlignHCenter | Qt::AlignTop;
+    newOption.features.setFlag(QStyleOptionViewItem::WrapText);
+
+    QSize size = m_defaultDelegate->sizeHint(newOption, index);
+    const int gridWidth = canvas->gridSize().width();
+    const int gridHeight = canvas->gridSize().height();
+    size.setWidth(gridWidth - 2 * s_horizontalEdgePad);
+    QFontMetrics metrics(option.font);
+    size.setHeight(gridHeight + metrics.height() * 3);
     return size;
-}
-
-/*
- * KIconCanvas: Iconview for the iconloader dialog.
- */
-
-KIconCanvas::KIconCanvas(QWidget *parent)
-    : QListWidget(parent)
-    , m_loading(false)
-    , m_timer(new QTimer(this))
-    , m_delegate(new KIconCanvasDelegate(this, itemDelegate()))
-{
-    setViewMode(IconMode);
-    setUniformItemSizes(true);
-    setMovement(Static);
-    setIconSize(QSize(60, 60));
-    connect(m_timer, &QTimer::timeout, this, QOverload<>::of(&KIconCanvas::loadFiles));
-    connect(this, &QListWidget::currentItemChanged, this, &KIconCanvas::currentListItemChanged);
-    setGridSize(QSize(100, 80));
-
-    setItemDelegate(m_delegate);
-}
-
-KIconCanvas::~KIconCanvas()
-{
-    delete m_timer;
-    delete m_delegate;
-}
-
-void KIconCanvas::loadFiles(const QStringList &files)
-{
-    clear();
-    m_files = files;
-    Q_EMIT startLoading(m_files.count());
-    m_timer->setSingleShot(true);
-    m_timer->start(10);
-    m_loading = false;
-}
-
-void KIconCanvas::loadFiles()
-{
-    setResizeMode(QListWidget::Fixed);
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    // disable updates to not trigger paint events when adding child items,
-    // but force an initial paint so that we do not get garbage
-    repaint();
-    setUpdatesEnabled(false);
-
-    // Cache these as we will call them frequently.
-    const int canvasIconWidth = iconSize().width();
-    const int canvasIconHeight = iconSize().width();
-    const bool uniformIconSize = uniformItemSizes();
-
-    m_loading = true;
-    int i;
-    QStringList::ConstIterator it;
-    uint emitProgress = 10; // so we will emit it once in the beginning
-    QStringList::ConstIterator end(m_files.constEnd());
-    for (it = m_files.constBegin(), i = 0; it != end; ++it, ++i) {
-        if (emitProgress >= 10) {
-            Q_EMIT progress(i);
-            emitProgress = 0;
-        }
-
-        emitProgress++;
-
-        if (!m_loading) { // user clicked on a button that will load another set of icons
-            break;
-        }
-        QImage img;
-
-        // Use the extension as the format. Works for XPM and PNG, but not for SVG
-        QString path = *it;
-        QString ext = path.right(3).toUpper();
-
-        if (ext != QLatin1String("SVG") && ext != QLatin1String("VGZ")) {
-            img.load(*it);
-        } else {
-#ifndef _WIN32_WCE
-            // Special stuff for SVG icons
-            img = QImage(canvasIconWidth, canvasIconHeight, QImage::Format_ARGB32_Premultiplied);
-            img.fill(0);
-            QSvgRenderer renderer(*it);
-            if (renderer.isValid()) {
-                QPainter p(&img);
-                renderer.render(&p);
-            }
-#endif
-        }
-
-        if (img.isNull()) {
-            continue;
-        }
-
-        if (img.width() > canvasIconWidth || img.height() > canvasIconHeight) {
-            if (img.width() / (float)canvasIconWidth > img.height() / (float)canvasIconHeight) {
-                int height = (int)(((float)canvasIconWidth / img.width()) * img.height());
-                img = img.scaled(canvasIconWidth, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            } else {
-                int width = (int)(((float)canvasIconHeight / img.height()) * img.width());
-                img = img.scaled(width, canvasIconHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-            }
-        }
-
-        if (uniformIconSize && (img.width() != canvasIconWidth || img.height() != canvasIconHeight)) {
-            // Image is smaller than desired.  Draw onto a transparent QImage of the required dimensions.
-            // (Unpleasant glitches occur if we break the uniformIconSizes() contract).
-            QImage paddedImage = QImage(canvasIconWidth, canvasIconHeight, QImage::Format_ARGB32_Premultiplied);
-            paddedImage.fill(0);
-            QPainter painter(&paddedImage);
-            painter.drawImage((canvasIconWidth - img.width()) / 2, (canvasIconHeight - img.height()) / 2, img);
-            img = paddedImage;
-        }
-
-        QPixmap pm = QPixmap::fromImage(img);
-        QFileInfo fi(*it);
-        QListWidgetItem *item = new QListWidgetItem(pm, fi.completeBaseName(), this);
-        item->setData(Qt::UserRole, *it);
-        item->setToolTip(fi.completeBaseName());
-    }
-
-    // enable updates since we have to draw the whole view now
-    setUpdatesEnabled(true);
-
-    QApplication::restoreOverrideCursor();
-    m_loading = false;
-    Q_EMIT finished();
-    setResizeMode(QListWidget::Adjust);
-}
-
-QString KIconCanvas::getCurrent() const
-{
-    if (!currentItem()) {
-        return QString();
-    }
-
-    return currentItem()->data(Qt::UserRole).toString();
-}
-
-void KIconCanvas::stopLoading()
-{
-    m_loading = false;
-}
-
-void KIconCanvas::currentListItemChanged(QListWidgetItem *item)
-{
-    Q_EMIT nameChanged((item != nullptr) ? item->text() : QString());
 }
 
 // TODO KF6 remove and override KIconDialog::showEvent()
@@ -246,7 +249,7 @@ private:
         if (event->type() == QEvent::Show) {
             KIconDialog *q = static_cast<KIconDialog *>(parent());
             q->d->showIcons();
-            q->d->searchLine->setFocus();
+            q->d->ui.searchLine->setFocus();
         }
 
         return QObject::eventFilter(watched, event);
@@ -263,7 +266,6 @@ KIconDialog::KIconDialog(QWidget *parent)
     , d(new KIconDialogPrivate(this))
 {
     setModal(true);
-    setWindowTitle(i18n("Select Icon"));
 
     d->mpLoader = KIconLoader::global();
     d->init();
@@ -276,7 +278,6 @@ KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
     , d(new KIconDialogPrivate(this))
 {
     setModal(true);
-    setWindowTitle(i18n("Select Icon"));
 
     d->mpLoader = loader;
     d->init();
@@ -289,143 +290,113 @@ void KIconDialogPrivate::init()
     mGroupOrSize = KIconLoader::Desktop;
     mContext = KIconLoader::Any;
 
-    QVBoxLayout *top = new QVBoxLayout(q);
+    ui.setupUi(q);
 
-    QGroupBox *bgroup = new QGroupBox(q);
-    bgroup->setTitle(i18n("Icon Source"));
+    auto updatePlaceholder = [this] {
+        updatePlaceholderLabel();
+    };
+    QObject::connect(proxyModel, &QSortFilterProxyModel::modelReset, q, updatePlaceholder);
+    QObject::connect(proxyModel, &QSortFilterProxyModel::rowsInserted, q, updatePlaceholder);
+    QObject::connect(proxyModel, &QSortFilterProxyModel::rowsRemoved, q, updatePlaceholder);
 
-    QVBoxLayout *vbox = new QVBoxLayout(bgroup);
+    // TODO set Ctrl+F shortcut
+    QObject::connect(ui.searchLine, &QLineEdit::textChanged, proxyModel, &QSortFilterProxyModel::setFilterFixedString);
 
-    top->addWidget(bgroup);
-
-    QGridLayout *grid = new QGridLayout();
-    vbox->addLayout(grid);
-
-    mpSystemIcons = new QRadioButton(i18n("S&ystem icons:"), bgroup);
-    QObject::connect(mpSystemIcons, &QAbstractButton::clicked, q, [this]() {
-        _k_slotSystemIconClicked();
-    });
-    grid->addWidget(mpSystemIcons, 1, 0);
-    mpCombo = new QComboBox(bgroup);
-    QObject::connect(mpCombo, QOverload<int>::of(&QComboBox::activated), q, [this](int index) {
-        _k_slotContext(index);
-    });
-    grid->addWidget(mpCombo, 1, 1);
-    mpOtherIcons = new QRadioButton(i18n("O&ther icons:"), bgroup);
-    QObject::connect(mpOtherIcons, &QAbstractButton::clicked, q, [this]() {
-        _k_slotOtherIconClicked();
-    });
-    grid->addWidget(mpOtherIcons, 2, 0);
-    mpBrowseBut = new QPushButton(i18n("&Browse..."), bgroup);
-    QObject::connect(mpBrowseBut, &QPushButton::clicked, q, [this]() {
-        _k_slotBrowse();
-    });
-    grid->addWidget(mpBrowseBut, 2, 1);
-
-    //
-    // ADD SEARCHLINE
-    //
-    QHBoxLayout *searchLayout = new QHBoxLayout();
-    searchLayout->setContentsMargins(0, 0, 0, 0);
-    top->addLayout(searchLayout);
-
-    QLabel *searchLabel = new QLabel(i18n("&Search:"), q);
-    searchLayout->addWidget(searchLabel);
-
-    searchLine = new KListWidgetSearchLine(q);
-    searchLayout->addWidget(searchLine);
-    searchLabel->setBuddy(searchLine);
-
-    QString wtstr = i18n("Search interactively for icon names (e.g. folder).");
-    searchLabel->setWhatsThis(wtstr);
-    searchLine->setWhatsThis(wtstr);
-
-    mpCanvas = new KIconCanvas(q);
-    QObject::connect(mpCanvas, &QListWidget::itemActivated, q, [this]() {
-        _k_slotAcceptIcons();
-    });
-    top->addWidget(mpCanvas);
-    searchLine->setListWidget(mpCanvas);
-
-    // Compute width of canvas with 4 icons displayed in a row
-    QStyleOption opt;
-    opt.initFrom(mpCanvas);
-    int width = 4 * mpCanvas->gridSize().width() + 1;
-    width += mpCanvas->verticalScrollBar()->sizeHint().width();
-    width += 2 * mpCanvas->frameWidth();
-    if (mpCanvas->style()->styleHint(QStyle::SH_ScrollView_FrameOnlyAroundContents, &opt, mpCanvas)) {
-        width += mpCanvas->style()->pixelMetric(QStyle::PM_ScrollView_ScrollBarSpacing, &opt, mpCanvas);
-    }
-    mpCanvas->setMinimumSize(width, 125);
-
-    mpProgress = new QProgressBar(q);
-    top->addWidget(mpProgress);
-    QObject::connect(mpCanvas, &KIconCanvas::startLoading, q, [this](int count) {
-        _k_slotStartLoading(count);
-    });
-    QObject::connect(mpCanvas, &KIconCanvas::progress, q, [this](int step) {
-        _k_slotProgress(step);
-    });
-    QObject::connect(mpCanvas, &KIconCanvas::finished, q, [this]() {
-        _k_slotFinished();
-    });
-
-    // When pressing Ok or Cancel, stop loading icons
-    QObject::connect(q, &QDialog::finished, mpCanvas, &KIconCanvas::stopLoading);
-
-    static const char *const context_text[] = {I18N_NOOP("Actions"),
-                                               I18N_NOOP("Applications"),
-                                               I18N_NOOP("Categories"),
-                                               I18N_NOOP("Devices"),
-                                               I18N_NOOP("Emblems"),
-                                               I18N_NOOP("Emotes"),
-                                               I18N_NOOP("Mimetypes"),
-                                               I18N_NOOP("Places"),
-                                               I18N_NOOP("Status"),
-                                               I18N_NOOP("All")};
-    static const KIconLoader::Context context_id[] = {KIconLoader::Action,
-                                                      KIconLoader::Application,
-                                                      KIconLoader::Category,
-                                                      KIconLoader::Device,
-                                                      KIconLoader::Emblem,
-                                                      KIconLoader::Emote,
-                                                      KIconLoader::MimeType,
-                                                      KIconLoader::Place,
-                                                      KIconLoader::StatusIcon,
-                                                      KIconLoader::Any};
-    mNumContext = 0;
-    int cnt = sizeof(context_text) / sizeof(context_text[0]);
-    // check all 3 arrays have same sizes
-    Q_ASSERT(cnt == sizeof(context_id) / sizeof(context_id[0]) && cnt == sizeof(mContextMap) / sizeof(mContextMap[0]));
+    static const char *const context_text[] = {
+        I18N_NOOP("All"),
+        I18N_NOOP("Actions"),
+        I18N_NOOP("Applications"),
+        I18N_NOOP("Categories"),
+        I18N_NOOP("Devices"),
+        I18N_NOOP("Emblems"),
+        I18N_NOOP("Emotes"),
+        I18N_NOOP("Mimetypes"),
+        I18N_NOOP("Places"),
+        I18N_NOOP("Status"),
+    };
+    static const KIconLoader::Context context_id[] = {
+        KIconLoader::Any,
+        KIconLoader::Action,
+        KIconLoader::Application,
+        KIconLoader::Category,
+        KIconLoader::Device,
+        KIconLoader::Emblem,
+        KIconLoader::Emote,
+        KIconLoader::MimeType,
+        KIconLoader::Place,
+        KIconLoader::StatusIcon,
+    };
+    const int cnt = sizeof(context_text) / sizeof(context_text[0]);
     for (int i = 0; i < cnt; ++i) {
         if (mpLoader->hasContext(context_id[i])) {
-            mpCombo->addItem(i18n(context_text[i]));
-            mContextMap[mNumContext++] = context_id[i];
+            ui.contextCombo->addItem(i18n(context_text[i]), context_id[i]);
+            if (i == 0) {
+                ui.contextCombo->insertSeparator(i + 1);
+            }
         }
     }
-    mpCombo->setMaxVisibleItems(cnt);
-    mpCombo->setFixedSize(mpCombo->sizeHint());
+    ui.contextCombo->insertSeparator(ui.contextCombo->count());
+    ui.contextCombo->addItem(i18nc("Other icons", "Other"));
+    ui.contextCombo->setMaxVisibleItems(ui.contextCombo->count());
+    ui.contextCombo->setFixedSize(ui.contextCombo->sizeHint());
 
-    mpBrowseBut->setFixedWidth(mpCombo->width());
+    QObject::connect(ui.contextCombo, QOverload<int>::of(&QComboBox::activated), q, [this]() {
+        const auto currentData = ui.contextCombo->currentData();
+        if (currentData.isValid()) {
+            mContext = static_cast<KIconLoader::Context>(ui.contextCombo->currentData().toInt());
+        } else {
+            mContext = static_cast<KIconLoader::Context>(-1);
+        }
+        showIcons();
+    });
 
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(q);
-    buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-    QObject::connect(buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
-    QObject::connect(buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
-    top->addWidget(buttonBox);
+    auto *delegate = new KIconCanvasDelegate(ui.canvas, ui.canvas->itemDelegate());
+    ui.canvas->setItemDelegate(delegate);
 
-    // Make the dialog a little taller
-    q->resize(q->sizeHint() + QSize(0, 100));
+    ui.canvas->setModel(proxyModel);
+
+    QObject::connect(ui.canvas, &QAbstractItemView::activated, q, [this]() {
+        custom.clear();
+        q->slotOk();
+    });
+
+    // You can't just stack widgets ontop of each other in Qt Designer
+    auto *placeholderLayout = new QVBoxLayout(ui.canvas);
+
+    placeholderLabel = new QLabel();
+    QFont placeholderLabelFont;
+    // To match the size of a level 2 Heading/KTitleWidget
+    placeholderLabelFont.setPointSize(qRound(placeholderLabelFont.pointSize() * 1.3));
+    placeholderLabel->setFont(placeholderLabelFont);
+    placeholderLabel->setTextInteractionFlags(Qt::NoTextInteraction);
+    placeholderLabel->setWordWrap(true);
+    placeholderLabel->setAlignment(Qt::AlignCenter);
+
+    // Match opacity of QML placeholder label component
+    auto *effect = new QGraphicsOpacityEffect(placeholderLabel);
+    effect->setOpacity(0.5);
+    placeholderLabel->setGraphicsEffect(effect);
+
+    updatePlaceholderLabel();
+
+    placeholderLayout->addWidget(placeholderLabel);
+    placeholderLayout->setAlignment(placeholderLabel, Qt::AlignCenter);
+
+    // TODO I bet there is a KStandardAction for that?
+    browseButton = new QPushButton(QIcon::fromTheme(QStringLiteral("folder-open")), i18n("Browse…"));
+    // TODO does this have implicatons? I just want the "Browse" button on the left side :)
+    ui.buttonBox->addButton(browseButton, QDialogButtonBox::HelpRole);
+    QObject::connect(browseButton, &QPushButton::clicked, q, [this] {
+        browse();
+    });
+
+    QObject::connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
+    QObject::connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
+
     q->adjustSize();
 }
 
 KIconDialog::~KIconDialog() = default;
-
-void KIconDialogPrivate::_k_slotAcceptIcons()
-{
-    custom.clear();
-    q->slotOk();
-}
 
 static bool sortByFileName(const QString &path1, const QString &path2)
 {
@@ -436,9 +407,8 @@ static bool sortByFileName(const QString &path1, const QString &path2)
 
 void KIconDialogPrivate::showIcons()
 {
-    mpCanvas->clear();
     QStringList filelist;
-    if (mpSystemIcons->isChecked()) {
+    if (isSystemIconsContext()) {
         if (m_bStrictIconSize) {
             filelist = mpLoader->queryIcons(mGroupOrSize, mContext);
         } else {
@@ -469,14 +439,38 @@ void KIconDialogPrivate::showIcons()
     if (mGroupOrSize < -1) {
         // mGroupOrSize can be -1 if NoGroup is chosen.
         // Explicit size.
-        mpCanvas->setIconSize(QSize(-mGroupOrSize, -mGroupOrSize));
+        ui.canvas->setIconSize(QSize(-mGroupOrSize, -mGroupOrSize));
     } else {
         // Icon group.
         int groupSize = mpLoader->currentSize(static_cast<KIconLoader::Group>(mGroupOrSize));
-        mpCanvas->setIconSize(QSize(groupSize, groupSize));
+        ui.canvas->setIconSize(QSize(groupSize, groupSize));
     }
 
-    mpCanvas->loadFiles(filelist);
+    // Try to make room for three lines of text...
+    QFontMetrics metrics(ui.canvas->font());
+    const int frameHMargin = ui.canvas->style()->pixelMetric(QStyle::PM_FocusFrameHMargin, nullptr, ui.canvas) + 1;
+    const int lineCount = 3;
+    ui.canvas->setGridSize(QSize(100, ui.canvas->iconSize().height() + lineCount * metrics.height() + 3 * frameHMargin));
+
+    // Set a minimum size of 6x3 icons
+    const int columnCount = 6;
+    const int rowCount = 3;
+    QStyleOption opt;
+    opt.initFrom(ui.canvas);
+    int width = columnCount * ui.canvas->gridSize().width();
+    width += ui.canvas->verticalScrollBar()->sizeHint().width() + 1;
+    width += 2 * ui.canvas->frameWidth();
+    if (ui.canvas->style()->styleHint(QStyle::SH_ScrollView_FrameOnlyAroundContents, &opt, ui.canvas)) {
+        width += ui.canvas->style()->pixelMetric(QStyle::PM_ScrollView_ScrollBarSpacing, &opt, ui.canvas);
+    }
+    int height = rowCount * ui.canvas->gridSize().height() + 1;
+    height += 2 * ui.canvas->frameWidth();
+
+    ui.canvas->setMinimumSize(QSize(width, height));
+
+    model->setIconSize(ui.canvas->iconSize());
+    model->setDevicePixelRatio(q->devicePixelRatioF());
+    model->load(filelist);
 }
 
 void KIconDialog::setStrictIconSize(bool b)
@@ -523,24 +517,49 @@ void KIconDialog::setup(KIconLoader::Group group, KIconLoader::Context context, 
         d->mGroupOrSize = -iconSize;
     }
 
-    d->mpSystemIcons->setChecked(!user);
-    d->mpSystemIcons->setEnabled(!lockUser || !user);
-    d->mpOtherIcons->setChecked(user);
-    d->mpOtherIcons->setEnabled(!lockUser || user);
-    d->mpCombo->setEnabled(!user);
-    d->mpBrowseBut->setEnabled(user && !lockCustomDir);
-    d->setContext(context);
+    if (user) {
+        d->ui.contextCombo->setCurrentIndex(d->ui.contextCombo->count() - 1);
+    } else {
+        d->setContext(context);
+    }
+
+    d->ui.contextCombo->setEnabled(!user || !lockUser);
+
+    // Disable "Other" entry when user is locked
+    auto *model = qobject_cast<QStandardItemModel *>(d->ui.contextCombo->model());
+    auto *otherItem = model->item(model->rowCount() - 1);
+    auto flags = otherItem->flags();
+    flags.setFlag(Qt::ItemIsEnabled, !lockUser);
+    otherItem->setFlags(flags);
+
+    // Only allow browsing when explicitly allowed and user icons are allowed
+    // An app may not expect a path when asking only about system icons
+    d->browseButton->setVisible(!lockCustomDir && (!user || !lockUser));
 }
 
 void KIconDialogPrivate::setContext(KIconLoader::Context context)
 {
     mContext = context;
-    for (int i = 0; i < mNumContext; ++i) {
-        if (mContextMap[i] == context) {
-            mpCombo->setCurrentIndex(i);
-            return;
-        }
+    const int index = ui.contextCombo->findData(context);
+    if (index > -1) {
+        ui.contextCombo->setCurrentIndex(index);
     }
+}
+
+void KIconDialogPrivate::updatePlaceholderLabel()
+{
+    if (proxyModel->rowCount() > 0) {
+        placeholderLabel->hide();
+        return;
+    }
+
+    if (!ui.searchLine->text().isEmpty()) {
+        placeholderLabel->setText(i18n("No icons matching the search"));
+    } else {
+        placeholderLabel->setText(i18n("No icons in this category"));
+    }
+
+    placeholderLabel->show();
 }
 
 void KIconDialog::setCustomLocation(const QString &location)
@@ -555,8 +574,8 @@ QString KIconDialog::openDialog()
             return d->custom;
         }
 
-        const QString name = d->mpCanvas->getCurrent();
-        if (name.isEmpty() || d->mpOtherIcons->isChecked()) {
+        const QString name = d->ui.canvas->currentIndex().data(KIconDialogModel::PathRole).toString();
+        if (name.isEmpty() || !d->ui.contextCombo->currentData().isValid()) {
             return name;
         }
 
@@ -579,8 +598,8 @@ void KIconDialog::slotOk()
     if (!d->custom.isEmpty()) {
         name = d->custom;
     } else {
-        name = d->mpCanvas->getCurrent();
-        if (!name.isEmpty() && d->mpSystemIcons->isChecked()) {
+        name = d->ui.canvas->currentIndex().data(KIconDialogModel::PathRole).toString();
+        if (!name.isEmpty() && d->isSystemIconsContext()) {
             const QFileInfo fi(name);
             name = fi.completeBaseName();
         }
@@ -607,7 +626,7 @@ QString KIconDialog::getIcon(KIconLoader::Group group,
     return dlg.openDialog();
 }
 
-void KIconDialogPrivate::_k_slotBrowse()
+void KIconDialogPrivate::browse()
 {
     if (browseDialog) {
         browseDialog.data()->show();
@@ -618,68 +637,27 @@ void KIconDialogPrivate::_k_slotBrowse()
     // Create a file dialog to select an ICO, PNG, XPM or SVG file,
     // with the image previewer shown.
     QFileDialog *dlg = new QFileDialog(q, i18n("Select Icon"), QString(), i18n("*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"));
-    dlg->setModal(false);
+    // TODO This was deliberately modal before, why? Or just because "window modal" wasn't a thing?
+    dlg->setWindowModality(Qt::WindowModal);
     dlg->setFileMode(QFileDialog::ExistingFile);
-    QObject::connect(dlg, &QFileDialog::fileSelected, q, [this](const QString &file) {
-        _k_customFileSelected(file);
+    QObject::connect(dlg, &QFileDialog::fileSelected, q, [this](const QString &path) {
+        if (!path.isEmpty()) {
+            custom = path;
+            if (isSystemIconsContext()) {
+                customLocation = QFileInfo(custom).absolutePath();
+            }
+            q->slotOk();
+        }
     });
     browseDialog = dlg;
     dlg->show();
 }
 
-void KIconDialogPrivate::_k_customFileSelected(const QString &path)
+bool KIconDialogPrivate::isSystemIconsContext() const
 {
-    if (!path.isEmpty()) {
-        custom = path;
-        if (mpSystemIcons->isChecked()) {
-            customLocation = QFileInfo(custom).absolutePath();
-        }
-        q->slotOk();
-    }
-}
-
-void KIconDialogPrivate::_k_slotSystemIconClicked()
-{
-    mpBrowseBut->setEnabled(false);
-    mpCombo->setEnabled(true);
-    showIcons();
-}
-
-void KIconDialogPrivate::_k_slotOtherIconClicked()
-{
-    mpBrowseBut->setEnabled(!m_bLockCustomDir);
-    mpCombo->setEnabled(false);
-    showIcons();
-}
-
-void KIconDialogPrivate::_k_slotContext(int id)
-{
-    mContext = static_cast<KIconLoader::Context>(mContextMap[id]);
-    showIcons();
-}
-
-void KIconDialogPrivate::_k_slotStartLoading(int steps)
-{
-    if (steps < 10) {
-        mpProgress->hide();
-    } else {
-        mNumOfSteps = steps;
-        mpProgress->setValue(0);
-        mpProgress->show();
-    }
-}
-
-void KIconDialogPrivate::_k_slotProgress(int p)
-{
-    mpProgress->setValue(static_cast<int>(100.0 * (double)p / (double)mNumOfSteps));
-}
-
-void KIconDialogPrivate::_k_slotFinished()
-{
-    mNumOfSteps = 1;
-    mpProgress->hide();
+    return ui.contextCombo->currentData().isValid();
 }
 
 #include "kicondialog.moc"
 #include "moc_kicondialog.cpp"
-#include "moc_kicondialog_p.cpp"
+#include "moc_kicondialogmodel_p.cpp"

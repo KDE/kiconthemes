@@ -16,6 +16,10 @@ target_sources(KF5IconThemes PRIVATE
 
   hicolor.qrc
 )
+
+# TODO what's that PRIVATE about above?
+ki18n_wrap_ui(KF5IconThemes kicondialog.ui)
+
 ecm_qt_declare_logging_category(KF5IconThemes
     HEADER debug.h
     IDENTIFIER KICONTHEMES
