@@ -1,0 +1,109 @@
+# UTF-8 test:äëïöü
+# Copyright (C) 2001 Free Software Foundation, Inc.
+# Frikkie Thirion <frix@expertron.co.za>, 2001,2002,2005.
+# Juanita Franz <juanita.franz@vr-web.de>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4 stable\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-04-26 00:15+0000\n"
+"PO-Revision-Date: 2005-11-25 05:33+0200\n"
+"Last-Translator: Juanita Franz <juanita.franz@vr-web.de>\n"
+"Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:266 kicondialog.cpp:279 kicondialog.cpp:620
+#, kde-format
+msgid "Select Icon"
+msgstr "Kies Ikoon"
+
+#: kicondialog.cpp:295
+#, kde-format
+msgid "Icon Source"
+msgstr "Ikoon Bron"
+
+#: kicondialog.cpp:304
+#, kde-format
+msgid "S&ystem icons:"
+msgstr "Stelsel ikoone:"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "O&ther icons:"
+msgstr "Ander ikoone:"
+
+#: kicondialog.cpp:319
+#, kde-format
+msgid "&Browse..."
+msgstr "Blaai..."
+
+#: kicondialog.cpp:332
+#, kde-format
+msgid "&Search:"
+msgstr "Soek:"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgid "Search interactively for icon names (e.g. folder)."
+msgstr "Soek interaktief vir ikoon name (bv gids)."
+
+#: kicondialog.cpp:376
+#, kde-format
+msgid "Actions"
+msgstr "Aksies"
+
+#: kicondialog.cpp:377
+#, kde-format
+msgid "Applications"
+msgstr "Programme"
+
+#: kicondialog.cpp:378
+#, kde-format
+msgid "Categories"
+msgstr ""
+
+#: kicondialog.cpp:379
+#, kde-format
+msgid "Devices"
+msgstr "Toestelle"
+
+#: kicondialog.cpp:380
+#, kde-format
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:381
+#, kde-format
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:382
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime-tipes"
+
+#: kicondialog.cpp:383
+#, kde-format
+msgid "Places"
+msgstr ""
+
+#: kicondialog.cpp:384
+#, fuzzy, kde-format
+msgid "Status"
+msgstr "Opstart"
+
+#: kicondialog.cpp:385
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:620
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Ikoon Lêers (*.png *.xpm *.svg *.svgz)"
