@@ -596,6 +596,14 @@ public:
      */
     void resetPalette();
 
+    /**
+     * @returns whether we have set a custom palette using @f setCustomPalette
+     *
+     * @since 5.85
+     * @see resetPalette, setCustomPalette
+     */
+    bool hasCustomPalette() const;
+
 public Q_SLOTS:
     // TODO: while marked as deprecated, newIconLoader() is still used:
     // internally by KIconLoadeer as well as by Plasma's Icons kcm module (state: 5.17)

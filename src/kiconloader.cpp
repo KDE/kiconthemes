@@ -1860,6 +1860,11 @@ void KIconLoader::resetPalette()
     d->mCustomPalette = false;
 }
 
+bool KIconLoader::hasCustomPalette() const
+{
+    return d->mCustomPalette;
+}
+
 /*** the global icon loader ***/
 Q_GLOBAL_STATIC(KIconLoader, globalIconLoader)
 
