@@ -131,7 +131,7 @@ static QString paletteId(const QPalette &pal)
     return buffer;
 }
 
-/*** KIconThemeNode: A node in the icon theme dependancy tree. ***/
+/*** KIconThemeNode: A node in the icon theme dependency tree. ***/
 
 class KIconThemeNode
 {
@@ -1057,7 +1057,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     // but that would require different APIs. The long term solution is under
     // development for Qt >= 5.8, QFileIconProvider calling QPlatformTheme::fileIcon,
     // using QMimeType::genericIconName() to get the proper -x-generic fallback.
-    // Once everone uses that to look up mimetype icons, we can kill the fallback code
+    // Once everyone uses that to look up mimetype icons, we can kill the fallback code
     // from this method.
 
     for (KIconThemeNode *themeNode : qAsConst(links)) {

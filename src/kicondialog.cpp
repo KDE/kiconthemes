@@ -360,7 +360,7 @@ void KIconDialogPrivate::init()
         q->slotOk();
     });
 
-    // You can't just stack widgets ontop of each other in Qt Designer
+    // You can't just stack widgets on top of each other in Qt Designer
     auto *placeholderLayout = new QVBoxLayout(ui.canvas);
 
     placeholderLabel = new QLabel();

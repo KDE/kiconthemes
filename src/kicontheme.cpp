@@ -167,7 +167,7 @@ QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const 
 
     // Search the directory that contains the icon which matches best to the requested
     // size. If there is no directory which matches exactly to the requested size, the
-    // following criterias get applied:
+    // following criteria get applied:
     // - Take a directory having icons with a minimum difference to the requested size.
     // - Prefer directories that allow a downscaling even if the difference to
     //   the requested size is bigger than a directory where an upscaling is required.
