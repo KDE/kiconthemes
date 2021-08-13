@@ -1613,7 +1613,8 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
 
     // Eliminate duplicate entries (same icon in different directories)
     QString name;
-    QStringList res2, entries;
+    QStringList res2;
+    QStringList entries;
     QStringList::ConstIterator it;
     for (it = result.constBegin(); it != result.constEnd(); ++it) {
         int n = (*it).lastIndexOf(QLatin1Char('/'));
@@ -1653,7 +1654,8 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
 
     // Eliminate duplicate entries (same icon in different directories)
     QString name;
-    QStringList res2, entries;
+    QStringList res2;
+    QStringList entries;
     QStringList::ConstIterator it;
     for (it = result.constBegin(); it != result.constEnd(); ++it) {
         int n = (*it).lastIndexOf(QLatin1Char('/'));
@@ -1676,10 +1678,11 @@ bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
     d->initIconThemes();
 
-    for (KIconThemeNode *themeNode : qAsConst(d->links))
+    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
         if (themeNode->theme->hasContext(context)) {
             return true;
         }
+    }
     return false;
 }
 

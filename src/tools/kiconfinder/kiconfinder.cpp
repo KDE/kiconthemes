@@ -24,8 +24,9 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
 
     parser.process(app);
-    if (parser.positionalArguments().isEmpty())
+    if (parser.positionalArguments().isEmpty()) {
         parser.showHelp();
+    }
 
     for (const QString &iconName : parser.positionalArguments()) {
         const QString icon = KIconLoader::global()->iconPath(iconName, KIconLoader::Desktop /*TODO configurable*/, true);

@@ -58,7 +58,9 @@ void KIconEffect::init()
 {
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
 
-    int i, j, effect = -1;
+    int i;
+    int j;
+    int effect = -1;
     // FIXME: this really should be using KIconLoader::metaObject() to guarantee synchronization
     // performance wise it's also practically guaranteed to be faster
     QStringList groups;
@@ -74,7 +76,8 @@ void KIconEffect::init()
     states += QStringLiteral("Active");
     states += QStringLiteral("Disabled");
 
-    QStringList::ConstIterator it, it2;
+    QStringList::ConstIterator it;
+    QStringList::ConstIterator it2;
     QString _togray(QStringLiteral("togray"));
     QString _colorize(QStringLiteral("colorize"));
     QString _desaturate(QStringLiteral("desaturate"));
@@ -343,8 +346,13 @@ void KIconEffect::colorize(QImage &img, const QColor &col, float value)
     QRgb *data = ii.data;
     QRgb *end = data + ii.pixels;
 
-    float rcol = col.red(), gcol = col.green(), bcol = col.blue();
-    unsigned char red, green, blue, gray;
+    float rcol = col.red();
+    float gcol = col.green();
+    float bcol = col.blue();
+    unsigned char red;
+    unsigned char green;
+    unsigned char blue;
+    unsigned char gray;
     unsigned char val = (unsigned char)(255.0 * value);
     while (data != end) {
         gray = qGray(*data);
@@ -381,7 +389,8 @@ void KIconEffect::toMonochrome(QImage &img, const QColor &black, const QColor &w
     QRgb *end = data + ii.pixels;
 
     // Step 1: determine the average brightness
-    double values = 0.0, sum = 0.0;
+    double values = 0.0;
+    double sum = 0.0;
     bool grayscale = true;
     while (data != end) {
         sum += qGray(*data) * qAlpha(*data) + 255 * (255 - qAlpha(*data));
@@ -395,36 +404,42 @@ void KIconEffect::toMonochrome(QImage &img, const QColor &black, const QColor &w
 
     // Step 2: Modify the image
     unsigned char val = (unsigned char)(255.0 * value);
-    int rw = white.red(), gw = white.green(), bw = white.blue();
-    int rb = black.red(), gb = black.green(), bb = black.blue();
+    int rw = white.red();
+    int gw = white.green();
+    int bw = white.blue();
+    int rb = black.red();
+    int gb = black.green();
+    int bb = black.blue();
     data = ii.data;
 
     if (grayscale) {
         while (data != end) {
-            if (qRed(*data) <= medium)
+            if (qRed(*data) <= medium) {
                 *data = qRgba((val * rb + (0xFF - val) * qRed(*data)) >> 8,
                               (val * gb + (0xFF - val) * qGreen(*data)) >> 8,
                               (val * bb + (0xFF - val) * qBlue(*data)) >> 8,
                               qAlpha(*data));
-            else
+            } else {
                 *data = qRgba((val * rw + (0xFF - val) * qRed(*data)) >> 8,
                               (val * gw + (0xFF - val) * qGreen(*data)) >> 8,
                               (val * bw + (0xFF - val) * qBlue(*data)) >> 8,
                               qAlpha(*data));
+            }
             ++data;
         }
     } else {
         while (data != end) {
-            if (qGray(*data) <= medium)
+            if (qGray(*data) <= medium) {
                 *data = qRgba((val * rb + (0xFF - val) * qRed(*data)) >> 8,
                               (val * gb + (0xFF - val) * qGreen(*data)) >> 8,
                               (val * bb + (0xFF - val) * qBlue(*data)) >> 8,
                               qAlpha(*data));
-            else
+            } else {
                 *data = qRgba((val * rw + (0xFF - val) * qRed(*data)) >> 8,
                               (val * gw + (0xFF - val) * qGreen(*data)) >> 8,
                               (val * bw + (0xFF - val) * qBlue(*data)) >> 8,
                               qAlpha(*data));
+            }
             ++data;
         }
     }
@@ -441,7 +456,9 @@ void KIconEffect::deSaturate(QImage &img, float value)
     QRgb *end = data + ii.pixels;
 
     QColor color;
-    int h, s, v;
+    int h;
+    int s;
+    int v;
     while (data != end) {
         color.setRgb(*data);
         color.getHsv(&h, &s, &v);
@@ -570,9 +587,11 @@ QImage KIconEffect::doublePixels(const QImage &src) const
         return QImage();
     }
 
-    int x, y;
+    int x;
+    int y;
     if (src.depth() == 32) {
-        QRgb *l1, *l2;
+        QRgb *l1;
+        QRgb *l2;
         for (y = 0; y < h; ++y) {
             l1 = (QRgb *)src.scanLine(y);
             l2 = (QRgb *)dst.scanLine(y * 2);
@@ -623,7 +642,8 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
         overlay = overlay.convertToFormat(QImage::Format_ARGB32);
     }
 
-    int i, j;
+    int i;
+    int j;
 
     // We don't do 1 bpp
 
@@ -661,7 +681,8 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
         }
 
         // Overwrite nontransparent pixels.
-        unsigned char *oline, *sline;
+        unsigned char *oline;
+        unsigned char *sline;
         for (i = 0; i < src.height(); ++i) {
             oline = overlay.scanLine(i);
             sline = src.scanLine(i);
@@ -676,9 +697,16 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
     // Overlay at 32 bpp does use alpha blending
 
     if (src.depth() == 32) {
-        QRgb *oline, *sline;
-        int r1, g1, b1, a1;
-        int r2, g2, b2, a2;
+        QRgb *oline;
+        QRgb *sline;
+        int r1;
+        int g1;
+        int b1;
+        int a1;
+        int r2;
+        int g2;
+        int b2;
+        int a2;
 
         for (i = 0; i < src.height(); ++i) {
             oline = (QRgb *)overlay.scanLine(i);

@@ -285,7 +285,8 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
-    QString fileName, mainSection;
+    QString fileName;
+    QString mainSection;
     for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
         const QString cDir = *it + QLatin1Char('/') + name + QLatin1Char('/');
         if (QDir(cDir).exists()) {
@@ -543,8 +544,9 @@ QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoade
 {
     for (const QString &current : qAsConst(d->mExtensions)) {
         const QString path = iconPath(iconName + current, size, match, scale);
-        if (!path.isEmpty())
+        if (!path.isEmpty()) {
             return path;
+        }
     }
     return QString();
 }
