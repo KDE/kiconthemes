@@ -39,7 +39,7 @@ ecm_setup_version(PROJECT
                   SOVERSION 5)
 
 # Dependencies
-set(REQUIRED_QT_VERSION 5.15.0)
+set(REQUIRED_QT_VERSION 5.15.2)
 find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt5Svg ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 if (NOT ANDROID)
@@ -55,7 +55,7 @@ find_package(KF5ItemViews ${KF_DEP_VERSION} REQUIRED)
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f00)
+add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
 add_definitions(-DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"kiconthemes5\")
