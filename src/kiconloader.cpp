@@ -189,8 +189,8 @@ KICONTHEMES_EXPORT int kiconloader_ms_between_checks = 5000;
 class KIconLoaderPrivate
 {
 public:
-    KIconLoaderPrivate(KIconLoader *q)
-        : q(q)
+    KIconLoaderPrivate(KIconLoader *qq)
+        : q(qq)
     {
     }
 
