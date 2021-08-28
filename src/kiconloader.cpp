@@ -1060,7 +1060,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     // Once everyone uses that to look up mimetype icons, we can kill the fallback code
     // from this method.
 
-    for (KIconThemeNode *themeNode : qAsConst(links)) {
+    for (KIconThemeNode *themeNode : std::as_const(links)) {
         const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest, scale);
         if (!path.isEmpty()) {
             return path;
@@ -1072,7 +1072,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     }
     bool genericFallback = false;
     QString path;
-    for (KIconThemeNode *themeNode : qAsConst(links)) {
+    for (KIconThemeNode *themeNode : std::as_const(links)) {
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
@@ -1156,7 +1156,7 @@ inline QString KIconLoaderPrivate::unknownIconPath(int size, qreal scale) const
 
 QString KIconLoaderPrivate::locate(const QString &fileName)
 {
-    for (const QString &dir : qAsConst(searchPaths)) {
+    for (const QString &dir : std::as_const(searchPaths)) {
         const QString path = dir + QLatin1Char('/') + fileName;
         if (QDir(dir).isAbsolute()) {
             if (QFileInfo::exists(path)) {
@@ -1486,7 +1486,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
 
         QString path;
 
-        for (KIconThemeNode *themeNode : qAsConst(d->links)) {
+        for (KIconThemeNode *themeNode : std::as_const(d->links)) {
             path = themeNode->theme->iconPath(file, size, KIconLoader::MatchExact);
             if (!path.isEmpty()) {
                 break;
@@ -1494,7 +1494,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
         }
 
         if (path.isEmpty()) {
-            for (KIconThemeNode *themeNode : qAsConst(d->links)) {
+            for (KIconThemeNode *themeNode : std::as_const(d->links)) {
                 path = themeNode->theme->iconPath(file, size, KIconLoader::MatchBest);
                 if (!path.isEmpty()) {
                     break;
@@ -1607,7 +1607,7 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
         size = -group_or_size;
     }
 
-    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
+    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
         themeNode->queryIconsByContext(&result, size, context);
     }
 
@@ -1648,7 +1648,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
         size = -group_or_size;
     }
 
-    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
+    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
         themeNode->queryIcons(&result, size, context);
     }
 
@@ -1678,7 +1678,7 @@ bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
     d->initIconThemes();
 
-    for (KIconThemeNode *themeNode : qAsConst(d->links)) {
+    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
         if (themeNode->theme->hasContext(context)) {
             return true;
         }

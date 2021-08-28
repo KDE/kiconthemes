@@ -542,7 +542,7 @@ QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoade
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match, qreal scale) const
 {
-    for (const QString &current : qAsConst(d->mExtensions)) {
+    for (const QString &current : std::as_const(d->mExtensions)) {
         const QString path = iconPath(iconName + current, size, match, scale);
         if (!path.isEmpty()) {
             return path;
@@ -632,7 +632,7 @@ QStringList KIconTheme::list()
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
-    for (const QString &it : qAsConst(icnlibs)) {
+    for (const QString &it : std::as_const(icnlibs)) {
         QDir dir(it);
         const QStringList lst = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
         for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {

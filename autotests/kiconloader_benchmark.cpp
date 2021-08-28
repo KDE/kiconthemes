@@ -78,7 +78,7 @@ private Q_SLOTS:
                                     QStringLiteral("kde")};
 
         QBENCHMARK {
-            for (const QString &iconName : qAsConst(icons)) {
+            for (const QString &iconName : std::as_const(icons)) {
                 const QIcon icon = QIcon::fromTheme(iconName);
                 if (icon.isNull()) {
                     QSKIP("missing icons");
