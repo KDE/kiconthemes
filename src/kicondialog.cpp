@@ -340,7 +340,7 @@ void KIconDialogPrivate::init()
     ui.contextCombo->setMaxVisibleItems(ui.contextCombo->count());
     ui.contextCombo->setFixedSize(ui.contextCombo->sizeHint());
 
-    QObject::connect(ui.contextCombo, QOverload<int>::of(&QComboBox::activated), q, [this]() {
+    QObject::connect(ui.contextCombo, qOverload<int>(&QComboBox::activated), q, [this]() {
         const auto currentData = ui.contextCombo->currentData();
         if (currentData.isValid()) {
             mContext = static_cast<KIconLoader::Context>(ui.contextCombo->currentData().toInt());
