@@ -1,0 +1,124 @@
+# Translation of kiconthemes5.po to Catalan (Valencian)
+# Copyright (C) 1998-2018 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Sebastià Pla i Sanz <sps@sastia.com>, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006.
+# Josep Ma. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2016, 2018.
+# Albert Astals Cid <aacid@kde.org>, 2007.
+# Robert Millan <rmh@aybabtu.com>, 2009.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2011, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-06 00:14+0000\n"
+"PO-Revision-Date: 2018-06-28 20:04+0100\n"
+"Last-Translator: Josep Ma. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: kicondialog.cpp:306
+#, kde-format
+msgid "All"
+msgstr "Tot"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "Actions"
+msgstr "Accions"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "Applications"
+msgstr "Aplicacions"
+
+#: kicondialog.cpp:309
+#, kde-format
+msgid "Categories"
+msgstr "Categories"
+
+#: kicondialog.cpp:310
+#, kde-format
+msgid "Devices"
+msgstr "Dispositius"
+
+#: kicondialog.cpp:311
+#, kde-format
+msgid "Emblems"
+msgstr "Emblemes"
+
+#: kicondialog.cpp:312
+#, kde-format
+msgid "Emotes"
+msgstr "Emoticones"
+
+#: kicondialog.cpp:313
+#, kde-format
+msgid "Mimetypes"
+msgstr "Tipus MIME"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "Places"
+msgstr "Llocs"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "Status"
+msgstr "Estat"
+
+#: kicondialog.cpp:339
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr ""
+
+#: kicondialog.cpp:386
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Navega..."
+
+#: kicondialog.cpp:557
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:559
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:639 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Trieu una icona"
+
+#: kicondialog.cpp:639
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Fitxers d'icona (*.ico *.png *.xpm *.svg *."
+"svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "Trieu una icona"
