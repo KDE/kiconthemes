@@ -1,0 +1,12 @@
+Dependencies:
+- 'on': ['Linux', 'FreeBSD', 'Windows', 'macOS']
+  'require':
+    'frameworks/extra-cmake-modules': '@same'
+    'frameworks/ki18n' : '@same'
+    'frameworks/kconfigwidgets' : '@same'
+    'frameworks/kwidgetsaddons' : '@same'
+    'frameworks/kitemviews' : '@same'
+    'frameworks/karchive' : '@same'
+
+Options:
+  test-before-installing: True
