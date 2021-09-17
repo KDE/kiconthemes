@@ -300,7 +300,13 @@ public:
      * Used with KIconLoader::loadIcon to get a base key name from the given
      * icon metadata. Ensure the metadata is normalized first.
      */
-    QString makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, const QSize &size, qreal scale, int state) const;
+    QString makeCacheKey(const QString &name,
+                         KIconLoader::Group group,
+                         const QStringList &overlays,
+                         const QSize &size,
+                         qreal scale,
+                         int state,
+                         const std::optional<QPalette> &palette) const;
 
     /**
      * @internal
@@ -309,7 +315,7 @@ public:
      * as text color, background color, highlight color, positive/neutral/negative color
      * @see KColorScheme
      */
-    QByteArray processSvg(const QString &path, KIconLoader::States state) const;
+    QByteArray processSvg(const QString &path, KIconLoader::States state, const std::optional<QPalette> &palette) const;
 
     /**
      * @internal
@@ -317,7 +323,7 @@ public:
      * @p size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
-    QImage createIconImage(const QString &path, const QSize &size = {}, qreal scale = 1.0, KIconLoader::States state = KIconLoader::DefaultState);
+    QImage createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const std::optional<QPalette> &palette);
 
     /**
      * @internal
@@ -835,7 +841,13 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize 
     }
 }
 
-QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group group, const QStringList &overlays, const QSize &size, qreal scale, int state) const
+QString KIconLoaderPrivate::makeCacheKey(const QString &name,
+                                         KIconLoader::Group group,
+                                         const QStringList &overlays,
+                                         const QSize &size,
+                                         qreal scale,
+                                         int state,
+                                         const std::optional<QPalette> &palette) const
 {
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
@@ -851,12 +863,12 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name, KIconLoader::Group
             % overlays.join(QLatin1Char('_'))
             % (group >= 0 ? mpEffect.fingerprint(group, state) : NULL_EFFECT_FINGERPRINT())
             % QLatin1Char('_')
-            % paletteId(mCustomPalette ? mPalette : qApp->palette())
+            % paletteId(palette ? *palette : mCustomPalette ? mPalette : qApp->palette())
             % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
     /* clang-format on */
 }
 
-QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state) const
+QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state, const std::optional<QPalette> &palette) const
 {
     QScopedPointer<QIODevice> device;
 
@@ -870,7 +882,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         return QByteArray();
     }
 
-    const QPalette pal = mCustomPalette ? mPalette : qApp->palette();
+    const QPalette pal = palette ? *palette : mCustomPalette ? mPalette : qApp->palette();
     KColorScheme scheme(QPalette::Active, KColorScheme::Window);
 
     /* clang-format off */
@@ -910,14 +922,15 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     return processedContents;
 }
 
-QImage KIconLoaderPrivate::createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state)
+QImage
+KIconLoaderPrivate::createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const std::optional<QPalette> &palette)
 {
     // TODO: metadata in the theme to make it do this only if explicitly supported?
     QImageReader reader;
     QBuffer buffer;
 
     if (q->theme() && q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
-        buffer.setData(processSvg(path, state));
+        buffer.setData(processSvg(path, state, palette));
         reader.setDevice(&buffer);
     } else {
         reader.setFileName(path);
@@ -1290,11 +1303,24 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
 QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     KIconLoader::Group group,
                                     qreal scale,
-                                    const QSize &_size,
+                                    const QSize &size,
                                     int state,
                                     const QStringList &overlays,
                                     QString *path_store,
                                     bool canReturnNull) const
+{
+    return loadScaledIcon(_name, group, scale, size, state, overlays, path_store, canReturnNull, {});
+}
+
+QPixmap KIconLoader::loadScaledIcon(const QString &_name,
+                                    KIconLoader::Group group,
+                                    qreal scale,
+                                    const QSize &_size,
+                                    int state,
+                                    const QStringList &overlays,
+                                    QString *path_store,
+                                    bool canReturnNull,
+                                    const std::optional<QPalette> &palette) const
 
 {
     QString name = _name;
@@ -1338,7 +1364,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     d->normalizeIconMetadata(group, size, state);
 
     // See if the image is already cached.
-    QString key = d->makeCacheKey(name, group, overlays, size, scale, state);
+    QString key = d->makeCacheKey(name, group, overlays, size, scale, state, palette);
     QPixmap pix;
 
     bool iconWasUnknown = false;
@@ -1391,7 +1417,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
 
     QImage img;
     if (!path.isEmpty()) {
-        img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state));
+        img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state), palette);
     }
 
     if (group >= 0 && group < KIconLoader::LastGroup) {
@@ -1900,6 +1926,11 @@ QIcon KDE::icon(const QString &iconName, KIconLoader *iconLoader)
 QIcon KDE::icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader)
 {
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global(), overlays));
+}
+
+QIcon KDE::icon(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader)
+{
+    return QIcon(new KIconEngine(iconName, palette, iconLoader ? iconLoader : KIconLoader::global()));
 }
 
 #include "kiconloader.moc"

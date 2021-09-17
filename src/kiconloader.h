@@ -15,6 +15,7 @@
 #include <QString>
 #include <QStringList>
 #include <memory>
+#include <optional>
 
 #include <kiconthemes_export.h>
 
@@ -327,6 +328,16 @@ public:
                            const QStringList &overlays = QStringList(),
                            QString *path_store = nullptr,
                            bool canReturnNull = false) const;
+
+    QPixmap loadScaledIcon(const QString &name,
+                           KIconLoader::Group group,
+                           qreal scale,
+                           const QSize &size,
+                           int state,
+                           const QStringList &overlays,
+                           QString *path_store,
+                           bool canReturnNull,
+                           const std::optional<QPalette> &palette) const;
 
     /**
      * Loads an icon for a mimetype.
@@ -789,6 +800,7 @@ namespace KDE
  * @since 5.0
  */
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = nullptr);
+KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader = nullptr);
 
 /**
  * \relates KIconLoader

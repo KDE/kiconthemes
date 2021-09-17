@@ -11,23 +11,33 @@
 
 #include <KIconTheme>
 #include <QPainter>
+#include <QPalette>
+#include <qscopeguard.h>
 
 class KIconEnginePrivate
 {
 public:
     QPointer<KIconLoader> mIconLoader;
+    bool mHasPalette = false;
+    QPalette mPalette;
 };
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
     : mIconName(iconName)
     , mOverlays(overlays)
-    , d(new KIconEnginePrivate{iconLoader})
+    , d(new KIconEnginePrivate{iconLoader, false, {}})
 {
 }
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader)
     : mIconName(iconName)
-    , d(new KIconEnginePrivate{iconLoader})
+    , d(new KIconEnginePrivate{iconLoader, false, {}})
+{
+}
+
+KIconEngine::KIconEngine(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader)
+    : mIconName(iconName)
+    , d(new KIconEnginePrivate{iconLoader, true, palette})
 {
 }
 
@@ -93,7 +103,15 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     const QSize scaledSize = size / scale;
 
     const int kstate = qIconModeToKIconState(mode);
-    QPixmap pix = d->mIconLoader->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, scaledSize, kstate, mOverlays);
+    QPixmap pix = d->mIconLoader->loadScaledIcon(mIconName,
+                                                 KIconLoader::Desktop,
+                                                 scale,
+                                                 scaledSize,
+                                                 kstate,
+                                                 mOverlays,
+                                                 nullptr,
+                                                 false,
+                                                 d->mHasPalette ? std::make_optional(d->mPalette) : std::nullopt);
 
     if (pix.size() == size) {
         return pix;
