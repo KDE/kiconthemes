@@ -12,17 +12,28 @@
 #include <KIconTheme>
 #include <QPainter>
 
+class KIconEnginePrivate
+{
+public:
+    QPointer<KIconLoader> mIconLoader;
+};
+
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
     : mIconName(iconName)
     , mOverlays(overlays)
-    , mIconLoader(iconLoader)
+    , d(new KIconEnginePrivate{iconLoader})
 {
 }
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader)
     : mIconName(iconName)
-    , mIconLoader(iconLoader)
+    , d(new KIconEnginePrivate{iconLoader})
 {
+}
+
+KIconEngine::~KIconEngine()
+{
+    delete d;
 }
 
 static inline int qIconModeToKIconState(QIcon::Mode mode)
@@ -52,7 +63,7 @@ QSize KIconEngine::actualSize(const QSize &size, QIcon::Mode mode, QIcon::State 
 
 void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state)
 {
-    if (!mIconLoader) {
+    if (!d->mIconLoader) {
         return;
     }
 
@@ -72,7 +83,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
         return QPixmap();
     }
 
-    if (!mIconLoader) {
+    if (!d->mIconLoader) {
         QPixmap pm(size);
         pm.setDevicePixelRatio(scale);
         pm.fill(Qt::transparent);
@@ -82,7 +93,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     const QSize scaledSize = size / scale;
 
     const int kstate = qIconModeToKIconState(mode);
-    QPixmap pix = mIconLoader.data()->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, scaledSize, kstate, mOverlays);
+    QPixmap pix = d->mIconLoader->loadScaledIcon(mIconName, KIconLoader::Desktop, scale, scaledSize, kstate, mOverlays);
 
     if (pix.size() == size) {
         return pix;
@@ -109,7 +120,7 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 
 QString KIconEngine::iconName() const
 {
-    if (!mIconLoader || !mIconLoader->hasIcon(mIconName)) {
+    if (!d->mIconLoader || !d->mIconLoader->hasIcon(mIconName)) {
         return QString();
     }
     return mIconName;
@@ -125,11 +136,11 @@ QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) c
     Q_UNUSED(mode);
     Q_UNUSED(state);
 
-    if (!mIconLoader) {
+    if (!d->mIconLoader) {
         return QList<QSize>();
     }
 
-    const bool found = mIconLoader->hasIcon(mIconName);
+    const bool found = d->mIconLoader->hasIcon(mIconName);
     return found ? *sSizes : QList<QSize>();
 }
 
@@ -140,7 +151,7 @@ QString KIconEngine::key() const
 
 QIconEngine *KIconEngine::clone() const
 {
-    return new KIconEngine(mIconName, mIconLoader.data(), mOverlays);
+    return new KIconEngine(mIconName, d->mIconLoader, mOverlays);
 }
 
 bool KIconEngine::read(QDataStream &in)
@@ -158,7 +169,7 @@ bool KIconEngine::write(QDataStream &out) const
 void KIconEngine::virtual_hook(int id, void *data)
 {
     if (id == QIconEngine::IsNullHook) {
-        *reinterpret_cast<bool *>(data) = !mIconLoader || !mIconLoader->hasIcon(mIconName);
+        *reinterpret_cast<bool *>(data) = !d->mIconLoader || !d->mIconLoader->hasIcon(mIconName);
     }
     if (id == QIconEngine::ScaledPixmapHook) {
         auto *info = reinterpret_cast<ScaledPixmapArgument *>(data);

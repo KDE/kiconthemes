@@ -13,6 +13,7 @@
 #include <QPointer>
 
 class KIconLoader;
+class KIconEnginePrivate;
 
 /**
  * @class KIconEngine kiconengine.h KIconEngine
@@ -76,11 +77,7 @@ private:
     QPixmap createPixmap(const QSize &size, qreal scale, QIcon::Mode mode, QIcon::State state);
     QString mIconName;
     QStringList mOverlays;
-    QPointer<KIconLoader> mIconLoader;
+    KIconEnginePrivate *const d;
 };
-
-inline KIconEngine::~KIconEngine()
-{
-}
 
 #endif
