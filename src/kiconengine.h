@@ -12,6 +12,7 @@
 #include <QIconEngine>
 #include <QPointer>
 
+class KIconColors;
 class KIconLoader;
 class KIconEnginePrivate;
 
@@ -53,10 +54,10 @@ public:
      * Constructs an icon engine for a KDE named icon with a specific palette.
      *
      * @param iconName the name of the icon to load
-     * @param palette defines the color palette we want to be applied on this icon
+     * @param colors defines the colors we want to be applied on this icon
      * @param iconLoader The KDE icon loader that this engine is to use.
      */
-    KIconEngine(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader);
+    KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader);
 
     /**
      * Destructor.

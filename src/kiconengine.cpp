@@ -9,17 +9,17 @@
 
 #include <kiconloader.h>
 
+#include "kiconcolors.h"
 #include <KIconTheme>
 #include <QPainter>
-#include <QPalette>
 #include <qscopeguard.h>
 
 class KIconEnginePrivate
 {
 public:
     QPointer<KIconLoader> mIconLoader;
-    bool mHasPalette = false;
-    QPalette mPalette;
+    bool mCustomColors = false;
+    KIconColors mColors;
 };
 
 KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays)
@@ -35,9 +35,9 @@ KIconEngine::KIconEngine(const QString &iconName, KIconLoader *iconLoader)
 {
 }
 
-KIconEngine::KIconEngine(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader)
+KIconEngine::KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader)
     : mIconName(iconName)
-    , d(new KIconEnginePrivate{iconLoader, true, palette})
+    , d(new KIconEnginePrivate{iconLoader, true, colors})
 {
 }
 
@@ -111,7 +111,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
                                                  mOverlays,
                                                  nullptr,
                                                  false,
-                                                 d->mHasPalette ? std::make_optional(d->mPalette) : std::nullopt);
+                                                 d->mCustomColors ? std::make_optional(d->mColors) : std::nullopt);
 
     if (pix.size() == size) {
         return pix;

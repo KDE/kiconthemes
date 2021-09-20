@@ -13,6 +13,7 @@ target_sources(KF5IconThemes PRIVATE
   kiconengine.cpp
   kiconloader.cpp
   kicontheme.cpp
+  kiconcolors.cpp
 
   hicolor.qrc
 )
@@ -64,6 +65,7 @@ set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
 ecm_generate_headers(KIconThemes_HEADERS
   HEADER_NAMES
   KIconButton
+  KIconColors
   KIconDialog
   KIconEffect
   KIconLoader

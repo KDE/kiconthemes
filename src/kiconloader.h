@@ -15,7 +15,10 @@
 #include <QString>
 #include <QStringList>
 #include <memory>
+
+#if __has_include(<optional>) && __cplusplus >= 201703L
 #include <optional>
+#endif
 
 #include <kiconthemes_export.h>
 
@@ -23,6 +26,7 @@ class QIcon;
 class QMovie;
 class QPixmap;
 
+class KIconColors;
 class KIconLoaderPrivate;
 class KIconEffect;
 class KIconTheme;
@@ -329,6 +333,43 @@ public:
                            QString *path_store = nullptr,
                            bool canReturnNull = false) const;
 
+#if __has_include(<optional>) && __cplusplus >= 201703L
+    /**
+     * Loads an icon. It will try very hard to find an icon which is
+     * suitable. If no exact match is found, a close match is searched.
+     * If neither an exact nor a close match is found, a null pixmap or
+     * the "unknown" pixmap is returned, depending on the value of the
+     * @p canReturnNull parameter.
+     *
+     * @param name The name of the icon, without extension.
+     * @param group The icon group. This will specify the size of and effects to
+     * be applied to the icon.
+     * @param scale The scale of the icon group to use. If no icon exists in the
+     * scaled group, a 1x icon with its size multiplied by the scale will be
+     * loaded instead.
+     * @param size If nonzero, this overrides the size specified by @p group.
+     *             See KIconLoader::StdSizes. The icon will be fit into @p size
+     *             without changing the aspect ratio, which particularly matters
+     *             for non-square icons.
+     * @param state The icon state: @p DefaultState, @p ActiveState or
+     * @p DisabledState. Depending on the user's preferences, the iconloader
+     * may apply a visual effect to hint about its state.
+     * @param overlays a list of emblem icons to overlay, by name
+     *                 @see drawOverlays
+     * @param path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found @p path_store
+     *        is unaltered even if the "unknown" pixmap was returned.
+     * @param canReturnNull Can return a null pixmap? If false, the
+     *        "unknown" pixmap is returned when no appropriate icon has been
+     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        event of invalid parameters, such as empty names, negative sizes,
+     *        and etc.
+     * @param colorScheme will define the stylesheet used to color this icon.
+     *        Note this will only work if @p name is an svg file.
+     * @return the QPixmap. Can be null when not found, depending on
+     *         @p canReturnNull.
+     * @since 5.84
+     */
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
                            qreal scale,
@@ -337,7 +378,8 @@ public:
                            const QStringList &overlays,
                            QString *path_store,
                            bool canReturnNull,
-                           const std::optional<QPalette> &palette) const;
+                           const std::optional<KIconColors> &colorScheme) const;
+#endif
 
     /**
      * Loads an icon for a mimetype.
@@ -800,7 +842,7 @@ namespace KDE
  * @since 5.0
  */
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = nullptr);
-KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader = nullptr);
+KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader = nullptr);
 
 /**
  * \relates KIconLoader

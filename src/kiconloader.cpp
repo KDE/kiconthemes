@@ -26,6 +26,7 @@
 
 // kdeui
 #include "debug.h"
+#include "kiconcolors.h"
 #include "kiconeffect.h"
 #include "kicontheme.h"
 
@@ -63,32 +64,6 @@ QString NULL_EFFECT_FINGERPRINT()
     return QStringLiteral("noeffect");
 }
 
-QString STYLESHEET_TEMPLATE()
-{
-    /* clang-format off */
-    return QStringLiteral(".ColorScheme-Text {\
-color:%1;\
-}\
-.ColorScheme-Background{\
-color:%2;\
-}\
-.ColorScheme-Highlight{\
-color:%3;\
-}\
-.ColorScheme-HighlightedText{\
-color:%4;\
-}\
-.ColorScheme-PositiveText{\
-color:%5;\
-}\
-.ColorScheme-NeutralText{\
-color:%6;\
-}\
-.ColorScheme-NegativeText{\
-color:%7;\
-}");
-    /* clang-format on */
-}
 }
 
 /**
@@ -118,15 +93,15 @@ KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer)
     }
 }
 
-static QString paletteId(const QPalette &pal)
+static QString paletteId(const KIconColors &colors)
 {
     // 8 per color. We want 3 colors thus 8*4=32.
     QString buffer(32, Qt::Uninitialized);
 
-    uintToHex(pal.windowText().color().rgba(), buffer.data());
-    uintToHex(pal.highlight().color().rgba(), buffer.data() + 8);
-    uintToHex(pal.highlightedText().color().rgba(), buffer.data() + 16);
-    uintToHex(pal.window().color().rgba(), buffer.data() + 24);
+    uintToHex(colors.text().rgba(), buffer.data());
+    uintToHex(colors.highlight().rgba(), buffer.data() + 8);
+    uintToHex(colors.highlightedText().rgba(), buffer.data() + 16);
+    uintToHex(colors.background().rgba(), buffer.data() + 24);
 
     return buffer;
 }
@@ -306,7 +281,7 @@ public:
                          const QSize &size,
                          qreal scale,
                          int state,
-                         const std::optional<QPalette> &palette) const;
+                         const KIconColors &colors) const;
 
     /**
      * @internal
@@ -315,7 +290,7 @@ public:
      * as text color, background color, highlight color, positive/neutral/negative color
      * @see KColorScheme
      */
-    QByteArray processSvg(const QString &path, KIconLoader::States state, const std::optional<QPalette> &palette) const;
+    QByteArray processSvg(const QString &path, KIconLoader::States state, const KIconColors &colors) const;
 
     /**
      * @internal
@@ -323,7 +298,7 @@ public:
      * @p size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
-    QImage createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const std::optional<QPalette> &palette);
+    QImage createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const KIconColors &colors);
 
     /**
      * @internal
@@ -383,10 +358,11 @@ public:
 
     QHash<QString, bool> mIconAvailability; // icon name -> true (known to be available) or false (known to be unavailable)
     QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
-    // the palette used to recolor svg icons stylesheets
+    // the colors used to recolor svg icons stylesheets
+    KIconColors mColors;
     QPalette mPalette;
     // to keep track if we are using a custom palette or just falling back to qApp;
-    bool mCustomPalette = false;
+    bool mCustomColors = false;
 };
 
 class KIconLoaderGlobalData : public QObject
@@ -847,7 +823,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
                                          const QSize &size,
                                          qreal scale,
                                          int state,
-                                         const std::optional<QPalette> &palette) const
+                                         const KIconColors &colors) const
 {
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
@@ -863,12 +839,12 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
             % overlays.join(QLatin1Char('_'))
             % (group >= 0 ? mpEffect.fingerprint(group, state) : NULL_EFFECT_FINGERPRINT())
             % QLatin1Char('_')
-            % paletteId(palette ? *palette : mCustomPalette ? mPalette : qApp->palette())
+            % paletteId(colors)
             % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
     /* clang-format on */
 }
 
-QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state, const std::optional<QPalette> &palette) const
+QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state, const KIconColors &colors) const
 {
     QScopedPointer<QIODevice> device;
 
@@ -882,20 +858,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
         return QByteArray();
     }
 
-    const QPalette pal = palette ? *palette : mCustomPalette ? mPalette : qApp->palette();
-    KColorScheme scheme(QPalette::Active, KColorScheme::Window);
-
-    /* clang-format off */
-    QString styleSheet = STYLESHEET_TEMPLATE().arg(
-                                state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.windowText().color().name(),
-                                state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.window().color().name(),
-                                state == KIconLoader::SelectedState ? pal.highlightedText().color().name() : pal.highlight().color().name(),
-                                state == KIconLoader::SelectedState ? pal.highlight().color().name() : pal.highlightedText().color().name(),
-                                scheme.foreground(KColorScheme::PositiveText).color().name(),
-                                scheme.foreground(KColorScheme::NeutralText).color().name(),
-                                scheme.foreground(KColorScheme::NegativeText).color().name());
-    /* clang-format on */
-
+    const QString styleSheet = colors.stylesheet(state);
     QByteArray processedContents;
     QXmlStreamReader reader(device.data());
 
@@ -922,15 +885,14 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     return processedContents;
 }
 
-QImage
-KIconLoaderPrivate::createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const std::optional<QPalette> &palette)
+QImage KIconLoaderPrivate::createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const KIconColors &colors)
 {
     // TODO: metadata in the theme to make it do this only if explicitly supported?
     QImageReader reader;
     QBuffer buffer;
 
     if (q->theme() && q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
-        buffer.setData(processSvg(path, state, palette));
+        buffer.setData(processSvg(path, state, colors));
         reader.setDevice(&buffer);
     } else {
         reader.setFileName(path);
@@ -1320,7 +1282,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     const QStringList &overlays,
                                     QString *path_store,
                                     bool canReturnNull,
-                                    const std::optional<QPalette> &palette) const
+                                    const std::optional<KIconColors> &colors) const
 
 {
     QString name = _name;
@@ -1364,7 +1326,8 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     d->normalizeIconMetadata(group, size, state);
 
     // See if the image is already cached.
-    QString key = d->makeCacheKey(name, group, overlays, size, scale, state, palette);
+    auto usedColors = colors ? *colors : d->mCustomColors ? d->mColors : KIconColors(qApp->palette());
+    QString key = d->makeCacheKey(name, group, overlays, size, scale, state, usedColors);
     QPixmap pix;
 
     bool iconWasUnknown = false;
@@ -1417,7 +1380,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
 
     QImage img;
     if (!path.isEmpty()) {
-        img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state), palette);
+        img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state), usedColors);
     }
 
     if (group >= 0 && group < KIconLoader::LastGroup) {
@@ -1875,23 +1838,23 @@ bool KIconLoader::hasIcon(const QString &name) const
 
 void KIconLoader::setCustomPalette(const QPalette &palette)
 {
-    d->mCustomPalette = true;
-    d->mPalette = palette;
+    d->mCustomColors = true;
+    d->mColors = KIconColors(palette);
 }
 
 QPalette KIconLoader::customPalette() const
 {
-    return d->mCustomPalette ? d->mPalette : QPalette();
+    return d->mCustomColors ? d->mPalette : QPalette();
 }
 
 void KIconLoader::resetPalette()
 {
-    d->mCustomPalette = false;
+    d->mCustomColors = false;
 }
 
 bool KIconLoader::hasCustomPalette() const
 {
-    return d->mCustomPalette;
+    return d->mCustomColors;
 }
 
 /*** the global icon loader ***/
@@ -1928,9 +1891,9 @@ QIcon KDE::icon(const QString &iconName, const QStringList &overlays, KIconLoade
     return QIcon(new KIconEngine(iconName, iconLoader ? iconLoader : KIconLoader::global(), overlays));
 }
 
-QIcon KDE::icon(const QString &iconName, const QPalette &palette, KIconLoader *iconLoader)
+QIcon KDE::icon(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader)
 {
-    return QIcon(new KIconEngine(iconName, palette, iconLoader ? iconLoader : KIconLoader::global()));
+    return QIcon(new KIconEngine(iconName, colors, iconLoader ? iconLoader : KIconLoader::global()));
 }
 
 #include "kiconloader.moc"
