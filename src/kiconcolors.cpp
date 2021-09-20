@@ -110,9 +110,9 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
                                      state == KIconLoader::SelectedState ? d->highlight.name() : d->background.name(),
                                      state == KIconLoader::SelectedState ? d->highlightedText.name() : d->highlight.name(),
                                      state == KIconLoader::SelectedState ? d->highlight.name() : d->highlightedText.name(),
-                                     d->positiveText.name(),
-                                     d->neutralText.name(),
-                                     d->negativeText.name());
+                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->positiveText.name(),
+                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->neutralText.name(),
+                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name());
 }
 
 QColor KIconColors::highlight() const
