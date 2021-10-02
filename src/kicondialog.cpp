@@ -34,7 +34,7 @@
 #include <algorithm>
 #include <math.h>
 
-static const int s_horizontalEdgePad = 3;
+static const int s_edgePad = 3;
 
 KIconDialogModel::KIconDialogModel(QObject *parent)
     : QAbstractListModel(parent)
@@ -208,8 +208,10 @@ void KIconCanvasDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
     newOption.displayAlignment = Qt::AlignHCenter | Qt::AlignTop;
     newOption.features.setFlag(QStyleOptionViewItem::WrapText);
     // Manipulate the width available.
-    newOption.rect.setX((option.rect.x() / gridWidth) * gridWidth + s_horizontalEdgePad);
-    newOption.rect.setWidth(gridWidth - 2 * s_horizontalEdgePad);
+    newOption.rect.setX((option.rect.x() / gridWidth) * gridWidth + s_edgePad);
+    newOption.rect.setY(option.rect.y() + s_edgePad);
+    newOption.rect.setWidth(gridWidth - 2 * s_edgePad);
+    newOption.rect.setHeight(option.rect.height() - 2 * s_edgePad);
     m_defaultDelegate->paint(painter, newOption, index);
 }
 
@@ -225,7 +227,8 @@ QSize KIconCanvasDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
     QSize size = m_defaultDelegate->sizeHint(newOption, index);
     const int gridWidth = canvas->gridSize().width();
     const int gridHeight = canvas->gridSize().height();
-    size.setWidth(gridWidth - 2 * s_horizontalEdgePad);
+    size.setWidth(gridWidth - 2 * s_edgePad);
+    size.setHeight(gridHeight - 2 * s_edgePad);
     QFontMetrics metrics(option.font);
     size.setHeight(gridHeight + metrics.height() * 3);
     return size;
