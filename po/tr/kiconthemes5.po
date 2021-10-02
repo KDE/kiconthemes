@@ -1,0 +1,133 @@
+# translation of kio4.po to Turkish
+# translation of kio4.po to
+# Kdelibs Turkish translation file
+# Copyright (C) 2000,2003, 2004, 2005, 2008 Free Software Foundation, Inc.
+#
+# Ömer Fadıl USTA <omer_fad@hotmail.com>,1999-2002.
+# Görkem Çetin <gorkem@kde.org>, 2002,2003, 2004.
+# Tuncay YENİAY <tuncayyeniay@mynet.com>,2002.
+# Ayşe Genç <ayse@uludag.org.tr>, 2005.
+# Görkem Çetin <gorkem@kde.org.tr>, 2005.
+# Görkem Çetin <gorkem@gorkemcetin.com>, 2005.
+# Bekir SONAT <cortexbs@yahoo.com>, 2005.
+# Bekir SONAT <bekirsonat@kde.org.tr>, 2005.
+# Serdar Soytetir <tulliana@gmail.com>, 2008, 2009, 2011.
+# Ozan Çağlayan <ozan@pardus.org.tr>, 2010, 2011.
+# H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2010, 2011.
+# Serdar SOYTETİR <tulliana@gmail.com>, 2010, 2012.
+# Volkan Gezer <volkangezer@gmail.com>, 2013, 2014.
+# Kaan Ozdincer <kaanozdincer@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-06 00:14+0000\n"
+"PO-Revision-Date: 2017-05-08 14:43+0000\n"
+"Last-Translator: Kaan <kaanozdincer@gmail.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.4\n"
+
+#: kicondialog.cpp:306
+#, kde-format
+msgid "All"
+msgstr "Hepsi"
+
+#: kicondialog.cpp:307
+#, kde-format
+msgid "Actions"
+msgstr "Eylemler"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "Applications"
+msgstr "Uygulamalar"
+
+#: kicondialog.cpp:309
+#, kde-format
+msgid "Categories"
+msgstr "Kategoriler"
+
+#: kicondialog.cpp:310
+#, kde-format
+msgid "Devices"
+msgstr "Aygıtlar"
+
+#: kicondialog.cpp:311
+#, kde-format
+msgid "Emblems"
+msgstr "Amblemler"
+
+#: kicondialog.cpp:312
+#, kde-format
+msgid "Emotes"
+msgstr "Duygu Simgeleri"
+
+#: kicondialog.cpp:313
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime türü"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "Places"
+msgstr "Konumlar"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "Status"
+msgstr "Durum"
+
+#: kicondialog.cpp:339
+#, fuzzy, kde-format
+#| msgctxt "@item:inmenu"
+#| msgid "Other"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Diğer"
+
+#: kicondialog.cpp:386
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Gözat..."
+
+#: kicondialog.cpp:557
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:559
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:639 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Simge Seç"
+
+#: kicondialog.cpp:639
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Simge Dosyaları (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "Simge Seç"
