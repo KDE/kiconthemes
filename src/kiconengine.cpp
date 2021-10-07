@@ -14,6 +14,8 @@
 #include <QPainter>
 #include <qscopeguard.h>
 
+#include <optional>
+
 class KIconEnginePrivate
 {
 public:
