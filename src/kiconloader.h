@@ -368,7 +368,7 @@ public:
      *        Note this will only work if @p name is an svg file.
      * @return the QPixmap. Can be null when not found, depending on
      *         @p canReturnNull.
-     * @since 5.84
+     * @since 5.88
      */
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
