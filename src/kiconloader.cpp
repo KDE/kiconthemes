@@ -1536,7 +1536,12 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
 
     const auto entryList = dir.entryList();
     for (const QString &entry : entryList) {
-        if (!(entry.leftRef(4)).toUInt()) {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        const QStringView chunk = QStringView(entry).left(4);
+#else
+        const QStringRef chunk = entry.leftRef(4);
+#endif
+        if (!chunk.toUInt()) {
             continue;
         }
 
