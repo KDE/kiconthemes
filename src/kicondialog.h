@@ -52,7 +52,7 @@ public:
     /**
      * Destructs the dialog.
      */
-    ~KIconDialog();
+    ~KIconDialog() override;
 
     /**
      * Sets a strict icon size policy for allowed icons.

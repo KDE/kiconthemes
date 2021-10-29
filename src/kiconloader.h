@@ -194,7 +194,7 @@ public:
     /**
      * Cleanup
      */
-    ~KIconLoader();
+    ~KIconLoader() override;
 
     /**
      * Returns the global icon loader initialized with the application name.

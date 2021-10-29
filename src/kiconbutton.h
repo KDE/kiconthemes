@@ -55,7 +55,7 @@ public:
     /**
      * Destructs the button.
      */
-    ~KIconButton();
+    ~KIconButton() override;
 
     /**
      * Sets a strict icon size policy for allowed icons. When true,
