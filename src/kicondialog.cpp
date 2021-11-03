@@ -24,7 +24,6 @@
 #include <QGraphicsOpacityEffect>
 #include <QLabel>
 #include <QPainter>
-#include <QPushButton>
 #include <QScrollBar>
 #include <QStandardItemModel> // for manipulatig QComboBox
 #include <QStandardPaths>
