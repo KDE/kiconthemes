@@ -1,0 +1,115 @@
+# translation of kio4.po to British English
+# Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2002,2003,2004, 2005, 2007, 2008.
+# Andrew Coles <andrew_coles@yahoo.co.uk>, 2004, 2005, 2009, 2010.
+# Brendan Osborne <danborne.kde@gmail.com>, 2007.
+# Steve Allewell <steve.allewell@gmail.com>, 2014, 2016, 2018, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-04 00:14+0000\n"
+"PO-Revision-Date: 2021-07-11 11:14+0100\n"
+"Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
+"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 21.04.2\n"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "All"
+msgstr "All"
+
+#: kicondialog.cpp:309
+#, kde-format
+msgid "Actions"
+msgstr "Actions"
+
+#: kicondialog.cpp:310
+#, kde-format
+msgid "Applications"
+msgstr "Applications"
+
+#: kicondialog.cpp:311
+#, kde-format
+msgid "Categories"
+msgstr "Categories"
+
+#: kicondialog.cpp:312
+#, kde-format
+msgid "Devices"
+msgstr "Devices"
+
+#: kicondialog.cpp:313
+#, kde-format
+msgid "Emblems"
+msgstr "Emblems"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "Emotes"
+msgstr "Emotes"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mimetypes"
+
+#: kicondialog.cpp:316
+#, kde-format
+msgid "Places"
+msgstr "Places"
+
+#: kicondialog.cpp:317
+#, kde-format
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:341
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Other"
+
+#: kicondialog.cpp:388
+#, kde-format
+msgid "Browse…"
+msgstr "Browse…"
+
+#: kicondialog.cpp:559
+#, kde-format
+msgid "No icons matching the search"
+msgstr "No icons matching the search"
+
+#: kicondialog.cpp:561
+#, kde-format
+msgid "No icons in this category"
+msgstr "No icons in this category"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:641 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Select Icon"
+
+#: kicondialog.cpp:641
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Icon category"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Search Icons..."

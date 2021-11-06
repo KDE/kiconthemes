@@ -1,0 +1,119 @@
+# Uyghur translation for kio4.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Sahran <sahran.ug@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-04 00:14+0000\n"
+"PO-Revision-Date: 2013-09-08 07:05+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:309
+#, kde-format
+msgid "Actions"
+msgstr "مەشغۇلاتلار"
+
+#: kicondialog.cpp:310
+#, kde-format
+msgid "Applications"
+msgstr "پروگراممىلار"
+
+#: kicondialog.cpp:311
+#, kde-format
+msgid "Categories"
+msgstr "كاتېگورىيە"
+
+#: kicondialog.cpp:312
+#, kde-format
+msgid "Devices"
+msgstr "ئۈسكۈنىلەر"
+
+#: kicondialog.cpp:313
+#, kde-format
+msgid "Emblems"
+msgstr "كاكارلار"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "Emotes"
+msgstr "تۇيغۇلار"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime تىپلىرى"
+
+#: kicondialog.cpp:316
+#, kde-format
+msgid "Places"
+msgstr "ئورۇنلار"
+
+#: kicondialog.cpp:317
+#, kde-format
+msgid "Status"
+msgstr "ھالىتى"
+
+#: kicondialog.cpp:341
+#, fuzzy, kde-format
+#| msgctxt "@item:inmenu"
+#| msgid "Other"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "باشقا"
+
+#: kicondialog.cpp:388
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "كۆز يۈگۈرت(&B)…"
+
+#: kicondialog.cpp:559
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:561
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:641 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "سىنبەلگە تاللا"
+
+#: kicondialog.cpp:641
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|سىنبەلگە ھۆججەتلەر (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "سىنبەلگە تاللا"

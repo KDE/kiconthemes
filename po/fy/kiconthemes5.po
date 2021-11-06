@@ -1,0 +1,119 @@
+# translation of kio4.po to
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2004, 2005, 2006.
+# Rinse de Vries <RinseDeVries@home.nl>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-04 00:14+0000\n"
+"PO-Revision-Date: 2009-05-19 10:52+0100\n"
+"Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
+"Language-Team:  <nl@li.org>\n"
+"Language: fy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:308
+#, kde-format
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:309
+#, kde-format
+msgid "Actions"
+msgstr "Aksjes"
+
+#: kicondialog.cpp:310
+#, kde-format
+msgid "Applications"
+msgstr "Applikaasjes"
+
+#: kicondialog.cpp:311
+#, kde-format
+msgid "Categories"
+msgstr "Kategoriën"
+
+#: kicondialog.cpp:312
+#, kde-format
+msgid "Devices"
+msgstr "Apparaten"
+
+#: kicondialog.cpp:313
+#, kde-format
+msgid "Emblems"
+msgstr "Emblems"
+
+#: kicondialog.cpp:314
+#, kde-format
+msgid "Emotes"
+msgstr "Emotes"
+
+#: kicondialog.cpp:315
+#, kde-format
+msgid "Mimetypes"
+msgstr "Mime triemtypen"
+
+#: kicondialog.cpp:316
+#, kde-format
+msgid "Places"
+msgstr "Places"
+
+#: kicondialog.cpp:317
+#, kde-format
+msgid "Status"
+msgstr "Tastân"
+
+#: kicondialog.cpp:341
+#, fuzzy, kde-format
+#| msgctxt "@item:inmenu"
+#| msgid "Other"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Oaren"
+
+#  i18n: file ./kfile/kpropertiesdesktopbase.ui line 213
+#: kicondialog.cpp:388
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "S&neupe..."
+
+#: kicondialog.cpp:559
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:561
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:641 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Byldkaike selektearje"
+
+#: kicondialog.cpp:641
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Byldkaike-triemen (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "Byldkaike selektearje"
