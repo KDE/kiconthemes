@@ -88,7 +88,7 @@ KIconColors::KIconColors(const QPalette &palette)
     : d_ptr(new KIconColorsPrivate)
 {
     Q_D(KIconColors);
-    d->text = palette.text().color();
+    d->text = palette.windowText().color();
     d->background = palette.window().color();
     d->highlight = palette.highlight().color();
     d->highlightedText = palette.highlightedText().color();
