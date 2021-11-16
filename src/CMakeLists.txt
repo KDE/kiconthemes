@@ -7,16 +7,26 @@ add_library(KF5IconThemes)
 add_library(KF5::IconThemes ALIAS KF5IconThemes)
 
 target_sources(KF5IconThemes PRIVATE
-  kiconbutton.cpp
-  kicondialog.cpp
-  kiconeffect.cpp
-  kiconengine.cpp
-  kiconloader.cpp
-  kicontheme.cpp
-  kiconcolors.cpp
+    kiconbutton.cpp
+    kiconbutton.h
+    kiconcolors.cpp
+    kiconcolors.h
+    kicondialog.cpp
+    kicondialog.h
+    kicondialogmodel_p.h
+    kicondialog_p.h
+    kiconeffect.cpp
+    kiconeffect.h
+    kiconengine.cpp
+    kiconengine.h
+    kiconengineplugin.cpp
+    kiconloader.cpp
+    kiconloader.h
+    kicontheme.cpp
+    kicontheme.h
 
-  hicolor.qrc
-)
+    hicolor.qrc
+    )
 
 # TODO what's that PRIVATE about above?
 ki18n_wrap_ui(KF5IconThemes kicondialog.ui)
