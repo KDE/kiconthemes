@@ -14,6 +14,7 @@
 #include "kicondialog_p.h"
 #include "kicondialogmodel_p.h"
 
+#include <KLazyLocalizedString>
 #include <KLocalizedString>
 
 #include <QAbstractListModel>
@@ -304,17 +305,17 @@ void KIconDialogPrivate::init()
     // TODO set Ctrl+F shortcut
     QObject::connect(ui.searchLine, &QLineEdit::textChanged, proxyModel, &QSortFilterProxyModel::setFilterFixedString);
 
-    static const char *const context_text[] = {
-        I18N_NOOP("All"),
-        I18N_NOOP("Actions"),
-        I18N_NOOP("Applications"),
-        I18N_NOOP("Categories"),
-        I18N_NOOP("Devices"),
-        I18N_NOOP("Emblems"),
-        I18N_NOOP("Emotes"),
-        I18N_NOOP("Mimetypes"),
-        I18N_NOOP("Places"),
-        I18N_NOOP("Status"),
+    static const KLazyLocalizedString context_text[] = {
+        kli18n("All"),
+        kli18n("Actions"),
+        kli18n("Applications"),
+        kli18n("Categories"),
+        kli18n("Devices"),
+        kli18n("Emblems"),
+        kli18n("Emotes"),
+        kli18n("Mimetypes"),
+        kli18n("Places"),
+        kli18n("Status"),
     };
     static const KIconLoader::Context context_id[] = {
         KIconLoader::Any,
@@ -331,7 +332,7 @@ void KIconDialogPrivate::init()
     const int cnt = sizeof(context_text) / sizeof(context_text[0]);
     for (int i = 0; i < cnt; ++i) {
         if (mpLoader->hasContext(context_id[i])) {
-            ui.contextCombo->addItem(i18n(context_text[i]), context_id[i]);
+            ui.contextCombo->addItem(context_text[i].toString(), context_id[i]);
             if (i == 0) {
                 ui.contextCombo->insertSeparator(i + 1);
             }
