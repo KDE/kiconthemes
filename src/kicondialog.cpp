@@ -474,6 +474,31 @@ void KIconDialogPrivate::showIcons()
     model->setIconSize(ui.canvas->iconSize());
     model->setDevicePixelRatio(q->devicePixelRatioF());
     model->load(filelist);
+
+    if (!pendingSelectedIcon.isEmpty()) {
+        selectIcon(pendingSelectedIcon);
+        pendingSelectedIcon.clear();
+    }
+}
+
+bool KIconDialogPrivate::selectIcon(const QString &iconName)
+{
+    for (int i = 0; i < proxyModel->rowCount(); ++i) {
+        const QModelIndex idx = proxyModel->index(i, 0);
+
+        QString name = idx.data(KIconDialogModel::PathRole).toString();
+        if (!name.isEmpty() && isSystemIconsContext()) {
+            const QFileInfo fi(name);
+            name = fi.completeBaseName();
+        }
+
+        if (iconName == name) {
+            ui.canvas->setCurrentIndex(idx);
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void KIconDialog::setStrictIconSize(bool b)
@@ -500,6 +525,12 @@ int KIconDialog::iconSize() const
 {
     // 0 or any other value ==> mGroupOrSize is a group, so we return 0
     return (d->mGroupOrSize < 0) ? -d->mGroupOrSize : 0;
+}
+
+void KIconDialog::setSelectedIcon(const QString &iconName)
+{
+    // TODO Update live when dialog is already open
+    d->pendingSelectedIcon = iconName;
 }
 
 void KIconDialog::setup(KIconLoader::Group group, KIconLoader::Context context, bool strictIconSize, int iconSize, bool user, bool lockUser, bool lockCustomDir)

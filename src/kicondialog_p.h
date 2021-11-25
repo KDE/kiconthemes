@@ -40,6 +40,7 @@ public:
 
     void init();
     void showIcons();
+    bool selectIcon(const QString &iconName);
     void setContext(KIconLoader::Context context);
     void updatePlaceholderLabel();
 
@@ -65,6 +66,7 @@ public:
     bool m_bLockCustomDir = false;
     QString custom;
     QString customLocation;
+    QString pendingSelectedIcon;
     QPointer<QFileDialog> browseDialog;
 
     Ui::IconDialog ui;

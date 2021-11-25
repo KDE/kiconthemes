@@ -87,6 +87,17 @@ public:
     int iconSize() const;
 
     /**
+     * Sets the icon that is initially selected in the dialog.
+     *
+     * @note Changing this after the dialog has been shown has no effect.
+     * @note If the given icon cannot be found in the current context,
+     * no icon will be selected.
+     * @param iconName The name of the icon to select
+     * @since 5.89
+     */
+    void setSelectedIcon(const QString &iconName);
+
+    /**
      * Allows you to set the same parameters as in the class method
      * getIcon(), as well as two additional parameters to lock
      * the choice between system and user directories and to lock the
