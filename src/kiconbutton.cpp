@@ -21,6 +21,8 @@ public:
     KIconButtonPrivate(KIconButton *qq, KIconLoader *loader);
     ~KIconButtonPrivate();
 
+    KIconDialog *dialog();
+
     // slots
     void _k_slotChangeIcon();
     void _k_newIconName(const QString &);
@@ -81,6 +83,18 @@ KIconButtonPrivate::~KIconButtonPrivate()
     delete mpDialog;
 }
 
+KIconDialog *KIconButtonPrivate::dialog()
+{
+    if (!mpDialog) {
+        mpDialog = new KIconDialog(mpLoader, q);
+        QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) {
+            _k_newIconName(iconName);
+        });
+    }
+
+    return mpDialog;
+}
+
 KIconButton::~KIconButton() = default;
 
 void KIconButton::setStrictIconSize(bool b)
@@ -130,15 +144,8 @@ void KIconButton::setIcon(const QString &icon)
     d->mIcon = icon;
     setIcon(QIcon::fromTheme(d->mIcon));
 
-    if (!d->mpDialog) {
-        d->mpDialog = new KIconDialog(d->mpLoader, this);
-        connect(d->mpDialog, &KIconDialog::newIconName, this, [this](const QString &iconName) {
-            d->_k_newIconName(iconName);
-        });
-    }
-
     if (d->mbUser) {
-        d->mpDialog->setCustomLocation(QFileInfo(d->mpLoader->iconPath(d->mIcon, d->mGroup, true)).absolutePath());
+        d->dialog()->setCustomLocation(QFileInfo(d->mpLoader->iconPath(d->mIcon, d->mGroup, true)).absolutePath());
     }
 }
 
@@ -160,15 +167,9 @@ const QString &KIconButton::icon() const
 
 void KIconButtonPrivate::_k_slotChangeIcon()
 {
-    if (!mpDialog) {
-        mpDialog = new KIconDialog(mpLoader, q);
-        QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) {
-            _k_newIconName(iconName);
-        });
-    }
-
-    mpDialog->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);
-    mpDialog->showDialog();
+    dialog()->setup(mGroup, mContext, m_bStrictIconSize, iconSize, mbUser);
+    dialog()->setSelectedIcon(mIcon);
+    dialog()->showDialog();
 }
 
 void KIconButtonPrivate::_k_newIconName(const QString &name)
