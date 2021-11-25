@@ -112,6 +112,12 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/mimetypes/unknown.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/coloredsvgicon.svg"), testIconsDir.filePath(QStringLiteral("breeze/22x22/apps/coloredsvgicon.svg"))));
 
+        // prepare some icons for our actions test
+        // when querying breeze for 'one-two', we expect
+        // 'one' from breeze instead of oxygen's 'one-two'.
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/actions/one-two.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/actions/one.png"))));
+
         QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner | QFileDevice::WriteOwner));
         KConfig configFile(breezeThemeFile);
         KConfigGroup iconThemeGroup = configFile.group("Icon Theme");
@@ -330,6 +336,25 @@ private Q_SLOTS:
         const QString unknownPath = KIconLoader::global()->iconPath(QStringLiteral("nope-no-such-icon"), KIconLoader::Desktop, false);
         QVERIFY(!unknownPath.isEmpty());
         QVERIFY(QFile::exists(unknownPath));
+    }
+
+    void testCorrectFallback()
+    {
+        // we want to prefer icons from the same theme
+
+        // so if we have something like:
+        /*
+            oxygen:
+                one-two
+
+            breeze:
+                one
+        */
+        // and we ask for 'one-two', we expect to see 'one' from breeze instead
+        // of 'one-two' from oxygen.
+        QString path;
+        KIconLoader::global()->loadIcon(QStringLiteral("one-two"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
+        QVERIFY(path.contains("breeze/22x22/actions"));
     }
 
     void testPathStore()

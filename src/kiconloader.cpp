@@ -1021,12 +1021,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
 {
     const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
 
-    // Do two passes through themeNodes.
-    //
-    // The first pass looks for an exact match in each themeNode one after the other.
-    // If one is found and it is an app icon then return that icon.
-    //
-    // In the next pass (assuming the first pass failed), it looks for
+    // This looks for the exact match and its
     // generic fallbacks in each themeNode one after the other.
 
     // In theory we should only do this for mimetype icons, not for app icons,
@@ -1036,22 +1031,17 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     // Once everyone uses that to look up mimetype icons, we can kill the fallback code
     // from this method.
 
-    for (KIconThemeNode *themeNode : std::as_const(links)) {
-        const QString path = themeNode->theme->iconPathByName(name, size, KIconLoader::MatchBest, scale);
-        if (!path.isEmpty()) {
-            return path;
-        }
-    }
-
-    if (name.endsWith(QLatin1String("-x-generic"))) {
-        return QString(); // no further fallback
-    }
-    bool genericFallback = false;
+    bool genericFallback = name.endsWith(QLatin1String("-x-generic"));;
     QString path;
     for (KIconThemeNode *themeNode : std::as_const(links)) {
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
+            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest, scale);
+            if (!path.isEmpty()) {
+                return path;
+            }
+
             if (genericFallback) {
                 // we already tested the base name
                 break;
@@ -1087,16 +1077,6 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
                 } else {
                     break;
                 }
-            }
-
-            if (currentName.isEmpty()) {
-                break;
-            }
-
-            // qCDebug(KICONTHEMES) << "Looking up" << currentName;
-            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest, scale);
-            if (!path.isEmpty()) {
-                return path;
             }
         }
     }
