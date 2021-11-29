@@ -16,6 +16,7 @@
 
 #include <KLazyLocalizedString>
 #include <KLocalizedString>
+#include <KStandardAction>
 
 #include <QAbstractListModel>
 #include <QApplication>
@@ -302,7 +303,9 @@ void KIconDialogPrivate::init()
     QObject::connect(proxyModel, &QSortFilterProxyModel::rowsInserted, q, updatePlaceholder);
     QObject::connect(proxyModel, &QSortFilterProxyModel::rowsRemoved, q, updatePlaceholder);
 
-    // TODO set Ctrl+F shortcut
+    QAction *findAction = KStandardAction::find(ui.searchLine, qOverload<>(&QWidget::setFocus), q);
+    q->addAction(findAction);
+
     QObject::connect(ui.searchLine, &QLineEdit::textChanged, proxyModel, &QSortFilterProxyModel::setFilterFixedString);
 
     static const KLazyLocalizedString context_text[] = {
