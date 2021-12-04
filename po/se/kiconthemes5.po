@@ -1,0 +1,105 @@
+# Translation of kiconthemes5 to Northern Sami
+#
+# Børre Gaup <boerre@skolelinux.no>, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-27 00:25+0000\n"
+"PO-Revision-Date: 2012-06-03 01:00+0200\n"
+"Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
+"Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
+"Language: se\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kicondialog.cpp:309
+msgid "All"
+msgstr "Buot"
+
+#: kicondialog.cpp:310
+msgid "Actions"
+msgstr "Doaimmat"
+
+#: kicondialog.cpp:311
+msgid "Applications"
+msgstr "Prográmmat"
+
+#: kicondialog.cpp:312
+msgid "Categories"
+msgstr "Lágit"
+
+#: kicondialog.cpp:313
+msgid "Devices"
+msgstr "Ovttadagat"
+
+#: kicondialog.cpp:314
+msgid "Emblems"
+msgstr "Emblemat"
+
+#: kicondialog.cpp:315
+msgid "Emotes"
+msgstr "Mojánat"
+
+#: kicondialog.cpp:316
+msgid "Mimetypes"
+msgstr "MIME-šlájat"
+
+#: kicondialog.cpp:317
+msgid "Places"
+msgstr "Báikkit"
+
+#: kicondialog.cpp:318
+msgid "Status"
+msgstr "Stáhtus"
+
+#: kicondialog.cpp:342
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr ""
+
+#: kicondialog.cpp:389
+#, kde-format
+msgid "Browse…"
+msgstr ""
+
+#: kicondialog.cpp:591
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:593
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:673 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Vállje govaža"
+
+#: kicondialog.cpp:673
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr ""
