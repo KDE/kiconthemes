@@ -11,9 +11,8 @@
 #include <QPixmap>
 #include <QSize>
 #include <QString>
+#include <QStringList>
 #include <QVector>
-
-class QStringList;
 
 struct KIconDialogModelData {
     QString name;

@@ -415,7 +415,13 @@ void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
     QFile file(fileName);
     if (file.open(QIODevice::ReadOnly)) {
         QTextStream stream(&file);
+        // In Qt6 the encoding is UTF-8 by default, so it should work for icon file names;
+        // I think this code had "ISO 8859-1" (i.e. Latin-1) as an optimization, but file
+        // names on Linux are UTF-8 by default, so this would be more robust.
+        // Note that in Qt6 we can have the same behaviour by using QTextStream::setEncoding().
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         stream.setCodec("ISO 8859-1");
+#endif
         while (!stream.atEnd()) {
             const QString line = stream.readLine();
             if (line.isEmpty() || line[0] == QLatin1Char('#')) {

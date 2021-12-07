@@ -49,13 +49,13 @@ ecm_generate_export_header(KF5IconThemes
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes>")
+target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes>")
 
 target_link_libraries(KF5IconThemes
   PUBLIC
-    Qt5::Widgets
+    Qt${QT_MAJOR_VERSION}::Widgets
   PRIVATE
-    Qt5::Svg
+    Qt${QT_MAJOR_VERSION}::Svg
     KF5::Archive       # for KCompressionDevice
     KF5::I18n          # for i18n in KIconDialog
     KF5::WidgetsAddons # for KPixmapSequence family
@@ -63,8 +63,8 @@ target_link_libraries(KF5IconThemes
     KF5::ConfigWidgets # for KColorScheme
     KF5::CoreAddons    # for kshareddatacache.h
 )
-if (TARGET Qt5::DBus)
-  target_link_libraries(KF5IconThemes PRIVATE Qt5::DBus)
+if (TARGET Qt${QT_MAJOR_VERSION}::DBus)
+  target_link_libraries(KF5IconThemes PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 endif()
 
 set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
@@ -90,7 +90,7 @@ install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF5_INSTALL_TARGETS_
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
   ${KIconThemes_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes COMPONENT Devel
 )
 
 if(BUILD_DESIGNERPLUGIN)
@@ -127,14 +127,14 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KIconThemes)
+ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
 
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin
     PRIVATE
-        Qt5::Gui
+        Qt${QT_MAJOR_VERSION}::Gui
         KF5::IconThemes
 )
 

@@ -136,7 +136,11 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
     return createPixmap(size, 1 /*scale*/, mode, state);
 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+QString KIconEngine::iconName()
+#else
 QString KIconEngine::iconName() const
+#endif
 {
     if (!d->mIconLoader || !d->mIconLoader->hasIcon(mIconName)) {
         return QString();
@@ -149,7 +153,11 @@ Q_GLOBAL_STATIC_WITH_ARGS(QList<QSize>,
                           (QList<QSize>() << QSize(16, 16) << QSize(22, 22) << QSize(32, 32) << QSize(48, 48) << QSize(64, 64) << QSize(128, 128)
                                           << QSize(256, 256)))
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state)
+#else
 QList<QSize> KIconEngine::availableSizes(QIcon::Mode mode, QIcon::State state) const
+#endif
 {
     Q_UNUSED(mode);
     Q_UNUSED(state);
