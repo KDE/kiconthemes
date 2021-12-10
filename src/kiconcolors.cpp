@@ -56,7 +56,12 @@ public:
     QColor neutralText;
     QColor negativeText;
     QColor activeText;
+    static std::optional<QPalette> lastPalette;
+    static std::optional<KColorScheme> lastColorScheme;
 };
+
+std::optional<QPalette> KIconColorsPrivate::lastPalette;
+std::optional<KColorScheme> KIconColorsPrivate::lastColorScheme;
 
 KIconColors::KIconColors()
     : KIconColors(QPalette())
@@ -98,11 +103,15 @@ KIconColors::KIconColors(const QPalette &palette)
     d->highlight = palette.highlight().color();
     d->highlightedText = palette.highlightedText().color();
 
-    KColorScheme scheme(QPalette::Active, KColorScheme::Window);
-    d->positiveText = scheme.foreground(KColorScheme::PositiveText).color().name();
-    d->neutralText = scheme.foreground(KColorScheme::NeutralText).color().name();
-    d->negativeText = scheme.foreground(KColorScheme::NegativeText).color().name();
-    d->activeText = scheme.foreground(KColorScheme::ActiveText).color().name();
+    if (!d->lastColorScheme || !d->lastPalette || palette != d->lastPalette) {
+        d->lastPalette = palette;
+        d->lastColorScheme = KColorScheme(QPalette::Active, KColorScheme::Window);
+    }
+
+    d->positiveText = d->lastColorScheme->foreground(KColorScheme::PositiveText).color().name();
+    d->neutralText = d->lastColorScheme->foreground(KColorScheme::NeutralText).color().name();
+    d->negativeText = d->lastColorScheme->foreground(KColorScheme::NegativeText).color().name();
+    d->activeText = d->lastColorScheme->foreground(KColorScheme::ActiveText).color().name();
 }
 
 KIconColors::~KIconColors()
