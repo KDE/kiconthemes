@@ -76,7 +76,8 @@ protected:
      *
      * Specifies: .ColorScheme-Text, .ColorScheme-Background, .ColorScheme-Highlight,
      * .ColorScheme-HighlightedText, .ColorScheme-PositiveText, .ColorScheme-NeutralText
-     * .ColorScheme-Link, and .ColorScheme-NegativeText
+     * .ColorScheme-NegativeText, .ColorScheme-ActiveText, .ColorScheme-Complement,
+     * .ColorScheme-Contrast
      */
     QString stylesheet(KIconLoader::States state) const;
 
