@@ -19,7 +19,8 @@ static QString STYLESHEET_TEMPLATE()
 .ColorScheme-HighlightedText{ color:%4; }\
 .ColorScheme-PositiveText{ color:%5; }\
 .ColorScheme-NeutralText{ color:%6; }\
-.ColorScheme-NegativeText{ color:%7; }");
+.ColorScheme-NegativeText{ color:%7; }\
+.ColorScheme-ActiveText{ color:%8; }");
     /* clang-format on */
 }
 
@@ -51,6 +52,7 @@ public:
     QColor positiveText;
     QColor neutralText;
     QColor negativeText;
+    QColor activeText;
 };
 
 KIconColors::KIconColors()
@@ -97,6 +99,7 @@ KIconColors::KIconColors(const QPalette &palette)
     d->positiveText = scheme.foreground(KColorScheme::PositiveText).color().name();
     d->neutralText = scheme.foreground(KColorScheme::NeutralText).color().name();
     d->negativeText = scheme.foreground(KColorScheme::NegativeText).color().name();
+    d->activeText = scheme.foreground(KColorScheme::ActiveText).color().name();
 }
 
 KIconColors::~KIconColors()
@@ -112,7 +115,8 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
                                      state == KIconLoader::SelectedState ? d->highlight.name() : d->highlightedText.name(),
                                      state == KIconLoader::SelectedState ? d->highlightedText.name() : d->positiveText.name(),
                                      state == KIconLoader::SelectedState ? d->highlightedText.name() : d->neutralText.name(),
-                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name());
+                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name(),
+                                     state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name());
 }
 
 QColor KIconColors::highlight() const
@@ -157,6 +161,12 @@ QColor KIconColors::neutralText() const
     return d->neutralText;
 }
 
+QColor KIconColors::activeText() const
+{
+    Q_D(const KIconColors);
+    return d->activeText;
+}
+
 void KIconColors::setText(const QColor &color)
 {
     Q_D(KIconColors);
@@ -197,4 +207,10 @@ void KIconColors::setPositiveText(const QColor &color)
 {
     Q_D(KIconColors);
     d->positiveText = color;
+}
+
+void KIconColors::setActiveText(const QColor &color)
+{
+    Q_D(KIconColors);
+    d->activeText = color;
 }

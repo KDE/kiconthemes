@@ -58,6 +58,7 @@ public:
     QColor neutralText() const;
     QColor positiveText() const;
     QColor negativeText() const;
+    QColor activeText() const;
 
     void setText(const QColor &color);
     void setHighlight(const QColor &color);
@@ -66,6 +67,7 @@ public:
     void setNeutralText(const QColor &color);
     void setPositiveText(const QColor &color);
     void setNegativeText(const QColor &color);
+    void setActiveText(const QColor& color);
 
 protected:
     /**
@@ -74,7 +76,7 @@ protected:
      *
      * Specifies: .ColorScheme-Text, .ColorScheme-Background, .ColorScheme-Highlight,
      * .ColorScheme-HighlightedText, .ColorScheme-PositiveText, .ColorScheme-NeutralText
-     * and .ColorScheme-NegativeText
+     * .ColorScheme-Link, and .ColorScheme-NegativeText
      */
     QString stylesheet(KIconLoader::States state) const;
 
