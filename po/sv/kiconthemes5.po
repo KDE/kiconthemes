@@ -1,0 +1,112 @@
+# translation of kio4.po to Swedish
+# Översättning kio4.po till Svenska
+# Copyright (C) 1997,2002,2003, 2004, 2005, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
+#
+# Magnus Reftel <d96reftl@dtek.chalmers.se>, 1997.
+# Anders Widell <awl@hem.passagen.se>, 1998-2000.
+# Per Lindström <pelinstr@algonet.se>, 2000.
+# Mattias Newzella <newzella@linux.nu>, 2000, 2001, 2002,2003, 2004, 2005.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2002.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2004, 2005, 2006, 2007, 2008, 2009, 2010.
+# Stefan Asserhall <stefan.asserhall@bredband.net>, 2010, 2011, 2012, 2016, 2018, 2021.
+# Arve Eriksson <031299870@telia.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-30 00:41+0000\n"
+"PO-Revision-Date: 2021-07-07 14:59+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr "Alla"
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "Program"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "Kategorier"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "Enheter"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "Emblem"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "Smilisar"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "Mime-typer"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "Platser"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "Status"
+
+#: kicondialog.cpp:345
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Övriga"
+
+#: kicondialog.cpp:392
+#, kde-format
+msgid "Browse…"
+msgstr "Bläddra..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr "Inga ikoner matchar sökningen"
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr "Inga ikoner i kategorin"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Välj ikon"
+
+#: kicondialog.cpp:676
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Ikonfiler (*.ico *.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Ikonkategori"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Sök ikoner..."
