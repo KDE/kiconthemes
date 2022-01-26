@@ -4,6 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
+#include <QImageReader>
 #include <QStandardPaths>
 #include <QTest>
 
@@ -38,12 +39,12 @@ private Q_SLOTS:
         QCOMPARE(image.devicePixelRatio(), 2.0);
         QCOMPARE(image.size(), QSize(44, 44));
 
-        QImage unscaled;
-        QVERIFY(unscaled.load(QStringLiteral(":/test-22x22.png")));
+        QImageReader reader(QStringLiteral(":/test-22x22.png"));
+        reader.setScaledSize(QSize(44, 44));
+        QImage unscaled = reader.read();
         QVERIFY(!unscaled.isNull());
-        QCOMPARE(unscaled.size(), QSize(22, 22));
+        QCOMPARE(unscaled.size(), QSize(44, 44));
         unscaled.setDevicePixelRatio(2.0);
-        unscaled = unscaled.convertToFormat(image.format()).scaled(44, 44, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         QCOMPARE(image, unscaled);
 
         // center vertically
