@@ -15,6 +15,7 @@
 
 #include <QGuiApplication>
 #include <QPainter>
+#include <QStandardPaths>
 #include <QSvgRenderer>
 
 #include "../../../kiconthemes_version.h"
@@ -119,6 +120,10 @@ int main(int argc, char *argv[])
     }
 
     // convert the iconset to icns using the "iconutil" command
+    const QString iconutilExec = QStandardPaths::findExecutable(QStringLiteral("iconutil"));
+    if (iconutilExec.isEmpty()) {
+        EXIT_ON_ERROR(false, "Could not find iconutil executable in PATH.\n");
+    }
 
     const QString outIcns = QFileInfo(svgFileName).baseName() + QStringLiteral(".icns");
 
@@ -128,7 +133,7 @@ int main(int argc, char *argv[])
 
     QProcess iconUtil;
 
-    iconUtil.start(QStringLiteral("iconutil"), utilArgs, QIODevice::ReadOnly);
+    iconUtil.start(iconutilExec, utilArgs, QIODevice::ReadOnly);
     isOk = iconUtil.waitForFinished(-1);
     EXIT_ON_ERROR(isOk, "Unable to launch iconutil: %s\n", qPrintable(iconUtil.errorString()));
 
