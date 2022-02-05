@@ -1,0 +1,114 @@
+# translation of kio4.po to Kazakh
+# translation of kio4.po to
+#
+# Sairan Kikkarin <sairan@computer.org>, 2005, 2006, 2007, 2008.
+# Mambet Izbasarov <izbasar@sci.kz>, 2005, 2010.
+# Sairan Kikkarin <sairan@computer.org>, 2010, 2011.
+# Sairan Kikkarin <sairan(at)computer.org>, 2010, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-30 00:41+0000\n"
+"PO-Revision-Date: 2013-04-19 06:26+0600\n"
+"Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
+"Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"\n"
+"\n"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "Әрекеттер"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "Қолданбалар"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "Санаттар"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "Құрлығылар"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "Эмблемалар"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "Көңіл-күй белгілері"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "MIME түрлері"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "Орындар"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "Күй-жайлар"
+
+#: kicondialog.cpp:345
+#, fuzzy, kde-format
+#| msgctxt "@item:inmenu"
+#| msgid "Other"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Өзге"
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Шолу..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Таңбашаны таңдау"
+
+#: kicondialog.cpp:676
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.png *.xpm *.svg *.svgz|Таңбашалар файлдары (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "Таңбашаны таңдау"
