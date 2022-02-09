@@ -78,7 +78,8 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
     }
 
     const qreal dpr = painter->device()->devicePixelRatioF();
-    painter->drawPixmap(rect, pixmap(rect.size() * dpr, mode, state));
+    const QPixmap pix = createPixmap(rect.size(), dpr, mode, state);
+    painter->drawPixmap(rect, pix);
 }
 
 QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mode, QIcon::State state)
