@@ -1,0 +1,108 @@
+# translation of kio4.po to Uzbek
+# translation of kio4.po to
+# Copyright (C) 2003, 2004, 2005, 2006, 2008 Free Software Foundation, Inc.
+#
+# Mashrab Kuvatov <kmashrab@uni-bremen.de>, 2003, 2004, 2005, 2006, 2008, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-30 00:41+0000\n"
+"PO-Revision-Date: 2009-10-14 00:15+0200\n"
+"Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
+"Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
+"Language: uz@cyrillic\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "Амаллар"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "Дастурлар"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "Туркумлар"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "Ускуналар"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "MIME турлари"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "Жойлар"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "Ҳолат"
+
+#: kicondialog.cpp:345
+#, fuzzy, kde-format
+#| msgid "Others"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Бошқалар"
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Танлаш"
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Нишончани танлаш"
+
+#: kicondialog.cpp:676
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Нишонча файллари (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Small Icons"
+msgid "Search Icons..."
+msgstr "Кичкина нишончалар"

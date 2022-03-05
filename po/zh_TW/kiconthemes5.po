@@ -1,0 +1,114 @@
+# translation of kio4.po to Chinese Traditional
+# Copyright (C) 2001, 2002, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Chih-Wei Huang <cwhuang@linux.org.tw>, 2001.
+# Kenduest Lee <kenduest@i18n.linux.org.tw>, 2001, 2002.
+# Jouston Huang (Huang, Jiun-Jeng) <jouston@housediy.com>, 2002.
+# Frank Weng (a.k.a. Franklin) <franklin@goodhorse.idv.tw>, 2009.
+# Franklin Weng <franklin@goodhorse.idv.tw>, 2010, 2011, 2012.
+# Jeff Huang <s8321414@gmail.com>, 2016.
+# pan93412 <pan93412@gmail.com>, 2018.
+#
+# This file referenced zh_CN translation (as of 2002-11-08)
+# Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2006, 2007, 2008, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-30 00:41+0000\n"
+"PO-Revision-Date: 2018-07-09 21:40+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr "全部"
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "動作"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "應用程式"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "類別"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "裝置"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "符號"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "表情"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "MIME 類型"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "書籤"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "狀態"
+
+#: kicondialog.cpp:345
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr ""
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "瀏覽(&B)..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "選擇圖示"
+
+#: kicondialog.cpp:676
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|圖示檔案 (*.ico *.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "選擇圖示"
