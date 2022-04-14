@@ -177,6 +177,10 @@ public:
         Size64 = 64,
         /// Even bigger-sized icons for iconviews. @since 5.94.
         Size128 = 128,
+        /// Gigantic sized icons for iconviews or image/video previews. @since 5.94.
+        Size256 = 256,
+        /// Bigger than gigantic sized icons for iconviews or image/video previews. @since 5.94.
+        Size512 = 512,
     };
     Q_ENUM(StdSizes)
 
