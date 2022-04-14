@@ -151,6 +151,7 @@ public:
      * These are the standard sizes for icons.
      */
     enum StdSizes {
+        // TODO KF6: deprecate the named enum values (SizeSmall...etc)
         /// small icons for menu entries
         SizeSmall = 16,
         /// slightly larger small icons for toolbars, panels, etc
@@ -163,6 +164,19 @@ public:
         SizeHuge = 64,
         /// enormous sized icons for iconviews
         SizeEnormous = 128,
+
+        /// Small icons for menu entries. @since 5.94.
+        Size16 = 16,
+        /// Slightly larger small icons for toolbars, panels, etc. @since 5.94.
+        Size22 = 22,
+        /// Medium sized icons for the desktop. @since 5.94.
+        Size32 = 32,
+        /// Large sized icons for the panel. @since 5.94.
+        Size48 = 48,
+        /// Huge sized icons for iconviews. @since 5.94.
+        Size64 = 64,
+        /// Even bigger-sized icons for iconviews. @since 5.94.
+        Size128 = 128,
     };
     Q_ENUM(StdSizes)
 
