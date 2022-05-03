@@ -306,7 +306,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     }
 
     if (d->mDir.isEmpty()) {
-        qDebug() << "Icon theme" << name << "not found.";
+        qCDebug(KICONTHEMES) << "Icon theme" << name << "not found.";
         return;
     }
 
