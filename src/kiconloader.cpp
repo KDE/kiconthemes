@@ -853,7 +853,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
 
 QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::States state, const KIconColors &colors) const
 {
-    QScopedPointer<QIODevice> device;
+    std::unique_ptr<QIODevice> device;
 
     if (path.endsWith(QLatin1String("svgz"))) {
         device.reset(new KCompressionDevice(path, KCompressionDevice::GZip));
@@ -867,7 +867,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
 
     const QString styleSheet = colors.stylesheet(state);
     QByteArray processedContents;
-    QXmlStreamReader reader(device.data());
+    QXmlStreamReader reader(device.get());
 
     QBuffer buffer(&processedContents);
     buffer.open(QIODevice::WriteOnly);
