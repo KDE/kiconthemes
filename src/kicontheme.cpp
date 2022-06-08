@@ -37,8 +37,41 @@ Q_GLOBAL_STATIC(QString, _themeOverride)
 // For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
 void initRCCIconTheme()
 {
-    const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
-    if (!iconThemeRcc.isEmpty()) {
+    QMap<QString, QString> themeMap;
+    themeMap.insert("breeze", "breeze-icons.rcc");
+    themeMap.insert("breeze-dark", "breeze-icons-dark.rcc");
+
+    QMapIterator<QString, QString> i(themeMap);
+    bool sucess;
+    while (i.hasNext()) {
+        i.next();
+        const QString iconSubdir = "/icons/" + i.key();
+        QString themePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, iconSubdir, QStandardPaths::LocateDirectory);
+        if (!themePath.isEmpty()) {
+            QDir dir(themePath);
+            if (!dir.exists(QStringLiteral("index.theme")) && dir.exists(i.value())) {
+                // we do not have icon files directly available,
+                // but an *.rcc with them. Try to register...
+                const QString iconThemeRcc = themePath + "/" + i.value();
+                if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
+                    if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
+                        sucess = true;
+                    } else {
+                        qWarning() << "No index.theme found in" << iconThemeRcc;
+                        QResource::unregisterResource(themePath, iconSubdir);
+                    }
+                } else {
+                    qWarning() << "Invalid rcc file" << i.key();
+                }
+            }
+        }
+    }
+#if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
+     const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
+#else
+     const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("icontheme.rcc"));
+#endif
+    if (!sucess && !iconThemeRcc.isEmpty()) {
         const QString iconThemeName = QStringLiteral("kf5_rcc_theme");
         const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
         if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
