@@ -24,7 +24,11 @@ void earlyInit()
     QFile rcc(QStringLiteral("icontheme.rcc"));
     Q_ASSERT(rcc.exists());
     QCoreApplication::setApplicationName(QStringLiteral("myappname")); // for a fixed location on Unix (appname is empty here otherwise)
+#if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+#else
+    const QString destDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+#endif
     QDir().mkpath(destDir);
     const QString dest = destDir + QStringLiteral("/icontheme.rcc");
     QFile::remove(dest);
