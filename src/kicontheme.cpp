@@ -55,6 +55,7 @@ void initRCCIconTheme()
                 const QString iconThemeRcc = themePath + "/" + i.value();
                 if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
                     if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
+                        qDebug() << "Registered" << iconThemeRcc;
                         sucess = true;
                     } else {
                         qWarning() << "No index.theme found in" << iconThemeRcc;
