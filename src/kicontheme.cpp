@@ -37,32 +37,42 @@ Q_GLOBAL_STATIC(QString, _themeOverride)
 // For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
 void initRCCIconTheme()
 {
+    auto try_rcc_registration = [](const QString &iconThemeRcc, const QString &iconThemeName) {
+        const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
+        if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
+            if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
+                // Tell Qt about the theme
+                // Note that since qtbase commit a8621a3f8, this means the QPA (i.e. KIconLoader) will NOT be used.
+                QIcon::setThemeName(iconThemeName); // Qt looks under :/icons automatically
+                // Tell KIconTheme about the theme, in case KIconLoader is used directly
+                *_themeOverride() = iconThemeName;
+                return true;
+            } else {
+                qWarning() << "No index.theme found in" << iconThemeRcc;
+                QResource::unregisterResource(iconThemeRcc, iconSubdir);
+            }
+        } else {
+            qWarning() << "Invalid rcc file" << iconThemeRcc;
+        }
+        return false;
+    };
+
     QMap<QString, QString> themeMap;
     themeMap.insert("breeze", "breeze-icons.rcc");
     themeMap.insert("breeze-dark", "breeze-icons-dark.rcc");
-
     QMapIterator<QString, QString> i(themeMap);
     bool sucess;
     while (i.hasNext()) {
         i.next();
-        const QString iconSubdir = "/icons/" + i.key();
-        QString themePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, iconSubdir, QStandardPaths::LocateDirectory);
+        QString themePath = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("/icons/") + i.key(), QStandardPaths::LocateDirectory);
         if (!themePath.isEmpty()) {
             QDir dir(themePath);
             if (!dir.exists(QStringLiteral("index.theme")) && dir.exists(i.value())) {
                 // we do not have icon files directly available,
                 // but an *.rcc with them. Try to register...
                 const QString iconThemeRcc = themePath + "/" + i.value();
-                if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
-                    if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
-                        qDebug() << "Registered" << iconThemeRcc;
-                        sucess = true;
-                    } else {
-                        qWarning() << "No index.theme found in" << iconThemeRcc;
-                        QResource::unregisterResource(themePath, iconSubdir);
-                    }
-                } else {
-                    qWarning() << "Invalid rcc file" << i.key();
+                if (try_rcc_registration(iconThemeRcc, i.key())) {
+                    sucess = true;
                 }
             }
         }
@@ -74,21 +84,7 @@ void initRCCIconTheme()
 #endif
     if (!sucess && !iconThemeRcc.isEmpty()) {
         const QString iconThemeName = QStringLiteral("kf5_rcc_theme");
-        const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
-        if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
-            if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
-                // Tell Qt about the theme
-                // Note that since qtbase commit a8621a3f8, this means the QPA (i.e. KIconLoader) will NOT be used.
-                QIcon::setThemeName(iconThemeName); // Qt looks under :/icons automatically
-                // Tell KIconTheme about the theme, in case KIconLoader is used directly
-                *_themeOverride() = iconThemeName;
-            } else {
-                qWarning() << "No index.theme found in" << iconThemeRcc;
-                QResource::unregisterResource(iconThemeRcc, iconSubdir);
-            }
-        } else {
-            qWarning() << "Invalid rcc file" << iconThemeRcc;
-        }
+        try_rcc_registration(iconThemeRcc, iconThemeName);
     }
 }
 Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
