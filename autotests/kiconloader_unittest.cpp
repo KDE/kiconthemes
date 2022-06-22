@@ -535,6 +535,20 @@ private Q_SLOTS:
                                                       true);
         QVERIFY(!pix.isNull());
     }
+
+    void testDirectoryAppearing()
+    {
+        QString path = KIconLoader::global()->iconPath("kiconloaderunittest", -22, true);
+        QVERIFY2(path.isEmpty(), qPrintable(path));
+
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("hicolor/22x22/apps")));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("hicolor/22x22/apps/kiconloaderunittest.png"))));
+
+        path = KIconLoader::global()->iconPath(QStringLiteral("kiconloaderunittest"), -22, true);
+        QVERIFY(!path.isEmpty());
+
+        QVERIFY(QDir(testIconsDir.filePath(QStringLiteral("hicolor"))).removeRecursively());
+    }
 };
 
 QTEST_MAIN(KIconLoader_UnitTest)
