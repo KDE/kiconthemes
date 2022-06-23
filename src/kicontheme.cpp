@@ -280,10 +280,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     icnlibs << QStringLiteral(":/icons");
 
     // global icons
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
-
-    // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
-    icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
+    for (const QString &dataLocation : QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
+        icnlibs += dataLocation + QStringLiteral("/icons/");
+        icnlibs += dataLocation + QStringLiteral("/pixmaps/");
+    };
 
     QString fileName;
     QString mainSection;
