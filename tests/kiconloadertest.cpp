@@ -23,9 +23,9 @@ int main(int argc, char *argv[])
         const QStringList filelist = mpLoader->queryIcons(mGroup, mContext);
         qDebug() << " -> found " << filelist.count() << " icons.";
         int i = 0;
-        for (QStringList::ConstIterator it = filelist.begin(); it != filelist.end() /*&& i<10*/; ++it, ++i) {
+        for (const auto &icon : filelist) {
             // qDebug() << ( i==9 ? "..." : (*it) );
-            mpLoader->loadIcon((*it), (KIconLoader::Group)mGroup);
+            mpLoader->loadIcon(icon, (KIconLoader::Group)mGroup);
             ++count;
         }
     }

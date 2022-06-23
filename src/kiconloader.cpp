@@ -696,16 +696,16 @@ void KIconLoaderPrivate::addBaseThemes(KIconThemeNode *node, const QString &appn
 
 void KIconLoaderPrivate::addInheritedThemes(KIconThemeNode *node, const QString &appname)
 {
-    const QStringList lst = node->theme->inherits();
+    const QStringList inheritedThemes = node->theme->inherits();
 
-    for (QStringList::ConstIterator it = lst.begin(), total = lst.end(); it != total; ++it) {
-        if ((*it) == QLatin1String("hicolor")) {
+    for (const auto &inheritedTheme : inheritedThemes) {
+        if (inheritedTheme == QLatin1String("hicolor")) {
             // The icon theme spec says that "hicolor" must be the very last
             // of all inherited themes, so don't add it here but at the very end
             // of addBaseThemes().
             continue;
         }
-        addThemeByName(*it, appname);
+        addThemeByName(inheritedTheme, appname);
     }
 }
 
@@ -736,20 +736,20 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
     QStringList list;
     const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
     char buf[1000];
-    for (QStringList::ConstIterator it = icnlibs.begin(), total = icnlibs.end(); it != total; ++it) {
-        QDir dir(*it);
+    for (const auto &iconDir : icnlibs) {
+        QDir dir(iconDir);
         if (!dir.exists()) {
             continue;
         }
-        const QStringList lst = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
-        for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
-            if (!QFileInfo::exists(*it + *it2 + QStringLiteral("/index.desktop")) //
-                && !QFileInfo::exists(*it + *it2 + QStringLiteral("/index.theme"))) {
+        const QStringList defaultEntries = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
+        for (const auto &defaultEntry : defaultEntries) {
+            if (!QFileInfo::exists(iconDir + defaultEntry + QStringLiteral("/index.desktop")) //
+                && !QFileInfo::exists(iconDir + defaultEntry + QStringLiteral("/index.theme"))) {
                 continue;
             }
             // TODO: Is any special handling required for NTFS symlinks?
 #ifndef Q_OS_WIN
-            const int r = readlink(QFile::encodeName(*it + *it2), buf, sizeof(buf) - 1);
+            const int r = readlink(QFile::encodeName(iconDir + defaultEntry), buf, sizeof(buf) - 1);
             if (r > 0) {
                 buf[r] = 0;
                 const QDir dir2(buf);
@@ -763,12 +763,12 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
         }
     }
 
-    for (QStringList::ConstIterator it = list.constBegin(), total = list.constEnd(); it != total; ++it) {
+    for (const auto &theme : list) {
         // Don't add the KDE defaults once more, we have them anyways.
-        if (*it == QLatin1String("default.kde") || *it == QLatin1String("default.kde4")) {
+        if (theme == QLatin1String("default.kde") || theme == QLatin1String("default.kde4")) {
             continue;
         }
-        addThemeByName(*it, QLatin1String(""));
+        addThemeByName(theme, QLatin1String(""));
     }
 
     extraDesktopIconsLoaded = true;
@@ -1566,8 +1566,8 @@ QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
     const QStringList formats = QStringList() << QStringLiteral("*.png") << QStringLiteral("*.xpm") << QStringLiteral("*.svg") << QStringLiteral("*.svgz");
     const QStringList lst = dir.entryList(formats, QDir::Files);
     QStringList result;
-    for (QStringList::ConstIterator it = lst.begin(), total = lst.end(); it != total; ++it) {
-        result += iconsDir + QLatin1Char('/') + *it;
+    for (const auto &file : lst) {
+        result += iconsDir + QLatin1Char('/') + file;
     }
     return result;
 }
@@ -1596,18 +1596,17 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
     QString name;
     QStringList res2;
     QStringList entries;
-    QStringList::ConstIterator it;
-    for (it = result.constBegin(); it != result.constEnd(); ++it) {
-        int n = (*it).lastIndexOf(QLatin1Char('/'));
+    for (const auto &icon : std::as_const(result)) {
+        const int n = icon.lastIndexOf(QLatin1Char('/'));
         if (n == -1) {
-            name = *it;
+            name = icon;
         } else {
-            name = (*it).mid(n + 1);
+            name = icon.mid(n + 1);
         }
         name = d->removeIconExtension(name);
         if (!entries.contains(name)) {
             entries += name;
-            res2 += *it;
+            res2 += icon;
         }
     }
     return res2;
@@ -1637,18 +1636,17 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
     QString name;
     QStringList res2;
     QStringList entries;
-    QStringList::ConstIterator it;
-    for (it = result.constBegin(); it != result.constEnd(); ++it) {
-        int n = (*it).lastIndexOf(QLatin1Char('/'));
+    for (const auto &icon : std::as_const(result)) {
+        const int n = icon.lastIndexOf(QLatin1Char('/'));
         if (n == -1) {
-            name = *it;
+            name = icon;
         } else {
-            name = (*it).mid(n + 1);
+            name = icon.mid(n + 1);
         }
         name = d->removeIconExtension(name);
         if (!entries.contains(name)) {
             entries += name;
-            res2 += *it;
+            res2 += icon;
         }
     }
     return res2;

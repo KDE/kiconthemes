@@ -259,9 +259,9 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         && (name == defaultThemeName()
             || name == QLatin1String("hicolor")
             || name == QLatin1String("locolor"))) { /* clang-format on */
-        const QStringList icnlibs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-        for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
-            const QString cDir = *it + QLatin1Char('/') + appName + QStringLiteral("/icons/") + name + QLatin1Char('/');
+        const QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+        for (const auto &dir : dataDirs) {
+            const QString cDir = dir + QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
             if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
             }
@@ -287,8 +287,8 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     QString fileName;
     QString mainSection;
-    for (QStringList::ConstIterator it = icnlibs.constBegin(), total = icnlibs.constEnd(); it != total; ++it) {
-        const QString cDir = *it + QLatin1Char('/') + name + QLatin1Char('/');
+    for (const auto &iconDir : std::as_const(icnlibs)) {
+        const QString cDir = iconDir + QLatin1Char('/') + name + QLatin1Char('/');
         if (QDir(cDir).exists()) {
             themeDirs += cDir;
             if (d->mDir.isEmpty()) {
@@ -320,9 +320,9 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mDepth = cfg.readEntry("DisplayDepth", 32);
     d->mInherits = cfg.readEntry("Inherits", QStringList());
     if (name != defaultThemeName()) {
-        for (QStringList::Iterator it = d->mInherits.begin(), total = d->mInherits.end(); it != total; ++it) {
-            if (*it == QLatin1String("default")) {
-                *it = defaultThemeName();
+        for (auto &inheritedTheme : d->mInherits) {
+            if (inheritedTheme == QLatin1String("default")) {
+                inheritedTheme = defaultThemeName();
             }
         }
     }
@@ -335,13 +335,13 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
 
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
-    for (QStringList::ConstIterator it = dirs.begin(); it != dirs.end(); ++it) {
-        KConfigGroup cg(d->sharedConfig, *it);
-        for (QStringList::ConstIterator itDir = themeDirs.constBegin(); itDir != themeDirs.constEnd(); ++itDir) {
-            const QString currentDir(*itDir + *it + QLatin1Char('/'));
+    for (const auto &dirName : dirs) {
+        KConfigGroup cg(d->sharedConfig, dirName);
+        for (const auto &themeDir : std::as_const(themeDirs)) {
+            const QString currentDir(themeDir + dirName + QLatin1Char('/'));
             if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
                 addedDirs.insert(currentDir);
-                KIconThemeDir *dir = new KIconThemeDir(*itDir, *it, cg);
+                KIconThemeDir *dir = new KIconThemeDir(themeDir, dirName, cg);
                 if (dir->isValid()) {
                     if (dir->scale() > 1) {
                         d->mScaledDirs.append(dir);
@@ -609,24 +609,24 @@ QStringList KIconTheme::list()
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
 
-    for (const QString &it : std::as_const(icnlibs)) {
-        QDir dir(it);
-        const QStringList lst = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
-        for (QStringList::ConstIterator it2 = lst.begin(), total = lst.end(); it2 != total; ++it2) {
-            if ((*it2).startsWith(QLatin1String("default."))) {
+    for (const QString &iconDir : std::as_const(icnlibs)) {
+        QDir dir(iconDir);
+        const QStringList themeDirs = dir.entryList(QDir::Dirs | QDir::NoDotAndDotDot);
+        for (const auto &theme : themeDirs) {
+            if (theme.startsWith(QLatin1String("default."))) {
                 continue;
             }
-            if (!QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.desktop"))
-                && !QFileInfo::exists(it + QLatin1Char('/') + *it2 + QLatin1String("/index.theme"))) {
+            if (!QFileInfo::exists(iconDir + QLatin1Char('/') + theme + QLatin1String("/index.desktop"))
+                && !QFileInfo::exists(iconDir + QLatin1Char('/') + theme + QLatin1String("/index.theme"))) {
                 continue;
             }
-            KIconTheme oink(*it2);
+            KIconTheme oink(theme);
             if (!oink.isValid()) {
                 continue;
             }
 
-            if (!_theme_list()->contains(*it2)) {
-                _theme_list()->append(*it2);
+            if (!_theme_list()->contains(theme)) {
+                _theme_list()->append(theme);
             }
         }
     }
