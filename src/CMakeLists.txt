@@ -55,6 +55,7 @@ target_link_libraries(KF5IconThemes
   PUBLIC
     Qt${QT_MAJOR_VERSION}::Widgets
   PRIVATE
+    Qt${QT_MAJOR_VERSION}::GuiPrivate
     Qt${QT_MAJOR_VERSION}::Svg
     KF5::Archive       # for KCompressionDevice
     KF5::I18n          # for i18n in KIconDialog

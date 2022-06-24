@@ -51,6 +51,7 @@
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QStringBuilder> // % operator for QString
+#include <QtGui/private/qiconloader_p.h>
 
 #include <qplatformdefs.h> //for readlink
 
@@ -531,10 +532,10 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
     sharedConfig->reparseConfiguration();
     const QString newThemeName = sharedConfig->group("Icons").readEntry("Theme", QStringLiteral("breeze"));
     if (!newThemeName.isEmpty()) {
-        // If we're refreshing icons the Qt platform plugin has probably
-        // already cached the old theme, which will accidentally filter back
-        // into KIconTheme unless we reset it
-        QIcon::setThemeName(newThemeName);
+        // NOTE Do NOT use QIcon::setThemeName here it makes Qt not use icon engine of the platform thheme
+        //      anymore (KIconEngine on Plasma, which breaks recoloring) and overwrites a user set themeName
+        // TODO KF6 this should be done in the Plasma QPT
+        QIconLoader::instance()->updateSystemTheme();
     }
 
     q->newIconLoader();
