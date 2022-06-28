@@ -28,6 +28,7 @@
 
 #include <qplatformdefs.h>
 
+#include <array>
 #include <cmath>
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
@@ -78,8 +79,20 @@ public:
     bool hidden;
     KSharedConfig::Ptr sharedConfig;
 
-    int mDefSize[6];
-    QList<int> mSizes[6];
+    struct GroupInfo {
+        KIconLoader::Group type;
+        const char *name;
+        int defaultSize;
+        QList<int> availableSizes{};
+    };
+    std::array<GroupInfo, KIconLoader::LastGroup> m_iconGroups = {{
+        {KIconLoader::Desktop, "Desktop", 32},
+        {KIconLoader::Toolbar, "Toolbar", 22},
+        {KIconLoader::MainToolbar, "MainToolbar", 22},
+        {KIconLoader::Small, "Small", 16},
+        {KIconLoader::Panel, "Panel", 48},
+        {KIconLoader::Dialog, "Dialog", 32},
+    }};
 
     int mDepth;
     QString mDir, mName, mInternalName, mDesc;
@@ -355,19 +368,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         }
     }
 
-    QStringList groups;
-    groups += QStringLiteral("Desktop");
-    groups += QStringLiteral("Toolbar");
-    groups += QStringLiteral("MainToolbar");
-    groups += QStringLiteral("Small");
-    groups += QStringLiteral("Panel");
-    groups += QStringLiteral("Dialog");
-    const int defDefSizes[] = {32, 22, 22, 16, 48, 32};
     KConfigGroup cg(d->sharedConfig, mainSection);
-    for (int i = 0; i < groups.size(); ++i) {
-        const QString group = groups.at(i);
-        d->mDefSize[i] = cg.readEntry(group + QStringLiteral("Default"), defDefSizes[i]);
-        d->mSizes[i] = cg.readEntry(group + QStringLiteral("Sizes"), QList<int>());
+    for (auto &iconGroup : d->m_iconGroups) {
+        iconGroup.defaultSize = cg.readEntry(iconGroup.name + QLatin1String("Default"), iconGroup.defaultSize);
+        iconGroup.availableSizes = cg.readEntry(iconGroup.name + QLatin1String("Sizes"), QList<int>());
     }
 }
 
@@ -429,20 +433,20 @@ int KIconTheme::depth() const
 
 int KIconTheme::defaultSize(KIconLoader::Group group) const
 {
-    if ((group < 0) || (group >= KIconLoader::LastGroup)) {
+    if (group < 0 || group >= KIconLoader::LastGroup) {
         qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return -1;
     }
-    return d->mDefSize[group];
+    return d->m_iconGroups[group].defaultSize;
 }
 
 QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
 {
-    if ((group < 0) || (group >= KIconLoader::LastGroup)) {
+    if (group < 0 || group >= KIconLoader::LastGroup) {
         qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return QList<int>();
     }
-    return d->mSizes[group];
+    return d->m_iconGroups[group].availableSizes;
 }
 
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
