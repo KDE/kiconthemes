@@ -471,29 +471,6 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
     }
 
     return result;
-
-    /*
-        int delta = 1000, dw;
-
-        // Find close match
-        KIconThemeDir *best = 0L;
-        for(int i=0; i<d->mDirs.size(); ++i) {
-            dir = d->mDirs.at(i);
-            if ((context != KIconLoader::Any) && (context != dir->context())) {
-                continue;
-            }
-            dw = dir->size() - size;
-            if ((dw > 6) || (abs(dw) >= abs(delta)))
-                continue;
-            delta = dw;
-            best = dir;
-        }
-        if (best == 0L) {
-            return QStringList();
-        }
-
-        return best->iconList();
-        */
 }
 
 QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context context) const
