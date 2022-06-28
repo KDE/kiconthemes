@@ -735,31 +735,23 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
 
     QStringList list;
     const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
-    char buf[1000];
     for (const auto &iconDir : icnlibs) {
         QDir dir(iconDir);
         if (!dir.exists()) {
             continue;
         }
-        const QStringList defaultEntries = dir.entryList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
+        const auto defaultEntries = dir.entryInfoList(QStringList(QStringLiteral("default.*")), QDir::Dirs);
         for (const auto &defaultEntry : defaultEntries) {
-            if (!QFileInfo::exists(iconDir + defaultEntry + QStringLiteral("/index.desktop")) //
-                && !QFileInfo::exists(iconDir + defaultEntry + QStringLiteral("/index.theme"))) {
+            if (!QFileInfo::exists(defaultEntry.filePath() + QLatin1String("/index.desktop")) //
+                && !QFileInfo::exists(defaultEntry.filePath() + QLatin1String("/index.theme"))) {
                 continue;
             }
-            // TODO: Is any special handling required for NTFS symlinks?
-#ifndef Q_OS_WIN
-            const int r = readlink(QFile::encodeName(iconDir + defaultEntry), buf, sizeof(buf) - 1);
-            if (r > 0) {
-                buf[r] = 0;
-                const QDir dir2(buf);
-                QString themeName = dir2.dirName();
-
+            if (defaultEntry.isSymbolicLink()) {
+                const QString themeName = QDir(defaultEntry.symLinkTarget()).dirName();
                 if (!list.contains(themeName)) {
                     list.append(themeName);
                 }
             }
-#endif
         }
     }
 
