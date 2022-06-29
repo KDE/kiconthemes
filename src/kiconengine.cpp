@@ -48,22 +48,18 @@ KIconEngine::~KIconEngine()
 
 static inline int qIconModeToKIconState(QIcon::Mode mode)
 {
-    int kstate;
     switch (mode) {
     case QIcon::Normal:
-        kstate = KIconLoader::DefaultState;
-        break;
+        return KIconLoader::DefaultState;
     case QIcon::Active:
-        kstate = KIconLoader::ActiveState;
-        break;
+        return KIconLoader::ActiveState;
     case QIcon::Disabled:
-        kstate = KIconLoader::DisabledState;
-        break;
+        return KIconLoader::DisabledState;
     case QIcon::Selected:
-        kstate = KIconLoader::SelectedState;
-        break;
+        return KIconLoader::SelectedState;
+    default:
+        return KIconLoader::DefaultState;
     }
-    return kstate;
 }
 
 QSize KIconEngine::actualSize(const QSize &size, QIcon::Mode mode, QIcon::State state)
