@@ -449,13 +449,18 @@ QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
     return d->m_iconGroups[group].availableSizes;
 }
 
+static bool isAnyOrDirContext(const KIconThemeDir *dir, KIconLoader::Context context)
+{
+    return context == KIconLoader::Any || context == dir->context();
+}
+
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
     QStringList result;
     const auto listDirs = d->mDirs + d->mScaledDirs;
     for (KIconThemeDir *dir : listDirs) {
-        if ((context != KIconLoader::Any) && (context != dir->context())) {
+        if (!isAnyOrDirContext(dir, context)) {
             continue;
         }
         if ((dir->type() == KIconLoader::Fixed) && (dir->size() == size)) {
@@ -490,7 +495,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // will make icon themes with different icon sizes.
     const auto listDirs = d->mDirs + d->mScaledDirs;
     for (KIconThemeDir *dir : listDirs) {
-        if ((context != KIconLoader::Any) && (context != dir->context())) {
+        if (!isAnyOrDirContext(dir, context)) {
             continue;
         }
         dw = abs(dir->size() - size);
@@ -509,7 +514,7 @@ bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
     const auto listDirs = d->mDirs + d->mScaledDirs;
     for (KIconThemeDir *dir : listDirs) {
-        if ((context == KIconLoader::Any) || (context == dir->context())) {
+        if (isAnyOrDirContext(dir, context)) {
             return true;
         }
     }
