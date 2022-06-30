@@ -248,12 +248,12 @@ class KIconLoaderPrivate
 public:
     KIconLoaderPrivate(const QString &_appname, const QStringList &extraSearchPaths, KIconLoader *qq)
         : q(qq)
-        , appname(_appname)
+        , m_appname(_appname)
     {
         q->connect(s_globalData, &KIconLoaderGlobalData::iconChanged, q, [this](int group) {
             _k_refreshIcons(group);
         });
-        init(appname, extraSearchPaths);
+        init(m_appname, extraSearchPaths);
     }
 
     ~KIconLoaderPrivate()
@@ -271,7 +271,7 @@ public:
         mpGroups = nullptr;
         mIconCache = nullptr;
         mPixmapCache.clear();
-        appname.clear();
+        m_appname.clear();
         searchPaths.clear();
         links.clear();
         mIconThemeInited = false;
@@ -439,7 +439,7 @@ public:
     // lazy loading: initIconThemes() is only needed when the "links" list is needed
     // mIconThemeInited is used inside initIconThemes() to init only once
     bool mIconThemeInited : 1;
-    QString appname;
+    QString m_appname;
 
     void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
 
@@ -570,7 +570,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     searchPaths = extraSearchPaths;
 
-    appname = !_appname.isEmpty() ? _appname : QCoreApplication::applicationName();
+    m_appname = !_appname.isEmpty() ? _appname : QCoreApplication::applicationName();
 
     // Initialize icon cache
     mIconCache = new KSharedDataCache(QStringLiteral("icon-cache"), 10 * 1024 * 1024);
@@ -609,12 +609,12 @@ void KIconLoaderPrivate::initIconThemes()
     mIconThemeInited = true;
 
     // Add the default theme and its base themes to the theme tree
-    KIconTheme *def = new KIconTheme(KIconTheme::current(), appname);
+    KIconTheme *def = new KIconTheme(KIconTheme::current(), m_appname);
     if (!def->isValid()) {
         delete def;
         // warn, as this is actually a small penalty hit
         qCDebug(KICONTHEMES) << "Couldn't find current icon theme, falling back to default.";
-        def = new KIconTheme(KIconTheme::defaultThemeName(), appname);
+        def = new KIconTheme(KIconTheme::defaultThemeName(), m_appname);
         if (!def->isValid()) {
             qCDebug(KICONTHEMES) << "Standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
             delete def;
@@ -624,10 +624,10 @@ void KIconLoaderPrivate::initIconThemes()
     mpThemeRoot = new KIconThemeNode(def);
     mThemesInTree.append(def->internalName());
     links.append(mpThemeRoot);
-    addBaseThemes(mpThemeRoot, appname);
+    addBaseThemes(mpThemeRoot, m_appname);
 
     // Insert application specific themes at the top.
-    searchPaths.append(appname + QStringLiteral("/pics"));
+    searchPaths.append(m_appname + QStringLiteral("/pics"));
 
     // Add legacy icon dirs.
     searchPaths.append(QStringLiteral("icons")); // was xdgdata-icon in KStandardDirs
