@@ -161,13 +161,99 @@ struct KIconGroup {
 extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
 KICONTHEMES_EXPORT int kiconloader_ms_between_checks = 5000;
 
+class KIconLoaderGlobalData : public QObject
+{
+    Q_OBJECT
+
+public:
+    KIconLoaderGlobalData()
+    {
+        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
+        // qCDebug(KICONTHEMES) << genericIconsFiles;
+        for (const QString &file : genericIconsFiles) {
+            parseGenericIconsFiles(file);
+        }
+
+#ifdef QT_DBUS_LIB
+        QDBusConnection::sessionBus().connect(QString(),
+                                              QStringLiteral("/KIconLoader"),
+                                              QStringLiteral("org.kde.KIconLoader"),
+                                              QStringLiteral("iconChanged"),
+                                              this,
+                                              SIGNAL(iconChanged(int)));
+#endif
+    }
+
+    void emitChange(KIconLoader::Group group)
+    {
+#ifdef QT_DBUS_LIB
+        QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
+        message.setArguments(QList<QVariant>() << int(group));
+        QDBusConnection::sessionBus().send(message);
+#endif
+    }
+
+    QString genericIconFor(const QString &icon) const
+    {
+        return m_genericIcons.value(icon);
+    }
+
+Q_SIGNALS:
+    void iconChanged(int group);
+
+private:
+    void parseGenericIconsFiles(const QString &fileName);
+    QHash<QString, QString> m_genericIcons;
+};
+
+void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
+{
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        // In Qt6 the encoding is UTF-8 by default, so it should work for icon file names;
+        // I think this code had "ISO 8859-1" (i.e. Latin-1) as an optimization, but file
+        // names on Linux are UTF-8 by default, so this would be more robust.
+        // Note that in Qt6 we can have the same behaviour by using QTextStream::setEncoding().
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+        stream.setCodec("ISO 8859-1");
+#endif
+        while (!stream.atEnd()) {
+            const QString line = stream.readLine();
+            if (line.isEmpty() || line[0] == QLatin1Char('#')) {
+                continue;
+            }
+            const int pos = line.indexOf(QLatin1Char(':'));
+            if (pos == -1) { // syntax error
+                continue;
+            }
+            QString mimeIcon = line.left(pos);
+            const int slashindex = mimeIcon.indexOf(QLatin1Char('/'));
+            if (slashindex != -1) {
+                mimeIcon[slashindex] = QLatin1Char('-');
+            }
+
+            const QString genericIcon = line.mid(pos + 1);
+            m_genericIcons.insert(mimeIcon, genericIcon);
+            // qCDebug(KICONTHEMES) << mimeIcon << "->" << genericIcon;
+        }
+    }
+}
+
+Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
+
 /*** d pointer for KIconLoader. ***/
 class KIconLoaderPrivate
 {
 public:
-    KIconLoaderPrivate(KIconLoader *qq)
+    KIconLoaderPrivate(const QString &_appname, const QStringList &extraSearchPaths, KIconLoader *qq)
         : q(qq)
+        , appname(_appname)
     {
+        q->connect(s_globalData, &KIconLoaderGlobalData::iconChanged, q, [this](int group) {
+            _k_refreshIcons(group);
+        });
+        init(appname, extraSearchPaths);
     }
 
     ~KIconLoaderPrivate()
@@ -366,87 +452,6 @@ public:
     bool mCustomColors = false;
 };
 
-class KIconLoaderGlobalData : public QObject
-{
-    Q_OBJECT
-
-public:
-    KIconLoaderGlobalData()
-    {
-        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
-        // qCDebug(KICONTHEMES) << genericIconsFiles;
-        for (const QString &file : genericIconsFiles) {
-            parseGenericIconsFiles(file);
-        }
-
-#ifdef QT_DBUS_LIB
-        QDBusConnection::sessionBus().connect(QString(),
-                                              QStringLiteral("/KIconLoader"),
-                                              QStringLiteral("org.kde.KIconLoader"),
-                                              QStringLiteral("iconChanged"),
-                                              this,
-                                              SIGNAL(iconChanged(int)));
-#endif
-    }
-
-    void emitChange(KIconLoader::Group group)
-    {
-#ifdef QT_DBUS_LIB
-        QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
-        message.setArguments(QList<QVariant>() << int(group));
-        QDBusConnection::sessionBus().send(message);
-#endif
-    }
-
-    QString genericIconFor(const QString &icon) const
-    {
-        return m_genericIcons.value(icon);
-    }
-
-Q_SIGNALS:
-    void iconChanged(int group);
-
-private:
-    void parseGenericIconsFiles(const QString &fileName);
-    QHash<QString, QString> m_genericIcons;
-};
-
-void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
-{
-    QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly)) {
-        QTextStream stream(&file);
-        // In Qt6 the encoding is UTF-8 by default, so it should work for icon file names;
-        // I think this code had "ISO 8859-1" (i.e. Latin-1) as an optimization, but file
-        // names on Linux are UTF-8 by default, so this would be more robust.
-        // Note that in Qt6 we can have the same behaviour by using QTextStream::setEncoding().
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-        stream.setCodec("ISO 8859-1");
-#endif
-        while (!stream.atEnd()) {
-            const QString line = stream.readLine();
-            if (line.isEmpty() || line[0] == QLatin1Char('#')) {
-                continue;
-            }
-            const int pos = line.indexOf(QLatin1Char(':'));
-            if (pos == -1) { // syntax error
-                continue;
-            }
-            QString mimeIcon = line.left(pos);
-            const int slashindex = mimeIcon.indexOf(QLatin1Char('/'));
-            if (slashindex != -1) {
-                mimeIcon[slashindex] = QLatin1Char('-');
-            }
-
-            const QString genericIcon = line.mid(pos + 1);
-            m_genericIcons.insert(mimeIcon, genericIcon);
-            // qCDebug(KICONTHEMES) << mimeIcon << "->" << genericIcon;
-        }
-    }
-}
-
-Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
-
 void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays)
 {
     if (overlays.isEmpty()) {
@@ -543,16 +548,11 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
     Q_EMIT q->iconChanged(group);
 }
 
-KIconLoader::KIconLoader(const QString &_appname, const QStringList &extraSearchPaths, QObject *parent)
+KIconLoader::KIconLoader(const QString &appname, const QStringList &extraSearchPaths, QObject *parent)
     : QObject(parent)
-    , d(new KIconLoaderPrivate(this))
+    , d(new KIconLoaderPrivate(appname, extraSearchPaths, this))
 {
-    setObjectName(_appname);
-
-    connect(s_globalData, &KIconLoaderGlobalData::iconChanged, this, [this](int group) {
-        d->_k_refreshIcons(group);
-    });
-    d->init(_appname, extraSearchPaths);
+    setObjectName(appname);
 }
 
 void KIconLoader::reconfigure(const QString &_appname, const QStringList &extraSearchPaths)
@@ -570,10 +570,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     searchPaths = extraSearchPaths;
 
-    appname = _appname;
-    if (appname.isEmpty()) {
-        appname = QCoreApplication::applicationName();
-    }
+    appname = !_appname.isEmpty() ? _appname : QCoreApplication::applicationName();
 
     // Initialize icon cache
     mIconCache = new KSharedDataCache(QStringLiteral("icon-cache"), 10 * 1024 * 1024);
