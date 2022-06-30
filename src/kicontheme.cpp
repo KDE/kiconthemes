@@ -430,7 +430,7 @@ int KIconTheme::depth() const
 int KIconTheme::defaultSize(KIconLoader::Group group) const
 {
     if ((group < 0) || (group >= KIconLoader::LastGroup)) {
-        qWarning() << "Illegal icon group: " << group;
+        qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return -1;
     }
     return d->mDefSize[group];
@@ -439,7 +439,7 @@ int KIconTheme::defaultSize(KIconLoader::Group group) const
 QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
 {
     if ((group < 0) || (group >= KIconLoader::LastGroup)) {
-        qWarning() << "Illegal icon group: " << group;
+        qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return QList<int>();
     }
     return d->mSizes[group];

@@ -795,7 +795,7 @@ QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
 void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const
 {
     if ((state < 0) || (state >= KIconLoader::LastState)) {
-        qWarning() << "Illegal icon state:" << state;
+        qCWarning(KICONTHEMES) << "Invalid icon state:" << state << ", should be one of KIconLoader::States";
         state = KIconLoader::DefaultState;
     }
 
@@ -810,7 +810,7 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize 
     }
 
     if ((group < -1) || (group >= KIconLoader::LastGroup)) {
-        qWarning() << "Illegal icon group:" << group;
+        qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         group = KIconLoader::Desktop;
     }
 
@@ -1169,7 +1169,7 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
     }
 
     if (group_or_size >= KIconLoader::LastGroup) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group_or_size;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group_or_size;
         return path;
     }
 
@@ -1444,7 +1444,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
     d->initIconThemes();
 
     if ((group < -1 || group >= KIconLoader::LastGroup) && group != KIconLoader::User) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         group = KIconLoader::Desktop;
     }
     if (size == 0 && group < 0) {
@@ -1494,7 +1494,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
     d->initIconThemes();
 
     if ((group < -1) || (group >= KIconLoader::LastGroup)) {
-        qCDebug(KICONTHEMES) << "Illegal icon group: " << group;
+        qCDebug(KICONTHEMES) << "Invalid icon group: " << group << ", should be one of KIconLoader::Group";
         group = KIconLoader::Desktop;
     }
     if ((size == 0) && (group < 0)) {
@@ -1554,7 +1554,7 @@ int KIconLoader::currentSize(KIconLoader::Group group) const
     }
 
     if (group < 0 || group >= KIconLoader::LastGroup) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return -1;
     }
     return d->mpGroups[group].size;
@@ -1578,7 +1578,7 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
 
     QStringList result;
     if (group_or_size >= KIconLoader::LastGroup) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group_or_size;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group_or_size;
         return result;
     }
     int size;
@@ -1619,7 +1619,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
 
     QStringList result;
     if (group_or_size >= KIconLoader::LastGroup) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group_or_size;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group_or_size;
         return result;
     }
     int size;
@@ -1680,7 +1680,7 @@ bool KIconLoader::alphaBlending(KIconLoader::Group group) const
     }
 
     if (group < 0 || group >= KIconLoader::LastGroup) {
-        qCDebug(KICONTHEMES) << "Illegal icon group:" << group;
+        qCDebug(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return false;
     }
     return true;

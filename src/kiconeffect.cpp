@@ -11,6 +11,7 @@
 */
 
 #include "kiconeffect.h"
+#include "debug.h"
 
 #include <KColorScheme>
 #include <KConfigGroup>
@@ -176,11 +177,11 @@ QString KIconEffect::fingerprint(int group, int state) const
 QImage KIconEffect::apply(const QImage &image, int group, int state) const
 {
     if (state >= KIconLoader::LastState) {
-        qWarning() << "Illegal icon state: " << state;
+        qCWarning(KICONTHEMES) << "Invalid icon state:" << state << ", should be one of KIconLoader::States";
         return image;
     }
     if (group >= KIconLoader::LastGroup) {
-        qWarning() << "Illegal icon group: " << group;
+        qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return image;
     }
     return apply(image, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
@@ -195,7 +196,7 @@ QImage KIconEffect::apply(const QImage &img, int effect, float value, const QCol
 {
     QImage image = img;
     if (effect >= LastEffect) {
-        qWarning() << "Illegal icon effect: " << effect;
+        qCWarning(KICONTHEMES) << "Invalid icon effect:" << effect << ", should be one of KIconLoader::Effects";
         return image;
     }
     if (value > 1.0) {
@@ -229,11 +230,11 @@ QImage KIconEffect::apply(const QImage &img, int effect, float value, const QCol
 QPixmap KIconEffect::apply(const QPixmap &pixmap, int group, int state) const
 {
     if (state >= KIconLoader::LastState) {
-        qWarning() << "Illegal icon state: " << state;
+        qCWarning(KICONTHEMES) << "Invalid icon state:" << state << ", should be one of KIconLoader::States";
         return pixmap;
     }
     if (group >= KIconLoader::LastGroup) {
-        qWarning() << "Illegal icon group: " << group;
+        qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return pixmap;
     }
     return apply(pixmap, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
@@ -249,7 +250,7 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const
     QPixmap result;
 
     if (effect >= LastEffect) {
-        qWarning() << "Illegal icon effect: " << effect;
+        qCWarning(KICONTHEMES) << "Invalid icon effect:" << effect << ", should be one of KIconLoader::Effects";
         return result;
     }
 
