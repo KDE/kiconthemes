@@ -644,16 +644,12 @@ QStringList KIconLoader::searchPaths() const
 
 void KIconLoader::addAppDir(const QString &appname, const QString &themeBaseDir)
 {
-    d->initIconThemes();
-
     d->searchPaths.append(appname + QStringLiteral("/pics"));
     d->addAppThemes(appname, themeBaseDir);
 }
 
 void KIconLoaderPrivate::addAppThemes(const QString &appname, const QString &themeBaseDir)
 {
-    initIconThemes();
-
     KIconTheme *def = new KIconTheme(QStringLiteral("hicolor"), appname, themeBaseDir);
     if (!def->isValid()) {
         delete def;
@@ -728,8 +724,6 @@ void KIconLoaderPrivate::addExtraDesktopThemes()
     if (extraDesktopIconsLoaded) {
         return;
     }
-
-    initIconThemes();
 
     QStringList list;
     const QStringList icnlibs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
@@ -1015,8 +1009,6 @@ QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &
 
 QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qreal scale) const
 {
-    const_cast<KIconLoaderPrivate *>(this)->initIconThemes();
-
     // This looks for the exact match and its
     // generic fallbacks in each themeNode one after the other.
 
@@ -1138,8 +1130,6 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         // we have either an absolute path or nothing to work with
         return _name;
     }
-
-    d->initIconThemes();
 
     QString name = d->removeIconExtension(_name);
 
@@ -1329,7 +1319,6 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     }
 
     // Image is not cached... go find it and apply effects.
-    d->initIconThemes();
 
     favIconOverlay = favIconOverlay && std::min(size.height(), size.width()) > 22;
 
@@ -1431,8 +1420,6 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
         return QString();
     }
 
-    d->initIconThemes();
-
     if ((group < -1 || group >= KIconLoader::LastGroup) && group != KIconLoader::User) {
         qCDebug(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         group = KIconLoader::Desktop;
@@ -1530,7 +1517,6 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
 
 KIconTheme *KIconLoader::theme() const
 {
-    d->initIconThemes();
     if (d->mpThemeRoot) {
         return d->mpThemeRoot->theme;
     }
@@ -1564,8 +1550,6 @@ QStringList KIconLoader::queryIconsByDir(const QString &iconsDir) const
 
 QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Context context) const
 {
-    d->initIconThemes();
-
     QStringList result;
     if (group_or_size >= KIconLoader::LastGroup) {
         qCDebug(KICONTHEMES) << "Invalid icon group:" << group_or_size;
@@ -1645,8 +1629,6 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
 // used by KIconDialog to find out which contexts to offer in a combobox
 bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
-    d->initIconThemes();
-
     for (KIconThemeNode *themeNode : std::as_const(d->links)) {
         if (themeNode->theme->hasContext(context)) {
             return true;
