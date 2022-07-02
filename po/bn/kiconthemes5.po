@@ -1,0 +1,108 @@
+# translation of kio.po to Bengali
+# Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+# Deepayan Sarkar <deepayan@bengalinux.org>, 2003, 2004, 2005, 2006.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-11-30 00:41+0000\n"
+"PO-Revision-Date: 2006-01-06 23:37-0600\n"
+"Last-Translator: Deepayan Sarkar <deepayan@bengalinux.org>\n"
+"Language-Team: Bengali <kde-translation@bengalinux.org>\n"
+"Language: bn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "কাজ"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "অ্যাপলিকেশন"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr ""
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "ডিভাইস"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr ""
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr ""
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "মাইম-টাইপ"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr ""
+
+#: kicondialog.cpp:321
+#, fuzzy
+msgid "Status"
+msgstr "আরম্ভ"
+
+#: kicondialog.cpp:345
+#, fuzzy, kde-format
+#| msgid "Others"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "অন্যান্য"
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "ব্রাউ&জ..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "আইকন বেছে নাও"
+
+#: kicondialog.cpp:676
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|আইকন ফাইল (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Small Icons"
+msgid "Search Icons..."
+msgstr "ছোট আইকন"
