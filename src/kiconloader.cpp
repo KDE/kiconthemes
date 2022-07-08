@@ -532,7 +532,7 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
     sharedConfig->reparseConfiguration();
     const QString newThemeName = sharedConfig->group("Icons").readEntry("Theme", QStringLiteral("breeze"));
     if (!newThemeName.isEmpty()) {
-        // NOTE Do NOT use QIcon::setThemeName here it makes Qt not use icon engine of the platform thheme
+        // NOTE Do NOT use QIcon::setThemeName here it makes Qt not use icon engine of the platform theme
         //      anymore (KIconEngine on Plasma, which breaks recoloring) and overwrites a user set themeName
         // TODO KF6 this should be done in the Plasma QPT
         QIconLoader::instance()->updateSystemTheme();
