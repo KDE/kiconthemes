@@ -652,12 +652,12 @@ QString KIconDialog::getIcon(KIconLoader::Group group,
                              int iconSize,
                              bool user,
                              QWidget *parent,
-                             const QString &caption)
+                             const QString &title)
 {
     KIconDialog dlg(parent);
     dlg.setup(group, context, strictIconSize, iconSize, user);
-    if (!caption.isEmpty()) {
-        dlg.setWindowTitle(caption);
+    if (!title.isEmpty()) {
+        dlg.setWindowTitle(title);
     }
 
     return dlg.openDialog();

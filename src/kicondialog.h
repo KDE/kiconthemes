@@ -140,7 +140,7 @@ public:
      *        if set to 0
      * @param user Begin with the "user icons" instead of "system icons".
      * @param parent The parent widget of the dialog.
-     * @param caption The caption to use for the dialog.
+     * @param title The title to use for the dialog.
      * @return The name of the icon, suitable for loading with KIconLoader.
      */
     static QString getIcon(KIconLoader::Group group = KIconLoader::Desktop,
@@ -149,7 +149,7 @@ public:
                            int iconSize = 0,
                            bool user = false,
                            QWidget *parent = nullptr,
-                           const QString &caption = QString());
+                           const QString &title = QString());
 
 Q_SIGNALS:
     void newIconName(const QString &iconName);
