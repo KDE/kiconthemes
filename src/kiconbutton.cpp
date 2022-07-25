@@ -13,6 +13,8 @@
 
 #include <QFileInfo>
 
+#include <KLocalizedString>
+
 #include "kicondialog.h"
 
 class KIconButtonPrivate
@@ -76,6 +78,8 @@ KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
     QObject::connect(q, &KIconButton::clicked, q, [this]() {
         _k_slotChangeIcon();
     });
+
+    q->setToolTip(i18nc("@info:tooltip", "Select Icon…"));
 }
 
 KIconButtonPrivate::~KIconButtonPrivate()
