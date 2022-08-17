@@ -24,6 +24,7 @@ target_sources(KF5IconThemes PRIVATE
     kiconloader.h
     kicontheme.cpp
     kicontheme.h
+    kquickiconprovider.h
 
     hicolor.qrc
     )
@@ -82,6 +83,7 @@ ecm_generate_headers(KIconThemes_HEADERS
   KIconLoader
   KIconTheme
   KIconEngine
+  KQuickIconProvider
 
   REQUIRED_HEADERS KIconThemes_HEADERS
 )

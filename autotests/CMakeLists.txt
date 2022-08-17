@@ -20,6 +20,12 @@ kiconthemes_tests(
   kicondialog_unittest
 )
 
+find_package(Qt${QT_MAJOR_VERSION} COMPONENTS Quick)
+if (TARGET Qt${QT_MAJOR_VERSION}::Quick)
+  kiconthemes_tests(kquickiconprovidertest)
+  target_link_libraries(kquickiconprovidertest Qt${QT_MAJOR_VERSION}::Quick)
+endif()
+
 ### Test for RCC loading
 
 get_target_property(QT_RCC_EXECUTABLE Qt${QT_MAJOR_VERSION}::rcc LOCATION)
