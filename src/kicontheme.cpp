@@ -490,7 +490,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     int dw;
 
     // We want all the icons for a given context, but we prefer icons
-    // of size size . Note that this may (will) include duplicate icons
+    // of size "size" . Note that this may (will) include duplicate icons
     // QStringList iconlist[34]; // 33 == 48-16+1
     QStringList iconlist[128]; // 33 == 48-16+1
     // Usually, only the 0, 6 (22-16), 10 (32-22), 16 (48-32 or 32-16),
@@ -628,12 +628,14 @@ QStringList KIconTheme::list()
             if (theme.startsWith(QLatin1String("default."))) {
                 continue;
             }
-            if (!QFileInfo::exists(iconDir + QLatin1Char('/') + theme + QLatin1String("/index.desktop"))
-                && !QFileInfo::exists(iconDir + QLatin1Char('/') + theme + QLatin1String("/index.theme"))) {
+
+            const QString prefix = iconDir + QLatin1Char('/') + theme;
+            if (!QFileInfo::exists(prefix + QLatin1String("/index.desktop")) //
+                && !QFileInfo::exists(prefix + QLatin1String("/index.theme"))) {
                 continue;
             }
-            KIconTheme oink(theme);
-            if (!oink.isValid()) {
+
+            if (!KIconTheme(theme).isValid()) {
                 continue;
             }
 
