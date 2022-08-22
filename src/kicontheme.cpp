@@ -157,11 +157,14 @@ public:
     }
 
 private:
-    bool mbValid;
-    KIconLoader::Type mType;
+    bool mbValid = false;
+    KIconLoader::Type mType = KIconLoader::Fixed;
     KIconLoader::Context mContext;
-    int mSize, mScale, mMinSize, mMaxSize;
-    int mThreshold;
+    int mSize = 0;
+    int mScale = 1;
+    int mMinSize = 1;
+    int mMaxSize = 50;
+    int mThreshold = 2;
 
     const QString mBaseDir;
     const QString mThemeDir;
@@ -703,13 +706,8 @@ void KIconTheme::assignIconsToContextMenu(ContextMenus type, QList<QAction *> ac
 /*** KIconThemeDir ***/
 
 KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
-    : mbValid(false)
-    , mType(KIconLoader::Fixed)
-    , mSize(config.readEntry("Size", 0))
+    : mSize(config.readEntry("Size", 0))
     , mScale(config.readEntry("Scale", 1))
-    , mMinSize(1) // just set the variables to something
-    , mMaxSize(50) // meaningful in case someone calls minSize or maxSize
-    , mThreshold(2)
     , mBaseDir(basedir)
     , mThemeDir(themedir)
 {
