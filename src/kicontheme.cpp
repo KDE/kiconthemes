@@ -264,7 +264,6 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mInternalName = name;
 
     QStringList themeDirs;
-    QSet<QString> addedDirs; // Used for avoiding duplicates.
 
     // Applications can have local additions to the global "locolor" and
     // "hicolor" icon themes. For these, the _global_ theme description
@@ -275,9 +274,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         && (name == defaultThemeName()
             || name == QLatin1String("hicolor")
             || name == QLatin1String("locolor"))) { /* clang-format on */
+        const QString suffix = QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
         const QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
         for (const auto &dir : dataDirs) {
-            const QString cDir = dir + QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
+            const QString cDir = dir + suffix;
             if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
             }
@@ -350,6 +350,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->mExtensions =
         cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
 
+    QSet<QString> addedDirs; // Used for avoiding duplicates.
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
     for (const auto &dirName : dirs) {
         KConfigGroup cg(d->sharedConfig, dirName);
