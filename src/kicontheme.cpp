@@ -461,23 +461,16 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
     QStringList result;
-    const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir *dir : listDirs) {
+    const QVector<KIconThemeDir *> listDirs = d->mDirs + d->mScaledDirs;
+    for (const KIconThemeDir *dir : listDirs) {
         if (!isAnyOrDirContext(dir, context)) {
             continue;
         }
-        if ((dir->type() == KIconLoader::Fixed) && (dir->size() == size)) {
-            result += dir->iconList();
-            continue;
-        }
-        if (dir->type() == KIconLoader::Scalable //
-            && size >= dir->minSize() //
-            && size <= dir->maxSize()) {
-            result += dir->iconList();
-            continue;
-        }
-        if ((dir->type() == KIconLoader::Threshold) //
-            && (abs(size - dir->size()) < dir->threshold())) {
+
+        const int dirSize = dir->size();
+        if ((dir->type() == KIconLoader::Fixed && dirSize == size) //
+            || (dir->type() == KIconLoader::Scalable && size >= dir->minSize() && size <= dir->maxSize())
+            || (dir->type() == KIconLoader::Threshold && abs(size - dirSize) < dir->threshold())) {
             result += dir->iconList();
         }
     }
