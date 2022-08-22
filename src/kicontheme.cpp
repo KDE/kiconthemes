@@ -275,9 +275,9 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             || name == QLatin1String("hicolor")
             || name == QLatin1String("locolor"))) { /* clang-format on */
         const QString suffix = QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
-        const QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-        for (const auto &dir : dataDirs) {
-            const QString cDir = dir + suffix;
+        QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+        for (auto &cDir : dataDirs) {
+            cDir += suffix;
             if (QFileInfo::exists(cDir)) {
                 themeDirs += cDir;
             }
@@ -303,20 +303,27 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     QString fileName;
     QString mainSection;
-    for (const auto &iconDir : std::as_const(icnlibs)) {
-        const QString cDir = iconDir + QLatin1Char('/') + name + QLatin1Char('/');
-        if (QDir(cDir).exists()) {
-            themeDirs += cDir;
-            if (d->mDir.isEmpty()) {
-                if (QFileInfo::exists(cDir + QStringLiteral("index.theme"))) {
-                    d->mDir = cDir;
-                    fileName = d->mDir + QStringLiteral("index.theme");
-                    mainSection = QStringLiteral("Icon Theme");
-                } else if (QFileInfo::exists(cDir + QStringLiteral("index.desktop"))) {
-                    d->mDir = cDir;
-                    fileName = d->mDir + QStringLiteral("index.desktop");
-                    mainSection = QStringLiteral("KDE Icon Theme");
-                }
+    const QString pathSuffix = QLatin1Char('/') + name + QLatin1Char('/');
+    const QLatin1String indexTheme("index.theme");
+    const QLatin1String indexDesktop("theme.desktop");
+    for (auto &iconDir : icnlibs) {
+        iconDir += pathSuffix;
+        const QFileInfo fi(iconDir);
+        if (!fi.exists() || !fi.isDir()) {
+            continue;
+        }
+        themeDirs.append(iconDir);
+
+        if (d->mDir.isEmpty()) {
+            QString possiblePath;
+            if (possiblePath = iconDir + indexTheme; QFileInfo::exists(possiblePath)) {
+                d->mDir = iconDir;
+                fileName = possiblePath;
+                mainSection = QStringLiteral("Icon Theme");
+            } else if (possiblePath = iconDir + indexDesktop; QFileInfo::exists(possiblePath)) {
+                d->mDir = iconDir;
+                fileName = possiblePath;
+                mainSection = QStringLiteral("KDE Icon Theme");
             }
         }
     }
