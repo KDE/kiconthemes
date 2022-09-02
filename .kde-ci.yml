@@ -5,7 +5,6 @@ Dependencies:
     'frameworks/ki18n' : '@same'
     'frameworks/kconfigwidgets' : '@same'
     'frameworks/kwidgetsaddons' : '@same'
-    'frameworks/kitemviews' : '@same'
     'frameworks/karchive' : '@same'
 
 Options:
