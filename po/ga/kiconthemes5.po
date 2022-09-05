@@ -1,0 +1,117 @@
+# translation of kio4.po to Irish
+# Copyright (C) 1999,2002,2003,2004 Free Software Foundation, Inc.
+# Sean V. Kelley <s_oceallaigh@yahoo.com>, 1999.
+# Séamus Ó Ciardhuáin <seoc at iolfree.ie>, 2003,2004
+# Kevin Scannell <kscanne@gmail.com>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: kdelibs/kio4.po\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"PO-Revision-Date: 2004-12-03 14:52-0500\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.6\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+
+#: kiconbutton.cpp:82
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgctxt "@info:tooltip"
+msgid "Select Icon…"
+msgstr "Roghnaigh Deilbhín"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "Gníomhartha"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "Feidhmchláir"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "Catagóirí"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "Gléasanna"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "Feathail"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "Straoiseoga"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "Cineálacha MIME"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "Áiteanna"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "Stádas"
+
+#: kicondialog.cpp:345
+#, fuzzy, kde-format
+#| msgctxt "@item:inmenu"
+#| msgid "Other"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Eile"
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Brabhsáil..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Roghnaigh Deilbhín"
+
+#: kicondialog.cpp:676
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|Comhaid Deilbhíní (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Small Icons"
+msgid "Search Icons..."
+msgstr "Deilbhíní Beaga"
