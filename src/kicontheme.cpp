@@ -24,12 +24,12 @@
 #include <QFileInfo>
 #include <QMap>
 #include <QResource>
-#include <QSet>
 
 #include <qplatformdefs.h>
 
 #include <array>
 #include <cmath>
+#include <set>
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
@@ -368,14 +368,14 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     };
     d->mExtensions = cfg.readEntry("KDE-Extensions", defaultExtensions);
 
-    QSet<QString> addedDirs; // Used for avoiding duplicates.
+    std::set<QString> seen; // Used for avoiding duplicates.
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
     for (const auto &dirName : dirs) {
         KConfigGroup cg(d->sharedConfig, dirName);
         for (const auto &themeDir : std::as_const(themeDirs)) {
             const QString currentDir(themeDir + dirName + QLatin1Char('/'));
-            if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
-                addedDirs.insert(currentDir);
+            const bool inserted = seen.insert(currentDir).second;
+            if (inserted && QDir(currentDir).exists()) {
                 auto dirPtr = std::make_unique<KIconThemeDir>(themeDir, dirName, cg);
                 if (dirPtr->isValid()) {
                     auto &vec = dirPtr->scale() > 1 ? d->mScaledDirs : d->mDirs;
