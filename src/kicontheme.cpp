@@ -109,6 +109,8 @@ public:
 
     /// Searches the given dirs vector for a matching icon
     QString iconPath(const ThemeDirVector &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
+
+    void addThemeDirs(const QStringList &themeDirs, const KConfigGroup &cfg);
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -263,35 +265,60 @@ QString KIconThemePrivate::iconPath(const ThemeDirVector &dirs, const QString &n
     return path;
 }
 
+void KIconThemePrivate::addThemeDirs(const QStringList &themeDirs, const KConfigGroup &themeCfg)
+{
+    std::set<QString> seen; // Used for avoiding duplicates.
+    const QStringList dirs = themeCfg.readPathEntry("Directories", QStringList()) + themeCfg.readPathEntry("ScaledDirectories", QStringList());
+    for (const auto &dirName : dirs) {
+        KConfigGroup cg(sharedConfig, dirName);
+        for (const auto &themeDir : std::as_const(themeDirs)) {
+            const QString currentDir(themeDir + dirName + QLatin1Char('/'));
+            const bool inserted = seen.insert(currentDir).second;
+            if (inserted && QDir(currentDir).exists()) {
+                auto dirPtr = std::make_unique<KIconThemeDir>(themeDir, dirName, cg);
+                if (dirPtr->isValid()) {
+                    auto &vec = dirPtr->scale() > 1 ? mScaledDirs : mDirs;
+                    vec.push_back(std::move(dirPtr));
+                }
+            }
+        }
+    }
+}
+
+static QStringList themeDirPaths(const QString &name, const QString &appName)
+{
+    const bool isValidName = name == KIconTheme::defaultThemeName() || name == QLatin1String("locolor");
+    if (appName.isEmpty() || !isValidName) {
+        return {};
+    }
+
+    QStringList dirPaths;
+    const QString suffix = QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
+    QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+    for (auto &cDir : dataDirs) {
+        cDir += suffix;
+        if (QFileInfo::exists(cDir)) {
+            dirPaths += cDir;
+        }
+    }
+
+    return dirPaths;
+}
+
 KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
     : d(new KIconThemePrivate)
 {
     d->mInternalName = name;
 
-    QStringList themeDirs;
-
     // Applications can have local additions to the global "locolor" and
     // "hicolor" icon themes. For these, the _global_ theme description
     // files are used..
 
-    /* clang-format off */
-    if (!appName.isEmpty()
-        && (name == defaultThemeName()
-            || name == QLatin1String("hicolor")
-            || name == QLatin1String("locolor"))) { /* clang-format on */
-        const QString suffix = QLatin1Char('/') + appName + QLatin1String("/icons/") + name + QLatin1Char('/');
-        QStringList dataDirs = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
-        for (auto &cDir : dataDirs) {
-            cDir += suffix;
-            if (QFileInfo::exists(cDir)) {
-                themeDirs += cDir;
-            }
-        }
+    QStringList dirPaths = themeDirPaths(name, appName);
 
-        if (!basePathHint.isEmpty()) {
-            // Checks for dir existing are done below
-            themeDirs += basePathHint + QLatin1Char('/') + name + QLatin1Char('/');
-        }
+    // Checks for dir existing are done later on in the constructor
+    if (!basePathHint.isEmpty()) {
+        dirPaths += basePathHint + QLatin1Char('/') + name + QLatin1Char('/');
     }
 
     // Find the theme description file. These are either locally in the :/icons resource path or global.
@@ -317,7 +344,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         if (!fi.exists() || !fi.isDir()) {
             continue;
         }
-        themeDirs.append(iconDir);
+        dirPaths.append(iconDir);
 
         if (d->mDir.isEmpty()) {
             QString possiblePath;
@@ -368,22 +395,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     };
     d->mExtensions = cfg.readEntry("KDE-Extensions", defaultExtensions);
 
-    std::set<QString> seen; // Used for avoiding duplicates.
-    const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
-    for (const auto &dirName : dirs) {
-        KConfigGroup cg(d->sharedConfig, dirName);
-        for (const auto &themeDir : std::as_const(themeDirs)) {
-            const QString currentDir(themeDir + dirName + QLatin1Char('/'));
-            const bool inserted = seen.insert(currentDir).second;
-            if (inserted && QDir(currentDir).exists()) {
-                auto dirPtr = std::make_unique<KIconThemeDir>(themeDir, dirName, cg);
-                if (dirPtr->isValid()) {
-                    auto &vec = dirPtr->scale() > 1 ? d->mScaledDirs : d->mDirs;
-                    vec.push_back(std::move(dirPtr));
-                }
-            }
-        }
-    }
+    d->addThemeDirs(dirPaths, cfg);
 
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (auto &iconGroup : d->m_iconGroups) {
