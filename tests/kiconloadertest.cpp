@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
         qDebug() << "queryIcons " << mGroup << "," << mContext;
         const QStringList filelist = mpLoader->queryIcons(mGroup, mContext);
         qDebug() << " -> found " << filelist.count() << " icons.";
-        int i = 0;
+        // int i = 0;
         for (const auto &icon : filelist) {
             // qDebug() << ( i==9 ? "..." : (*it) );
             mpLoader->loadIcon(icon, (KIconLoader::Group)mGroup);
