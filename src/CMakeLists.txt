@@ -87,7 +87,7 @@ ecm_generate_headers(KIconThemes_HEADERS
   REQUIRED_HEADERS KIconThemes_HEADERS
 )
 
-install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
