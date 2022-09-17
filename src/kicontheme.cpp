@@ -71,7 +71,11 @@ static void setBreezeFallback()
 }
 
 Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
+
 class KIconThemeDir;
+using ThemeDirPtr = std::unique_ptr<KIconThemeDir>;
+using ThemeDirVector = std::vector<ThemeDirPtr>;
+
 class KIconThemePrivate
 {
 public:
@@ -98,12 +102,13 @@ public:
     QString mDir, mName, mInternalName, mDesc;
     QStringList mInherits;
     QStringList mExtensions;
-    QVector<KIconThemeDir *> mDirs;
-    QVector<KIconThemeDir *> mScaledDirs;
+
+    ThemeDirVector mDirs;
+    ThemeDirVector mScaledDirs;
     bool followsColorScheme : 1;
 
     /// Searches the given dirs vector for a matching icon
-    QString iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
+    QString iconPath(const ThemeDirVector &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -170,7 +175,7 @@ private:
     const QString mThemeDir;
 };
 
-QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
+QString KIconThemePrivate::iconPath(const ThemeDirVector &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
 {
     QString path;
     QString tempPath; // used to cache icon path if it exists
@@ -187,7 +192,7 @@ QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const 
     // - Take a directory having icons with a minimum difference to the requested size.
     // - Prefer directories that allow a downscaling even if the difference to
     //   the requested size is bigger than a directory where an upscaling is required.
-    for (KIconThemeDir *dir : dirs) {
+    for (const auto &dir : dirs) {
         if (dir->scale() != integerScale) {
             continue;
         }
@@ -354,8 +359,14 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->followsColorScheme = cfg.readEntry("FollowsColorScheme", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
-    d->mExtensions =
-        cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
+
+    static const QStringList defaultExtensions{
+        QStringLiteral(".png"),
+        QStringLiteral(".svgz"),
+        QStringLiteral(".svg"),
+        QStringLiteral(".xpm"),
+    };
+    d->mExtensions = cfg.readEntry("KDE-Extensions", defaultExtensions);
 
     QSet<QString> addedDirs; // Used for avoiding duplicates.
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
@@ -365,15 +376,10 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             const QString currentDir(themeDir + dirName + QLatin1Char('/'));
             if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
                 addedDirs.insert(currentDir);
-                KIconThemeDir *dir = new KIconThemeDir(themeDir, dirName, cg);
-                if (dir->isValid()) {
-                    if (dir->scale() > 1) {
-                        d->mScaledDirs.append(dir);
-                    } else {
-                        d->mDirs.append(dir);
-                    }
-                } else {
-                    delete dir;
+                auto dirPtr = std::make_unique<KIconThemeDir>(themeDir, dirName, cg);
+                if (dirPtr->isValid()) {
+                    auto &vec = dirPtr->scale() > 1 ? d->mScaledDirs : d->mDirs;
+                    vec.push_back(std::move(dirPtr));
                 }
             }
         }
@@ -386,11 +392,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     }
 }
 
-KIconTheme::~KIconTheme()
-{
-    qDeleteAll(d->mDirs);
-    qDeleteAll(d->mScaledDirs);
-}
+KIconTheme::~KIconTheme() = default;
 
 QString KIconTheme::name() const
 {
@@ -429,7 +431,7 @@ QStringList KIconTheme::inherits() const
 
 bool KIconTheme::isValid() const
 {
-    return !d->mDirs.isEmpty() || !d->mScaledDirs.isEmpty();
+    return !d->mDirs.empty() || !d->mScaledDirs.empty();
 }
 
 bool KIconTheme::isHidden() const
@@ -460,7 +462,7 @@ QList<int> KIconTheme::querySizes(KIconLoader::Group group) const
     return d->m_iconGroups[group].availableSizes;
 }
 
-static bool isAnyOrDirContext(const KIconThemeDir *dir, KIconLoader::Context context)
+static bool isAnyOrDirContext(const ThemeDirPtr &dir, KIconLoader::Context context)
 {
     return context == KIconLoader::Any || context == dir->context();
 }
@@ -469,7 +471,7 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     QStringList result;
     // Try to find exact match
-    auto addIcons = [size, context, &result](KIconThemeDir *dir) {
+    auto addIcons = [size, context, &result](const ThemeDirPtr &dir) {
         if (!isAnyOrDirContext(dir, context)) {
             return;
         }
@@ -499,7 +501,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // Usually, only the 0, 6 (22-16), 10 (32-22), 16 (48-32 or 32-16),
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
-    auto addFunc = [size, context, &dw, &iconlist](KIconThemeDir *dir) {
+    auto addFunc = [size, context, &dw, &iconlist](const ThemeDirPtr &dir) {
         if (!isAnyOrDirContext(dir, context)) {
             return;
         }
@@ -520,7 +522,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 
 bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
-    auto matchFunc = [context](KIconThemeDir *dir) {
+    auto matchFunc = [context](const ThemeDirPtr &dir) {
         return isAnyOrDirContext(dir, context);
     };
     return std::any_of(d->mDirs.cbegin(), d->mDirs.cend(), matchFunc) //
