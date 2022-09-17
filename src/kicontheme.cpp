@@ -467,12 +467,11 @@ static bool isAnyOrDirContext(const KIconThemeDir *dir, KIconLoader::Context con
 
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
-    // Try to find exact match
     QStringList result;
-    const QVector<KIconThemeDir *> listDirs = d->mDirs + d->mScaledDirs;
-    for (const KIconThemeDir *dir : listDirs) {
+    // Try to find exact match
+    auto addIcons = [size, context, &result](KIconThemeDir *dir) {
         if (!isAnyOrDirContext(dir, context)) {
-            continue;
+            return;
         }
 
         const int dirSize = dir->size();
@@ -481,7 +480,10 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
             || (dir->type() == KIconLoader::Threshold && abs(size - dirSize) < dir->threshold())) {
             result += dir->iconList();
         }
-    }
+    };
+
+    std::for_each(d->mDirs.cbegin(), d->mDirs.cend(), addIcons);
+    std::for_each(d->mScaledDirs.cbegin(), d->mScaledDirs.cend(), addIcons);
 
     return result;
 }
@@ -497,14 +499,16 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
     // Usually, only the 0, 6 (22-16), 10 (32-22), 16 (48-32 or 32-16),
     // 26 (48-22) and 32 (48-16) will be used, but who knows if someone
     // will make icon themes with different icon sizes.
-    const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir *dir : listDirs) {
+    auto addFunc = [size, context, &dw, &iconlist](KIconThemeDir *dir) {
         if (!isAnyOrDirContext(dir, context)) {
-            continue;
+            return;
         }
         dw = abs(dir->size() - size);
         iconlist[(dw < 127) ? dw : 127] += dir->iconList();
-    }
+    };
+
+    std::for_each(d->mDirs.cbegin(), d->mDirs.cend(), addFunc);
+    std::for_each(d->mScaledDirs.cbegin(), d->mScaledDirs.cend(), addFunc);
 
     QStringList iconlistResult;
     for (int i = 0; i < 128; i++) {
@@ -516,13 +520,12 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
 
 bool KIconTheme::hasContext(KIconLoader::Context context) const
 {
-    const auto listDirs = d->mDirs + d->mScaledDirs;
-    for (KIconThemeDir *dir : listDirs) {
-        if (isAnyOrDirContext(dir, context)) {
-            return true;
-        }
-    }
-    return false;
+    auto matchFunc = [context](KIconThemeDir *dir) {
+        return isAnyOrDirContext(dir, context);
+    };
+    return std::any_of(d->mDirs.cbegin(), d->mDirs.cend(), matchFunc) //
+        || std::any_of(d->mScaledDirs.cbegin(), d->mScaledDirs.cend(), matchFunc);
+
 }
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match) const
