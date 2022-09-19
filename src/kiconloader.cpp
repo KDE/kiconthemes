@@ -11,6 +11,7 @@
 */
 
 #include "kiconloader.h"
+#include "kiconloader_p.h"
 
 // kdecore
 #include <KConfigGroup>
@@ -38,7 +39,6 @@
 
 #include <QBuffer>
 #include <QByteArray>
-#include <QCache>
 #include <QDataStream>
 #include <QDir>
 #include <QElapsedTimer>
@@ -66,14 +66,6 @@ QString NULL_EFFECT_FINGERPRINT()
 }
 
 }
-
-/**
- * Holds a QPixmap for this process, along with its associated path on disk.
- */
-struct PixmapWithPath {
-    QPixmap pixmap;
-    QString path;
-};
 
 /**
  * Function to convert an uint32_t to AARRGGBB hex values.
@@ -151,12 +143,6 @@ QString KIconThemeNode::findIcon(const QString &name, int size, KIconLoader::Mat
 {
     return theme->iconPath(name, size, match);
 }
-
-/*** KIconGroup: Icon type description. ***/
-
-struct KIconGroup {
-    int size;
-};
 
 extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
 KICONTHEMES_EXPORT int kiconloader_ms_between_checks = 5000;
@@ -242,215 +228,42 @@ void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
 
 Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
 
-/*** d pointer for KIconLoader. ***/
-class KIconLoaderPrivate
+KIconLoaderPrivate::KIconLoaderPrivate(const QString &_appname, const QStringList &extraSearchPaths, KIconLoader *qq)
+    : q(qq)
+    , m_appname(_appname)
 {
-public:
-    KIconLoaderPrivate(const QString &_appname, const QStringList &extraSearchPaths, KIconLoader *qq)
-        : q(qq)
-        , m_appname(_appname)
-    {
-        q->connect(s_globalData, &KIconLoaderGlobalData::iconChanged, q, [this](int group) {
-            _k_refreshIcons(group);
-        });
-        init(m_appname, extraSearchPaths);
-    }
+    q->connect(s_globalData, &KIconLoaderGlobalData::iconChanged, q, [this](int group) {
+        _k_refreshIcons(group);
+    });
+    init(m_appname, extraSearchPaths);
+}
 
-    ~KIconLoaderPrivate()
-    {
-        clear();
-    }
+KIconLoaderPrivate::~KIconLoaderPrivate()
+{
+    clear();
+}
 
-    void clear()
-    {
-        /* antlarr: There's no need to delete d->mpThemeRoot as it's already
-        deleted when the elements of d->links are deleted */
-        qDeleteAll(links);
-        delete[] mpGroups;
-        delete mIconCache;
-        mpGroups = nullptr;
-        mIconCache = nullptr;
-        mPixmapCache.clear();
-        m_appname.clear();
-        searchPaths.clear();
-        links.clear();
-        mIconThemeInited = false;
-        mThemesInTree.clear();
-    }
+KIconLoaderPrivate *KIconLoaderPrivate::get(KIconLoader *loader)
+{
+    return loader->d.get();
+}
 
-    /**
-     * @internal
-     */
-    void init(const QString &_appname, const QStringList &extraSearchPaths = QStringList());
-
-    /**
-     * @internal
-     */
-    void initIconThemes();
-
-    /**
-     * @internal
-     * tries to find an icon with the name. It tries some extension and
-     * match strategies
-     */
-    QString findMatchingIcon(const QString &name, int size, qreal scale) const;
-
-    /**
-     * @internal
-     * tries to find an icon with the name.
-     * This is one layer above findMatchingIcon -- it also implements generic fallbacks
-     * such as generic icons for mimetypes.
-     */
-    QString findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const;
-
-    /**
-     * @internal
-     * Adds themes installed in the application's directory.
-     **/
-    void addAppThemes(const QString &appname, const QString &themeBaseDir = QString());
-
-    /**
-     * @internal
-     * Adds all themes that are part of this node and the themes
-     * below (the fallbacks of the theme) into the tree.
-     */
-    void addBaseThemes(KIconThemeNode *node, const QString &appname);
-
-    /**
-     * @internal
-     * Recursively adds all themes that are specified in the "Inherits"
-     * property of the given theme into the tree.
-     */
-    void addInheritedThemes(KIconThemeNode *node, const QString &appname);
-
-    /**
-     * @internal
-     * Creates a KIconThemeNode out of a theme name, and adds this theme
-     * as well as all its inherited themes into the tree. Themes that already
-     * exist in the tree will be ignored and not added twice.
-     */
-    void addThemeByName(const QString &themename, const QString &appname);
-
-    /**
-     * Adds all the default themes from other desktops at the end of
-     * the list of icon themes.
-     */
-    void addExtraDesktopThemes();
-
-    /**
-     * @internal
-     * return the path for the unknown icon in that size
-     */
-    QString unknownIconPath(int size, qreal scale) const;
-
-    /**
-     * Checks if name ends in one of the supported icon formats (i.e. .png)
-     * and returns the name without the extension if it does.
-     */
-    QString removeIconExtension(const QString &name) const;
-
-    /**
-     * @internal
-     * Used with KIconLoader::loadIcon to convert the given name, size, group,
-     * and icon state information to valid states. All parameters except the
-     * name can be modified as well to be valid.
-     */
-    void normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const;
-
-    /**
-     * @internal
-     * Used with KIconLoader::loadIcon to get a base key name from the given
-     * icon metadata. Ensure the metadata is normalized first.
-     */
-    QString makeCacheKey(const QString &name,
-                         KIconLoader::Group group,
-                         const QStringList &overlays,
-                         const QSize &size,
-                         qreal scale,
-                         int state,
-                         const KIconColors &colors) const;
-
-    /**
-     * @internal
-     * If the icon is an SVG file, process it generating a stylesheet
-     * following the current color scheme. in this case the icon can use named colors
-     * as text color, background color, highlight color, positive/neutral/negative color
-     * @see KColorScheme
-     */
-    QByteArray processSvg(const QString &path, KIconLoader::States state, const KIconColors &colors) const;
-
-    /**
-     * @internal
-     * Creates the QImage for @p path, using SVG rendering as appropriate.
-     * @p size is only used for scalable images, but if non-zero non-scalable
-     * images will be resized anyways.
-     */
-    QImage createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const KIconColors &colors);
-
-    /**
-     * @internal
-     * Adds an QPixmap with its associated path to the shared icon cache.
-     */
-    void insertCachedPixmapWithPath(const QString &key, const QPixmap &data, const QString &path);
-
-    /**
-     * @internal
-     * Retrieves the path and pixmap of the given key from the shared
-     * icon cache.
-     */
-    bool findCachedPixmapWithPath(const QString &key, QPixmap &data, QString &path);
-
-    /**
-     * Find the given file in the search paths.
-     */
-    QString locate(const QString &fileName);
-
-    /**
-     * @internal
-     * React to a global icon theme change
-     */
-    void _k_refreshIcons(int group);
-
-    bool shouldCheckForUnknownIcons()
-    {
-        if (mLastUnknownIconCheck.isValid() && mLastUnknownIconCheck.elapsed() < kiconloader_ms_between_checks) {
-            return false;
-        }
-        mLastUnknownIconCheck.start();
-        return true;
-    }
-
-    KIconLoader *const q;
-
-    QStringList mThemesInTree;
-    KIconGroup *mpGroups = nullptr;
-    KIconThemeNode *mpThemeRoot = nullptr;
-    QStringList searchPaths;
-    KIconEffect mpEffect;
-    QList<KIconThemeNode *> links;
-
-    // This shares the icons across all processes
-    KSharedDataCache *mIconCache = nullptr;
-
-    // This caches rendered QPixmaps in just this process.
-    QCache<QString, PixmapWithPath> mPixmapCache;
-
-    bool extraDesktopIconsLoaded : 1;
-    // lazy loading: initIconThemes() is only needed when the "links" list is needed
-    // mIconThemeInited is used inside initIconThemes() to init only once
-    bool mIconThemeInited : 1;
-    QString m_appname;
-
-    void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
-
-    QHash<QString, bool> mIconAvailability; // icon name -> true (known to be available) or false (known to be unavailable)
-    QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
-    // the colors used to recolor svg icons stylesheets
-    KIconColors mColors;
-    QPalette mPalette;
-    // to keep track if we are using a custom palette or just falling back to qApp;
-    bool mCustomColors = false;
-};
+void KIconLoaderPrivate::clear()
+{
+    /* antlarr: There's no need to delete d->mpThemeRoot as it's already
+    deleted when the elements of d->links are deleted */
+    qDeleteAll(links);
+    delete[] mpGroups;
+    delete mIconCache;
+    mpGroups = nullptr;
+    mIconCache = nullptr;
+    mPixmapCache.clear();
+    m_appname.clear();
+    searchPaths.clear();
+    links.clear();
+    mIconThemeInited = false;
+    mThemesInTree.clear();
+}
 
 void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays)
 {
@@ -546,6 +359,15 @@ void KIconLoaderPrivate::_k_refreshIcons(int group)
     q->newIconLoader();
     mIconAvailability.clear();
     Q_EMIT q->iconChanged(group);
+}
+
+bool KIconLoaderPrivate::shouldCheckForUnknownIcons()
+{
+    if (mLastUnknownIconCheck.isValid() && mLastUnknownIconCheck.elapsed() < kiconloader_ms_between_checks) {
+        return false;
+    }
+    mLastUnknownIconCheck.start();
+    return true;
 }
 
 KIconLoader::KIconLoader(const QString &appname, const QStringList &extraSearchPaths, QObject *parent)

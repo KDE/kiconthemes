@@ -695,6 +695,7 @@ Q_SIGNALS:
     void iconChanged(int group);
 
 private:
+    friend class KIconLoaderPrivate;
     // @internal the data object
     std::unique_ptr<KIconLoaderPrivate> const d;
 
