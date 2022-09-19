@@ -63,6 +63,13 @@ private Q_SLOTS:
         QVERIFY2(icon.name().isEmpty(), qPrintable(icon.name()));
     }
 
+    void testFallbackIconName()
+    {
+        QIcon icon(new KIconEngine(QStringLiteral("kde-specific-icon"), KIconLoader::global()));
+        QVERIFY(!icon.isNull());
+        QCOMPARE(icon.name(), QStringLiteral("kde"));
+    }
+
     void testUnknownIconNotCached() // QIcon version of the test in kiconloader_unittest.cpp
     {
         // This is a test to ensure that "unknown" icons are cached as unknown

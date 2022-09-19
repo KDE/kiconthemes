@@ -76,6 +76,14 @@ public:
 
     /**
      * @internal
+     * returns the preferred icon path for an icon with the name.
+     * Can be used for a quick "hasIcon" check since it caches
+     * that an icon was not found.
+     */
+    QString preferredIconPath(const QString &name);
+
+    /**
+     * @internal
      * Adds themes installed in the application's directory.
      **/
     void addAppThemes(const QString &appname, const QString &themeBaseDir = QString());
@@ -207,7 +215,7 @@ public:
 
     void drawOverlays(const KIconLoader *loader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays);
 
-    QHash<QString, bool> mIconAvailability; // icon name -> true (known to be available) or false (known to be unavailable)
+    QHash<QString, QString> mIconAvailability; // icon name -> actual icon name (not null if known to be available)
     QElapsedTimer mLastUnknownIconCheck; // recheck for unknown icons after kiconloader_ms_between_checks
     // the colors used to recolor svg icons stylesheets
     KIconColors mColors;

@@ -910,6 +910,29 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     return path;
 }
 
+QString KIconLoaderPrivate::preferredIconPath(const QString &name)
+{
+    QString path;
+
+    auto it = mIconAvailability.constFind(name);
+    const auto end = mIconAvailability.constEnd();
+
+    if (it != end && it.value().isEmpty() && !shouldCheckForUnknownIcons()) {
+        return path; // known to be unavailable
+    }
+
+    if (it != end) {
+        path = it.value();
+    }
+
+    if (path.isEmpty()) {
+        path = q->iconPath(name, KIconLoader::Desktop, KIconLoader::MatchBest);
+        mIconAvailability.insert(name, path);
+    }
+
+    return path;
+}
+
 inline QString KIconLoaderPrivate::unknownIconPath(int size, qreal scale) const
 {
     QString path = findMatchingIcon(QStringLiteral("unknown"), size, scale);
@@ -1605,19 +1628,7 @@ QPixmap KIconLoader::unknown()
 
 bool KIconLoader::hasIcon(const QString &name) const
 {
-    auto it = d->mIconAvailability.constFind(name);
-    const auto end = d->mIconAvailability.constEnd();
-    if (it != end && !it.value() && !d->shouldCheckForUnknownIcons()) {
-        return false; // known to be unavailable
-    }
-    bool found = it != end && it.value();
-    if (!found) {
-        if (!iconPath(name, KIconLoader::Desktop, KIconLoader::MatchBest).isEmpty()) {
-            found = true;
-        }
-        d->mIconAvailability.insert(name, found); // remember whether the icon is available or not
-    }
-    return found;
+    return !d->preferredIconPath(name).isEmpty();
 }
 
 void KIconLoader::setCustomPalette(const QPalette &palette)
