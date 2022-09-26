@@ -116,7 +116,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
                                                  d->mCustomColors ? std::make_optional(d->mColors) : std::nullopt);
 
     if (!iconPath.isEmpty() && !d->mActualIconName.isEmpty()) {
-        d->mActualIconName = QFileInfo(iconPath).baseName();
+        d->mActualIconName = QFileInfo(iconPath).completeBaseName();
     }
 
     if (pix.size() == size) {
@@ -161,7 +161,7 @@ QString KIconEngine::iconName() const
         return QString();
     }
 
-    d->mActualIconName = QFileInfo(iconPath).baseName();
+    d->mActualIconName = QFileInfo(iconPath).completeBaseName();
     return d->mActualIconName;
 }
 

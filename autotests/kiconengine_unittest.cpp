@@ -43,6 +43,7 @@ private Q_SLOTS:
         QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/apps")));
         QVERIFY(QFile::copy(QStringLiteral(":/oxygen.theme"), testIconsDir.filePath(QStringLiteral("oxygen/index.theme"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/org.kde.testapp.png"))));
         QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/actions"))); // we need the dir to exist since KIconThemes caches mDirs
 
         // Clear SHM cache
@@ -68,6 +69,10 @@ private Q_SLOTS:
         QIcon icon(new KIconEngine(QStringLiteral("kde-specific-icon"), KIconLoader::global()));
         QVERIFY(!icon.isNull());
         QCOMPARE(icon.name(), QStringLiteral("kde"));
+
+        QIcon icon2(new KIconEngine(QStringLiteral("org.kde.testapp-specific-icon"), KIconLoader::global()));
+        QVERIFY(!icon2.isNull());
+        QCOMPARE(icon2.name(), QStringLiteral("org.kde.testapp"));
     }
 
     void testUnknownIconNotCached() // QIcon version of the test in kiconloader_unittest.cpp
