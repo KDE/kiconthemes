@@ -1,0 +1,115 @@
+# translation of kio4.po to Maithili
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sangeeta Kumari <sangeeta09@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"PO-Revision-Date: 2008-12-03 15:07+0530\n"
+"Last-Translator: Sangeeta Kumari <sangeeta09@gmail.com>\n"
+"Language-Team: Maithili <maithili.sf.net>\n"
+"Language: mai\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: kiconbutton.cpp:82
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgctxt "@info:tooltip"
+msgid "Select Icon…"
+msgstr "प्रतीक चुनू"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr ""
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "क्रियासभ"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "अनुप्रयोग"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "श्रेणीसभ"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "डिवाइस"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "प्रतीक"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "इमोट्स"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "माइमटाइप्स"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "स्थान"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "स्थिति"
+
+#: kicondialog.cpp:345
+#, fuzzy, kde-format
+#| msgid "Others"
+msgctxt "Other icons"
+msgid "Other"
+msgstr "आन "
+
+#: kicondialog.cpp:392
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "ब्राउज... (&B)"
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "प्रतीक चुनू"
+
+#: kicondialog.cpp:676
+#, fuzzy, kde-format
+#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr "*.png *.xpm *.svg *.svgz|प्रतीक फाइलसभ (*.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "प्रतीक चुनू"

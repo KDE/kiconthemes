@@ -1,0 +1,125 @@
+# translation of kio4.po to
+# translation of kdelibs.po to
+# translation of kdelibs.po to
+# translation of kdelibs.po to
+# translation of kdelibs.po to
+# Ostatnie poprawki przed 2.0 Jacek Stolarczyk <jstolarz@kde.org>
+# Jacek Stolarczyk <jstolarz@kde.org>, 2001.
+# Piotr Roszatycki <dexter@debian.org>, 1997-2000.
+# Artur Górniak <artur_gorniak@software.pl>, 2000.
+# Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
+# Krzysztof Lichota <lichota@mimuw.edu.pl>, 2002, 2005, 2006.
+# Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2004, 2005.
+# Mikolaj Machowski <mikmach@wp.pl>, 2003, 2004, 2005.
+# Robert Gomulka <rgom@o2.pl>, 2006, 2007.
+# Robert Gomulka <carramba@epf.pl>, 2007, 2008.
+# Marta Rybczyńska <kde-i18n@rybczynska.net>, 2007, 2008, 2009, 2010, 2011.
+# Artur Chłond <eugenewolfe@o2.pl>, 2010.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2014, 2016, 2018, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"PO-Revision-Date: 2022-08-16 18:45+0200\n"
+"Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
+"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 22.04.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: kiconbutton.cpp:82
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Select Icon…"
+msgstr "Wybór ikony…"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr "Wszystkie"
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "Działania"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "Programy"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "Kategorie"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "Urządzenia"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "Symbole"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "Emotikony"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "Rodzaje MIME"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "Miejsca"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "Stany"
+
+#: kicondialog.cpp:345
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr "Inne"
+
+#: kicondialog.cpp:392
+#, kde-format
+msgid "Browse…"
+msgstr "Przeglądaj..."
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr "Żadna z ikon nie odpowiada tej szukanej"
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr "Nie ma żadnej ikony w tej kategorii"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "Wybór ikony"
+
+#: kicondialog.cpp:676
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Pliki ikon (*.ico *.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Kategoria ikon"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Poszukaj ikony..."
