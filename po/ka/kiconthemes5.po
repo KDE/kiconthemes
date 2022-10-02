@@ -1,0 +1,111 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kiconthemes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kiconthemes\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"PO-Revision-Date: 2022-08-24 12:47+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: kiconbutton.cpp:82
+#, kde-format
+msgctxt "@info:tooltip"
+msgid "Select Icon…"
+msgstr "არჩიეთ ხატულა…"
+
+#: kicondialog.cpp:312
+msgid "All"
+msgstr "&ყველა"
+
+#: kicondialog.cpp:313
+msgid "Actions"
+msgstr "მოქმედებები"
+
+#: kicondialog.cpp:314
+msgid "Applications"
+msgstr "პროგრამები"
+
+#: kicondialog.cpp:315
+msgid "Categories"
+msgstr "კატეგორიები"
+
+#: kicondialog.cpp:316
+msgid "Devices"
+msgstr "მოწყობილობები"
+
+#: kicondialog.cpp:317
+msgid "Emblems"
+msgstr "ემბლემები"
+
+#: kicondialog.cpp:318
+msgid "Emotes"
+msgstr "ეგოები"
+
+#: kicondialog.cpp:319
+msgid "Mimetypes"
+msgstr "MIME ტიპები"
+
+#: kicondialog.cpp:320
+msgid "Places"
+msgstr "ადგილები"
+
+#: kicondialog.cpp:321
+msgid "Status"
+msgstr "სტატუსი"
+
+#: kicondialog.cpp:345
+#, kde-format
+msgctxt "Other icons"
+msgid "Other"
+msgstr "სხვა"
+
+#: kicondialog.cpp:392
+#, kde-format
+msgid "Browse…"
+msgstr "არჩევა…"
+
+#: kicondialog.cpp:594
+#, kde-format
+msgid "No icons matching the search"
+msgstr "თქვენს ძებნას პასუხები არ აქვს"
+
+#: kicondialog.cpp:596
+#, kde-format
+msgid "No icons in this category"
+msgstr "კატეგორიაში ხატულები არაა"
+
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:676 kicondialog.ui:14
+#, kde-format
+msgid "Select Icon"
+msgstr "არჩიეთ ხატულა"
+
+#: kicondialog.cpp:676
+#, kde-format
+msgid ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
+
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "ხატულის კატეგორია"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "ხატულების ძებნა..."
