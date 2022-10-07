@@ -119,18 +119,3 @@ msgstr ""
 #| msgid "Select Icon"
 msgid "Search Icons..."
 msgstr "アイコンの選択"
-
-#~ msgid "Icon Source"
-#~ msgstr "アイコンソース"
-
-#~ msgid "S&ystem icons:"
-#~ msgstr "システムアイコン(&Y):"
-
-#~ msgid "O&ther icons:"
-#~ msgstr "その他のアイコン(&T):"
-
-#~ msgid "&Search:"
-#~ msgstr "検索(&S):"
-
-#~ msgid "Search interactively for icon names (e.g. folder)."
-#~ msgstr "アイコン名 (例: フォルダ) を対話的に検索"
