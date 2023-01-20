@@ -3,10 +3,10 @@ if (APPLE)
     add_subdirectory(tools/ksvg2icns)
 endif()
 
-add_library(KF5IconThemes)
-add_library(KF5::IconThemes ALIAS KF5IconThemes)
+add_library(KF6IconThemes)
+add_library(KF6::IconThemes ALIAS KF6IconThemes)
 
-target_sources(KF5IconThemes PRIVATE
+target_sources(KF6IconThemes PRIVATE
     kiconbutton.cpp
     kiconbutton.h
     kiconcolors.cpp
@@ -30,9 +30,9 @@ target_sources(KF5IconThemes PRIVATE
     )
 
 # TODO what's that PRIVATE about above?
-ki18n_wrap_ui(KF5IconThemes kicondialog.ui)
+ki18n_wrap_ui(KF6IconThemes kicondialog.ui)
 
-ecm_qt_declare_logging_category(KF5IconThemes
+ecm_qt_declare_logging_category(KF6IconThemes
     HEADER debug.h
     IDENTIFIER KICONTHEMES
     CATEGORY_NAME kf.iconthemes
@@ -41,7 +41,7 @@ ecm_qt_declare_logging_category(KF5IconThemes
     EXPORT KICONTHEMES
 )
 
-ecm_generate_export_header(KF5IconThemes
+ecm_generate_export_header(KF6IconThemes
     BASE_NAME KIconThemes
     GROUP_BASE_NAME KF
     VERSION ${KF_VERSION}
@@ -50,25 +50,25 @@ ecm_generate_export_header(KF5IconThemes
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes>")
+target_include_directories(KF6IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes>")
 
-target_link_libraries(KF5IconThemes
+target_link_libraries(KF6IconThemes
   PUBLIC
     Qt${QT_MAJOR_VERSION}::Widgets
   PRIVATE
     Qt${QT_MAJOR_VERSION}::GuiPrivate
     Qt${QT_MAJOR_VERSION}::Svg
-    KF5::Archive       # for KCompressionDevice
-    KF5::I18n          # for i18n in KIconDialog
-    KF5::WidgetsAddons # for KPixmapSequence family
-    KF5::ConfigWidgets # for KColorScheme
-    KF5::CoreAddons    # for kshareddatacache.h
+    KF6::Archive       # for KCompressionDevice
+    KF6::I18n          # for i18n in KIconDialog
+    KF6::WidgetsAddons # for KPixmapSequence family
+    KF6::ConfigWidgets # for KColorScheme
+    KF6::CoreAddons    # for kshareddatacache.h
 )
 if (TARGET Qt${QT_MAJOR_VERSION}::DBus)
-  target_link_libraries(KF5IconThemes PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+  target_link_libraries(KF6IconThemes PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
 endif()
 
-set_target_properties(KF5IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
+set_target_properties(KF6IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
                                                SOVERSION ${KICONTHEMES_SOVERSION}
                                                EXPORT_NAME IconThemes
 )
@@ -87,7 +87,7 @@ ecm_generate_headers(KIconThemes_HEADERS
   REQUIRED_HEADERS KIconThemes_HEADERS
 )
 
-install(TARGETS KF5IconThemes EXPORT KF5IconThemesTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF6IconThemes EXPORT KF6IconThemesTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
@@ -101,9 +101,9 @@ endif()
 
 if(BUILD_QCH)
     ecm_add_qch(
-        KF5IconThemes_QCH
+        KF6IconThemes_QCH
         NAME KIconThemes
-        BASE_NAME KF5IconThemes
+        BASE_NAME KF6IconThemes
         VERSION ${KF_VERSION}
         ORG_DOMAIN org.kde
         SOURCES # using only public headers, to cover only public API
@@ -129,7 +129,7 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF5IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
+ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF6IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
 
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
@@ -137,7 +137,7 @@ add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 target_link_libraries(KIconEnginePlugin
     PRIVATE
         Qt${QT_MAJOR_VERSION}::Gui
-        KF5::IconThemes
+        KF6::IconThemes
 )
 
 install(TARGETS KIconEnginePlugin DESTINATION ${KDE_INSTALL_QTPLUGINDIR}/iconengines)

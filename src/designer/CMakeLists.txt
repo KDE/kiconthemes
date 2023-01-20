@@ -1,8 +1,8 @@
 include(ECMAddQtDesignerPlugin)
 
 ecm_qtdesignerplugin_widget(KIconButton
-    TOOLTIP "Button for selecting an icon (KF5)"
-    GROUP "Buttons (KF5)"
+    TOOLTIP "Button for selecting an icon (KF6)"
+    GROUP "Buttons (KF6)"
 )
 
 ecm_add_qtdesignerplugin(kiconthemeswidgets
@@ -11,7 +11,7 @@ ecm_add_qtdesignerplugin(kiconthemeswidgets
     WIDGETS
         KIconButton
     LINK_LIBRARIES
-        KF5::IconThemes
+        KF6::IconThemes
     INSTALL_DESTINATION "${KDE_INSTALL_QTPLUGINDIR}/designer"
     COMPONENT Devel
 )

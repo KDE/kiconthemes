@@ -37,8 +37,8 @@ add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Des
 ecm_setup_version(PROJECT
                   VARIABLE_PREFIX KICONTHEMES
                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_version.h"
-                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5IconThemesConfigVersion.cmake"
-                  SOVERSION 5)
+                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6IconThemesConfigVersion.cmake"
+                  SOVERSION 6)
 
 # Dependencies
 set(REQUIRED_QT_VERSION 6.4.0)
@@ -48,11 +48,11 @@ if (NOT ANDROID)
   find_package(Qt${QT_MAJOR_VERSION}DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 endif()
 
-find_package(KF5Archive ${KF_DEP_VERSION} REQUIRED)
-find_package(KF5I18n ${KF_DEP_VERSION} REQUIRED)
-find_package(KF5CoreAddons ${KF_DEP_VERSION} REQUIRED)
-find_package(KF5ConfigWidgets ${KF_DEP_VERSION} REQUIRED)
-find_package(KF5WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6Archive ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6I18n ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6CoreAddons ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6ConfigWidgets ${KF_DEP_VERSION} REQUIRED)
+find_package(KF6WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
@@ -71,34 +71,34 @@ if (BUILD_TESTING)
 endif()
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF5IconThemes")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KF6IconThemes")
 
 if (BUILD_QCH)
     ecm_install_qch_export(
-        TARGETS KF5IconThemes_QCH
-        FILE KF5IconThemesQchTargets.cmake
+        TARGETS KF6IconThemes_QCH
+        FILE KF6IconThemesQchTargets.cmake
         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         COMPONENT Devel
     )
-    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF5IconThemesQchTargets.cmake\")")
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KF6IconThemesQchTargets.cmake\")")
 endif()
 
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/KF5IconThemesConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5IconThemesConfig.cmake"
+  "${CMAKE_CURRENT_SOURCE_DIR}/KF6IconThemesConfig.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF6IconThemesConfig.cmake"
   INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5IconThemesConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/KF5IconThemesConfigVersion.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF6IconThemesConfig.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KF6IconThemesConfigVersion.cmake"
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
   COMPONENT Devel
 )
 
-install(EXPORT KF5IconThemesTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF5IconThemesTargets.cmake NAMESPACE KF5:: )
+install(EXPORT KF6IconThemesTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6IconThemesTargets.cmake NAMESPACE KF6:: )
 
 install(FILES
    ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_version.h

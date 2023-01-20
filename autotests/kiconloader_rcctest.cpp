@@ -73,7 +73,7 @@ private Q_SLOTS:
     }
 
 private:
-    const QString m_internalThemeName = QStringLiteral("kf5_rcc_theme");
+    const QString m_internalThemeName = QStringLiteral("kf6_rcc_theme");
 };
 
 QTEST_MAIN(KIconLoader_RCCThemeTest)

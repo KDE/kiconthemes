@@ -40,7 +40,7 @@ void initRCCIconTheme()
 {
     const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
     if (!iconThemeRcc.isEmpty()) {
-        const QString iconThemeName = QStringLiteral("kf5_rcc_theme");
+        const QString iconThemeName = QStringLiteral("kf6_rcc_theme");
         const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
         if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
             if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
