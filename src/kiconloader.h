@@ -83,12 +83,6 @@ public:
         Action, ///< An action icon (e.g. 'save', 'print').
         Application, ///< An icon that represents an application.
         Device, ///< An icon that represents a device.
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(4, 8)
-        FileSystem ///< An icon that represents a file system. @deprecated Since 4.8. Use Place instead.
-            KICONTHEMES_ENUMERATOR_DEPRECATED_VERSION_BELATED(5, 82, 4, 8, "Use Place instead"),
-#elif KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
-        FileSystem_DEPRECATED_DO_NOT_USE,
-#endif
         MimeType, ///< An icon that represents a mime type (or file type).
         Animation, ///< An icon that is animated.
         Category, ///< An icon that represents a category.
@@ -417,28 +411,6 @@ public:
      */
     KPixmapSequence loadPixmapSequence(const QString &iconName, int size = SizeSmall) const;
 
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-    /**
-     * Creates an icon set, that will do on-demand loading of the icon.
-     * Loading itself is done by calling loadIcon .
-     *
-     * @param name The name of the icon, without extension.
-     * @param group The icon group. This will specify the size of and effects to
-     * be applied to the icon.
-     * @param size If nonzero, this overrides the size specified by @p group.
-     *             See KIconLoader::StdSizes.
-     * @param canReturnNull Can return a null iconset? If false, iconset
-     * containing the "unknown" pixmap is returned when no appropriate icon has
-     * been found.
-     * @return the icon set. Can be null when not found, depending on
-     *          @p canReturnNull.
-     *
-     * @deprecated Since 5.0, use QIcon::fromTheme instead, which uses the iconloader internally
-     */
-    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-    QIcon loadIconSet(const QString &name, KIconLoader::Group group, int size = 0, bool canReturnNull = false);
-#endif
-
     /**
      * Returns the path of an icon.
      * @param name The name of the icon, without extension. If an absolute
@@ -596,18 +568,6 @@ public:
      */
     static QPixmap unknown();
 
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 82)
-    /**
-     * Checks whether the user wants to blend the icons with the background
-     *  using the alpha channel information for a given group.
-     * @param group the group to check
-     * @return true if alpha blending is desired
-     * @deprecated Since 3.1, no known users
-     */
-    KICONTHEMES_DEPRECATED_VERSION_BELATED(5, 82, 3, 1, "No known users")
-    bool alphaBlending(KIconLoader::Group group) const;
-#endif
-
     /**
      * Draws overlays on the specified pixmap, it takes the width and height
      * of the pixmap into consideration
@@ -667,7 +627,7 @@ public Q_SLOTS:
      * @todo Check deprecation, still used internally.
      * @deprecated Since 5.0, use emitChange(Group)
      */
-    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)")
+    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)") // TODO KF6 remove
     void newIconLoader();
 
     /**
@@ -701,137 +661,6 @@ private:
 
     Q_PRIVATE_SLOT(d, void _k_refreshIcons(int group))
 };
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
-/**
- * \relates KIconLoader
- * Load a desktop icon.
- * @deprecated since 5.63. Prefer QIcon::fromTheme instead where possible,
- * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
- * if you need the overlay, use KIconLoader::loadIcon.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-QPixmap DesktopIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-/**
- * \relates KIconLoader
- * Load a desktop icon, and apply the necessary effects to get an IconSet.
- * @deprecated Since 5.0, use QIcon::fromTheme instead
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-QIcon DesktopIconSet(const QString &name, int size = 0);
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
-/**
- * \relates KIconLoader
- * Load a toolbar icon.
- * @deprecated since 5.63. Prefer QIcon::fromTheme instead where possible,
- * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
- * if you need the overlay, use KIconLoader::loadIcon.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-QPixmap BarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-/**
- * \relates KIconLoader
- * Load a toolbar icon, and apply the necessary effects to get an IconSet.
- * @deprecated Since 5.0, use QIcon::fromTheme instead
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-QIcon BarIconSet(const QString &name, int size = 0);
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
-/**
- * \relates KIconLoader
- * Load a small icon.
- * @deprecated since 5.63. Prefer QIcon::fromTheme instead where possible,
- * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
- * if you need the overlay, use KIconLoader::loadIcon.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-QPixmap SmallIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-/**
- * \relates KIconLoader
- * Load a small icon, and apply the necessary effects to get an IconSet.
- * @deprecated Since 5.0, use QIcon::fromTheme instead
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-QIcon SmallIconSet(const QString &name, int size = 0);
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 63)
-/**
- * \relates KIconLoader
- * Load a main toolbar icon.
- * @deprecated since 5.63. Prefer QIcon::fromTheme instead where possible,
- * if you need a pixmap use QIcon::pixmap with KIconLoader::StdSizes,
- * if you need the overlay, use KIconLoader::loadIcon.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 63, "See API dox for replacement")
-QPixmap MainBarIcon(const QString &name, int size = 0, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-/**
- * \relates KIconLoader
- * Load a main toolbar icon, and apply the effects to get an IconSet.
- * @deprecated Since 5.0, use QIcon::fromTheme instead
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-QIcon MainBarIconSet(const QString &name, int size = 0);
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 65)
-/**
- * \relates KIconLoader
- * Load a user icon. User icons are searched in $appdir/pics.
- * @deprecated since 5.65 Prefer qrc files over user icon themes.
- * If that's not an option for now, use KIconLoader::loadIcon.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 65, "See API dox for replacement")
-QPixmap UserIcon(const QString &name, int state = KIconLoader::DefaultState, const QStringList &overlays = QStringList());
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 0)
-/**
- * \relates KIconLoader
- * Load a user icon, and apply the effects to get an IconSet.
- * @deprecated Since 5.0, use QIcon::fromTheme instead
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use QIcon::fromTheme(const QString&)")
-QIcon UserIconSet(const QString &name);
-#endif
-
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 66)
-/**
- * \relates KIconLoader
- * Returns the current icon size for a specific group.
- * @deprecated since 5.66 Prefer QStyle::pixelMetric.
- * If that's not an option for now, use KIconLoader::currentSize.
- */
-KICONTHEMES_EXPORT
-KICONTHEMES_DEPRECATED_VERSION(5, 66, "Use QStyle::pixelMetric or KIconLoader::currentSize")
-int IconSize(KIconLoader::Group group);
-#endif
 
 namespace KDE
 {

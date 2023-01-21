@@ -255,32 +255,6 @@ public:
      */
     static QString defaultThemeName();
 
-#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 64)
-    /**
-     * Defines the context menus that assignIconsToContextMenus is
-     * aware of.
-     *
-     * For ReadOnlyText the menu is expected to have one entry.
-     *
-     * TextEditor is expected to have the full complement of
-     * undo, redo, cut, copy, paste and clear.
-     *
-     * @deprecated since 5.64 no longer needed
-     */
-    enum ContextMenus {
-        TextEditor,
-        ReadOnlyText,
-    }; // TODO KF6 remove
-
-    /**
-     * Assigns standard icons to the various standard text edit context menus.
-     *
-     * @deprecated since 5.64, no longer necessary, Qt assigns icon itself by now.
-     */
-    KICONTHEMES_DEPRECATED_VERSION(5, 64, "No longer necessary")
-    static void assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions); // TODO KF6 remove
-#endif
-
 private:
     std::unique_ptr<class KIconThemePrivate> const d;
 };

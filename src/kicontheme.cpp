@@ -661,51 +661,6 @@ QString KIconTheme::defaultThemeName()
     return QStringLiteral("hicolor");
 }
 
-#if KICONTHEMES_BUILD_DEPRECATED_SINCE(5, 64)
-void KIconTheme::assignIconsToContextMenu(ContextMenus type, QList<QAction *> actions)
-{
-    switch (type) {
-    // FIXME: This code depends on Qt's action ordering.
-    case TextEditor:
-        enum {
-            UndoAct,
-            RedoAct,
-            Separator1,
-            CutAct,
-            CopyAct,
-            PasteAct,
-            DeleteAct,
-            ClearAct,
-            Separator2,
-            SelectAllAct,
-            NCountActs,
-        };
-
-        if (actions.count() < NCountActs) {
-            return;
-        }
-
-        actions[UndoAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-undo")));
-        actions[RedoAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-redo")));
-        actions[CutAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-cut")));
-        actions[CopyAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
-        actions[PasteAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-paste")));
-        actions[ClearAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-clear")));
-        actions[DeleteAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-delete")));
-        actions[SelectAllAct]->setIcon(QIcon::fromTheme(QStringLiteral("edit-select-all")));
-        break;
-
-    case ReadOnlyText:
-        if (actions.count() < 1) {
-            return;
-        }
-
-        actions[0]->setIcon(QIcon::fromTheme(QStringLiteral("edit-copy")));
-        break;
-    }
-}
-#endif
-
 /*** KIconThemeDir ***/
 
 KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
@@ -723,10 +678,6 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         mContext = KIconLoader::Device;
     } else if (tmp == QLatin1String("MimeTypes")) {
         mContext = KIconLoader::MimeType;
-#if KICONTHEMES_BUILD_DEPRECATED_SINCE(4, 8)
-    } else if (tmp == QLatin1String("FileSystems")) {
-        mContext = KIconLoader::FileSystem;
-#endif
     } else if (tmp == QLatin1String("Applications")) {
         mContext = KIconLoader::Application;
     } else if (tmp == QLatin1String("Actions")) {
