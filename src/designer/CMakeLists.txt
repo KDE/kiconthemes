@@ -7,7 +7,7 @@ ecm_qtdesignerplugin_widget(KIconButton
 
 ecm_add_qtdesignerplugin(kiconthemeswidgets
     NAME KIconThemesWidgets
-    OUTPUT_NAME kiconthemes5widgets
+    OUTPUT_NAME kiconthemes6widgets
     WIDGETS
         KIconButton
     LINK_LIBRARIES
