@@ -24,7 +24,6 @@ class KIconEngine_Scaled_UnitTest : public QObject
 private Q_SLOTS:
     void initTestCase()
     {
-        QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
         QStandardPaths::setTestModeEnabled(true);
     }
 
@@ -35,7 +34,7 @@ private Q_SLOTS:
 
         QWindow w;
         QCOMPARE(w.devicePixelRatio(), 2.0);
-        auto image = icon.pixmap(&w, QSize(22, 22)).toImage();
+        auto image = icon.pixmap(QSize(22, 22), w.devicePixelRatio()).toImage();
         QCOMPARE(image.devicePixelRatio(), 2.0);
         QCOMPARE(image.size(), QSize(44, 44));
 
@@ -48,9 +47,9 @@ private Q_SLOTS:
         QCOMPARE(image, unscaled);
 
         // center vertically
-        QVERIFY(icon.pixmap(&w, QSize(22, 26)).toImage().copy(0, 4, 44, 44) == image);
+        QVERIFY(icon.pixmap(QSize(22, 26), w.devicePixelRatio()).toImage().copy(0, 4, 44, 44) == image);
         // center horizontally
-        QVERIFY(icon.pixmap(&w, QSize(26, 22)).toImage().copy(4, 0, 44, 44) == image);
+        QVERIFY(icon.pixmap(QSize(26, 22), w.devicePixelRatio()).toImage().copy(4, 0, 44, 44) == image);
     }
 };
 
