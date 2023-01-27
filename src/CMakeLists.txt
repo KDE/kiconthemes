@@ -54,18 +54,18 @@ target_include_directories(KF6IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_IN
 
 target_link_libraries(KF6IconThemes
   PUBLIC
-    Qt${QT_MAJOR_VERSION}::Widgets
+    Qt6::Widgets
   PRIVATE
-    Qt${QT_MAJOR_VERSION}::GuiPrivate
-    Qt${QT_MAJOR_VERSION}::Svg
+    Qt6::GuiPrivate
+    Qt6::Svg
     KF6::Archive       # for KCompressionDevice
     KF6::I18n          # for i18n in KIconDialog
     KF6::WidgetsAddons # for KPixmapSequence family
     KF6::ConfigWidgets # for KColorScheme
     KF6::CoreAddons    # for kshareddatacache.h
 )
-if (TARGET Qt${QT_MAJOR_VERSION}::DBus)
-  target_link_libraries(KF6IconThemes PRIVATE Qt${QT_MAJOR_VERSION}::DBus)
+if (TARGET Qt6::DBus)
+  target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)
 endif()
 
 set_target_properties(KF6IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
@@ -136,7 +136,7 @@ add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin
     PRIVATE
-        Qt${QT_MAJOR_VERSION}::Gui
+        Qt6::Gui
         KF6::IconThemes
 )
 

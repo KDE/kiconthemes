@@ -71,17 +71,10 @@ public:
     /// Reimplementation
     QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
 
-#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
     /// Reimplementation
     QString iconName() override;
     /// Reimplementation
     QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) override;
-#else
-    /// Reimplementation
-    QString iconName() const override;
-    /// Reimplementation
-    QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) const override;
-#endif
 
     QString key() const override;
     QIconEngine *clone() const override;
