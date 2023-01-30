@@ -142,6 +142,11 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
     return createPixmap(size, 1 /*scale*/, mode, state);
 }
 
+QPixmap KIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::State state, qreal scale)
+{
+    return createPixmap(size, scale, mode, state);
+}
+
 QString KIconEngine::iconName()
 {
     if (!d->mActualIconName.isEmpty()) {
@@ -201,15 +206,7 @@ bool KIconEngine::write(QDataStream &out) const
     return true;
 }
 
-void KIconEngine::virtual_hook(int id, void *data)
+bool KIconEngine::isNull()
 {
-    if (id == QIconEngine::IsNullHook) {
-        *reinterpret_cast<bool *>(data) = !d->mIconLoader || !d->mIconLoader->hasIcon(mIconName);
-    }
-    if (id == QIconEngine::ScaledPixmapHook) {
-        auto *info = reinterpret_cast<ScaledPixmapArgument *>(data);
-        info->pixmap = createPixmap(info->size, info->scale, info->mode, info->state);
-        return;
-    }
-    QIconEngine::virtual_hook(id, data);
+    return !d->mIconLoader || !d->mIconLoader->hasIcon(mIconName);
 }

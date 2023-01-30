@@ -70,18 +70,19 @@ public:
     void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override;
     /// Reimplementation
     QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override;
+    QPixmap scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::State state, qreal scale) override;
 
     /// Reimplementation
     QString iconName() override;
     /// Reimplementation
     QList<QSize> availableSizes(QIcon::Mode mode, QIcon::State state) override;
 
+    bool isNull() override;
+
     QString key() const override;
     QIconEngine *clone() const override;
     bool read(QDataStream &in) override;
     bool write(QDataStream &out) const override;
-
-    void virtual_hook(int id, void *data) override;
 
 private:
     // TODO KF6: move those into the d-pointer
