@@ -15,9 +15,11 @@
 
 #include <KColorScheme>
 #include <KConfigGroup>
+#include <KSharedConfig>
 #include <kicontheme.h>
 
 #include <QDebug>
+#include <QPalette>
 #include <QSysInfo>
 
 #include <qplatformdefs.h>
