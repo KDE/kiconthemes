@@ -13,7 +13,7 @@
 #ifndef KICONDIALOG_H
 #define KICONDIALOG_H
 
-#include "kiconthemes_export.h"
+#include "kiconwidgets_export.h"
 
 #include <QDialog>
 #include <QPushButton>
@@ -29,7 +29,7 @@
  *
  * @short An icon selection dialog.
  */
-class KICONTHEMES_EXPORT KIconDialog : public QDialog
+class KICONWIDGETS_EXPORT KIconDialog : public QDialog
 {
     Q_OBJECT
 
@@ -156,7 +156,6 @@ private:
     friend class KIconDialogPrivate;
 
     Q_DISABLE_COPY(KIconDialog)
-
 };
 
 #endif // KICONDIALOG_H

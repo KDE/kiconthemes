@@ -11,7 +11,7 @@ ecm_add_qtdesignerplugin(kiconthemeswidgets
     WIDGETS
         KIconButton
     LINK_LIBRARIES
-        KF6::IconThemes
+        KF6::IconWidgets
     INSTALL_DESTINATION "${KDE_INSTALL_QTPLUGINDIR}/designer"
     COMPONENT Devel
 )

@@ -6,6 +6,8 @@ if (APPLE)
     add_subdirectory(tools/ksvg2icns)
 endif()
 
+add_subdirectory(widgets)
+
 add_library(KF6IconThemes)
 add_library(KF6::IconThemes ALIAS KF6IconThemes)
 
@@ -16,14 +18,8 @@ set_target_properties(KF6IconThemes PROPERTIES
 )
 
 target_sources(KF6IconThemes PRIVATE
-    kiconbutton.cpp
-    kiconbutton.h
     kiconcolors.cpp
     kiconcolors.h
-    kicondialog.cpp
-    kicondialog.h
-    kicondialogmodel_p.h
-    kicondialog_p.h
     kiconeffect.cpp
     kiconeffect.h
     kiconengine.cpp
@@ -37,9 +33,6 @@ target_sources(KF6IconThemes PRIVATE
 
     hicolor.qrc
     )
-
-# TODO what's that PRIVATE about above?
-ki18n_wrap_ui(KF6IconThemes kicondialog.ui)
 
 ecm_qt_declare_logging_category(KF6IconThemes
     HEADER debug.h
@@ -64,16 +57,13 @@ target_include_directories(KF6IconThemes INTERFACE "$<INSTALL_INTERFACE:${KDE_IN
 
 target_link_libraries(KF6IconThemes
   PUBLIC
-    Qt6::Widgets
+    Qt6::Gui
   PRIVATE
     Qt6::GuiPrivate
     Qt6::Svg
     KF6::Archive       # for KCompressionDevice
-    KF6::I18n          # for i18n in KIconDialog
-    KF6::WidgetsAddons # for KPixmapSequence family
-    KF6::ConfigCore
-    KF6::ConfigWidgets # KStandardAction
-    KF6::ColorScheme # for KColorScheme
+    KF6::I18n          # for KLocalizedString::localizedFilePath in KIconTheme
+    KF6::ColorScheme
     KF6::CoreAddons    # for kshareddatacache.h
 )
 if (TARGET Qt6::DBus)
@@ -82,9 +72,7 @@ endif()
 
 ecm_generate_headers(KIconThemes_HEADERS
   HEADER_NAMES
-  KIconButton
   KIconColors
-  KIconDialog
   KIconEffect
   KIconLoader
   KIconTheme
@@ -101,10 +89,6 @@ install(FILES
   ${KIconThemes_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes COMPONENT Devel
 )
-
-if(BUILD_DESIGNERPLUGIN)
-    add_subdirectory(designer)
-endif()
 
 if(BUILD_QCH)
     ecm_add_qch(
@@ -136,7 +120,7 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF6IconThemes DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
+ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF6IconThemes DEPS "gui" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
 
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)

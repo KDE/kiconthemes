@@ -31,9 +31,6 @@
 #include "kiconeffect.h"
 #include "kicontheme.h"
 
-// kwidgetsaddons
-#include <KPixmapSequence>
-
 #include <KColorScheme>
 #include <KCompressionDevice>
 
@@ -1226,11 +1223,6 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     }
 
     return pix;
-}
-
-KPixmapSequence KIconLoader::loadPixmapSequence(const QString &xdgIconName, int size) const
-{
-    return KPixmapSequence(iconPath(xdgIconName, -size), size);
 }
 
 QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, int size, QObject *parent) const

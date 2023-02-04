@@ -31,8 +31,6 @@ class KIconLoaderPrivate;
 class KIconEffect;
 class KIconTheme;
 
-class KPixmapSequence;
-
 /**
  * @class KIconLoader kiconloader.h KIconLoader
  *
@@ -402,15 +400,6 @@ public:
                              int state = KIconLoader::DefaultState,
                              const QStringList &overlays = QStringList(),
                              QString *path_store = nullptr) const;
-
-    /**
-     * Loads a pixmapSequence given the xdg icon name
-     *
-     * @param iconName The name of the icon, without extension.
-     * @param size the size/group to be used
-     * @since 5.0
-     */
-    KPixmapSequence loadPixmapSequence(const QString &iconName, int size = SizeSmall) const;
 
     /**
      * Returns the path of an icon.

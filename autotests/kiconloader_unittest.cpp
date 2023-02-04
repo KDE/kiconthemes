@@ -12,8 +12,6 @@
 #include <QStandardPaths>
 #include <QTest>
 
-#include <KPixmapSequence>
-
 #include <KConfigGroup>
 #include <KSharedConfig>
 
@@ -456,12 +454,6 @@ private Q_SLOTS:
         QPixmap pix = KIconLoader::unknown();
         QPixmap pix2 = KIconLoader::unknown();
         QCOMPARE(pix.cacheKey(), pix2.cacheKey());
-    }
-
-    void testLoadPixmapSequence()
-    {
-        KPixmapSequence seq = KIconLoader::global()->loadPixmapSequence(QStringLiteral("process-working"), 22);
-        QVERIFY(seq.isValid());
     }
 
     void testAppropriateSizes()

@@ -7,7 +7,7 @@ macro(KICONTHEMES_TESTS)
     foreach(_testname ${ARGN})
         set(_srcs ${_testname}.cpp)
         qt_add_resources(_srcs resources.qrc)
-        ecm_add_test(${_srcs} TEST_NAME ${_testname} LINK_LIBRARIES Qt6::Test KF6::IconThemes KF6::WidgetsAddons KF6::ConfigCore)
+        ecm_add_test(${_srcs} TEST_NAME ${_testname} LINK_LIBRARIES Qt6::Test KF6::IconThemes KF6::WidgetsAddons KF6::ConfigCore KF6::IconWidgets)
     endforeach(_testname)
 endmacro()
 
@@ -18,6 +18,7 @@ kiconthemes_tests(
   kiconengine_unittest
   kiconengine_scaled_unittest
   kicondialog_unittest
+  kpixmapsequenceloadertest
 )
 
 find_package(Qt6 COMPONENTS Quick)
