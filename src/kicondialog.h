@@ -42,14 +42,6 @@ public:
     explicit KIconDialog(QWidget *parent = nullptr);
 
     /**
-     * Constructs an icon selection dialog using a specific icon loader.
-     *
-     * @param loader The icon loader to use.
-     * @param parent The parent widget.
-     */
-    explicit KIconDialog(KIconLoader *loader, QWidget *parent = nullptr);
-
-    /**
      * Destructs the dialog.
      */
     ~KIconDialog() override;

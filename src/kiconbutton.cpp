@@ -55,13 +55,6 @@ KIconButton::KIconButton(QWidget *parent)
     QPushButton::setIconSize(QSize(48, 48));
 }
 
-KIconButton::KIconButton(KIconLoader *loader, QWidget *parent)
-    : QPushButton(parent)
-    , d(new KIconButtonPrivate(this, loader))
-{
-    QPushButton::setIconSize(QSize(48, 48));
-}
-
 KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
     : q(qq)
 {
@@ -90,7 +83,7 @@ KIconButtonPrivate::~KIconButtonPrivate()
 KIconDialog *KIconButtonPrivate::dialog()
 {
     if (!mpDialog) {
-        mpDialog = new KIconDialog(mpLoader, q);
+        mpDialog = new KIconDialog(q);
         QObject::connect(mpDialog, &KIconDialog::newIconName, q, [this](const QString &iconName) {
             _k_newIconName(iconName);
         });

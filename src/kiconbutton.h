@@ -45,14 +45,6 @@ public:
     explicit KIconButton(QWidget *parent = nullptr);
 
     /**
-     * Constructs a KIconButton using a specific icon loader.
-     *
-     * @param loader The icon loader to use.
-     * @param parent The parent widget.
-     */
-    KIconButton(KIconLoader *loader, QWidget *parent);
-
-    /**
      * Destructs the button.
      */
     ~KIconButton() override;

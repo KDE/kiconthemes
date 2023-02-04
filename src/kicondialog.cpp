@@ -277,18 +277,6 @@ KIconDialog::KIconDialog(QWidget *parent)
     installEventFilter(new ShowEventFilter(this));
 }
 
-KIconDialog::KIconDialog(KIconLoader *loader, QWidget *parent)
-    : QDialog(parent)
-    , d(new KIconDialogPrivate(this))
-{
-    setModal(true);
-
-    d->mpLoader = loader;
-    d->init();
-
-    installEventFilter(new ShowEventFilter(this));
-}
-
 void KIconDialogPrivate::init()
 {
     mGroupOrSize = KIconLoader::Desktop;
