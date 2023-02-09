@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"POT-Creation-Date: 2023-02-09 00:57+0000\n"
 "PO-Revision-Date: 2020-08-27 23:13+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -21,83 +21,83 @@ msgstr ""
 "X-Generator: Lokalize 20.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kiconbutton.cpp:82
+#: kiconbutton.cpp:84
 #, fuzzy, kde-format
 #| msgid "Select Icon"
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Нишонаеро интихоб кунед"
 
-#: kicondialog.cpp:312
+#: kicondialog.cpp:314
 msgid "All"
 msgstr "Ҳама"
 
-#: kicondialog.cpp:313
+#: kicondialog.cpp:315
 msgid "Actions"
 msgstr "Амалиётҳо"
 
-#: kicondialog.cpp:314
+#: kicondialog.cpp:316
 msgid "Applications"
 msgstr "Барномаҳо"
 
-#: kicondialog.cpp:315
+#: kicondialog.cpp:317
 msgid "Categories"
 msgstr "Намунаҳо"
 
-#: kicondialog.cpp:316
+#: kicondialog.cpp:318
 msgid "Devices"
 msgstr "Дастгоҳҳо"
 
-#: kicondialog.cpp:317
+#: kicondialog.cpp:319
 msgid "Emblems"
 msgstr "Тамғаҳо"
 
-#: kicondialog.cpp:318
+#: kicondialog.cpp:320
 msgid "Emotes"
 msgstr "Қиёфаҳо"
 
-#: kicondialog.cpp:319
+#: kicondialog.cpp:321
 msgid "Mimetypes"
 msgstr "Навъи қиёфаҳо"
 
-#: kicondialog.cpp:320
+#: kicondialog.cpp:322
 msgid "Places"
 msgstr "Ҷойҳо"
 
-#: kicondialog.cpp:321
+#: kicondialog.cpp:323
 msgid "Status"
 msgstr "Вазъият"
 
-#: kicondialog.cpp:345
+#: kicondialog.cpp:347
 #, fuzzy, kde-format
 #| msgid "Others"
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Дигарон"
 
-#: kicondialog.cpp:392
+#: kicondialog.cpp:394
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "&Намоиш..."
 
-#: kicondialog.cpp:594
+#: kicondialog.cpp:596
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: kicondialog.cpp:596
+#: kicondialog.cpp:598
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:676 kicondialog.ui:14
+#: kicondialog.cpp:678 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Нишонаеро интихоб кунед"
 
-#: kicondialog.cpp:676
+#: kicondialog.cpp:678
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

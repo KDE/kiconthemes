@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"POT-Creation-Date: 2023-02-09 00:57+0000\n"
 "PO-Revision-Date: 2010-12-31 00:33+0700\n"
 "Last-Translator: Phuwanat Sakornsakolpat <narachai@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -21,54 +21,54 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: kiconbutton.cpp:82
+#: kiconbutton.cpp:84
 #, fuzzy, kde-format
 #| msgid "Select Icon"
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "เลือกไอคอน"
 
-#: kicondialog.cpp:312
+#: kicondialog.cpp:314
 msgid "All"
 msgstr ""
 
-#: kicondialog.cpp:313
+#: kicondialog.cpp:315
 msgid "Actions"
 msgstr "การกระทำ"
 
-#: kicondialog.cpp:314
+#: kicondialog.cpp:316
 msgid "Applications"
 msgstr "โปรแกรม"
 
-#: kicondialog.cpp:315
+#: kicondialog.cpp:317
 msgid "Categories"
 msgstr "หมวดหมู่"
 
-#: kicondialog.cpp:316
+#: kicondialog.cpp:318
 msgid "Devices"
 msgstr "อุปกรณ์"
 
-#: kicondialog.cpp:317
+#: kicondialog.cpp:319
 msgid "Emblems"
 msgstr "ป้ายสัญลักษณ์"
 
-#: kicondialog.cpp:318
+#: kicondialog.cpp:320
 msgid "Emotes"
 msgstr "ไอคอนสื่ออารมณ์"
 
-#: kicondialog.cpp:319
+#: kicondialog.cpp:321
 msgid "Mimetypes"
 msgstr "ประเภท Mime ของแฟ้ม"
 
-#: kicondialog.cpp:320
+#: kicondialog.cpp:322
 msgid "Places"
 msgstr "ที่หลัก ๆ"
 
-#: kicondialog.cpp:321
+#: kicondialog.cpp:323
 msgid "Status"
 msgstr "สถานะ"
 
-#: kicondialog.cpp:345
+#: kicondialog.cpp:347
 #, fuzzy, kde-format
 #| msgctxt "@item:inmenu"
 #| msgid "Other"
@@ -76,29 +76,29 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "อื่น ๆ"
 
-#: kicondialog.cpp:392
+#: kicondialog.cpp:394
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "เลือ&ก..."
 
-#: kicondialog.cpp:594
+#: kicondialog.cpp:596
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: kicondialog.cpp:596
+#: kicondialog.cpp:598
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:676 kicondialog.ui:14
+#: kicondialog.cpp:678 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "เลือกไอคอน"
 
-#: kicondialog.cpp:676
+#: kicondialog.cpp:678
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""

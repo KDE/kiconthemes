@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"POT-Creation-Date: 2023-02-09 00:57+0000\n"
 "PO-Revision-Date: 2008-12-03 15:07+0530\n"
 "Last-Translator: Sangeeta Kumari <sangeeta09@gmail.com>\n"
 "Language-Team: Maithili <maithili.sf.net>\n"
@@ -18,83 +18,83 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: kiconbutton.cpp:82
+#: kiconbutton.cpp:84
 #, fuzzy, kde-format
 #| msgid "Select Icon"
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "प्रतीक चुनू"
 
-#: kicondialog.cpp:312
+#: kicondialog.cpp:314
 msgid "All"
 msgstr ""
 
-#: kicondialog.cpp:313
+#: kicondialog.cpp:315
 msgid "Actions"
 msgstr "क्रियासभ"
 
-#: kicondialog.cpp:314
+#: kicondialog.cpp:316
 msgid "Applications"
 msgstr "अनुप्रयोग"
 
-#: kicondialog.cpp:315
+#: kicondialog.cpp:317
 msgid "Categories"
 msgstr "श्रेणीसभ"
 
-#: kicondialog.cpp:316
+#: kicondialog.cpp:318
 msgid "Devices"
 msgstr "डिवाइस"
 
-#: kicondialog.cpp:317
+#: kicondialog.cpp:319
 msgid "Emblems"
 msgstr "प्रतीक"
 
-#: kicondialog.cpp:318
+#: kicondialog.cpp:320
 msgid "Emotes"
 msgstr "इमोट्स"
 
-#: kicondialog.cpp:319
+#: kicondialog.cpp:321
 msgid "Mimetypes"
 msgstr "माइमटाइप्स"
 
-#: kicondialog.cpp:320
+#: kicondialog.cpp:322
 msgid "Places"
 msgstr "स्थान"
 
-#: kicondialog.cpp:321
+#: kicondialog.cpp:323
 msgid "Status"
 msgstr "स्थिति"
 
-#: kicondialog.cpp:345
+#: kicondialog.cpp:347
 #, fuzzy, kde-format
 #| msgid "Others"
 msgctxt "Other icons"
 msgid "Other"
 msgstr "आन "
 
-#: kicondialog.cpp:392
+#: kicondialog.cpp:394
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "ब्राउज... (&B)"
 
-#: kicondialog.cpp:594
+#: kicondialog.cpp:596
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: kicondialog.cpp:596
+#: kicondialog.cpp:598
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:676 kicondialog.ui:14
+#: kicondialog.cpp:678 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "प्रतीक चुनू"
 
-#: kicondialog.cpp:676
+#: kicondialog.cpp:678
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""
