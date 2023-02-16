@@ -135,9 +135,12 @@ public:
         MainToolbar,
         /// Small icons, e.g. for buttons
         Small,
-        /// Panel (Plasma Taskbar) icons
-        // TODO KF6: remove this (See https://phabricator.kde.org/T14340)
-        Panel,
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(5, 104)
+        /// Panel (Plasma Taskbar) icons, @deprecated since 5.104, use another group or explicit size
+        Panel KICONTHEMES_ENUMERATOR_DEPRECATED_VERSION(5, 104, "Use another group or explicit size"),
+#else
+        Panel_DEPRECATED_DO_NOT_USE
+#endif
         /// Icons for use in dialog titles, page lists, etc
         Dialog,
         /// Last group
