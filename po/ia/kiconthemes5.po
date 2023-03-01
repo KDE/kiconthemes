@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-11-28 16:11+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -84,7 +84,8 @@ msgstr "Nulle icones correspondente al cerca"
 msgid "No icons in this category"
 msgstr "Nulle icones in iste categoria"
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Selige icone"
@@ -96,11 +97,17 @@ msgid ""
 msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
 
-#~ msgid "Icon category"
-#~ msgstr "Categoria de icone"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Categoria de icone"
 
-#~ msgid "Search Icons..."
-#~ msgstr "Cerca  icones ..."
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Cerca  icones ..."
 
 #~ msgid "Icon Source"
 #~ msgstr "Fonte de icone"

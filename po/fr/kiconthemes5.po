@@ -20,7 +20,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-08-10 11:32+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -101,7 +101,8 @@ msgstr "Aucune icône correspondant à la recherche"
 msgid "No icons in this category"
 msgstr "Aucune icône dans cette catégorie"
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Choisir une icône"
@@ -114,11 +115,17 @@ msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|Fichiers d'icônes (*.ico *.png *.xpm *.svg *."
 "svgz)"
 
-#~ msgid "Icon category"
-#~ msgstr "Catégorie d'icônes"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Catégorie d'icônes"
 
-#~ msgid "Search Icons..."
-#~ msgstr "Rechercher des icônes"
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Rechercher des icônes"
 
 #~ msgid "Icon Source"
 #~ msgstr "Source de l'icône"

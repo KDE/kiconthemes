@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-08-09 19:37+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -95,7 +95,8 @@ msgstr "தேடலுக்கு பொருந்தும் எந்த 
 msgid "No icons in this category"
 msgstr "இவ்வகையான சின்னம் ஏதுமில்லை"
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "சின்னத்தை தேர்வு செய்வது"
@@ -108,11 +109,17 @@ msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz | சின்னங்களுக்கான கோப்புகள் (*.ico *.png *.xpm *."
 "svg *.svgz)"
 
-#~ msgid "Icon category"
-#~ msgstr "சின்ன வகை"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "சின்ன வகை"
 
-#~ msgid "Search Icons..."
-#~ msgstr "சின்னங்களில் தேடு..."
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "சின்னங்களில் தேடு..."
 
 #~ msgid "Icon Source"
 #~ msgstr "சின்னத்தின் மூலம்"

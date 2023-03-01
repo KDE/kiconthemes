@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2022-08-09 09:03+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -90,7 +90,8 @@ msgstr "Не знайдено піктограм, які відповідают�
 msgid "No icons in this category"
 msgstr "У цій категорії немає піктограм"
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Виберіть піктограму"
@@ -103,11 +104,17 @@ msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|файли піктограм (*.ico *.png *.xpm *.svg *."
 "svgz)"
 
-#~ msgid "Icon category"
-#~ msgstr "Категорія піктограм"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Категорія піктограм"
 
-#~ msgid "Search Icons..."
-#~ msgstr "Шукати піктограми…"
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Шукати піктограми…"
 
 #~ msgid "Icon Source"
 #~ msgstr "Джерело піктограми"

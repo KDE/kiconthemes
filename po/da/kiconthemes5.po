@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2021-09-05 20:32+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -91,7 +91,8 @@ msgstr "Ingen ikoner matcher søgningen"
 msgid "No icons in this category"
 msgstr "Ingen ikoner i denne kategori"
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Vælg ikon"
@@ -103,11 +104,17 @@ msgid ""
 msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|Ikonfiler (*.ico *.png *.xpm *.svg *.svgz)"
 
-#~ msgid "Icon category"
-#~ msgstr "Ikonkategori"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr "Ikonkategori"
 
-#~ msgid "Search Icons..."
-#~ msgstr "Søg efter ikoner..."
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, kde-format
+msgid "Search Icons..."
+msgstr "Søg efter ikoner..."
 
 #~ msgid "Icon Source"
 #~ msgstr "Ikonkilde"

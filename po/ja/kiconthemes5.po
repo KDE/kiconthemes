@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 21:29+0000\n"
+"POT-Creation-Date: 2023-03-01 22:21+0000\n"
 "PO-Revision-Date: 2019-05-25 16:26+0900\n"
 "Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -94,7 +94,8 @@ msgstr ""
 msgid "No icons in this category"
 msgstr ""
 
-#: kicondialog.cpp:664
+#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
+#: kicondialog.cpp:664 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "アイコンの選択"
@@ -106,7 +107,15 @@ msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
 msgstr "*.png *.xpm *.svg *.svgz|アイコンファイル (*.png *.xpm *.svg *.svgz)"
 
-#, fuzzy
-#~| msgid "Select Icon"
-#~ msgid "Search Icons..."
-#~ msgstr "アイコンの選択"
+#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
+#: kicondialog.ui:24
+#, kde-format
+msgid "Icon category"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
+#: kicondialog.ui:44
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgid "Search Icons..."
+msgstr "アイコンの選択"
