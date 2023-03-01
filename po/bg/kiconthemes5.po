@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-09 00:42+0000\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2022-08-10 13:21+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -19,80 +19,79 @@ msgstr ""
 "X-Generator: Lokalize 22.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kiconbutton.cpp:82
+#: kiconbutton.cpp:75
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Избор на икона…"
 
-#: kicondialog.cpp:312
+#: kicondialog.cpp:300
 msgid "All"
 msgstr "Всички"
 
-#: kicondialog.cpp:313
+#: kicondialog.cpp:301
 msgid "Actions"
 msgstr "Действия"
 
-#: kicondialog.cpp:314
+#: kicondialog.cpp:302
 msgid "Applications"
 msgstr "Програми"
 
-#: kicondialog.cpp:315
+#: kicondialog.cpp:303
 msgid "Categories"
 msgstr "Категории"
 
-#: kicondialog.cpp:316
+#: kicondialog.cpp:304
 msgid "Devices"
 msgstr "Устройства"
 
-#: kicondialog.cpp:317
+#: kicondialog.cpp:305
 msgid "Emblems"
 msgstr "Емблеми"
 
-#: kicondialog.cpp:318
+#: kicondialog.cpp:306
 msgid "Emotes"
 msgstr "Емоции"
 
-#: kicondialog.cpp:319
+#: kicondialog.cpp:307
 msgid "Mimetypes"
 msgstr "Типове MIME"
 
-#: kicondialog.cpp:320
+#: kicondialog.cpp:308
 msgid "Places"
 msgstr "Места"
 
-#: kicondialog.cpp:321
+#: kicondialog.cpp:309
 msgid "Status"
 msgstr "Състояние"
 
-#: kicondialog.cpp:345
+#: kicondialog.cpp:333
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Други"
 
-#: kicondialog.cpp:392
+#: kicondialog.cpp:380
 #, kde-format
 msgid "Browse…"
 msgstr "Преглед…"
 
-#: kicondialog.cpp:594
+#: kicondialog.cpp:582
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Няма икони, съответстващи на търсенето"
 
-#: kicondialog.cpp:596
+#: kicondialog.cpp:584
 #, kde-format
 msgid "No icons in this category"
 msgstr "Няма икони в тази категория"
 
-#. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:676 kicondialog.ui:14
+#: kicondialog.cpp:664
 #, kde-format
 msgid "Select Icon"
 msgstr "Избор на икона"
 
-#: kicondialog.cpp:676
+#: kicondialog.cpp:664
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
@@ -100,14 +99,8 @@ msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|Файлове за икони (*.ico *.png *.xpm *.svg *."
 "svgz)"
 
-#. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
-#: kicondialog.ui:24
-#, kde-format
-msgid "Icon category"
-msgstr "Категория икони"
+#~ msgid "Icon category"
+#~ msgstr "Категория икони"
 
-#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
-#: kicondialog.ui:44
-#, kde-format
-msgid "Search Icons..."
-msgstr "Търсене на икони..."
+#~ msgid "Search Icons..."
+#~ msgstr "Търсене на икони..."

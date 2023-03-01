@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2019-08-15 02:37+0200\n"
+"POT-Creation-Date: 2023-03-01 21:29+0000\n"
 "PO-Revision-Date: 2016-11-28 01:32+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -24,104 +24,109 @@ msgstr ""
 "X-Environment: kde\n"
 
 # >> @title:window
-#: kicondialog.cpp:260 kicondialog.cpp:272 kicondialog.cpp:604
-#, kde-format
-msgid "Select Icon"
+#: kiconbutton.cpp:75
+#, fuzzy, kde-format
+#| msgid "Select Icon"
+msgctxt "@info:tooltip"
+msgid "Select Icon…"
 msgstr "Избор иконице"
 
-#: kicondialog.cpp:289
-#, kde-format
-msgid "Icon Source"
-msgstr "Извор иконице"
-
-#: kicondialog.cpp:298
-#, kde-format
-msgid "S&ystem icons:"
-msgstr "&Системске иконице:"
-
-#: kicondialog.cpp:304
-#, kde-format
-msgid "O&ther icons:"
-msgstr "&Друге иконице:"
-
-#: kicondialog.cpp:307
-#, kde-format
-msgid "&Browse..."
-msgstr "&Прегледај..."
-
-#: kicondialog.cpp:318
-#, kde-format
-msgid "&Search:"
-msgstr "&Тражи:"
-
-#: kicondialog.cpp:325
-#, kde-format
-msgid "Search interactively for icon names (e.g. folder)."
-msgstr "Интерактивно тражи имена иконица (нпр. фасцикла)."
+# >> @item:inlistbox System icons
+#: kicondialog.cpp:300
+msgid "All"
+msgstr "све"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:355
-#, kde-format
+#: kicondialog.cpp:301
 msgid "Actions"
 msgstr "радње"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:356
-#, kde-format
+#: kicondialog.cpp:302
 msgid "Applications"
 msgstr "програми"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:357
-#, kde-format
+#: kicondialog.cpp:303
 msgid "Categories"
 msgstr "категорије"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:358
-#, kde-format
+#: kicondialog.cpp:304
 msgid "Devices"
 msgstr "уређаји"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:359
-#, kde-format
+#: kicondialog.cpp:305
 msgid "Emblems"
 msgstr "амблеми"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:360
-#, kde-format
+#: kicondialog.cpp:306
 msgid "Emotes"
 msgstr "емотикони"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:361
-#, kde-format
+#: kicondialog.cpp:307
 msgid "Mimetypes"
 msgstr "МИМЕ типови"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:362
-#, kde-format
+#: kicondialog.cpp:308
 msgid "Places"
 msgstr "мјеста"
 
 # >> @item:inlistbox System icons
-#: kicondialog.cpp:363
-#, kde-format
+#: kicondialog.cpp:309
 msgid "Status"
 msgstr "стање"
 
-# >> @item:inlistbox System icons
-#: kicondialog.cpp:364
+#: kicondialog.cpp:333
 #, kde-format
-msgid "All"
-msgstr "све"
+msgctxt "Other icons"
+msgid "Other"
+msgstr ""
 
-#: kicondialog.cpp:604
+#: kicondialog.cpp:380
+#, fuzzy, kde-format
+#| msgid "&Browse..."
+msgid "Browse…"
+msgstr "&Прегледај..."
+
+#: kicondialog.cpp:582
+#, kde-format
+msgid "No icons matching the search"
+msgstr ""
+
+#: kicondialog.cpp:584
+#, kde-format
+msgid "No icons in this category"
+msgstr ""
+
+# >> @title:window
+#: kicondialog.cpp:664
+#, kde-format
+msgid "Select Icon"
+msgstr "Избор иконице"
+
+#: kicondialog.cpp:664
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
 msgstr "*.png *.xpm *.svg *.svgz|фајлови иконица (*.png *.xpm *.svg *.svgz)"
+
+#~ msgid "Icon Source"
+#~ msgstr "Извор иконице"
+
+#~ msgid "S&ystem icons:"
+#~ msgstr "&Системске иконице:"
+
+#~ msgid "O&ther icons:"
+#~ msgstr "&Друге иконице:"
+
+#~ msgid "&Search:"
+#~ msgstr "&Тражи:"
+
+#~ msgid "Search interactively for icon names (e.g. folder)."
+#~ msgstr "Интерактивно тражи имена иконица (нпр. фасцикла)."
