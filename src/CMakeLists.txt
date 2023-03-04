@@ -1,4 +1,7 @@
 add_subdirectory(tools/kiconfinder)
+if (KICONTHEMES_USE_QTQUICK)
+    add_subdirectory(qml)
+endif()
 if (APPLE)
     add_subdirectory(tools/ksvg2icns)
 endif()

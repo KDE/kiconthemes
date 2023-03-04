@@ -25,9 +25,11 @@ include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(ECMAddQch)
 include(CMakeDependentOption)
+include(ECMQmlModule)
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
+option(KICONTHEMES_USE_QTQUICK "Build QML plugin using Qt6Qml" ON)
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
@@ -46,6 +48,9 @@ find_package(Qt6Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt6Svg ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 if (NOT ANDROID)
   find_package(Qt6DBus ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
+endif()
+if (KICONTHEMES_USE_QTQUICK)
+  find_package(Qt6 ${REQUIRED_QT_VERSION} NO_MODULE REQUIRED Qml Quick)
 endif()
 
 find_package(KF6Archive ${KF_DEP_VERSION} REQUIRED)
