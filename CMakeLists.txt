@@ -67,7 +67,7 @@ ecm_set_disabled_deprecation_versions(
     KF 5.102
 )
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kiconthemes5\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kiconthemes6\")
 ki18n_install(po)
 add_subdirectory(src)
 if (BUILD_TESTING)
