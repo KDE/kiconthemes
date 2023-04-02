@@ -110,6 +110,7 @@ public:
     enum MatchType {
         MatchExact, ///< Only try to find an exact match.
         MatchBest, ///< Take the best match if there is no exact match.
+        MatchBestOrGreaterSize, ///< Take the best match or the match with a greater size if there is no exact match. @since 6.0
     };
     Q_ENUM(MatchType)
 

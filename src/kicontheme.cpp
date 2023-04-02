@@ -235,6 +235,10 @@ QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const 
             if ((abs(dw) >= abs(delta)) && ((dw < 0) || (delta > 0))) {
                 continue;
             }
+
+            if (match == KIconLoader::MatchBestOrGreaterSize && dw < 0) {
+                continue;
+            }
         }
 
         // cache the result of iconPath() call which checks if file exists
