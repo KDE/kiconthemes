@@ -5,8 +5,8 @@
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 */
 
-#include <../kiconthemes_version.h>
 #include <kiconloader.h>
+#include <kiconthemes_version.h>
 
 #include <QCommandLineParser>
 #include <QGuiApplication>

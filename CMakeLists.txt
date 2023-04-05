@@ -36,9 +36,10 @@ add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt 
 cmake_dependent_option(BUILD_DESIGNERPLUGIN "Build plugin for Qt Designer" ON "NOT CMAKE_CROSSCOMPILING" OFF)
 add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Designer")
 
+set(kiconthemes_version_header "${CMAKE_CURRENT_BINARY_DIR}/src/kiconthemes_version.h")
 ecm_setup_version(PROJECT
                   VARIABLE_PREFIX KICONTHEMES
-                  VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_version.h"
+                  VERSION_HEADER "${kiconthemes_version_header}"
                   PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF6IconThemesConfigVersion.cmake"
                   SOVERSION 6)
 
@@ -106,7 +107,7 @@ install(FILES
 install(EXPORT KF6IconThemesTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}" FILE KF6IconThemesTargets.cmake NAMESPACE KF6:: )
 
 install(FILES
-   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_version.h
+   ${kiconthemes_version_header}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes COMPONENT Devel
 )
 
