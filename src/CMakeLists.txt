@@ -9,6 +9,12 @@ endif()
 add_library(KF6IconThemes)
 add_library(KF6::IconThemes ALIAS KF6IconThemes)
 
+set_target_properties(KF6IconThemes PROPERTIES
+    VERSION     ${KICONTHEMES_VERSION}
+    SOVERSION   ${KICONTHEMES_SOVERSION}
+    EXPORT_NAME IconThemes
+)
+
 target_sources(KF6IconThemes PRIVATE
     kiconbutton.cpp
     kiconbutton.h
@@ -71,11 +77,6 @@ target_link_libraries(KF6IconThemes
 if (TARGET Qt6::DBus)
   target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)
 endif()
-
-set_target_properties(KF6IconThemes PROPERTIES VERSION   ${KICONTHEMES_VERSION}
-                                               SOVERSION ${KICONTHEMES_SOVERSION}
-                                               EXPORT_NAME IconThemes
-)
 
 ecm_generate_headers(KIconThemes_HEADERS
   HEADER_NAMES
