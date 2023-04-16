@@ -1,4 +1,4 @@
-# translation of kiconthemes5.pot to Esperanto
+# translation of kiconthemes to Esperanto
 # Copyright (C) 2007, 2008 Free Software Foundation, Inc.
 # Oliver M. Kellogg <okellogg@users.sourceforge.net>, 2007.
 # Cindy McKee <cfmckee@gmail.com>, 2007, 2008.
@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: kio4\n"
+"Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-01 22:21+0000\n"
-"PO-Revision-Date: 2023-01-04 22:00+0100\n"
+"PO-Revision-Date: 2023-04-15 20:54+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@lists.kde.org>\n"
 "Language: eo\n"
@@ -80,12 +80,12 @@ msgstr "Foliumi…"
 #: kicondialog.cpp:582
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "Neniuj piktogramoj kongruj al serĉo"
 
 #: kicondialog.cpp:584
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "Neniuj piktogramoj en ĉi kategorio"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: kicondialog.cpp:664 kicondialog.ui:14
@@ -105,7 +105,7 @@ msgstr ""
 #: kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "Piktograma kategorio"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: kicondialog.ui:44
