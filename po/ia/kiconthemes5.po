@@ -269,10 +269,10 @@ msgstr "Cerca  icones ..."
 #~ msgstr "Monstra files celate"
 
 #~ msgid "Show Aside Preview"
-#~ msgstr "Monstra vista preliminari a latere"
+#~ msgstr "Monstra vista preliminar a latere"
 
 #~ msgid "Show Preview"
-#~ msgstr "Monstrar vista preliminari"
+#~ msgstr "Monstrar vista preliminar"
 
 #~ msgid "Open File Manager"
 #~ msgstr "Aperi Gerente de File"
