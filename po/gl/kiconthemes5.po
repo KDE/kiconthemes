@@ -1,7 +1,6 @@
 # translation of kio4.po to galician
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-#
 # mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2008.
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
@@ -10,27 +9,28 @@
 # Xosé <xosecalvo@gmail.com>, 2010.
 # Marce Villarino <mvillarino@kde-espana.es>, 2011, 2012, 2013, 2014.
 # Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2018.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2018, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-02-09 00:57+0000\n"
-"PO-Revision-Date: 2018-10-20 13:16+0100\n"
+"PO-Revision-Date: 2023-04-28 19:52+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.0\n"
 
 #: kiconbutton.cpp:84
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Seleccionar a icona"
+msgstr "Seleccionar a icona…"
 
 #: kicondialog.cpp:314
 msgid "All"
@@ -73,28 +73,25 @@ msgid "Status"
 msgstr "Estado"
 
 #: kicondialog.cpp:347
-#, fuzzy, kde-format
-#| msgctxt "@item:inmenu"
-#| msgid "Other"
+#, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr "Outros"
+msgstr "Outras"
 
 #: kicondialog.cpp:394
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "&Examinar…"
+msgstr "Examinar…"
 
 #: kicondialog.cpp:596
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "Ningunha icona coincide coa busca."
 
 #: kicondialog.cpp:598
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "Non hai iconas nesta categoría."
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: kicondialog.cpp:678 kicondialog.ui:14
@@ -114,14 +111,13 @@ msgstr ""
 #: kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "Categoría da icona"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "Seleccionar a icona"
+msgstr "Buscar nas iconas…"
 
 #~ msgid "Icon Source"
 #~ msgstr "Orixe das iconas"
