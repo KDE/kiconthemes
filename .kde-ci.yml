@@ -6,6 +6,7 @@ Dependencies:
     'frameworks/kconfigwidgets' : '@same'
     'frameworks/kwidgetsaddons' : '@same'
     'frameworks/karchive' : '@same'
+    'frameworks/kcolorscheme' : '@same'
 
 Options:
   test-before-installing: True

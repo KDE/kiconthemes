@@ -72,7 +72,8 @@ target_link_libraries(KF6IconThemes
     KF6::I18n          # for i18n in KIconDialog
     KF6::WidgetsAddons # for KPixmapSequence family
     KF6::ConfigCore
-    KF6::ConfigWidgets # for KColorScheme
+    KF6::ConfigWidgets # KStandardAction
+    KF6::ColorScheme # for KColorScheme
     KF6::CoreAddons    # for kshareddatacache.h
 )
 if (TARGET Qt6::DBus)
