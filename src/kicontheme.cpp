@@ -26,6 +26,9 @@
 #include <QResource>
 #include <QSet>
 
+#include <private/qguiapplication_p.h>
+#include <qpa/qplatformtheme.h>
+
 #include <qplatformdefs.h>
 
 #include <array>
@@ -60,13 +63,24 @@ void initRCCIconTheme()
 }
 Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
 
-// Set the icon theme fallback to breeze
-// Most of our apps use "lots" of icons that most of the times
-// are only available with breeze, we still honour the user icon
-// theme but if the icon is not found there, we go to breeze
-// since it's almost sure it'll be there
+// Makes sure the icon theme fallback is set to breeze or one of its
+// variants. Most of our apps use "lots" of icons that most of the times
+// are only available with breeze, we still honour the user icon theme
+// but if the icon is not found there, we go to breeze since it's almost
+// sure it'll be there
 static void setBreezeFallback()
 {
+    if (const QPlatformTheme *theme = QGuiApplicationPrivate::platformTheme()) {
+        const QVariant themeHint = theme->themeHint(QPlatformTheme::SystemIconFallbackThemeName);
+        if (themeHint.isValid()) {
+            const QString iconTheme = themeHint.toString();
+            if (iconTheme.contains(QStringLiteral("breeze"), Qt::CaseInsensitive)) {
+                QIcon::setFallbackThemeName(iconTheme);
+                return;
+            }
+        }
+    }
+
     QIcon::setFallbackThemeName(QStringLiteral("breeze"));
 }
 
