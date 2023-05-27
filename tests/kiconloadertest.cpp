@@ -30,4 +30,5 @@ int main(int argc, char *argv[])
         }
     }
     qDebug() << "Loading " << count << " icons took " << (float)(dt.elapsed()) / 1000 << " seconds";
+    return EXIT_SUCCESS;
 }
