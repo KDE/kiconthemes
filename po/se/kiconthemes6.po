@@ -107,6 +107,5 @@ msgstr ""
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: kicondialog.ui:44
 #, fuzzy, kde-format
-#| msgid "Select Icon"
 msgid "Search Icons..."
 msgstr "Vállje govaža"
