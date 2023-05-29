@@ -1,6 +1,12 @@
 add_library(KF6IconWidgets)
 add_library(KF6::IconWidgets ALIAS KF6IconWidgets)
 
+set_target_properties(KF6IconWidgets PROPERTIES
+    VERSION     ${KICONTHEMES_VERSION}
+    SOVERSION   ${KICONTHEMES_SOVERSION}
+    EXPORT_NAME IconWidgets
+)
+
 target_sources(KF6IconWidgets PRIVATE
     kiconbutton.cpp
     kiconbutton.h
@@ -35,11 +41,6 @@ target_link_libraries(KF6IconWidgets
     KF6::I18n          # for i18n in KIconDialog
     KF6::ConfigWidgets # for KStandardAction
     KF6::WidgetsAddons # for KPixmapSequence
-)
-
-set_target_properties(KF6IconWidgets PROPERTIES VERSION   ${KICONTHEMES_VERSION}
-                                               SOVERSION ${KICONTHEMES_SOVERSION}
-                                               EXPORT_NAME IconWidgets
 )
 
 ecm_generate_headers(KIconWidgets_HEADERS
