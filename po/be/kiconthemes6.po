@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 22:21+0000\n"
+"POT-Creation-Date: 2023-05-30 02:41+0000\n"
 "PO-Revision-Date: 2023-01-09 07:31\n"
 "Last-Translator: Siarhei Liantsevich <serzh.by@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -25,80 +25,80 @@ msgstr ""
 "X-Crowdin-File: /main/be/kiconthemes/kiconthemes5.po\n"
 "X-Crowdin-File-ID: 7971\n"
 
-#: kiconbutton.cpp:75
+#: widgets/kiconbutton.cpp:75
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Абраць значок…"
 
-#: kicondialog.cpp:300
+#: widgets/kicondialog.cpp:300
 msgid "All"
 msgstr "Усе"
 
-#: kicondialog.cpp:301
+#: widgets/kicondialog.cpp:301
 msgid "Actions"
 msgstr "Дзеянні"
 
-#: kicondialog.cpp:302
+#: widgets/kicondialog.cpp:302
 msgid "Applications"
 msgstr "Праграмы"
 
-#: kicondialog.cpp:303
+#: widgets/kicondialog.cpp:303
 msgid "Categories"
 msgstr "Катэгорыі"
 
-#: kicondialog.cpp:304
+#: widgets/kicondialog.cpp:304
 msgid "Devices"
 msgstr "Прылады"
 
-#: kicondialog.cpp:305
+#: widgets/kicondialog.cpp:305
 msgid "Emblems"
 msgstr "Эмблемы"
 
-#: kicondialog.cpp:306
+#: widgets/kicondialog.cpp:306
 msgid "Emotes"
 msgstr "Эмоцыі"
 
-#: kicondialog.cpp:307
+#: widgets/kicondialog.cpp:307
 msgid "Mimetypes"
 msgstr "Тыпы MIME"
 
-#: kicondialog.cpp:308
+#: widgets/kicondialog.cpp:308
 msgid "Places"
 msgstr "Размяшчэнні"
 
-#: kicondialog.cpp:309
+#: widgets/kicondialog.cpp:309
 msgid "Status"
 msgstr "Стан"
 
-#: kicondialog.cpp:333
+#: widgets/kicondialog.cpp:333
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Іншыя"
 
-#: kicondialog.cpp:380
+#: widgets/kicondialog.cpp:380
 #, kde-format
 msgid "Browse…"
 msgstr "Агляд…"
 
-#: kicondialog.cpp:582
+#: widgets/kicondialog.cpp:582
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Няма значкоў, якія адпавядаюць пошуку"
 
-#: kicondialog.cpp:584
+#: widgets/kicondialog.cpp:584
 #, kde-format
 msgid "No icons in this category"
 msgstr "У гэтай катэгорыі няма значкоў"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:664 kicondialog.ui:14
+#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Абраць значок"
 
-#: kicondialog.cpp:664
+#: widgets/kicondialog.cpp:664
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
@@ -106,13 +106,13 @@ msgstr ""
 "*.ico *.png *.xpm *.svg *.svgz|Файлы значкоў (*.ico *.png *.xpm *.svg *.svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
-#: kicondialog.ui:24
+#: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
 msgstr "Катэгорыя значка"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
-#: kicondialog.ui:44
+#: widgets/kicondialog.ui:44
 #, kde-format
 msgid "Search Icons..."
 msgstr "Пошук значкоў..."

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 22:21+0000\n"
+"POT-Creation-Date: 2023-05-30 02:41+0000\n"
 "PO-Revision-Date: 2009-03-09 22:58+0800\n"
 "Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
 "Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
@@ -20,85 +20,85 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
 
-#: kiconbutton.cpp:75
+#: widgets/kiconbutton.cpp:75
 #, fuzzy, kde-format
 #| msgid "Select Icon"
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Pilih Ikon"
 
-#: kicondialog.cpp:300
+#: widgets/kicondialog.cpp:300
 msgid "All"
 msgstr ""
 
-#: kicondialog.cpp:301
+#: widgets/kicondialog.cpp:301
 msgid "Actions"
 msgstr "Aksi"
 
-#: kicondialog.cpp:302
+#: widgets/kicondialog.cpp:302
 msgid "Applications"
 msgstr "Aplikasi"
 
-#: kicondialog.cpp:303
+#: widgets/kicondialog.cpp:303
 #, fuzzy
 msgid "Categories"
 msgstr "Kategori"
 
-#: kicondialog.cpp:304
+#: widgets/kicondialog.cpp:304
 msgid "Devices"
 msgstr "Peranti"
 
-#: kicondialog.cpp:305
+#: widgets/kicondialog.cpp:305
 msgid "Emblems"
 msgstr ""
 
-#: kicondialog.cpp:306
+#: widgets/kicondialog.cpp:306
 msgid "Emotes"
 msgstr ""
 
-#: kicondialog.cpp:307
+#: widgets/kicondialog.cpp:307
 msgid "Mimetypes"
 msgstr "Jenis Mime"
 
-#: kicondialog.cpp:308
+#: widgets/kicondialog.cpp:308
 msgid "Places"
 msgstr ""
 
-#: kicondialog.cpp:309
+#: widgets/kicondialog.cpp:309
 #, fuzzy
 msgid "Status"
 msgstr "Status"
 
-#: kicondialog.cpp:333
+#: widgets/kicondialog.cpp:333
 #, fuzzy, kde-format
 #| msgid "Others"
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Lain-lain"
 
-#: kicondialog.cpp:380
+#: widgets/kicondialog.cpp:380
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "Lun&gsur."
 
-#: kicondialog.cpp:582
+#: widgets/kicondialog.cpp:582
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: kicondialog.cpp:584
+#: widgets/kicondialog.cpp:584
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:664 kicondialog.ui:14
+#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Pilih Ikon"
 
-#: kicondialog.cpp:664
+#: widgets/kicondialog.cpp:664
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""
@@ -106,13 +106,13 @@ msgid ""
 msgstr "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
-#: kicondialog.ui:24
+#: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
 msgstr ""
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
-#: kicondialog.ui:44
+#: widgets/kicondialog.ui:44
 #, fuzzy, kde-format
 #| msgid "Select Icon"
 msgid "Search Icons..."

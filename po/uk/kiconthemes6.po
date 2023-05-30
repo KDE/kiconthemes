@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-01 22:21+0000\n"
+"POT-Creation-Date: 2023-05-30 02:41+0000\n"
 "PO-Revision-Date: 2022-08-09 09:03+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -23,80 +23,80 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: kiconbutton.cpp:75
+#: widgets/kiconbutton.cpp:75
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Вибрати піктограму…"
 
-#: kicondialog.cpp:300
+#: widgets/kicondialog.cpp:300
 msgid "All"
 msgstr "Усі"
 
-#: kicondialog.cpp:301
+#: widgets/kicondialog.cpp:301
 msgid "Actions"
 msgstr "Дії"
 
-#: kicondialog.cpp:302
+#: widgets/kicondialog.cpp:302
 msgid "Applications"
 msgstr "Програми"
 
-#: kicondialog.cpp:303
+#: widgets/kicondialog.cpp:303
 msgid "Categories"
 msgstr "Категорії"
 
-#: kicondialog.cpp:304
+#: widgets/kicondialog.cpp:304
 msgid "Devices"
 msgstr "Пристрої"
 
-#: kicondialog.cpp:305
+#: widgets/kicondialog.cpp:305
 msgid "Emblems"
 msgstr "Емблеми"
 
-#: kicondialog.cpp:306
+#: widgets/kicondialog.cpp:306
 msgid "Emotes"
 msgstr "Емоції"
 
-#: kicondialog.cpp:307
+#: widgets/kicondialog.cpp:307
 msgid "Mimetypes"
 msgstr "Типи MIME"
 
-#: kicondialog.cpp:308
+#: widgets/kicondialog.cpp:308
 msgid "Places"
 msgstr "Місця"
 
-#: kicondialog.cpp:309
+#: widgets/kicondialog.cpp:309
 msgid "Status"
 msgstr "Стан"
 
-#: kicondialog.cpp:333
+#: widgets/kicondialog.cpp:333
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Інше"
 
-#: kicondialog.cpp:380
+#: widgets/kicondialog.cpp:380
 #, kde-format
 msgid "Browse…"
 msgstr "Вибрати…"
 
-#: kicondialog.cpp:582
+#: widgets/kicondialog.cpp:582
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Не знайдено піктограм, які відповідають критерію пошуку"
 
-#: kicondialog.cpp:584
+#: widgets/kicondialog.cpp:584
 #, kde-format
 msgid "No icons in this category"
 msgstr "У цій категорії немає піктограм"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: kicondialog.cpp:664 kicondialog.ui:14
+#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Виберіть піктограму"
 
-#: kicondialog.cpp:664
+#: widgets/kicondialog.cpp:664
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
@@ -105,13 +105,13 @@ msgstr ""
 "svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
-#: kicondialog.ui:24
+#: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
 msgstr "Категорія піктограм"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
-#: kicondialog.ui:44
+#: widgets/kicondialog.ui:44
 #, kde-format
 msgid "Search Icons..."
 msgstr "Шукати піктограми…"
