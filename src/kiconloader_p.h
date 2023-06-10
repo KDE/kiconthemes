@@ -16,8 +16,6 @@
 #include <QString>
 #include <QStringList>
 
-#include <KSharedDataCache>
-
 #include "kiconcolors.h"
 #include "kiconeffect.h"
 #include "kiconloader.h"
@@ -200,9 +198,6 @@ public:
     QStringList searchPaths;
     KIconEffect mpEffect;
     QList<KIconThemeNode *> links;
-
-    // This shares the icons across all processes
-    KSharedDataCache *mIconCache = nullptr;
 
     // This caches rendered QPixmaps in just this process.
     QCache<QString, PixmapWithPath> mPixmapCache;

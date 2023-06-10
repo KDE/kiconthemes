@@ -64,7 +64,6 @@ target_link_libraries(KF6IconThemes
     KF6::Archive       # for KCompressionDevice
     KF6::I18n          # for KLocalizedString::localizedFilePath in KIconTheme
     KF6::ColorScheme
-    KF6::CoreAddons    # for kshareddatacache.h
 )
 if (TARGET Qt6::DBus)
   target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)

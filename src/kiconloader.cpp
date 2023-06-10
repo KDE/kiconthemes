@@ -16,7 +16,6 @@
 // kdecore
 #include <KConfigGroup>
 #include <KSharedConfig>
-#include <kshareddatacache.h>
 #ifdef QT_DBUS_LIB
 #include <QDBusConnection>
 #include <QDBusMessage>
@@ -244,9 +243,7 @@ void KIconLoaderPrivate::clear()
     deleted when the elements of d->links are deleted */
     qDeleteAll(links);
     delete[] mpGroups;
-    delete mIconCache;
     mpGroups = nullptr;
-    mIconCache = nullptr;
     mPixmapCache.clear();
     m_appname.clear();
     searchPaths.clear();
@@ -369,7 +366,6 @@ KIconLoader::KIconLoader(const QString &appname, const QStringList &extraSearchP
 
 void KIconLoader::reconfigure(const QString &_appname, const QStringList &extraSearchPaths)
 {
-    d->mIconCache->clear();
     d->clear();
     d->init(_appname, extraSearchPaths);
 }
@@ -384,10 +380,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     m_appname = !_appname.isEmpty() ? _appname : QCoreApplication::applicationName();
 
-    // Initialize icon cache
-    mIconCache = new KSharedDataCache(QStringLiteral("icon-cache"), 10 * 1024 * 1024);
-    // Cost here is number of pixels, not size. So this is actually a bit
-    // smaller.
+    // Cost here is number of pixels
     mPixmapCache.setMaxCost(10 * 1024 * 1024);
 
     // These have to match the order in kiconloader.h
@@ -729,24 +722,6 @@ void KIconLoaderPrivate::insertCachedPixmapWithPath(const QString &key, const QP
     // the fact that whatever icon led to us getting a null pixmap doesn't
     // exist.
 
-    QBuffer output;
-    output.open(QIODevice::WriteOnly);
-
-    QDataStream outputStream(&output);
-    outputStream.setVersion(QDataStream::Qt_4_6);
-
-    outputStream << path;
-
-    // Convert the QPixmap to PNG. This is actually done by Qt's own operator.
-    outputStream << data;
-
-    output.close();
-
-    // The byte array contained in the QBuffer is what we want in the cache.
-    mIconCache->insert(key, output.buffer());
-
-    // Also insert the object into our process-local cache for even more
-    // speed.
     PixmapWithPath *pixmapPath = new PixmapWithPath;
     pixmapPath->pixmap = data;
     pixmapPath->path = path;
@@ -762,45 +737,7 @@ bool KIconLoaderPrivate::findCachedPixmapWithPath(const QString &key, QPixmap &d
     if (pixmapPath) {
         path = pixmapPath->path;
         data = pixmapPath->pixmap;
-
         return true;
-    }
-
-    // Otherwise try to find it in our shared memory cache since that will
-    // be quicker than the disk, especially for SVGs.
-    QByteArray result;
-
-    if (!mIconCache->find(key, &result) || result.isEmpty()) {
-        return false;
-    }
-
-    QBuffer buffer;
-    buffer.setBuffer(&result);
-    buffer.open(QIODevice::ReadOnly);
-
-    QDataStream inputStream(&buffer);
-    inputStream.setVersion(QDataStream::Qt_4_6);
-
-    QString tempPath;
-    inputStream >> tempPath;
-
-    if (inputStream.status() == QDataStream::Ok) {
-        QPixmap tempPixmap;
-        inputStream >> tempPixmap;
-
-        if (inputStream.status() == QDataStream::Ok) {
-            data = tempPixmap;
-            path = tempPath;
-
-            // Since we're here we didn't have a QPixmap cache entry, add one now.
-            PixmapWithPath *newPixmapWithPath = new PixmapWithPath;
-            newPixmapWithPath->pixmap = data;
-            newPixmapWithPath->path = path;
-
-            mPixmapCache.insert(key, newPixmapWithPath, data.width() * data.height() + 1);
-
-            return true;
-        }
     }
 
     return false;
