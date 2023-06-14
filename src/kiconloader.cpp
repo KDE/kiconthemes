@@ -697,6 +697,7 @@ QImage KIconLoaderPrivate::createIconImage(const QString &path, const QSize &siz
     if (q->theme() && q->theme()->followsColorScheme() && (path.endsWith(QLatin1String("svg")) || path.endsWith(QLatin1String("svgz")))) {
         buffer.setData(processSvg(path, state, colors));
         reader.setDevice(&buffer);
+        reader.setFormat("svg");
     } else {
         reader.setFileName(path);
     }
