@@ -146,3 +146,5 @@ int main(int argc, char **argv)
     w->show();
     return app.exec();
 }
+
+#include "moc_kiconeffecttest.cpp"
