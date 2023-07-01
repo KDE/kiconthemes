@@ -1692,4 +1692,4 @@ QIcon KDE::icon(const QString &iconName, const KIconColors &colors, KIconLoader 
 }
 
 #include "kiconloader.moc"
-#include "moc_kiconloader.moc"
+#include "moc_kiconloader.cpp"
