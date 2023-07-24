@@ -34,7 +34,7 @@ msgstr "동작"
 
 #: widgets/kicondialog.cpp:302
 msgid "Applications"
-msgstr "프로그램"
+msgstr "앱"
 
 #: widgets/kicondialog.cpp:303
 msgid "Categories"
