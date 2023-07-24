@@ -34,7 +34,7 @@ msgstr "동작"
 
 #: kicondialog.cpp:316
 msgid "Applications"
-msgstr "프로그램"
+msgstr "앱"
 
 #: kicondialog.cpp:317
 msgid "Categories"
