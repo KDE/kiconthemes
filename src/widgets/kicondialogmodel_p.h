@@ -19,7 +19,7 @@ struct KIconDialogModelData {
     QString path;
     QPixmap pixmap;
 };
-Q_DECLARE_TYPEINFO(KIconDialogModelData, Q_MOVABLE_TYPE);
+Q_DECLARE_TYPEINFO(KIconDialogModelData, Q_RELOCATABLE_TYPE);
 
 class KIconDialogModel : public QAbstractListModel
 {
