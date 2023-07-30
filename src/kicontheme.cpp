@@ -84,7 +84,9 @@ static void setBreezeFallback()
     QIcon::setFallbackThemeName(QStringLiteral("breeze"));
 }
 
+#ifndef Q_OS_ANDROID
 Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
+#endif
 class KIconThemeDir;
 class KIconThemePrivate
 {
