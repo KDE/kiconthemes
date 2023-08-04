@@ -146,13 +146,15 @@ public:
 Q_SIGNALS:
     void newIconName(const QString &iconName);
 
+protected:
+    void showEvent(QShowEvent *event) override;
+
 protected Q_SLOTS:
     void slotOk();
 
 private:
     std::unique_ptr<class KIconDialogPrivate> const d;
 
-    friend class ShowEventFilter;
     friend class KIconDialogPrivate;
 
     Q_DISABLE_COPY(KIconDialog)

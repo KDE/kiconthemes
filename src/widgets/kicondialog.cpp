@@ -192,31 +192,6 @@ QSize KIconCanvasDelegate::sizeHint(const QStyleOptionViewItem &option, const QM
     return size;
 }
 
-// TODO KF6 remove and override KIconDialog::showEvent()
-class ShowEventFilter : public QObject
-{
-public:
-    explicit ShowEventFilter(QObject *parent)
-        : QObject(parent)
-    {
-    }
-    ~ShowEventFilter() override
-    {
-    }
-
-private:
-    bool eventFilter(QObject *watched, QEvent *event) override
-    {
-        if (event->type() == QEvent::Show) {
-            KIconDialog *q = static_cast<KIconDialog *>(parent());
-            q->d->showIcons();
-            q->d->ui.searchLine->setFocus();
-        }
-
-        return QObject::eventFilter(watched, event);
-    }
-};
-
 KIconDialogPrivate::KIconDialogPrivate(KIconDialog *qq)
     : q(qq)
     , mpLoader(KIconLoader::global())
@@ -239,8 +214,6 @@ KIconDialog::KIconDialog(QWidget *parent)
     setModal(true);
 
     d->init();
-
-    installEventFilter(new ShowEventFilter(this));
 }
 
 void KIconDialogPrivate::init()
@@ -598,6 +571,13 @@ void KIconDialog::slotOk()
 
     Q_EMIT newIconName(name);
     QDialog::accept();
+}
+
+void KIconDialog::showEvent(QShowEvent *event)
+{
+    QDialog::showEvent(event);
+    d->showIcons();
+    d->ui.searchLine->setFocus();
 }
 
 QString KIconDialog::getIcon(KIconLoader::Group group,
