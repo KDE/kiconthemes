@@ -14,6 +14,8 @@
 #include <QStringList>
 #include <QVector>
 
+class KIconLoader;
+
 struct KIconDialogModelData {
     QString name;
     QString path;
@@ -26,7 +28,7 @@ class KIconDialogModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    KIconDialogModel(QObject *parent);
+    KIconDialogModel(KIconLoader *loader, QObject *parent);
     ~KIconDialogModel() override;
 
     enum Roles { PathRole = Qt::UserRole };
@@ -47,6 +49,7 @@ private:
 
     QVector<KIconDialogModelData> m_data;
 
+    KIconLoader *m_loader;
     qreal m_dpr = 1;
     QSize m_iconSize;
 };

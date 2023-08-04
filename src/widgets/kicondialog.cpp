@@ -37,8 +37,9 @@
 
 static const int s_edgePad = 3;
 
-KIconDialogModel::KIconDialogModel(QObject *parent)
+KIconDialogModel::KIconDialogModel(KIconLoader *loader, QObject *parent)
     : QAbstractListModel(parent)
+    , m_loader(loader)
 {
 }
 
@@ -126,53 +127,9 @@ void KIconDialogModel::loadPixmap(const QModelIndex &index)
     Q_ASSERT(item.pixmap.isNull());
 
     const auto dpr = devicePixelRatio();
-    const auto canvasIconWidth = iconSize().width();
-    const auto canvasIconHeight = iconSize().height();
 
-    QImage img;
-
-    if (item.path.endsWith(QLatin1String(".svg"), Qt::CaseInsensitive) || item.path.endsWith(QLatin1String(".svgz"), Qt::CaseInsensitive)) {
-        QSvgRenderer renderer(item.path);
-        if (renderer.isValid()) {
-            img = QImage(canvasIconWidth * dpr, canvasIconHeight * dpr, QImage::Format_ARGB32_Premultiplied);
-            img.setDevicePixelRatio(dpr);
-            img.fill(Qt::transparent);
-
-            QPainter p(&img);
-            // FIXME why do I need to specify bounds for it to not crop the SVG on dpr > 1?
-            renderer.render(&p, QRect(0, 0, canvasIconWidth, canvasIconHeight));
-        }
-    } else {
-        img.load(item.path);
-
-        if (!img.isNull()) {
-            if (img.width() > canvasIconWidth || img.height() > canvasIconHeight) {
-                if (img.width() / (float)canvasIconWidth > img.height() / (float)canvasIconHeight) {
-                    int height = (int)(((float)canvasIconWidth / img.width()) * img.height());
-                    img = img.scaled(canvasIconWidth, height, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-                } else {
-                    int width = (int)(((float)canvasIconHeight / img.height()) * img.width());
-                    img = img.scaled(width, canvasIconHeight, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
-                }
-            }
-
-            if (/*uniformIconSize &&*/ (img.width() != canvasIconWidth || img.height() != canvasIconHeight)) {
-                // Image is smaller than desired.  Draw onto a transparent QImage of the required dimensions.
-                // (Unpleasant glitches occur if we break the uniformIconSizes() contract).
-                QImage paddedImage =
-                    QImage(canvasIconWidth * img.devicePixelRatioF(), canvasIconHeight * img.devicePixelRatioF(), QImage::Format_ARGB32_Premultiplied);
-                paddedImage.setDevicePixelRatio(img.devicePixelRatioF());
-                paddedImage.fill(0);
-                QPainter painter(&paddedImage);
-                painter.drawImage((canvasIconWidth - img.width()) / 2, (canvasIconHeight - img.height()) / 2, img);
-                img = paddedImage;
-            }
-        }
-    }
-
-    if (!img.isNull()) {
-        item.pixmap = QPixmap::fromImage(img);
-    }
+    item.pixmap = m_loader->loadScaledIcon(item.path, KIconLoader::Desktop, dpr, iconSize(), KIconLoader::DefaultState, {}, nullptr, true);
+    item.pixmap.setDevicePixelRatio(dpr);
 }
 
 /**
@@ -260,6 +217,16 @@ private:
     }
 };
 
+KIconDialogPrivate::KIconDialogPrivate(KIconDialog *qq)
+    : q(qq)
+    , mpLoader(KIconLoader::global())
+    , model(new KIconDialogModel(mpLoader, qq))
+    , proxyModel(new QSortFilterProxyModel(qq))
+{
+    proxyModel->setSourceModel(model);
+    proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+}
+
 /*
  * KIconDialog: Dialog for selecting icons. Both system and user
  * specified icons can be chosen.
@@ -271,7 +238,6 @@ KIconDialog::KIconDialog(QWidget *parent)
 {
     setModal(true);
 
-    d->mpLoader = KIconLoader::global();
     d->init();
 
     installEventFilter(new ShowEventFilter(this));

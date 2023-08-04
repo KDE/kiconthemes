@@ -29,14 +29,7 @@ class KIconDialog;
 class KIconDialogPrivate
 {
 public:
-    KIconDialogPrivate(KIconDialog *qq)
-        : q(qq)
-        , model(new KIconDialogModel(qq))
-        , proxyModel(new QSortFilterProxyModel(qq))
-    {
-        proxyModel->setSourceModel(model);
-        proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
-    }
+    KIconDialogPrivate(KIconDialog *qq);
 
     void init();
     void showIcons();
@@ -50,6 +43,8 @@ public:
 
     KIconDialog *q;
 
+    KIconLoader *mpLoader;
+
     KIconDialogModel *model;
     QSortFilterProxyModel *proxyModel;
 
@@ -58,8 +53,6 @@ public:
 
     QLabel *placeholderLabel;
     QPushButton *browseButton;
-
-    KIconLoader *mpLoader;
 
     bool m_bStrictIconSize = true;
     bool m_bLockUser = false;
