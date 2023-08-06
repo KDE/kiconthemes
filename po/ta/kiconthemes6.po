@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-30 02:41+0000\n"
+"POT-Creation-Date: 2023-08-06 02:03+0000\n"
 "PO-Revision-Date: 2022-08-09 19:37+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -34,74 +34,74 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "சின்னத்தைத் தேர்வு செய்…"
 
-#: widgets/kicondialog.cpp:300
+#: widgets/kicondialog.cpp:239
 msgid "All"
 msgstr "அனைத்தும்"
 
-#: widgets/kicondialog.cpp:301
+#: widgets/kicondialog.cpp:240
 msgid "Actions"
 msgstr "செயல்கள்"
 
-#: widgets/kicondialog.cpp:302
+#: widgets/kicondialog.cpp:241
 msgid "Applications"
 msgstr "செயலிகள்"
 
-#: widgets/kicondialog.cpp:303
+#: widgets/kicondialog.cpp:242
 msgid "Categories"
 msgstr "வகைகள்"
 
-#: widgets/kicondialog.cpp:304
+#: widgets/kicondialog.cpp:243
 msgid "Devices"
 msgstr "சாதனங்கள்"
 
-#: widgets/kicondialog.cpp:305
+#: widgets/kicondialog.cpp:244
 msgid "Emblems"
 msgstr "சின்னங்கள்"
 
-#: widgets/kicondialog.cpp:306
+#: widgets/kicondialog.cpp:245
 msgid "Emotes"
 msgstr "முகவடிகள்"
 
-#: widgets/kicondialog.cpp:307
+#: widgets/kicondialog.cpp:246
 msgid "Mimetypes"
 msgstr "மைம்வகைகள்"
 
-#: widgets/kicondialog.cpp:308
+#: widgets/kicondialog.cpp:247
 msgid "Places"
 msgstr "இடங்கள்"
 
-#: widgets/kicondialog.cpp:309
+#: widgets/kicondialog.cpp:248
 msgid "Status"
 msgstr "நிலை"
 
-#: widgets/kicondialog.cpp:333
+#: widgets/kicondialog.cpp:272
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "மற்றவை"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:319
 #, kde-format
 msgid "Browse…"
 msgstr "உலாவு..."
 
-#: widgets/kicondialog.cpp:582
+#: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
 msgstr "தேடலுக்கு பொருந்தும் எந்த சின்னமும் இல்லை"
 
-#: widgets/kicondialog.cpp:584
+#: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
 msgstr "இவ்வகையான சின்னம் ஏதுமில்லை"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "சின்னத்தை தேர்வு செய்வது"
 
-#: widgets/kicondialog.cpp:664
+#: widgets/kicondialog.cpp:610
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

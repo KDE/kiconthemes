@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-30 02:41+0000\n"
+"POT-Creation-Date: 2023-08-06 02:03+0000\n"
 "PO-Revision-Date: 2009-05-19 10:52+0100\n"
 "Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
 "Language-Team:  <nl@li.org>\n"
@@ -24,47 +24,47 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Byldkaike selektearje"
 
-#: widgets/kicondialog.cpp:300
+#: widgets/kicondialog.cpp:239
 msgid "All"
 msgstr ""
 
-#: widgets/kicondialog.cpp:301
+#: widgets/kicondialog.cpp:240
 msgid "Actions"
 msgstr "Aksjes"
 
-#: widgets/kicondialog.cpp:302
+#: widgets/kicondialog.cpp:241
 msgid "Applications"
 msgstr "Applikaasjes"
 
-#: widgets/kicondialog.cpp:303
+#: widgets/kicondialog.cpp:242
 msgid "Categories"
 msgstr "Kategoriën"
 
-#: widgets/kicondialog.cpp:304
+#: widgets/kicondialog.cpp:243
 msgid "Devices"
 msgstr "Apparaten"
 
-#: widgets/kicondialog.cpp:305
+#: widgets/kicondialog.cpp:244
 msgid "Emblems"
 msgstr "Emblems"
 
-#: widgets/kicondialog.cpp:306
+#: widgets/kicondialog.cpp:245
 msgid "Emotes"
 msgstr "Emotes"
 
-#: widgets/kicondialog.cpp:307
+#: widgets/kicondialog.cpp:246
 msgid "Mimetypes"
 msgstr "Mime triemtypen"
 
-#: widgets/kicondialog.cpp:308
+#: widgets/kicondialog.cpp:247
 msgid "Places"
 msgstr "Places"
 
-#: widgets/kicondialog.cpp:309
+#: widgets/kicondialog.cpp:248
 msgid "Status"
 msgstr "Tastân"
 
-#: widgets/kicondialog.cpp:333
+#: widgets/kicondialog.cpp:272
 #, fuzzy, kde-format
 #| msgctxt "@item:inmenu"
 #| msgid "Other"
@@ -73,29 +73,29 @@ msgid "Other"
 msgstr "Oaren"
 
 #  i18n: file ./kfile/kpropertiesdesktopbase.ui line 213
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:319
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "S&neupe..."
 
-#: widgets/kicondialog.cpp:582
+#: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: widgets/kicondialog.cpp:584
+#: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Byldkaike selektearje"
 
-#: widgets/kicondialog.cpp:664
+#: widgets/kicondialog.cpp:610
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-05-30 02:41+0000\n"
+"POT-Creation-Date: 2023-08-06 02:03+0000\n"
 "PO-Revision-Date: 2014-02-09 03:39+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -27,47 +27,47 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Lüttbild utsöken"
 
-#: widgets/kicondialog.cpp:300
+#: widgets/kicondialog.cpp:239
 msgid "All"
 msgstr ""
 
-#: widgets/kicondialog.cpp:301
+#: widgets/kicondialog.cpp:240
 msgid "Actions"
 msgstr "Akschonen"
 
-#: widgets/kicondialog.cpp:302
+#: widgets/kicondialog.cpp:241
 msgid "Applications"
 msgstr "Programmen"
 
-#: widgets/kicondialog.cpp:303
+#: widgets/kicondialog.cpp:242
 msgid "Categories"
 msgstr "Kategorien"
 
-#: widgets/kicondialog.cpp:304
+#: widgets/kicondialog.cpp:243
 msgid "Devices"
 msgstr "Reedschappen"
 
-#: widgets/kicondialog.cpp:305
+#: widgets/kicondialog.cpp:244
 msgid "Emblems"
 msgstr "Symbolen"
 
-#: widgets/kicondialog.cpp:306
+#: widgets/kicondialog.cpp:245
 msgid "Emotes"
 msgstr "Snuten"
 
-#: widgets/kicondialog.cpp:307
+#: widgets/kicondialog.cpp:246
 msgid "Mimetypes"
 msgstr "MIME-Typen"
 
-#: widgets/kicondialog.cpp:308
+#: widgets/kicondialog.cpp:247
 msgid "Places"
 msgstr "Öörd"
 
-#: widgets/kicondialog.cpp:309
+#: widgets/kicondialog.cpp:248
 msgid "Status"
 msgstr "Status"
 
-#: widgets/kicondialog.cpp:333
+#: widgets/kicondialog.cpp:272
 #, fuzzy, kde-format
 #| msgctxt "@item:inmenu"
 #| msgid "Other"
@@ -75,29 +75,29 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "Anner"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:319
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "&Utsöken..."
 
-#: widgets/kicondialog.cpp:582
+#: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: widgets/kicondialog.cpp:584
+#: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:664 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Lüttbild utsöken"
 
-#: widgets/kicondialog.cpp:664
+#: widgets/kicondialog.cpp:610
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""
