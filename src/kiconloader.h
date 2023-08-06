@@ -42,10 +42,9 @@ class KIconTheme;
  *
  * In KDE, it is encouraged to load icons by "Group". An icon group is a
  * location on the screen where icons are being used. Standard groups are:
- * Desktop, Toolbar, MainToolbar, Small and Panel. Each group has some
- * centrally configured properties bound to it, including the icon size
- * and effects. This makes it possible to offer a consistent icon look in
- * all KDE applications.
+ * Desktop, Toolbar, MainToolbar, Small and Panel. Each group can have some
+ * centrally-configured effects applied to its icons. This makes it possible
+ * to offer a consistent icon look in all KDE applications.
  *
  * The standard groups are defined below.
  *
@@ -518,11 +517,8 @@ public:
     QStringList searchPaths() const;
 
     /**
-     * Returns the current size of the icon group.
-     * Using e.g. KIconLoader::SmallIcon will retrieve the icon size
-     * that is currently set from System Settings->Appearance->Icon
-     * sizes. SmallIcon for instance, would typically be 16x16, but
-     * the user could increase it and this setting would change as well.
+     * Returns the size of the specified icon group.
+     * Using e.g. KIconLoader::SmallIcon will return 16.
      * @param group the group to check.
      * @return the current size for an icon group.
      */

@@ -385,9 +385,8 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     // These have to match the order in kiconloader.h
     static const char *const groups[] = {"Desktop", "Toolbar", "MainToolbar", "Small", "Panel", "Dialog", nullptr};
-    KSharedConfig::Ptr config = KSharedConfig::openConfig();
 
-    // loading config and default sizes
+    // load default sizes
     initIconThemes();
     KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links.first()->theme;
     mpGroups = new KIconGroup[static_cast<int>(KIconLoader::LastGroup)];
@@ -396,10 +395,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
             break;
         }
 
-        KConfigGroup cg(config, QLatin1String(groups[i]) + QStringLiteral("Icons"));
-        mpGroups[i].size = cg.readEntry("Size", 0);
-
-        if (!mpGroups[i].size && defaultSizesTheme) {
+        if (defaultSizesTheme) {
             mpGroups[i].size = defaultSizesTheme->defaultSize(i);
         }
     }
