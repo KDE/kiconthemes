@@ -1137,7 +1137,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         }
     }
 
-    pix = QPixmap::fromImage(img);
+    pix = QPixmap::fromImage(std::move(img));
 
     // TODO: If we make a loadIcon that returns the image we can convert
     // drawOverlays to use the image instead of pixmaps as well so we don't

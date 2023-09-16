@@ -262,7 +262,7 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const
     } else if (effect != NoEffect) {
         QImage tmpImg = pixmap.toImage();
         tmpImg = apply(tmpImg, effect, value, col, col2, trans);
-        result = QPixmap::fromImage(tmpImg);
+        result = QPixmap::fromImage(std::move(tmpImg));
     } else {
         result = pixmap;
     }
@@ -284,7 +284,7 @@ struct KIEImgEdit {
             // in 32bit values and that the image is not premultiplied
             if ((img.format() != QImage::Format_ARGB32) //
                 && (img.format() != QImage::Format_RGB32)) {
-                img = img.convertToFormat(QImage::Format_ARGB32);
+                img.convertTo(QImage::Format_ARGB32);
             }
             data = (unsigned int *)img.bits();
             pixels = img.width() * img.height();
@@ -491,7 +491,7 @@ void KIconEffect::semiTransparent(QImage &img)
 {
     if (img.depth() == 32) {
         if (img.format() == QImage::Format_ARGB32_Premultiplied) {
-            img = img.convertToFormat(QImage::Format_ARGB32);
+            img.convertTo(QImage::Format_ARGB32);
         }
         int width = img.width();
         int height = img.height();
@@ -635,14 +635,14 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
         return;
     }
     if (src.format() == QImage::Format_ARGB32_Premultiplied) {
-        src = src.convertToFormat(QImage::Format_ARGB32);
+        src.convertTo(QImage::Format_ARGB32);
     }
 
     if (overlay.format() == QImage::Format_RGB32) {
         qWarning() << "Overlay doesn't have alpha buffer!";
         return;
     } else if (overlay.format() == QImage::Format_ARGB32_Premultiplied) {
-        overlay = overlay.convertToFormat(QImage::Format_ARGB32);
+        overlay.convertTo(QImage::Format_ARGB32);
     }
 
     int i;
