@@ -118,10 +118,6 @@ if(BUILD_QCH)
     )
 endif()
 
-include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KIconThemes LIB_NAME KF6IconThemes DEPS "gui" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes)
-install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
-
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin

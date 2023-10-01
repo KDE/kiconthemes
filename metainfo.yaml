@@ -13,8 +13,7 @@ portingAid: false
 deprecated: false
 release: true
 libraries:
- - qmake: KIconThemes
-   cmake: "KF6::IconThemes"
+ - cmake: "KF6::IconThemes"
 cmakename: KF6IconThemes
 
 public_lib: true
