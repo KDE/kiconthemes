@@ -18,7 +18,7 @@
 #include <QStandardPaths>
 #include <QSvgRenderer>
 
-#include "../../../kiconthemes_version.h"
+#include "../../kiconthemes_version.h"
 
 #include <stdio.h>
 
