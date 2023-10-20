@@ -31,7 +31,7 @@ private:
     QDir testIconsDir;
     QString appName;
     QDir appDataDir;
-    const QVector<int> testSizes;
+    const QList<int> testSizes;
 
 private Q_SLOTS:
     void initTestCase()

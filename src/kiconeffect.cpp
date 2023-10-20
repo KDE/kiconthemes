@@ -272,7 +272,7 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const
 
 struct KIEImgEdit {
     QImage &img;
-    QVector<QRgb> colors;
+    QList<QRgb> colors;
     unsigned int *data;
     unsigned int pixels;
 
@@ -510,7 +510,7 @@ void KIconEffect::semiTransparent(QImage &img)
         }
     } else if (img.depth() == 8) {
         // not running on 8 bit, we can safely install a new colorTable
-        QVector<QRgb> colorTable = img.colorTable();
+        QList<QRgb> colorTable = img.colorTable();
         for (int i = 0; i < colorTable.size(); ++i) {
             colorTable[i] = (colorTable[i] & 0x00ffffff) | ((colorTable[i] & 0xfe000000) >> 1);
         }

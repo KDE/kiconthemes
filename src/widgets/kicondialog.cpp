@@ -25,12 +25,12 @@
 #include <QFileInfo>
 #include <QGraphicsOpacityEffect>
 #include <QLabel>
+#include <QList>
 #include <QPainter>
 #include <QScrollBar>
 #include <QStandardItemModel> // for manipulatig QComboBox
 #include <QStandardPaths>
 #include <QSvgRenderer>
-#include <QVector>
 
 #include <algorithm>
 #include <math.h>

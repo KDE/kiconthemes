@@ -114,12 +114,12 @@ public:
     QString mDir, mName, mInternalName, mDesc;
     QStringList mInherits;
     QStringList mExtensions;
-    QVector<KIconThemeDir *> mDirs;
-    QVector<KIconThemeDir *> mScaledDirs;
+    QList<KIconThemeDir *> mDirs;
+    QList<KIconThemeDir *> mScaledDirs;
     bool followsColorScheme : 1;
 
     /// Searches the given dirs vector for a matching icon
-    QString iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
+    QString iconPath(const QList<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -186,7 +186,7 @@ private:
     const QString mThemeDir;
 };
 
-QString KIconThemePrivate::iconPath(const QVector<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
+QString KIconThemePrivate::iconPath(const QList<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
 {
     QString path;
     QString tempPath; // used to cache icon path if it exists
@@ -489,7 +489,7 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
     QStringList result;
-    const QVector<KIconThemeDir *> listDirs = d->mDirs + d->mScaledDirs;
+    const QList<KIconThemeDir *> listDirs = d->mDirs + d->mScaledDirs;
     for (const KIconThemeDir *dir : listDirs) {
         if (!isAnyOrDirContext(dir, context)) {
             continue;

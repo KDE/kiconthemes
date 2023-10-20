@@ -8,11 +8,11 @@
 #define KICONDIALOGMODEL_P_H
 
 #include <QAbstractListModel>
+#include <QList>
 #include <QPixmap>
 #include <QSize>
 #include <QString>
 #include <QStringList>
-#include <QVector>
 
 class KIconLoader;
 
@@ -47,7 +47,7 @@ public:
 private:
     void loadPixmap(const QModelIndex &index);
 
-    QVector<KIconDialogModelData> m_data;
+    QList<KIconDialogModelData> m_data;
 
     KIconLoader *m_loader;
     qreal m_dpr = 1;
