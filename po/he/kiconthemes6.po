@@ -18,32 +18,32 @@
 # Meni Livne <livne@kde.org>, 2007.
 # tahmar1900 <tahmar1900@gmail.com>, 2008.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-06 02:03+0000\n"
-"PO-Revision-Date: 2017-05-16 06:50-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2023-10-21 23:59+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
 
 #: widgets/kiconbutton.cpp:75
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "בחירת סמל"
+msgstr "בחירת סמל…"
 
 #: widgets/kicondialog.cpp:239
 msgid "All"
-msgstr ""
+msgstr "הכול"
 
 #: widgets/kicondialog.cpp:240
 msgid "Actions"
@@ -67,7 +67,7 @@ msgstr "סמלים"
 
 #: widgets/kicondialog.cpp:245
 msgid "Emotes"
-msgstr ""
+msgstr "סימוני רגש"
 
 #: widgets/kicondialog.cpp:246
 msgid "Mimetypes"
@@ -75,7 +75,7 @@ msgstr "סוגי קבצים"
 
 #: widgets/kicondialog.cpp:247
 msgid "Places"
-msgstr "מיקומים"
+msgstr "מקומות"
 
 #: widgets/kicondialog.cpp:248
 msgid "Status"
@@ -85,23 +85,22 @@ msgstr "מצב"
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr ""
+msgstr "אחר"
 
 #: widgets/kicondialog.cpp:319
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "ע&יון..."
+msgstr "עיון…"
 
 #: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "אין סמלים שעונים לחיפוש"
 
 #: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "אין סמלים בקטגוריה הזאת"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
@@ -110,24 +109,23 @@ msgid "Select Icon"
 msgstr "בחירת סמל"
 
 #: widgets/kicondialog.cpp:610
-#, fuzzy, kde-format
-#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+#, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
-msgstr "*.png *.xpm *.svg *.svgz|קבצי סמלים (*.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|קובצי סמלים (‎*.ico‏ ‎*.png‏ ‎*.xpm‏ ‎*.svg‏ ‎*.svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
 #: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "קטגוריית סמל"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: widgets/kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "בחירת סמל"
+msgstr "חיפוש סמלים…"
 
 #~ msgid "Icon Source"
 #~ msgstr "מקור הסמלים"
