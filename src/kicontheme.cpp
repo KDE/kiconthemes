@@ -34,14 +34,40 @@
 #include <array>
 #include <cmath>
 
+#ifdef Q_OS_WIN
+#include "DarkModeSetup.h"
+#endif
+
 Q_GLOBAL_STATIC(QString, _themeOverride)
+
+#ifdef Q_OS_WIN
+bool useDarkMode() {
+   DarkModeSetup s;
+   if (!s.isDarkModeActive()) {
+       return false;
+   }
+   return s.qtMode() == 2 || s.qtMode() == 1;
+}
+#else
+inline bool useDarkMode() {
+   return false;
+}
+#endif
+
+
 
 // Support for icon themes in RCC files.
 // The intended use case is standalone apps on Windows / MacOS / etc.
 // For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
 void initRCCIconTheme()
 {
-    const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
+    QString iconThemeRcc;
+    if (useDarkMode()) {
+        iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme-dark.rcc"));
+    }
+    if (iconThemeRcc.isEmpty()) {
+        iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
+    }
     if (!iconThemeRcc.isEmpty()) {
         const QString iconThemeName = QStringLiteral("kf5_rcc_theme");
         const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
