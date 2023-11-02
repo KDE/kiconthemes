@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-06 02:03+0000\n"
-"PO-Revision-Date: 2023-10-24 23:40+0200\n"
+"PO-Revision-Date: 2023-11-02 00:37+0100\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
 "Language: ast\n"
@@ -29,23 +29,23 @@ msgstr ""
 
 #: widgets/kicondialog.cpp:240
 msgid "Actions"
-msgstr ""
+msgstr "Aiciones"
 
 #: widgets/kicondialog.cpp:241
 msgid "Applications"
-msgstr ""
+msgstr "Aplicaciones"
 
 #: widgets/kicondialog.cpp:242
 msgid "Categories"
-msgstr ""
+msgstr "Categoríes"
 
 #: widgets/kicondialog.cpp:243
 msgid "Devices"
-msgstr ""
+msgstr "Preseos"
 
 #: widgets/kicondialog.cpp:244
 msgid "Emblems"
-msgstr ""
+msgstr "Emblemes"
 
 #: widgets/kicondialog.cpp:245
 msgid "Emotes"
@@ -57,11 +57,11 @@ msgstr ""
 
 #: widgets/kicondialog.cpp:247
 msgid "Places"
-msgstr ""
+msgstr "Llugares"
 
 #: widgets/kicondialog.cpp:248
 msgid "Status"
-msgstr ""
+msgstr "Estáu"
 
 #: widgets/kicondialog.cpp:272
 #, kde-format
