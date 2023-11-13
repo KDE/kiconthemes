@@ -17,6 +17,10 @@
 #include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 #include <KSharedConfig>
 
+#ifdef WITH_BREEZEICONS_LIB
+#include <BreezeIcons>
+#endif
+
 #include <QAction>
 #include <QCoreApplication>
 #include <QDebug>
@@ -41,6 +45,9 @@ Q_GLOBAL_STATIC(QString, _themeOverride)
 // For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
 void initRCCIconTheme()
 {
+#ifdef WITH_BREEZEICONS
+    BreezeIcons::initIcons()
+#else
     const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
     if (!iconThemeRcc.isEmpty()) {
         const QString iconThemeName = QStringLiteral("kf6_rcc_theme");
@@ -60,6 +67,7 @@ void initRCCIconTheme()
             qWarning() << "Invalid rcc file" << iconThemeRcc;
         }
     }
+#endif
 }
 Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
 

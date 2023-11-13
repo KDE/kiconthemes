@@ -69,6 +69,14 @@ if (TARGET Qt6::DBus)
   target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)
 endif()
 
+if(TARGET KF6::BreezeIcons)
+    target_link_libraries(KF6IconThemes
+            PRIVATE
+            KF6::BreezeIcons
+    )
+    target_compile_definitions(KF6IconThemes PRIVATE WITH_BREEZEICONS_LIB)
+endif ()
+
 ecm_generate_headers(KIconThemes_HEADERS
   HEADER_NAMES
   KIconColors
