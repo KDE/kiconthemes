@@ -31,7 +31,7 @@ endif()
 
 get_target_property(QT_RCC_EXECUTABLE Qt6::rcc LOCATION)
 add_custom_command(OUTPUT icontheme.rcc
-   COMMAND ${QT_RCC_EXECUTABLE} --binary -o icontheme.rcc ${CMAKE_CURRENT_SOURCE_DIR}/icontheme.qrc
+   COMMAND ${QT_RCC_EXECUTABLE} --binary -o ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/icontheme.rcc ${CMAKE_CURRENT_SOURCE_DIR}/icontheme.qrc
        DEPENDS icontheme.qrc
 )
 ecm_add_test(kiconloader_rcctest.cpp LINK_LIBRARIES Qt6::Test KF6::IconThemes KF6::WidgetsAddons KF6::ConfigCore)
