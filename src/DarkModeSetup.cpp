@@ -50,6 +50,15 @@ struct DarkModeSetupHelper {
         }
     }
 
+    constexpr bool DarkModeSupposedToBeWorking(DWORD buildNumber) {
+      return (buildNumber == 17763 || // 1809
+              buildNumber == 18362 || // 1903
+              buildNumber == 18363 || // 1909
+              buildNumber == 19041 || // 2004
+              buildNumber == 22000 || // win11
+              buildNumber == 22621);  //
+    }
+
     DarkModeSetupHelper() {
         auto RtlGetNtVersionNumbers = reinterpret_cast<fnRtlGetNtVersionNumbers>(GetProcAddress(GetModuleHandleW(L"ntdll.dll"), "RtlGetNtVersionNumbers"));
         if (RtlGetNtVersionNumbers) {
@@ -58,7 +67,7 @@ struct DarkModeSetupHelper {
             RtlGetNtVersionNumbers(&major, &minor, &buildNumber);
             buildNumber &= ~0xF0000000;
 
-            if (major == 10 && minor == 0) {
+            if (major == 10 && minor == 0 && DarkModeSupposedToBeWorking(buildNumber)) {
                 HMODULE hUxtheme = LoadLibraryExW(L"uxtheme.dll", nullptr,
                                           LOAD_LIBRARY_SEARCH_SYSTEM32);
                 if (hUxtheme) {
