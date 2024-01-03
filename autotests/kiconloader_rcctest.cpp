@@ -21,12 +21,29 @@ void earlyInit()
 {
     QStandardPaths::setTestModeEnabled(true);
     qputenv("XDG_DATA_DIRS", "/doesnotexist"); // ensure hicolor/oxygen/breeze are not found
-    QFile rcc(QStringLiteral("icontheme.rcc"));
+    QString iconPath;
+    QString iconThemeName = QStringLiteral("/icontheme.rcc");
+    for (QString dir : {qEnvironmentVariable("QT_PLUGIN_PATH"), QStringLiteral("."), QStringLiteral("bin"), QStringLiteral("../bin")}) {
+        while (!dir.isEmpty() && dir.back() == QChar(':')) {
+            dir.removeLast();
+        }
+        while (!dir.isEmpty() && dir.back() == QChar(';')) {
+            dir.removeLast();
+        }
+        QString potentialLocation = dir + iconThemeName;
+        qDebug() << "trying" << dir << potentialLocation << QFile::exists(potentialLocation);
+        if (QFile::exists(potentialLocation)) {
+            iconPath = potentialLocation;
+            break;
+        }
+    }
+    QFile rcc(iconPath);
+    qDebug() << rcc.exists() << iconPath;
     Q_ASSERT(rcc.exists());
     QCoreApplication::setApplicationName(QStringLiteral("myappname")); // for a fixed location on Unix (appname is empty here otherwise)
     const QString destDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
     QDir().mkpath(destDir);
-    const QString dest = destDir + QStringLiteral("/icontheme.rcc");
+    const QString dest = destDir + iconThemeName;
     QFile::remove(dest);
     if (!rcc.copy(dest)) {
         qWarning() << "Error copying to" << dest;
