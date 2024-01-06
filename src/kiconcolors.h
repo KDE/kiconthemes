@@ -41,7 +41,7 @@ public:
     explicit KIconColors(const QColor &colors);
 
     /**
-     * Uses @palette to define text, highlight, highlightedText and background.
+     * Uses @palette to define text, highlight, highlightedText, accent and background.
      * The rest being positiveText, negativeText and neutralText are filled from
      * KColorScheme(QPalette::Active, KColorScheme::Window);
      */
@@ -54,6 +54,7 @@ public:
     QColor text() const;
     QColor highlight() const;
     QColor highlightedText() const;
+    QColor accent() const;
     QColor background() const;
     QColor neutralText() const;
     QColor positiveText() const;
@@ -63,6 +64,7 @@ public:
     void setText(const QColor &color);
     void setHighlight(const QColor &color);
     void setHighlightedText(const QColor &color);
+    void setAccent(const QColor &color);
     void setBackground(const QColor &color);
     void setNeutralText(const QColor &color);
     void setPositiveText(const QColor &color);
@@ -77,7 +79,7 @@ protected:
      * Specifies: .ColorScheme-Text, .ColorScheme-Background, .ColorScheme-Highlight,
      * .ColorScheme-HighlightedText, .ColorScheme-PositiveText, .ColorScheme-NeutralText
      * .ColorScheme-NegativeText, .ColorScheme-ActiveText, .ColorScheme-Complement,
-     * .ColorScheme-Contrast
+     * .ColorScheme-Contrast, .ColorScheme-Accent,
      */
     QString stylesheet(KIconLoader::States state) const;
 
