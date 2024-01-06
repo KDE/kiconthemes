@@ -23,6 +23,7 @@ static QString STYLESHEET_TEMPLATE()
 .ColorScheme-ActiveText{ color:%8; }\
 .ColorScheme-Complement{ color:%9; }\
 .ColorScheme-Contrast{ color:%10; }\
+.ColorScheme-Accent{ color:%11; }\
 ");
     /* clang-format on */
 }
@@ -39,6 +40,7 @@ public:
         , background(other.background)
         , highlight(other.highlight)
         , highlightedText(other.highlightedText)
+        , accent(other.accent)
         , positiveText(other.positiveText)
         , neutralText(other.neutralText)
         , negativeText(other.negativeText)
@@ -52,6 +54,7 @@ public:
     QColor background;
     QColor highlight;
     QColor highlightedText;
+    QColor accent;
     QColor positiveText;
     QColor neutralText;
     QColor negativeText;
@@ -92,6 +95,7 @@ KIconColors::KIconColors(const QColor &colors)
     d->positiveText = colors;
     d->neutralText = colors;
     d->negativeText = colors;
+    d->accent = colors;
 }
 
 KIconColors::KIconColors(const QPalette &palette)
@@ -102,6 +106,11 @@ KIconColors::KIconColors(const QPalette &palette)
     d->background = palette.window().color();
     d->highlight = palette.highlight().color();
     d->highlightedText = palette.highlightedText().color();
+#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
+    d->accent = palette.accent().color();
+#else
+    d->accent = palette.highlight().color();
+#endif
 
     if (!d->lastColorScheme || !d->lastPalette || palette != d->lastPalette) {
         d->lastPalette = palette;
@@ -142,7 +151,8 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name())
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name())
         .arg(complement.name())
-        .arg(contrast.name());
+        .arg(contrast.name())
+        .arg(state == KIconLoader::SelectedState ? d->accent.name() : d->highlightedText.name());
 }
 
 QColor KIconColors::highlight() const
@@ -155,6 +165,12 @@ QColor KIconColors::highlightedText() const
 {
     Q_D(const KIconColors);
     return d->highlightedText;
+}
+
+QColor KIconColors::accent() const
+{
+    Q_D(const KIconColors);
+    return d->accent;
 }
 
 QColor KIconColors::background() const
@@ -215,6 +231,12 @@ void KIconColors::setHighlightedText(const QColor &color)
 {
     Q_D(KIconColors);
     d->highlightedText = color;
+}
+
+void KIconColors::setAccent(const QColor &color)
+{
+    Q_D(KIconColors);
+    d->accent = color;
 }
 
 void KIconColors::setNegativeText(const QColor &color)
