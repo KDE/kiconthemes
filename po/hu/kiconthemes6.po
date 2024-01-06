@@ -1,12 +1,12 @@
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011, 2012.
 # Balázs Úr <urbalazs@gmail.com>, 2012.
-# Kristof Kiszel <kiszel.kristof@gmail.com>, 2018, 2021.
+# SPDX-FileCopyrightText: 2018, 2021, 2024 Kristof Kiszel <kiszel.kristof@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-06 02:03+0000\n"
-"PO-Revision-Date: 2021-12-29 17:43+0100\n"
+"PO-Revision-Date: 2024-01-05 20:53+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -14,14 +14,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.12.0\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: widgets/kiconbutton.cpp:75
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Ikonválasztás"
+msgstr "Ikonválasztás…"
 
 #: widgets/kicondialog.cpp:239
 msgid "All"
