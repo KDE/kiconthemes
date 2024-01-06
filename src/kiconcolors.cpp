@@ -100,7 +100,7 @@ KIconColors::KIconColors(const QPalette &palette)
     Q_D(KIconColors);
     d->text = palette.windowText().color();
     d->background = palette.window().color();
-    d->highlight = palette.highlight().color();
+    d->highlight = palette.accent().color();
     d->highlightedText = palette.highlightedText().color();
 
     if (!d->lastColorScheme || !d->lastPalette || palette != d->lastPalette) {
