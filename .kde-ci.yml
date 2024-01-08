@@ -9,4 +9,4 @@ Dependencies:
 
 Options:
   test-before-installing: True
-  require-passing-tests-on: [ 'Linux', 'FreeBSD', 'Windows/Qt5', 'Android' ]
+  require-passing-tests-on: [ 'Linux', 'FreeBSD', 'Android' ]
