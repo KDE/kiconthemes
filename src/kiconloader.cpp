@@ -765,7 +765,8 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     // Once everyone uses that to look up mimetype icons, we can kill the fallback code
     // from this method.
 
-    bool genericFallback = name.endsWith(QLatin1String("-x-generic"));;
+    bool genericFallback = name.endsWith(QLatin1String("-x-generic"));
+    bool isSymbolic = name.endsWith(QLatin1String("-symbolic"));
     QString path;
     for (KIconThemeNode *themeNode : std::as_const(links)) {
         QString currentName = name;
@@ -781,12 +782,32 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
                 break;
             }
 
+            // If the icon was originally symbolic, we want to keep that suffix at the end.
+            // The next block removes the last word including the -, "a-b-symbolic" will become "a-b"
+            // We remove it beforehand, "a-b-symbolic" now is "a-symbolic" and we'll add it back later.
+            if (isSymbolic) {
+                currentName.remove(QLatin1String("-symbolic"));
+
+                // Handle cases where the icon lacks a symbolic version.
+                // For example, "knotes-symbolic" doesn't exist and has no fallback or generic version.
+                // "knotes" does exist, so let's check if a non-symbolic icon works before continuing.
+                path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest, scale);
+                if (!path.isEmpty()) {
+                    return path;
+                }
+            }
+
             int rindex = currentName.lastIndexOf(QLatin1Char('-'));
             if (rindex > 1) { // > 1 so that we don't split x-content or x-epoc
                 currentName.truncate(rindex);
 
                 if (currentName.endsWith(QLatin1String("-x"))) {
                     currentName.chop(2);
+                }
+
+                // Add back the -symbolic if requested
+                if (isSymbolic) {
+                    currentName += QLatin1String("-symbolic");
                 }
             } else {
                 // From update-mime-database.c
