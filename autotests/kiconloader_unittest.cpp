@@ -116,6 +116,9 @@ private Q_SLOTS:
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/actions/one-two.png"))));
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/actions/one.png"))));
 
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/actions/one-symbolic.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("breeze/22x22/actions/three.png"))));
+
         QVERIFY(QFile::setPermissions(breezeThemeFile, QFileDevice::ReadOwner | QFileDevice::WriteOwner));
         KConfig configFile(breezeThemeFile);
         KConfigGroup iconThemeGroup = configFile.group("Icon Theme");
@@ -526,6 +529,20 @@ private Q_SLOTS:
                                                       nullptr,
                                                       true);
         QVERIFY(!pix.isNull());
+    }
+
+    void testCorrectSymbolicFallback()
+    {
+        // Try to find "one-two-symbolic", but should fall back to "one-symbolic" which exists
+        QString path;
+        KIconLoader::global()->loadIcon(QStringLiteral("one-two-symbolic"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
+        QVERIFY(path.contains("breeze/22x22/actions"));
+        QVERIFY(path.contains("-symbolic"));
+
+        // Try to find the non-existent "three-four-symbolic" but only "three" exists. It should fall back to the non-symbolic
+        KIconLoader::global()->loadIcon(QStringLiteral("three-four-symbolic"), KIconLoader::Desktop, 24, KIconLoader::DefaultState, QStringList(), &path);
+        QVERIFY(path.contains("breeze/22x22/actions"));
+        QVERIFY(!path.contains("-symbolic"));
     }
 };
 
