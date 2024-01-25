@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-06 02:03+0000\n"
-"PO-Revision-Date: 2019-09-24 16:55+0300\n"
+"PO-Revision-Date: 2024-01-25 02:30+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -18,14 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: widgets/kiconbutton.cpp:75
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Pasirinkti piktogramą"
+msgstr "Pasirinkti piktogramą…"
 
 #: widgets/kicondialog.cpp:239
 msgid "All"
@@ -71,23 +70,22 @@ msgstr "Būsena"
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr ""
+msgstr "Kita"
 
 #: widgets/kicondialog.cpp:319
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "&Naršyti..."
+msgstr "Naršyti…"
 
 #: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "Nerasta jokių paieškos atitikmenų"
 
 #: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "Šioje kategorijoje nėra piktogramų"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
@@ -107,14 +105,13 @@ msgstr ""
 #: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "Piktogramos kategorija"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: widgets/kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "Pasirinkti piktogramą"
+msgstr "Ieškoti piktogramų..."
 
 #~ msgid "Icon Source"
 #~ msgstr "Piktogramos šaltinis"
