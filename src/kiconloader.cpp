@@ -1091,8 +1091,6 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     QString path;
 
     if (d->findCachedPixmapWithPath(key, pix, path)) {
-        pix.setDevicePixelRatio(scale);
-
         if (path_store) {
             *path_store = path;
         }
@@ -1159,6 +1157,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     }
 
     pix = QPixmap::fromImage(std::move(img));
+    pix.setDevicePixelRatio(scale);
 
     // TODO: If we make a loadIcon that returns the image we can convert
     // drawOverlays to use the image instead of pixmaps as well so we don't
