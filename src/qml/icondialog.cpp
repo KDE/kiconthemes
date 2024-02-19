@@ -19,7 +19,6 @@ IconDialog::IconDialog(QObject *parent)
     , m_iconSize(0)
     , m_user(false)
     , m_modality(Qt::WindowModal)
-    , m_visible(false)
 {
     if (qobject_cast<QApplication *>(QCoreApplication::instance())) {
         m_dialog.reset(new KIconDialog());
