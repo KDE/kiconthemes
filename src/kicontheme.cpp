@@ -363,7 +363,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     // Use KSharedConfig to avoid parsing the file many times, from each component.
     // Need to keep a ref to it to make this useful
-    d->sharedConfig = KSharedConfig::openConfig(fileName, KConfig::NoGlobals);
+    d->sharedConfig = KSharedConfig::openConfig(fileName, KConfig::SimpleConfig);
 
     KConfigGroup cfg(d->sharedConfig, mainSection);
     d->mName = cfg.readEntry("Name");
