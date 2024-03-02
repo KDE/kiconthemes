@@ -18,6 +18,8 @@ set_target_properties(KF6IconThemes PROPERTIES
 )
 
 target_sources(KF6IconThemes PRIVATE
+    kfonticontheme.cpp
+    kfonticontheme.h
     kiconcolors.cpp
     kiconcolors.h
     kiconeffect.cpp
@@ -64,6 +66,7 @@ target_link_libraries(KF6IconThemes
     KF6::Archive       # for KCompressionDevice
     KF6::I18n          # for KLocalizedString::localizedFilePath in KIconTheme
     KF6::ColorScheme
+    Freetype::Freetype
 )
 if (TARGET Qt6::DBus)
   target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)

@@ -51,6 +51,8 @@ public:
     ~KIconColors();
     KIconColors operator=(const KIconColors &other);
 
+    QList<QColor> colors(KIconLoader::States state) const;
+
     QColor text() const;
     QColor highlight() const;
     QColor highlightedText() const;

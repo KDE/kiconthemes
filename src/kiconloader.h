@@ -302,7 +302,7 @@ public:
      * @param state The icon state: @p DefaultState, @p ActiveState or
      * @p DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name
+     * @param overlays a lissSizest of emblem icons to overlay, by name
      *                 @see drawOverlays
      * @param path_store If not null, the path of the icon is stored here,
      *        if the icon was found. If the icon was not found @p path_store

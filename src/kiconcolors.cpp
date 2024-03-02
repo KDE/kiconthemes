@@ -131,6 +131,29 @@ qreal luma(const QColor &color) {
     return (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255;
 }
 
+QList<QColor> KIconColors::colors(KIconLoader::States state) const
+{
+    Q_D(const KIconColors);
+
+    const QColor complement = luma(d->background) > 0.5 ? Qt::white : Qt::black;
+
+    const QColor contrast = luma(d->background) > 0.5 ? Qt::black : Qt::white;
+
+    return {
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->text.name(),
+        state == KIconLoader::SelectedState ? d->highlight.name() : d->background.name(),
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->highlight.name(),
+        state == KIconLoader::SelectedState ? d->highlight.name() : d->highlightedText.name(),
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->positiveText.name(),
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->neutralText.name(),
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name(),
+        state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name(),
+        complement.name(),
+        contrast.name(),
+        state == KIconLoader::SelectedState ? d->accent.name() : d->highlightedText.name(),
+    };
+}
+
 QString KIconColors::stylesheet(KIconLoader::States state) const
 {
     Q_D(const KIconColors);
