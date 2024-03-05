@@ -60,6 +60,18 @@ public:
     KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader);
 
     /**
+     * Constructs an icon engine for a KDE named icon with a specific palette and overlays.
+     *
+     * @param iconName the name of the icon to load
+     * @param colors defines the colors we want to be applied on this icon
+     * @param iconLoader The KDE icon loader that this engine is to use.
+     * @param overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
+     *
+     * @since 6.1
+     */
+    KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader, const QStringList &overlays);
+
+    /**
      * Destructor.
      */
     ~KIconEngine() override;

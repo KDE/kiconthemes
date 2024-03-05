@@ -44,6 +44,13 @@ KIconEngine::KIconEngine(const QString &iconName, const KIconColors &colors, KIc
 {
 }
 
+KIconEngine::KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader, const QStringList &overlays)
+    : mIconName(iconName)
+    , mOverlays(overlays)
+    , d(new KIconEnginePrivate{iconLoader, true, colors, {}})
+{
+}
+
 KIconEngine::~KIconEngine()
 {
     delete d;
