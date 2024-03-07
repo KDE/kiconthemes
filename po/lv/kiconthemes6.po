@@ -8,32 +8,32 @@
 # Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008, 2010.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
 # Einars Sprugis <einars8@gmail.com>, 2009.
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-08-06 02:03+0000\n"
-"PO-Revision-Date: 2011-07-06 12:49+0300\n"
-"Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
-"Language-Team: Latvian\n"
+"PO-Revision-Date: 2024-03-05 21:06+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #: widgets/kiconbutton.cpp:75
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Izvēlēties ikonu"
+msgstr "Atlasiet ikonu..."
 
 #: widgets/kicondialog.cpp:239
 msgid "All"
-msgstr ""
+msgstr "Visas"
 
 #: widgets/kicondialog.cpp:240
 msgid "Actions"
@@ -72,54 +72,50 @@ msgid "Status"
 msgstr "Statuss"
 
 #: widgets/kicondialog.cpp:272
-#, fuzzy, kde-format
-#| msgctxt "@item:inmenu"
-#| msgid "Other"
+#, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr "Citi"
+msgstr "Citas"
 
 #: widgets/kicondialog.cpp:319
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "&Pārlūkot..."
+msgstr "Pārlūkot..."
 
 #: widgets/kicondialog.cpp:521
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "Meklēšanai neatbilst neviena ikona"
 
 #: widgets/kicondialog.cpp:523
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "Šajā kategorijā ikonu nav"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
-msgstr "Izvēlēties ikonu"
+msgstr "Atlasiet ikonu"
 
 #: widgets/kicondialog.cpp:610
-#, fuzzy, kde-format
-#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+#, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
-msgstr "*.png *.xpm *.svg *.svgz|Ikonu faili (*.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|Ikonu datnes (*.ico *.png *.xpm *.svg *.svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
 #: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "Ikonu kategorija"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: widgets/kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "Izvēlēties ikonu"
+msgstr "Meklēt ikonas..."
 
 #~ msgid "Icon Source"
 #~ msgstr "Ikonu avots"
