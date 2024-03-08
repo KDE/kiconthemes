@@ -39,10 +39,16 @@ public:
     QSize iconSize() const;
     void setIconSize(const QSize &iconSize);
 
+    static QLatin1String symbolicSuffix();
+    bool hasSymbolicIcon() const;
+
     void load(const QStringList &paths);
 
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
+
+Q_SIGNALS:
+    void hasSymbolicIconChanged(bool hasSymbolicIcon);
 
 private:
     void loadPixmap(const QModelIndex &index);
@@ -52,6 +58,7 @@ private:
     KIconLoader *m_loader;
     qreal m_dpr = 1;
     QSize m_iconSize;
+    bool m_hasSymbolicIcon = false;
 };
 
 #endif // KICONDIALOGMODEL_P_H

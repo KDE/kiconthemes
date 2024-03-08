@@ -25,6 +25,7 @@ class QLabel;
 class QPushButton;
 
 class KIconDialog;
+class KIconDialogSortFilterProxyModel;
 
 class KIconDialogPrivate
 {
@@ -46,13 +47,16 @@ public:
     KIconLoader *mpLoader;
 
     KIconDialogModel *model;
-    QSortFilterProxyModel *proxyModel;
+    KIconDialogSortFilterProxyModel *proxyModel;
 
     int mGroupOrSize;
     KIconLoader::Context mContext;
 
     QLabel *placeholderLabel;
     QPushButton *browseButton;
+
+    QAction *filterSymbolicAction;
+    QActionGroup *filterSymbolicGroup;
 
     bool m_bStrictIconSize = true;
     bool m_bLockUser = false;

@@ -19,6 +19,7 @@
 #include <KStandardAction>
 
 #include <QAbstractListModel>
+#include <QActionGroup>
 #include <QApplication>
 #include <QComboBox>
 #include <QDialogButtonBox>
@@ -26,8 +27,10 @@
 #include <QGraphicsOpacityEffect>
 #include <QLabel>
 #include <QList>
+#include <QMenu>
 #include <QPainter>
 #include <QScrollBar>
+#include <QSortFilterProxyModel>
 #include <QStandardItemModel> // for manipulatig QComboBox
 #include <QStandardPaths>
 #include <QSvgRenderer>
@@ -36,6 +39,66 @@
 #include <math.h>
 
 static const int s_edgePad = 3;
+
+class KIconDialogSortFilterProxyModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+
+public:
+    explicit KIconDialogSortFilterProxyModel(QObject *parent);
+
+    enum SymbolicIcons { AllSymbolicIcons, OnlySymbolicIcons, NoSymbolicIcons };
+
+    void setSymbolicIcons(SymbolicIcons symbolicIcons);
+    void setHasSymbolicIcon(bool hasSymbolicIcon);
+
+protected:
+    bool filterAcceptsRow(int source_row, const QModelIndex &source_parent) const override;
+
+private:
+    SymbolicIcons m_symbolicIcons = AllSymbolicIcons;
+    bool m_hasSymbolicIcon = false;
+};
+
+KIconDialogSortFilterProxyModel::KIconDialogSortFilterProxyModel(QObject *parent)
+    : QSortFilterProxyModel(parent)
+{
+}
+
+void KIconDialogSortFilterProxyModel::setSymbolicIcons(SymbolicIcons symbolicIcons)
+{
+    if (m_symbolicIcons == symbolicIcons) {
+        return;
+    }
+
+    m_symbolicIcons = symbolicIcons;
+    invalidateFilter();
+}
+
+void KIconDialogSortFilterProxyModel::setHasSymbolicIcon(bool hasSymbolicIcon)
+{
+    if (m_hasSymbolicIcon == hasSymbolicIcon) {
+        return;
+    }
+
+    m_hasSymbolicIcon = hasSymbolicIcon;
+    invalidateFilter();
+}
+
+bool KIconDialogSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
+{
+    if (m_hasSymbolicIcon) {
+        if (m_symbolicIcons == OnlySymbolicIcons || m_symbolicIcons == NoSymbolicIcons) {
+            const QString display = sourceModel()->index(source_row, 0, source_parent).data(Qt::DisplayRole).toString();
+            const bool isSymbolic = display.endsWith(KIconDialogModel::symbolicSuffix());
+            if ((m_symbolicIcons == OnlySymbolicIcons && !isSymbolic) || (m_symbolicIcons == NoSymbolicIcons && isSymbolic)) {
+                return false;
+            }
+        }
+    }
+
+    return QSortFilterProxyModel::filterAcceptsRow(source_row, source_parent);
+}
 
 KIconDialogModel::KIconDialogModel(KIconLoader *loader, QObject *parent)
     : QAbstractListModel(parent)
@@ -65,9 +128,22 @@ void KIconDialogModel::setIconSize(const QSize &iconSize)
     m_iconSize = iconSize;
 }
 
+QLatin1String KIconDialogModel::symbolicSuffix()
+{
+    return QLatin1String("-symbolic");
+}
+
+bool KIconDialogModel::hasSymbolicIcon() const
+{
+    return m_hasSymbolicIcon;
+}
+
 void KIconDialogModel::load(const QStringList &paths)
 {
     beginResetModel();
+
+    const bool oldSymbolic = m_hasSymbolicIcon;
+    m_hasSymbolicIcon = false;
 
     m_data.clear();
     m_data.reserve(paths.count());
@@ -80,10 +156,18 @@ void KIconDialogModel::load(const QStringList &paths)
         item.path = path;
         // pixmap is created on demand
 
+        if (!m_hasSymbolicIcon && item.name.endsWith(symbolicSuffix())) {
+            m_hasSymbolicIcon = true;
+        }
+
         m_data.append(item);
     }
 
     endResetModel();
+
+    if (oldSymbolic != m_hasSymbolicIcon) {
+        Q_EMIT hasSymbolicIconChanged(m_hasSymbolicIcon);
+    }
 }
 
 int KIconDialogModel::rowCount(const QModelIndex &parent) const
@@ -196,10 +280,17 @@ KIconDialogPrivate::KIconDialogPrivate(KIconDialog *qq)
     : q(qq)
     , mpLoader(KIconLoader::global())
     , model(new KIconDialogModel(mpLoader, qq))
-    , proxyModel(new QSortFilterProxyModel(qq))
+    , proxyModel(new KIconDialogSortFilterProxyModel(qq))
+    , filterSymbolicAction(new QAction(qq))
+    , filterSymbolicGroup(new QActionGroup(qq))
 {
     proxyModel->setSourceModel(model);
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+
+    filterSymbolicGroup->setExclusive(true);
+
+    QObject::connect(model, &KIconDialogModel::hasSymbolicIconChanged, filterSymbolicAction, &QAction::setVisible);
+    QObject::connect(model, &KIconDialogModel::hasSymbolicIconChanged, proxyModel, &KIconDialogSortFilterProxyModel::setHasSymbolicIcon);
 }
 
 /*
@@ -232,6 +323,35 @@ void KIconDialogPrivate::init()
 
     QAction *findAction = KStandardAction::find(ui.searchLine, qOverload<>(&QWidget::setFocus), q);
     q->addAction(findAction);
+
+    QMenu *filterSymbolicMenu = new QMenu(q);
+
+    QAction *filterSymbolicAll = filterSymbolicMenu->addAction(i18nc("@item:inmenu All icons", "All"));
+    filterSymbolicAll->setData(KIconDialogSortFilterProxyModel::AllSymbolicIcons);
+    filterSymbolicAll->setChecked(true); // Start with "All" icons.
+    filterSymbolicAll->setCheckable(true);
+
+    QAction *filterSymbolicOnly = filterSymbolicMenu->addAction(i18nc("@item:inmenu Show only symbolic icons", "Only Symbolic"));
+    filterSymbolicOnly->setData(KIconDialogSortFilterProxyModel::OnlySymbolicIcons);
+    filterSymbolicOnly->setCheckable(true);
+
+    QAction *filterSymbolicNone = filterSymbolicMenu->addAction(i18nc("@item:inmenu Hide symbolic icons", "No Symbolic"));
+    filterSymbolicNone->setData(KIconDialogSortFilterProxyModel::NoSymbolicIcons);
+    filterSymbolicNone->setCheckable(true);
+
+    filterSymbolicAction->setIcon(QIcon::fromTheme(QStringLiteral("view-filter")));
+    filterSymbolicAction->setCheckable(true);
+    filterSymbolicAction->setChecked(true);
+    filterSymbolicAction->setMenu(filterSymbolicMenu);
+
+    filterSymbolicGroup->addAction(filterSymbolicAll);
+    filterSymbolicGroup->addAction(filterSymbolicOnly);
+    filterSymbolicGroup->addAction(filterSymbolicNone);
+    QObject::connect(filterSymbolicGroup, &QActionGroup::triggered, q, [this](QAction *action) {
+        proxyModel->setSymbolicIcons(static_cast<KIconDialogSortFilterProxyModel::SymbolicIcons>(action->data().toInt()));
+    });
+
+    ui.searchLine->addAction(filterSymbolicAction, QLineEdit::TrailingPosition);
 
     QObject::connect(ui.searchLine, &QLineEdit::textChanged, proxyModel, &QSortFilterProxyModel::setFilterFixedString);
 
