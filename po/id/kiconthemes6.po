@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-06 02:03+0000\n"
+"POT-Creation-Date: 2024-03-12 00:35+0000\n"
 "PO-Revision-Date: 2022-08-26 23:40+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: https://t.me/Localizations_KDE_Indonesia\n"
@@ -24,75 +24,94 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Pilih Ikon"
 
-#: widgets/kicondialog.cpp:239
+#: widgets/kicondialog.cpp:329
+#, fuzzy, kde-format
+#| msgid "All"
+msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Semua"
 
-#: widgets/kicondialog.cpp:240
+#: widgets/kicondialog.cpp:334
+#, kde-format
+msgctxt "@item:inmenu Show only symbolic icons"
+msgid "Only Symbolic"
+msgstr ""
+
+#: widgets/kicondialog.cpp:338
+#, kde-format
+msgctxt "@item:inmenu Hide symbolic icons"
+msgid "No Symbolic"
+msgstr ""
+
+#: widgets/kicondialog.cpp:359
+msgid "All"
+msgstr "Semua"
+
+#: widgets/kicondialog.cpp:360
 msgid "Actions"
 msgstr "Aksi"
 
-#: widgets/kicondialog.cpp:241
+#: widgets/kicondialog.cpp:361
 msgid "Applications"
 msgstr "Aplikasi"
 
-#: widgets/kicondialog.cpp:242
+#: widgets/kicondialog.cpp:362
 msgid "Categories"
 msgstr "Kategori"
 
-#: widgets/kicondialog.cpp:243
+#: widgets/kicondialog.cpp:363
 msgid "Devices"
 msgstr "Peranti"
 
-#: widgets/kicondialog.cpp:244
+#: widgets/kicondialog.cpp:364
 msgid "Emblems"
 msgstr "Emblem"
 
-#: widgets/kicondialog.cpp:245
+#: widgets/kicondialog.cpp:365
 msgid "Emotes"
 msgstr "Emos"
 
-#: widgets/kicondialog.cpp:246
+#: widgets/kicondialog.cpp:366
 msgid "Mimetypes"
 msgstr "Mimetypes"
 
-#: widgets/kicondialog.cpp:247
+#: widgets/kicondialog.cpp:367
 msgid "Places"
 msgstr "Tempat"
 
-#: widgets/kicondialog.cpp:248
+#: widgets/kicondialog.cpp:368
 msgid "Status"
 msgstr "Status"
 
-#: widgets/kicondialog.cpp:272
+#: widgets/kicondialog.cpp:392
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr ""
 
-#: widgets/kicondialog.cpp:319
+#: widgets/kicondialog.cpp:439
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "&Telusuri..."
 
-#: widgets/kicondialog.cpp:521
+#: widgets/kicondialog.cpp:641
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: widgets/kicondialog.cpp:523
+#: widgets/kicondialog.cpp:643
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:730 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Pilih Ikon"
 
-#: widgets/kicondialog.cpp:610
+#: widgets/kicondialog.cpp:730
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

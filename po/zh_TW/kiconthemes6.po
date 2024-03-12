@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-06 02:03+0000\n"
+"POT-Creation-Date: 2024-03-12 00:35+0000\n"
 "PO-Revision-Date: 2023-03-19 08:59+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -32,74 +32,93 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "選擇圖示…"
 
-#: widgets/kicondialog.cpp:239
+#: widgets/kicondialog.cpp:329
+#, fuzzy, kde-format
+#| msgid "All"
+msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "全部"
 
-#: widgets/kicondialog.cpp:240
+#: widgets/kicondialog.cpp:334
+#, kde-format
+msgctxt "@item:inmenu Show only symbolic icons"
+msgid "Only Symbolic"
+msgstr ""
+
+#: widgets/kicondialog.cpp:338
+#, kde-format
+msgctxt "@item:inmenu Hide symbolic icons"
+msgid "No Symbolic"
+msgstr ""
+
+#: widgets/kicondialog.cpp:359
+msgid "All"
+msgstr "全部"
+
+#: widgets/kicondialog.cpp:360
 msgid "Actions"
 msgstr "動作"
 
-#: widgets/kicondialog.cpp:241
+#: widgets/kicondialog.cpp:361
 msgid "Applications"
 msgstr "應用程式"
 
-#: widgets/kicondialog.cpp:242
+#: widgets/kicondialog.cpp:362
 msgid "Categories"
 msgstr "類別"
 
-#: widgets/kicondialog.cpp:243
+#: widgets/kicondialog.cpp:363
 msgid "Devices"
 msgstr "裝置"
 
-#: widgets/kicondialog.cpp:244
+#: widgets/kicondialog.cpp:364
 msgid "Emblems"
 msgstr "符號"
 
-#: widgets/kicondialog.cpp:245
+#: widgets/kicondialog.cpp:365
 msgid "Emotes"
 msgstr "表情"
 
-#: widgets/kicondialog.cpp:246
+#: widgets/kicondialog.cpp:366
 msgid "Mimetypes"
 msgstr "MIME 類型"
 
-#: widgets/kicondialog.cpp:247
+#: widgets/kicondialog.cpp:367
 msgid "Places"
 msgstr "書籤"
 
-#: widgets/kicondialog.cpp:248
+#: widgets/kicondialog.cpp:368
 msgid "Status"
 msgstr "狀態"
 
-#: widgets/kicondialog.cpp:272
+#: widgets/kicondialog.cpp:392
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "其他"
 
-#: widgets/kicondialog.cpp:319
+#: widgets/kicondialog.cpp:439
 #, kde-format
 msgid "Browse…"
 msgstr "瀏覽…"
 
-#: widgets/kicondialog.cpp:521
+#: widgets/kicondialog.cpp:641
 #, kde-format
 msgid "No icons matching the search"
 msgstr "沒有符合搜尋的圖示"
 
-#: widgets/kicondialog.cpp:523
+#: widgets/kicondialog.cpp:643
 #, kde-format
 msgid "No icons in this category"
 msgstr "這個分類沒有圖示"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:730 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "選擇圖示"
 
-#: widgets/kicondialog.cpp:610
+#: widgets/kicondialog.cpp:730
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

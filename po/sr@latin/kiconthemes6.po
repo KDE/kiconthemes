@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-06 02:03+0000\n"
+"POT-Creation-Date: 2024-03-12 00:35+0000\n"
 "PO-Revision-Date: 2016-11-28 01:32+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -32,85 +32,105 @@ msgid "Select Icon…"
 msgstr "Izbor ikonice"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:239
+#: widgets/kicondialog.cpp:329
+#, fuzzy, kde-format
+#| msgid "All"
+msgctxt "@item:inmenu All icons"
+msgid "All"
+msgstr "sve"
+
+#: widgets/kicondialog.cpp:334
+#, kde-format
+msgctxt "@item:inmenu Show only symbolic icons"
+msgid "Only Symbolic"
+msgstr ""
+
+#: widgets/kicondialog.cpp:338
+#, kde-format
+msgctxt "@item:inmenu Hide symbolic icons"
+msgid "No Symbolic"
+msgstr ""
+
+# >> @item:inlistbox System icons
+#: widgets/kicondialog.cpp:359
 msgid "All"
 msgstr "sve"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:240
+#: widgets/kicondialog.cpp:360
 msgid "Actions"
 msgstr "radnje"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:241
+#: widgets/kicondialog.cpp:361
 msgid "Applications"
 msgstr "programi"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:242
+#: widgets/kicondialog.cpp:362
 msgid "Categories"
 msgstr "kategorije"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:243
+#: widgets/kicondialog.cpp:363
 msgid "Devices"
 msgstr "uređaji"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:244
+#: widgets/kicondialog.cpp:364
 msgid "Emblems"
 msgstr "amblemi"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:245
+#: widgets/kicondialog.cpp:365
 msgid "Emotes"
 msgstr "emotikoni"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:246
+#: widgets/kicondialog.cpp:366
 msgid "Mimetypes"
 msgstr "MIME tipovi"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:247
+#: widgets/kicondialog.cpp:367
 msgid "Places"
 msgstr "mesta"
 
 # >> @item:inlistbox System icons
-#: widgets/kicondialog.cpp:248
+#: widgets/kicondialog.cpp:368
 msgid "Status"
 msgstr "stanje"
 
-#: widgets/kicondialog.cpp:272
+#: widgets/kicondialog.cpp:392
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr ""
 
-#: widgets/kicondialog.cpp:319
+#: widgets/kicondialog.cpp:439
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "&Pregledaj..."
 
-#: widgets/kicondialog.cpp:521
+#: widgets/kicondialog.cpp:641
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: widgets/kicondialog.cpp:523
+#: widgets/kicondialog.cpp:643
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 # >> @title:window
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:610 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:730 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Izbor ikonice"
 
-#: widgets/kicondialog.cpp:610
+#: widgets/kicondialog.cpp:730
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""
