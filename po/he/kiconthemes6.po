@@ -18,20 +18,20 @@
 # Meni Livne <livne@kde.org>, 2007.
 # tahmar1900 <tahmar1900@gmail.com>, 2008.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2023, 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2023-10-21 23:59+0300\n"
+"PO-Revision-Date: 2024-03-12 06:10+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.1\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
 
@@ -42,8 +42,7 @@ msgid "Select Icon…"
 msgstr "בחירת סמל…"
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "הכול"
@@ -52,13 +51,13 @@ msgstr "הכול"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "רק סמליים"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "בלי סמליים"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"

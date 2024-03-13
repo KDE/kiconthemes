@@ -8,7 +8,7 @@
 # Pablo de Vicente <p.devicente@wanadoo.es>, 2004, 2005.
 # Pablo de Vicente <pablo.devicente@gmail.com>, 2005, 2006, 2007.
 # Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2007, 2008, 2009, 2010, 2011, 2012, 2016, 2018, 2021, 2022.
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2016, 2018, 2021, 2022, 2024 Eloy Cuadra <ecuadra@eloihr.net>
 # Jaime Robles <jaime@kde.org>, 2007.
 # Javier Viñal <fjvinal@gmail.com>, 2013.
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2022-08-09 10:26+0200\n"
+"PO-Revision-Date: 2024-03-12 22:24+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Boris Wesslowski <Boris@Wesslowski.com>\n"
-"X-Generator: Lokalize 22.04.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: widgets/kiconbutton.cpp:75
@@ -34,23 +34,22 @@ msgid "Select Icon…"
 msgstr "Seleccionar icono..."
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
-msgstr "Todo"
+msgstr "Todos"
 
 #: widgets/kicondialog.cpp:334
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "Solo simbólicos"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "Sin simbólicos"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"
