@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2022-08-24 12:47+0200\n"
+"PO-Revision-Date: 2024-03-12 05:09+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: widgets/kiconbutton.cpp:75
 #, kde-format
@@ -25,23 +25,22 @@ msgid "Select Icon…"
 msgstr "არჩიეთ ხატულა…"
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
-msgstr "&ყველა"
+msgstr "ყველა"
 
 #: widgets/kicondialog.cpp:334
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "მხოლოდ, სიმბოლური"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "სიმბოლურების გარეშე"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"
