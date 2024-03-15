@@ -24,6 +24,7 @@ static QString STYLESHEET_TEMPLATE()
 .ColorScheme-Complement{ color:%9; }\
 .ColorScheme-Contrast{ color:%10; }\
 .ColorScheme-Accent{ color:%11; }\
+.ColorScheme-ButtonFocus{ color:%12; }\
 ");
     /* clang-format on */
 }
@@ -59,6 +60,7 @@ public:
     QColor neutralText;
     QColor negativeText;
     QColor activeText;
+    QColor button;
     static std::optional<QPalette> lastPalette;
     static std::optional<KColorScheme> lastColorScheme;
 };
@@ -112,6 +114,9 @@ KIconColors::KIconColors(const QPalette &palette)
     d->accent = palette.highlight().color();
 #endif
 
+    KColorScheme f(QPalette::Active, KColorScheme::Button);
+    d->button = f.decoration(KColorScheme::FocusColor).color();
+
     if (!d->lastColorScheme || !d->lastPalette || palette != d->lastPalette) {
         d->lastPalette = palette;
         d->lastColorScheme = KColorScheme(QPalette::Active, KColorScheme::Window);
@@ -152,7 +157,8 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name())
         .arg(complement.name())
         .arg(contrast.name())
-        .arg(state == KIconLoader::SelectedState ? d->accent.name() : d->highlightedText.name());
+        .arg(state == KIconLoader::SelectedState ? d->accent.name() : d->highlightedText.name())
+        .arg(d->button.name());
 }
 
 QColor KIconColors::highlight() const
