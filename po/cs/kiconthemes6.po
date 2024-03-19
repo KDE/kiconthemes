@@ -27,11 +27,10 @@ msgid "Select Icon…"
 msgstr "Vybrat ikonu…"
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
-msgstr "Vše"
+msgstr ""
 
 #: widgets/kicondialog.cpp:334
 #, kde-format
