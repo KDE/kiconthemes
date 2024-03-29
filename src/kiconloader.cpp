@@ -157,21 +157,26 @@ public:
         }
 
 #ifdef QT_DBUS_LIB
-        QDBusConnection::sessionBus().connect(QString(),
-                                              QStringLiteral("/KIconLoader"),
-                                              QStringLiteral("org.kde.KIconLoader"),
-                                              QStringLiteral("iconChanged"),
-                                              this,
-                                              SIGNAL(iconChanged(int)));
+        if (QDBusConnection::sessionBus().interface()) {
+            QDBusConnection::sessionBus().connect(QString(),
+                                                  QStringLiteral("/KIconLoader"),
+                                                  QStringLiteral("org.kde.KIconLoader"),
+                                                  QStringLiteral("iconChanged"),
+                                                  this,
+                                                  SIGNAL(iconChanged(int)));
+        }
 #endif
     }
 
     void emitChange(KIconLoader::Group group)
     {
 #ifdef QT_DBUS_LIB
-        QDBusMessage message = QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
-        message.setArguments(QList<QVariant>() << int(group));
-        QDBusConnection::sessionBus().send(message);
+        if (QDBusConnection::sessionBus().interface()) {
+            QDBusMessage message =
+                QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
+            message.setArguments(QList<QVariant>() << int(group));
+            QDBusConnection::sessionBus().send(message);
+        }
 #endif
     }
 
