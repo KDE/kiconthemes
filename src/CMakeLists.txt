@@ -65,7 +65,8 @@ target_link_libraries(KF6IconThemes
     KF6::I18n          # for KLocalizedString::localizedFilePath in KIconTheme
     KF6::ColorScheme
 )
-if (TARGET Qt6::DBus)
+if (HAVE_QTDBUS)
+  target_compile_definitions(KF6IconThemes PRIVATE WITH_QTDBUS)
   target_link_libraries(KF6IconThemes PRIVATE Qt6::DBus)
 endif()
 

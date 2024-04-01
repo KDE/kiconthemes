@@ -7,7 +7,7 @@ if (NOT @BUILD_SHARED_LIBS@)
     find_dependency(Qt6Widgets "@REQUIRED_QT_VERSION@")
     find_dependency(Qt6Svg "@REQUIRED_QT_VERSION@")
 
-    if (NOT ANDROID)
+    if (@HAVE_QTDBUS@)
         find_dependency(Qt6DBus "@REQUIRED_QT_VERSION@")
     endif()
 

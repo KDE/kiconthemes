@@ -16,7 +16,7 @@
 // kdecore
 #include <KConfigGroup>
 #include <KSharedConfig>
-#ifdef QT_DBUS_LIB
+#ifdef WITH_QTDBUS
 #include <QDBusConnection>
 #include <QDBusMessage>
 #endif
@@ -156,7 +156,7 @@ public:
             parseGenericIconsFiles(file);
         }
 
-#ifdef QT_DBUS_LIB
+#ifdef WITH_QTDBUS
         if (QDBusConnection::sessionBus().interface()) {
             QDBusConnection::sessionBus().connect(QString(),
                                                   QStringLiteral("/KIconLoader"),
@@ -170,7 +170,7 @@ public:
 
     void emitChange(KIconLoader::Group group)
     {
-#ifdef QT_DBUS_LIB
+#ifdef WITH_QTDBUS
         if (QDBusConnection::sessionBus().interface()) {
             QDBusMessage message =
                 QDBusMessage::createSignal(QStringLiteral("/KIconLoader"), QStringLiteral("org.kde.KIconLoader"), QStringLiteral("iconChanged"));
