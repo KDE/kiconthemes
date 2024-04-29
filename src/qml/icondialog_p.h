@@ -9,12 +9,14 @@
 
 #include <QObject>
 #include <QString>
+#include <qqmlregistration.h>
 
 class KIconDialog;
 
 class IconDialog : public QObject
 {
     Q_OBJECT
+    QML_ELEMENT
 
     /**
      * The name or path of the icon the user has selected
