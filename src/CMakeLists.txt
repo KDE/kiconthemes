@@ -127,6 +127,14 @@ if(BUILD_QCH)
     )
 endif()
 
+# patch in the right types for our icon plugin
+if(KICONTHEMES_REGISTER_ICON_PLUGIN)
+    set(KICONTHEMES_ICON_PLUGIN_TYPES "\"KIconEngine\", \"svg\", \"svgz\", \"svg.gz\"")
+else()
+    set(KICONTHEMES_ICON_PLUGIN_TYPES "\"KIconEngine\"")
+endif()
+configure_file(kiconengineplugin.json.cmake kiconengineplugin.json @ONLY)
+
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin

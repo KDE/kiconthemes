@@ -33,6 +33,9 @@ option(KICONTHEMES_USE_QTQUICK "Build QML plugin using Qt6Qml" ON)
 option(BUILD_QCH "Build API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)" OFF)
 add_feature_info(QCH ${BUILD_QCH} "API documentation in QCH format (for e.g. Qt Assistant, Qt Creator & KDevelop)")
 
+# shall we register our icon plugin for SVGs, useful to have recoloring on Windows and macOS
+option(KICONTHEMES_REGISTER_ICON_PLUGIN "Register our icon plugin for SVGs" OFF)
+
 cmake_dependent_option(BUILD_DESIGNERPLUGIN "Build plugin for Qt Designer" ON "NOT CMAKE_CROSSCOMPILING" OFF)
 add_feature_info(DESIGNERPLUGIN ${BUILD_DESIGNERPLUGIN} "Build plugin for Qt Designer")
 
