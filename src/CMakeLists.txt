@@ -127,14 +127,6 @@ if(BUILD_QCH)
     )
 endif()
 
-# patch in the right types for our icon plugin
-if(KICONTHEMES_REGISTER_ICON_PLUGIN)
-    set(KICONTHEMES_ICON_PLUGIN_TYPES "\"KIconEngine\", \"svg\", \"svgz\", \"svg.gz\"")
-else()
-    set(KICONTHEMES_ICON_PLUGIN_TYPES "\"KIconEngine\"")
-endif()
-configure_file(kiconengineplugin.json.cmake kiconengineplugin.json @ONLY)
-
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin
@@ -143,7 +135,9 @@ target_link_libraries(KIconEnginePlugin
         KF6::IconThemes
 )
 
-install(TARGETS KIconEnginePlugin DESTINATION ${KDE_INSTALL_QTPLUGINDIR}/iconengines)
+# install in an extra directory we will add to the plugin path later just for this one engine
+# we can overwrite the system one with that trick
+install(TARGETS KIconEnginePlugin DESTINATION ${KDE_INSTALL_QTPLUGINDIR}/kiconthemes6/iconengines)
 
 ecm_qt_install_logging_categories(
     EXPORT KICONTHEMES

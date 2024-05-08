@@ -255,6 +255,23 @@ public:
      */
     static QString defaultThemeName();
 
+    /**
+     * Enforces the Breeze icon theme (including our KIconEngine for re-coloring).
+     *
+     * If the user has configured a different icon set, that one will be taken.
+     *
+     * (following the settings in the application configuration with fallback to kdeglobals)
+     *
+     * Must be called before the construction of the first Q(Core)Application, as it
+     * might need to modify plugin loading and installs a startup function.
+     *
+     * If the application is already using the KDE platform theme, the icon set will not
+     * be touched and the platform theme will ensure proper theming.
+     *
+     * @since 6.3
+     */
+    static void initTheme();
+
 private:
     std::unique_ptr<class KIconThemePrivate> const d;
 };

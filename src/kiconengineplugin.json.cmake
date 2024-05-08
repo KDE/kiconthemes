@@ -1,3 +1,0 @@
-{
-    "Keys": [ @KICONTHEMES_ICON_PLUGIN_TYPES@ ]
-}
