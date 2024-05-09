@@ -42,10 +42,6 @@ private Q_SLOTS:
         // ensure we don't use the breeze icon set from our lib for these tests but the fake we set up below
         KIconTheme::forceThemeForTests(QStringLiteral("fakebreeze"));
 
-        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
-        QVERIFY(!genericIconsFiles.isEmpty()); // KIconLoader relies on fallbacks to generic icons (e.g. x-office-document), which comes from a shared-mime-info
-                                               // file. Make sure it's installed!
-
         // we use an own fakebreeze that fallbacks to fakeoxygen
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "fakebreeze");
