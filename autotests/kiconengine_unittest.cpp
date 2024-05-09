@@ -27,8 +27,9 @@ private Q_SLOTS:
         const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
         QFile::remove(cacheFile);
 
+        // we have Breeze via it's library and it inherits hicolor
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
-        cg.writeEntry("Theme", "oxygen");
+        cg.writeEntry("Theme", "breeze");
         cg.sync();
 
         QDir testDataDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation));
@@ -39,12 +40,12 @@ private Q_SLOTS:
 
         testIconsDir.removeRecursively();
 
-        // set up a minimal Oxygen icon theme, in case it is not installed
-        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/apps")));
-        QVERIFY(QFile::copy(QStringLiteral(":/oxygen.theme"), testIconsDir.filePath(QStringLiteral("oxygen/index.theme"))));
-        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/kde.png"))));
-        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("oxygen/22x22/apps/org.kde.testapp.png"))));
-        QVERIFY(testIconsDir.mkpath(QStringLiteral("oxygen/22x22/actions"))); // we need the dir to exist since KIconThemes caches mDirs
+        // set up a minimal hicolor icon theme, in case it is not installed
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("hicolor/22x22/apps")));
+        QVERIFY(QFile::copy(QStringLiteral(":/oxygen.theme"), testIconsDir.filePath(QStringLiteral("hicolor/index.theme"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("hicolor/22x22/apps/kde.png"))));
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), testIconsDir.filePath(QStringLiteral("hicolor/22x22/apps/org.kde.testapp.png"))));
+        QVERIFY(testIconsDir.mkpath(QStringLiteral("hicolor/22x22/actions"))); // we need the dir to exist since KIconThemes caches mDirs
 
         // Clear SHM cache
         KIconLoader::global()->reconfigure(QString());
@@ -83,7 +84,7 @@ private Q_SLOTS:
 
         kiconloader_ms_between_checks = 500000;
 
-        QString actionIconsSubdir = QStringLiteral("oxygen/22x22/actions");
+        QString actionIconsSubdir = QStringLiteral("hicolor/22x22/actions");
         QVERIFY(testIconsDir.mkpath(actionIconsSubdir));
         QString actionIconsDir = testIconsDir.filePath(actionIconsSubdir);
 
