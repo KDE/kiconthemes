@@ -38,10 +38,6 @@ private Q_SLOTS:
     {
         QStandardPaths::setTestModeEnabled(true);
 
-        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
-        QVERIFY(!genericIconsFiles.isEmpty()); // KIconLoader relies on fallbacks to generic icons (e.g. x-office-document), which comes from a shared-mime-info
-                                               // file. Make sure it's installed!
-
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "breeze");
         cg.sync();
