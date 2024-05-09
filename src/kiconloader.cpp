@@ -42,6 +42,7 @@
 #include <QGuiApplication>
 #include <QIcon>
 #include <QImage>
+#include <QMimeDatabase>
 #include <QMovie>
 #include <QPainter>
 #include <QPixmap>
@@ -50,8 +51,6 @@
 #include <QtGui/private/qiconloader_p.h>
 
 #include <qplatformdefs.h> //for readlink
-
-#include <assert.h>
 
 namespace
 {
@@ -150,10 +149,10 @@ class KIconLoaderGlobalData : public QObject
 public:
     KIconLoaderGlobalData()
     {
-        const QStringList genericIconsFiles = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("mime/generic-icons"));
-        // qCDebug(KICONTHEMES) << genericIconsFiles;
-        for (const QString &file : genericIconsFiles) {
-            parseGenericIconsFiles(file);
+        // use Qt to fill in the generic mime-type icon information
+        const auto allMimeTypes = QMimeDatabase().allMimeTypes();
+        for (const auto &mimeType : allMimeTypes) {
+            m_genericIcons.insert(mimeType.iconName(), mimeType.genericIconName());
         }
 
 #ifdef WITH_QTDBUS
@@ -189,36 +188,8 @@ Q_SIGNALS:
     void iconChanged(int group);
 
 private:
-    void parseGenericIconsFiles(const QString &fileName);
     QHash<QString, QString> m_genericIcons;
 };
-
-void KIconLoaderGlobalData::parseGenericIconsFiles(const QString &fileName)
-{
-    QFile file(fileName);
-    if (file.open(QIODevice::ReadOnly)) {
-        QTextStream stream(&file);
-        while (!stream.atEnd()) {
-            const QString line = stream.readLine();
-            if (line.isEmpty() || line[0] == QLatin1Char('#')) {
-                continue;
-            }
-            const int pos = line.indexOf(QLatin1Char(':'));
-            if (pos == -1) { // syntax error
-                continue;
-            }
-            QString mimeIcon = line.left(pos);
-            const int slashindex = mimeIcon.indexOf(QLatin1Char('/'));
-            if (slashindex != -1) {
-                mimeIcon[slashindex] = QLatin1Char('-');
-            }
-
-            const QString genericIcon = line.mid(pos + 1);
-            m_genericIcons.insert(mimeIcon, genericIcon);
-            // qCDebug(KICONTHEMES) << mimeIcon << "->" << genericIcon;
-        }
-    }
-}
 
 Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
 
