@@ -60,7 +60,11 @@ find_package(KF6I18n ${KF_DEP_VERSION} REQUIRED)
 find_package(KF6ConfigWidgets ${KF_DEP_VERSION} REQUIRED)
 find_package(KF6WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
 find_package(KF6ColorScheme ${KF_DEP_VERSION} REQUIRED)
-find_package(KF6BreezeIcons ${KF_DEP_VERSION} QUIET)
+
+# ensure we have our icons around on all platforms that require it
+if (NOT ANDROID)
+  find_package(KF6BreezeIcons ${KF_DEP_VERSION} REQUIRED)
+endif()
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 remove_definitions(-DQT_NO_CAST_FROM_BYTEARRAY)
