@@ -40,13 +40,32 @@
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
+#ifdef Q_OS_ANDROID
+
+// on Android we are marked as porting AID, don't mess with theming
+void KIconTheme::initTheme()
+{
+}
+
+#else
+
 // do init only once and avoid later helpers to mess with it again
 static bool initThemeUsed = false;
 
 // startup function to set theme once the app got constructed
 static void initThemeHelper()
 {
-    // only do that if we requested it
+    // Makes sure the icon theme fallback is set to breeze or one of its
+    // variants. Most of our apps use "lots" of icons that most of the times
+    // are only available with breeze, we still honour the user icon theme
+    // but if the icon is not found there, we go to breeze since it's almost
+    // sure it'll be there
+    BreezeIcons::initIcons();
+
+    // ensure lib call above did the job
+    Q_ASSERT(QIcon::fallbackThemeName() == QLatin1String("breeze"));
+
+    // only do further stuff if we requested it
     if (!initThemeUsed) {
         return;
     }
@@ -55,11 +74,6 @@ static void initThemeHelper()
     if (QGuiApplicationPrivate::platformTheme() && QGuiApplicationPrivate::platformTheme()->name() == QLatin1String("kde")) {
         return;
     }
-
-#ifdef WITH_BREEZEICONS_LIB
-    // trigger breeze library loading if wanted
-    BreezeIcons::initIcons();
-#endif
 
     // get config, with fallback to kdeglobals
     const auto config = KSharedConfig::openConfig();
@@ -71,7 +85,6 @@ static void initThemeHelper()
     // if not set, use Breeze
     QString themeToUse = KConfigGroup(config, "Icons").readEntry("Theme", QStringLiteral("breeze"));
     QIcon::setThemeName(themeToUse);
-    QIcon::setFallbackThemeName(themeToUse);
     // Tell KIconTheme about the theme, in case KIconLoader is used directly
     *_themeOverride() = themeToUse;
     qCDebug(KICONTHEMES) << "KIconTheme::initTheme() enforces the icon theme:" << themeToUse;
@@ -97,69 +110,6 @@ void KIconTheme::initTheme()
     initThemeUsed = true;
 }
 
-// Support for icon themes in RCC files.
-// The intended use case is standalone apps on Windows / MacOS / etc.
-// For this reason we use AppDataLocation: BINDIR/data on Windows, Resources on OS X
-void initRCCIconTheme()
-{
-    // we did the setup already manually, don't mess that up on application construction
-    if (initThemeUsed) {
-        return;
-    }
-
-#ifdef WITH_BREEZEICONS_LIB
-    BreezeIcons::initIcons();
-#else
-    const QString iconThemeRcc = QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("icontheme.rcc"));
-    if (!iconThemeRcc.isEmpty()) {
-        const QString iconThemeName = QStringLiteral("kf6_rcc_theme");
-        const QString iconSubdir = QStringLiteral("/icons/") + iconThemeName;
-        if (QResource::registerResource(iconThemeRcc, iconSubdir)) {
-            if (QFileInfo::exists(QLatin1Char(':') + iconSubdir + QStringLiteral("/index.theme"))) {
-                // Tell Qt about the theme
-                // Note that since qtbase commit a8621a3f8, this means the QPA (i.e. KIconLoader) will NOT be used.
-                QIcon::setThemeName(iconThemeName); // Qt looks under :/icons automatically
-                // Tell KIconTheme about the theme, in case KIconLoader is used directly
-                *_themeOverride() = iconThemeName;
-            } else {
-                qWarning() << "No index.theme found in" << iconThemeRcc;
-                QResource::unregisterResource(iconThemeRcc, iconSubdir);
-            }
-        } else {
-            qWarning() << "Invalid rcc file" << iconThemeRcc;
-        }
-    }
-#endif
-}
-Q_COREAPP_STARTUP_FUNCTION(initRCCIconTheme)
-
-#ifndef Q_OS_ANDROID
-// Makes sure the icon theme fallback is set to breeze or one of its
-// variants. Most of our apps use "lots" of icons that most of the times
-// are only available with breeze, we still honour the user icon theme
-// but if the icon is not found there, we go to breeze since it's almost
-// sure it'll be there
-static void setBreezeFallback()
-{
-    // we did the setup already manually, don't mess that up on application construction
-    if (initThemeUsed) {
-        return;
-    }
-
-    if (const QPlatformTheme *theme = QGuiApplicationPrivate::platformTheme()) {
-        const QVariant themeHint = theme->themeHint(QPlatformTheme::SystemIconFallbackThemeName);
-        if (themeHint.isValid()) {
-            const QString iconTheme = themeHint.toString();
-            if (iconTheme.contains(QStringLiteral("breeze"), Qt::CaseInsensitive)) {
-                QIcon::setFallbackThemeName(iconTheme);
-                return;
-            }
-        }
-    }
-
-    QIcon::setFallbackThemeName(QStringLiteral("breeze"));
-}
-Q_COREAPP_STARTUP_FUNCTION(setBreezeFallback)
 #endif
 
 class KIconThemeDir;
