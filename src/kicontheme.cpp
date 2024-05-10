@@ -17,10 +17,6 @@
 #include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 #include <KSharedConfig>
 
-#ifdef WITH_BREEZEICONS_LIB
-#include <BreezeIcons>
-#endif
-
 #include <QAction>
 #include <QCoreApplication>
 #include <QDebug>
@@ -48,6 +44,8 @@ void KIconTheme::initTheme()
 }
 
 #else
+
+#include <BreezeIcons>
 
 // do init only once and avoid later helpers to mess with it again
 static bool initThemeUsed = false;
