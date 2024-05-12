@@ -115,4 +115,4 @@ msgstr "Categoria d'icones"
 #: kicondialog.ui:44
 #, kde-format
 msgid "Search Icons..."
-msgstr "Busca les icones..."
+msgstr "Busca les icones…"
