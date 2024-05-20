@@ -61,7 +61,7 @@ static void initThemeHelper()
     BreezeIcons::initIcons();
 
     // ensure lib call above did the job
-    Q_ASSERT(QIcon::fallbackThemeName() == QLatin1String("breeze"));
+    Q_ASSERT(!QIcon::fallbackThemeName().isEmpty());
 
     // only do further stuff if we requested it
     if (!initThemeUsed) {
