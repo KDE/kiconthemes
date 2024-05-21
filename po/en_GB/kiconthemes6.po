@@ -2,21 +2,21 @@
 # Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2002,2003,2004, 2005, 2007, 2008.
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2004, 2005, 2009, 2010.
 # Brendan Osborne <danborne.kde@gmail.com>, 2007.
-# Steve Allewell <steve.allewell@gmail.com>, 2014, 2016, 2018, 2021, 2022.
+# SPDX-FileCopyrightText: 2014, 2016, 2018, 2021, 2022, 2024 Steve Allewell <steve.allewell@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2022-08-22 17:04+0100\n"
+"PO-Revision-Date: 2024-05-20 19:26+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
-"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language-Team: British English\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.0\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #: widgets/kiconbutton.cpp:75
 #, kde-format
@@ -25,8 +25,7 @@ msgid "Select Icon…"
 msgstr "Select Icon…"
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "All"
@@ -35,13 +34,13 @@ msgstr "All"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "Only Symbolic"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "No Symbolic"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"
