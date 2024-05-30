@@ -430,10 +430,10 @@ void KIconDialogPrivate::init()
     effect->setOpacity(0.5);
     placeholderLabel->setGraphicsEffect(effect);
 
-    updatePlaceholderLabel();
-
     placeholderLayout->addWidget(placeholderLabel);
     placeholderLayout->setAlignment(placeholderLabel, Qt::AlignCenter);
+
+    updatePlaceholderLabel();
 
     // TODO I bet there is a KStandardAction for that?
     browseButton = new QPushButton(QIcon::fromTheme(QStringLiteral("folder-open")), i18n("Browse…"));
