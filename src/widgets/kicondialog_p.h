@@ -17,6 +17,8 @@
 #include <QPointer>
 #include <QSortFilterProxyModel>
 
+#include <kiconloader.h>
+
 #include "kicondialogmodel_p.h"
 
 #include "ui_kicondialog.h"
