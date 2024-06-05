@@ -268,6 +268,8 @@ public:
      * If the application is already using the KDE platform theme, the icon set will not
      * be touched and the platform theme will ensure proper theming.
      *
+     * Does setup the needed KColorSchemeManager to follow the system color mode.
+     *
      * @since 6.3
      */
     static void initTheme();
