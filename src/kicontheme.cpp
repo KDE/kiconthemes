@@ -13,6 +13,7 @@
 
 #include "debug.h"
 
+#include <KColorSchemeManager>
 #include <KConfigGroup>
 #include <KLocalizedString> // KLocalizedString::localizedFilePath. Need such functionality in, hmm, QLocale? QStandardPaths?
 #include <KSharedConfig>
@@ -86,6 +87,9 @@ static void initThemeHelper()
     // Tell KIconTheme about the theme, in case KIconLoader is used directly
     *_themeOverride() = themeToUse;
     qCDebug(KICONTHEMES) << "KIconTheme::initTheme() enforces the icon theme:" << themeToUse;
+
+    // follow the system color
+    new KColorSchemeManager(QGuiApplication::instance());
 }
 Q_COREAPP_STARTUP_FUNCTION(initThemeHelper)
 
