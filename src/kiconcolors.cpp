@@ -137,6 +137,18 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
     const QColor contrast =
         luma(d->background) > 0.5 ? Qt::black : Qt::white;
 
+    QColor accentColor = d->accent;
+    // When selected, tint the accent color with a small portion of highlighted text color,
+    // because since the accent color used to be the same as the highlight color, it might cause
+    // icons, especially folders to "disappear" against the background
+    if (state == KIconLoader::SelectedState) {
+        const qreal tintRatio = 0.85;
+        const qreal r = accentColor.redF() * tintRatio + d->highlightedText.redF() * (1.0 - tintRatio);
+        const qreal g = accentColor.greenF() * tintRatio + d->highlightedText.greenF() * (1.0 - tintRatio);
+        const qreal b = accentColor.blueF() * tintRatio + d->highlightedText.blueF() * (1.0 - tintRatio);
+        accentColor.setRgbF(r, g, b, accentColor.alphaF());
+    }
+
     return STYLESHEET_TEMPLATE()
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->text.name())
         .arg(state == KIconLoader::SelectedState ? d->highlight.name() : d->background.name())
@@ -148,7 +160,7 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name())
         .arg(complement.name())
         .arg(contrast.name())
-        .arg(state == KIconLoader::SelectedState ? d->accent.name() : d->highlightedText.name());
+        .arg(accentColor.name());
 }
 
 QColor KIconColors::highlight() const
