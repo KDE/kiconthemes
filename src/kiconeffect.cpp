@@ -12,11 +12,9 @@
 
 #include "kiconeffect.h"
 #include "debug.h"
+#include "kiconloader.h"
 
 #include <KColorScheme>
-#include <KConfigGroup>
-#include <KSharedConfig>
-#include <kicontheme.h>
 
 #include <QDebug>
 #include <QPalette>
@@ -59,11 +57,7 @@ KIconEffect::~KIconEffect() = default;
 
 void KIconEffect::init()
 {
-    KSharedConfig::Ptr config = KSharedConfig::openConfig();
-
     int i;
-    int j;
-    int effect = -1;
     // FIXME: this really should be using KIconLoader::metaObject() to guarantee synchronization
     // performance wise it's also practically guaranteed to be faster
     QStringList groups;
@@ -80,16 +74,8 @@ void KIconEffect::init()
     states += QStringLiteral("Disabled");
 
     QStringList::ConstIterator it;
-    QStringList::ConstIterator it2;
-    QString _togray(QStringLiteral("togray"));
-    QString _colorize(QStringLiteral("colorize"));
-    QString _desaturate(QStringLiteral("desaturate"));
-    QString _togamma(QStringLiteral("togamma"));
-    QString _none(QStringLiteral("none"));
-    QString _tomonochrome(QStringLiteral("tomonochrome"));
 
     for (it = groups.constBegin(), i = 0; it != groups.constEnd(); ++it, ++i) {
-        // Default effects
         d->effect[i][KIconLoader::DefaultState] = NoEffect;
         d->effect[i][KIconLoader::ActiveState] = ((i == KIconLoader::Desktop) || (KIconLoader::Panel == 4)) ? ToGamma : NoEffect;
         d->effect[i][KIconLoader::DisabledState] = ToGray;
@@ -106,33 +92,6 @@ void KIconEffect::init()
         d->color2[i][KIconLoader::DefaultState] = QColor(0, 0, 0);
         d->color2[i][KIconLoader::ActiveState] = QColor(0, 0, 0);
         d->color2[i][KIconLoader::DisabledState] = QColor(0, 0, 0);
-
-        KConfigGroup cg(config, *it + QStringLiteral("Icons"));
-        for (it2 = states.constBegin(), j = 0; it2 != states.constEnd(); ++it2, ++j) {
-            QString tmp = cg.readEntry(*it2 + QStringLiteral("Effect"), QString());
-            if (tmp == _togray) {
-                effect = ToGray;
-            } else if (tmp == _colorize) {
-                effect = Colorize;
-            } else if (tmp == _desaturate) {
-                effect = DeSaturate;
-            } else if (tmp == _togamma) {
-                effect = ToGamma;
-            } else if (tmp == _tomonochrome) {
-                effect = ToMonochrome;
-            } else if (tmp == _none) {
-                effect = NoEffect;
-            } else {
-                continue;
-            }
-            if (effect != -1) {
-                d->effect[i][j] = effect;
-            }
-            d->value[i][j] = cg.readEntry(*it2 + QStringLiteral("Value"), 0.0);
-            d->color[i][j] = cg.readEntry(*it2 + QStringLiteral("Color"), QColor());
-            d->color2[i][j] = cg.readEntry(*it2 + QStringLiteral("Color2"), QColor());
-            d->trans[i][j] = cg.readEntry(*it2 + QStringLiteral("SemiTransparent"), false);
-        }
     }
 }
 
