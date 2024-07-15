@@ -31,20 +31,16 @@ public:
     KIconEffectPrivate()
         : effect{{}}
         , value{{}}
-        , color{{}}
         , trans{{}}
         , key{{}}
-        , color2{{}}
     {
     }
 
 public:
     int effect[KIconLoader::LastGroup][KIconLoader::LastState];
     float value[KIconLoader::LastGroup][KIconLoader::LastState];
-    QColor color[KIconLoader::LastGroup][KIconLoader::LastState];
     bool trans[KIconLoader::LastGroup][KIconLoader::LastState];
     QString key[KIconLoader::LastGroup][KIconLoader::LastState];
-    QColor color2[KIconLoader::LastGroup][KIconLoader::LastState];
 };
 
 KIconEffect::KIconEffect()
@@ -86,12 +82,6 @@ void KIconEffect::init()
         d->value[i][KIconLoader::DefaultState] = 1.0;
         d->value[i][KIconLoader::ActiveState] = ((i == KIconLoader::Desktop) || (KIconLoader::Panel == 4)) ? 0.7 : 1.0;
         d->value[i][KIconLoader::DisabledState] = 1.0;
-        d->color[i][KIconLoader::DefaultState] = QColor(144, 128, 248);
-        d->color[i][KIconLoader::ActiveState] = QColor(169, 156, 255);
-        d->color[i][KIconLoader::DisabledState] = QColor(34, 202, 0);
-        d->color2[i][KIconLoader::DefaultState] = QColor(0, 0, 0);
-        d->color2[i][KIconLoader::ActiveState] = QColor(0, 0, 0);
-        d->color2[i][KIconLoader::DisabledState] = QColor(0, 0, 0);
     }
 }
 
@@ -120,14 +110,6 @@ QString KIconEffect::fingerprint(int group, int state) const
         cached += tmp.setNum(d->value[group][state]);
         cached += QLatin1Char(':');
         cached += d->trans[group][state] ? QLatin1String("trans") : QLatin1String("notrans");
-        if (d->effect[group][state] == Colorize || d->effect[group][state] == ToMonochrome) {
-            cached += QLatin1Char(':');
-            cached += d->color[group][state].name();
-        }
-        if (d->effect[group][state] == ToMonochrome) {
-            cached += QLatin1Char(':');
-            cached += d->color2[group][state].name();
-        }
 
         d->key[group][state] = cached;
     }
@@ -145,7 +127,7 @@ QImage KIconEffect::apply(const QImage &image, int group, int state) const
         qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return image;
     }
-    return apply(image, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
+    return apply(image, d->effect[group][state], d->value[group][state], QColor(), QColor(), d->trans[group][state]);
 }
 
 QImage KIconEffect::apply(const QImage &image, int effect, float value, const QColor &col, bool trans) const
@@ -198,7 +180,7 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int group, int state) const
         qCWarning(KICONTHEMES) << "Invalid icon group:" << group << ", should be one of KIconLoader::Group";
         return pixmap;
     }
-    return apply(pixmap, d->effect[group][state], d->value[group][state], d->color[group][state], d->color2[group][state], d->trans[group][state]);
+    return apply(pixmap, d->effect[group][state], d->value[group][state], QColor(), QColor(), d->trans[group][state]);
 }
 
 QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const QColor &col, bool trans) const
