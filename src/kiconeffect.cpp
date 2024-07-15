@@ -90,22 +90,22 @@ void KIconEffect::init()
 
     for (it = groups.constBegin(), i = 0; it != groups.constEnd(); ++it, ++i) {
         // Default effects
-        d->effect[i][0] = NoEffect;
-        d->effect[i][1] = ((i == 0) || (i == 4)) ? ToGamma : NoEffect;
-        d->effect[i][2] = ToGray;
+        d->effect[i][KIconLoader::DefaultState] = NoEffect;
+        d->effect[i][KIconLoader::ActiveState] = ((i == KIconLoader::Desktop) || (KIconLoader::Panel == 4)) ? ToGamma : NoEffect;
+        d->effect[i][KIconLoader::DisabledState] = ToGray;
 
-        d->trans[i][0] = false;
-        d->trans[i][1] = false;
-        d->trans[i][2] = true;
-        d->value[i][0] = 1.0;
-        d->value[i][1] = ((i == 0) || (i == 4)) ? 0.7 : 1.0;
-        d->value[i][2] = 1.0;
-        d->color[i][0] = QColor(144, 128, 248);
-        d->color[i][1] = QColor(169, 156, 255);
-        d->color[i][2] = QColor(34, 202, 0);
-        d->color2[i][0] = QColor(0, 0, 0);
-        d->color2[i][1] = QColor(0, 0, 0);
-        d->color2[i][2] = QColor(0, 0, 0);
+        d->trans[i][KIconLoader::DefaultState] = false;
+        d->trans[i][KIconLoader::ActiveState] = false;
+        d->trans[i][KIconLoader::DisabledState] = true;
+        d->value[i][KIconLoader::DefaultState] = 1.0;
+        d->value[i][KIconLoader::ActiveState] = ((i == KIconLoader::Desktop) || (KIconLoader::Panel == 4)) ? 0.7 : 1.0;
+        d->value[i][KIconLoader::DisabledState] = 1.0;
+        d->color[i][KIconLoader::DefaultState] = QColor(144, 128, 248);
+        d->color[i][KIconLoader::ActiveState] = QColor(169, 156, 255);
+        d->color[i][KIconLoader::DisabledState] = QColor(34, 202, 0);
+        d->color2[i][KIconLoader::DefaultState] = QColor(0, 0, 0);
+        d->color2[i][KIconLoader::ActiveState] = QColor(0, 0, 0);
+        d->color2[i][KIconLoader::DisabledState] = QColor(0, 0, 0);
 
         KConfigGroup cg(config, *it + QStringLiteral("Icons"));
         for (it2 = states.constBegin(), j = 0; it2 != states.constEnd(); ++it2, ++j) {
