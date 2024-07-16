@@ -39,19 +39,26 @@ class KIconEffectPrivate;
 class KICONTHEMES_EXPORT KIconEffect
 {
 public:
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Create a new KIconEffect.
      * You will most likely never have to use this to create a new KIconEffect
      * yourself, as you can use the KIconEffect provided by the global KIconLoader
      * (which itself is accessible by KIconLoader::global()) through its
      * iconEffect() function.
+     *
+     * @deprecated since 6.5, use the static API
+     *
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     KIconEffect();
+#endif
     ~KIconEffect();
 
     KIconEffect(const KIconEffect &) = delete;
     KIconEffect &operator=(const KIconEffect &) = delete;
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * This is the enumeration of all possible icon effects.
      * Note that 'LastEffect' is no valid icon effect but only
@@ -63,7 +70,10 @@ public:
      * @li ToGamma: Change the gamma value of the icon
      * @li DeSaturate: Reduce the saturation of the icon
      * @li ToMonochrome: Produces a monochrome icon
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     enum Effects {
         NoEffect,
         ToGray,
@@ -73,12 +83,19 @@ public:
         ToMonochrome,
         LastEffect,
     };
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Rereads configuration.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     void init();
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Tests whether an effect has been configured for the given icon group.
      * @param group the group to check, see KIconLoader::Group
@@ -87,9 +104,14 @@ public:
      * in @p state, otherwise false.
      * @see KIconLoader::Group
      * KIconLoader::States
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     bool hasEffect(int group, int state) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Returns a fingerprint for the effect by encoding
      * the given @p group and @p state into a QString. This
@@ -97,9 +119,14 @@ public:
      * @param group the group, see KIconLoader::Group
      * @param state the state, see KIconLoader::States
      * @return the fingerprint of the given @p group+@p state
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QString fingerprint(int group, int state) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Applies an effect to an image. The effect to apply depends on the
      * @p group and @p state parameters, and is configured by the user.
@@ -107,9 +134,14 @@ public:
      * @param group The group for the icon, see KIconLoader::Group
      * @param state The icon's state, see KIconLoader::States
      * @return An image with the effect applied.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QImage apply(const QImage &src, int group, int state) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Applies an effect to an image.
      * @param src The image.
@@ -118,19 +150,29 @@ public:
      * @param rgb Color parameter for effects that need one.
      * @param trans Add Transparency if trans = true.
      * @return An image with the effect applied.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QImage apply(const QImage &src, int effect, float value, const QColor &rgb, bool trans) const;
     QImage apply(const QImage &src, int effect, float value, const QColor &rgb, const QColor &rgb2, bool trans) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Applies an effect to a pixmap.
      * @param src The pixmap.
      * @param group The group for the icon, see KIconLoader::Group
      * @param state The icon's state, see KIconLoader::States
      * @return A pixmap with the effect applied.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QPixmap apply(const QPixmap &src, int group, int state) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Applies an effect to a pixmap.
      * @param src The pixmap.
@@ -139,16 +181,26 @@ public:
      * @param rgb Color parameter for effects that need one.
      * @param trans Add Transparency if trans = true.
      * @return A pixmap with the effect applied.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QPixmap apply(const QPixmap &src, int effect, float value, const QColor &rgb, bool trans) const;
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QPixmap apply(const QPixmap &src, int effect, float value, const QColor &rgb, const QColor &rgb2, bool trans) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Returns an image twice as large, consisting of 2x2 pixels.
      * @param src the image.
      * @return the scaled image.
+     *
+     * @deprecated since 6.5, use the static API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static API")
     QImage doublePixels(const QImage &src) const;
+#endif
 
     /**
      * Tints an image gray.

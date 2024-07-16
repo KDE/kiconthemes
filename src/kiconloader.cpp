@@ -1386,10 +1386,12 @@ bool KIconLoader::hasContext(KIconLoader::Context context) const
     return false;
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 KIconEffect *KIconLoader::iconEffect() const
 {
     return &d->mpEffect;
 }
+#endif
 
 QPixmap KIconLoader::unknown()
 {

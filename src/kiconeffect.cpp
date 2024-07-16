@@ -43,14 +43,17 @@ public:
     QString key[KIconLoader::LastGroup][KIconLoader::LastState];
 };
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 KIconEffect::KIconEffect()
     : d(new KIconEffectPrivate)
 {
     init();
 }
+#endif
 
 KIconEffect::~KIconEffect() = default;
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 void KIconEffect::init()
 {
     int i;
@@ -84,7 +87,9 @@ void KIconEffect::init()
         d->value[i][KIconLoader::DisabledState] = 1.0;
     }
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 bool KIconEffect::hasEffect(int group, int state) const
 {
     if (group < 0 || group >= KIconLoader::LastGroup //
@@ -94,7 +99,9 @@ bool KIconEffect::hasEffect(int group, int state) const
 
     return d->effect[group][state] != NoEffect;
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QString KIconEffect::fingerprint(int group, int state) const
 {
     if (group < 0 || group >= KIconLoader::LastGroup //
@@ -116,7 +123,9 @@ QString KIconEffect::fingerprint(int group, int state) const
 
     return cached;
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QImage KIconEffect::apply(const QImage &image, int group, int state) const
 {
     if (state >= KIconLoader::LastState) {
@@ -129,12 +138,16 @@ QImage KIconEffect::apply(const QImage &image, int group, int state) const
     }
     return apply(image, d->effect[group][state], d->value[group][state], QColor(), QColor(), d->trans[group][state]);
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QImage KIconEffect::apply(const QImage &image, int effect, float value, const QColor &col, bool trans) const
 {
     return apply(image, effect, value, col, KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QImage KIconEffect::apply(const QImage &img, int effect, float value, const QColor &col, const QColor &col2, bool trans) const
 {
     QImage image = img;
@@ -169,7 +182,9 @@ QImage KIconEffect::apply(const QImage &img, int effect, float value, const QCol
     }
     return image;
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QPixmap KIconEffect::apply(const QPixmap &pixmap, int group, int state) const
 {
     if (state >= KIconLoader::LastState) {
@@ -182,12 +197,16 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int group, int state) const
     }
     return apply(pixmap, d->effect[group][state], d->value[group][state], QColor(), QColor(), d->trans[group][state]);
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const QColor &col, bool trans) const
 {
     return apply(pixmap, effect, value, col, KColorScheme(QPalette::Active, KColorScheme::View).background().color(), trans);
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const QColor &col, const QColor &col2, bool trans) const
 {
     QPixmap result;
@@ -210,6 +229,7 @@ QPixmap KIconEffect::apply(const QPixmap &pixmap, int effect, float value, const
 
     return result;
 }
+#endif
 
 struct KIEImgEdit {
     QImage &img;

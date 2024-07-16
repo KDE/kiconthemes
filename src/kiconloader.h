@@ -535,11 +535,16 @@ public:
      */
     KIconTheme *theme() const;
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Returns a pointer to the KIconEffect object used by the icon loader.
      * @return the KIconEffect.
+     *
+     * @deprecated since 6.5, use the static KIconEffect API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static KIconEffect API")
     KIconEffect *iconEffect() const;
+#endif
 
     /**
      * Reconfigure the icon loader, for instance to change the associated app name or extra search paths.

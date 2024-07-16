@@ -196,7 +196,9 @@ public:
     KIconGroup *mpGroups = nullptr;
     KIconThemeNode *mpThemeRoot = nullptr;
     QStringList searchPaths;
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
     KIconEffect mpEffect;
+#endif
     QList<KIconThemeNode *> links;
 
     // This caches rendered QPixmaps in just this process.
