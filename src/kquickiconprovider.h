@@ -47,7 +47,6 @@ public:
         }
 
         if (source.size() == 2) {
-            KIconEffect *effect = KIconLoader::global()->iconEffect();
             const QString state(source.at(1));
             int finalState = KIconLoader::DefaultState;
 
@@ -60,7 +59,13 @@ public:
             }
 
             // apply the effect for state
-            pixmap = effect->apply(pixmap, KIconLoader::Desktop, finalState);
+            if (finalState == KIconLoader::ActiveState) {
+                KIconEffect::toActive(pixmap);
+            }
+
+            if (finalState == KIconLoader::DisabledState) {
+                KIconEffect::toDisabled(pixmap);
+            }
         }
 
         if (!pixmap.isNull() && size) {

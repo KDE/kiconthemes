@@ -52,16 +52,6 @@
 
 #include <qplatformdefs.h> //for readlink
 
-namespace
-{
-// Used to make cache keys for icons with no group. Result type is QString*
-QString NULL_EFFECT_FINGERPRINT()
-{
-    return QStringLiteral("noeffect");
-}
-
-}
-
 /**
  * Function to convert an uint32_t to AARRGGBB hex values.
  *
@@ -605,7 +595,6 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
             % QString::number(scale, 'f', 1)
             % QLatin1Char('_')
             % overlays.join(QLatin1Char('_'))
-            % (group >= 0 ? mpEffect.fingerprint(group, state) : NULL_EFFECT_FINGERPRINT())
             % QLatin1Char('_')
             % paletteId(colors)
             % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
@@ -1113,8 +1102,12 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state), usedColors);
     }
 
-    if (group >= 0 && group < KIconLoader::LastGroup) {
-        img = d->mpEffect.apply(img, group, state);
+    if ((group == KIconLoader::Desktop || group == KIconLoader::Panel) && state == KIconLoader::ActiveState) {
+        KIconEffect::toActive(img);
+    }
+
+    if (state == KIconLoader::DisabledState && group >= 0 && group < KIconLoader::LastGroup) {
+        KIconEffect::toDisabled(img);
     }
 
     if (favIconOverlay) {
