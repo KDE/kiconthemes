@@ -36,6 +36,8 @@ class KIconTheme;
  *
  * Iconloader for KDE.
  *
+ * @note For most icon loading use cases perfer using QIcon::fromTheme
+ *
  * KIconLoader will load the current icon theme and all its base themes.
  * Icons will be searched in any of these themes. Additionally, it caches
  * icons and applies effects according to the user's preferences.
