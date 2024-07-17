@@ -215,6 +215,24 @@ public:
      */
     static void overlay(QImage &src, QImage &overlay);
 
+    /**
+     * Applies a disabled effect
+     *
+     * @param image The image
+     *
+     * @since 6.5
+     */
+    static void toDisabled(QImage &image);
+
+    /**
+     * Applies a disabled effect
+     *
+     * @param pixmap The image
+     *
+     * @since 6.5
+     */
+    static void toDisabled(QPixmap &pixmap);
+
 private:
     std::unique_ptr<KIconEffectPrivate> const d;
 };

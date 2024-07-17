@@ -677,3 +677,16 @@ void KIconEffect::overlay(QImage &src, QImage &overlay)
         }
     }
 }
+
+void KIconEffect::toDisabled(QImage &image)
+{
+    KIconEffect::toGray(image, 1);
+    KIconEffect::semiTransparent(image);
+}
+
+void KIconEffect::toDisabled(QPixmap &pixmap)
+{
+    QImage img = pixmap.toImage();
+    toDisabled(img);
+    pixmap = QPixmap::fromImage(img);
+}
