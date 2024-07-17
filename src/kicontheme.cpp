@@ -1,4 +1,4 @@
-/* vi: ts=8 sts=4 sw=4
+/*
 
     kicontheme.cpp: Lowlevel icon theme handling.
 
