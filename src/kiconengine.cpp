@@ -151,7 +151,12 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 
 QPixmap KIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::State state, qreal scale)
 {
+// Since https://codereview.qt-project.org/c/qt/qtbase/+/563553 size is unscaled
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+    return createPixmap(size * scale, scale, mode, state);
+#else
     return createPixmap(size, scale, mode, state);
+#endif
 }
 
 QString KIconEngine::iconName()
