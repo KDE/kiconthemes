@@ -690,3 +690,15 @@ void KIconEffect::toDisabled(QPixmap &pixmap)
     toDisabled(img);
     pixmap = QPixmap::fromImage(img);
 }
+
+void KIconEffect::toActive(QImage &image)
+{
+    KIconEffect::toGamma(image, 0.7);
+}
+
+void KIconEffect::toActive(QPixmap &pixmap)
+{
+    QImage img = pixmap.toImage();
+    KIconEffect::toGamma(img, 0.7);
+    pixmap = QPixmap::fromImage(img);
+}

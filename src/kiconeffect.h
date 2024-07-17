@@ -233,6 +233,24 @@ public:
      */
     static void toDisabled(QPixmap &pixmap);
 
+    /**
+     * Applies an effect for an icon that is in an 'active' state
+     *
+     * @param image The image
+     *
+     * @since 6.5
+     */
+    static void toActive(QImage &image);
+
+    /**
+     * Applies an effect for an icon that is in an 'active' state
+     *
+     * @param pixmap The image
+     *
+     * @since 6.5
+     */
+    static void toActive(QPixmap &pixmap);
+
 private:
     std::unique_ptr<KIconEffectPrivate> const d;
 };
