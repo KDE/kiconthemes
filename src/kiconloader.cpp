@@ -586,6 +586,14 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
     // The KSharedDataCache is shared so add some namespacing. The following code
     // uses QStringBuilder (new in Qt 4.6)
 
+    QString effectKey = QStringLiteral("noeffect");
+
+    if ((group == KIconLoader::Desktop || group == KIconLoader::Panel) && state == KIconLoader::ActiveState) {
+        effectKey = QStringLiteral("active");
+    } else if (state == KIconLoader::DisabledState && group >= 0 && group < KIconLoader::LastGroup) {
+        effectKey = QStringLiteral("disabled");
+    }
+
     /* clang-format off */
     return (group == KIconLoader::User ? QLatin1String("$kicou_") : QLatin1String("$kico_"))
             % name
@@ -595,6 +603,7 @@ QString KIconLoaderPrivate::makeCacheKey(const QString &name,
             % QString::number(scale, 'f', 1)
             % QLatin1Char('_')
             % overlays.join(QLatin1Char('_'))
+            % effectKey
             % QLatin1Char('_')
             % paletteId(colors)
             % (q->theme() && q->theme()->followsColorScheme() && state == KIconLoader::SelectedState ? QStringLiteral("_selected") : QString());
@@ -1102,6 +1111,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         img = d->createIconImage(path, size, scale, static_cast<KIconLoader::States>(state), usedColors);
     }
 
+    // apply effects. When changing the logic here also adapt makeCacheKey
     if ((group == KIconLoader::Desktop || group == KIconLoader::Panel) && state == KIconLoader::ActiveState) {
         KIconEffect::toActive(img);
     }
