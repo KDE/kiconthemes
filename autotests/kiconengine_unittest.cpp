@@ -155,6 +155,30 @@ private Q_SLOTS:
         QCOMPARE(icon.pixmap(40, 40).toImage().convertToFormat(image.format()).copy(0, 10, 40, 20), image);
     }
 
+    void testMode_data()
+    {
+        QTest::addColumn<QIcon::Mode>("mode");
+        QTest::addColumn<QColor>("expectedColor");
+
+        QTest::addRow("normal") << QIcon::Normal << QColor(41, 187, 253, 255);
+        QTest::addRow("disabled") << QIcon::Disabled << QColor(147, 147, 147, 127);
+        QTest::addRow("active") << QIcon::Active << QColor(97, 216, 253, 255);
+        QTest::addRow("selected") << QIcon::Selected << QColor(41, 187, 253, 255);
+    }
+
+    void testMode()
+    {
+        QFETCH(QIcon::Mode, mode);
+        QFETCH(QColor, expectedColor);
+
+        QIcon icon(new KIconEngine(QStringLiteral("kde"), KIconLoader::global()));
+        QVERIFY(!icon.isNull());
+
+        const QImage image = icon.pixmap(32, 32, mode).toImage();
+
+        QCOMPARE(image.pixelColor(5, 5).name(), expectedColor.name());
+    }
+
 private:
     QDir testIconsDir;
 };
