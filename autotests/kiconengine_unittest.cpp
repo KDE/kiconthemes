@@ -142,6 +142,7 @@ private Q_SLOTS:
 
         // verify we get the content fully fitted in when asking for the right aspect ratio
         const QImage image = icon.pixmap(40, 20).toImage();
+
         QCOMPARE(image.pixelColor(0, 0), QColor(255, 0, 0));
         QCOMPARE(image.pixelColor(19, 9), QColor(255, 0, 0));
         QCOMPARE(image.pixelColor(39, 0), QColor(0, 255, 0));
@@ -153,6 +154,31 @@ private Q_SLOTS:
 
         // and now with a wrong aspect ratio
         QCOMPARE(icon.pixmap(40, 40).toImage().convertToFormat(image.format()).copy(0, 10, 40, 20), image);
+    }
+
+    void testMode_data()
+    {
+        QTest::addColumn<QIcon::Mode>("mode");
+        QTest::addColumn<QColor>("expectedColor");
+
+        QTest::addRow("normal") << QIcon::Normal << QColor(41, 187, 253, 255);
+        QTest::addRow("disabled") << QIcon::Disabled << QColor(147, 147, 147, 127);
+    }
+
+    void testMode()
+    {
+        QFETCH(QIcon::Mode, mode);
+        QFETCH(QColor, expectedColor);
+
+        QIcon icon(new KIconEngine(QStringLiteral("kde"), KIconLoader::global()));
+        QVERIFY(!icon.isNull());
+
+        const QImage image = icon.pixmap(32, 32, mode).toImage();
+
+        QCOMPARE(image.pixelColor(5, 5), expectedColor);
+
+        // const QImage image2 = icon.pixmap(32, 32, QIcon::Disabled).toImage();
+        // image2.save("/home/nico/kde_disabled.png");
     }
 
 private:
