@@ -175,6 +175,7 @@ private Q_SLOTS:
 
         const QImage image = icon.pixmap(32, 32, mode).toImage();
 
+        qWarning() << (image.pixelColor(5, 5) == expectedColor);
         QCOMPARE(image.pixelColor(5, 5), expectedColor);
 
         // const QImage image2 = icon.pixmap(32, 32, QIcon::Disabled).toImage();
