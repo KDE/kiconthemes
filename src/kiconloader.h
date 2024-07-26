@@ -574,6 +574,7 @@ public:
      */
     static QPixmap unknown();
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Draws overlays on the specified pixmap, it takes the width and height
      * of the pixmap into consideration
@@ -583,8 +584,11 @@ public:
      *                 blank.
      * @param pixmap to draw on
      * @since 4.7
+     * @deprecated since 6.5, use KIconUtils::addOverlays from KGuiAddons
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use KIconUtils::addOverlays from KGuiAddons")
     void drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIconLoader::Group group, int state = KIconLoader::DefaultState) const;
+#endif
 
     bool hasIcon(const QString &iconName) const;
 

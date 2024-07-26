@@ -218,6 +218,7 @@ void KIconLoaderPrivate::clear()
     mThemesInTree.clear();
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader::Group group, int state, QPixmap &pix, const QStringList &overlays)
 {
     if (overlays.isEmpty()) {
@@ -296,6 +297,7 @@ void KIconLoaderPrivate::drawOverlays(const KIconLoader *iconLoader, KIconLoader
         }
     }
 }
+#endif
 
 void KIconLoaderPrivate::_k_refreshIcons(int group)
 {
