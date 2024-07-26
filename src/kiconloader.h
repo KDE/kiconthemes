@@ -437,6 +437,7 @@ public:
     // TODO KF6 merge iconPath() with and without "scale" and move that argument after "group_or_size"
     QString iconPath(const QString &name, int group_or_size, bool canReturnNull, qreal scale) const;
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Loads an animated icon.
      * @param name The name of the icon.
@@ -446,9 +447,13 @@ public:
      * @param parent The parent object of the returned QMovie.
      * @return A QMovie object. Can be null if not found or not valid.
      *         Ownership is passed to the caller.
+     * @deprecated since 6.5, use QMovie API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QMovie *loadMovie(const QString &name, KIconLoader::Group group, int size = 0, QObject *parent = nullptr) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Returns the path to an animated icon.
      * @param name The name of the icon.
@@ -457,9 +462,13 @@ public:
      *             See KIconLoader::StdSizes.
      * @return the full path to the movie, ready to be passed to QMovie's constructor.
      * Empty string if not found.
+     * @deprecated since 6.5, use QMovie API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QString moviePath(const QString &name, KIconLoader::Group group, int size = 0) const;
+#endif
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
     /**
      * Loads an animated icon as a series of still frames. If you want to load
      * a .mng animation as QMovie instead, please use loadMovie() instead.
@@ -469,8 +478,12 @@ public:
      *             See KIconLoader::StdSizes.
      * @return A QStringList containing the absolute path of all the frames
      * making up the animation.
+     *
+     * @deprecated since 6.5, use QMovie API
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QStringList loadAnimated(const QString &name, KIconLoader::Group group, int size = 0) const;
+#endif
 
     /**
      * Queries all available icons for a specific group, having a specific

@@ -1158,6 +1158,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     return pix;
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, int size, QObject *parent) const
 {
     QString file = moviePath(name, group, size);
@@ -1176,7 +1177,9 @@ QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, in
     }
     return movie;
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, int size) const
 {
     if (!d->mpGroups) {
@@ -1222,7 +1225,9 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
     }
     return file;
 }
+#endif
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group group, int size) const
 {
     QStringList lst;
@@ -1273,6 +1278,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
     lst.sort();
     return lst;
 }
+#endif
 
 KIconTheme *KIconLoader::theme() const
 {
