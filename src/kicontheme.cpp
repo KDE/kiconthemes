@@ -125,7 +125,7 @@ public:
         QList<int> availableSizes{};
     };
     std::array<GroupInfo, KIconLoader::LastGroup> m_iconGroups = {{
-        {KIconLoader::Desktop, "Desktop", 32},
+        {KIconLoader::Desktop, "Desktop", 48},
         {KIconLoader::Toolbar, "Toolbar", 22},
         {KIconLoader::MainToolbar, "MainToolbar", 22},
         {KIconLoader::Small, "Small", 16},
@@ -424,7 +424,6 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     KConfigGroup cg(d->sharedConfig, mainSection);
     for (auto &iconGroup : d->m_iconGroups) {
-        iconGroup.defaultSize = cg.readEntry(iconGroup.name + QLatin1String("Default"), iconGroup.defaultSize);
         iconGroup.availableSizes = cg.readEntry(iconGroup.name + QLatin1String("Sizes"), QList<int>());
     }
 }

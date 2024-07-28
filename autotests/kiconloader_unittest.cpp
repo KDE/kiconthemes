@@ -368,7 +368,7 @@ private Q_SLOTS:
         QVERIFY(!path.isEmpty());
         QVERIFY(QFile::exists(path));
         QVERIFY2(path.contains(QLatin1String("32x32")), qPrintable(path));
-        QCOMPARE(pix.size(), QSize(32, 32));
+        QCOMPARE(pix.size(), QSize(48, 48));
 
         // Compare with iconPath()
         QString path2 = KIconLoader::global()->iconPath(QStringLiteral("kde"), KIconLoader::Desktop);
