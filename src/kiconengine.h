@@ -21,24 +21,18 @@ class KIconEnginePrivate;
  *
  * \short A class to provide rendering of KDE icons.
  *
- * Currently, this class is not much more than a wrapper around QIconEngine.
- * However, it should not be difficult to extend with features such as SVG
- * rendered icons.
+ * This is mostly used to provide Qt's icon loading in plasma-integration
  *
- * Icon themes specifying a KDE-Extensions string list setting, will limit
- * themselves to checking these extensions exclusively, in the order specified
- * in the setting.
- *
- * @author Hamish Rodda <rodda@kde.org>
+ * Application developers should use QIcon::fromTheme instead of using it directly.
  */
-class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // exported for kdelibs4support's KIcon and plasma integration
+class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // exported for plasma-integration
 {
 public:
     /**
-     * Constructs an icon engine for a KDE named icon.
+     * Constructs an icon engine for a named icon.
      *
      * @param iconName the name of the icon to load
-     * @param iconLoader The KDE icon loader that this engine is to use.
+     * @param iconLoader The icon loader that this engine is to use.
      * @param overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
      *
      * @sa KIconLoader
