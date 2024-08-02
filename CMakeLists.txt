@@ -71,7 +71,12 @@ find_package(KF6WidgetsAddons ${KF_DEP_VERSION} REQUIRED)
 find_package(KF6ColorScheme ${KF_DEP_VERSION} REQUIRED)
 
 # ensure we have our icons around on all platforms that require it
-if (NOT ANDROID)
+set(USE_BreezeIcons_DEFAULT ON)
+if(ANDROID)
+    set(USE_BreezeIcons_DEFAULT OFF)
+endif()
+option(USE_BreezeIcons "Ensures BreezeIcons are available" ${USE_BreezeIcons_DEFAULT})
+if (USE_BreezeIcons)
   find_package(KF6BreezeIcons ${KF_DEP_VERSION} REQUIRED)
 endif()
 
