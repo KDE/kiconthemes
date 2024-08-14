@@ -85,11 +85,11 @@ void KIconEngine::paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, 
     }
 
     const qreal dpr = painter->device()->devicePixelRatioF();
-    const QPixmap pix = createPixmap(rect.size() * dpr, dpr, mode, state);
+    const QPixmap pix = createPixmap(rect.size(), dpr, mode, state);
     painter->drawPixmap(rect, pix);
 }
 
-QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mode, QIcon::State state)
+QPixmap KIconEngine::createPixmap(const QSize &logicalSize, qreal scale, QIcon::Mode mode, QIcon::State state)
 {
     Q_UNUSED(state)
 
@@ -97,18 +97,16 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
         scale = 1;
     }
 
-    if (size.isEmpty()) {
+    if (logicalSize.isEmpty()) {
         return QPixmap();
     }
 
     if (!d->mIconLoader) {
-        QPixmap pm(size);
+        QPixmap pm(logicalSize * scale);
         pm.setDevicePixelRatio(scale);
         pm.fill(Qt::transparent);
         return pm;
     }
-
-    const QSize scaledSize = size / scale;
 
     QString iconPath;
 
@@ -116,7 +114,7 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
     QPixmap pix = d->mIconLoader->loadScaledIcon(mIconName,
                                                  KIconLoader::Desktop,
                                                  scale,
-                                                 scaledSize,
+                                                 logicalSize,
                                                  kstate,
                                                  mOverlays,
                                                  &iconPath,
@@ -127,17 +125,17 @@ QPixmap KIconEngine::createPixmap(const QSize &size, qreal scale, QIcon::Mode mo
         d->mActualIconName = QFileInfo(iconPath).completeBaseName();
     }
 
-    if (pix.size() == size) {
+    if (pix.size() == logicalSize * scale) {
         return pix;
     }
 
-    QPixmap pix2(size);
+    QPixmap pix2(logicalSize * scale);
     pix2.setDevicePixelRatio(scale);
     pix2.fill(QColor(0, 0, 0, 0));
 
     QPainter painter(&pix2);
     painter.setRenderHint(QPainter::SmoothPixmapTransform);
-    const QSizeF targetSize = pix.size().scaled(scaledSize, Qt::KeepAspectRatio);
+    const QSizeF targetSize = pix.size().scaled(logicalSize, Qt::KeepAspectRatio);
     QRectF targetRect({0, 0}, targetSize);
     targetRect.moveCenter(QRectF(pix2.rect()).center() / scale);
     painter.drawPixmap(targetRect, pix, pix.rect());
@@ -154,9 +152,9 @@ QPixmap KIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::St
 {
     // Since https://codereview.qt-project.org/c/qt/qtbase/+/563553 size is in logical pixels
     if (QLibraryInfo::version() >= QVersionNumber(6, 8, 0)) {
-        return createPixmap(size * scale, scale, mode, state);
-    } else {
         return createPixmap(size, scale, mode, state);
+    } else {
+        return createPixmap(size / scale, scale, mode, state);
     }
 }
 
