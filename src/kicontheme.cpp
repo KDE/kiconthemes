@@ -348,6 +348,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // local embedded icons have preference
     icnlibs << QStringLiteral(":/icons");
 
+#ifdef Q_OS_ANDROID
+    // Android icon theme installed by Kirigami
+    icnlibs << QStringLiteral("assets:/qml/org/kde/kirigami");
+#endif
+
     // global icons
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
 
