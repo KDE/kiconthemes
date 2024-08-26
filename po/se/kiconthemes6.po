@@ -27,7 +27,6 @@ msgstr ""
 
 #: widgets/kicondialog.cpp:329
 #, fuzzy, kde-format
-#| msgid "All"
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Buot"
