@@ -35,9 +35,11 @@
 #include <array>
 #include <cmath>
 
+#include "config.h"
+
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
-#ifdef Q_OS_ANDROID
+#if !USE_BreezeIcons
 
 // on Android we are marked as porting AID, don't mess with theming
 void KIconTheme::initTheme()
