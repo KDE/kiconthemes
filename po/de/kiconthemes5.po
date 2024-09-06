@@ -9,7 +9,7 @@
 # Torbjörn Klatt <torbjoern.k@googlemail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: kio4\n"
+"Project-Id-Version: kiconthemes6\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:25+0000\n"
 "PO-Revision-Date: 2022-08-20 20:39+0200\n"
