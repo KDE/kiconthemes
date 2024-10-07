@@ -427,7 +427,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         KConfigGroup cg(d->sharedConfig, dirName);
         for (const auto &themeDir : std::as_const(themeDirs)) {
             const QString currentDir(themeDir + dirName + QLatin1Char('/'));
-            if (!addedDirs.contains(currentDir) && QDir(currentDir).exists()) {
+            if (!addedDirs.contains(currentDir) && QFileInfo::exists(currentDir)) {
                 addedDirs.insert(currentDir);
                 KIconThemeDir *dir = new KIconThemeDir(themeDir, dirName, cg);
                 if (dir->isValid()) {
@@ -737,7 +737,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         return;
     }
 
-    QString tmp = config.readEntry(QStringLiteral("Context"));
+    QString tmp = config.readEntry("Context", QString());
     if (tmp == QLatin1String("Devices")) {
         mContext = KIconLoader::Device;
     } else if (tmp == QLatin1String("MimeTypes")) {
@@ -774,7 +774,7 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         qCDebug(KICONTHEMES) << "Invalid Context=" << tmp << "line for icon theme: " << constructFileName(QString());
         return;
     }
-    tmp = config.readEntry(QStringLiteral("Type"), QStringLiteral("Threshold"));
+    tmp = config.readEntry("Type", QStringLiteral("Threshold"));
     if (tmp == QLatin1String("Fixed")) {
         mType = KIconLoader::Fixed;
     } else if (tmp == QLatin1String("Scalable")) {
@@ -786,10 +786,10 @@ KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, co
         return;
     }
     if (mType == KIconLoader::Scalable) {
-        mMinSize = config.readEntry(QStringLiteral("MinSize"), mSize);
-        mMaxSize = config.readEntry(QStringLiteral("MaxSize"), mSize);
+        mMinSize = config.readEntry("MinSize", mSize);
+        mMaxSize = config.readEntry("MaxSize", mSize);
     } else if (mType == KIconLoader::Threshold) {
-        mThreshold = config.readEntry(QStringLiteral("Threshold"), 2);
+        mThreshold = config.readEntry("Threshold", 2);
     }
     mbValid = true;
 }
