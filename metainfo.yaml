@@ -8,7 +8,7 @@ platforms:
     - name: Windows
     - name: macOS
     - name: Android
-      note: Porting aid, reduced functionality
+      note: Reduced functionality
 portingAid: false
 deprecated: false
 release: true

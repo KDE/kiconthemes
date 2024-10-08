@@ -41,7 +41,14 @@ Q_GLOBAL_STATIC(QString, _themeOverride)
 
 #if !USE_BreezeIcons
 
-// on Android we are marked as porting AID, don't mess with theming
+// on Android icon theme loading works differently and is managed by code in Kirigami
+// so don't actually touch anything icon-related here
+static void initThemeHelper()
+{
+    // follow the system color, construct the global manager for that
+    (void)KColorSchemeManager::instance();
+}
+
 void KIconTheme::initTheme()
 {
 }
@@ -103,7 +110,6 @@ static void initThemeHelper()
     // follow the system color, construct the global manager for that
     (void)KColorSchemeManager::instance();
 }
-Q_COREAPP_STARTUP_FUNCTION(initThemeHelper)
 
 void KIconTheme::initTheme()
 {
@@ -125,6 +131,8 @@ void KIconTheme::initTheme()
 }
 
 #endif
+
+Q_COREAPP_STARTUP_FUNCTION(initThemeHelper)
 
 class KIconThemeDir;
 class KIconThemePrivate
