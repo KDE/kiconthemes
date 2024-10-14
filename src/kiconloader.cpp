@@ -139,12 +139,6 @@ class KIconLoaderGlobalData : public QObject
 public:
     KIconLoaderGlobalData()
     {
-        // use Qt to fill in the generic mime-type icon information
-        const auto allMimeTypes = QMimeDatabase().allMimeTypes();
-        for (const auto &mimeType : allMimeTypes) {
-            m_genericIcons.insert(mimeType.iconName(), mimeType.genericIconName());
-        }
-
 #ifdef WITH_QTDBUS
         if (QDBusConnection::sessionBus().interface()) {
             QDBusConnection::sessionBus().connect(QString(),
@@ -171,6 +165,10 @@ public:
 
     QString genericIconFor(const QString &icon) const
     {
+        if (!m_loaded) {
+            // load icons lazily as initializing the icons is very expensive
+            const_cast<KIconLoaderGlobalData *>(this)->loadGenericIcons();
+        }
         return m_genericIcons.value(icon);
     }
 
@@ -178,7 +176,22 @@ Q_SIGNALS:
     void iconChanged(int group);
 
 private:
+    void loadGenericIcons()
+    {
+        if (m_loaded) {
+            return;
+        }
+        m_loaded = true;
+        // use Qt to fill in the generic mime-type icon information
+        const auto allMimeTypes = QMimeDatabase().allMimeTypes();
+        for (const auto &mimeType : allMimeTypes) {
+            m_genericIcons.insert(mimeType.iconName(), mimeType.genericIconName());
+        }
+    }
+
+private:
     QHash<QString, QString> m_genericIcons;
+    bool m_loaded = false;
 };
 
 Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)
