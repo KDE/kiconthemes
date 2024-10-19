@@ -26,6 +26,7 @@
 #include <QMap>
 #include <QResource>
 #include <QSet>
+#include <QTimer>
 
 #include <private/qguiapplication_p.h>
 #include <qpa/qplatformtheme.h>
@@ -45,8 +46,11 @@ Q_GLOBAL_STATIC(QString, _themeOverride)
 // so don't actually touch anything icon-related here
 static void initThemeHelper()
 {
-    // follow the system color, construct the global manager for that
-    (void)KColorSchemeManager::instance();
+    // postpone until QGuiApplication applies initial palette
+    QTimer::singleShot(0, [] {
+        // follow the system color, construct the global manager for that
+        (void)KColorSchemeManager::instance();
+    });
 }
 
 void KIconTheme::initTheme()
@@ -107,8 +111,11 @@ static void initThemeHelper()
     *_themeOverride() = themeToUse;
     qCDebug(KICONTHEMES) << "KIconTheme::initTheme() enforces the icon theme:" << themeToUse;
 
-    // follow the system color, construct the global manager for that
-    (void)KColorSchemeManager::instance();
+    // postpone until QGuiApplication applies initial palette
+    QTimer::singleShot(0, [] {
+        // follow the system color, construct the global manager for that
+        (void)KColorSchemeManager::instance();
+    });
 }
 
 void KIconTheme::initTheme()
