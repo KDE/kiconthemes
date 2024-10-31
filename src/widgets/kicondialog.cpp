@@ -16,7 +16,7 @@
 
 #include <KLazyLocalizedString>
 #include <KLocalizedString>
-#include <KStandardAction>
+#include <KStandardActions>
 
 #include <QAbstractListModel>
 #include <QActionGroup>
@@ -321,7 +321,7 @@ void KIconDialogPrivate::init()
     QObject::connect(proxyModel, &QSortFilterProxyModel::rowsInserted, q, updatePlaceholder);
     QObject::connect(proxyModel, &QSortFilterProxyModel::rowsRemoved, q, updatePlaceholder);
 
-    QAction *findAction = KStandardAction::find(ui.searchLine, qOverload<>(&QWidget::setFocus), q);
+    QAction *findAction = KStandardActions::find(ui.searchLine, qOverload<>(&QWidget::setFocus), q);
     q->addAction(findAction);
 
     QMenu *filterSymbolicMenu = new QMenu(q);

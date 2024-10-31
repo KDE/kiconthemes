@@ -3,7 +3,7 @@ Dependencies:
   'require':
     'frameworks/extra-cmake-modules': '@same'
     'frameworks/ki18n' : '@same'
-    'frameworks/kconfigwidgets' : '@same'
+    'frameworks/kconfig' : '@same'
     'frameworks/kwidgetsaddons' : '@same'
     'frameworks/karchive' : '@same'
     'frameworks/kcolorscheme' : '@same'

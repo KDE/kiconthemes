@@ -41,7 +41,7 @@ target_link_libraries(KF6IconWidgets
     Qt6::GuiPrivate
     Qt6::Svg
     KF6::I18n          # for i18n in KIconDialog
-    KF6::ConfigWidgets # for KStandardAction
+    KF6::ConfigGui     # for KStandardActions
     KF6::WidgetsAddons # for KPixmapSequence
 )
 

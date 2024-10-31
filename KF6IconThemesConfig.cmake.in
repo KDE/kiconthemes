@@ -13,7 +13,6 @@ if (NOT @BUILD_SHARED_LIBS@)
 
     find_dependency(KF6Archive "@KF_DEP_VERSION@")
     find_dependency(KF6I18n "@KF_DEP_VERSION@")
-    find_dependency(KF6ConfigWidgets "@KF_DEP_VERSION@")
     find_dependency(KF6WidgetsAddons "@KF_DEP_VERSION@")
     find_dependency(KF6ColorScheme "@KF_DEP_VERSION@")
 
