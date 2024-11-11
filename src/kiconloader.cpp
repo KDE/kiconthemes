@@ -52,7 +52,7 @@
 
 #include <qplatformdefs.h> //for readlink
 
-/**
+/*!
  * Function to convert an uint32_t to AARRGGBB hex values.
  *
  * W A R N I N G !
@@ -84,7 +84,7 @@ static QString paletteId(const KIconColors &colors)
     return buffer;
 }
 
-/*** KIconThemeNode: A node in the icon theme dependency tree. ***/
+/*!* KIconThemeNode: A node in the icon theme dependency tree. ***/
 
 class KIconThemeNode
 {
@@ -1456,7 +1456,7 @@ bool KIconLoader::hasCustomPalette() const
     return d->mCustomColors;
 }
 
-/*** the global icon loader ***/
+/*!* the global icon loader ***/
 Q_GLOBAL_STATIC(KIconLoader, globalIconLoader)
 
 KIconLoader *KIconLoader::global()

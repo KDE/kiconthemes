@@ -1,0 +1,11 @@
+/*!
+    \module KIconThemes
+    \title KIconThemes C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent IconThemes
+
+    \brief KIconThemes
+
+    foo
+*/

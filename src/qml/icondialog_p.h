@@ -18,31 +18,31 @@ class IconDialog : public QObject
     Q_OBJECT
     QML_ELEMENT
 
-    /**
+    /*!
      * The name or path of the icon the user has selected
      */
     Q_PROPERTY(QString iconName READ iconName NOTIFY iconNameChanged)
-    /**
+    /*!
      * The desired size of icons
      */
     Q_PROPERTY(int iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
-    /**
+    /*!
      * The title to use for the dialog
      */
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
-    /**
+    /*!
      * Begin with the "user icons" instead of "system icons"
      */
     Q_PROPERTY(bool user READ user WRITE setUser NOTIFY userChanged)
-    /**
+    /*!
      * Use a custom location, only local directory paths are allowed
      */
     Q_PROPERTY(QString customLocation READ customLocation WRITE setCustomLocation NOTIFY customLocationChanged)
-    /**
+    /*!
      * Window modality, default is Qt.NonModal
      */
     Q_PROPERTY(Qt::WindowModality modality READ modality WRITE setModality NOTIFY modalityChanged)
-    /**
+    /*!
      * Whether the dialog is currently visible, setting this property to true
      * is the same as calling show()
      */

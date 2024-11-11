@@ -26,6 +26,7 @@ include(ECMDeprecationSettings)
 include(ECMAddQch)
 include(CMakeDependentOption)
 include(ECMQmlModule)
+include(ECMGenerateQDoc)
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 

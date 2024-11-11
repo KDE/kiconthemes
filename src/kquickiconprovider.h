@@ -14,15 +14,20 @@
 #include <QQuickImageProvider>
 #include <QSize>
 
-/**
- * Class which exposes the KIcon* functioality to QML.
+/*!
+ * \class KQuickIconProvider
+ * \inmodule KIconThemes
+ *
+ * \brief Class which exposes the KIcon* functioality to QML.
+ *
  * For dependency reasons, this is a header-only class.
  *
  * This needs to be registered in the engine using the following code:
- * @code
+ * \code
  * engine->addImageProvider(QStringLiteral("icon"), new KQuickIconProvider);
- * @endcode
- * @since 5.98
+ * \endcode
+ *
+ * \since 5.98
  */
 class KQuickIconProvider : public QQuickImageProvider
 {

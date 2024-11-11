@@ -145,3 +145,5 @@ ecm_qt_install_logging_categories(
     FILE kiconthemes.categories
     DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
+
+ecm_generate_qdoc(KF6IconThemes kiconthemes.qdocconf)

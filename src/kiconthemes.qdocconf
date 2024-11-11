@@ -1,0 +1,18 @@
+include($KDE_DOCS/global/qt-module-defaults-online.qdocconf)
+
+project = KIconThemes
+description = KIconThemes
+
+documentationinheaders = true
+
+headerdirs = .
+imagedirs = ../docs/pics/
+
+headers.fileextensions = "*.qdoc *.h"
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtgui
