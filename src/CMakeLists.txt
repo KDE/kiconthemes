@@ -99,35 +99,6 @@ install(FILES
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes COMPONENT Devel
 )
 
-if(BUILD_QCH)
-    ecm_add_qch(
-        KF6IconThemes_QCH
-        NAME KIconThemes
-        BASE_NAME KF6IconThemes
-        VERSION ${KF_VERSION}
-        ORG_DOMAIN org.kde
-        SOURCES # using only public headers, to cover only public API
-            ${KIconThemes_HEADERS}
-        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
-        IMAGE_DIRS "${CMAKE_SOURCE_DIR}/docs/pics"
-        LINK_QCHS
-            Qt6Widgets_QCH
-        INCLUDE_DIRS
-            ${CMAKE_CURRENT_BINARY_DIR}
-        BLANK_MACROS
-            KICONTHEMES_EXPORT
-            KICONTHEMES_DEPRECATED
-            KICONTHEMES_DEPRECATED_EXPORT
-            "KICONTHEMES_DEPRECATED_VERSION(x, y, t)"
-            "KICONTHEMES_DEPRECATED_VERSION_BELATED(x, y, xt, yt, t)"
-            "KICONTHEMES_ENUMERATOR_DEPRECATED_VERSION(x, y, t)"
-            "KICONTHEMES_ENUMERATOR_DEPRECATED_VERSION_BELATED(x, y, xt, yt, t)"
-        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        COMPONENT Devel
-    )
-endif()
-
 add_library(KIconEnginePlugin MODULE kiconengineplugin.cpp)
 
 target_link_libraries(KIconEnginePlugin
@@ -145,3 +116,5 @@ ecm_qt_install_logging_categories(
     FILE kiconthemes.categories
     DESTINATION ${KDE_INSTALL_LOGGINGCATEGORIESDIR}
 )
+
+ecm_generate_qdoc(KF6IconThemes kiconthemes.qdocconf)

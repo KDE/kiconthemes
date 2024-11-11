@@ -22,13 +22,13 @@
 
 class KIconThemeNode;
 
-/*** KIconGroup: Icon type description. ***/
+/* KIconGroup: Icon type description. */
 
 struct KIconGroup {
     int size;
 };
 
-/**
+/*
  * Holds a QPixmap for this process, along with its associated path on disk.
  */
 struct PixmapWithPath {
@@ -36,7 +36,6 @@ struct PixmapWithPath {
     QString path;
 };
 
-/*** d pointer for KIconLoader. ***/
 class KIconLoaderPrivate
 {
 public:
@@ -47,89 +46,73 @@ public:
 
     void clear();
 
-    /**
-     * @internal
-     */
     void init(const QString &_appname, const QStringList &extraSearchPaths = QStringList());
 
-    /**
-     * @internal
-     */
     void initIconThemes();
 
-    /**
-     * @internal
+    /*
      * tries to find an icon with the name. It tries some extension and
      * match strategies
      */
     QString findMatchingIcon(const QString &name, int size, qreal scale) const;
 
-    /**
-     * @internal
+    /*
      * tries to find an icon with the name.
      * This is one layer above findMatchingIcon -- it also implements generic fallbacks
      * such as generic icons for mimetypes.
      */
     QString findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const;
 
-    /**
-     * @internal
+    /*
      * returns the preferred icon path for an icon with the name.
      * Can be used for a quick "hasIcon" check since it caches
      * that an icon was not found.
      */
     QString preferredIconPath(const QString &name);
 
-    /**
-     * @internal
+    /*
      * Adds themes installed in the application's directory.
      **/
     void addAppThemes(const QString &appname, const QString &themeBaseDir = QString());
 
-    /**
-     * @internal
+    /*
      * Adds all themes that are part of this node and the themes
      * below (the fallbacks of the theme) into the tree.
      */
     void addBaseThemes(KIconThemeNode *node, const QString &appname);
 
-    /**
-     * @internal
+    /*
      * Recursively adds all themes that are specified in the "Inherits"
      * property of the given theme into the tree.
      */
     void addInheritedThemes(KIconThemeNode *node, const QString &appname);
 
-    /**
-     * @internal
+    /*
      * Creates a KIconThemeNode out of a theme name, and adds this theme
      * as well as all its inherited themes into the tree. Themes that already
      * exist in the tree will be ignored and not added twice.
      */
     void addThemeByName(const QString &themename, const QString &appname);
 
-    /**
+    /*
      * Adds all the default themes from other desktops at the end of
      * the list of icon themes.
      */
     void addExtraDesktopThemes();
 
-    /**
-     * @internal
+    /*
      * return the path for the unknown icon in that size
      */
     QString unknownIconPath(int size, qreal scale) const;
 
-    /**
-     * @internal
+    /*
      * Used with KIconLoader::loadIcon to convert the given name, size, group,
      * and icon state information to valid states. All parameters except the
      * name can be modified as well to be valid.
      */
     void normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const;
 
-    /**
-     * @internal
+    /*
      * Used with KIconLoader::loadIcon to get a base key name from the given
      * icon metadata. Ensure the metadata is normalized first.
      */
@@ -141,43 +124,38 @@ public:
                          int state,
                          const KIconColors &colors) const;
 
-    /**
-     * @internal
+    /*
      * If the icon is an SVG file, process it generating a stylesheet
      * following the current color scheme. in this case the icon can use named colors
      * as text color, background color, highlight color, positive/neutral/negative color
-     * @see KColorScheme
+     * \sa KColorScheme
      */
     QByteArray processSvg(const QString &path, KIconLoader::States state, const KIconColors &colors) const;
 
-    /**
-     * @internal
-     * Creates the QImage for @p path, using SVG rendering as appropriate.
-     * @p size is only used for scalable images, but if non-zero non-scalable
+    /*
+     * Creates the QImage for \apath, using SVG rendering as appropriate.
+     * \a size is only used for scalable images, but if non-zero non-scalable
      * images will be resized anyways.
      */
     QImage createIconImage(const QString &path, const QSize &size, qreal scale, KIconLoader::States state, const KIconColors &colors);
 
-    /**
-     * @internal
+    /*
      * Adds an QPixmap with its associated path to the shared icon cache.
      */
     void insertCachedPixmapWithPath(const QString &key, const QPixmap &data, const QString &path);
 
-    /**
-     * @internal
+    /*
      * Retrieves the path and pixmap of the given key from the shared
      * icon cache.
      */
     bool findCachedPixmapWithPath(const QString &key, QPixmap &data, QString &path);
 
-    /**
+    /*
      * Find the given file in the search paths.
      */
     QString locate(const QString &fileName);
 
-    /**
-     * @internal
+    /*
      * React to a global icon theme change
      */
     void _k_refreshIcons(int group);

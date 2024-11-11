@@ -13,36 +13,47 @@
 
 class KIconDialog;
 
+/*!
+ * \qmltype IconDialog
+ * \inqmlmodule org.kde.iconthemes
+ */
 class IconDialog : public QObject
 {
     Q_OBJECT
     QML_ELEMENT
 
-    /**
+    /*!
+     * \qmlproperty string IconDialog::iconName
      * The name or path of the icon the user has selected
      */
     Q_PROPERTY(QString iconName READ iconName NOTIFY iconNameChanged)
-    /**
+    /*!
+     * \qmlproperty int IconDialog::iconSize
      * The desired size of icons
      */
     Q_PROPERTY(int iconSize READ iconSize WRITE setIconSize NOTIFY iconSizeChanged)
-    /**
+    /*!
+     * \qmlproperty string IconDialog::title
      * The title to use for the dialog
      */
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
-    /**
+    /*!
+     * \qmlproperty bool IconDialog::user
      * Begin with the "user icons" instead of "system icons"
      */
     Q_PROPERTY(bool user READ user WRITE setUser NOTIFY userChanged)
-    /**
+    /*!
+     * \qmlproperty string IconDialog::customLocation
      * Use a custom location, only local directory paths are allowed
      */
     Q_PROPERTY(QString customLocation READ customLocation WRITE setCustomLocation NOTIFY customLocationChanged)
-    /**
+    /*!
+     * \qmlproperty enumeration IconDialog::modality
      * Window modality, default is Qt.NonModal
      */
     Q_PROPERTY(Qt::WindowModality modality READ modality WRITE setModality NOTIFY modalityChanged)
-    /**
+    /*!
+     * \qmlproperty string IconDialog::visible
      * Whether the dialog is currently visible, setting this property to true
      * is the same as calling show()
      */
@@ -72,7 +83,14 @@ public:
     bool visible() const;
     void setVisible(bool visible);
 
+    /*!
+     * \qmlmethod void IconDialog::open
+     */
     Q_INVOKABLE void open();
+
+    /*!
+     * \qmlmethod void IconDialog::close
+     */
     Q_INVOKABLE void close();
 
 Q_SIGNALS:

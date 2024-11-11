@@ -16,32 +16,34 @@
 
 class KIconColorsPrivate;
 
-/**
- * @class KIconColors
+/*!
+ * \class KIconColors
+ * \inmodule KIconThemes
  *
- * Sepecifies which colors will be used when recoloring icons as its stylesheet.
+ * \brief Sepecifies which colors will be used when recoloring icons as its stylesheet.
  *
  * KIconLoader supports re-coloring svg icons based on a set of colors. This
  * class will define them.
  *
- * @see KIconEngine
- * @see KDE::icon
+ * \sa KIconEngine
+ * \sa KDE::icon
  */
 class KICONTHEMES_EXPORT KIconColors
 {
 public:
-    /**
+    /*!
      * Will fill the colors based on the default QPalette() constructor.
      */
     KIconColors();
 
-    /**
-     * Makes all the color properties be @p color.
+    /*!
+     * Makes all the color properties be \a color.
      */
     explicit KIconColors(const QColor &color);
 
-    /**
-     * Uses @palette to define text, highlight, highlightedText, accent and background.
+    /*!
+     * Uses \a palette to define text, highlight, highlightedText, accent and background.
+     *
      * The rest being positiveText, negativeText and neutralText are filled from
      * KColorScheme(QPalette::Active, KColorScheme::Window);
      */
@@ -51,35 +53,109 @@ public:
     ~KIconColors();
     KIconColors operator=(const KIconColors &other);
 
+    /*!
+     *
+     */
     QColor text() const;
+
+    /*!
+     *
+     */
     QColor highlight() const;
+
+    /*!
+     *
+     */
     QColor highlightedText() const;
+
+    /*!
+     *
+     */
     QColor accent() const;
+
+    /*!
+     *
+     */
     QColor background() const;
+
+    /*!
+     *
+     */
     QColor neutralText() const;
+
+    /*!
+     *
+     */
     QColor positiveText() const;
+
+    /*!
+     *
+     */
     QColor negativeText() const;
+
+    /*!
+     *
+     */
     QColor activeText() const;
 
+    /*!
+     *
+     */
     void setText(const QColor &color);
+
+    /*!
+     *
+     */
     void setHighlight(const QColor &color);
+
+    /*!
+     *
+     */
     void setHighlightedText(const QColor &color);
+
+    /*!
+     *
+     */
     void setAccent(const QColor &color);
+
+    /*!
+     *
+     */
     void setBackground(const QColor &color);
+
+    /*!
+     *
+     */
     void setNeutralText(const QColor &color);
+
+    /*!
+     *
+     */
     void setPositiveText(const QColor &color);
+
+    /*!
+     *
+     */
     void setNegativeText(const QColor &color);
+<<<<<<< HEAD
     void setActiveText(const QColor &color);
+=======
+
+    /*!
+     *
+     */
+    void setActiveText(const QColor& color);
+>>>>>>> c8aceb0 (Port API documentation to QDoc syntax)
 
 protected:
-    /**
-     * @returns a CSS stylesheet to be used SVG icon files.
-     * @param state defines the state we are rendering the stylesheet for
+    /*!
+     * Returns a CSS stylesheet to be used SVG icon files.
+     * \a state defines the state we are rendering the stylesheet for
      *
-     * Specifies: .ColorScheme-Text, .ColorScheme-Background, .ColorScheme-Highlight,
-     * .ColorScheme-HighlightedText, .ColorScheme-PositiveText, .ColorScheme-NeutralText
-     * .ColorScheme-NegativeText, .ColorScheme-ActiveText, .ColorScheme-Complement,
-     * .ColorScheme-Contrast, .ColorScheme-Accent,
+     * Specifies: \c .ColorScheme-Text, \c .ColorScheme-Background, \c .ColorScheme-Highlight,
+     * \c .ColorScheme-HighlightedText, \c .ColorScheme-PositiveText, \c .ColorScheme-NeutralText
+     * \c .ColorScheme-NegativeText, \c .ColorScheme-ActiveText, \c .ColorScheme-Complement,
+     * \c .ColorScheme-Contrast, \c .ColorScheme-Accent
      */
     QString stylesheet(KIconLoader::States state) const;
 

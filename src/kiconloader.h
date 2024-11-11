@@ -31,12 +31,13 @@ class KIconLoaderPrivate;
 class KIconEffect;
 class KIconTheme;
 
-/**
- * @class KIconLoader kiconloader.h KIconLoader
+/*!
+ * \class KIconLoader
+ * \inmodule KIconThemes
  *
- * Iconloader for KDE.
+ * \brief Iconloader for KDE.
  *
- * @note For most icon loading use cases perfer using QIcon::fromTheme
+ * \note For most icon loading use cases perfer using QIcon::fromTheme
  *
  * KIconLoader will load the current icon theme and all its base themes.
  * Icons will be searched in any of these themes. Additionally, it caches
@@ -50,12 +51,14 @@ class KIconTheme;
  *
  * The standard groups are defined below.
  *
- * @li KIconLoader::Desktop: Icons in the iconview of konqueror, kdesktop and similar apps.
- * @li KIconLoader::Toolbar: Icons in toolbars.
- * @li KIconLoader::MainToolbar: Icons in the main toolbars.
- * @li KIconLoader::Small: Various small (typical 16x16) places: titlebars, listviews
+ * \list
+ * \li KIconLoader::Desktop: Icons in the iconview of konqueror, kdesktop and similar apps.
+ * \li KIconLoader::Toolbar: Icons in toolbars.
+ * \li KIconLoader::MainToolbar: Icons in the main toolbars.
+ * \li KIconLoader::Small: Various small (typical 16x16) places: titlebars, listviews
  * and menu entries.
- * @li KIconLoader::Panel: Icons in kicker's panel
+ * \li KIconLoader::Panel: Icons in kicker's panel
+ * \endlist
  *
  * The icons are stored on disk in an icon theme or in a standalone
  * directory. The icon theme directories contain multiple sizes and/or
@@ -67,117 +70,159 @@ class KIconTheme;
  * directories that are searched are: $appdir/pics and $appdir/toolbar.
  * Icons in these directories can be loaded by using the special group
  * "User".
- *
  */
 class KICONTHEMES_EXPORT KIconLoader : public QObject
 {
     Q_OBJECT
 
 public:
-    /**
-     * Defines the context of the icon.
+    /*!
+     * \enum KIconLoader::Context
+     *
+     * \brief Defines the context of the icon.
+     *
+     * \value Any Some icon with unknown purpose.
+     * \value Action An action icon (e.g. 'save', 'print').
+     * \value Application An icon that represents an application.
+     * \value Device An icon that represents a device.
+     * \value MimeType An icon that represents a mime type (or file type).
+     * \value Animation An icon that is animated.
+     * \value Category An icon that represents a category.
+     * \value Emblem An icon that adds information to an existing icon.
+     * \value Emote An icon that expresses an emotion.
+     * \value International An icon that represents a country's flag.
+     * \value Place An icon that represents a location (e.g. 'home', 'trash').
+     * \value StatusIcon An icon that represents an event.
      */
     enum Context {
-        Any, ///< Some icon with unknown purpose.
-        Action, ///< An action icon (e.g. 'save', 'print').
-        Application, ///< An icon that represents an application.
-        Device, ///< An icon that represents a device.
-        MimeType, ///< An icon that represents a mime type (or file type).
-        Animation, ///< An icon that is animated.
-        Category, ///< An icon that represents a category.
-        Emblem, ///< An icon that adds information to an existing icon.
-        Emote, ///< An icon that expresses an emotion.
-        International, ///< An icon that represents a country's flag.
-        Place, ///< An icon that represents a location (e.g. 'home', 'trash').
-        StatusIcon, ///< An icon that represents an event.
+        Any,
+        Action,
+        Application,
+        Device,
+        MimeType,
+        Animation,
+        Category,
+        Emblem,
+        Emote,
+        International,
+        Place,
+        StatusIcon,
     };
     Q_ENUM(Context)
 
-    /**
-     * The type of the icon.
+    /*!
+     * \enum KIconLoader::Type
+     *
+     * \brief The type of the icon.
+     *
+     * \value Fixed Fixed-size icon.
+     * \value Scalable Scalable-size icon.
+     * \value Threshold A threshold icon.
      */
     enum Type {
-        Fixed, ///< Fixed-size icon.
-        Scalable, ///< Scalable-size icon.
-        Threshold, ///< A threshold icon.
+        Fixed,
+        Scalable,
+        Threshold,
     };
     Q_ENUM(Type)
 
-    /**
-     * The type of a match.
+    /*!
+     * \enum KIconLoader::MatchType
+     *
+     * \brief The type of a match.
+     *
+     * \value MatchExact Only try to find an exact match.
+     * \value MatchBest Take the best match if there is no exact match.
+     * \value MatchBestOrGreaterSize Take the best match or the match with a greater size if there is no exact match. \since 6.0
      */
     enum MatchType {
-        MatchExact, ///< Only try to find an exact match.
-        MatchBest, ///< Take the best match if there is no exact match.
-        MatchBestOrGreaterSize, ///< Take the best match or the match with a greater size if there is no exact match. @since 6.0
+        MatchExact,
+        MatchBest,
+        MatchBestOrGreaterSize,
     };
     Q_ENUM(MatchType)
 
-    /**
-     * The group of the icon.
+    /*!
+     * \enum KIconLoader::Group
+     *
+     * \brief The group of the icon.
+     *
+     * \value NoGroup No group
+     * \value Desktop Desktop icons
+     * \value FirstGroup First group
+     * \value Toolbar Toolbar icons
+     * \value MainToolbar Main toolbar icons
+     * \value Small Small icons, e.g. for buttons
+     * \value Panel Panel (Plasma Taskbar) icons
+     * \value Dialog Icons for use in dialog titles, page lists, etc
+     * \value LastGroup Last group
+     * \value User User icons
      */
     enum Group {
-        /// No group
         NoGroup = -1,
-        /// Desktop icons
         Desktop = 0,
-        /// First group
         FirstGroup = 0,
-        /// Toolbar icons
         Toolbar,
-        /// Main toolbar icons
         MainToolbar,
-        /// Small icons, e.g. for buttons
         Small,
-        /// Panel (Plasma Taskbar) icons
         // TODO KF6: remove this (See https://phabricator.kde.org/T14340)
         Panel,
-        /// Icons for use in dialog titles, page lists, etc
         Dialog,
-        /// Last group
         LastGroup,
-        /// User icons
         User,
     };
     Q_ENUM(Group)
 
-    /**
-     * These are the standard sizes for icons.
+    /*!
+     * \enum KIconLoader::StdSizes
+     *
+     * \brief These are the standard sizes for icons.
+     *
+     * \value SizeSmall small icons for menu entries
+     * \value SizeSmallMedium slightly larger small icons for toolbars, panels, etc
+     * \value SizeMedium medium sized icons for the desktop
+     * \value SizeLarge large sized icons for the panel
+     * \value SizeHuge huge sized icons for iconviews
+     * \value SizeEnormous enormous sized icons for iconviews
      */
     enum StdSizes {
-        /// small icons for menu entries
         SizeSmall = 16,
-        /// slightly larger small icons for toolbars, panels, etc
         SizeSmallMedium = 22,
-        /// medium sized icons for the desktop
         SizeMedium = 32,
-        /// large sized icons for the panel
         SizeLarge = 48,
-        /// huge sized icons for iconviews
         SizeHuge = 64,
-        /// enormous sized icons for iconviews
         SizeEnormous = 128,
     };
     Q_ENUM(StdSizes)
 
-    /**
-     * Defines the possible states of an icon.
+    /*!
+     * \enum KIconLoader::States
+     *
+     * \brief Defines the possible states of an icon.
+     *
+     * \value DefaultState The default state.
+     * \value ActiveState Icon is active.
+     * \value DisabledState Icon is disabled.
+     * \value [since 5.22] SelectedState Icon is selected.
+     * \value LastState Last state (last constant)
      */
     enum States {
-        DefaultState, ///< The default state.
-        ActiveState, ///< Icon is active.
-        DisabledState, ///< Icon is disabled.
-        SelectedState, ///< Icon is selected. @since 5.22
-        LastState, ///< Last state (last constant)
+        DefaultState,
+        ActiveState,
+        DisabledState,
+        SelectedState,
+        LastState,
     };
     Q_ENUM(States)
 
-    /**
+    /*!
      * Constructs an iconloader.
-     * @param appname Add the data directories of this application to the
+     *
+     * \a appname Add the data directories of this application to the
      * icon search path for the "User" group. The default argument adds the
      * directories of the current application.
-     * @param extraSearchPaths additional search paths, either absolute or relative to GenericDataLocation
+     *
+     * \a extraSearchPaths additional search paths, either absolute or relative to GenericDataLocation
      *
      * Usually, you use the default iconloader, which can be accessed via
      * KIconLoader::global(), so you hardly ever have to create an
@@ -185,54 +230,61 @@ public:
      */
     explicit KIconLoader(const QString &appname = QString(), const QStringList &extraSearchPaths = QStringList(), QObject *parent = nullptr);
 
-    /**
-     * Cleanup
-     */
     ~KIconLoader() override;
 
-    /**
+    /*!
      * Returns the global icon loader initialized with the application name.
-     * @return global icon loader
      */
     static KIconLoader *global();
 
-    /**
-     * Adds @p appname to the list of application specific directories with @p themeBaseDir as its base directory.
+    /*!
+     * Adds \a appname to the list of application specific directories with \a themeBaseDir as its base directory.
+     *
      * Assume the icons are in /home/user/app/icons/hicolor/48x48/my_app.png, the base directory would be
-     * /home/user/app/icons; KIconLoader automatically searches @p themeBaseDir + "/hicolor"
+     * /home/user/app/icons; KIconLoader automatically searches \a themeBaseDir + "/hicolor"
+     *
      * This directory must contain a dir structure as defined by the XDG icons specification
-     * @param appname The application name.
-     * @param themeBaseDir The base directory of the application's theme (eg. "/home/user/app/icons")
+     *
+     * \a appname The application name.
+     *
+     * \a themeBaseDir The base directory of the application's theme (eg. "/home/user/app/icons")
      */
     void addAppDir(const QString &appname, const QString &themeBaseDir = QString());
 
-    /**
+    /*!
      * Loads an icon. It will try very hard to find an icon which is
      * suitable. If no exact match is found, a close match is searched.
      * If neither an exact nor a close match is found, a null pixmap or
      * the "unknown" pixmap is returned, depending on the value of the
-     * @p canReturnNull parameter.
+     * \a canReturnNull parameter.
      *
-     * @param name The name of the icon, without extension.
-     * @param group The icon group. This will specify the size of and effects to
+     * \a name The name of the icon, without extension.
+     *
+     * \a group The icon group. This will specify the size of and effects to
      * be applied to the icon.
-     * @param size If nonzero, this overrides the size specified by @p group.
+     *
+     * \a size If nonzero, this overrides the size specified by \a group.
      *             See KIconLoader::StdSizes.
-     * @param state The icon state: @p DefaultState, @p ActiveState or
-     * @p DisabledState. Depending on the user's preferences, the iconloader
+     *
+     * \a state The icon state: \a DefaultState, \a ActiveState or
+     * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name
-     *                 @see drawOverlays
-     * @param path_store If not null, the path of the icon is stored here,
-     *        if the icon was found. If the icon was not found @p path_store
+     *
+     * \a overlays a list of emblem icons to overlay, by name
+     *                 \sa drawOverlays
+     *
+     * \a path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found \a path_store
      *        is unaltered even if the "unknown" pixmap was returned.
-     * @param canReturnNull Can return a null pixmap? If false, the
+     *
+     * \a canReturnNull Can return a null pixmap? If false, the
      *        "unknown" pixmap is returned when no appropriate icon has been
-     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        found. Note: a null pixmap can still be returned in the
      *        event of invalid parameters, such as empty names, negative sizes,
      *        and etc.
-     * @return the QPixmap. Can be null when not found, depending on
-     *         @p canReturnNull.
+     *
+     * Returns the QPixmap. Can be null when not found, depending on
+     *         \a canReturnNull.
      */
     QPixmap loadIcon(const QString &name,
                      KIconLoader::Group group,
@@ -242,39 +294,47 @@ public:
                      QString *path_store = nullptr,
                      bool canReturnNull = false) const;
 
-    /**
+    // TODO KF6 merge loadIcon() and loadScaledIcon()
+    /*!
      * Loads an icon. It will try very hard to find an icon which is
      * suitable. If no exact match is found, a close match is searched.
      * If neither an exact nor a close match is found, a null pixmap or
      * the "unknown" pixmap is returned, depending on the value of the
-     * @p canReturnNull parameter.
+     * \a canReturnNull parameter.
      *
-     * @param name The name of the icon, without extension.
-     * @param group The icon group. This will specify the size of and effects to
+     * \a name The name of the icon, without extension.
+     *
+     * \a group The icon group. This will specify the size of and effects to
      * be applied to the icon.
-     * @param scale The scale of the icon group to use. If no icon exists in the
+     *
+     * \a scale The scale of the icon group to use. If no icon exists in the
      * scaled group, a 1x icon with its size multiplied by the scale will be
      * loaded instead.
-     * @param size If nonzero, this overrides the size specified by @p group.
+     *
+     * \a size If nonzero, this overrides the size specified by \a group.
      *             See KIconLoader::StdSizes.
-     * @param state The icon state: @p DefaultState, @p ActiveState or
-     * @p DisabledState. Depending on the user's preferences, the iconloader
+     *
+     * \a state The icon state: \a DefaultState, \a ActiveState or
+     * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name
-     *                 @see drawOverlays
-     * @param path_store If not null, the path of the icon is stored here,
-     *        if the icon was found. If the icon was not found @p path_store
+     *
+     * \a overlays a list of emblem icons to overlay, by name
+     *                 \sa drawOverlays
+     *
+     * \a path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found \a path_store
      *        is unaltered even if the "unknown" pixmap was returned.
-     * @param canReturnNull Can return a null pixmap? If false, the
+     *
+     * \a canReturnNull Can return a null pixmap? If false, the
      *        "unknown" pixmap is returned when no appropriate icon has been
-     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        found. Note: a null pixmap can still be returned in the
      *        event of invalid parameters, such as empty names, negative sizes,
      *        and etc.
-     * @return the QPixmap. Can be null when not found, depending on
-     *         @p canReturnNull.
-     * @since 5.48
+     *
+     * Returns the QPixmap. Can be null when not found, depending on
+     *         \a canReturnNull.
+     * \since 5.48
      */
-    // TODO KF6 merge loadIcon() and loadScaledIcon()
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
                            qreal scale,
@@ -284,39 +344,46 @@ public:
                            QString *path_store = nullptr,
                            bool canReturnNull = false) const;
 
-    /**
+    /*!
      * Loads an icon. It will try very hard to find an icon which is
      * suitable. If no exact match is found, a close match is searched.
      * If neither an exact nor a close match is found, a null pixmap or
      * the "unknown" pixmap is returned, depending on the value of the
-     * @p canReturnNull parameter.
+     * \a canReturnNull parameter.
      *
-     * @param name The name of the icon, without extension.
-     * @param group The icon group. This will specify the size of and effects to
+     * \a name The name of the icon, without extension.
+     *
+     * \a group The icon group. This will specify the size of and effects to
      * be applied to the icon.
-     * @param scale The scale of the icon group to use. If no icon exists in the
+     *
+     * \a scale The scale of the icon group to use. If no icon exists in the
      * scaled group, a 1x icon with its size multiplied by the scale will be
      * loaded instead.
-     * @param size If nonzero, this overrides the size specified by @p group.
-     *             See KIconLoader::StdSizes. The icon will be fit into @p size
+     *
+     * \a size If nonzero, this overrides the size specified by \a group.
+     *             See KIconLoader::StdSizes. The icon will be fit into \a size
      *             without changing the aspect ratio, which particularly matters
      *             for non-square icons.
-     * @param state The icon state: @p DefaultState, @p ActiveState or
-     * @p DisabledState. Depending on the user's preferences, the iconloader
-     * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name
-     *                 @see drawOverlays
-     * @param path_store If not null, the path of the icon is stored here,
-     *        if the icon was found. If the icon was not found @p path_store
+     *
+     * \a state The icon state: \c DefaultState, \c ActiveState or \c DisabledState. Depending on the user's preferences, the iconloader may apply a visual
+     * effect to hint about its state.
+     *
+     * \a overlays a list of emblem icons to overlay, by name
+     *                 \sa drawOverlays
+     *
+     * \a path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found \a path_store
      *        is unaltered even if the "unknown" pixmap was returned.
-     * @param canReturnNull Can return a null pixmap? If false, the
+     *
+     * \a canReturnNull Can return a null pixmap? If false, the
      *        "unknown" pixmap is returned when no appropriate icon has been
-     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        found. Note: a null pixmap can still be returned in the
      *        event of invalid parameters, such as empty names, negative sizes,
      *        and etc.
-     * @return the QPixmap. Can be null when not found, depending on
-     *         @p canReturnNull.
-     * @since 5.81
+     *
+     * Returns the QPixmap. Can be null when not found, depending on
+     *         \a canReturnNull.
+     * \since 5.81
      */
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
@@ -328,41 +395,50 @@ public:
                            bool canReturnNull = false) const;
 
 #if __has_include(<optional>) && __cplusplus >= 201703L
-    /**
+    /*!
      * Loads an icon. It will try very hard to find an icon which is
      * suitable. If no exact match is found, a close match is searched.
      * If neither an exact nor a close match is found, a null pixmap or
      * the "unknown" pixmap is returned, depending on the value of the
-     * @p canReturnNull parameter.
+     * \a canReturnNull parameter.
      *
-     * @param name The name of the icon, without extension.
-     * @param group The icon group. This will specify the size of and effects to
+     * \a name The name of the icon, without extension.
+     *
+     * \a group The icon group. This will specify the size of and effects to
      * be applied to the icon.
-     * @param scale The scale of the icon group to use. If no icon exists in the
+     *
+     * \a scale The scale of the icon group to use. If no icon exists in the
      * scaled group, a 1x icon with its size multiplied by the scale will be
      * loaded instead.
-     * @param size If nonzero, this overrides the size specified by @p group.
-     *             See KIconLoader::StdSizes. The icon will be fit into @p size
+     *
+     * \a size If nonzero, this overrides the size specified by \a group.
+     *             See KIconLoader::StdSizes. The icon will be fit into \a size
      *             without changing the aspect ratio, which particularly matters
      *             for non-square icons.
-     * @param state The icon state: @p DefaultState, @p ActiveState or
-     * @p DisabledState. Depending on the user's preferences, the iconloader
+     *
+     * \a state The icon state: \c DefaultState, \c ActiveState or
+     *
+     * \a DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param overlays a list of emblem icons to overlay, by name
-     *                 @see drawOverlays
-     * @param path_store If not null, the path of the icon is stored here,
-     *        if the icon was found. If the icon was not found @p path_store
+     *
+     * \a overlays a list of emblem icons to overlay, by name
+     *                 \sa drawOverlays
+     *
+     * \a path_store If not null, the path of the icon is stored here,
+     *        if the icon was found. If the icon was not found \a path_store
      *        is unaltered even if the "unknown" pixmap was returned.
-     * @param canReturnNull Can return a null pixmap? If false, the
+     * \a canReturnNull Can return a null pixmap? If false, the
      *        "unknown" pixmap is returned when no appropriate icon has been
-     *        found. <em>Note:</em> a null pixmap can still be returned in the
+     *        found. Note: a null pixmap can still be returned in the
      *        event of invalid parameters, such as empty names, negative sizes,
      *        and etc.
-     * @param colorScheme will define the stylesheet used to color this icon.
-     *        Note this will only work if @p name is an svg file.
-     * @return the QPixmap. Can be null when not found, depending on
-     *         @p canReturnNull.
-     * @since 5.88
+     *
+     * \a colorScheme will define the stylesheet used to color this icon.
+     *        Note this will only work if \a name is an svg file.
+     *
+     * Returns the QPixmap. Can be null when not found, depending on
+     *         \a canReturnNull.
+     * \since 5.88
      */
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
@@ -375,24 +451,30 @@ public:
                            const std::optional<KIconColors> &colorScheme) const;
 #endif
 
-    /**
+    /*!
      * Loads an icon for a mimetype.
      * This is basically like loadIcon except that extra desktop themes are loaded if necessary.
      *
      * Consider using QIcon::fromTheme() with a fallback to "application-octet-stream" instead.
      *
-     * @param iconName The name of the icon, without extension, usually from KMimeType.
-     * @param group The icon group. This will specify the size of and effects to
+     * \a iconName The name of the icon, without extension, usually from KMimeType.
+     *
+     * \a group The icon group. This will specify the size of and effects to
      * be applied to the icon.
-     * @param size If nonzero, this overrides the size specified by @p group.
+     *
+     * \a size If nonzero, this overrides the size specified by \a group.
      *             See KIconLoader::StdSizes.
-     * @param state The icon state: @p DefaultState, @p ActiveState or
-     * @p DisabledState. Depending on the user's preferences, the iconloader
+     *
+     * \a state The icon state: \c DefaultState, \c ActiveState or
+     * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
-     * @param path_store If not null, the path of the icon is stored here.
-     * @param overlays a list of emblem icons to overlay, by name
-     *                 @see drawOverlays
-     * @return the QPixmap. Can not be null, the
+     *
+     * \a path_store If not null, the path of the icon is stored here.
+     *
+     * \a overlays a list of emblem icons to overlay, by name
+     *                 \sa drawOverlays
+     *
+     * Returns the QPixmap. Can not be null, the
      * "unknown" pixmap is returned when no appropriate icon has been found.
      */
     QPixmap loadMimeTypeIcon(const QString &iconName,
@@ -402,234 +484,281 @@ public:
                              const QStringList &overlays = QStringList(),
                              QString *path_store = nullptr) const;
 
-    /**
+    /*!
      * Returns the path of an icon.
-     * @param name The name of the icon, without extension. If an absolute
+     *
+     * \a name The name of the icon, without extension. If an absolute
      * path is supplied for this parameter, iconPath will return it
      * directly.
-     * @param group_or_size If positive, search icons whose size is
-     * specified by the icon group @p group_or_size. If negative, search
-     * icons whose size is - @p group_or_size.
+     *
+     * \a group_or_size If positive, search icons whose size is
+     * specified by the icon group \a group_or_size. If negative, search
+     * icons whose size is - \a group_or_size.
      *             See KIconLoader::Group and KIconLoader::StdSizes
-     * @param canReturnNull Can return a null string? If not, a path to the
+     *
+     * \a canReturnNull Can return a null string? If not, a path to the
      *                      "unknown" icon will be returned.
-     * @return the path of an icon, can be null or the "unknown" icon when
-     *         not found, depending on @p canReturnNull.
+     *
+     * Returns the path of an icon, can be null or the "unknown" icon when
+     *         not found, depending on \a canReturnNull.
      */
     QString iconPath(const QString &name, int group_or_size, bool canReturnNull = false) const;
 
-    /**
+    // TODO KF6 merge iconPath() with and without "scale" and move that argument after "group_or_size"
+    /*!
      * Returns the path of an icon.
-     * @param name The name of the icon, without extension. If an absolute
+     *
+     * \a name The name of the icon, without extension. If an absolute
      * path is supplied for this parameter, iconPath will return it
      * directly.
-     * @param group_or_size If positive, search icons whose size is
-     * specified by the icon group @p group_or_size. If negative, search
-     * icons whose size is - @p group_or_size.
+     *
+     * \a group_or_size If positive, search icons whose size is
+     * specified by the icon group \a group_or_size. If negative, search
+     * icons whose size is - \a group_or_size.
      *             See KIconLoader::Group and KIconLoader::StdSizes
-     * @param canReturnNull Can return a null string? If not, a path to the
+     *
+     * \a canReturnNull Can return a null string? If not, a path to the
      *                      "unknown" icon will be returned.
-     * @param scale The scale of the icon group.
-     * @return the path of an icon, can be null or the "unknown" icon when
-     *         not found, depending on @p canReturnNull.
-     * @since 5.48
+     *
+     * \a scale The scale of the icon group.
+     *
+     * Returns the path of an icon, can be null or the "unknown" icon when
+     *         not found, depending on \a canReturnNull.
+     * \since 5.48
      */
-    // TODO KF6 merge iconPath() with and without "scale" and move that argument after "group_or_size"
     QString iconPath(const QString &name, int group_or_size, bool canReturnNull, qreal scale) const;
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
-    /**
+    /*!
      * Loads an animated icon.
-     * @param name The name of the icon.
-     * @param group The icon group. See loadIcon().
-     * @param size Override the default size for @p group.
+     *
+     * \a name The name of the icon.
+     *
+     * \a group The icon group. See loadIcon().
+     *
+     * \a size Override the default size for \a group.
      *             See KIconLoader::StdSizes.
-     * @param parent The parent object of the returned QMovie.
-     * @return A QMovie object. Can be null if not found or not valid.
+     *
+     * \a parent The parent object of the returned QMovie.
+     *
+     * Returns A QMovie object. Can be null if not found or not valid.
      *         Ownership is passed to the caller.
-     * @deprecated since 6.5, use QMovie API
+     * \deprecated[6.5] use QMovie API
      */
     KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QMovie *loadMovie(const QString &name, KIconLoader::Group group, int size = 0, QObject *parent = nullptr) const;
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
-    /**
+    /*!
      * Returns the path to an animated icon.
-     * @param name The name of the icon.
-     * @param group The icon group. See loadIcon().
-     * @param size Override the default size for @p group.
+     *
+     * \a name The name of the icon.
+     *
+     * \a group The icon group. See loadIcon().
+     *
+     * \a size Override the default size for \a group.
      *             See KIconLoader::StdSizes.
-     * @return the full path to the movie, ready to be passed to QMovie's constructor.
+     *
+     * Returns the full path to the movie, ready to be passed to QMovie's constructor.
+     *
      * Empty string if not found.
-     * @deprecated since 6.5, use QMovie API
+     * \deprecated [6.5] use QMovie API
      */
     KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QString moviePath(const QString &name, KIconLoader::Group group, int size = 0) const;
 #endif
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
-    /**
+    /*!
      * Loads an animated icon as a series of still frames. If you want to load
      * a .mng animation as QMovie instead, please use loadMovie() instead.
-     * @param name The name of the icon.
-     * @param group The icon group. See loadIcon().
-     * @param size Override the default size for @p group.
+     *
+     * \a name The name of the icon.
+     *
+     * \a group The icon group. See loadIcon().
+     *
+     * \a size Override the default size for \a group.
      *             See KIconLoader::StdSizes.
-     * @return A QStringList containing the absolute path of all the frames
+     *
+     * Returns a QStringList containing the absolute path of all the frames
      * making up the animation.
      *
-     * @deprecated since 6.5, use QMovie API
+     * \deprecated [6.5] use QMovie API
      */
     KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use QMovie API")
     QStringList loadAnimated(const QString &name, KIconLoader::Group group, int size = 0) const;
 #endif
 
-    /**
+    /*!
      * Queries all available icons.
-     * @since 6.11
+     * \since 6.11
      */
     [[nodiscard]] QStringList queryIcons() const;
 
-    /**
+    /*!
      * Queries all available icons for a specific group, having a specific
      * context.
-     * @param group_or_size If positive, search icons whose size is
-     * specified by the icon group @p group_or_size. If negative, search
-     * icons whose size is - @p group_or_size.
+     *
+     * \a group_or_size If positive, search icons whose size is
+     * specified by the icon group \a group_or_size. If negative, search
+     * icons whose size is - \a group_or_size.
      *             See KIconLoader::Group and KIconLoader::StdSizes
-     * @param context The icon context.
-     * @return a list of all icons
+     *
+     * \a context The icon context.
+     * Returns a list of all icons
      */
     QStringList queryIcons(int group_or_size, KIconLoader::Context context = KIconLoader::Any) const;
 
-    /**
+    /*!
      * Queries all available icons for a specific context.
-     * @param group_or_size The icon preferred group or size. If available
+     *
+     * \a group_or_size The icon preferred group or size. If available
      * at this group or size, those icons will be returned, in other case,
      * icons of undefined size will be returned. Positive numbers are groups,
      * negative numbers are negated sizes. See KIconLoader::Group and
      * KIconLoader::StdSizes
-     * @param context The icon context.
-     * @return A QStringList containing the icon names
+     *
+     * \a context The icon context.
+     *
+     * Returns A QStringList containing the icon names
      * available for that context
      */
     QStringList queryIconsByContext(int group_or_size, KIconLoader::Context context = KIconLoader::Any) const;
 
-    /**
-     * @internal
+    /*!
+     * \internal
      */
     bool hasContext(KIconLoader::Context context) const;
 
-    /**
+    /*!
      * Returns a list of all icons (*.png or *.xpm extension) in the
      * given directory.
-     * @param iconsDir the directory to search in
-     * @return A QStringList containing the icon paths
+     *
+     * \a iconsDir the directory to search in
+     * Returns A QStringList containing the icon paths
      */
     QStringList queryIconsByDir(const QString &iconsDir) const;
 
-    /**
+    /*!
      * Returns all the search paths for this icon loader, either absolute or
      * relative to GenericDataLocation.
+     *
      * Mostly internal (for KIconDialog).
      * \since 5.0
      */
     QStringList searchPaths() const;
 
-    /**
+    /*!
      * Returns the size of the specified icon group.
+     *
      * Using e.g. KIconLoader::SmallIcon will return 16.
-     * @param group the group to check.
-     * @return the current size for an icon group.
+     *
+     * \a group the group to check.
+     *
+     * Returns the current size for an icon group.
      */
     int currentSize(KIconLoader::Group group) const;
 
-    /**
-     * Returns a pointer to the current theme. Can be used to query
+    /*!
+     * Returns a pointer to the current theme.
+     * Can be used to query
      * available and default sizes for groups.
-     * @note The KIconTheme will change if reconfigure() is called and
+     *
+     * \note The KIconTheme will change if reconfigure() is called and
      * therefore it's not recommended to store the pointer anywhere.
-     * @return a pointer to the current theme. 0 if no theme set.
+     *
+     * Returns a pointer to the current theme. 0 if no theme set.
      */
     KIconTheme *theme() const;
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
-    /**
+    /*!
      * Returns a pointer to the KIconEffect object used by the icon loader.
-     * @return the KIconEffect.
+     * Returns the KIconEffect.
      *
-     * @deprecated since 6.5, use the static KIconEffect API
+     * \deprecated [6.5] use the static KIconEffect API
      */
     KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use static KIconEffect API")
     KIconEffect *iconEffect() const;
 #endif
 
-    /**
+    /*!
      * Reconfigure the icon loader, for instance to change the associated app name or extra search paths.
+     *
      * This also clears the in-memory pixmap cache (even if the appname didn't change, which is useful for unittests)
-     * @param appname the application name (empty for the global iconloader)
-     * @param extraSearchPaths additional search paths, either absolute or relative to GenericDataLocation
+     *
+     * \a appname the application name (empty for the global iconloader)
+     *
+     * \a extraSearchPaths additional search paths, either absolute or relative to GenericDataLocation
      */
     void reconfigure(const QString &appname, const QStringList &extraSearchPaths = QStringList());
 
-    /**
+    /*!
      * Returns the unknown icon. An icon that is used when no other icon
      * can be found.
-     * @return the unknown pixmap
      */
     static QPixmap unknown();
 
 #if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 5)
-    /**
+    /*!
      * Draws overlays on the specified pixmap, it takes the width and height
      * of the pixmap into consideration
-     * @param overlays List of up to 4 overlays to blend over the pixmap. The first overlay
+     *
+     * \a overlays List of up to 4 overlays to blend over the pixmap. The first overlay
      *                 will be in the bottom right corner, followed by bottom left, top left
      *                 and top right. An empty QString can be used to leave the specific position
      *                 blank.
-     * @param pixmap to draw on
-     * @since 4.7
-     * @deprecated since 6.5, use KIconUtils::addOverlays from KGuiAddons
+     *
+     * \a pixmap to draw on
+     * \since 4.7
+     * \deprecated [6.5]
+     * Use KIconUtils::addOverlays from KGuiAddons
      */
     KICONTHEMES_DEPRECATED_VERSION(6, 5, "Use KIconUtils::addOverlays from KGuiAddons")
     void drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIconLoader::Group group, int state = KIconLoader::DefaultState) const;
 #endif
 
+    /*!
+     *
+     */
     bool hasIcon(const QString &iconName) const;
 
-    /**
+    /*!
      * Sets the colors for this KIconLoader.
-     * NOTE: if you set a custom palette, if you are using some colors from
+     *
+     * \note if you set a custom palette, if you are using some colors from
      * application's palette, you need to track the application palette changes by yourself.
+     *
      * If you no longer wish to use a custom palette, use resetPalette()
-     * @see resetPalette
-     * @since 5.39
+     * \sa resetPalette()
+     * \since 5.39
      */
     void setCustomPalette(const QPalette &palette);
 
-    /**
+    /*!
      * The colors that will be used for the svg stylesheet in case the
      * loaded icons are svg-based, icons can be colored in different ways in
      * different areas of the application
-     * @return the palette, if any, an invalid one if the user didn't set it
-     * @since 5.39
+     *
+     * Returns the palette, if any, an invalid one if the user didn't set it
+     * \since 5.39
      */
     QPalette customPalette() const;
 
-    /**
+    /*!
      * Resets the custom palette used by the KIconLoader to use the
      * QGuiApplication::palette() again (and to follow it in case the
      * application's palette changes)
-     * @since 5.39
+     * \since 5.39
      */
     void resetPalette();
 
-    /**
-     * @returns whether we have set a custom palette using @f setCustomPalette
+    /*!
+     * Returns whether we have set a custom palette using setCustomPalette
      *
-     * @since 5.85
-     * @see resetPalette, setCustomPalette
+     * \since 5.85
+     * \sa resetPalette, setCustomPalette
      */
     bool hasCustomPalette() const;
 
@@ -637,63 +766,74 @@ public Q_SLOTS:
     // TODO: while marked as deprecated, newIconLoader() is still used:
     // internally by KIconLoadeer as well as by Plasma's Icons kcm module (state: 5.17)
     // this needs some further cleanup work before removing it from the API with KICONTHEMES_ENABLE_DEPRECATED_SINCE
-    /**
+    /*!
      * Re-initialize the global icon loader
      *
-     * @todo Check deprecation, still used internally.
-     * @deprecated Since 5.0, use emitChange(Group)
+     * \deprecated[5.0]
+     * Use emitChange(Group)
      */
     KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)") // TODO KF6 remove
     void newIconLoader();
 
-    /**
+    /*!
      * Emits an iconChanged() signal on all the KIconLoader instances in the system
      * indicating that a system's icon group has changed in some way. It will also trigger
      * a reload in all of them to update to the new theme.
      *
-     * @p group indicates the group that has changed
+     * \a group indicates the group that has changed
      *
-     * @since 5.0
+     * \since 5.0
      */
     static void emitChange(Group group);
 
 Q_SIGNALS:
-    /**
+    /*!
      * Emitted by newIconLoader once the new settings have been loaded
      */
     void iconLoaderSettingsChanged();
 
-    /**
+    /*!
      * Emitted when the system icon theme changes
      *
-     * @since 5.0
+     * \since 5.0
      */
     void iconChanged(int group);
 
 private:
     friend class KIconLoaderPrivate;
-    // @internal the data object
     std::unique_ptr<KIconLoaderPrivate> const d;
 
     Q_PRIVATE_SLOT(d, void _k_refreshIcons(int group))
 };
 
+/*!
+ * \namespace KDE
+ * \inmodule KIconThemes
+ */
 namespace KDE
 {
-/**
+/*!
  * \relates KIconLoader
  * Returns a QIcon with an appropriate
  * KIconEngine to perform loading and rendering.  KIcons thus adhere to
  * KDE style and effect standards.
- * @since 5.0
+ * \since 5.0
  */
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, KIconLoader *iconLoader = nullptr);
+
+/*!
+ * \relates KIconLoader
+ * Returns a QIcon with an appropriate
+ * KIconEngine to perform loading and rendering.  KIcons thus adhere to
+ * KDE style and effect standards.
+ * \since 5.0
+ */
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader = nullptr);
 
-/**
+/*!
  * \relates KIconLoader
  * Returns a QIcon for the given icon, with additional overlays.
- * @since 5.0
+ * \since 5.0
  */
 KICONTHEMES_EXPORT QIcon icon(const QString &iconName, const QStringList &overlays, KIconLoader *iconLoader = nullptr);
 

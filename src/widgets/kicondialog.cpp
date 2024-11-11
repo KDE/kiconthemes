@@ -216,7 +216,7 @@ void KIconDialogModel::loadPixmap(const QModelIndex &index)
     item.pixmap.setDevicePixelRatio(dpr);
 }
 
-/**
+/*
  * Qt allocates very little horizontal space for the icon name,
  * even if the gridSize width is large.  This delegate allocates
  * the gridSize width (minus some padding) for the icon and icon name.

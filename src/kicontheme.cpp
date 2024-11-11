@@ -185,7 +185,7 @@ public:
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
 
-/**
+/*
  * A subdirectory in an icon theme.
  */
 class KIconThemeDir
@@ -756,8 +756,6 @@ QString KIconTheme::defaultThemeName()
 {
     return QStringLiteral("hicolor");
 }
-
-/*** KIconThemeDir ***/
 
 KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
     : mSize(config.readEntry("Size", 0))

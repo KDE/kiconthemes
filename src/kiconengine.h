@@ -16,10 +16,11 @@ class KIconColors;
 class KIconLoader;
 class KIconEnginePrivate;
 
-/**
- * @class KIconEngine kiconengine.h KIconEngine
+/*!
+ * \class KIconEngine
+ * \inmodule KIconThemes
  *
- * \short A class to provide rendering of KDE icons.
+ * \brief A class to provide rendering of KDE icons.
  *
  * This is mostly used to provide Qt's icon loading in plasma-integration
  *
@@ -28,46 +29,50 @@ class KIconEnginePrivate;
 class KICONTHEMES_EXPORT KIconEngine : public QIconEngine // exported for plasma-integration
 {
 public:
-    /**
+    /*!
      * Constructs an icon engine for a named icon.
      *
-     * @param iconName the name of the icon to load
-     * @param iconLoader The icon loader that this engine is to use.
-     * @param overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
+     * \a iconName the name of the icon to load
      *
-     * @sa KIconLoader
+     * \a iconLoader The icon loader that this engine is to use.
+     *
+     * \a overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
+     *
+     * \sa KIconLoader
      */
     KIconEngine(const QString &iconName, KIconLoader *iconLoader, const QStringList &overlays);
 
-    /**
+    /*!
      * \overload
      */
     KIconEngine(const QString &iconName, KIconLoader *iconLoader);
 
-    /**
+    /*!
      * Constructs an icon engine for a KDE named icon with a specific palette.
      *
-     * @param iconName the name of the icon to load
-     * @param colors defines the colors we want to be applied on this icon
-     * @param iconLoader The KDE icon loader that this engine is to use.
+     * \a iconName the name of the icon to load
+     *
+     * \a colors defines the colors we want to be applied on this icon
+     *
+     * \a iconLoader The KDE icon loader that this engine is to use.
      */
     KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader);
 
-    /**
+    /*!
      * Constructs an icon engine for a KDE named icon with a specific palette and overlays.
      *
-     * @param iconName the name of the icon to load
-     * @param colors defines the colors we want to be applied on this icon
-     * @param iconLoader The KDE icon loader that this engine is to use.
-     * @param overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
+     * \a iconName the name of the icon to load
      *
-     * @since 6.1
+     * \a colors defines the colors we want to be applied on this icon
+     *
+     * \a iconLoader The KDE icon loader that this engine is to use.
+     *
+     * \a overlays Add one or more overlays to the icon. See KIconLoader::Overlays.
+     *
+     * \since 6.1
      */
     KIconEngine(const QString &iconName, const KIconColors &colors, KIconLoader *iconLoader, const QStringList &overlays);
 
-    /**
-     * Destructor.
-     */
     ~KIconEngine() override;
 
     /// Reimplementation
