@@ -96,7 +96,7 @@ QStringList deduplicateIconsByName(const QStringList &icons)
 
 } // namespace
 
-/**
+/*
  * Function to convert an uint32_t to AARRGGBB hex values.
  *
  * W A R N I N G !
@@ -128,7 +128,7 @@ static QString paletteId(const KIconColors &colors)
     return buffer;
 }
 
-/*** KIconThemeNode: A node in the icon theme dependency tree. ***/
+/* KIconThemeNode: A node in the icon theme dependency tree. */
 
 class KIconThemeNode
 {

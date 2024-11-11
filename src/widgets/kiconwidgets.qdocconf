@@ -1,0 +1,19 @@
+include($KDE_DOCS/global/qt-module-defaults.qdocconf)
+
+project = KIconWidgets
+description = Icon GUI utilities
+
+documentationinheaders = true
+
+headerdirs += .
+sourcedirs += .
+imagedirs = ../docs/pics/
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtgui \
+    qtwidgets \
+    kiconthemes

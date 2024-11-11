@@ -53,6 +53,8 @@ ecm_generate_headers(KIconWidgets_HEADERS
   REQUIRED_HEADERS KIconWidgets_HEADERS
 )
 
+ecm_generate_qdoc(KF6IconWidgets kiconwidgets.qdocconf)
+
 install(TARGETS KF6IconWidgets EXPORT KF6IconThemesTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
@@ -64,33 +66,3 @@ install(FILES
 if(BUILD_DESIGNERPLUGIN)
     add_subdirectory(designer)
 endif()
-
-if(BUILD_QCH)
-    ecm_add_qch(
-        KF6IconWidgets_QCH
-        NAME KIconWidgets
-        BASE_NAME KF6IconWidgets
-        VERSION ${KF_VERSION}
-        ORG_DOMAIN org.kde
-        SOURCES # using only public headers, to cover only public API
-            ${KIconWidgets_HEADERS}
-        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
-        IMAGE_DIRS "${CMAKE_SOURCE_DIR}/docs/pics"
-        LINK_QCHS
-            Qt6Widgets_QCH
-        INCLUDE_DIRS
-            ${CMAKE_CURRENT_BINARY_DIR}
-        BLANK_MACROS
-            KICONWIDGETS_EXPORT
-            KICONWIDGETS_DEPRECATED
-            KICONWIDGETS_DEPRECATED_EXPORT
-            "KICONWIDGETS_DEPRECATED_VERSION(x, y, t)"
-            "KICONWIDGETS_DEPRECATED_VERSION_BELATED(x, y, xt, yt, t)"
-            "KICONWIDGETS_ENUMERATOR_DEPRECATED_VERSION(x, y, t)"
-            "KICONWIDGETS_ENUMERATOR_DEPRECATED_VERSION_BELATED(x, y, xt, yt, t)"
-        TAGFILE_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        QCH_INSTALL_DESTINATION ${KDE_INSTALL_QTQCHDIR}
-        COMPONENT Devel
-    )
-endif()
-

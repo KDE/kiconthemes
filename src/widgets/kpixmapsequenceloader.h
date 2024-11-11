@@ -12,15 +12,20 @@
 
 #include "kiconwidgets_export.h"
 
+/*!
+ * \namespace KPixmapSequenceLoader
+ * \inmodule KIconWidgets
+ */
 namespace KPixmapSequenceLoader
 {
 
-/**
+/*!
  * Loads a pixmapSequence given the xdg icon name
  *
- * @param iconName The name of the icon, without extension.
- * @param size the size to be used
- * @since 6.0
+ * \a iconName The name of the icon, without extension.
+ *
+ * \a size the size to be used
+ * \since 6.0
  */
 KICONWIDGETS_EXPORT KPixmapSequence load(const QString &iconName, int size);
 
