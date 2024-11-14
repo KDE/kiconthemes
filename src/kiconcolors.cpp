@@ -106,11 +106,7 @@ KIconColors::KIconColors(const QPalette &palette)
     d->background = palette.window().color();
     d->highlight = palette.highlight().color();
     d->highlightedText = palette.highlightedText().color();
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
     d->accent = palette.accent().color();
-#else
-    d->accent = palette.highlight().color();
-#endif
 
     if (!d->lastColorScheme || !d->lastPalette || palette != d->lastPalette) {
         d->lastPalette = palette;
