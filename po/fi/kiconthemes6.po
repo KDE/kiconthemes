@@ -3,6 +3,7 @@
 # Author: Artnay
 # Author: Lliehu
 # Author: Niklas Laxström
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2018, 2021, 2022, 2024 Tommi Nieminen <translator@legisign.org>
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2002, 2003, 2004, 2005, 2006.
 # Mikko Ikola <ikola@iki.fi>, 2003, 2005.
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003, 2004, 2008.
@@ -12,14 +13,13 @@
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
 # Teemu Rytilahti <tpr@d5k.net>, 2008.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
-# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2018, 2021, 2022.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2022-08-19 14:14+0300\n"
+"PO-Revision-Date: 2024-10-20 14:21+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -27,8 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
-"X-POT-Import-Date: 2013-01-13 20:43:21+0000\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: widgets/kiconbutton.cpp:75
 #, kde-format
@@ -37,8 +36,7 @@ msgid "Select Icon…"
 msgstr "Valitse kuvake…"
 
 #: widgets/kicondialog.cpp:329
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Kaikki"
@@ -47,13 +45,13 @@ msgstr "Kaikki"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "Vain symboliset"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "Ei symbolisia"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"
