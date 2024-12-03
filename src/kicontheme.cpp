@@ -100,13 +100,20 @@ static void initThemeHelper()
     // get config, with fallback to kdeglobals
     const auto config = KSharedConfig::openConfig();
 
-    // TODO: add Qt API to really fully override the engine
-    // https://codereview.qt-project.org/c/qt/qtbase/+/559108
-
     // enforce the theme configured by the user, with kdeglobals fallback
     // if not set, use Breeze
-    QString themeToUse = KConfigGroup(config, "Icons").readEntry("Theme", QStringLiteral("breeze"));
+    const QString themeToUse = KConfigGroup(config, "Icons").readEntry("Theme", QStringLiteral("breeze"));
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 8, 0)
+    // set our theme, Qt internally will still not fully use our engine and lookup
     QIcon::setThemeName(themeToUse);
+#else
+    // use Qt API to really fully override the engine, if we set KIconEngine the Key in our plugin will
+    // enforce that our engine is used
+    // https://codereview.qt-project.org/c/qt/qtbase/+/563241
+    QIcon::setThemeName(QStringLiteral("KIconEngine"));
+#endif
+
     // Tell KIconTheme about the theme, in case KIconLoader is used directly
     *_themeOverride() = themeToUse;
     qCDebug(KICONTHEMES) << "KIconTheme::initTheme() enforces the icon theme:" << themeToUse;
