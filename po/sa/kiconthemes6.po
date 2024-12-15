@@ -3,24 +3,27 @@
 # This file is distributed under the same license as the kiconthemes package.
 # Kali <EMAIL@ADDRESS>, 2024.
 #
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-03-12 00:35+0000\n"
-"PO-Revision-Date: 2024-12-13 19:09+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-14 01:48+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: widgets/kiconbutton.cpp:75
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr ""
+msgstr "चिह्नं चिनोतु…"
 
 #: widgets/kicondialog.cpp:329
 #, kde-format
@@ -32,13 +35,13 @@ msgstr "सर्वे"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "केवलं प्रतीकात्मकम्"
 
 #: widgets/kicondialog.cpp:338
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "न प्रतीकात्मकम्"
 
 #: widgets/kicondialog.cpp:359
 msgid "All"
@@ -84,12 +87,12 @@ msgstr "स्थितिः"
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr ""
+msgstr "इतर"
 
 #: widgets/kicondialog.cpp:439
 #, kde-format
 msgid "Browse…"
-msgstr "ब्राउज़ करें..."
+msgstr "ब्राउज़ करें…"
 
 #: widgets/kicondialog.cpp:641
 #, kde-format
