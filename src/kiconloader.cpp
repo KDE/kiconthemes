@@ -221,8 +221,7 @@ void KIconLoaderPrivate::clear()
     /* antlarr: There's no need to delete d->mpThemeRoot as it's already
     deleted when the elements of d->links are deleted */
     qDeleteAll(links);
-    delete[] mpGroups;
-    mpGroups = nullptr;
+    mpGroups.clear();
     mPixmapCache.clear();
     m_appname.clear();
     searchPaths.clear();
@@ -370,7 +369,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
     // load default sizes
     initIconThemes();
     KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links.first()->theme;
-    mpGroups = new KIconGroup[static_cast<int>(KIconLoader::LastGroup)];
+    mpGroups.resize(int(KIconLoader::LastGroup));
     for (KIconLoader::Group i = KIconLoader::FirstGroup; i < KIconLoader::LastGroup; ++i) {
         if (groups[i] == nullptr) {
             break;
@@ -1197,7 +1196,7 @@ QMovie *KIconLoader::loadMovie(const QString &name, KIconLoader::Group group, in
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
 QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, int size) const
 {
-    if (!d->mpGroups) {
+    if (d->mpGroups.empty()) {
         return QString();
     }
 
@@ -1247,7 +1246,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
 {
     QStringList lst;
 
-    if (!d->mpGroups) {
+    if (d->mpGroups.empty()) {
         return lst;
     }
 
@@ -1305,7 +1304,7 @@ KIconTheme *KIconLoader::theme() const
 
 int KIconLoader::currentSize(KIconLoader::Group group) const
 {
-    if (!d->mpGroups) {
+    if (d->mpGroups.empty()) {
         return -1;
     }
 

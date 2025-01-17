@@ -193,7 +193,7 @@ public:
     KIconLoader *const q;
 
     QStringList mThemesInTree;
-    KIconGroup *mpGroups = nullptr;
+    std::vector<KIconGroup> mpGroups;
     KIconThemeNode *mpThemeRoot = nullptr;
     QStringList searchPaths;
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
