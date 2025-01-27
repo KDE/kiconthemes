@@ -126,6 +126,13 @@ public:
     QList<int> querySizes(KIconLoader::Group group) const;
 
     /**
+     * Query all available icons.
+     * @return the list of icon names
+     * @since 6.11
+     */
+    [[nodiscard]] QStringList queryIcons() const;
+
+    /**
      * Query available icons for a size and context.
      * @param size the size of the icons
      * @param context the context of the icons

@@ -139,6 +139,7 @@ public:
     KIconThemeNode(const KIconThemeNode &) = delete;
     KIconThemeNode &operator=(const KIconThemeNode &) = delete;
 
+    [[nodiscard]] QStringList queryIcons() const;
     void queryIcons(QStringList *lst, int size, KIconLoader::Context context) const;
     void queryIconsByContext(QStringList *lst, int size, KIconLoader::Context context) const;
     QString findIcon(const QString &name, int size, KIconLoader::MatchType match) const;
@@ -154,6 +155,11 @@ KIconThemeNode::KIconThemeNode(KIconTheme *_theme)
 KIconThemeNode::~KIconThemeNode()
 {
     delete theme;
+}
+
+QStringList KIconThemeNode::queryIcons() const
+{
+    return theme->queryIcons();
 }
 
 void KIconThemeNode::queryIcons(QStringList *result, int size, KIconLoader::Context context) const
@@ -1377,7 +1383,18 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
     }
 
     return deduplicateIconsByName(result);
+}
+
+QStringList KIconLoader::queryIcons() const
+{
+    d->initIconThemes();
+
+    QStringList result;
+    for (const auto &themeNode : std::as_const(d->links)) {
+        result.append(themeNode->queryIcons());
     }
+
+    return deduplicateIconsByName(result);
 }
 
 QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context context) const

@@ -551,6 +551,16 @@ static bool isAnyOrDirContext(const KIconThemeDir *dir, KIconLoader::Context con
     return context == KIconLoader::Any || context == dir->context();
 }
 
+QStringList KIconTheme::queryIcons() const
+{
+    QStringList result;
+    const auto listDirs = d->mDirs + d->mScaledDirs;
+    for (const auto &dir : listDirs) {
+        result.append(dir->iconList());
+    }
+    return result;
+}
+
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match

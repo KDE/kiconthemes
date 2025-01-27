@@ -486,6 +486,12 @@ public:
 #endif
 
     /**
+     * Queries all available icons.
+     * @since 6.11
+     */
+    [[nodiscard]] QStringList queryIcons() const;
+
+    /**
      * Queries all available icons for a specific group, having a specific
      * context.
      * @param group_or_size If positive, search icons whose size is
