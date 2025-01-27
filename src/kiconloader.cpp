@@ -52,6 +52,50 @@
 
 #include <qplatformdefs.h> //for readlink
 
+namespace
+{
+
+/**
+ * Checks if name ends in one of the supported icon formats (i.e. .png)
+ * and returns the name without the extension if it does.
+ */
+QString removeIconExtension(const QString &name)
+{
+    if (name.endsWith(QLatin1String(".png")) //
+        || name.endsWith(QLatin1String(".xpm")) //
+        || name.endsWith(QLatin1String(".svg"))) {
+        return name.left(name.length() - 4);
+    } else if (name.endsWith(QLatin1String(".svgz"))) {
+        return name.left(name.length() - 5);
+    }
+
+    return name;
+}
+
+QStringList deduplicateIconsByName(const QStringList &icons)
+{
+    // Eliminate duplicate entries (same icon in different directories)
+    QStringList result;
+    QStringList entries;
+    for (const auto &icon : icons) {
+        const int n = icon.lastIndexOf(QLatin1Char('/'));
+        QString name;
+        if (n == -1) {
+            name = icon;
+        } else {
+            name = icon.mid(n + 1);
+        }
+        name = removeIconExtension(name);
+        if (!entries.contains(name)) {
+            entries += name;
+            result += icon;
+        }
+    }
+    return result;
+}
+
+} // namespace
+
 /**
  * Function to convert an uint32_t to AARRGGBB hex values.
  *
@@ -544,19 +588,6 @@ void KIconLoader::drawOverlays(const QStringList &overlays, QPixmap &pixmap, KIc
     d->drawOverlays(this, group, state, pixmap, overlays);
 }
 
-QString KIconLoaderPrivate::removeIconExtension(const QString &name) const
-{
-    if (name.endsWith(QLatin1String(".png")) //
-        || name.endsWith(QLatin1String(".xpm")) //
-        || name.endsWith(QLatin1String(".svg"))) {
-        return name.left(name.length() - 4);
-    } else if (name.endsWith(QLatin1String(".svgz"))) {
-        return name.left(name.length() - 5);
-    }
-
-    return name;
-}
-
 void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize &size, int &state) const
 {
     if ((state < 0) || (state >= KIconLoader::LastState)) {
@@ -909,7 +940,7 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         return _name;
     }
 
-    QString name = d->removeIconExtension(_name);
+    QString name = removeIconExtension(_name);
 
     QString path;
     if (group_or_size == KIconLoader::User) {
@@ -1058,7 +1089,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isAbsolutePath, see bug 434451
     const bool absolutePath = QDir::isAbsolutePath(name);
     if (!absolutePath) {
-        name = d->removeIconExtension(name);
+        name = removeIconExtension(name);
     }
 
     // Don't bother looking for an icon with no name.
@@ -1345,24 +1376,8 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
         themeNode->queryIconsByContext(&result, size, context);
     }
 
-    // Eliminate duplicate entries (same icon in different directories)
-    QString name;
-    QStringList res2;
-    QStringList entries;
-    for (const auto &icon : std::as_const(result)) {
-        const int n = icon.lastIndexOf(QLatin1Char('/'));
-        if (n == -1) {
-            name = icon;
-        } else {
-            name = icon.mid(n + 1);
-        }
-        name = d->removeIconExtension(name);
-        if (!entries.contains(name)) {
-            entries += name;
-            res2 += icon;
-        }
+    return deduplicateIconsByName(result);
     }
-    return res2;
 }
 
 QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context context) const
@@ -1385,24 +1400,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
         themeNode->queryIcons(&result, size, context);
     }
 
-    // Eliminate duplicate entries (same icon in different directories)
-    QString name;
-    QStringList res2;
-    QStringList entries;
-    for (const auto &icon : std::as_const(result)) {
-        const int n = icon.lastIndexOf(QLatin1Char('/'));
-        if (n == -1) {
-            name = icon;
-        } else {
-            name = icon.mid(n + 1);
-        }
-        name = d->removeIconExtension(name);
-        if (!entries.contains(name)) {
-            entries += name;
-            res2 += icon;
-        }
-    }
-    return res2;
+    return deduplicateIconsByName(result);
 }
 
 // used by KIconDialog to find out which contexts to offer in a combobox

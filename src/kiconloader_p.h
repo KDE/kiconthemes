@@ -121,12 +121,6 @@ public:
     QString unknownIconPath(int size, qreal scale) const;
 
     /**
-     * Checks if name ends in one of the supported icon formats (i.e. .png)
-     * and returns the name without the extension if it does.
-     */
-    QString removeIconExtension(const QString &name) const;
-
-    /**
      * @internal
      * Used with KIconLoader::loadIcon to convert the given name, size, group,
      * and icon state information to valid states. All parameters except the
