@@ -38,7 +38,6 @@ target_link_libraries(KF6IconWidgets
     Qt6::Widgets
     KF6::IconThemes
   PRIVATE
-    Qt6::GuiPrivate
     Qt6::Svg
     KF6::I18n          # for i18n in KIconDialog
     KF6::ConfigGui     # for KStandardActions
