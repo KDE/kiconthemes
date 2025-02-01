@@ -1483,12 +1483,10 @@ bool KIconLoader::hasCustomPalette() const
     return d->mCustomColors;
 }
 
-/*** the global icon loader ***/
-Q_GLOBAL_STATIC(KIconLoader, globalIconLoader)
-
 KIconLoader *KIconLoader::global()
 {
-    return globalIconLoader();
+    thread_local KIconLoader loader;
+    return &loader;
 }
 
 void KIconLoader::newIconLoader()
