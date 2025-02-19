@@ -811,7 +811,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
             // The next block removes the last word including the -, "a-b-symbolic" will become "a-b"
             // We remove it beforehand, "a-b-symbolic" now is "a-symbolic" and we'll add it back later.
             if (isSymbolic) {
-                currentName.remove(QLatin1String("-symbolic"));
+                currentName.chop(strlen("-symbolic"));
 
                 // Handle cases where the icon lacks a symbolic version.
                 // For example, "knotes-symbolic" doesn't exist and has no fallback or generic version.
