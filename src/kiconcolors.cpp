@@ -34,21 +34,6 @@ public:
     KIconColorsPrivate()
     {
     }
-    KIconColorsPrivate(const KIconColorsPrivate &other)
-        : QSharedData(other)
-        , text(other.text)
-        , background(other.background)
-        , highlight(other.highlight)
-        , highlightedText(other.highlightedText)
-        , accent(other.accent)
-        , positiveText(other.positiveText)
-        , neutralText(other.neutralText)
-        , negativeText(other.negativeText)
-    {
-    }
-    ~KIconColorsPrivate()
-    {
-    }
 
     QColor text;
     QColor background;
@@ -84,18 +69,19 @@ KIconColors KIconColors::operator=(const KIconColors &other)
     return *this;
 }
 
-KIconColors::KIconColors(const QColor &colors)
+KIconColors::KIconColors(const QColor &color)
     : d_ptr(new KIconColorsPrivate)
 {
     Q_D(KIconColors);
-    d->text = colors;
-    d->background = colors;
-    d->highlight = colors;
-    d->highlightedText = colors;
-    d->positiveText = colors;
-    d->neutralText = colors;
-    d->negativeText = colors;
-    d->accent = colors;
+    d->text = color;
+    d->background = color;
+    d->highlight = color;
+    d->highlightedText = color;
+    d->positiveText = color;
+    d->neutralText = color;
+    d->negativeText = color;
+    d->accent = color;
+    d->activeText = color;
 }
 
 KIconColors::KIconColors(const QPalette &palette)

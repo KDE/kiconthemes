@@ -36,9 +36,9 @@ public:
     KIconColors();
 
     /**
-     * Makes all the color property be @p colors
+     * Makes all the color properties be @p color.
      */
-    explicit KIconColors(const QColor &colors);
+    explicit KIconColors(const QColor &color);
 
     /**
      * Uses @palette to define text, highlight, highlightedText, accent and background.
@@ -69,7 +69,7 @@ public:
     void setNeutralText(const QColor &color);
     void setPositiveText(const QColor &color);
     void setNegativeText(const QColor &color);
-    void setActiveText(const QColor& color);
+    void setActiveText(const QColor &color);
 
 protected:
     /**
