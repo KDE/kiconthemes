@@ -28,6 +28,8 @@ IconDialog::IconDialog(QObject *parent)
                 Q_EMIT iconNameChanged(newIconName);
             }
         });
+        connect(m_dialog.data(), &KIconDialog::accepted, this, &IconDialog::accepted);
+        connect(m_dialog.data(), &KIconDialog::rejected, this, &IconDialog::rejected);
 
         m_dialog->installEventFilter(this);
     }

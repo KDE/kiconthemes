@@ -83,6 +83,8 @@ Q_SIGNALS:
     void customLocationChanged(const QString &customLocation);
     void modalityChanged(Qt::WindowModality modality);
     void visibleChanged();
+    void accepted();
+    void rejected();
 
 private:
     bool eventFilter(QObject *watched, QEvent *event) override;
