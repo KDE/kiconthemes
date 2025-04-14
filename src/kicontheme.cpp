@@ -373,9 +373,6 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // Find the theme description file. These are either locally in the :/icons resource path or global.
     QStringList icnlibs;
 
-    // local embedded icons have preference
-    icnlibs << QStringLiteral(":/icons");
-
 #ifdef Q_OS_ANDROID
     // Android icon theme installed by Kirigami
     icnlibs << QStringLiteral("assets:/qml/org/kde/kirigami");
@@ -386,6 +383,9 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
 
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
+
+    // local embedded icons
+    icnlibs << QStringLiteral(":/icons");
 
     QString fileName;
     QString mainSection;
@@ -709,14 +709,14 @@ QStringList KIconTheme::list()
     // Find the theme description file. These are either locally in the :/icons resource path or global.
     QStringList icnlibs;
 
-    // local embedded icons have preference
-    icnlibs << QStringLiteral(":/icons");
-
     // global icons
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("icons"), QStandardPaths::LocateDirectory);
 
     // These are not in the icon spec, but e.g. GNOME puts some icons there anyway.
     icnlibs += QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("pixmaps"), QStandardPaths::LocateDirectory);
+
+    // local embedded icons
+    icnlibs << QStringLiteral(":/icons");
 
     for (const QString &iconDir : std::as_const(icnlibs)) {
         QDir dir(iconDir);
