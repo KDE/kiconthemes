@@ -137,15 +137,11 @@ public:
      *
      */
     void setNegativeText(const QColor &color);
-<<<<<<< HEAD
-    void setActiveText(const QColor &color);
-=======
 
     /*!
      *
      */
-    void setActiveText(const QColor& color);
->>>>>>> c8aceb0 (Port API documentation to QDoc syntax)
+    void setActiveText(const QColor &color);
 
 protected:
     /*!
