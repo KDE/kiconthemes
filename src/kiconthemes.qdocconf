@@ -12,6 +12,8 @@ excludedirs += widgets tools
 
 outputformats = HTML
 
+navigation.landingpage = "KIconThemes"
+
 depends += \
     kde \
     qtcore \
