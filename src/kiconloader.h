@@ -266,7 +266,7 @@ public:
      * \a size If nonzero, this overrides the size specified by \a group.
      *             See KIconLoader::StdSizes.
      *
-     * \a state The icon state: \a DefaultState, \a ActiveState or
+     * \a state The icon state: \c DefaultState, \c ActiveState or
      * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
      *
@@ -314,7 +314,7 @@ public:
      * \a size If nonzero, this overrides the size specified by \a group.
      *             See KIconLoader::StdSizes.
      *
-     * \a state The icon state: \a DefaultState, \a ActiveState or
+     * \a state The icon state: \c DefaultState, \c ActiveState or
      * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
      *
@@ -417,12 +417,11 @@ public:
      *             for non-square icons.
      *
      * \a state The icon state: \c DefaultState, \c ActiveState or
-     *
-     * \a DisabledState. Depending on the user's preferences, the iconloader
+     * \c DisabledState. Depending on the user's preferences, the iconloader
      * may apply a visual effect to hint about its state.
      *
      * \a overlays a list of emblem icons to overlay, by name
-     *                 \sa drawOverlays
+     *                 \sa drawOverlays()
      *
      * \a path_store If not null, the path of the icon is stored here,
      *        if the icon was found. If the icon was not found \a path_store
@@ -763,7 +762,7 @@ public:
     bool hasCustomPalette() const;
 
 public Q_SLOTS:
-    // TODO: while marked as deprecated, newIconLoader() is still used:
+    // TODO KF7: while marked as deprecated, newIconLoader() is still used:
     // internally by KIconLoadeer as well as by Plasma's Icons kcm module (state: 5.17)
     // this needs some further cleanup work before removing it from the API with KICONTHEMES_ENABLE_DEPRECATED_SINCE
     /*!
@@ -772,7 +771,7 @@ public Q_SLOTS:
      * \deprecated[5.0]
      * Use emitChange(Group)
      */
-    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)") // TODO KF6 remove
+    KICONTHEMES_DEPRECATED_VERSION(5, 0, "Use KIconLoader::emitChange(Group)")
     void newIconLoader();
 
     /*!
