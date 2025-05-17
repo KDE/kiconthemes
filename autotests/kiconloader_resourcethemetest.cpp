@@ -31,10 +31,6 @@ private Q_SLOTS:
         // ensure we don't use the breeze icon set from our lib for these tests but the fake we set up below
         KIconTheme::forceThemeForTests(QString());
 
-        // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
-        QFile::remove(cacheFile);
-
         // Clear SHM cache
         KIconLoader::global()->reconfigure(QString());
     }

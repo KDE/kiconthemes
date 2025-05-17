@@ -23,10 +23,6 @@ private Q_SLOTS:
     {
         QStandardPaths::setTestModeEnabled(true);
 
-        // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
-        QFile::remove(cacheFile);
-
         // we have Breeze via it's library and it inherits hicolor
         KConfigGroup cg(KSharedConfig::openConfig(), "Icons");
         cg.writeEntry("Theme", "breeze");

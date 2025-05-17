@@ -16,19 +16,6 @@ class KIconLoader_Benchmark : public QObject
     Q_OBJECT
 private Q_SLOTS:
 
-    void init()
-    {
-#if 0 // Enable this code to benchmark very first startup.
-      // Starting the application again uses the on-disk cache, so actually benchmarking -with- a cache is more relevant.
-      // Remove icon cache
-        const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + "/icon-cache.kcache";
-        QFile::remove(cacheFile);
-
-        // Clear SHM cache
-        KIconLoader::global()->reconfigure(QString());
-#endif
-    }
-
     void benchmarkExistingIcons()
     {
         // icon list I get to load kwrite
@@ -92,9 +79,6 @@ private Q_SLOTS:
     void benchmarkNonExistingIcon_notCached()
     {
         QBENCHMARK {
-            // Remove icon cache
-            const QString cacheFile = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QStringLiteral("/icon-cache.kcache");
-            QFile::remove(cacheFile);
             // Clear SHM cache
             KIconLoader::global()->reconfigure(QString());
 
