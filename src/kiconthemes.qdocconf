@@ -38,3 +38,5 @@ qhp.KIconThemes.subprojects.qmltypes.title = QML Types
 qhp.KIconThemes.subprojects.qmltypes.indexTitle = KIconThemes QML Types
 qhp.KIconThemes.subprojects.qmltypes.selectors = qmltype
 qhp.KIconThemes.subprojects.qmltypes.sortPages = true
+
+tagfile = kiconthemes.tags

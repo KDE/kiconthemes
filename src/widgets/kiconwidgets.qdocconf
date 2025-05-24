@@ -33,3 +33,5 @@ qhp.KIconWidgets.subprojects.classes.title = C++ Classes
 qhp.KIconWidgets.subprojects.classes.indexTitle = KIconWidgets C++ Classes
 qhp.KIconWidgets.subprojects.classes.selectors = class fake:headerfile
 qhp.KIconWidgets.subprojects.classes.sortPages = true
+
+tagfile = kiconwidgets.tags
