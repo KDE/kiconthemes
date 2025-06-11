@@ -682,8 +682,11 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
     QBuffer buffer(&processedContents);
     buffer.open(QIODevice::WriteOnly);
     QXmlStreamWriter writer(&buffer);
+    bool foundStyleSheet = false;
     while (!reader.atEnd()) {
-        if (reader.readNext() == QXmlStreamReader::StartElement //
+        reader.readNext();
+        if (!foundStyleSheet //
+            && reader.tokenType() == QXmlStreamReader::StartElement //
             && reader.qualifiedName() == QLatin1String("style") //
             && reader.attributes().value(QLatin1String("id")) == QLatin1String("current-color-scheme")) {
             writer.writeStartElement(QStringLiteral("style"));
@@ -693,6 +696,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
             while (reader.tokenType() != QXmlStreamReader::EndElement) {
                 reader.readNext();
             }
+            foundStyleSheet = true;
         } else if (reader.tokenType() != QXmlStreamReader::Invalid) {
             writer.writeCurrentToken(reader);
         }
