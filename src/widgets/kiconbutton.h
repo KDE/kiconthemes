@@ -123,6 +123,10 @@ public:
      */
     int buttonIconSize() const;
 
+    void paintEvent(QPaintEvent *event) override;
+
+    void changeEvent(QEvent *event) override;
+
 Q_SIGNALS:
     /*!
      * Emitted when the icon has changed.

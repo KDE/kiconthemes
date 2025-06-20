@@ -11,9 +11,13 @@
 
 #include "kiconbutton.h"
 
+#include <QEvent>
 #include <QFileInfo>
+#include <QStyleOptionButton>
+#include <QStylePainter>
 
 #include <KLocalizedString>
+#include <KStyleExtensions>
 
 #include "kicondialog.h"
 
@@ -42,6 +46,8 @@ public:
     QString mIcon;
     KIconDialog *mpDialog;
     KIconLoader *mpLoader;
+
+    QStyle::ControlElement ce_iconButton = QStyle::ControlElement(0);
 };
 
 /*
@@ -71,6 +77,8 @@ KIconButtonPrivate::KIconButtonPrivate(KIconButton *qq, KIconLoader *loader)
     QObject::connect(q, &KIconButton::clicked, q, [this]() {
         _k_slotChangeIcon();
     });
+
+    ce_iconButton = KStyleExtensions::customControlElement(QStringLiteral("CE_IconButton"), q);
 
     q->setToolTip(i18nc("@info:tooltip", "Select Icon…"));
 }
@@ -160,6 +168,29 @@ void KIconButton::resetIcon()
 const QString &KIconButton::icon() const
 {
     return d->mIcon;
+}
+
+void KIconButton::paintEvent(QPaintEvent *event)
+{
+    if (d->ce_iconButton) {
+        QStylePainter painter(this);
+
+        QStyleOptionButton opt;
+        initStyleOption(&opt);
+
+        painter.drawControl(d->ce_iconButton, opt);
+        return;
+    }
+
+    return QPushButton::paintEvent(event);
+}
+
+void KIconButton::changeEvent(QEvent *event)
+{
+    QWidget::changeEvent(event);
+    if (event->type() == QEvent::StyleChange) {
+        d->ce_iconButton = KStyleExtensions::customControlElement(QStringLiteral("CE_IconButton"), this);
+    }
 }
 
 void KIconButtonPrivate::_k_slotChangeIcon()
