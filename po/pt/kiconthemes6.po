@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-12 00:35+0000\n"
+"POT-Creation-Date: 2025-06-26 00:39+0000\n"
 "PO-Revision-Date: 2022-08-14 12:14+0100\n"
 "Last-Translator: José Nuno Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -39,7 +39,7 @@ msgstr ""
 "X-POFile-SpellExtra: FindProxyForURLEx canResume Co ico\n"
 "X-POFile-IgnoreConsistency: Status\n"
 
-#: widgets/kiconbutton.cpp:75
+#: widgets/kiconbutton.cpp:83
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
