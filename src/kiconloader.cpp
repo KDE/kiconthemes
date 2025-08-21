@@ -954,12 +954,12 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
 
     QString path;
     if (group_or_size == KIconLoader::User) {
-        path = d->locate(name + QLatin1String(".png"));
+        path = d->locate(name + QLatin1String(".svg"));
         if (path.isEmpty()) {
             path = d->locate(name + QLatin1String(".svgz"));
         }
         if (path.isEmpty()) {
-            path = d->locate(name + QLatin1String(".svg"));
+            path = d->locate(name + QLatin1String(".png"));
         }
         if (path.isEmpty()) {
             path = d->locate(name + QLatin1String(".xpm"));
