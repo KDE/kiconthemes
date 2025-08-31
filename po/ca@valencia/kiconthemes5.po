@@ -28,7 +28,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Seleccioneu una icona…"
+msgstr "Trieu una icona…"
 
 #: kicondialog.cpp:314
 msgid "All"
@@ -95,7 +95,7 @@ msgstr "No hi ha cap icona en esta categoria"
 #: kicondialog.cpp:678 kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
-msgstr "Seleccioneu una icona"
+msgstr "Trieu una icona"
 
 #: kicondialog.cpp:678
 #, kde-format
