@@ -28,7 +28,7 @@ msgstr ""
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Trieu una icona…"
+msgstr "Tria una icona…"
 
 #: kicondialog.cpp:314
 msgid "All"
