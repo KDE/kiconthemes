@@ -147,6 +147,10 @@ void IconDialog::open()
         m_dialog->setModal(true);
     }
 
+    // This avoids leftover values from previous selection
+    // by the same dialog.
+    m_iconName = QString();
+
     m_dialog->setWindowModality(m_modality);
 
     m_dialog->setup(KIconLoader::Desktop, KIconLoader::Application, false, m_iconSize, m_user);
