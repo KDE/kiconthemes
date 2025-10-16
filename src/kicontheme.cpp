@@ -104,15 +104,10 @@ static void initThemeHelper()
     // if not set, use Breeze
     const QString themeToUse = KConfigGroup(config, "Icons").readEntry("Theme", QStringLiteral("breeze"));
 
-#if QT_VERSION < QT_VERSION_CHECK(6, 8, 0)
-    // set our theme, Qt internally will still not fully use our engine and lookup
-    QIcon::setThemeName(themeToUse);
-#else
     // use Qt API to really fully override the engine, if we set KIconEngine the Key in our plugin will
     // enforce that our engine is used
     // https://codereview.qt-project.org/c/qt/qtbase/+/563241
     QIcon::setThemeName(QStringLiteral("KIconEngine"));
-#endif
 
     // Tell KIconTheme about the theme, in case KIconLoader is used directly
     *_themeOverride() = themeToUse;
