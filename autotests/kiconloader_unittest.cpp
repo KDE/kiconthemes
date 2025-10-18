@@ -480,7 +480,7 @@ private Q_SLOTS:
                     break;
                 }
             }
-            QVERIFY(ts == foundSize);
+            QCOMPARE(ts, foundSize);
         }
     }
 

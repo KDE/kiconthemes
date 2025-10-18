@@ -125,10 +125,10 @@ private Q_SLOTS:
         const QImage image = icon.pixmap(22, 22).toImage();
 
         // center vertically
-        QVERIFY(icon.pixmap(22, 26).toImage().copy(0, 2, 22, 22) == image);
+        QCOMPARE(icon.pixmap(22, 26).toImage().copy(0, 2, 22, 22), image);
 
         // center horizontally
-        QVERIFY(icon.pixmap(26, 22).toImage().copy(2, 0, 22, 22) == image);
+        QCOMPARE(icon.pixmap(26, 22).toImage().copy(2, 0, 22, 22), image);
     }
 
     void testNonSquareSvg()

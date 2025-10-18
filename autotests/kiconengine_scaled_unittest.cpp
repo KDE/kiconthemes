@@ -47,9 +47,9 @@ private Q_SLOTS:
         QCOMPARE(image, unscaled);
 
         // center vertically
-        QVERIFY(icon.pixmap(QSize(22, 26), w.devicePixelRatio()).toImage().copy(0, 4, 44, 44) == image);
+        QCOMPARE(icon.pixmap(QSize(22, 26), w.devicePixelRatio()).toImage().copy(0, 4, 44, 44), image);
         // center horizontally
-        QVERIFY(icon.pixmap(QSize(26, 22), w.devicePixelRatio()).toImage().copy(4, 0, 44, 44) == image);
+        QCOMPARE(icon.pixmap(QSize(26, 22), w.devicePixelRatio()).toImage().copy(4, 0, 44, 44), image);
     }
 };
 
