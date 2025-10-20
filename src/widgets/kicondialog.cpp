@@ -71,8 +71,15 @@ void KIconDialogSortFilterProxyModel::setSymbolicIcons(SymbolicIcons symbolicIco
         return;
     }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
     m_symbolicIcons = symbolicIcons;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 void KIconDialogSortFilterProxyModel::setHasSymbolicIcon(bool hasSymbolicIcon)
@@ -81,8 +88,15 @@ void KIconDialogSortFilterProxyModel::setHasSymbolicIcon(bool hasSymbolicIcon)
         return;
     }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+#endif
     m_hasSymbolicIcon = hasSymbolicIcon;
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    endFilterChange(QSortFilterProxyModel::Direction::Rows);
+#else
     invalidateFilter();
+#endif
 }
 
 bool KIconDialogSortFilterProxyModel::filterAcceptsRow(int source_row, const QModelIndex &source_parent) const
