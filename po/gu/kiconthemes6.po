@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-26 00:39+0000\n"
+"POT-Creation-Date: 2025-10-21 00:39+0000\n"
 "PO-Revision-Date: 2009-05-13 18:57+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
@@ -24,65 +24,65 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "ચિહ્ન પસંદ કરો"
 
-#: widgets/kicondialog.cpp:329
+#: widgets/kicondialog.cpp:343
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr ""
 
-#: widgets/kicondialog.cpp:334
+#: widgets/kicondialog.cpp:348
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr ""
 
-#: widgets/kicondialog.cpp:338
+#: widgets/kicondialog.cpp:352
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr ""
 
-#: widgets/kicondialog.cpp:359
+#: widgets/kicondialog.cpp:373
 msgid "All"
 msgstr ""
 
-#: widgets/kicondialog.cpp:360
+#: widgets/kicondialog.cpp:374
 msgid "Actions"
 msgstr "ક્રિયાઓ"
 
-#: widgets/kicondialog.cpp:361
+#: widgets/kicondialog.cpp:375
 msgid "Applications"
 msgstr "કાર્યક્રમો"
 
-#: widgets/kicondialog.cpp:362
+#: widgets/kicondialog.cpp:376
 msgid "Categories"
 msgstr "વર્ગો"
 
-#: widgets/kicondialog.cpp:363
+#: widgets/kicondialog.cpp:377
 msgid "Devices"
 msgstr "ઉપકરણો"
 
-#: widgets/kicondialog.cpp:364
+#: widgets/kicondialog.cpp:378
 msgid "Emblems"
 msgstr "નિશાનીઓ"
 
-#: widgets/kicondialog.cpp:365
+#: widgets/kicondialog.cpp:379
 msgid "Emotes"
 msgstr "લાગણીચિહ્નો"
 
-#: widgets/kicondialog.cpp:366
+#: widgets/kicondialog.cpp:380
 msgid "Mimetypes"
 msgstr "માઇમપ્રકારો"
 
-#: widgets/kicondialog.cpp:367
+#: widgets/kicondialog.cpp:381
 msgid "Places"
 msgstr "જગ્યાઓ"
 
-#: widgets/kicondialog.cpp:368
+#: widgets/kicondialog.cpp:382
 msgid "Status"
 msgstr "સ્થિતિ"
 
-#: widgets/kicondialog.cpp:392
+#: widgets/kicondialog.cpp:406
 #, fuzzy, kde-format
 #| msgctxt "@item:inmenu"
 #| msgid "Other"
@@ -90,29 +90,29 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "બીજું"
 
-#: widgets/kicondialog.cpp:439
+#: widgets/kicondialog.cpp:453
 #, fuzzy, kde-format
 #| msgid "&Browse..."
 msgid "Browse…"
 msgstr "શોધખોળ (&B)..."
 
-#: widgets/kicondialog.cpp:641
+#: widgets/kicondialog.cpp:655
 #, kde-format
 msgid "No icons matching the search"
 msgstr ""
 
-#: widgets/kicondialog.cpp:643
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons in this category"
 msgstr ""
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:730 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "ચિહ્ન પસંદ કરો"
 
-#: widgets/kicondialog.cpp:730
+#: widgets/kicondialog.cpp:744
 #, fuzzy, kde-format
 #| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
 msgid ""

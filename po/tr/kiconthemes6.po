@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-06-26 00:39+0000\n"
+"POT-Creation-Date: 2025-10-21 00:39+0000\n"
 "PO-Revision-Date: 2024-03-12 13:23+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -39,92 +39,92 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Simge Seç…"
 
-#: widgets/kicondialog.cpp:329
+#: widgets/kicondialog.cpp:343
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Tümü"
 
-#: widgets/kicondialog.cpp:334
+#: widgets/kicondialog.cpp:348
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr "Yalnızca Sembolik"
 
-#: widgets/kicondialog.cpp:338
+#: widgets/kicondialog.cpp:352
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr "Sembolik Olmayan"
 
-#: widgets/kicondialog.cpp:359
+#: widgets/kicondialog.cpp:373
 msgid "All"
 msgstr "Tümü"
 
-#: widgets/kicondialog.cpp:360
+#: widgets/kicondialog.cpp:374
 msgid "Actions"
 msgstr "Eylemler"
 
-#: widgets/kicondialog.cpp:361
+#: widgets/kicondialog.cpp:375
 msgid "Applications"
 msgstr "Uygulamalar"
 
-#: widgets/kicondialog.cpp:362
+#: widgets/kicondialog.cpp:376
 msgid "Categories"
 msgstr "Kategoriler"
 
-#: widgets/kicondialog.cpp:363
+#: widgets/kicondialog.cpp:377
 msgid "Devices"
 msgstr "Aygıtlar"
 
-#: widgets/kicondialog.cpp:364
+#: widgets/kicondialog.cpp:378
 msgid "Emblems"
 msgstr "Amblemler"
 
-#: widgets/kicondialog.cpp:365
+#: widgets/kicondialog.cpp:379
 msgid "Emotes"
 msgstr "Duygu Simgeleri"
 
-#: widgets/kicondialog.cpp:366
+#: widgets/kicondialog.cpp:380
 msgid "Mimetypes"
 msgstr "MIME Türleri"
 
-#: widgets/kicondialog.cpp:367
+#: widgets/kicondialog.cpp:381
 msgid "Places"
 msgstr "Yerler"
 
-#: widgets/kicondialog.cpp:368
+#: widgets/kicondialog.cpp:382
 msgid "Status"
 msgstr "Durum"
 
-#: widgets/kicondialog.cpp:392
+#: widgets/kicondialog.cpp:406
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Diğer"
 
-#: widgets/kicondialog.cpp:439
+#: widgets/kicondialog.cpp:453
 #, kde-format
 msgid "Browse…"
 msgstr "&Göz At…"
 
-#: widgets/kicondialog.cpp:641
+#: widgets/kicondialog.cpp:655
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Aramayla eşleşen simge yok"
 
-#: widgets/kicondialog.cpp:643
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons in this category"
 msgstr "Bu kategoride simge yok"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:730 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Simge Seç"
 
-#: widgets/kicondialog.cpp:730
+#: widgets/kicondialog.cpp:744
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
