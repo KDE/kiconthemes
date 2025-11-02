@@ -93,10 +93,13 @@ public:
      */
     QColor negativeText() const;
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 20)
     /*!
-     *
+     * \deprecated[6.20] Unused
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 20, "Unused")
     QColor activeText() const;
+#endif
 
     /*!
      *
@@ -138,10 +141,13 @@ public:
      */
     void setNegativeText(const QColor &color);
 
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 20)
     /*!
-     *
+     * \deprecated[6.20] Unused
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 20, "Unused")
     void setActiveText(const QColor &color);
+#endif
 
 protected:
     /*!
@@ -150,7 +156,7 @@ protected:
      *
      * Specifies: \c .ColorScheme-Text, \c .ColorScheme-Background, \c .ColorScheme-Highlight,
      * \c .ColorScheme-HighlightedText, \c .ColorScheme-PositiveText, \c .ColorScheme-NeutralText
-     * \c .ColorScheme-NegativeText, \c .ColorScheme-ActiveText, \c .ColorScheme-Accent
+     * \c .ColorScheme-NegativeText, \c .ColorScheme-Accent
      */
     QString stylesheet(KIconLoader::States state) const;
 
