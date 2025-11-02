@@ -150,8 +150,7 @@ protected:
      *
      * Specifies: \c .ColorScheme-Text, \c .ColorScheme-Background, \c .ColorScheme-Highlight,
      * \c .ColorScheme-HighlightedText, \c .ColorScheme-PositiveText, \c .ColorScheme-NeutralText
-     * \c .ColorScheme-NegativeText, \c .ColorScheme-ActiveText, \c .ColorScheme-Complement,
-     * \c .ColorScheme-Contrast, \c .ColorScheme-Accent
+     * \c .ColorScheme-NegativeText, \c .ColorScheme-ActiveText, \c .ColorScheme-Accent
      */
     QString stylesheet(KIconLoader::States state) const;
 

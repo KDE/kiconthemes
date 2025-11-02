@@ -21,9 +21,7 @@ static QString STYLESHEET_TEMPLATE()
 .ColorScheme-NeutralText{ color:%6; }\
 .ColorScheme-NegativeText{ color:%7; }\
 .ColorScheme-ActiveText{ color:%8; }\
-.ColorScheme-Complement{ color:%9; }\
-.ColorScheme-Contrast{ color:%10; }\
-.ColorScheme-Accent{ color:%11; }\
+.ColorScheme-Accent{ color:%9; }\
 ");
     /* clang-format on */
 }
@@ -109,19 +107,9 @@ KIconColors::~KIconColors()
 {
 }
 
-qreal luma(const QColor &color) {
-    return (0.299 * color.red() + 0.587 * color.green() + 0.114 * color.blue()) / 255;
-}
-
 QString KIconColors::stylesheet(KIconLoader::States state) const
 {
     Q_D(const KIconColors);
-
-    const QColor complement =
-        luma(d->background) > 0.5 ? Qt::white : Qt::black;
-
-    const QColor contrast =
-        luma(d->background) > 0.5 ? Qt::black : Qt::white;
 
     QColor accentColor = d->accent;
     // When selected, tint the accent color with a small portion of highlighted text color,
@@ -144,8 +132,6 @@ QString KIconColors::stylesheet(KIconLoader::States state) const
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->neutralText.name())
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->negativeText.name())
         .arg(state == KIconLoader::SelectedState ? d->highlightedText.name() : d->activeText.name())
-        .arg(complement.name())
-        .arg(contrast.name())
         .arg(accentColor.name());
 }
 
