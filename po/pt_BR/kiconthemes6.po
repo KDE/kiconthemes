@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-21 00:39+0000\n"
-"PO-Revision-Date: 2025-08-03 01:47-0300\n"
+"PO-Revision-Date: 2025-11-08 21:10-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -25,13 +25,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.04.3\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: widgets/kiconbutton.cpp:83
 #, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Selecionar ícone..."
+msgstr "Selecionar ícone…"
 
 #: widgets/kicondialog.cpp:343
 #, kde-format
@@ -100,7 +100,7 @@ msgstr "Outro"
 #: widgets/kicondialog.cpp:453
 #, kde-format
 msgid "Browse…"
-msgstr "Navegar..."
+msgstr "Navegar…"
 
 #: widgets/kicondialog.cpp:655
 #, kde-format
