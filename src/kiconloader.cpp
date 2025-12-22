@@ -697,7 +697,7 @@ QByteArray KIconLoaderPrivate::processSvg(const QString &path, KIconLoader::Stat
                 reader.readNext();
             }
             foundStyleSheet = true;
-        } else if (reader.tokenType() != QXmlStreamReader::Invalid) {
+        } else if (reader.tokenType() != QXmlStreamReader::Invalid && !reader.isWhitespace() && !reader.isComment()) {
             writer.writeCurrentToken(reader);
         }
     }
