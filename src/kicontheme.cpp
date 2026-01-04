@@ -436,7 +436,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
     d->mExtensions =
-        cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
+        cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".png"), QStringLiteral(".xpm")});
 
     QSet<QString> addedDirs; // Used for avoiding duplicates.
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
