@@ -133,8 +133,7 @@ static QString paletteId(const KIconColors &colors)
 class KIconThemeNode
 {
 public:
-    KIconThemeNode(KIconTheme *_theme);
-    ~KIconThemeNode();
+    KIconThemeNode(std::unique_ptr<KIconTheme> &&_theme);
 
     KIconThemeNode(const KIconThemeNode &) = delete;
     KIconThemeNode &operator=(const KIconThemeNode &) = delete;
@@ -144,17 +143,12 @@ public:
     void queryIconsByContext(QStringList *lst, int size, KIconLoader::Context context) const;
     QString findIcon(const QString &name, int size, KIconLoader::MatchType match) const;
 
-    KIconTheme *theme;
+    std::unique_ptr<KIconTheme> theme;
 };
 
-KIconThemeNode::KIconThemeNode(KIconTheme *_theme)
+KIconThemeNode::KIconThemeNode(std::unique_ptr<KIconTheme> &&_theme)
 {
-    theme = _theme;
-}
-
-KIconThemeNode::~KIconThemeNode()
-{
-    delete theme;
+    theme = std::move(_theme);
 }
 
 QStringList KIconThemeNode::queryIcons() const
@@ -417,7 +411,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     // load default sizes
     initIconThemes();
-    KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links[0]->theme;
+    KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links[0]->theme.get();
     mpGroups.resize(int(KIconLoader::LastGroup));
     for (KIconLoader::Group i = KIconLoader::FirstGroup; i < KIconLoader::LastGroup; ++i) {
         if (groups[i] == nullptr) {
@@ -439,21 +433,20 @@ void KIconLoaderPrivate::initIconThemes()
     mIconThemeInited = true;
 
     // Add the default theme and its base themes to the theme tree
-    KIconTheme *def = new KIconTheme(KIconTheme::current(), m_appname);
+    auto def = std::make_unique<KIconTheme>(KIconTheme::current(), m_appname);
     if (!def->isValid()) {
-        delete def;
         // warn, as this is actually a small penalty hit
         qCDebug(KICONTHEMES) << "Couldn't find current icon theme, falling back to default.";
-        def = new KIconTheme(KIconTheme::defaultThemeName(), m_appname);
+        def = std::make_unique<KIconTheme>(KIconTheme::defaultThemeName(), m_appname);
         if (!def->isValid()) {
             qCDebug(KICONTHEMES) << "Standard icon theme" << KIconTheme::defaultThemeName() << "not found!";
-            delete def;
             return;
         }
     }
-    auto themeRoot = std::make_unique<KIconThemeNode>(def);
+    const auto name = def->internalName();
+    auto themeRoot = std::make_unique<KIconThemeNode>(std::move(def));
     mpThemeRoot = themeRoot.get();
-    mThemesInTree.append(def->internalName());
+    mThemesInTree.append(name);
     links.push_back(std::move(themeRoot));
     addBaseThemes(mpThemeRoot, m_appname);
 
@@ -481,13 +474,12 @@ void KIconLoader::addAppDir(const QString &appname, const QString &themeBaseDir)
 
 void KIconLoaderPrivate::addAppThemes(const QString &appname, const QString &themeBaseDir)
 {
-    KIconTheme *def = new KIconTheme(QStringLiteral("hicolor"), appname, themeBaseDir);
+    auto def = std::make_unique<KIconTheme>(QStringLiteral("hicolor"), appname, themeBaseDir);
     if (!def->isValid()) {
-        delete def;
-        def = new KIconTheme(KIconTheme::defaultThemeName(), appname, themeBaseDir);
+        def = std::make_unique<KIconTheme>(KIconTheme::defaultThemeName(), appname, themeBaseDir);
     }
 
-    auto node = std::make_unique<KIconThemeNode>(def);
+    auto node = std::make_unique<KIconThemeNode>(std::move(def));
     auto nodePtr = node.get();
 
     if (!mThemesInTree.contains(appname)) {
@@ -534,12 +526,11 @@ void KIconLoaderPrivate::addThemeByName(const QString &themename, const QString 
     if (mThemesInTree.contains(themename + appname)) {
         return;
     }
-    KIconTheme *theme = new KIconTheme(themename, appname);
+    auto theme = std::make_unique<KIconTheme>(themename, appname);
     if (!theme->isValid()) {
-        delete theme;
         return;
     }
-    auto node = std::make_unique<KIconThemeNode>(theme);
+    auto node = std::make_unique<KIconThemeNode>(std::move(theme));
     KIconThemeNode *n = node.get();
     mThemesInTree.append(themename + appname);
     links.push_back(std::move(node));
@@ -1334,7 +1325,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
 KIconTheme *KIconLoader::theme() const
 {
     if (d->mpThemeRoot) {
-        return d->mpThemeRoot->theme;
+        return d->mpThemeRoot->theme.get();
     }
     return nullptr;
 }
