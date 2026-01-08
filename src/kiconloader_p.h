@@ -171,7 +171,7 @@ public:
 #if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 5)
     KIconEffect mpEffect;
 #endif
-    QList<KIconThemeNode *> links;
+    std::vector<std::unique_ptr<KIconThemeNode>> links;
 
     // This caches rendered QPixmaps in just this process.
     QCache<QString, PixmapWithPath> mPixmapCache;

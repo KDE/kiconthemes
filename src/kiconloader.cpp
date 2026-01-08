@@ -270,7 +270,6 @@ void KIconLoaderPrivate::clear()
 {
     /* antlarr: There's no need to delete d->mpThemeRoot as it's already
     deleted when the elements of d->links are deleted */
-    qDeleteAll(links);
     mpGroups.clear();
     mPixmapCache.clear();
     m_appname.clear();
@@ -418,7 +417,7 @@ void KIconLoaderPrivate::init(const QString &_appname, const QStringList &extraS
 
     // load default sizes
     initIconThemes();
-    KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links.first()->theme;
+    KIconTheme *defaultSizesTheme = links.empty() ? nullptr : links[0]->theme;
     mpGroups.resize(int(KIconLoader::LastGroup));
     for (KIconLoader::Group i = KIconLoader::FirstGroup; i < KIconLoader::LastGroup; ++i) {
         if (groups[i] == nullptr) {
@@ -452,9 +451,10 @@ void KIconLoaderPrivate::initIconThemes()
             return;
         }
     }
-    mpThemeRoot = new KIconThemeNode(def);
+    auto themeRoot = std::make_unique<KIconThemeNode>(def);
+    mpThemeRoot = themeRoot.get();
     mThemesInTree.append(def->internalName());
-    links.append(mpThemeRoot);
+    links.push_back(std::move(themeRoot));
     addBaseThemes(mpThemeRoot, m_appname);
 
     // Insert application specific themes at the top.
@@ -486,20 +486,15 @@ void KIconLoaderPrivate::addAppThemes(const QString &appname, const QString &the
         delete def;
         def = new KIconTheme(KIconTheme::defaultThemeName(), appname, themeBaseDir);
     }
-    KIconThemeNode *node = new KIconThemeNode(def);
-    bool addedToLinks = false;
+
+    auto node = std::make_unique<KIconThemeNode>(def);
+    auto nodePtr = node.get();
 
     if (!mThemesInTree.contains(appname)) {
         mThemesInTree.append(appname);
-        links.append(node);
-        addedToLinks = true;
+        links.push_back(std::move(node));
     }
-    addBaseThemes(node, appname);
-
-    if (!addedToLinks) {
-        // Nodes in links are being deleted later - this one needs manual care.
-        delete node;
-    }
+    addBaseThemes(nodePtr, appname);
 }
 
 void KIconLoaderPrivate::addBaseThemes(KIconThemeNode *node, const QString &appname)
@@ -544,9 +539,10 @@ void KIconLoaderPrivate::addThemeByName(const QString &themename, const QString 
         delete theme;
         return;
     }
-    KIconThemeNode *n = new KIconThemeNode(theme);
+    auto node = std::make_unique<KIconThemeNode>(theme);
+    KIconThemeNode *n = node.get();
     mThemesInTree.append(themename + appname);
-    links.append(n);
+    links.push_back(std::move(node));
     addInheritedThemes(n, appname);
 }
 
@@ -797,7 +793,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
     bool genericFallback = name.endsWith(QLatin1String("-x-generic"));
     bool isSymbolic = name.endsWith(QLatin1String("-symbolic"));
     QString path;
-    for (KIconThemeNode *themeNode : std::as_const(links)) {
+    for (const auto &themeNode : std::as_const(links)) {
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
@@ -1260,7 +1256,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
 
         QString path;
 
-        for (KIconThemeNode *themeNode : std::as_const(d->links)) {
+        for (const auto &themeNode : std::as_const(d->links)) {
             path = themeNode->theme->iconPath(file, size, KIconLoader::MatchExact);
             if (!path.isEmpty()) {
                 break;
@@ -1268,7 +1264,7 @@ QString KIconLoader::moviePath(const QString &name, KIconLoader::Group group, in
         }
 
         if (path.isEmpty()) {
-            for (KIconThemeNode *themeNode : std::as_const(d->links)) {
+            for (const auto &themeNode : std::as_const(d->links)) {
                 path = themeNode->theme->iconPath(file, size, KIconLoader::MatchBest);
                 if (!path.isEmpty()) {
                     break;
@@ -1382,7 +1378,7 @@ QStringList KIconLoader::queryIconsByContext(int group_or_size, KIconLoader::Con
         size = -group_or_size;
     }
 
-    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
+    for (const auto &themeNode : std::as_const(d->links)) {
         themeNode->queryIconsByContext(&result, size, context);
     }
 
@@ -1417,7 +1413,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
         size = -group_or_size;
     }
 
-    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
+    for (const auto &themeNode : std::as_const(d->links)) {
         themeNode->queryIcons(&result, size, context);
     }
 
@@ -1427,7 +1423,7 @@ QStringList KIconLoader::queryIcons(int group_or_size, KIconLoader::Context cont
 // used by KIconDialog to find out which contexts to offer in a combobox
 bool KIconLoader::hasContext(KIconLoader::Context context) const
 {
-    for (KIconThemeNode *themeNode : std::as_const(d->links)) {
+    for (const auto &themeNode : std::as_const(d->links)) {
         if (themeNode->theme->hasContext(context)) {
             return true;
         }
