@@ -647,9 +647,10 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
     // first look for a scaled image at exactly the requested size
     QString path = d->iconPath(d->mScaledDirs, name, size, scale, KIconLoader::MatchExact);
 
-    // then look for an unscaled one but request it at larger size so it doesn't become blurry
+    // then look for an unscaled one at the logical size
+    // The rendering system will handle the actual scaling for high-DPI displays
     if (path.isEmpty()) {
-        path = d->iconPath(d->mDirs, name, size * scale, 1, match);
+        path = d->iconPath(d->mDirs, name, size, 1, match);
     }
     return path;
 }
