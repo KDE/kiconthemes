@@ -13,7 +13,6 @@
 #include "kiconcolors.h"
 #include <KIconTheme>
 #include <QFileInfo>
-#include <QLibraryInfo>
 #include <QPainter>
 #include <qscopeguard.h>
 
@@ -150,12 +149,7 @@ QPixmap KIconEngine::pixmap(const QSize &size, QIcon::Mode mode, QIcon::State st
 
 QPixmap KIconEngine::scaledPixmap(const QSize &size, QIcon::Mode mode, QIcon::State state, qreal scale)
 {
-    // Since https://codereview.qt-project.org/c/qt/qtbase/+/563553 size is in logical pixels
-    if (QLibraryInfo::version() >= QVersionNumber(6, 8, 0)) {
-        return createPixmap(size, scale, mode, state);
-    } else {
-        return createPixmap(size / scale, scale, mode, state);
-    }
+    return createPixmap(size, scale, mode, state);
 }
 
 QString KIconEngine::iconName()
