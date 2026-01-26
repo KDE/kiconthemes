@@ -135,7 +135,7 @@ void KIconTheme::initTheme()
         }
     }
 
-    // initThemeHelper will do the remaining work via Q_COREAPP_STARTUP_FUNCTION(initThemeHelper) above
+    // initThemeHelper will do the remaining work via Q_COREAPP_STARTUP_FUNCTION(initThemeHelper)
     initThemeUsed = true;
 }
 
