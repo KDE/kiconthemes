@@ -1,4 +1,5 @@
 # Translation of kio4 into Japanese.
+# SPDX-FileCopyrightText: 2026 Mint <5602mint@gmail.com>
 # This file is distributed under the same license as the kdelibs package.
 # Taiki Komoda <kom@kde.gr.jp>, 2002, 2010.
 # Noriko Mizumoto <noriko@redhat.com>, 2004.
@@ -13,9 +14,9 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:49+0000\n"
-"PO-Revision-Date: 2019-05-25 16:26+0900\n"
-"Last-Translator: Fumiaki Okushi <okushi@kde.gr.jp>\n"
-"Language-Team: Japanese <kde-jp@kde.org>\n"
+"PO-Revision-Date: 2026-03-01 20:41+0900\n"
+"Last-Translator: Mint <5602mint@gmail.com>\n"
+"Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,18 +24,16 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 19.04.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: widgets/kiconbutton.cpp:83
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "アイコンの選択"
+msgstr "アイコンを選択…"
 
 #: widgets/kicondialog.cpp:343
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "すべて"
@@ -43,13 +42,13 @@ msgstr "すべて"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "シンボルのみ"
 
 #: widgets/kicondialog.cpp:352
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "シンボル以外"
 
 #: widgets/kicondialog.cpp:373
 msgid "All"
@@ -95,23 +94,22 @@ msgstr "状態"
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr ""
+msgstr "その他"
 
 #: widgets/kicondialog.cpp:453
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "ブラウズ(&B)..."
+msgstr "参照…"
 
 #: widgets/kicondialog.cpp:655
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "アイコンの検索結果なし"
 
 #: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "このカテゴリのアイコンなし"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
 #: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
@@ -120,21 +118,21 @@ msgid "Select Icon"
 msgstr "アイコンの選択"
 
 #: widgets/kicondialog.cpp:744
-#, fuzzy, kde-format
-#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+#, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
-msgstr "*.png *.xpm *.svg *.svgz|アイコンファイル (*.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|アイコンファイル (*.ico *.png *.xpm *.svg *."
+"svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
 #: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "アイコンのカテゴリ"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: widgets/kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "アイコンの選択"
+msgstr "アイコンを検索..."
