@@ -337,6 +337,11 @@ QString KIconThemePrivate::iconPath(const QList<KIconThemeDir *> &dirs, const QS
 KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
     : d(new KIconThemePrivate)
 {
+    if (name.isEmpty()) {
+        qCWarning(KICONTHEMES) << "KIconTheme created with empty theme name";
+        return;
+    }
+
     d->mInternalName = name;
 
     QStringList themeDirs;
@@ -410,7 +415,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     }
 
     if (d->mDir.isEmpty()) {
-        qCDebug(KICONTHEMES) << "Icon theme" << name << "not found.";
+        qCWarning(KICONTHEMES) << "Icon theme" << name << "not found.";
         return;
     }
 
