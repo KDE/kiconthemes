@@ -440,6 +440,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     d->followsColorScheme = cfg.readEntry("FollowsColorScheme", false);
     d->example = cfg.readPathEntry("Example", QString());
     d->screenshot = cfg.readPathEntry("ScreenShot", QString());
+    // Prefer png due to svg support being incomplete — QTBUG-115223
     d->mExtensions =
         cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
 
