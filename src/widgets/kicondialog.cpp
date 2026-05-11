@@ -422,10 +422,12 @@ void KIconDialogPrivate::init()
 
     ui.canvas->setModel(proxyModel);
 
-    QObject::connect(ui.canvas, &QAbstractItemView::activated, q, [this]() {
+    auto acceptSelected = [this]() {
         custom.clear();
         q->slotOk();
-    });
+    };
+
+    QObject::connect(ui.canvas, &QAbstractItemView::activated, q, acceptSelected);
 
     // You can't just stack widgets on top of each other in Qt Designer
     auto *placeholderLayout = new QVBoxLayout(ui.canvas);
@@ -457,7 +459,7 @@ void KIconDialogPrivate::init()
         browse();
     });
 
-    QObject::connect(ui.buttonBox, &QDialogButtonBox::accepted, q, &KIconDialog::slotOk);
+    QObject::connect(ui.buttonBox, &QDialogButtonBox::accepted, q, acceptSelected);
     QObject::connect(ui.buttonBox, &QDialogButtonBox::rejected, q, &QDialog::reject);
 
     q->adjustSize();
