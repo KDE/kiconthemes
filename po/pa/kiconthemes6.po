@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2026-05-14 00:39+0000\n"
 "PO-Revision-Date: 2024-01-03 14:26-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -97,28 +97,28 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "ਹੋਰ"
 
-#: widgets/kicondialog.cpp:453
+#: widgets/kicondialog.cpp:455
 #, kde-format
 msgid "Browse…"
 msgstr "ਝਲਕ…"
 
-#: widgets/kicondialog.cpp:655
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons matching the search"
 msgstr "ਖੋਜ ਨਾਲ ਕੋਈ ਆਈਕਾਨ ਨਹੀਂ ਮਿਲਦੇ ਹਨ"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:659
 #, kde-format
 msgid "No icons in this category"
 msgstr "ਇਸ ਕੈਟਾਗਰੀ ਲਈ ਕੋਈ ਆਈਕਾਨ ਨਹੀਂ ਹਨ"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "ਆਈਕਾਨ ਚੁਣੋ"
 
-#: widgets/kicondialog.cpp:744
+#: widgets/kicondialog.cpp:746
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

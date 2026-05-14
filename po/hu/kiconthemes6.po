@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2026-05-14 00:39+0000\n"
 "PO-Revision-Date: 2024-05-22 10:43+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -86,28 +86,28 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "Egyéb"
 
-#: widgets/kicondialog.cpp:453
+#: widgets/kicondialog.cpp:455
 #, kde-format
 msgid "Browse…"
 msgstr "Böngészés…"
 
-#: widgets/kicondialog.cpp:655
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Nincsenek a keresésre illeszkedő ikonok"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:659
 #, kde-format
 msgid "No icons in this category"
 msgstr "Nincsenek ikonok ebben a kategóriában"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Ikonválasztás"
 
-#: widgets/kicondialog.cpp:744
+#: widgets/kicondialog.cpp:746
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

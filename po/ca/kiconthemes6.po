@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2026-05-14 00:39+0000\n"
 "PO-Revision-Date: 2024-03-12 11:44+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -94,28 +94,28 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "Altres"
 
-#: widgets/kicondialog.cpp:453
+#: widgets/kicondialog.cpp:455
 #, kde-format
 msgid "Browse…"
 msgstr "Navega…"
 
-#: widgets/kicondialog.cpp:655
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons matching the search"
 msgstr "No hi ha cap icona que coincideixi amb la cerca"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:659
 #, kde-format
 msgid "No icons in this category"
 msgstr "No hi ha cap icona en aquesta categoria"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Trieu una icona"
 
-#: widgets/kicondialog.cpp:744
+#: widgets/kicondialog.cpp:746
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

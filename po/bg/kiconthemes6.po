@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:49+0000\n"
+"POT-Creation-Date: 2026-05-14 00:39+0000\n"
 "PO-Revision-Date: 2024-05-13 22:47+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -89,28 +89,28 @@ msgctxt "Other icons"
 msgid "Other"
 msgstr "Други"
 
-#: widgets/kicondialog.cpp:453
+#: widgets/kicondialog.cpp:455
 #, kde-format
 msgid "Browse…"
 msgstr "Преглед…"
 
-#: widgets/kicondialog.cpp:655
+#: widgets/kicondialog.cpp:657
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Няма икони, съответстващи на търсенето"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:659
 #, kde-format
 msgid "No icons in this category"
 msgstr "Няма икони в тази категория"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:744 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Избор на икона"
 
-#: widgets/kicondialog.cpp:744
+#: widgets/kicondialog.cpp:746
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
