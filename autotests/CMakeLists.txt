@@ -17,6 +17,7 @@ kiconthemes_tests(
   kicontheme_unittest
   kiconengine_unittest
   kiconengine_scaled_unittest
+  kiconbutton_unittest
   kicondialog_unittest
   kpixmapsequenceloadertest
 )
