@@ -41,7 +41,7 @@ target_link_libraries(KF6IconWidgets
     Qt6::Svg
     KF6::I18n          # for i18n in KIconDialog
     KF6::ConfigGui     # for KStandardActions
-    KF6::WidgetsAddons # for KPixmapSequence
+    KF6::WidgetsAddons # for KPixmapSequence, TODO KF7: drop (actual public) dep, see kpixmapsequenceloader.cpp
 )
 
 ecm_generate_headers(KIconWidgets_HEADERS
