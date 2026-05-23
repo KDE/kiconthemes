@@ -64,6 +64,8 @@ public:
      * Sets a strict icon size policy for allowed icons. When true,
      * only icons of the specified group's size in setIconType() are allowed,
      * and only icons of that size will be shown in the icon dialog.
+     *
+     * Default is \c false.
      */
     void setStrictIconSize(bool b);
 
@@ -80,11 +82,14 @@ public:
 
     /*!
      * Sets the button's initial icon.
+     *
+     * Default is no icon (empty string).
      */
     void setIcon(const QString &icon);
 
     /*!
-     * Sets the button's initial icon.
+     * Sets the button's shown icon.
+     * Does not change the selected icon.
      */
     void setIcon(const QIcon &icon);
 
@@ -100,6 +105,8 @@ public:
 
     /*!
      * Sets the size of the icon to be shown / selected.
+     *
+     * Default is 48.
      * \sa KIconLoader::StdSizes
      * \sa iconSize
      */
@@ -112,6 +119,8 @@ public:
 
     /*!
      * Sets the size of the icon to be shown on the button.
+     * The default shown size is using the current iconSize().
+     * This method decouples it from that property.
      * \sa KIconLoader::StdSizes
      * \sa buttonIconSize
      * \since 4.1
