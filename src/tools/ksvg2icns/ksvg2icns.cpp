@@ -131,6 +131,7 @@ int main(int argc, char *argv[])
                                                << "icns"
                                                << "-o" << outIcns << outPath;
 
+#if !defined(Q_OS_IOS)
     QProcess iconUtil;
 
     iconUtil.start(iconutilExec, utilArgs, QIODevice::ReadOnly);
@@ -139,6 +140,7 @@ int main(int argc, char *argv[])
 
     EXIT_ON_ERROR(iconUtil.exitStatus() == QProcess::NormalExit, "iconutil crashed!\n");
     EXIT_ON_ERROR(iconUtil.exitCode() == 0, "iconutil returned %d\n", iconUtil.exitCode());
+#endif
 
     return 0;
 }
