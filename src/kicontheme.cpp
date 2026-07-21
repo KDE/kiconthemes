@@ -20,12 +20,15 @@
 
 #include <QAction>
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
 #include <QMap>
 #include <QResource>
 #include <QSet>
+#include <QTimeZone>
 #include <QTimer>
 
 #include <private/qguiapplication_p.h>
@@ -33,6 +36,7 @@
 
 #include <qplatformdefs.h>
 
+#include <algorithm>
 #include <array>
 #include <cmath>
 
@@ -180,13 +184,135 @@ public:
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
 
+// Reads a theme's icon-theme.cache to find which sub-dirs hold an icon, so lookups skip the rest.
+class KIconCache
+{
+public:
+    explicit KIconCache(const QString &themeDir);
+
+    bool isValid() const
+    {
+        return m_isValid;
+    }
+
+    QList<const char *> lookup(const QByteArray &name);
+
+private:
+    // Read a big-endian int from the mmap, flags the cache invalid on an out-of-range or misaligned offset.
+    quint16 read16(quint32 offset)
+    {
+        if (offset > m_size - 2 || (offset & 0x1)) {
+            m_isValid = false;
+            return 0;
+        }
+        return m_data[offset + 1] | m_data[offset] << 8;
+    }
+    quint32 read32(quint32 offset)
+    {
+        if (offset > m_size - 4 || (offset & 0x3)) {
+            m_isValid = false;
+            return 0;
+        }
+        return m_data[offset + 3] | m_data[offset + 2] << 8 | m_data[offset + 1] << 16 | m_data[offset] << 24;
+    }
+
+    QFile m_file;
+    const uchar *m_data = nullptr;
+    quint32 m_size = 0;
+    bool m_isValid = false;
+};
+
+KIconCache::KIconCache(const QString &themeDir)
+{
+    // Treat a missing or stale cache (older than the directory it indexes) as absent. lookups then fall back to stat().
+    const QFileInfo info(themeDir + QLatin1String("icon-theme.cache"));
+    if (!info.exists() || info.lastModified(QTimeZone::UTC) < QFileInfo(themeDir).lastModified(QTimeZone::UTC)) {
+        return;
+    }
+    m_file.setFileName(info.absoluteFilePath());
+    if (!m_file.open(QFile::ReadOnly)) {
+        return;
+    }
+    m_size = m_file.size();
+    m_data = m_file.map(0, m_size);
+    if (!m_data || read16(0) != 1) {
+        return;
+    }
+    m_isValid = true;
+
+    // Also stale if any indexed sub-directory was modified after the cache was written.
+    const QDateTime lastModified = info.lastModified(QTimeZone::UTC);
+    const quint32 dirListOffset = read32(8);
+    const quint32 dirListLen = read32(dirListOffset);
+    for (quint32 i = 0; i < dirListLen; ++i) {
+        const quint32 offset = read32(dirListOffset + 4 + 4 * i);
+        if (!m_isValid || offset >= m_size
+            || lastModified < QFileInfo(themeDir + QString::fromUtf8(reinterpret_cast<const char *>(m_data + offset))).lastModified(QTimeZone::UTC)) {
+            m_isValid = false;
+            return;
+        }
+    }
+}
+
+QList<const char *> KIconCache::lookup(const QByteArray &name)
+{
+    QList<const char *> subDirs;
+    if (!m_isValid || name.isEmpty()) {
+        return subDirs;
+    }
+
+    // GtkIconCache name hash.
+    quint32 hash = static_cast<signed char>(name.at(0));
+    for (int i = 1; i < name.size(); ++i) {
+        hash = (hash << 5) - hash + name.at(i);
+    }
+
+    // Header: offset 4 = hash table, offset 8 = directory-name list.
+    const quint32 hashOffset = read32(4);
+    const quint32 hashBucketCount = read32(hashOffset);
+    if (!m_isValid || hashBucketCount == 0) {
+        m_isValid = false;
+        return subDirs;
+    }
+
+    // Follow the bucket's chain, each entry is [next][name offset][image-list offset].
+    quint32 bucketOffset = read32(hashOffset + 4 + (hash % hashBucketCount) * 4);
+    while (bucketOffset > 0 && bucketOffset <= m_size - 12) {
+        const quint32 nameOff = read32(bucketOffset + 4);
+        if (nameOff < m_size && name == reinterpret_cast<const char *>(m_data + nameOff)) {
+            const quint32 dirListOffset = read32(8);
+            const quint32 dirListLen = read32(dirListOffset);
+            const quint32 imageListOffset = read32(bucketOffset + 8);
+            const quint32 imageCount = read32(imageListOffset);
+            if (!m_isValid || imageListOffset + 4 + 8 * imageCount > m_size) {
+                m_isValid = false;
+                return subDirs;
+            }
+            subDirs.reserve(imageCount);
+            // Each image entry begins with a u16 index into the directory-name list.
+            for (quint32 j = 0; j < imageCount && m_isValid; ++j) {
+                const quint32 dirIndex = read16(imageListOffset + 4 + 8 * j);
+                const quint32 offset = read32(dirListOffset + 4 + dirIndex * 4);
+                if (!m_isValid || dirIndex >= dirListLen || offset >= m_size) {
+                    m_isValid = false;
+                    return subDirs;
+                }
+                subDirs.append(reinterpret_cast<const char *>(m_data + offset));
+            }
+            return subDirs;
+        }
+        bucketOffset = read32(bucketOffset);
+    }
+    return subDirs;
+}
+
 /*
  * A subdirectory in an icon theme.
  */
 class KIconThemeDir
 {
 public:
-    KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config);
+    KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config, std::shared_ptr<KIconCache> cache);
 
     bool isValid() const
     {
@@ -240,6 +366,7 @@ private:
 
     const QString mBaseDir;
     const QString mThemeDir;
+    const std::shared_ptr<KIconCache> mCache;
 };
 
 QString KIconThemePrivate::iconPath(const QList<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const
@@ -445,6 +572,7 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
         cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
 
     QSet<QString> addedDirs; // Used for avoiding duplicates.
+    QHash<QString, std::shared_ptr<KIconCache>> caches; // one cache reader per theme dir, shared by its sub-dirs
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
     for (const auto &dirName : dirs) {
         KConfigGroup cg(d->sharedConfig, dirName);
@@ -452,7 +580,11 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
             const QString currentDir(themeDir + dirName + QLatin1Char('/'));
             if (!addedDirs.contains(currentDir) && QFileInfo::exists(currentDir)) {
                 addedDirs.insert(currentDir);
-                KIconThemeDir *dir = new KIconThemeDir(themeDir, dirName, cg);
+                auto &cache = caches[themeDir];
+                if (!cache) {
+                    cache = std::make_shared<KIconCache>(themeDir);
+                }
+                KIconThemeDir *dir = new KIconThemeDir(themeDir, dirName, cg, cache);
                 if (dir->isValid()) {
                     if (dir->scale() > 1) {
                         d->mScaledDirs.append(dir);
@@ -758,11 +890,12 @@ QString KIconTheme::defaultThemeName()
     return QStringLiteral("hicolor");
 }
 
-KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
+KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config, std::shared_ptr<KIconCache> cache)
     : mSize(config.readEntry("Size", 0))
     , mScale(config.readEntry("Scale", 1))
     , mBaseDir(basedir)
     , mThemeDir(themedir)
+    , mCache(std::move(cache))
 {
     if (mSize == 0) {
         return;
@@ -829,6 +962,20 @@ QString KIconThemeDir::iconPath(const QString &name) const
 {
     if (!mbValid) {
         return QString();
+    }
+
+    // Skip the filesystem check if a valid cache says this directory lacks the icon.
+    if (mCache && mCache->isValid()) {
+        // The cache is keyed by name without extension.
+        const QByteArray base = name.left(name.lastIndexOf(QLatin1Char('.'))).toUtf8();
+        const QList<const char *> subDirs = mCache->lookup(base);
+        const auto matchesThisDir = [this](const char *subDir) {
+            return mThemeDir == QLatin1String(subDir);
+        };
+        // A second isValid() check catches a corrupt cache invalidated by lookup() then fall back to stat.
+        if (mCache->isValid() && std::none_of(subDirs.cbegin(), subDirs.cend(), matchesThisDir)) {
+            return QString();
+        }
     }
 
     const QString file = constructFileName(name);
