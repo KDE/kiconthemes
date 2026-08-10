@@ -33,8 +33,11 @@
 
 #include <qplatformdefs.h>
 
+#include <algorithm>
 #include <array>
 #include <cmath>
+#include <iterator>
+#include <tuple>
 
 #include "config.h"
 
@@ -552,6 +555,18 @@ static bool isAnyOrDirContext(const KIconThemeDir *dir, KIconLoader::Context con
     return context == KIconLoader::Any || context == dir->context();
 }
 
+static QList<KIconThemeDir *> anyOrContextDirs(const QList<KIconThemeDir *> dirs, KIconLoader::Context context)
+{
+    if (context == KIconLoader::Any) {
+        return dirs;
+    }
+    QList<KIconThemeDir *> filteredDirs;
+    std::ranges::copy_if(dirs.cbegin(), dirs.cend(), std::back_inserter(filteredDirs), [context](KIconThemeDir *dir) {
+        return context == dir->context();
+    });
+    return filteredDirs;
+}
+
 QStringList KIconTheme::queryIcons() const
 {
     QStringList result;
@@ -624,13 +639,18 @@ bool KIconTheme::hasContext(KIconLoader::Context context) const
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match) const
 {
-    return iconPathByName(iconName, size, match, 1 /*scale*/);
+    return iconPathByName(iconName, KIconLoader::Context::Any, size, 1 /*scale*/, match);
 }
 
 QString KIconTheme::iconPathByName(const QString &iconName, int size, KIconLoader::MatchType match, qreal scale) const
 {
+    return iconPathByName(iconName, KIconLoader::Context::Any, size, scale, match);
+}
+
+QString KIconTheme::iconPathByName(const QString &iconName, KIconLoader::Context context, int size, qreal scale, KIconLoader::MatchType match) const
+{
     for (const QString &current : std::as_const(d->mExtensions)) {
-        const QString path = iconPath(iconName + current, size, match, scale);
+        const QString path = iconPath(iconName + current, context, size, scale, match);
         if (!path.isEmpty()) {
             return path;
         }
@@ -645,17 +665,22 @@ bool KIconTheme::followsColorScheme() const
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match) const
 {
-    return iconPath(name, size, match, 1 /*scale*/);
+    return iconPath(name, KIconLoader::Context::Any, size, 1 /*scale*/, match);
 }
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const
 {
+    return iconPath(name, KIconLoader::Context::Any, size, scale, match);
+}
+
+QString KIconTheme::iconPath(const QString &name, KIconLoader::Context context, int size, qreal scale, KIconLoader::MatchType match) const
+{
     // first look for a scaled image at exactly the requested size
-    QString path = d->iconPath(d->mScaledDirs, name, size, scale, KIconLoader::MatchExact);
+    QString path = d->iconPath(anyOrContextDirs(d->mScaledDirs, context), name, size, scale, KIconLoader::MatchExact);
 
     // then look for an unscaled one but request it at larger size so it doesn't become blurry
     if (path.isEmpty()) {
-        path = d->iconPath(d->mDirs, name, size * scale, 1, match);
+        path = d->iconPath(anyOrContextDirs(d->mDirs, context), name, size * scale, 1, match);
     }
     return path;
 }

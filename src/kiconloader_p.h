@@ -54,14 +54,14 @@ public:
      * tries to find an icon with the name. It tries some extension and
      * match strategies
      */
-    QString findMatchingIcon(const QString &name, int size, qreal scale) const;
+    QString findMatchingIcon(const QString &name, KIconLoader::Context context, int size, qreal scale) const;
 
     /*
      * tries to find an icon with the name.
      * This is one layer above findMatchingIcon -- it also implements generic fallbacks
      * such as generic icons for mimetypes.
      */
-    QString findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const;
+    QString findMatchingIconWithGenericFallbacks(const QString &name, KIconLoader::Context context, int size, qreal scale) const;
 
     /*
      * returns the preferred icon path for an icon with the name.

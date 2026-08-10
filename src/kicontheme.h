@@ -214,6 +214,28 @@ public:
     /*!
      * Lookup an icon in the theme.
      *
+     * \a name The name of the icon, with extension.
+     *
+     * \a context The desired icon context, or \c KIconLoader::Context::Any.
+     *
+     * \a size The desired size of the icon.
+     *
+     * \a scale The scale of the icon group.
+     *
+     * \a match The matching mode. KIconLoader::MatchExact returns an icon
+     * only if matches exactly. KIconLoader::MatchBest returns the best matching
+     * icon.
+     *
+     * Returns An absolute path to the file of the icon if it's found, QString() otherwise.
+     *
+     * KIconLoader::isValid will return true, and false otherwise.
+     * \since 6.30
+     */
+    QString iconPath(const QString &name, KIconLoader::Context context, int size, qreal scale, KIconLoader::MatchType match) const;
+
+    /*!
+     * Lookup an icon in the theme.
+     *
      * \a name The name of the icon, without extension.
      *
      * \a size The desired size of the icon.
@@ -251,6 +273,29 @@ public:
      * \since 5.48
      */
     QString iconPathByName(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const;
+
+    /*!
+     * Lookup an icon in the theme.
+     *
+     * \a name The name of the icon, without extension.
+     *
+     * \a context The desired icon context, or \c KIconLoader::Context::Any.
+     *
+     * \a size The desired size of the icon.
+     *
+     * \a scale The scale of the icon group.
+     *
+     * \a match The matching mode. KIconLoader::MatchExact returns an icon
+     * only if matches exactly. KIconLoader::MatchBest returns the best matching
+     * icon.
+     *
+     * Returns An absolute path to the file of the icon if it's found, QString() otherwise.
+     *
+     * KIconLoader::isValid will return true, and false otherwise.
+     *
+     * \since 6.30
+     */
+    QString iconPathByName(const QString &name, KIconLoader::Context context, int size, qreal scale, KIconLoader::MatchType match) const;
 
     /*!
      * Returns true if the theme has any icons for the given context.

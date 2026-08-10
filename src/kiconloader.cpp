@@ -772,21 +772,21 @@ bool KIconLoaderPrivate::findCachedPixmapWithPath(const QString &key, QPixmap &d
     return false;
 }
 
-QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &name, int size, qreal scale) const
+QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &name, KIconLoader::Context context, int size, qreal scale) const
 {
-    QString path = findMatchingIcon(name, size, scale);
+    QString path = findMatchingIcon(name, context, size, scale);
     if (!path.isEmpty()) {
         return path;
     }
 
     const QString genericIcon = s_globalData()->genericIconFor(name);
     if (!genericIcon.isEmpty()) {
-        path = findMatchingIcon(genericIcon, size, scale);
+        path = findMatchingIcon(genericIcon, context, size, scale);
     }
     return path;
 }
 
-QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qreal scale) const
+QString KIconLoaderPrivate::findMatchingIcon(const QString &name, KIconLoader::Context context, int size, qreal scale) const
 {
     // This looks for the exact match and its
     // generic fallbacks in each themeNode one after the other.
@@ -805,7 +805,7 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
         QString currentName = name;
 
         while (!currentName.isEmpty()) {
-            path = themeNode->theme->iconPathByName(currentName, size, KIconLoader::MatchBest, scale);
+            path = themeNode->theme->iconPathByName(currentName, context, size, scale, KIconLoader::MatchBest);
             if (!path.isEmpty()) {
                 return path;
             }
@@ -913,7 +913,7 @@ QString KIconLoaderPrivate::preferredIconPath(const QString &name)
 
 inline QString KIconLoaderPrivate::unknownIconPath(int size, qreal scale) const
 {
-    QString path = findMatchingIcon(QStringLiteral("unknown"), size, scale);
+    QString path = findMatchingIcon(QStringLiteral("unknown"), KIconLoader::Context::Any, size, scale);
     if (path.isEmpty()) {
         qCDebug(KICONTHEMES) << "Warning: could not find \"unknown\" icon for size" << size << "at scale" << scale;
         return QString();
@@ -939,6 +939,30 @@ QString KIconLoaderPrivate::locate(const QString &fileName)
     return QString();
 }
 
+static std::tuple<QString, KIconLoader::Context> extractOptionalContext(const QString &name)
+{
+    if (name.startsWith(QLatin1Char('@'))) {
+        static const std::unordered_map<QString, KIconLoader::Context> contexts = {
+            {QLatin1String("@actions/"), KIconLoader::Context::Action},
+            {QLatin1String("@apps/"), KIconLoader::Context::Application},
+            {QLatin1String("@categories/"), KIconLoader::Context::Category},
+            {QLatin1String("@devices/"), KIconLoader::Context::Device},
+            {QLatin1String("@emblems/"), KIconLoader::Context::Emblem},
+            {QLatin1String("@emotes/"), KIconLoader::Context::Emote},
+            {QLatin1String("@intl/"), KIconLoader::Context::International},
+            {QLatin1String("@mimetypes/"), KIconLoader::Context::MimeType},
+            {QLatin1String("@places/"), KIconLoader::Context::Place},
+            {QLatin1String("@status/"), KIconLoader::Context::StatusIcon},
+        };
+        for (auto [prefix, context] : contexts) {
+            if (name.startsWith(prefix)) {
+                return {name.last(name.size() - prefix.size()), context};
+            }
+        }
+    }
+    return {name, KIconLoader::Context::Any};
+}
+
 // Finds the absolute path to an icon.
 
 QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canReturnNull) const
@@ -954,7 +978,7 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         return _name;
     }
 
-    QString name = removeIconExtension(_name);
+    auto [name, context] = extractOptionalContext(removeIconExtension(_name));
 
     QString path;
     if (group_or_size == KIconLoader::User) {
@@ -991,7 +1015,7 @@ QString KIconLoader::iconPath(const QString &_name, int group_or_size, bool canR
         }
     }
 
-    path = d->findMatchingIconWithGenericFallbacks(name, size, scale);
+    path = d->findMatchingIconWithGenericFallbacks(name, context, size, scale);
 
     if (path.isEmpty()) {
         // Try "User" group too.
@@ -1076,6 +1100,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
 
 {
     QString name = _name;
+    KIconLoader::Context context = KIconLoader::Any;
     bool favIconOverlay = false;
 
     if (_size.width() < 0 || _size.height() < 0 || _name.isEmpty()) {
@@ -1103,7 +1128,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
     // we need to honor resource :/ paths and QDir::searchPaths => use QDir::isAbsolutePath, see bug 434451
     const bool absolutePath = QDir::isAbsolutePath(name);
     if (!absolutePath) {
-        name = removeIconExtension(name);
+        std::tie(name, context) = extractOptionalContext(removeIconExtension(name));
     }
 
     // Don't bother looking for an icon with no name.
@@ -1149,7 +1174,10 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
         if (absolutePath && !favIconOverlay) {
             path = name;
         } else {
-            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name, std::min(size.height(), size.width()), scale);
+            path = d->findMatchingIconWithGenericFallbacks(favIconOverlay ? QStringLiteral("text-html") : name,
+                                                           favIconOverlay ? KIconLoader::Context::MimeType : context,
+                                                           std::min(size.height(), size.width()),
+                                                           scale);
         }
     }
 
@@ -1313,7 +1341,7 @@ QStringList KIconLoader::loadAnimated(const QString &name, KIconLoader::Group gr
         if (size == 0) {
             size = d->mpGroups[group].size;
         }
-        file = d->findMatchingIcon(file, size, 1); // FIXME scale
+        file = d->findMatchingIcon(file, KIconLoader::Context::Any, size, 1); // FIXME scale
     }
     if (file.isEmpty()) {
         return lst;
