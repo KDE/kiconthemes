@@ -755,7 +755,11 @@ void KIconTheme::reconfigure()
 // static
 QString KIconTheme::defaultThemeName()
 {
-    return QStringLiteral("hicolor");
+    if (qEnvironmentVariable("XDG_CURRENT_DESKTOP") == QStringLiteral("KDE")) {
+        return QStringLiteral("breeze");
+    } else {
+        return QStringLiteral("hicolor");
+    }
 }
 
 KIconThemeDir::KIconThemeDir(const QString &basedir, const QString &themedir, const KConfigGroup &config)
