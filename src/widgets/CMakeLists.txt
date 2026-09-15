@@ -44,7 +44,7 @@ target_link_libraries(KF6IconWidgets
     KF6::WidgetsAddons # for KPixmapSequence, TODO KF7: drop (actual public) dep, see kpixmapsequenceloader.cpp
 )
 
-ecm_generate_headers(KIconWidgets_HEADERS
+ecm_generate_headers(KIconWidgets_CamelCase_HEADERS
   HEADER_NAMES
   KIconButton
   KIconDialog
@@ -60,7 +60,27 @@ install(TARGETS KF6IconWidgets EXPORT KF6IconThemesTargets ${KF_INSTALL_TARGETS_
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconwidgets_export.h
   ${KIconWidgets_HEADERS}
+  ${KIconWidgets_CamelCase_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconWidgets COMPONENT Devel
+)
+
+ecm_add_installed_library_check(KF6IconWidgets
+    PACKAGE_NAME "KF6IconThemes"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+# KPixmapSequenceLoader depends on KWidgetsAddons's KPixmapSequence
+# KWidgetsAddons not part of public link interface currently
+# Remove using REGEX to avoid having to know the full path of the generated file.
+# TODO KF7: drop KWidgetsAddons linking, make header-only util like KQuickIconProvider
+list(FILTER KIconWidgets_CamelCase_HEADERS EXCLUDE REGEX KPixmapSequenceLoader)
+
+ecm_installed_library_check_include_strings(KF6IconWidgets
+    HEADERS ${KIconWidgets_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6IconWidgets
+    PREFIX KICONTHEMES
 )
 
 if(BUILD_DESIGNERPLUGIN)

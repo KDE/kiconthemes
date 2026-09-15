@@ -81,7 +81,7 @@ if(TARGET KF6::BreezeIcons)
     )
 endif ()
 
-ecm_generate_headers(KIconThemes_HEADERS
+ecm_generate_headers(KIconThemes_CamelCase_HEADERS
   HEADER_NAMES
   KIconColors
   KIconEffect
@@ -98,6 +98,7 @@ install(TARGETS KF6IconThemes EXPORT KF6IconThemesTargets ${KF_INSTALL_TARGETS_D
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kiconthemes_export.h
   ${KIconThemes_HEADERS}
+  ${KIconThemes_CamelCase_HEADERS}
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KIconThemes COMPONENT Devel
 )
 
@@ -123,3 +124,19 @@ ecm_qt_install_logging_categories(
 )
 
 ecm_generate_qdoc(KF6IconThemes kiconthemes.qdocconf)
+
+ecm_add_installed_library_check(KF6IconThemes
+    PACKAGE_NAME "KF6IconThemes"
+    PACKAGE_TARGET_NAMESPACE "KF6::"
+)
+
+# KQuickIconProvider is header-only, would need QtQuick's QQuickImageProvider to link
+list(FILTER KIconThemes_CamelCase_HEADERS EXCLUDE REGEX KQuickIconProvider)
+
+ecm_installed_library_check_include_strings(KF6IconThemes
+    HEADERS ${KIconThemes_CamelCase_HEADERS}
+)
+
+ecm_installed_library_check_version_preprocessor_macros(KF6IconThemes
+    PREFIX KICONTHEMES
+)
