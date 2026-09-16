@@ -341,7 +341,7 @@ public:
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
                            qreal scale,
-                           int size = 0,
+                           int size,
                            int state = KIconLoader::DefaultState,
                            const QStringList &overlays = QStringList(),
                            QString *path_store = nullptr,
