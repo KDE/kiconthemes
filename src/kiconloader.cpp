@@ -1037,7 +1037,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name,
                               QString *path_store,
                               bool canReturnNull) const
 {
-    return loadScaledIcon(_name, group, 1.0 /*scale*/, size, state, overlays, path_store, canReturnNull);
+    return loadScaledIcon(_name, group, 1.0 /*scale*/, QSize(size, size), state, overlays, path_store, canReturnNull, {});
 }
 
 QPixmap KIconLoader::loadScaledIcon(const QString &_name,
@@ -1049,7 +1049,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     QString *path_store,
                                     bool canReturnNull) const
 {
-    return loadScaledIcon(_name, group, scale, QSize(size, size), state, overlays, path_store, canReturnNull);
+    return loadScaledIcon(_name, group, scale, QSize(size, size), state, overlays, path_store, canReturnNull, {});
 }
 
 QPixmap KIconLoader::loadScaledIcon(const QString &_name,
