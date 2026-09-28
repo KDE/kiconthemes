@@ -295,6 +295,7 @@ public:
                      bool canReturnNull = false) const;
 
     // TODO KF6 merge loadIcon() and loadScaledIcon()
+#if KICONTHEMES_ENABLE_DEPRECATED_SINCE(6, 31)
     /*!
      * Loads an icon. It will try very hard to find an icon which is
      * suitable. If no exact match is found, a close match is searched.
@@ -334,7 +335,9 @@ public:
      * Returns the QPixmap. Can be null when not found, depending on
      *         \a canReturnNull.
      * \since 5.48
+     * \deprecated[6.31] use the overload with QSize type size argument
      */
+    KICONTHEMES_DEPRECATED_VERSION(6, 31, "Use overload with QSize size arg")
     QPixmap loadScaledIcon(const QString &name,
                            KIconLoader::Group group,
                            qreal scale,
@@ -343,6 +346,7 @@ public:
                            const QStringList &overlays = QStringList(),
                            QString *path_store = nullptr,
                            bool canReturnNull = false) const;
+#endif
 
     /*!
      * Loads an icon. It will try very hard to find an icon which is

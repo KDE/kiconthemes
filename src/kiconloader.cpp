@@ -1040,6 +1040,7 @@ QPixmap KIconLoader::loadIcon(const QString &_name,
     return loadScaledIcon(_name, group, 1.0 /*scale*/, QSize(size, size), state, overlays, path_store, canReturnNull, {});
 }
 
+#if KICONTHEMES_BUILD_DEPRECATED_SINCE(6, 31)
 QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     KIconLoader::Group group,
                                     qreal scale,
@@ -1051,6 +1052,7 @@ QPixmap KIconLoader::loadScaledIcon(const QString &_name,
 {
     return loadScaledIcon(_name, group, scale, QSize(size, size), state, overlays, path_store, canReturnNull, {});
 }
+#endif
 
 QPixmap KIconLoader::loadScaledIcon(const QString &_name,
                                     KIconLoader::Group group,
