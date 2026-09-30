@@ -43,7 +43,7 @@ ecm_setup_version(PROJECT
                   SOVERSION 6)
 
 # Dependencies
-set(REQUIRED_QT_VERSION 6.9.0)
+set(REQUIRED_QT_VERSION 6.10.0)
 find_package(Qt6Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Qt6Svg ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 
