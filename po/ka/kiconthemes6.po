@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 00:39+0000\n"
+"POT-Creation-Date: 2026-10-03 00:41+0000\n"
 "PO-Revision-Date: 2024-03-12 05:09+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -24,92 +24,92 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "არჩიეთ ხატულა…"
 
-#: widgets/kicondialog.cpp:343
+#: widgets/kicondialog.cpp:331
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "ყველა"
 
-#: widgets/kicondialog.cpp:348
+#: widgets/kicondialog.cpp:336
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr "მხოლოდ, სიმბოლური"
 
-#: widgets/kicondialog.cpp:352
+#: widgets/kicondialog.cpp:340
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr "სიმბოლურების გარეშე"
 
-#: widgets/kicondialog.cpp:373
+#: widgets/kicondialog.cpp:361
 msgid "All"
 msgstr "&ყველა"
 
-#: widgets/kicondialog.cpp:374
+#: widgets/kicondialog.cpp:362
 msgid "Actions"
 msgstr "მოქმედებები"
 
-#: widgets/kicondialog.cpp:375
+#: widgets/kicondialog.cpp:363
 msgid "Applications"
 msgstr "პროგრამები"
 
-#: widgets/kicondialog.cpp:376
+#: widgets/kicondialog.cpp:364
 msgid "Categories"
 msgstr "კატეგორიები"
 
-#: widgets/kicondialog.cpp:377
+#: widgets/kicondialog.cpp:365
 msgid "Devices"
 msgstr "მოწყობილობები"
 
-#: widgets/kicondialog.cpp:378
+#: widgets/kicondialog.cpp:366
 msgid "Emblems"
 msgstr "ემბლემები"
 
-#: widgets/kicondialog.cpp:379
+#: widgets/kicondialog.cpp:367
 msgid "Emotes"
 msgstr "ეგოები"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:368
 msgid "Mimetypes"
 msgstr "MIME ტიპები"
 
-#: widgets/kicondialog.cpp:381
+#: widgets/kicondialog.cpp:369
 msgid "Places"
 msgstr "ადგილები"
 
-#: widgets/kicondialog.cpp:382
+#: widgets/kicondialog.cpp:370
 msgid "Status"
 msgstr "სტატუსი"
 
-#: widgets/kicondialog.cpp:406
+#: widgets/kicondialog.cpp:394
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "სხვა"
 
-#: widgets/kicondialog.cpp:455
+#: widgets/kicondialog.cpp:443
 #, kde-format
 msgid "Browse…"
 msgstr "არჩევა…"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:645
 #, kde-format
 msgid "No icons matching the search"
 msgstr "თქვენს ძებნას პასუხები არ აქვს"
 
-#: widgets/kicondialog.cpp:659
+#: widgets/kicondialog.cpp:647
 #, kde-format
 msgid "No icons in this category"
 msgstr "კატეგორიაში ხატულები არაა"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:734 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "არჩიეთ ხატულა"
 
-#: widgets/kicondialog.cpp:746
+#: widgets/kicondialog.cpp:734
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

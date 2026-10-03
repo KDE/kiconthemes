@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 00:39+0000\n"
+"POT-Creation-Date: 2026-10-03 00:41+0000\n"
 "PO-Revision-Date: 2024-10-20 14:21+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -35,92 +35,92 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Valitse kuvake…"
 
-#: widgets/kicondialog.cpp:343
+#: widgets/kicondialog.cpp:331
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Kaikki"
 
-#: widgets/kicondialog.cpp:348
+#: widgets/kicondialog.cpp:336
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr "Vain symboliset"
 
-#: widgets/kicondialog.cpp:352
+#: widgets/kicondialog.cpp:340
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr "Ei symbolisia"
 
-#: widgets/kicondialog.cpp:373
+#: widgets/kicondialog.cpp:361
 msgid "All"
 msgstr "Kaikki"
 
-#: widgets/kicondialog.cpp:374
+#: widgets/kicondialog.cpp:362
 msgid "Actions"
 msgstr "Toiminnot"
 
-#: widgets/kicondialog.cpp:375
+#: widgets/kicondialog.cpp:363
 msgid "Applications"
 msgstr "Sovellukset"
 
-#: widgets/kicondialog.cpp:376
+#: widgets/kicondialog.cpp:364
 msgid "Categories"
 msgstr "Luokat"
 
-#: widgets/kicondialog.cpp:377
+#: widgets/kicondialog.cpp:365
 msgid "Devices"
 msgstr "Laitteet"
 
-#: widgets/kicondialog.cpp:378
+#: widgets/kicondialog.cpp:366
 msgid "Emblems"
 msgstr "Tunnuskuva"
 
-#: widgets/kicondialog.cpp:379
+#: widgets/kicondialog.cpp:367
 msgid "Emotes"
 msgstr "Hymiöt"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:368
 msgid "Mimetypes"
 msgstr "MIME-tyypit"
 
-#: widgets/kicondialog.cpp:381
+#: widgets/kicondialog.cpp:369
 msgid "Places"
 msgstr "Sijainnit"
 
-#: widgets/kicondialog.cpp:382
+#: widgets/kicondialog.cpp:370
 msgid "Status"
 msgstr "Tila"
 
-#: widgets/kicondialog.cpp:406
+#: widgets/kicondialog.cpp:394
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Muu"
 
-#: widgets/kicondialog.cpp:455
+#: widgets/kicondialog.cpp:443
 #, kde-format
 msgid "Browse…"
 msgstr "Selaa…"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:645
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Ei hakua vastaavia kuvakkeita"
 
-#: widgets/kicondialog.cpp:659
+#: widgets/kicondialog.cpp:647
 #, kde-format
 msgid "No icons in this category"
 msgstr "Ei kuvakkeita tässä luokassa"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:734 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Valitse kuvake"
 
-#: widgets/kicondialog.cpp:746
+#: widgets/kicondialog.cpp:734
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

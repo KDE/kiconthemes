@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 00:39+0000\n"
+"POT-Creation-Date: 2026-10-03 00:41+0000\n"
 "PO-Revision-Date: 2024-08-19 23:12+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -24,92 +24,92 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "아이콘 선택…"
 
-#: widgets/kicondialog.cpp:343
+#: widgets/kicondialog.cpp:331
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "모두"
 
-#: widgets/kicondialog.cpp:348
+#: widgets/kicondialog.cpp:336
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr "기호 아이콘만"
 
-#: widgets/kicondialog.cpp:352
+#: widgets/kicondialog.cpp:340
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr "기호 아이콘 제회"
 
-#: widgets/kicondialog.cpp:373
+#: widgets/kicondialog.cpp:361
 msgid "All"
 msgstr "모두"
 
-#: widgets/kicondialog.cpp:374
+#: widgets/kicondialog.cpp:362
 msgid "Actions"
 msgstr "동작"
 
-#: widgets/kicondialog.cpp:375
+#: widgets/kicondialog.cpp:363
 msgid "Applications"
 msgstr "앱"
 
-#: widgets/kicondialog.cpp:376
+#: widgets/kicondialog.cpp:364
 msgid "Categories"
 msgstr "분류"
 
-#: widgets/kicondialog.cpp:377
+#: widgets/kicondialog.cpp:365
 msgid "Devices"
 msgstr "장치"
 
-#: widgets/kicondialog.cpp:378
+#: widgets/kicondialog.cpp:366
 msgid "Emblems"
 msgstr "엠블렘"
 
-#: widgets/kicondialog.cpp:379
+#: widgets/kicondialog.cpp:367
 msgid "Emotes"
 msgstr "이모티콘"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:368
 msgid "Mimetypes"
 msgstr "MIME 형식"
 
-#: widgets/kicondialog.cpp:381
+#: widgets/kicondialog.cpp:369
 msgid "Places"
 msgstr "위치"
 
-#: widgets/kicondialog.cpp:382
+#: widgets/kicondialog.cpp:370
 msgid "Status"
 msgstr "상태"
 
-#: widgets/kicondialog.cpp:406
+#: widgets/kicondialog.cpp:394
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "기타"
 
-#: widgets/kicondialog.cpp:455
+#: widgets/kicondialog.cpp:443
 #, kde-format
 msgid "Browse…"
 msgstr "찾아보기..."
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:645
 #, kde-format
 msgid "No icons matching the search"
 msgstr "검색과 일치하는 아이콘 없음"
 
-#: widgets/kicondialog.cpp:659
+#: widgets/kicondialog.cpp:647
 #, kde-format
 msgid "No icons in this category"
 msgstr "이 분류에 아이콘 없음"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:734 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "아이콘 선택"
 
-#: widgets/kicondialog.cpp:746
+#: widgets/kicondialog.cpp:734
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"

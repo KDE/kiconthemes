@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-14 00:39+0000\n"
+"POT-Creation-Date: 2026-10-03 00:41+0000\n"
 "PO-Revision-Date: 2024-05-22 10:43+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -22,92 +22,92 @@ msgctxt "@info:tooltip"
 msgid "Select Icon…"
 msgstr "Ikonválasztás…"
 
-#: widgets/kicondialog.cpp:343
+#: widgets/kicondialog.cpp:331
 #, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "Összes"
 
-#: widgets/kicondialog.cpp:348
+#: widgets/kicondialog.cpp:336
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
 msgstr "Csak jelképes"
 
-#: widgets/kicondialog.cpp:352
+#: widgets/kicondialog.cpp:340
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
 msgstr "Nem jelképes"
 
-#: widgets/kicondialog.cpp:373
+#: widgets/kicondialog.cpp:361
 msgid "All"
 msgstr "Összes"
 
-#: widgets/kicondialog.cpp:374
+#: widgets/kicondialog.cpp:362
 msgid "Actions"
 msgstr "Események"
 
-#: widgets/kicondialog.cpp:375
+#: widgets/kicondialog.cpp:363
 msgid "Applications"
 msgstr "Alkalmazások"
 
-#: widgets/kicondialog.cpp:376
+#: widgets/kicondialog.cpp:364
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: widgets/kicondialog.cpp:377
+#: widgets/kicondialog.cpp:365
 msgid "Devices"
 msgstr "Eszközök"
 
-#: widgets/kicondialog.cpp:378
+#: widgets/kicondialog.cpp:366
 msgid "Emblems"
 msgstr "Emblémák"
 
-#: widgets/kicondialog.cpp:379
+#: widgets/kicondialog.cpp:367
 msgid "Emotes"
 msgstr "Hangulatjelek"
 
-#: widgets/kicondialog.cpp:380
+#: widgets/kicondialog.cpp:368
 msgid "Mimetypes"
 msgstr "MIME-típusok"
 
-#: widgets/kicondialog.cpp:381
+#: widgets/kicondialog.cpp:369
 msgid "Places"
 msgstr "Helyek"
 
-#: widgets/kicondialog.cpp:382
+#: widgets/kicondialog.cpp:370
 msgid "Status"
 msgstr "Állapot"
 
-#: widgets/kicondialog.cpp:406
+#: widgets/kicondialog.cpp:394
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
 msgstr "Egyéb"
 
-#: widgets/kicondialog.cpp:455
+#: widgets/kicondialog.cpp:443
 #, kde-format
 msgid "Browse…"
 msgstr "Böngészés…"
 
-#: widgets/kicondialog.cpp:657
+#: widgets/kicondialog.cpp:645
 #, kde-format
 msgid "No icons matching the search"
 msgstr "Nincsenek a keresésre illeszkedő ikonok"
 
-#: widgets/kicondialog.cpp:659
+#: widgets/kicondialog.cpp:647
 #, kde-format
 msgid "No icons in this category"
 msgstr "Nincsenek ikonok ebben a kategóriában"
 
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
-#: widgets/kicondialog.cpp:746 widgets/kicondialog.ui:14
+#: widgets/kicondialog.cpp:734 widgets/kicondialog.ui:14
 #, kde-format
 msgid "Select Icon"
 msgstr "Ikonválasztás"
 
-#: widgets/kicondialog.cpp:746
+#: widgets/kicondialog.cpp:734
 #, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
