@@ -3,13 +3,14 @@
 # Marko Rosic <roske@kde.org.yu>, 2003.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2004, 2005, 2006, 2008, 2009, 2010, 2011, 2012, 2014, 2015, 2016.
 # Dalibor Djuric <daliborddjuric@gmail.com>, 2009, 2010, 2011.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kiconthemes5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-03 00:41+0000\n"
-"PO-Revision-Date: 2016-11-28 01:32+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-10-06 08:03+0200\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -25,16 +26,14 @@ msgstr ""
 
 # >> @title:window
 #: widgets/kiconbutton.cpp:83
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgctxt "@info:tooltip"
 msgid "Select Icon…"
-msgstr "Izbor ikonice"
+msgstr "Izbor ikonice…"
 
 # >> @item:inlistbox System icons
 #: widgets/kicondialog.cpp:331
-#, fuzzy, kde-format
-#| msgid "All"
+#, kde-format
 msgctxt "@item:inmenu All icons"
 msgid "All"
 msgstr "sve"
@@ -43,13 +42,13 @@ msgstr "sve"
 #, kde-format
 msgctxt "@item:inmenu Show only symbolic icons"
 msgid "Only Symbolic"
-msgstr ""
+msgstr "samo simboličke"
 
 #: widgets/kicondialog.cpp:340
 #, kde-format
 msgctxt "@item:inmenu Hide symbolic icons"
 msgid "No Symbolic"
-msgstr ""
+msgstr "bez simboličkih"
 
 # >> @item:inlistbox System icons
 #: widgets/kicondialog.cpp:361
@@ -105,23 +104,22 @@ msgstr "stanje"
 #, kde-format
 msgctxt "Other icons"
 msgid "Other"
-msgstr ""
+msgstr "drugo"
 
 #: widgets/kicondialog.cpp:443
-#, fuzzy, kde-format
-#| msgid "&Browse..."
+#, kde-format
 msgid "Browse…"
-msgstr "&Pregledaj..."
+msgstr "Pregledaj…"
 
 #: widgets/kicondialog.cpp:645
 #, kde-format
 msgid "No icons matching the search"
-msgstr ""
+msgstr "Nema ikonica koje odgovaraju pretrazi"
 
 #: widgets/kicondialog.cpp:647
 #, kde-format
 msgid "No icons in this category"
-msgstr ""
+msgstr "Nema ikonica u ovoj kategoriji"
 
 # >> @title:window
 #. i18n: ectx: property (windowTitle), widget (QWidget, IconDialog)
@@ -131,37 +129,22 @@ msgid "Select Icon"
 msgstr "Izbor ikonice"
 
 #: widgets/kicondialog.cpp:734
-#, fuzzy, kde-format
-#| msgid "*.png *.xpm *.svg *.svgz|Icon Files (*.png *.xpm *.svg *.svgz)"
+#, kde-format
 msgid ""
 "*.ico *.png *.xpm *.svg *.svgz|Icon Files (*.ico *.png *.xpm *.svg *.svgz)"
-msgstr "*.png *.xpm *.svg *.svgz|fajlovi ikonica (*.png *.xpm *.svg *.svgz)"
+msgstr ""
+"*.ico *.png *.xpm *.svg *.svgz|fajlovi ikonica (*.ico *.png *.xpm *.svg *."
+"svgz)"
 
 #. i18n: ectx: property (accessibleName), widget (QComboBox, contextCombo)
 #: widgets/kicondialog.ui:24
 #, kde-format
 msgid "Icon category"
-msgstr ""
+msgstr "Kategorija ikonica"
 
 # >> @title:window
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLine)
 #: widgets/kicondialog.ui:44
-#, fuzzy, kde-format
-#| msgid "Select Icon"
+#, kde-format
 msgid "Search Icons..."
-msgstr "Izbor ikonice"
-
-#~ msgid "Icon Source"
-#~ msgstr "Izvor ikonice"
-
-#~ msgid "S&ystem icons:"
-#~ msgstr "&Sistemske ikonice:"
-
-#~ msgid "O&ther icons:"
-#~ msgstr "&Druge ikonice:"
-
-#~ msgid "&Search:"
-#~ msgstr "&Traži:"
-
-#~ msgid "Search interactively for icon names (e.g. folder)."
-#~ msgstr "Interaktivno traži imena ikonica (npr. fascikla)."
+msgstr "Traži ikonice..."
