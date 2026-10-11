@@ -26,6 +26,7 @@
 
 // kdeui
 #include "debug.h"
+#include "iconlookup_debug.h"
 #include "kiconcolors.h"
 #include "kiconeffect.h"
 #include "kicontheme.h"
@@ -786,7 +787,7 @@ QString KIconLoaderPrivate::findMatchingIconWithGenericFallbacks(const QString &
     return path;
 }
 
-QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qreal scale) const
+QString KIconLoaderPrivate::findMatchingIconImpl(const QString &name, int size, qreal scale) const
 {
     // This looks for the exact match and its
     // generic fallbacks in each themeNode one after the other.
@@ -884,6 +885,15 @@ QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qrea
             }
         }
     }
+
+    return path;
+}
+
+QString KIconLoaderPrivate::findMatchingIcon(const QString &name, int size, qreal scale) const
+{
+    const QString path = findMatchingIconImpl(name, size, scale);
+
+    qCDebug(KICONTHEMES_ICONLOOKUP) << "Input icon name" << name << "size" << size << "scale" << scale << ". Found icon file with full path" << path << ".";
 
     return path;
 }

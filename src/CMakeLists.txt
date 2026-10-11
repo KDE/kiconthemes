@@ -47,6 +47,14 @@ ecm_qt_declare_logging_category(KF6IconThemes
     EXPORT KICONTHEMES
 )
 
+ecm_qt_declare_logging_category(KF6IconThemes
+    HEADER iconlookup_debug.h
+    IDENTIFIER KICONTHEMES_ICONLOOKUP
+    CATEGORY_NAME kf.iconthemes.iconlookup
+    DESCRIPTION "KIconThemes icon lookup"
+    EXPORT KICONTHEMES
+)
+
 ecm_generate_export_header(KF6IconThemes
     BASE_NAME KIconThemes
     GROUP_BASE_NAME KF

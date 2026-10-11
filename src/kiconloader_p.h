@@ -55,6 +55,7 @@ public:
      * match strategies
      */
     QString findMatchingIcon(const QString &name, int size, qreal scale) const;
+    QString findMatchingIconImpl(const QString &name, int size, qreal scale) const;
 
     /*
      * tries to find an icon with the name.
