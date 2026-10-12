@@ -10,7 +10,7 @@ find_package(ECM 6.31.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
@@ -80,6 +80,15 @@ endif()
 option(USE_BreezeIcons "Ensures BreezeIcons are available" ${USE_BreezeIcons_DEFAULT})
 if (USE_BreezeIcons)
     find_package(KF6BreezeIcons ${KF_DEP_VERSION} REQUIRED)
+endif()
+
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
+    find_package(GtkUpdateIconCache)
+    set_package_properties(GtkUpdateIconCache PROPERTIES
+        DESCRIPTION "gtk-update-icon-cache executable"
+        TYPE RUNTIME
+        PURPOSE "Generates the icon-theme.cache files that let icon lookups skip most filesystem checks"
+    )
 endif()
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
