@@ -86,7 +86,7 @@ if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
     find_package(GtkUpdateIconCache)
     set_package_properties(GtkUpdateIconCache PROPERTIES
         DESCRIPTION "gtk-update-icon-cache executable"
-        TYPE OPTIONAL
+        TYPE RECOMMENDED
         PURPOSE "Generates the icon-theme.cache files that let icon lookups skip most filesystem checks"
     )
 endif()
