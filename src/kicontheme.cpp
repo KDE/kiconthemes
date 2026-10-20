@@ -650,8 +650,19 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
 
 QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchType match, qreal scale) const
 {
-    // first look for a scaled image at exactly the requested size
-    QString path = d->iconPath(d->mScaledDirs, name, size, scale, KIconLoader::MatchExact);
+    QString path;
+
+    // At a fractional scale, a directory made for the size in device pixels draws the icon at its
+    // own size. A scaled directory is searched for the next whole scale, and its image is resized
+    // by a fraction, so it only comes next.
+    if (scale != std::floor(scale)) {
+        path = d->iconPath(d->mDirs, name, size * scale, 1, KIconLoader::MatchExact);
+    }
+
+    // then look for a scaled image at exactly the requested size
+    if (path.isEmpty()) {
+        path = d->iconPath(d->mScaledDirs, name, size, scale, KIconLoader::MatchExact);
+    }
 
     // then look for an unscaled one but request it at larger size so it doesn't become blurry
     if (path.isEmpty()) {
