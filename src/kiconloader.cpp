@@ -605,10 +605,6 @@ void KIconLoaderPrivate::normalizeIconMetadata(KIconLoader::Group &group, QSize 
         state = KIconLoader::DefaultState;
     }
 
-    if (size.width() < 0 || size.height() < 0) {
-        size = {};
-    }
-
     // For "User" icons, bail early since the size should be based on the size on disk,
     // which we've already checked.
     if (group == KIconLoader::User) {
