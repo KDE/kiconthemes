@@ -23,6 +23,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
+#include <QElapsedTimer>
 #include <QFile>
 #include <QFileInfo>
 #include <QMap>
@@ -41,6 +42,8 @@
 #include <cmath>
 
 #include "config.h"
+
+extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
@@ -200,9 +203,14 @@ public:
         return m_isValid;
     }
 
+    // Reloads the cache if icon-theme.cache has a new modification time, at most once every kiconloader_ms_between_checks.
+    void reloadIfChanged();
+
     QList<const char *> lookup(const QByteArray &name);
 
 private:
+    void load();
+
     // Read a big-endian int from the mmap, flags the cache invalid on an out-of-range or misaligned offset.
     quint16 read16(quint32 offset)
     {
@@ -221,6 +229,9 @@ private:
         return m_data[offset + 3] | m_data[offset + 2] << 8 | m_data[offset + 1] << 16 | m_data[offset] << 24;
     }
 
+    const QString m_themeDir;
+    QDateTime m_lastModified;
+    QElapsedTimer m_lastCheck;
     QFile m_file;
     const uchar *m_data = nullptr;
     quint32 m_size = 0;
@@ -228,10 +239,36 @@ private:
 };
 
 KIconCache::KIconCache(const QString &themeDir)
+    : m_themeDir(themeDir)
 {
+    load();
+}
+
+void KIconCache::reloadIfChanged()
+{
+    if (m_lastCheck.elapsed() < kiconloader_ms_between_checks) {
+        return;
+    }
+    m_lastCheck.start();
+    if (QFileInfo(m_themeDir + QLatin1String("icon-theme.cache")).lastModified(QTimeZone::UTC) != m_lastModified) {
+        load();
+    }
+}
+
+void KIconCache::load()
+{
+    if (m_data) {
+        m_file.unmap(const_cast<uchar *>(m_data));
+    }
+    m_file.close();
+    m_data = nullptr;
+    m_isValid = false;
+    m_lastCheck.start();
+
     // Treat a missing or stale cache (older than the directory it indexes) as absent. lookups then fall back to stat().
-    const QFileInfo info(themeDir + QLatin1String("icon-theme.cache"));
-    if (!info.exists() || info.lastModified(QTimeZone::UTC) < QFileInfo(themeDir).lastModified(QTimeZone::UTC)) {
+    const QFileInfo info(m_themeDir + QLatin1String("icon-theme.cache"));
+    m_lastModified = info.lastModified(QTimeZone::UTC);
+    if (!info.exists() || m_lastModified < QFileInfo(m_themeDir).lastModified(QTimeZone::UTC)) {
         return;
     }
     m_file.setFileName(info.absoluteFilePath());
@@ -246,13 +283,12 @@ KIconCache::KIconCache(const QString &themeDir)
     m_isValid = true;
 
     // Also stale if any indexed sub-directory was modified after the cache was written.
-    const QDateTime lastModified = info.lastModified(QTimeZone::UTC);
     const quint32 dirListOffset = read32(8);
     const quint32 dirListLen = read32(dirListOffset);
     for (quint32 i = 0; i < dirListLen; ++i) {
         const quint32 offset = read32(dirListOffset + 4 + 4 * i);
         if (!m_isValid || offset >= m_size
-            || lastModified < QFileInfo(themeDir + QString::fromUtf8(reinterpret_cast<const char *>(m_data + offset))).lastModified(QTimeZone::UTC)) {
+            || m_lastModified < QFileInfo(m_themeDir + QString::fromUtf8(reinterpret_cast<const char *>(m_data + offset))).lastModified(QTimeZone::UTC)) {
             m_isValid = false;
             return;
         }
@@ -968,6 +1004,8 @@ QString KIconThemeDir::iconPath(const QString &name) const
     if (!mbValid) {
         return QString();
     }
+
+    mCache->reloadIfChanged();
 
     // Skip the filesystem check if a valid cache says this directory lacks the icon.
     if (mCache && mCache->isValid()) {
