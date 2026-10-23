@@ -8,7 +8,9 @@
 #include <kiconloader.h>
 
 #include <QDir>
+#include <QProcess>
 #include <QRegularExpression>
+#include <QScopeGuard>
 #include <QStandardPaths>
 #include <QTest>
 
@@ -17,6 +19,7 @@
 #include <KSharedConfig>
 
 extern KICONTHEMES_EXPORT void uintToHex(uint32_t colorData, QChar *buffer);
+extern KICONTHEMES_EXPORT int kiconloader_ms_between_checks;
 
 class KIconLoader_UnitTest : public QObject
 {
@@ -191,6 +194,35 @@ private Q_SLOTS:
         QPixmap nowExistingIcon = iconLoader.loadIcon(nonExistingIconName, KIconLoader::Toolbar);
         QVERIFY(nowExistingIcon.cacheKey() != nonExistingIcon.cacheKey());
         QCOMPARE(iconLoader.iconPath(nonExistingIconName, KIconLoader::Toolbar), newIconPath);
+    }
+
+    void testUnknownIconNotCachedWithIconCache()
+    {
+        // A running loader must find an icon installed later, once icon-theme.cache is regenerated.
+        const QString gtkUpdateIconCache = QStandardPaths::findExecutable(QStringLiteral("gtk-update-icon-cache"));
+        if (gtkUpdateIconCache.isEmpty()) {
+            QSKIP("gtk-update-icon-cache not found");
+        }
+
+        const QString themeDir = testIconsDir.filePath(QStringLiteral("fakeoxygen"));
+        const QString iconName = QStringLiteral("strongbad_email");
+        const QString newIconPath = themeDir + QLatin1String("/22x22/actions/") + iconName + QLatin1String(".png");
+        const int previousInterval = kiconloader_ms_between_checks;
+        const auto cleanup = qScopeGuard([&] {
+            QFile::remove(themeDir + QLatin1String("/icon-theme.cache"));
+            kiconloader_ms_between_checks = previousInterval;
+        });
+        const auto updateIconCache = [&] {
+            return QProcess::execute(gtkUpdateIconCache, {QStringLiteral("-q"), QStringLiteral("-f"), themeDir}) == 0;
+        };
+        kiconloader_ms_between_checks = 0;
+
+        QVERIFY(updateIconCache());
+        KIconLoader iconLoader;
+
+        QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), newIconPath));
+        QVERIFY(updateIconCache());
+        QCOMPARE(iconLoader.iconPath(iconName, KIconLoader::Toolbar), newIconPath);
     }
 
     void testLoadIconCanReturnNull()
