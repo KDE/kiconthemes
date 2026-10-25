@@ -210,6 +210,7 @@ public:
 
 private:
     void load();
+    QList<const char *> findSubDirs(const QByteArray &name);
 
     // Read a big-endian int from the mmap, flags the cache invalid on an out-of-range or misaligned offset.
     quint16 read16(quint32 offset)
@@ -236,6 +237,9 @@ private:
     const uchar *m_data = nullptr;
     quint32 m_size = 0;
     bool m_isValid = false;
+    // The sub-dirs of a theme look up the same name one after another, so the last answer is kept.
+    QByteArray m_lastName;
+    QList<const char *> m_lastSubDirs;
 };
 
 KIconCache::KIconCache(const QString &themeDir)
@@ -263,6 +267,8 @@ void KIconCache::load()
     m_file.close();
     m_data = nullptr;
     m_isValid = false;
+    m_lastName.clear(); // the kept answer points into the old file
+    m_lastSubDirs.clear();
     m_lastCheck.start();
 
     // Treat a missing or stale cache (older than the directory it indexes) as absent. lookups then fall back to stat().
@@ -297,10 +303,19 @@ void KIconCache::load()
 
 QList<const char *> KIconCache::lookup(const QByteArray &name)
 {
-    QList<const char *> subDirs;
     if (!m_isValid || name.isEmpty()) {
-        return subDirs;
+        return {};
     }
+    if (name != m_lastName) {
+        m_lastSubDirs = findSubDirs(name);
+        m_lastName = name;
+    }
+    return m_lastSubDirs;
+}
+
+QList<const char *> KIconCache::findSubDirs(const QByteArray &name)
+{
+    QList<const char *> subDirs;
 
     // GtkIconCache name hash.
     quint32 hash = static_cast<signed char>(name.at(0));
