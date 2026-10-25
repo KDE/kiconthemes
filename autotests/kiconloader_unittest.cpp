@@ -219,6 +219,8 @@ private Q_SLOTS:
 
         QVERIFY(updateIconCache());
         KIconLoader iconLoader;
+        // The cache now remembers "not found" for this name, the reload must forget it.
+        QVERIFY(iconLoader.iconPath(iconName, KIconLoader::Toolbar, true).isEmpty());
 
         QVERIFY(QFile::copy(QStringLiteral(":/test-22x22.png"), newIconPath));
         QVERIFY(updateIconCache());
