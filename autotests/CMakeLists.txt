@@ -15,6 +15,7 @@ kiconthemes_tests(
   kiconloader_unittest
   kiconloader_resourcethemetest
   kicontheme_unittest
+  kicontheme_threading_unittest
   kiconengine_unittest
   kiconengine_scaled_unittest
   kiconbutton_unittest
