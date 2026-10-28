@@ -44,6 +44,7 @@
 #include <QImage>
 #include <QMimeDatabase>
 #include <QMovie>
+#include <QMutex>
 #include <QPainter>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -215,6 +216,8 @@ public:
 
     QString genericIconFor(const QString &icon) const
     {
+        // Only the first to acuire will get to call loadGenericIcons()
+        QMutexLocker locker(&m_mutex);
         if (!m_loaded) {
             // load icons lazily as initializing the icons is very expensive
             const_cast<KIconLoaderGlobalData *>(this)->loadGenericIcons();
@@ -242,6 +245,10 @@ private:
 private:
     QHash<QString, QString> m_genericIcons;
     bool m_loaded = false;
+    // s_globalData is shared across all threads so we can have concurrent calls of
+    // genericIconFor() which would try to populate m_genericIcons at the same time,
+    // we must make sure that only one of them will populate them.
+    mutable QMutex m_mutex;
 };
 
 Q_GLOBAL_STATIC(KIconLoaderGlobalData, s_globalData)

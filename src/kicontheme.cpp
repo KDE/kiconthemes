@@ -24,6 +24,7 @@
 #include <QDir>
 #include <QFileInfo>
 #include <QMap>
+#include <QMutex>
 #include <QResource>
 #include <QSet>
 #include <QTimer>
@@ -37,6 +38,11 @@
 #include <cmath>
 
 #include "config.h"
+
+// Guards the other Q_GLOBAL_STATIC that are process global theme caches (_theme, _theme_list and
+// _themeOverride). KIconLoader::global() is thread_local, so several threads can
+// reach KIconTheme::current()/reconfigure()/list() concurrently.
+Q_GLOBAL_STATIC(QMutex, _themeMutex);
 
 Q_GLOBAL_STATIC(QString, _themeOverride)
 
@@ -110,7 +116,10 @@ static void initThemeHelper()
     QIcon::setThemeName(QStringLiteral("KIconEngine"));
 
     // Tell KIconTheme about the theme, in case KIconLoader is used directly
-    *_themeOverride() = themeToUse;
+    {
+        QMutexLocker locker(_themeMutex());
+        *_themeOverride() = themeToUse;
+    }
     qCDebug(KICONTHEMES) << "KIconTheme::initTheme() enforces the icon theme:" << themeToUse;
 
     // postpone until QGuiApplication applies initial palette
@@ -663,6 +672,8 @@ QString KIconTheme::iconPath(const QString &name, int size, KIconLoader::MatchTy
 // static
 QString KIconTheme::current()
 {
+    QMutexLocker locker(_themeMutex());
+
     // Static pointers because of unloading problems wrt DSO's.
     if (_themeOverride && !_themeOverride->isEmpty()) {
         *_theme() = *_themeOverride();
@@ -695,6 +706,7 @@ QString KIconTheme::current()
 
 void KIconTheme::forceThemeForTests(const QString &themeName)
 {
+    QMutexLocker locker(_themeMutex());
     *_themeOverride() = themeName;
     _theme()->clear(); // ::current sets this again based on conditions
 }
@@ -702,6 +714,8 @@ void KIconTheme::forceThemeForTests(const QString &themeName)
 // static
 QStringList KIconTheme::list()
 {
+    QMutexLocker locker(_themeMutex());
+
     // Static pointer because of unloading problems wrt DSO's.
     if (!_theme_list()->isEmpty()) {
         return *_theme_list();
@@ -748,6 +762,7 @@ QStringList KIconTheme::list()
 // static
 void KIconTheme::reconfigure()
 {
+    QMutexLocker locker(_themeMutex());
     _theme()->clear();
     _theme_list()->clear();
 }
