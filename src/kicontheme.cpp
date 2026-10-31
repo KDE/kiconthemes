@@ -1022,8 +1022,11 @@ QString KIconThemeDir::iconPath(const QString &name) const
 
     mCache->reloadIfChanged();
 
+    // gtk-update-icon-cache only indexes .png, .svg and .xpm files, not .svgz.
+    const bool indexedByCache = name.endsWith(QLatin1String(".png")) || name.endsWith(QLatin1String(".svg")) || name.endsWith(QLatin1String(".xpm"));
+
     // Skip the filesystem check if a valid cache says this directory lacks the icon.
-    if (mCache && mCache->isValid()) {
+    if (indexedByCache && mCache && mCache->isValid()) {
         // The cache is keyed by name without extension.
         const QByteArray base = name.left(name.lastIndexOf(QLatin1Char('.'))).toUtf8();
         const QList<const char *> subDirs = mCache->lookup(base);
