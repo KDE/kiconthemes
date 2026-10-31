@@ -227,6 +227,28 @@ private Q_SLOTS:
         QCOMPARE(iconLoader.iconPath(iconName, KIconLoader::Toolbar), newIconPath);
     }
 
+    void testSvgzIconWithIconCache()
+    {
+        // icon-theme.cache leaves out .svgz files, but they must still be found.
+        const QString gtkUpdateIconCache = QStandardPaths::findExecutable(QStringLiteral("gtk-update-icon-cache"));
+        if (gtkUpdateIconCache.isEmpty()) {
+            QSKIP("gtk-update-icon-cache not found");
+        }
+
+        const QString themeDir = testIconsDir.filePath(QStringLiteral("fakeoxygen"));
+        const QString svgzIconPath = themeDir + QLatin1String("/22x22/actions/svgz_only.svgz");
+        const auto cleanup = qScopeGuard([&] {
+            QFile::remove(themeDir + QLatin1String("/icon-theme.cache"));
+        });
+
+        // iconPath() only checks that the file exists, so it does not need to be compressed.
+        QVERIFY(QFile::copy(QStringLiteral(":/coloredsvgicon.svg"), svgzIconPath));
+        QCOMPARE(QProcess::execute(gtkUpdateIconCache, {QStringLiteral("-q"), QStringLiteral("-f"), themeDir}), 0);
+
+        KIconLoader iconLoader;
+        QCOMPARE(iconLoader.iconPath(QStringLiteral("svgz_only"), KIconLoader::Toolbar), svgzIconPath);
+    }
+
     void testLoadIconCanReturnNull()
     {
         // This is a test for the "canReturnNull" argument of KIconLoader::loadIcon().
