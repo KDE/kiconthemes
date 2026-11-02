@@ -185,6 +185,7 @@ public:
 
     /// Searches the given dirs vector for a matching icon
     QString iconPath(const QList<KIconThemeDir *> &dirs, const QString &name, int size, qreal scale, KIconLoader::MatchType match) const;
+    QThread *ownThread;
 };
 Q_GLOBAL_STATIC(QString, _theme)
 Q_GLOBAL_STATIC(QStringList, _theme_list)
@@ -346,6 +347,8 @@ QString KIconThemePrivate::iconPath(const QList<KIconThemeDir *> &dirs, const QS
 KIconTheme::KIconTheme(const QString &name, const QString &appName, const QString &basePathHint)
     : d(new KIconThemePrivate)
 {
+    qWarning() << "KIconTheme::KIconTheme" << QThread::currentThread();
+    d->ownThread = QThread::currentThread();
     if (name.isEmpty()) {
         qCWarning(KICONTHEMES) << "KIconTheme created with empty theme name";
         return;
@@ -677,6 +680,7 @@ QString KIconTheme::current()
     // Static pointers because of unloading problems wrt DSO's.
     if (_themeOverride && !_themeOverride->isEmpty()) {
         *_theme() = *_themeOverride();
+        Q_ASSERT(qApp->thread() == QThread::currentThread());
     }
     if (!_theme()->isEmpty()) {
         return *_theme();
@@ -701,11 +705,13 @@ QString KIconTheme::current()
         theme = defaultThemeName();
     }
     *_theme() = theme;
+    Q_ASSERT(qApp->thread() == QThread::currentThread());
     return *_theme();
 }
 
 void KIconTheme::forceThemeForTests(const QString &themeName)
 {
+    Q_ASSERT(qApp->thread() == QThread::currentThread());
     QMutexLocker locker(_themeMutex());
     *_themeOverride() = themeName;
     _theme()->clear(); // ::current sets this again based on conditions
@@ -714,6 +720,7 @@ void KIconTheme::forceThemeForTests(const QString &themeName)
 // static
 QStringList KIconTheme::list()
 {
+    Q_ASSERT(qApp->thread() == QThread::currentThread());
     QMutexLocker locker(_themeMutex());
 
     // Static pointer because of unloading problems wrt DSO's.
@@ -762,6 +769,7 @@ QStringList KIconTheme::list()
 // static
 void KIconTheme::reconfigure()
 {
+    Q_ASSERT(qApp->thread() == QThread::currentThread());
     QMutexLocker locker(_themeMutex());
     _theme()->clear();
     _theme_list()->clear();
