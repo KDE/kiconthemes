@@ -170,6 +170,7 @@ public:
     QString mDir, mName, mInternalName, mDesc;
     QStringList mInherits;
     QStringList mExtensions;
+    QStringList mFormats;
     QList<KIconThemeDir *> mDirs;
     QList<KIconThemeDir *> mScaledDirs;
     bool followsColorScheme : 1;
@@ -193,7 +194,7 @@ public:
         return mbValid;
     }
     QString iconPath(const QString &name) const;
-    QStringList iconList() const;
+    QStringList iconList(const QStringList &formats) const;
     QString constructFileName(const QString &file) const
     {
         return mBaseDir + mThemeDir + QLatin1Char('/') + file;
@@ -443,6 +444,9 @@ KIconTheme::KIconTheme(const QString &name, const QString &appName, const QStrin
     // Prefer png due to svg support being incomplete — QTBUG-115223
     d->mExtensions =
         cfg.readEntry("KDE-Extensions", QStringList{QStringLiteral(".png"), QStringLiteral(".svgz"), QStringLiteral(".svg"), QStringLiteral(".xpm")});
+    std::ranges::transform(d->mExtensions, std::back_inserter(d->mFormats), [](const QString &extension) {
+        return QLatin1StringView("*") + extension;
+    });
 
     QSet<QString> addedDirs; // Used for avoiding duplicates.
     const QStringList dirs = cfg.readPathEntry("Directories", QStringList()) + cfg.readPathEntry("ScaledDirectories", QStringList());
@@ -557,7 +561,7 @@ QStringList KIconTheme::queryIcons() const
     QStringList result;
     const auto listDirs = d->mDirs + d->mScaledDirs;
     for (const auto &dir : listDirs) {
-        result.append(dir->iconList());
+        result.append(dir->iconList(d->mFormats));
     }
     return result;
 }
@@ -576,7 +580,7 @@ QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
         if ((dir->type() == KIconLoader::Fixed && dirSize == size) //
             || (dir->type() == KIconLoader::Scalable && size >= dir->minSize() && size <= dir->maxSize())
             || (dir->type() == KIconLoader::Threshold && abs(size - dirSize) < dir->threshold())) {
-            result += dir->iconList();
+            result += dir->iconList(d->mFormats);
         }
     }
 
@@ -600,7 +604,7 @@ QStringList KIconTheme::queryIconsByContext(int size, KIconLoader::Context conte
             continue;
         }
         dw = abs(dir->size() - size);
-        iconlist[(dw < 127) ? dw : 127] += dir->iconList();
+        iconlist[(dw < 127) ? dw : 127] += dir->iconList(d->mFormats);
     }
 
     QStringList iconlistResult;
@@ -839,11 +843,9 @@ QString KIconThemeDir::iconPath(const QString &name) const
     return QString();
 }
 
-QStringList KIconThemeDir::iconList() const
+QStringList KIconThemeDir::iconList(const QStringList &formats) const
 {
     const QDir icondir = constructFileName(QString());
-
-    const QStringList formats = QStringList() << QStringLiteral("*.png") << QStringLiteral("*.svg") << QStringLiteral("*.svgz") << QStringLiteral("*.xpm");
     const QStringList lst = icondir.entryList(formats, QDir::Files);
 
     QStringList result;
