@@ -39,6 +39,13 @@ private Q_SLOTS:
         KIconTheme::forceThemeForTests(forcedName);
         QCOMPARE(KIconTheme::current(), forcedName);
     }
+
+    void testQueryIconNames()
+    {
+        const KIconTheme breeze(QStringLiteral("breeze"));
+        QVERIFY(breeze.isValid());
+        QVERIFY(breeze.queryIconNames().contains(QStringLiteral("folder")));
+    }
 };
 
 QTEST_MAIN(KIconTheme_UnitTest)

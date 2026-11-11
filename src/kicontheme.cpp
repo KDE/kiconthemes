@@ -195,6 +195,7 @@ public:
     }
     QString iconPath(const QString &name) const;
     QStringList iconList(const QStringList &formats) const;
+    QStringList iconNames(const QStringList &formats) const;
     QString constructFileName(const QString &file) const
     {
         return mBaseDir + mThemeDir + QLatin1Char('/') + file;
@@ -566,6 +567,17 @@ QStringList KIconTheme::queryIcons() const
     return result;
 }
 
+QSet<QString> KIconTheme::queryIconNames() const
+{
+    QSet<QString> result;
+    const auto listDirs = d->mDirs + d->mScaledDirs;
+    for (const auto &dir : listDirs) {
+        const auto names = dir->iconNames(d->mFormats);
+        result += QSet(names.cbegin(), names.cend());
+    }
+    return result;
+}
+
 QStringList KIconTheme::queryIcons(int size, KIconLoader::Context context) const
 {
     // Try to find exact match
@@ -852,6 +864,20 @@ QStringList KIconThemeDir::iconList(const QStringList &formats) const
     result.reserve(lst.size());
     for (const QString &file : lst) {
         result += constructFileName(file);
+    }
+    return result;
+}
+
+QStringList KIconThemeDir::iconNames(const QStringList &formats) const
+{
+    const QDir icondir = constructFileName(QString());
+    const auto files = icondir.entryList(formats, QDir::Files, QDir::Unsorted);
+
+    QStringList result;
+    result.reserve(files.size());
+    for (const auto &file : files) {
+        const qsizetype dot = file.lastIndexOf(u'.');
+        result += dot >= 0 ? file.first(dot) : file;
     }
     return result;
 }

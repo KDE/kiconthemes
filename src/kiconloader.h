@@ -594,10 +594,19 @@ public:
 #endif
 
     /*!
-     * Queries all available icons.
+     * Queries all available icon paths.
      * \since 6.11
      */
     [[nodiscard]] QStringList queryIcons() const;
+
+    /*!
+     * Query all available icons.
+     *
+     * Returns the list of icon names
+     *
+     * \since 6.33
+     */
+    [[nodiscard]] QSet<QString> queryIconNames() const;
 
     /*!
      * Queries all available icons for a specific group, having a specific

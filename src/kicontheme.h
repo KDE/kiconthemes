@@ -145,11 +145,20 @@ public:
     /*!
      * Query all available icons.
      *
-     * Returns the list of icon names
+     * Returns the list of icon paths
      *
      * \since 6.11
      */
     [[nodiscard]] QStringList queryIcons() const;
+
+    /*!
+     * Query all available icon names.
+     *
+     * \returns a set of all available icon names
+     *
+     * \since 6.33
+     */
+    [[nodiscard]] QSet<QString> queryIconNames() const;
 
     /*!
      * Query available icons for a size and context.
@@ -158,7 +167,7 @@ public:
      *
      * \a context the context of the icons
      *
-     * Returns the list of icon names
+     * Returns the list of icon paths
      */
     QStringList queryIcons(int size, KIconLoader::Context context = KIconLoader::Any) const;
 
@@ -169,7 +178,7 @@ public:
      *
      * \a context the context of the icons
      *
-     * Returns the list of icon names
+     * Returns the list of icon paths
      */
     QStringList queryIconsByContext(int size, KIconLoader::Context context = KIconLoader::Any) const;
 
