@@ -128,6 +128,7 @@ ecm_generate_qdoc(KF6IconThemes kiconthemes.qdocconf)
 ecm_add_installed_library_check(KF6IconThemes
     PACKAGE_NAME "KF6IconThemes"
     PACKAGE_TARGET_NAMESPACE "KF6::"
+    QT_STRICT_MODE_LEVEL 6.12
 )
 
 # KQuickIconProvider is header-only, would need QtQuick's QQuickImageProvider to link
